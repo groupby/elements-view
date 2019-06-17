@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/groupby/sfx-view#readme",
   "devDependencies": {
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.2",
+    "webpack": "^4.34.0"
   }
 }
