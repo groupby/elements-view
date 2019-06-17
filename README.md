@@ -4,7 +4,7 @@ SFX View SDK containing pre-built web components for for creating e-commerce app
 ## Installation
 To clone this repo with submodules run:
 ```
-git clone --recursive https://github.com/groupby/sfx-logic
+git clone --recursive https://github.com/groupby/sfx-view
 ```
 or if the repo is already cloned and you want to install submodules only, run:
 ```
