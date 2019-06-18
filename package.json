@@ -2,6 +2,11 @@
   "name": "sfx-view",
   "version": "1.0.0",
   "description": "SFX View SDK containing pre-built web components for for creating e-commerce application interfaces.",
+  "private": true,
+  "workspaces": [
+    "packages/service-layer",
+    "packages/web-components/*"
+  ],
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server"
