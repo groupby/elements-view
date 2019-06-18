@@ -9,5 +9,8 @@
     "dev": "nodemon --watch src --exec npm run build"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lit-element": "^2.2.0"
+  }
 }
