@@ -8,7 +8,7 @@
     "packages/web-components/*"
   ],
   "scripts": {
-    "build": "webpack",
+    "bundle": "webpack",
     "start": "webpack-dev-server"
   },
   "repository": {
