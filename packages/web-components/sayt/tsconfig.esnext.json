@@ -9,13 +9,16 @@
     "types": [
       "node"
     ],
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
-    "target": "ES5",
+    "target": "es2015",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "outDir": "dist",
-    "sourceMap": true
+    "outDir": "esnext",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "allowJs": true
   },
   "exclude": [
     "node_modules",
@@ -25,4 +28,7 @@
     "indentSize": 2,
     "tabSize": 2
   },
+  "include": [
+    "src"
+  ]
 }

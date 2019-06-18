@@ -9,16 +9,13 @@
     "types": [
       "node"
     ],
-    "module": "es6",
+    "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "ES5",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "outDir": "dist",
-    "sourceMap": true,
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "allowJs": true
+    "sourceMap": true
   },
   "exclude": [
     "node_modules",
