@@ -37,4 +37,4 @@ To bundle the SFX-View packages, run the following command at the root of the mo
 yarn bundle
 ```
 
-The resulting bundles can be found with the `dist` directory at the root of the repo.
+The resulting bundles can be found within the `dist` directory at the root of the repo.
