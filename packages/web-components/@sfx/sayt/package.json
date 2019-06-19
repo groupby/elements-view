@@ -8,6 +8,11 @@
     "build": "../../../../scripts/build.sh",
     "dev": "nodemon --watch src --exec npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groupby/sfx-view.git",
+    "directory": "packages/web-components/@sfx/sayt"
+  },
   "author": "",
   "license": "MIT"
 }
