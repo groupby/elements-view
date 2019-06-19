@@ -4,8 +4,7 @@
   "description": "SFX View SDK containing pre-built web components for for creating e-commerce application interfaces.",
   "private": true,
   "workspaces": [
-    "packages/service-layer",
-    "packages/web-components/*"
+    "packages/web-components/@sfx/*"
   ],
   "scripts": {
     "bundle": "webpack",

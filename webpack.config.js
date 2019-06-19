@@ -21,7 +21,7 @@ module.exports = {
   mode: 'development',
 
   entry: {
-    components: './packages/web-components/@sfx/index.ts',
+    components: './presets/components.ts',
   },
 
   output: {
@@ -35,7 +35,6 @@ module.exports = {
     rules: [{
       test: /.(ts|tsx)?$/,
       loader: 'ts-loader',
-      include: [path.resolve(__dirname, 'src')],
       exclude: [/node_modules/]
     }]
   },
