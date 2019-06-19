@@ -21,7 +21,7 @@ module.exports = {
   mode: 'development',
 
   entry: {
-    components: './packages/web-components/index.ts',
+    components: './packages/web-components/@sfx/index.ts',
   },
 
   output: {
