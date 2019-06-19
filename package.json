@@ -1,7 +1,7 @@
 {
   "name": "sfx-view",
-  "version": "1.0.0",
-  "description": "SFX View SDK containing pre-built web components for for creating e-commerce application interfaces.",
+  "version": "0.0.0",
+  "description": "SF-X View SDK containing pre-built web components for for creating e-commerce application interfaces.",
   "private": true,
   "workspaces": [
     "packages/web-components/@sfx/*"
