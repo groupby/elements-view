@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "bundle": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "docs": "typedoc --options ./typedoc.js packages"
   },
   "repository": {
     "type": "git",
