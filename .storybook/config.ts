@@ -11,7 +11,7 @@ function loadStories() {
     options: {
       theme: GroupByTheme,
     }
-  })
+  });
   req.keys().forEach(req);
 }
 

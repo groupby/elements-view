@@ -58,3 +58,9 @@ To create a new story, in the component directory create a new directory called 
 |   |   |-- README.md (optional) **WIP** 
 ```
 `/* @todo Make README.md default to the notes tab if file is present */`
+
+Storybook reference links:
+- [Writing Stories](https://storybook.js.org/docs/basics/writing-stories/)
+- [Using Knobs](https://github.com/storybookjs/storybook/tree/master/addons/knobs)
+
+\* One note about using knobs is that you have to use the **`text`** method for defining `array` or `object` properties for lit-element. 
