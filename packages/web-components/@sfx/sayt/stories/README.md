@@ -1,3 +1,2 @@
-# Are you ready kids??
-
-## Ayyeee Ayye Captain.
+# Search As You Type (SAYT)
+Here is the documentation for the SAYT component.
