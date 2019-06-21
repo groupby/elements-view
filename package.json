@@ -1,20 +1,19 @@
 {
   "name": "sfx-view",
-  "version": "1.0.0",
-  "description": "SFX View SDK containing pre-built web components for for creating e-commerce application interfaces.",
+  "version": "0.0.0",
+  "description": "SF-X View SDK containing pre-built web components for for creating e-commerce application interfaces.",
   "private": true,
   "workspaces": [
-    "packages/service-layer",
-    "packages/web-components/*"
+    "packages/web-components/@sfx/*"
   ],
   "scripts": {
     "bundle": "webpack",
     "start": "webpack-dev-server",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/groupby/sfx-view.git"
+    "url": "https://github.com/groupby/sfx-view.git"
   },
   "author": "",
   "license": "MIT",
@@ -24,7 +23,6 @@
   "homepage": "https://github.com/groupby/sfx-view#readme",
   "devDependencies": {
     "@storybook/html": "^5.1.9",
-    "@types/webpack-env": "^1.13.9",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "css-loader": "^3.0.0",
     "node-sass": "^4.12.0",

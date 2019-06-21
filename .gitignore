@@ -1,5 +1,4 @@
 node_modules/
 dist/
 esnext/
-
 .DS_store
