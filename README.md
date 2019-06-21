@@ -40,3 +40,21 @@ yarn bundle
 The resulting bundles can be found within the `dist` directory at the root of the repo.
 
 ## Storybook
+
+The command to run the storybook application is:
+```
+yarn storybook
+```
+
+To create a new story, in the component directory create a new directory called `stories/` and in that directory write the stories in `index.ts`.
+
+```
+/packages/web-components/@sfx/
+|-- component
+|   |-- src
+|   |   |-- index.ts
+|   |-- stories
+|   |   |-- index.ts
+|   |   |-- README.md (optional) **WIP** 
+```
+`/* @todo Make README.md default to the notes tab if file is present */`
