@@ -27,7 +27,6 @@ yarn build
 ```
 
 To build an individual package in response to changes within the `src` directory, run the following command:
-
 ```sh
 yarn dev
 ```
