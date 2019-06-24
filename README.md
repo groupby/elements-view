@@ -31,7 +31,7 @@ To build an individual package in response to changes within the `src` directory
 yarn dev
 ```
 ##Documentation
-The following command will generate documentation in the `docs` directory for each module in the `packages` directory using [TypeDoc](https://typedoc.org/).
+The following command will generate documentation for each module in the `packages` directory. It uses [TypeDoc](https://typedoc.org/) and outputs to the `docs` directory.
 ```sh
 yarn docs
 ```
