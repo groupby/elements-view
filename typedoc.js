@@ -1,5 +1,5 @@
-const config = require('./scripts/typedoc.js');
+const config = require('./scripts/config/typedoc.js');
 
- config["external-modulemap"] = ".*packages\/web-components/(@sfx\/[^\/]*)\/.*";
+ config["external-modulemap"] = ".*packages\/web-components\/(@sfx\/[^\/]*)\/.*";
 
  module.exports = config;
