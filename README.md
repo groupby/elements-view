@@ -31,7 +31,7 @@ To build an individual package in response to changes within the `src` directory
 yarn dev
 ```
 ##Documentation
-The following command will generate documentation for each module in packages/sfx using typeDoc. This will update the index file in the docs folder.
+The following command will generate documentation in the `docs` directory for each module in the `packages` directory using [TypeDoc](https://typedoc.org/).
 ```sh
 yarn docs
 ```
