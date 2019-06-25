@@ -1,3 +1,6 @@
+/**
+ * This test comment _supports_ [Markdown and other fun stuff](https://typedoc.org/guides/doccomments/)
+ */
 import { LitElement, customElement, html, property } from 'lit-element';
 
 @customElement('sfx-sayt')

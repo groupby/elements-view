@@ -30,6 +30,11 @@ To build an individual package in response to changes within the `src` directory
 ```sh
 yarn dev
 ```
+##Documentation
+The following command will generate documentation for each module in the `packages` directory. It uses [TypeDoc](https://typedoc.org/) and outputs to the `docs` directory.
+```sh
+yarn docs
+```
 
 ## Bundling
 To bundle the SFX-View packages, run the following command at the root of the monorepo:
