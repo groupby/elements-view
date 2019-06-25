@@ -4,11 +4,13 @@
   "description": "SF-X View SDK containing pre-built web components for for creating e-commerce application interfaces.",
   "private": true,
   "workspaces": [
+    ".storybook/*",
     "packages/web-components/@sfx/*"
   ],
   "scripts": {
     "bundle": "webpack",
     "start": "webpack-dev-server",
+    "storybook": "start-storybook -p 9000",
     "docs": "typedoc --options ./typedoc.js packages"
   },
   "repository": {
@@ -22,6 +24,16 @@
   },
   "homepage": "https://github.com/groupby/sfx-view#readme",
   "devDependencies": {
+    "@storybook/addon-a11y": "^5.1.9",
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-knobs": "^5.1.9",
+    "@storybook/addon-notes": "^5.1.9",
+    "@storybook/addon-viewport": "^5.1.9",
+    "@storybook/addons": "^5.1.9",
+    "@storybook/html": "^5.1.9",
+    "@storybook/preset-typescript": "^1.1.0",
+    "@storybook/theming": "^5.1.9",
+    "@types/webpack-env": "^1.13.9",
     "@strictsoftware/typedoc-plugin-monorepo": "^0.2.1",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "css-loader": "^3.0.0",
@@ -36,5 +48,8 @@
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4",
     "webpack-dev-server": "^3.7.2"
+  },
+  "dependencies": {
+    "lit-element": "^2.2.0"
   }
 }
