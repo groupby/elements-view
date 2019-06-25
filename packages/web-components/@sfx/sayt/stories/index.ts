@@ -1,6 +1,4 @@
-import {
-  storiesOf
-} from '@storybook/html';
+import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import '../src/index.ts';
 
@@ -14,6 +12,11 @@ storiesOf('Components|SAYT', module)
     ></sfx-sayt>
   `, { 
     notes: { 
-      markdown: `# Search As You Type (SAYT)\n Here is the documentation for the SAYT component.`
+      markdown: `
+        # Search As You Type (SAYT)
+        Hardcoded
+        
+        Here is the documentation for the SAYT component.
+      `
     } 
-  });
+});

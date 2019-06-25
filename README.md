@@ -55,9 +55,7 @@ To create a new story, in the component directory create a new directory called 
 |   |   |-- index.ts
 |   |-- stories
 |   |   |-- index.ts
-|   |   |-- README.md (optional) **WIP** 
 ```
-`/* @todo Make README.md default to the notes tab if file is present */`
 
 Storybook reference links:
 - [Writing Stories](https://storybook.js.org/docs/basics/writing-stories/)
