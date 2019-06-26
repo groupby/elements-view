@@ -18,11 +18,22 @@ module.exports = {
   plugins: [new webpack.ProgressPlugin()],
 
   module: {
-    rules: [{
-      test: /.(ts|tsx)?$/,
-      loader: 'ts-loader',
-      exclude: [/node_modules/]
-    }]
+    rules: [
+      {
+        test: /.(ts|tsx)?$/,
+        loader: 'ts-loader',
+        exclude: [/node_modules/]
+      },
+      {
+        test: /\.ts$/,
+        exclude: [ path.resolve(__dirname, "tests") ],
+        enforce: 'post',
+        use: {
+          loader: 'istanbul-instrumenter-loader',
+          options: { esModules: true }
+        }
+      }
+    ]
   },
 
   optimization: {
