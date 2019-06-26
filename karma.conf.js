@@ -1,21 +1,21 @@
-const webpackConfig = require("./webpack.config");
+const webpackConfig = require('./webpack.config');
 const path = require('path');
 
 delete webpackConfig.entry;
 
 module.exports = (config) => {
   config.set({
-    browsers: ["Chrome", "ChromeHeadless"],
-    frameworks: ["mocha"],
-    reporters: ["spec", 'coverage-istanbul'],
+    browsers: ['ChromeHeadless'],
+    frameworks: ['mocha'],
+    reporters: ['spec', 'coverage-istanbul'],
     files: [
-      "tests/**/*.test.ts"
+      'tests/**/*.test.ts'
     ],
     preprocessors: {
-      "tests/**/*.test.ts": ["webpack"]
+      'tests/**/*.test.ts': ['webpack']
     },
     mime: {
-      "text/x-typescript": ["ts", "tsx"],
+      'text/x-typescript': ['ts', 'tsx'],
     },
     webpack: webpackConfig,
     webpackMiddleware: {

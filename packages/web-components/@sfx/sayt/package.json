@@ -6,6 +6,7 @@
   "scripts": {
     "build": "../../../../scripts/build.sh",
     "dev": "nodemon --watch src --exec npm run build",
+    "tdd": "karma start --no-single-run --auto-watch",
     "test": "karma start"
   },
   "repository": {
