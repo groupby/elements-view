@@ -7,11 +7,12 @@
       "dom"
     ],
     "types": [
-      "node"
+      "node",
+      "mocha"
     ],
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "ES5",
+    "target": "es2015",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "outDir": "dist",
