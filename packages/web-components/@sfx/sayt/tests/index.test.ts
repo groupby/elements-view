@@ -1,5 +1,9 @@
 import { expect } from 'chai';
+import { spy } from 'sinon'; 
+
 import { Sayt } from '../src/index';
+
+require('../../../../../tests-setup')();
 
 describe('Dummy test', () => {
   it('should pass', () => {
@@ -8,11 +12,18 @@ describe('Dummy test', () => {
 });
 
 describe('Sayt Component ', () => {
-  let component = {};
+  let component: any = {};
   beforeEach(() => {
-    component = new Sayt()
+    component = new Sayt();
   })
   it('should have property placeholder', () => {
     expect(component).to.have.property('placeholder');
   });
+  it('should call render function', () => {
+    const rendered = spy(component, "render");
+
+    component.render();
+
+    expect(rendered).to.be.calledOnce;
+  })
 });

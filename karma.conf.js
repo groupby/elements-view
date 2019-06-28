@@ -6,7 +6,7 @@ delete webpackConfig.entry;
 module.exports = (config) => {
   config.set({
     browsers: ['ChromeHeadless'],
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage-istanbul'],
     files: [
       'tests/**/*.test.ts'

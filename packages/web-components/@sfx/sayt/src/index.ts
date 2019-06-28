@@ -9,8 +9,6 @@ export class Sayt extends LitElement {
   @property({ type: String }) query = '';
   @property({ type: Array }) autocomplete = [];
 
-
-
   render() {
     return html`
       <input placeholder="${this.placeholder}" value="${this.query}"/>
