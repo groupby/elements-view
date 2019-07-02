@@ -5,6 +5,10 @@ export default class List extends LitElement {
   @property({ type: String }) title = '';
   @property({ type: Array }) items = [];
 
+  createRenderRoot() {
+    return this;
+  }
+
   render() {
     return html`
     ${this.title ? 

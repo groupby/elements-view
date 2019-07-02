@@ -5,6 +5,10 @@ import '@sfx/ui';
 export class Autocomplete extends LitElement {
   @property({ type: Array }) results = [];
 
+  createRenderRoot() {
+    return this;
+  }
+
   render() {
     return html`
     ${this.results.map(list => 
