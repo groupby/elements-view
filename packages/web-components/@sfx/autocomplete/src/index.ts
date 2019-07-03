@@ -17,19 +17,21 @@ export class Autocomplete extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    console.log('DATA:::');
-
-    window.addEventListener('autocomplete_received_results', this.receivedResults);
+    this.addEventListener('autocomplete_received_results', this.receivedResults);
+    // works if you dispatch event on the component itself
+    // also works if you add the event listener on the window yourself
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    console.log('in disconnected callback')
     window.removeEventListener('autocomplete_received_results', this.receivedResults);
   }
 
   receivedResults(data) {
-    console.log('DATA:::', data);
-    this.results = data.results;
+    console.log('DATA::: in received results', data.detail);
+    console.log('type of DATA::: in received results', typeof data);
+    this.results = data.detail;
   }
 
   render() {

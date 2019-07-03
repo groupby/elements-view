@@ -35,6 +35,3 @@ storiesOf('Components|Autocomplete')
   .add('Default', () => `
     <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
   `)
-  .add('Event listener', () => `
-    <sfx-autocomplete></sfx-autocomplete>
-  `)
