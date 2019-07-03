@@ -9,13 +9,21 @@ export class Sayt extends LitElement {
   @property({ type: String }) query = '';
   @property({ type: Array }) autocomplete = [];
 
+  capitalizePlaceholder(placeholder: string) {
+    return placeholder.toUpperCase();
+  }
+
   render() {
     return html`
-      <input placeholder="${this.placeholder}" value="${this.query}"/>
+      <input placeholder="${this.capitalizePlaceholder(this.placeholder)}" value="${this.query}"/>
       <ul>
         ${this.autocomplete.map(value => html`<li>${value}</li>`)}
       </ul>
     `;
+  }
+
+  createRenderRoot() {
+    return this;
   }
 }
 

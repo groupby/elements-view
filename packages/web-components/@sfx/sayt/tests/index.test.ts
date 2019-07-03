@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { spy } from 'sinon'; 
+import { spy, stub } from 'sinon';
 
 import { Sayt } from '../src/index';
 
@@ -19,11 +19,15 @@ describe('Sayt Component ', () => {
   it('should have property placeholder', () => {
     expect(component).to.have.property('placeholder');
   });
-  it('should call render function', () => {
-    const rendered = spy(component, "render");
-
-    component.render();
-
-    expect(rendered).to.be.calledOnce;
-  })
+  it('should call a render function', () => {
+    const renderStub = stub(component, 'render').returns('component has rendered')
+    expect(component.render()).to.equal('component has rendered')
+    expect(renderStub).to.be.calledOnce;
+  });
+  it('should capitalize the placeholder term when rendering', () => {
+    const capitalizeStub = spy(component, 'capitalizePlaceholder');
+    const output = component.render();
+    console.error(output.strings)
+    expect(capitalizeStub).to.be.calledOnce;
+  });
 });

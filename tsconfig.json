@@ -8,7 +8,8 @@
     ],
     "types": [
       "node",
-      "mocha"
+      "mocha",
+      "chai"
     ],
     "module": "commonjs",
     "moduleResolution": "node",
