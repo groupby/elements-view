@@ -18,7 +18,7 @@ const items = [
       }
 ]
 
-storiesOf('UI|List')
+storiesOf('UI|List', module)
   .addDecorator(withKnobs)
   .add('Default', () => `
     <sfx-list items="${text('List Items', JSON.stringify(items))}"></sfx-list>

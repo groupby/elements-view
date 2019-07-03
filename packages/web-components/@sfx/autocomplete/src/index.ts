@@ -2,7 +2,7 @@ import { LitElement, customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 
 @customElement('sfx-autocomplete')
-export class Autocomplete extends LitElement {
+export default class Autocomplete extends LitElement {
   @property({ type: Array, reflect: true }) results = [];
 
   /** @todo Put this in the base class */
@@ -17,21 +17,16 @@ export class Autocomplete extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.addEventListener('autocomplete_received_results', this.receivedResults);
-    // works if you dispatch event on the component itself
-    // also works if you add the event listener on the window yourself
+    window.addEventListener('autocomplete_received_results', this.receivedResults);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    console.log('in disconnected callback')
     window.removeEventListener('autocomplete_received_results', this.receivedResults);
   }
 
-  receivedResults(data) {
-    console.log('DATA::: in received results', data.detail);
-    console.log('type of DATA::: in received results', typeof data);
-    this.results = data.detail;
+  receivedResults(e) {
+    this.results = e.detail;
   }
 
   render() {
