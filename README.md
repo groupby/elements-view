@@ -30,6 +30,27 @@ To build an individual package in response to changes within the `src` directory
 ```sh
 yarn dev
 ```
+
+### Testing
+Tests are run with [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/), and [Sinon](https://sinonjs.org/) with the [Karma test runner](https://karma-runner.github.io/latest/index.html) in a browser environment. The following browsers are currently tested:
+
+- Chrome
+
+To run tests for a specific web component package, navigate to its directory and use one of the following commands based on the desired testing flow:
+
+- To run the tests for a specific package once:
+```sh
+yarn test
+```
+- To run the tests for a specific package and watch the `src` and `test` directories to rerun the tests after any changes:
+```sh
+yarn tdd
+```
+
+Test coverage is also provided using [Istanbul](https://github.com/istanbuljs/istanbuljs).
+
+When starting a new component, create new `setup.ts` and `utils.ts` files in the `tests` directory that make the same files from the root `test-tools` directory available.
+
 ##Documentation
 The following command will generate documentation for each module in the `packages` directory. It uses [TypeDoc](https://typedoc.org/) and outputs to the `docs` directory.
 ```sh
@@ -66,4 +87,4 @@ Storybook reference links:
 - [Writing Stories](https://storybook.js.org/docs/basics/writing-stories/)
 - [Using Knobs](https://github.com/storybookjs/storybook/tree/master/addons/knobs)
 
-\* One note about using knobs is that you have to use the **`text`** method for defining `array` or `object` properties for lit-element. 
+\* One note about using knobs is that you have to use the **`text`** method for defining `array` or `object` properties for lit-element.
