@@ -1,9 +1,5 @@
-import { expect } from 'chai';
-import { spy, stub } from 'sinon';
-
+import { expect, spy, stub } from './utils';
 import { Sayt } from '../src/index';
-
-require('../../../../../tests-setup')();
 
 describe('Dummy test', () => {
   it('should pass', () => {
@@ -27,7 +23,6 @@ describe('Sayt Component ', () => {
   it('should capitalize the placeholder term when rendering', () => {
     const capitalizeStub = spy(component, 'capitalizePlaceholder');
     const output = component.render();
-    console.error(output.strings)
     expect(capitalizeStub).to.be.calledOnce;
   });
 });
