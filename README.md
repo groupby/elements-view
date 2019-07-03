@@ -49,7 +49,19 @@ yarn tdd
 
 Test coverage is also provided using [Istanbul](https://github.com/istanbuljs/istanbuljs).
 
-When starting a new component, create new `setup.ts` and `utils.ts` files in the `tests` directory that make the same files from the root `test-tools` directory available.
+When starting a new component, create new `setup.ts` and `utils.ts` files in its new `tests` directory. These files will make the same files from the root `test-tools` directory available through imports and exports.
+
+Ex.
+- utils.ts
+```js
+export * from '../../../../../test-tools/utils';
+```
+- setup.ts
+```js
+import '../../../../../test-tools/setup';
+```
+
+Keywords from the testing frameworks can then be imported to your test files from `utils.ts`.
 
 ##Documentation
 The following command will generate documentation for each module in the `packages` directory. It uses [TypeDoc](https://typedoc.org/) and outputs to the `docs` directory.
