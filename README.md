@@ -36,6 +36,11 @@ Tests are run with [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/
 
 - Chrome
 
+To run the tests for all web component packages together, run the following command:
+```sh
+yarn test
+```
+
 To run tests for a specific web component package, navigate to its directory and use one of the following commands based on the desired testing flow:
 
 - To run the tests for a specific package once:
