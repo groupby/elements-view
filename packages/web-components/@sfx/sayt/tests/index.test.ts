@@ -16,8 +16,8 @@ describe('Sayt Component ', () => {
     expect(component).to.have.property('placeholder');
   });
   it('should call a render function', () => {
-    const renderStub = stub(component, 'render').returns('component has rendered')
-    expect(component.render()).to.equal('component has rendered')
+    const renderStub = stub(component, 'render').returns('component has rendered');
+    expect(component.render()).to.equal('component has rendered');
     expect(renderStub).to.be.calledOnce;
   });
   it('should capitalize the placeholder term when rendering', () => {
