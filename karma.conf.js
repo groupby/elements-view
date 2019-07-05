@@ -9,12 +9,12 @@ module.exports = (config) => {
     frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage-istanbul'],
     files: [
-      'tests/*.ts',
-      'tests/**/*.test.ts'
+      'test/*.ts',
+      'test/**/*.test.ts'
     ],
     preprocessors: {
-      'tests/*.ts': ['webpack'],
-      'tests/**/*.test.ts': ['webpack']
+      'test/*.ts': ['webpack'],
+      'test/**/*.test.ts': ['webpack']
     },
     mime: {
       'text/x-typescript': ['ts', 'tsx'],
