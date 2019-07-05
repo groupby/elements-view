@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "description": "",
   "main": "./src/index.ts",
+  "types": "dist/index.d.ts",
+  "esnext": "esnext/index.js",
   "scripts": {
     "build": "../../../../scripts/build.sh",
     "dev": "nodemon --watch src --exec npm run build",
