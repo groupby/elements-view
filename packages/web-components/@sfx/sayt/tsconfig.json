@@ -9,7 +9,6 @@
     "types": [
       "node",
       "mocha",
-      "chai",
       "sinon"
     ],
     "module": "commonjs",
