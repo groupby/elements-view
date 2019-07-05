@@ -7,7 +7,7 @@ import { LitElement, customElement, html, property } from 'lit-element';
 export class Sayt extends LitElement {
   @property({ type: String }) placeholder = 'Search';
   @property({ type: String }) query = '';
-  @property({ type: Array }) autocomplete = [];
+  @property({ type: Array }) autocomplete = ['sample', 'strings'];
 
   capitalizePlaceholder(placeholder: string) {
     return placeholder.toUpperCase();
