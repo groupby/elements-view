@@ -7,15 +7,18 @@
       "dom"
     ],
     "types": [
-      "node"
+      "node",
+      "mocha",
+      "sinon"
     ],
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "ES5",
+    "target": "es2015",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": true
   },
   "exclude": [
     "node_modules",
