@@ -1,5 +1,5 @@
 {
-  "name": "@sfx/autocomplete",
+  "name": "@sfx/base",
   "version": "0.0.0",
   "description": "",
   "main": "./src/index.ts",
@@ -14,7 +14,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/groupby/sfx-view.git",
-    "directory": "packages/web-components/@sfx/autocomplete"
+    "directory": "packages/web-components/@sfx/base"
   },
   "author": "",
   "license": "MIT"

@@ -1,15 +1,10 @@
-import { LitElement, customElement, html, property } from 'lit-element';
+import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
+import Base from '../../base/src';
 
 @customElement('sfx-autocomplete')
-// export default class Autocomplete extends LitElement {
-export class Autocomplete extends LitElement {
+export class Autocomplete extends Base {
   @property({ type: Array, reflect: true }) results = [];
-
-  /** @todo Put this in the base class */
-  createRenderRoot() {
-    return this;
-  }
 
   constructor() {
     super();
