@@ -18,7 +18,7 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
-    "allowJs": true
+    "declaration": true
   },
   "exclude": [
     "node_modules",
@@ -32,3 +32,4 @@
     "src"
   ]
 }
+

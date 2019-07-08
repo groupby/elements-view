@@ -2,7 +2,8 @@ import { LitElement, customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 
 @customElement('sfx-autocomplete')
-export default class Autocomplete extends LitElement {
+// export default class Autocomplete extends LitElement {
+export class Autocomplete extends LitElement {
   @property({ type: Array, reflect: true }) results = [];
 
   /** @todo Put this in the base class */

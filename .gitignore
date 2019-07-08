@@ -1,3 +1,4 @@
-node_modules/
+coverage/
 dist/
 esnext/
+node_modules/
