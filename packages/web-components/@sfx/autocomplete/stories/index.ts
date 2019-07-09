@@ -1,46 +1,64 @@
 import { storiesOf } from '@storybook/html';
-import { withKnobs, text } from '@storybook/addon-knobs';
-import '../src/index.ts';
 
-const tbd = {}
+import addons from '@storybook/addons';
+import { withKnobs, text } from '@storybook/addon-knobs';
+
+import '../src/index.ts';
 
 const results = [
   {
-    title: 'Brands',
-    items: [
-      {
-        label: 'New Balance',
-        ...tbd
-      }, {
-        label: 'Bauer',
-        ...tbd
-      }
-    ]
-  }, {
     title: 'default',
     items: [
-      {
-        label: 'Golf Ball',
-        ...tbd
-      }, {
-        label: 'Basketball',
-        ...tbd
-      }
+      { label: 'Golf Ball' }, 
+      { label: 'Basketball' }
+    ]
+  }, {
+    title: 'Brands',
+    items: [
+      { label: 'New Balance' }, 
+      { label: 'Bauer' }
     ]
   }
 ]
 
-// <------ Set up for testing event listener ------>
-const autocompleteDataReceivedEvent = new CustomEvent('autocomplete_received_results', { detail: [{"title":"Brands","items":[{"label":"Cats"},{"label":"Dogs"}]},{"title":"default","items":[{"label":"Cars"},{"label":"Bikes"}]}],
-bubbles: true });
-
-setTimeout(() => {
-  window.dispatchEvent(autocompleteDataReceivedEvent)
-}, 3000)
-// <------ Set up completed for testing event listener ------>
+addons.getChannel().on('customEvents/emitEvent', (event) => {
+  console.log('CUSTOM CONFIG', event);
+  window.dispatchEvent(new CustomEvent(event.name, {
+    detail: event.payload
+  }));
+});
 
 storiesOf('Components|Autocomplete', module)
   .addDecorator(withKnobs)
   .add('Default', () => `
     <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
-  `)
+  `, {
+    customEvents: [
+      {
+        name: 'autocomplete_received_results',
+        payload: [
+          {
+            title: "default",
+            items: [
+              { label: "Teal" },
+              { label: "Orange" },
+              { label: "Fuschia" }
+            ]
+          }, {
+            title: "Brands",
+            items: [
+              { label: "Kashi" },
+              { label: "Excel" }
+            ]
+          }, {
+            title: "Colors",
+            items: [
+              { label: "Teal" },
+              { label: "Orange" },
+              { label: "Fuschia" }
+            ]
+          }
+        ],
+      }
+    ]
+  })

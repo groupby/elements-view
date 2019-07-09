@@ -1,15 +1,13 @@
 /**
  * This test comment _supports_ [Markdown and other fun stuff](https://typedoc.org/guides/doccomments/)
  */
-import { LitElement, customElement, html, property } from 'lit-element';
+import { LitElement, customElement, html, property, css } from 'lit-element';
 
 @customElement('sfx-sayt')
 export class Sayt extends LitElement {
   @property({ type: String }) placeholder = 'Search';
   @property({ type: String }) query = '';
   @property({ type: Array }) autocomplete = [];
-
-
 
   render() {
     return html`
