@@ -29,6 +29,7 @@ const results = [
     ]
   }
 ]
+const resultsBad = ['cat','dog','moose']
 
 // <------ Set up for testing event listener ------>
 const autocompleteDataReceivedEvent = new CustomEvent('autocomplete_received_results', { detail: [{"title":"Brands","items":[{"label":"Cats"},{"label":"Dogs"}]},{"title":"default","items":[{"label":"Cars"},{"label":"Bikes"}]}],
@@ -57,5 +58,9 @@ storiesOf('Components|Autocomplete', module)
   `)
   .add('With No Slots', () => `
   <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
+  </sfx-autocomplete>
+  `)
+  .add('With bad data', () => `
+  <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(resultsBad))}">
   </sfx-autocomplete>
   `)
