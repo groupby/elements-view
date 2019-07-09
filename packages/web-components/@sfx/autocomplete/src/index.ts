@@ -1,6 +1,6 @@
 import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
-import Base from '../../base/src';
+import Base from '@sfx/base';
 
 @customElement('sfx-autocomplete')
 export class Autocomplete extends Base {

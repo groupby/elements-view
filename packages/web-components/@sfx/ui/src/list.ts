@@ -1,7 +1,7 @@
 import { LitElement, customElement, html, property } from 'lit-element';
 
 @customElement('sfx-list')
-export default class List extends LitElement {
+export class List extends LitElement {
   @property({ type: String }) title = '';
   @property({ type: Array }) items = [];
 
