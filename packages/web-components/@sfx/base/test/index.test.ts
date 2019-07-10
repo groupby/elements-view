@@ -21,6 +21,16 @@ describe('Base Class', () => {
     })
   })
 
+
+  describe('first update', () => {
+    it('should disconnect the observer', () => {
+      const disconnect = spy()
+      base.observer = { disconnect }
+      base.firstUpdate()
+      expect(disconnect).to.have.been.called;
+    })
+  })
+
   it('should expose methods', () => {
     const methods = [
       'addSlots',
