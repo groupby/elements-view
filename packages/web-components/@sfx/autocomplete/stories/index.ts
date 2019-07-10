@@ -45,7 +45,7 @@ storiesOf('Components|Autocomplete', module)
   .add('Default', () => `
     <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
   `)
-  .add('No Data', () => `
+  .add('No Data - populate with data received', () => `
     <sfx-autocomplete>
     </sfx-autocomplete>
   `) 
@@ -54,13 +54,5 @@ storiesOf('Components|Autocomplete', module)
    <div>test</div>
    <div slot="before">hello</div>
    <div slot="after">bye</div>
-  </sfx-autocomplete>
-  `)
-  .add('With No Slots', () => `
-  <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
-  </sfx-autocomplete>
-  `)
-  .add('With bad data', () => `
-  <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(resultsBad))}">
   </sfx-autocomplete>
   `)

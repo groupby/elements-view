@@ -3,20 +3,20 @@
 export function makeSlot(name?: string) {
   const slot = document.createElement('slot');
   if (name) {
-      slot.name = name;
+    slot.name = name;
   }
   return slot;
 }
 
-export function createChildrenObserver() {
+export function createChildrenObserver(root) {
   return new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       let mutedNodes = Array.from(mutation.removedNodes)
-        mutedNodes.forEach((node) => {
-            if (node.nodeType !== Node.COMMENT_NODE) {
-                this.appendChild(node);
-            }
-        });
+      mutedNodes.forEach((node) => {
+        if (node.nodeType !== Node.COMMENT_NODE) {
+          root.appendChild(node);
+        }
+      });
     });
-});
+  });
 }

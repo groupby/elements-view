@@ -14,25 +14,25 @@ export default class Base extends LitElement {
     this.shadowRoot.appendChild(makeSlot('before'));
     this.shadowRoot.appendChild(makeSlot());
     this.shadowRoot.appendChild(makeSlot('after'));
-    }
+  }
 
   connectedCallback() {
     super.connectedCallback();
-    this.observer = createChildrenObserver();
+    this.observer = createChildrenObserver(this);
 
     this.observer.observe(this, {
-        childList: true,
+      childList: true,
     });
-}
+  }
 
-firstUpdate() {
-  this.observer.disconnect();
-}
+  firstUpdate() {
+    this.observer.disconnect();
+  }
 
-createRenderRoot() {
-  this.attachShadow({mode: "open"});
-  return this;
-}
+  createRenderRoot() {
+    this.attachShadow({ mode: "open" });
+    return this;
+  }
 
   render() {
     return html`
@@ -40,5 +40,5 @@ createRenderRoot() {
         <div>main content</div>
         <div slot="after">after</div>
     `;
-}
+  }
 }

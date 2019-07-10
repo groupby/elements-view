@@ -8,13 +8,13 @@ export class List extends Base {
 
   render() {
     return html`
-    ${this.title ? 
-      html`<h4 id="list_title_${this.title}">${this.title}</h4>` : ''
-    }
+    ${this.title ?
+        html`<h4 id="list_title_${this.title}">${this.title}</h4>` : ''
+      }
       <ul aria-labelledby="list_title_${this.title}">
         ${
-          this.items.map(item => html`<li>${item.label}</li>`)
-        }
+      this.items.map(item => html`<li>${item.label}</li>`)
+      }
       </ul>
     `;
   }

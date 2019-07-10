@@ -42,7 +42,7 @@ describe('Base Class', () => {
 
     it('should call createChildrenObserver on the observer property', () => {
       const observer = {
-        observe: () => {}
+        observe: () => { }
       }
       const createChildrenObserverStub = stub(BaseUtils, 'createChildrenObserver').returns(observer)
       base.connectedCallback();
@@ -53,7 +53,7 @@ describe('Base Class', () => {
       const observe = spy();
       const createChildrenObserverStub = stub(BaseUtils, 'createChildrenObserver').returns({ observe })
       base.connectedCallback();
-      expect(observe).to.have.been.calledWith(base, { childList: true});
+      expect(observe).to.have.been.calledWith(base, { childList: true });
     })
   });
 
@@ -73,7 +73,7 @@ describe('Base Class', () => {
   })
 
   describe('createRenderRoot', () => {
-    it('should return the node of the custom element', () => {
+    it('should return its this', () => {
       base.attachShadow = spy()
       const result = base.createRenderRoot();
       expect(result).to.equal(base)
@@ -85,7 +85,7 @@ describe('Base Class', () => {
       expect(attachShadow).to.have.been.called;
     })
   })
-
-  // not testing mutation observer function and makeslot as we got it from a source 
- 
 });
+
+// NOTE: createChildrenObserver and makeSlots functions were pulled from: https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676
+// This functionality is not currently being tested in this test suite
