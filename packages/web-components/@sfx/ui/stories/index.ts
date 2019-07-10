@@ -15,13 +15,13 @@ const items = [
       {
         label: 'Chocolate',
       }
-]
+    ]
 
 storiesOf('UI|List', module)
   .addDecorator(withKnobs)
-  .add('Default', () => `
-    <sfx-list items="${text('List Items', JSON.stringify(items))}"></sfx-list>
-  `)
-  .add('With Title', () => `
-    <sfx-list title="${text('Title', "Items")}" items="${text('List Items', JSON.stringify(items))}"></sfx-list>
-  `)
+    .add('Default', () => `
+      <sfx-list items="${text('List Items', JSON.stringify(items))}"></sfx-list>
+    `)
+    .add('With Title', () => `
+      <sfx-list title="${text('Title', "Items")}" items="${text('List Items', JSON.stringify(items))}"></sfx-list>
+    `)

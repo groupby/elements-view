@@ -12,7 +12,7 @@ describe('List component', () => {
   let list: any = {};
   beforeEach(() => {
     list = new List();
-  })
+  });
 
   describe('title property', () => {
     it('should default to an empty string', () => {
