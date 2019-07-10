@@ -29,7 +29,6 @@ const results = [
     ]
   }
 ]
-const resultsBad = ['cat','dog','moose']
 
 // <------ Set up for testing event listener ------>
 const autocompleteDataReceivedEvent = new CustomEvent('autocomplete_received_results', { detail: [{"title":"Brands","items":[{"label":"Cats"},{"label":"Dogs"}]},{"title":"default","items":[{"label":"Cars"},{"label":"Bikes"}]}],
