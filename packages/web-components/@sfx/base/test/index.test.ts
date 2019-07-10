@@ -2,9 +2,11 @@ import { expect, spy, stub } from './utils';
 import Base from '../src/index';
 import { LitElement } from 'lit-element';
 import { TemplateResult } from 'lit-element';
+import * as BaseUtils from '../src/utils';
+
 
 describe('Base Class', () => {
-  let base: any = {};
+  let base: any = {}
   beforeEach(() => {
     base = new Base();
   })
@@ -22,7 +24,6 @@ describe('Base Class', () => {
     })
   })
 
-
   describe('first update', () => {
     it('should disconnect the observer', () => {
       const disconnect = spy()
@@ -37,6 +38,22 @@ describe('Base Class', () => {
       const litElementConnectedCallbackStub = stub(LitElement.prototype, 'connectedCallback')
       base.connectedCallback();
       expect(litElementConnectedCallbackStub).to.have.been.called;
+    })
+
+    it('should call createChildrenObserver on the observer property', () => {
+      const observer = {
+        observe: () => {}
+      }
+      const createChildrenObserverStub = stub(BaseUtils, 'createChildrenObserver').returns(observer)
+      base.connectedCallback();
+      expect(base.observer).to.equal(observer);
+    })
+
+    it('should call the observe function on the observer', () => {
+      const observe = spy();
+      const createChildrenObserverStub = stub(BaseUtils, 'createChildrenObserver').returns({ observe })
+      base.connectedCallback();
+      expect(observe).to.have.been.calledWith(base, { childList: true});
     })
   });
 
@@ -55,5 +72,20 @@ describe('Base Class', () => {
     })
   })
 
+  describe('createRenderRoot', () => {
+    it('should return the node of the custom element', () => {
+      base.attachShadow = spy()
+      const result = base.createRenderRoot();
+      expect(result).to.equal(base)
+    })
+
+    it('should call attach shadow', () => {
+      const attachShadow = base.attachShadow = spy();
+      base.createRenderRoot();
+      expect(attachShadow).to.have.been.called;
+    })
+  })
+
+  // not testing mutation observer function and makeslot as we got it from a source 
  
 });

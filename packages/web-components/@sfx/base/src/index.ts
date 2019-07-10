@@ -1,12 +1,6 @@
 import { LitElement, customElement, html } from 'lit-element';
+import { makeSlot, createChildrenObserver } from './utils';
 
-const makeSlot = (name?: string) => {
-  const slot = document.createElement('slot');
-  if (name) {
-      slot.name = name;
-  }
-  return slot;
-};
 @customElement('sfx-base')
 export default class Base extends LitElement {
   observer: any;
@@ -24,16 +18,7 @@ export default class Base extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          let mutedNodes = Array.from(mutation.removedNodes)
-            mutedNodes.forEach((node) => {
-                if (node.nodeType !== Node.COMMENT_NODE) {
-                    this.appendChild(node);
-                }
-            });
-        });
-    });
+    this.observer = createChildrenObserver();
 
     this.observer.observe(this, {
         childList: true,
