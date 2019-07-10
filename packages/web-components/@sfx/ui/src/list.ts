@@ -1,13 +1,10 @@
-import { LitElement, customElement, html, property } from 'lit-element';
+import { customElement, html, property } from 'lit-element';
+import Base from '@sfx/base';
 
 @customElement('sfx-list')
-export class List extends LitElement {
+export class List extends Base {
   @property({ type: String }) title = '';
   @property({ type: Array }) items = [];
-
-  createRenderRoot() {
-    return this;
-  }
 
   render() {
     return html`

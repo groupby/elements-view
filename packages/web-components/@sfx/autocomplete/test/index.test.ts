@@ -27,23 +27,12 @@
       expect(window.removeEventListener).to.have.been.calledWith('autocomplete_received_results', autocomplete.receivedResults);
     });
 
-    describe('Instance properties', () => {
-      const properties = [
-        'results',
-      ];
-  
-      describe('All properties', () => {
-        properties.forEach((property) => {
-          it(`should have \`${property}\``, () => {
-            expect(typeof autocomplete[property]).to.not.be.undefined;
+    describe('Results property', () => {
+          it('should have default value', () => {
+            expect(autocomplete.results).to.be.an('array').that.is.empty;
           });
         });
-      });
-    });
-
-    // test that property has default value
-
-
+    
     describe('connectedCallback', () => {
       it('should call its super connectedCallback', () => {
         const baseConnectedCallbackStub = stub(Base.prototype, 'connectedCallback')

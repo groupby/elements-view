@@ -1,14 +1,12 @@
 import { expect, spy, stub } from './utils';
 import { List } from '../src/list';
+import Base from '@sfx/base';
+import { TemplateResult } from 'lit-element';
 
 describe('List Component', () => {
-  it('should exist', () => {
-    expect(typeof List).to.equal('function');
-  });
-
-  it('should be constructable', () => {
+  it('should extend Base', () => {
     const list = new List();
-    expect(list).to.be.an.instanceof(List);
+    expect(list).to.be.an.instanceof(Base);
   });
 
   let list: any = {};
@@ -22,53 +20,24 @@ describe('List Component', () => {
       'title'
     ];
 
-    describe('All properties', () => {
-      properties.forEach((property) => {
-        it(`should have \`${property}\``, () => {
-          expect(typeof list[property]).to.not.be.undefined;
-        });
-      });
-    });
-
     describe('title property', () => {
-      it('should be of type string', () => {
-        expect(list.title).to.be.a('string')
+      it('should default to an empty string', () => {
+        expect(list.title).to.equal('');
       })
     })
 
     describe('items property', () => {
-      it('should be of type string', () => {
-        expect(list.items).to.be.an('array');
+      it('should default to and empty array', () => {
+        expect(list.items).to.deep.equal([]);
       })
     })
- 
   });
-
+  
   describe('render function', () => {
-    it('should call a render function', () => {
-      const renderStub = stub(list, 'render');
-      list.render()
-      expect(renderStub.called).to.equal(true);
-    });
-    // how can I test if title is provided...
-    it('testing title', () => {
-      list.title = 'Test';
-      list.items = ['im in an array', 'array']
-      const result = list.render()
-      console.log('result object test', result)
-      // expect(renderStub.called).to.equal(true);
-    });
-
-    it('should return a an object', () => {
+    it('should return an instance of TemplateResult', () => {
       const result = list.render();
-      // console.log('result of render call', result)
-      expect(result).to.be.an('object');
-    })    
-    it('object returned should have property type equal to html', () => {
-      const renderResult = list.render();
-      const renderResultType = renderResult.type
-      expect(renderResultType).to.equal('html');
-    });
+      expect(result).to.be.an.instanceof(TemplateResult);
+    })
   })
 });
 
