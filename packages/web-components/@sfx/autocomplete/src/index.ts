@@ -29,6 +29,6 @@ export class Autocomplete extends Base {
     return html`${
       this.results.map(list => html`<sfx-list .title=${list.title === 'default' ? '' : list.title} .items=${list.items}></sfx-list>`)
       }`;
+    }
   }
-}
 

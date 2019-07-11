@@ -1,5 +1,5 @@
 import { expect, spy, stub } from './utils';
-import Base from '../src/index';
+import Base from '@sfx/base';
 import { LitElement } from 'lit-element';
 import { TemplateResult } from 'lit-element';
 import * as BaseUtils from '../src/utils';
@@ -9,7 +9,7 @@ describe('Base Class', () => {
   let base: any = {}
   beforeEach(() => {
     base = new Base();
-  })
+  });
 
   it('should extend from LitElement', () => {
     const base = new Base();
@@ -87,5 +87,8 @@ describe('Base Class', () => {
   });
 });
 
-// NOTE: createChildrenObserver and makeSlots functions were pulled from: https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676
-// This functionality is not currently being tested in this test suite
+/**
+ * Some functions utilized in the Base class were pulled 
+ * directly from https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676.
+ * This functionality is not currently being tested within this test suite.
+ */

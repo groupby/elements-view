@@ -30,14 +30,22 @@ const results = [
   }
 ]
 
-// <------ Set up for testing event listener ------>
+  /**
+   * --- setup for testing event listeners ---
+   * Because Storybook is contained in an iFrame, for testing purposes, we are unable to dispatch events 
+   * we are unable to dispatch events directly from the console.
+   * 
+   * As an alternative, we use a timeout to dispatch the event below.
+   */
 const autocompleteDataReceivedEvent = new CustomEvent('autocomplete_received_results', { detail: [{"title":"Brands","items":[{"label":"Cats"},{"label":"Dogs"}]},{"title":"default","items":[{"label":"Cars"},{"label":"Bikes"}]}],
 bubbles: true });
 
 setTimeout(() => {
   window.dispatchEvent(autocompleteDataReceivedEvent)
 }, 3000)
-// <------ Set up completed for testing event listener ------>
+  /**
+  * --- end of setup for testing event listeners ---
+  */
 
 storiesOf('Components|Autocomplete', module)
   .addDecorator(withKnobs)
@@ -49,9 +57,9 @@ storiesOf('Components|Autocomplete', module)
     </sfx-autocomplete>
   `) 
   .add('With Slots', () => `
-  <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
-   <div>test</div>
-   <div slot="before">hello</div>
-   <div slot="after">bye</div>
-  </sfx-autocomplete>
+    <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
+      <div>test</div>
+      <div slot="before">hello</div>
+      <div slot="after">bye</div>
+    </sfx-autocomplete>
   `)

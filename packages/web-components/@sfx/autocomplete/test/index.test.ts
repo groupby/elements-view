@@ -7,7 +7,7 @@ describe('Autcomplete Component', () => {
   let autocomplete;
   beforeEach(() => {
     autocomplete = new Autocomplete();
-  })
+  });
 
   describe('Constructor', () => {
     it('should extend the Base class', () => {
