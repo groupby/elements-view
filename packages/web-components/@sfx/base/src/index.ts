@@ -36,9 +36,9 @@ export default class Base extends LitElement {
 
   render() {
     return html`
-        <div slot="before">before</div>
-        <div>main content</div>
-        <div slot="after">after</div>
+        <div slot="before"></div>
+        <div></div>
+        <div slot="after"></div>
     `;
   }
 }

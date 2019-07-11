@@ -36,6 +36,8 @@ const results = [
    * we are unable to dispatch events directly from the console.
    * 
    * As an alternative, we use a timeout to dispatch the event below.
+   * 
+   * After the timeout, we should see the original list being replaced by the data contained within the autocomplete_received_results detail below.
    */
 const autocompleteDataReceivedEvent = new CustomEvent('autocomplete_received_results', { detail: [{"title":"Brands","items":[{"label":"Cats"},{"label":"Dogs"}]},{"title":"default","items":[{"label":"Cars"},{"label":"Bikes"}]}],
 bubbles: true });
@@ -46,6 +48,13 @@ setTimeout(() => {
   /**
   * --- end of setup for testing event listeners ---
   */
+
+  /**
+   * --- Slots Testing ---
+   * The final story demonstrates that content slotted in (in this case, the <div> contained within the autocomplete custom element)
+   * appears within the light-dom as desired. 
+   * 
+   */
 
 storiesOf('Components|Autocomplete', module)
   .addDecorator(withKnobs)
@@ -58,8 +67,10 @@ storiesOf('Components|Autocomplete', module)
   `) 
   .add('With Slots', () => `
     <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
-      <div>test</div>
-      <div slot="before">hello</div>
-      <div slot="after">bye</div>
+      <div>Content appears after main content</div>
+    </sfx-autocomplete>
+  `).add('With slots and style', () => `
+    <sfx-autocomplete style="color:blue;" results="${text('Autocomplete Results', JSON.stringify(results))}">
+      <div>Content appears after main content</div>
     </sfx-autocomplete>
   `)

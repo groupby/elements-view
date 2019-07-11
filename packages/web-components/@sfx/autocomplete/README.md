@@ -2,7 +2,7 @@
 
 ## Functionality
 The component listens for an event which is fired when the autocomplete data is received. 
-The component the populates a list with the received data.
+The component then populates a list with the received data.
 
 ## Customizations
 Customizations will be inherited from SAYT.
