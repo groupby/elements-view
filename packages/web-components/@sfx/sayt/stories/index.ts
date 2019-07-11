@@ -19,12 +19,4 @@ storiesOf('Components|SAYT', module)
         Here is the documentation for the SAYT component.
       `
     } 
-})
-.add('Test', () => `
-<sfx-sayt 
-  query="${text('Query', '')}" 
-  placeholder="${text('Placeholder', 'Search')}" 
-  autocomplete="${text('Autocomplete', '["one", "two"]')}"
->
-<p>hello</p>
-</sfx-sayt>`)
+});

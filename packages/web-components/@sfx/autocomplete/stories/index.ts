@@ -32,12 +32,12 @@ const results = [
 
   /**
    * --- setup for testing event listeners ---
-   * Because Storybook is contained in an iFrame, for testing purposes, we are unable to dispatch events 
+   * Because Storybook is contained in an iFrame, for testing purposes, 
    * we are unable to dispatch events directly from the console.
    * 
    * As an alternative, we use a timeout to dispatch the event below.
    * 
-   * After the timeout, we should see the original list being replaced by the data contained within the autocomplete_received_results detail below.
+   * After the timeout, we should see the original data being replaced by the data contained in the custom event below.
    */
 const autocompleteDataReceivedEvent = new CustomEvent('autocomplete_received_results', { detail: [{"title":"Brands","items":[{"label":"Cats"},{"label":"Dogs"}]},{"title":"default","items":[{"label":"Cars"},{"label":"Bikes"}]}],
 bubbles: true });
@@ -58,15 +58,15 @@ setTimeout(() => {
 
 storiesOf('Components|Autocomplete', module)
   .addDecorator(withKnobs)
-  .add('Default', () => `
-    <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
-  `)
-  .add('No Data - populate with data received', () => `
-    <sfx-autocomplete>
-    </sfx-autocomplete>
-  `) 
-  .add('With Slots', () => `
-    <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
-      <div>Content appears after main content</div>
-    </sfx-autocomplete>
-  `)
+    .add('Default', () => `
+      <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
+    `)
+    .add('No Data - populate with data received', () => `
+      <sfx-autocomplete>
+      </sfx-autocomplete>
+    `) 
+    .add('With Slots', () => `
+      <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
+        <div>Content appears after main content</div>
+      </sfx-autocomplete>
+    `)
