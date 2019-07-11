@@ -15,7 +15,7 @@ const items = [
       {
         label: 'Chocolate',
       }
-    ]
+    ];
 
 storiesOf('UI|List', module)
   .addDecorator(withKnobs)
@@ -24,4 +24,4 @@ storiesOf('UI|List', module)
     `)
     .add('With Title', () => `
       <sfx-list title="${text('Title', "Items")}" items="${text('List Items', JSON.stringify(items))}"></sfx-list>
-    `)
+    `);

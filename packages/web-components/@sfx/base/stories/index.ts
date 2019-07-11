@@ -8,4 +8,4 @@ storiesOf('Components|Base', module)
       <sfx-base>
       <p>Hello</p>
       </sfx-base>
-    `)
+    `);

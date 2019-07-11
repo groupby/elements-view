@@ -28,7 +28,7 @@ const results = [
       }
     ]
   }
-]
+];
 
   /**
    * --- setup for testing event listeners ---
@@ -69,4 +69,4 @@ storiesOf('Components|Autocomplete', module)
       <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
         <div>Content appears after main content</div>
       </sfx-autocomplete>
-    `)
+    `);
