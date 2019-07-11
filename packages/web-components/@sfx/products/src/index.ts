@@ -33,19 +33,27 @@ class Product extends LitElement {
 @customElement('sfx-products')
 export class Products extends LitElement {
   @property({ type: Number }) maxItems = 12;
+  @property({ type: Array }) products = [];
 
-  render() {
-    const products = []
+  connectedCallback() {
+    super.connectedCallback();
+    this.setMockProducts();
+  }
+
+  setMockProducts() {
     for (let i = 0; i < this.maxItems; i++) {
-      products.push({
+      this.products.push({
         name: `Product ${i + 1}`,
         price: Math.ceil(Math.random() * 10),
         imageSource: 'https://via.placeholder.com/150',
         description: 'This product is...'
       })
     }
+  }
+
+  render() {
     return html`
-      ${products.map(product => {
+      ${this.products.map(product => {
         return html`
           <sfx-product
             name=${product.name}
