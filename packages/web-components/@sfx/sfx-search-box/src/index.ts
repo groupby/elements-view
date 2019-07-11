@@ -22,15 +22,23 @@ export class SearchBox extends LitElement {
     super.disconnectedCallback();
   }
 
-  emitSearchEvent(term) {
-    console.log(term);
+  emitSearchEvent() {
+    let searchRequestEvent = new CustomEvent('search_request', { detail: this.searchTerm, bubbles: true })
+    window.dispatchEvent(searchRequestEvent);
+  }
+
+  emitAutocompleteRequestEvent(letters) {
+    let autocompleteRequestEvent = new CustomEvent('autocomplete_request', { detail: letters, bubbles: true })
+    window.dispatchEvent(autocompleteRequestEvent);
   }
 
   handleKeypress(e) {
+    console.log((<HTMLInputElement>this.querySelector('#searchInput')).value, 'inputValue')
     if (e.keyCode === 13) {
-      this.emitSearchEvent(this.searchTerm)
+      this.emitSearchEvent();
     } else {
-      this.searchTerm += e.key;
+      this.searchTerm = (<HTMLInputElement>this.querySelector('#searchInput')).value;
+      this.emitAutocompleteRequestEvent(this.searchTerm)
     }
     console.log('this.searchTerm', this.searchTerm)
   }
@@ -49,9 +57,9 @@ export class SearchBox extends LitElement {
 
   render() {
     return html`
-    <input type="text" id="searchInput" placeholder=${this.placeholder} @keypress="${this.handleKeypress}" @keydown="${this.handleKeydown}"></input>
+    <input type="text" id="searchInput" placeholder=${this.placeholder} @keyup="${this.handleKeypress}" @keydown="${this.handleKeydown}"></input>
     <button @click=${this.clearSearch}>Clear</button>
-    <button>Search</button>
+    <button @click=${this.emitSearchEvent}>Search</button>
     `;
     }
   }
