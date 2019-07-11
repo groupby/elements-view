@@ -4,7 +4,6 @@ import { LitElement, customElement, html, property } from 'lit-element';
 export class SearchBox extends LitElement {
   @property({ type: String }) placeholder = 'Type your search';
   @property({ type: String }) searchTerm = '';
-  inputBox = document.querySelector('input');
   
   constructor() {
     super();
@@ -25,6 +24,7 @@ export class SearchBox extends LitElement {
   emitSearchEvent() {
     let searchRequestEvent = new CustomEvent('search_request', { detail: this.searchTerm, bubbles: true })
     window.dispatchEvent(searchRequestEvent);
+    this.clearSearch();
   }
 
   emitAutocompleteRequestEvent(letters) {
@@ -50,7 +50,7 @@ export class SearchBox extends LitElement {
     console.log('this.searchTerm', this.searchTerm)
   }
 
-  clearSearch(e) {
+  clearSearch() {
     this.searchTerm = '';
     let inputValue = (<HTMLInputElement>this.querySelector('#searchInput')).value = ''
   }

@@ -4,11 +4,13 @@ import '../src/index.ts';
 
 // start of event dispatch testing
 window.addEventListener('search_request', (e) => {
-  console.log('e.detail', e)
+  console.log('search request received')
+  console.log('event', e)
 });
 
 window.addEventListener('autocomplete_request', (e) => {
-  console.log('e.detail', e)
+  console.log('autocomplete request received')
+  console.log('event', e)
 });
 // end of event dispatch testing
 
