@@ -8,10 +8,21 @@ export class Products extends LitElement {
   @property({ type: Number }) maxItems = 12;
 
   render() {
+    const products = []
+    for (let i = 0; i < this.maxItems; i++) {
+      products.push({
+        name: `Product ${i + 1}`,
+        price: Math.ceil(Math.random() * 10),
+      })
+    }
     return html`
-      <div>Product 1</div>
-      <div>Product 2</div>
-      <div>Product 3</div>
+      ${products.map(product => {
+        return html`
+          <div>
+            <p>${product.name}: $${product.price}.95</p>
+          </div>
+        `
+      })}
     `;
   }
 
