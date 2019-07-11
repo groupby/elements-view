@@ -2,7 +2,7 @@
   "name": "@sfx/autocomplete",
   "version": "0.0.0",
   "description": "",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
   "types": "dist/index.d.ts",
   "esnext": "esnext/index.js",
   "scripts": {

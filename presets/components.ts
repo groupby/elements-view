@@ -1,3 +1,3 @@
-import '@sfx/sayt';
-import '@sfx/autocomplete';
-import '@sfx/ui';
+export * from '@sfx/sayt';
+export * from '@sfx/autocomplete';
+export * from '@sfx/ui';
