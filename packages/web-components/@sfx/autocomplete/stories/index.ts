@@ -71,6 +71,6 @@ storiesOf('Components|Autocomplete', module)
     </sfx-autocomplete>
   `).add('With slots and style', () => `
     <sfx-autocomplete style="color:blue;" results="${text('Autocomplete Results', JSON.stringify(results))}">
-      <div>Content appears after main content</div>
+      <div>Blue</div>
     </sfx-autocomplete>
   `)
