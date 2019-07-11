@@ -1,0 +1,21 @@
+{
+  "name": "@sfx/products",
+  "version": "0.0.0",
+  "description": "",
+  "main": "./src/index.ts",
+  "types": "dist/index.d.ts",
+  "esnext": "esnext/index.js",
+  "scripts": {
+    "build": "../../../../scripts/build.sh",
+    "dev": "nodemon --config ../../../../nodemon.json --exec npm run build",
+    "tdd": "karma start --no-single-run --auto-watch",
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groupby/sfx-view.git",
+    "directory": "packages/web-components/@sfx/products"
+  },
+  "author": "",
+  "license": "MIT"
+}
