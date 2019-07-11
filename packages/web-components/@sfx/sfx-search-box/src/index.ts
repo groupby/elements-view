@@ -55,6 +55,9 @@ export class SearchBox extends LitElement {
     let inputValue = (<HTMLInputElement>this.querySelector('#searchInput')).value = ''
   }
 
+  // listen for event to update searchbox text
+  // name space the event names
+
   render() {
     return html`
     <input type="text" id="searchInput" placeholder=${this.placeholder} @keyup="${this.handleKeypress}" @keydown="${this.handleKeydown}"></input>
