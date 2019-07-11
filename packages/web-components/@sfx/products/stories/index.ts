@@ -1,12 +1,12 @@
 import { storiesOf } from '@storybook/html';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, number } from '@storybook/addon-knobs';
 import '../src/index.ts';
 
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add('Default', () => `
     <sfx-products
-      maxItems="${text('12', 12)}"
+      maxItems="${number('Max items', 12)}"
     ></sfx-products>
   `, {
     notes: {
