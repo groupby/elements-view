@@ -1,7 +1,7 @@
 /**
  * This test comment _supports_ [Markdown and other fun stuff](https://typedoc.org/guides/doccomments/)
  */
-import { LitElement, customElement, html, property } from 'lit-element';
+import { LitElement, customElement, css, html, property } from 'lit-element';
 
 @customElement('sfx-product')
 class Product extends LitElement {
@@ -38,6 +38,12 @@ export class Products extends LitElement {
   constructor() {
     super()
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
+  }
+
+  static get properties() {
+    return {
+      maxItems: { reflect: true },
+    }
   }
 
   connectedCallback() {
