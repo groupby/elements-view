@@ -21,6 +21,7 @@ export class SearchBox extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    window.removeEventListener('sfx::autocomplete_hover', this.updateText);
   }
 
   emitSearchEvent() {
