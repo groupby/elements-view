@@ -87,8 +87,3 @@ export class Products extends LitElement {
     return this;
   }
 }
-
-interface Search {
-  query: String,
-  autocomplete: String[],
-}
