@@ -16,9 +16,9 @@ class Product extends LitElement {
         }
       </style>
       <div>
-        <img src="${this.product.imageSource}" />
-        <p>${this.product.name}: $${this.product.price}.95</p>
-        <p>${this.product.description}</p>
+        <img class="${this.product.imageSource}" src="${this.product.imageSource}" />
+        <p class="price">${this.product.name}: $${this.product.price}.95</p>
+        <p class="${this.product.description}">${this.product.description}</p>
       </div>
     `
   }
