@@ -17,12 +17,6 @@ describe('Products Component ', () => {
     });
   });
 
-  describe('properties', () => {
-    it('should reflect maxItems as a property', () => {
-      expect(Products.properties.maxItems.reflect).to.equal(true);
-    });
-  });
-
   describe('connectedCallback', () => {
     it('should set up event listeners after connecting', () => {
       const listenStub = sinon.stub(component, 'setUpEventListeners');

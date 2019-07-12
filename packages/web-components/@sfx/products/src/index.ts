@@ -41,18 +41,12 @@ class Product extends LitElement {
 
 @customElement('sfx-products')
 export class Products extends LitElement {
-  @property({ type: Number }) maxItems = 12;
+  @property({ type: Number, reflect: true }) maxItems = 12;
   @property({ type: Array }) products = [];
 
   constructor() {
     super()
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
-  }
-
-  static get properties() {
-    return {
-      maxItems: { reflect: true },
-    }
   }
 
   connectedCallback() {
