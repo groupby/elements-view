@@ -21,11 +21,16 @@ class Product extends LitElement {
 
   render() {
     return html`
-    <div>
-      <img src="${this.imageSource}" />
-      <p>${this.name}: $${this.price}.95</p>
-      <p>${this.description}</p>
-    </div>
+      <style>
+        :host {
+          padding: 5px;
+        }
+      </style>
+      <div>
+        <img src="${this.imageSource}" />
+        <p>${this.name}: $${this.price}.95</p>
+        <p>${this.description}</p>
+      </div>
     `
   }
 }
@@ -76,6 +81,14 @@ export class Products extends LitElement {
 
   render() {
     return html`
+      <style>
+        sfx-products {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+      </style>
+
       ${this.products.map(product => {
         return html`
           <sfx-product
