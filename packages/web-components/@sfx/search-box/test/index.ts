@@ -47,4 +47,13 @@ describe('SearchBox Component', () => {
       expect(window.removeEventListener).to.have.been.calledWith('sfx::autocomplete_hover', searchbox.updateText);
     })
   })
+
+  describe('emitSearchEvent', () => {
+    it('should call clear search', () => {
+      const clearSearchStub = stub(searchbox, 'clearSearch')
+      searchbox.emitSearchEvent()
+      expect(clearSearchStub).to.have.been.called;
+    })
+  })
+
 })
