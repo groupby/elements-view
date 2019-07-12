@@ -35,20 +35,39 @@ export class Products extends LitElement {
   @property({ type: Number }) maxItems = 12;
   @property({ type: Array }) products = [];
 
+  constructor() {
+    super()
+    this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
+  }
+
   connectedCallback() {
     super.connectedCallback();
     this.setMockProducts();
+    this.setUpEventlisteners();
   }
 
   setMockProducts() {
+    const mockProducts = []
     for (let i = 0; i < this.maxItems; i++) {
-      this.products.push({
+      mockProducts.push({
         name: `Product ${i + 1}`,
         price: Math.ceil(Math.random() * 10),
         imageSource: 'https://via.placeholder.com/150',
-        description: 'This product is...'
+        description: 'This product is...',
       })
     }
+    this.products = mockProducts;
+  }
+
+  setUpEventlisteners() {
+    // @TODO the `event` param should be of type Event, or a custom interface.
+    window.addEventListener('sfx:provide-products', this.setProductsFromEvent);
+  }
+
+  setProductsFromEvent(event: any) {
+    console.log(event.detail);
+    console.log(event.detail.products);
+    this.products = event.detail.products;
   }
 
   render() {
