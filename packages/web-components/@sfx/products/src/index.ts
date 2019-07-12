@@ -57,22 +57,7 @@ export class Products extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.setMockProducts(); // @TODO Remove this
     this.setUpEventListeners();
-  }
-
-  // @TODO Remove this method
-  setMockProducts() {
-    const mockProducts = []
-    for (let i = 0; i < this.maxItems; i++) {
-      mockProducts.push({
-        name: `Product ${i + 1}`,
-        price: Math.ceil(Math.random() * 10),
-        imageSource: 'https://via.placeholder.com/150',
-        description: 'This product is...',
-      })
-    }
-    this.products = mockProducts;
   }
 
   setUpEventListeners() {
