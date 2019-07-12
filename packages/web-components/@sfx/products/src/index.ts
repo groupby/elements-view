@@ -65,7 +65,7 @@ export class Products extends LitElement {
     window.addEventListener('sfx:provide-products', this.setProductsFromEvent);
   }
 
-  setProductsFromEvent(event: any) {
+  setProductsFromEvent(event: CustomEvent) {
     this.products = event.detail.products;
   }
 
