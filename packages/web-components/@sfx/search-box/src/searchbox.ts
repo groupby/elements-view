@@ -30,7 +30,7 @@ export class SearchBox extends LitElement {
     this.clearSearch();
   }
 
-  emitAutocompleteRequestEvent(letters) {
+  emitAutocompleteRequestEvent(letters: String) {
     let autocompleteRequestEvent = new CustomEvent('sfx::autocomplete_request', { detail: letters, bubbles: true })
     window.dispatchEvent(autocompleteRequestEvent);
   }

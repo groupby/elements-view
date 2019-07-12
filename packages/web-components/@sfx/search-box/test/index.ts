@@ -51,8 +51,27 @@ describe('SearchBox Component', () => {
   describe('emitSearchEvent', () => {
     it('should call clear search', () => {
       const clearSearchStub = stub(searchbox, 'clearSearch')
-      searchbox.emitSearchEvent()
+      searchbox.emitSearchEvent();
       expect(clearSearchStub).to.have.been.called;
+    })
+
+    it('should dispatch a search request event', () => {
+      spy(window, 'dispatchEvent');
+      stub(searchbox, 'clearSearch')
+      let searchRequestEvent = new CustomEvent('sfx::search_request', { detail: 'a', bubbles: true })
+      searchbox.emitSearchEvent();
+      expect(window.dispatchEvent).to.have.been.calledWith(searchRequestEvent);
+      // expect(window.dispatchEvent).to.have.been.calledWith('sfx::search_request', { detail: 'string', bubbles: true })
+    })
+  })
+
+  describe('emitAutocompleteRequestEvent', () => {
+    it('should dispatch an autocomplete event', () => {
+      spy(window, 'dispatchEvent');
+      let searchRequestEvent = new CustomEvent('sfx::autocomplete_request', { detail: 'b', bubbles: true })
+      searchbox.emitAutocompleteRequestEvent();
+      expect(window.dispatchEvent).to.have.been.called;
+      // expect(window.dispatchEvent).to.have.been.calledWith('sfx::autocomplete_request', { detail: 'a', bubbles: true })
     })
   })
 
