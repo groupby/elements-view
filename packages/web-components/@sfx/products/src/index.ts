@@ -53,10 +53,11 @@ export class Products extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.setMockProducts();
-    this.setUpEventlisteners();
+    this.setMockProducts(); // @TODO Remove this
+    this.setUpEventListeners();
   }
 
+  // @TODO Remove this method
   setMockProducts() {
     const mockProducts = []
     for (let i = 0; i < this.maxItems; i++) {
@@ -70,7 +71,7 @@ export class Products extends LitElement {
     this.products = mockProducts;
   }
 
-  setUpEventlisteners() {
+  setUpEventListeners() {
     // @TODO the `event` param should be of type Event, or a custom interface.
     window.addEventListener('sfx:provide-products', this.setProductsFromEvent);
   }
