@@ -23,6 +23,16 @@ describe('Products Component ', () => {
     });
   });
 
+  describe('connectedCallback', () => {
+    it('should set up event listeners after connecting', () => {
+      const listenStub = sinon.stub(component, 'setUpEventListeners');
+
+      component.connectedCallback();
+
+      expect(listenStub).to.be.called;
+    });
+  });
+
   describe('setProductsFromEvent', () => {
     it('should set the event products payload into the component', () => {
       const products = [1, 2, 3];
