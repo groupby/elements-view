@@ -1,6 +1,6 @@
 import { TemplateResult } from 'lit-element';
 import { expect, spy, stub } from './utils';
-import { Base } from '../../base/src/index';
+import { Base } from '@sfx/base';
 import Autocomplete from '../src/autocomplete';
 
 describe('Autcomplete Component', () => {
