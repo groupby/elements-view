@@ -22,7 +22,7 @@ class Product extends LitElement {
   render() {
     return html`
       <style>
-        :host {
+        sfx-product {
           padding: 5px;
         }
       </style>
@@ -32,6 +32,10 @@ class Product extends LitElement {
         <p>${this.description}</p>
       </div>
     `
+  }
+
+  createRenderRoot() {
+    return this;
   }
 }
 
