@@ -19,4 +19,10 @@ function loadStories() {
   req.keys().forEach(req);
 }
 
+addons.getChannel().on('customEvents/emitEvent', (event) => {
+  window.dispatchEvent(new CustomEvent(event.name, {
+    detail: event.payload
+  }));
+});
+
 configure(loadStories, module);

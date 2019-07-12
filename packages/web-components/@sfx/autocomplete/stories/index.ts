@@ -21,13 +21,6 @@ const results = [
   }
 ]
 
-addons.getChannel().on('customEvents/emitEvent', (event) => {
-  console.log('CUSTOM CONFIG', event);
-  window.dispatchEvent(new CustomEvent(event.name, {
-    detail: event.payload
-  }));
-});
-
 storiesOf('Components|Autocomplete', module)
   .addDecorator(withKnobs)
   .add('Default', () => `
