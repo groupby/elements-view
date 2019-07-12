@@ -9,7 +9,11 @@ describe('Products Component ', () => {
 
   it('should default to have an empty array of products', () => {
     expect(component.products).to.deep.equal([]);
-  })
+  });
+
+  it('should default to 12 maxItems', () => {
+    expect(component.maxItems).to.deep.equal(12);
+  });
 });
 
 describe('setProductsFromEvent', () => {
