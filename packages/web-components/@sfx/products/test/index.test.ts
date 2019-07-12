@@ -46,3 +46,4 @@ describe('Products Component ', () => {
       expect(listenStub).to.be.calledWith('sfx:provide-products', callbackStub);
     });
   });
+});
