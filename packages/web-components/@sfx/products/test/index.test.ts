@@ -84,4 +84,12 @@ describe('Products Component ', () => {
       expect(renderableProducts).to.deep.equal([1, 2]);
     });
   });
+
+  describe('render', () => {
+    it('should return an object to be rendered', () => {
+      const result = component.render();
+
+      expect(result).to.be.an('object');
+    })
+  });
 });
