@@ -69,6 +69,10 @@ export class Products extends LitElement {
     this.products = event.detail.products;
   }
 
+  getRenderableProducts() {
+    return this.products.slice(0, this.maxItems);
+  }
+
   render() {
     return html`
       <style>
@@ -79,7 +83,7 @@ export class Products extends LitElement {
         }
       </style>
 
-      ${this.products.map(product => {
+      ${this.getRenderableProducts().map(product => {
         return html`
           <sfx-product
             name=${product.name}
