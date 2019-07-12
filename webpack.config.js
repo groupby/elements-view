@@ -5,7 +5,7 @@ module.exports = {
   mode: 'development',
 
   entry: {
-    components: './presets/components.ts',
+    components: path.resolve(__dirname, 'presets/components.ts'),
   },
 
   devtool: 'source-map',

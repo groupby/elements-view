@@ -1,7 +1,7 @@
 import { expect } from './utils';
-import { List } from '../src/list';
-import Base from '@sfx/base';
+import { Base } from '@sfx/base';
 import { TemplateResult } from 'lit-element';
+import List from '../src/list';
 
 describe('List component', () => {
   it('should extend Base', () => {
@@ -33,4 +33,3 @@ describe('List component', () => {
     });
   });
 });
-
