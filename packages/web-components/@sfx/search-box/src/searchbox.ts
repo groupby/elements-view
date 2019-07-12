@@ -41,7 +41,9 @@ export class SearchBox extends LitElement {
   }
 
   handleKeypress(e) {
-    console.log((<HTMLInputElement>this.querySelector('#searchInput')).value, 'inputValue')
+    console.log('in handle keypress e', e)
+    console.log('in handle keypress type of e', typeof e)
+    // console.log((<HTMLInputElement>this.querySelector('#searchInput')).value, 'inputValue')
     if (e.keyCode === 13) {
       this.emitSearchEvent();
     } else {
@@ -53,7 +55,8 @@ export class SearchBox extends LitElement {
 
   updateText(e) {
     this.searchTerm = e.detail;
-    (<HTMLInputElement>this.querySelector('#searchInput')).value = e.detail;
+    let el = (<HTMLInputElement>this.querySelector('#searchInput')).value;
+    el = e.detail;
     console.log('in update text - e', e)
   }
 
@@ -61,7 +64,7 @@ export class SearchBox extends LitElement {
     if (e.keyCode === 8) {
       this.searchTerm = this.searchTerm.slice(0, this.searchTerm.length-1);
     }
-    console.log('this.searchTerm', this.searchTerm)
+    // console.log('this.searchTerm', this.searchTerm)
   }
 
   clearSearch() {
