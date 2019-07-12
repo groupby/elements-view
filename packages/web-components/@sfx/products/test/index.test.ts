@@ -17,7 +17,7 @@ describe('Products Component ', () => {
     });
   });
 
-  describe('Products static methods', () => {
+  describe('properties', () => {
     it('should reflect maxItems as a property', () => {
       expect(Products.properties.maxItems.reflect).to.equal(true);
     });
