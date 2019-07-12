@@ -12,6 +12,10 @@ describe('Products Component ', () => {
   beforeEach(() => {
     component = new Products();
   });
+
+  it('should default to have an empty array of products', () => {
+    expect(component.products).to.deep.equal([]);
+  })
 });
 
 describe('setProductsFromEvent', () => {
