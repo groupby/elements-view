@@ -86,10 +86,10 @@ export class Products extends LitElement {
       ${this.getRenderableProducts().map(product => {
         return html`
           <sfx-product
-            name=${product.name}
-            description=${product.description}
-            price=${product.price}
-            imageSource=${product.imageSource}
+            name="${product.name}"
+            description="${product.description}"
+            price="${product.price}"
+            imageSource="${product.imageSource}"
             />
         `
       })}
