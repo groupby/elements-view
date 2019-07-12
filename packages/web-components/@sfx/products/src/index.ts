@@ -65,8 +65,6 @@ export class Products extends LitElement {
   }
 
   setProductsFromEvent(event: any) {
-    console.log(event.detail);
-    console.log(event.detail.products);
     this.products = event.detail.products;
   }
 
