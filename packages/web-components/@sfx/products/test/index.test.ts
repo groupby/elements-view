@@ -16,6 +16,12 @@ describe('Products Component ', () => {
   });
 });
 
+describe('Products static methods', () => {
+  it('should reflect maxItems as a property', () => {
+    expect(Products.properties.maxItems.reflect).to.equal(true);
+  });
+});
+
 describe('setProductsFromEvent', () => {
   let component: Products;
   beforeEach(() => {
