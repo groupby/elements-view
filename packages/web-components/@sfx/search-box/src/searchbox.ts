@@ -65,9 +65,21 @@ export class SearchBox extends LitElement {
     this.emitSearchBoxClearedEvent();
   }
 
+  clickExposed() {
+    let searchBoxClickedEvent = new CustomEvent('sfx::search_click_event')
+    window.dispatchEvent(searchBoxClickedEvent);
+    console.log('clicked the box!')
+  }
+
+  hoverExposed() {
+    let searchBoxHoveredEvent = new CustomEvent('sfx::search_hover_event')
+    window.dispatchEvent(searchBoxHoveredEvent);
+    console.log('hovered the box!')
+  }
+
   render() {
     return html`
-    <input type="text" id="searchInput" placeholder=${this.placeholder} @keyup="${this.handleKeydown}"></input>
+    <input type="text" @mouseenter="${this.hoverExposed}" @click="${this.clickExposed}" id="searchInput" placeholder=${this.placeholder} @keyup="${this.handleKeydown}"></input>
     <button @click=${this.clearSearch}>Clear</button>
     <button @click=${this.emitSearchEvent}>Search</button>
     `;
