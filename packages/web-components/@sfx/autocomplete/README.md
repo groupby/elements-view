@@ -5,7 +5,8 @@ The component listens for an event, which is fired when the autocomplete data is
 The component then populates a list with the received data.
 
 ## Customizations
-Customizations will be inherited from SAYT.
+Autocomplete allows for an optional title (string value), which populates inside an h3. View fourth Storybook story for demonstration of functionality.
+All other customizations will be inherited from SAYT.
 
 ## Testing
 The test suite for this component is contained in /packages/web-components/@sfx/autocomplete/test.

@@ -12,10 +12,10 @@ export default class List extends Base {
       ${ this.title ?
         html`<ul aria-labelledby="list_title_${this.title}">
           ${ this.items.map(item => html`<li>${item.label}</li>
-        </ul>`)}` :
+            </ul>`)}` :
         html`<ul>
           ${ this.items.map(item => html`<li>${item.label}</li>`)} `}
-        </ul>
-    `;
+            </ul>
+      `;
+    }
   }
-}

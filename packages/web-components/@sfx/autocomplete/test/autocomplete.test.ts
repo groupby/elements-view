@@ -49,6 +49,12 @@ describe('Autcomplete Component', () => {
     });
   });
 
+  describe('Optional title property', () => {
+    it('should have default value', () => {
+      expect(autocomplete.optionalTitle).to.equal('');
+    });
+  });
+
   describe('render function', () => {
     it('should return an instance of TemplateResult', () => {
       const result = autocomplete.render();

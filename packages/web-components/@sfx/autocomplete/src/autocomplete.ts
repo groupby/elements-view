@@ -5,6 +5,7 @@ import { Base } from '@sfx/base';
 @customElement('sfx-autocomplete')
 export default class Autocomplete extends Base {
   @property({ type: Array, reflect: true }) results = [];
+  @property({ type: String, reflect: true, attribute: 'optional-title' }) optionalTitle = '';
 
   constructor() {
     super();
@@ -21,12 +22,13 @@ export default class Autocomplete extends Base {
     window.removeEventListener('autocomplete_received_results', this.receivedResults);
   }
 
-  receivedResults(e) {
+  receivedResults(e: CustomEvent) {
     this.results = e.detail;
   }
 
   render() {
-    return html`${
+    return html`${this.optionalTitle ? html`<h3>${this.optionalTitle}</h3>` : ''}
+    ${
       this.results.map(list => html`<sfx-list .title=${list.title === 'default' ? '' : list.title} .items=${list.items}></sfx-list>`)
       }`;
     }

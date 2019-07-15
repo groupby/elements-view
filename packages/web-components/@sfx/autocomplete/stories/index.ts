@@ -30,6 +30,8 @@ const results = [
   }
 ];
 
+const optionalTitle = 'Autocomplete Results';
+
   /**
    * --- setup for testing event listeners ---
    * Because Storybook is contained in an iFrame, for testing purposes, 
@@ -68,5 +70,9 @@ storiesOf('Components|Autocomplete', module)
     .add('With Slots', () => `
       <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
         <div>Content appears after main content</div>
+      </sfx-autocomplete>
+    `)
+    .add('With title customization', () => `
+      <sfx-autocomplete optional-title="${text('Optional Title', optionalTitle)}" results="${text('Autocomplete', JSON.stringify(results))}">
       </sfx-autocomplete>
     `);
