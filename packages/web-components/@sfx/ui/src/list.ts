@@ -1,5 +1,5 @@
 import { customElement, html, property } from 'lit-element';
-import Base from '@sfx/base';
+import { Base } from '@sfx/base';
 
 @customElement('sfx-list')
 export default class List extends Base {
