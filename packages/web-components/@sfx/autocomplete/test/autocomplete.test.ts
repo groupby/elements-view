@@ -19,7 +19,7 @@ describe('Autcomplete Component', () => {
     it('should add an eventListener to the window', () => {
       spy(window, 'addEventListener');
       autocomplete.connectedCallback();
-      expect(window.addEventListener).to.have.been.calledWith('autocomplete_received_results', autocomplete.receivedResults);
+      expect(window.addEventListener).to.have.been.calledWith('sfx::autocomplete_received_results', autocomplete.receivedResults);
     });
 
     it('should call its super connectedCallback', () => {
@@ -33,7 +33,7 @@ describe('Autcomplete Component', () => {
     it('should remove eventListener from the window', () => {
       spy(window, 'removeEventListener');
       autocomplete.disconnectedCallback();
-      expect(window.removeEventListener).to.have.been.calledWith('autocomplete_received_results', autocomplete.receivedResults);
+      expect(window.removeEventListener).to.have.been.calledWith('sfx::autocomplete_received_results', autocomplete.receivedResults);
     });
 
     it('should call its super disconnectedCallback', () => {

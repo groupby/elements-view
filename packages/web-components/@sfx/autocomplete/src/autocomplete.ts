@@ -14,12 +14,12 @@ export default class Autocomplete extends Base {
 
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener('autocomplete_received_results', this.receivedResults);
+    window.addEventListener('sfx::autocomplete_received_results', this.receivedResults);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener('autocomplete_received_results', this.receivedResults);
+    window.removeEventListener('sfx::autocomplete_received_results', this.receivedResults);
   }
 
   receivedResults(e: CustomEvent) {
