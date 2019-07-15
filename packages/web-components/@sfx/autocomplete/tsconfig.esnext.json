@@ -17,7 +17,7 @@
     "outDir": "esnext",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "declaration": true
   },
   "exclude": [

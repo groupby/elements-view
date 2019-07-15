@@ -3,8 +3,8 @@ import { Base } from '@sfx/base';
 
 @customElement('sfx-list')
 export default class List extends Base {
-  @property({ type: String }) title = '';
-  @property({ type: Array }) items = [];
+  @property({ type: String }) title: string = '';
+  @property({ type: Array }) items: Array<any> = [];
 
   render() {
     return html`

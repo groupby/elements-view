@@ -4,8 +4,8 @@ import { Base } from '@sfx/base';
 
 @customElement('sfx-autocomplete')
 export default class Autocomplete extends Base {
-  @property({ type: Array, reflect: true }) results = [];
-  @property({ type: String, reflect: true, attribute: 'optional-title' }) optionalTitle = '';
+  @property({ type: Array, reflect: true }) results:  Array<any> = [];
+  @property({ type: String, reflect: true, attribute: 'optional-title' }) optionalTitle: string = '';
 
   constructor() {
     super();

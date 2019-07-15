@@ -8,7 +8,7 @@ export function makeSlot(name?: string) {
   return slot;
 }
 
-export function createChildrenObserver(root) {
+export function createChildrenObserver(root: any) {
   return new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       let mutedNodes = Array.from(mutation.removedNodes)
