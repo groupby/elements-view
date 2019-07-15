@@ -44,13 +44,13 @@ describe('Autcomplete Component', () => {
   });
 
   describe('Results property', () => {
-    it('should have default value', () => {
+    it('should have default value of empty array', () => {
       expect(autocomplete.results).to.be.an('array').that.is.empty;
     });
   });
 
   describe('Optional title property', () => {
-    it('should have default value', () => {
+    it('should have default value of empty string', () => {
       expect(autocomplete.optionalTitle).to.equal('');
     });
   });
