@@ -39,8 +39,14 @@ setTimeout(() => {
 
 storiesOf('Components|Searchbox', module)
   .addDecorator(withKnobs)
-  .add('Default', () => `
+  .add('Default - with search and clear button', () => `
+  <sfx-search-box search-button clear-button></sfx-search-box>
+`)
+  .add('Without any SFX provided buttons', () => `
   <sfx-search-box></sfx-search-box>
+`)
+  .add('Without a clear button, without a search button', () => `
+  <sfx-search-box clear-button></sfx-search-box>
 `)
 
 

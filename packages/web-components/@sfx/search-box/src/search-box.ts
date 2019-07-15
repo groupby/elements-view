@@ -4,6 +4,8 @@ import { LitElement, customElement, html, property } from 'lit-element';
 export class SearchBox extends LitElement {
   @property({ type: String }) placeholder = 'Type your search';
   @property({ type: String }) searchTerm = '';
+  @property({ type: Boolean, reflect: true, attribute: 'search-button' }) searchButton = false;
+  @property({ type: Boolean, reflect: true, attribute: 'clear-button' }) clearButton = false;
   
   constructor() {
     super();
@@ -17,6 +19,8 @@ export class SearchBox extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener('sfx::autocomplete_hover', this.updateText)
+    console.log(this.searchButton, 'this.searchButton')
+    console.log(this.clearButton, 'this.clearButton')
   }
 
   disconnectedCallback() {
@@ -78,8 +82,8 @@ export class SearchBox extends LitElement {
   render() {
     return html`
     <input type="text" @mouseenter="${this.hoverExposed}" @click="${this.clickExposed}" id="searchInput" placeholder=${this.placeholder} @keyup="${this.handleKeydown}"></input>
-    <button @click=${this.clearSearch}>Clear</button>
-    <button @click=${this.emitSearchEvent}>Search</button>
+    ${this.clearButton ? html`<button @click=${this.clearSearch}>Clear</button>` : ''}
+    ${this.searchButton ? html`<button @click=${this.emitSearchEvent}>Search</button>` : ''}
     `;
     }
   }
