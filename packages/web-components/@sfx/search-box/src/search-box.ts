@@ -2,11 +2,11 @@ import { LitElement, customElement, html, property } from 'lit-element';
 
 @customElement('sfx-search-box')
 export class SearchBox extends LitElement {
-  @property({ type: String }) placeholder = 'Type your search';
+  @property({ type: String, reflect: true, attribute: 'placeholder-text' }) placeholder = 'Type your search';
   @property({ type: String }) searchTerm = '';
   @property({ type: Boolean, reflect: true, attribute: 'search-button' }) searchButton = false;
   @property({ type: Boolean, reflect: true, attribute: 'clear-button' }) clearButton = false;
-  
+
   constructor() {
     super();
     this.updateText = this.updateText.bind(this);

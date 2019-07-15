@@ -48,6 +48,9 @@ storiesOf('Components|Searchbox', module)
   .add('Without a clear button, without a search button', () => `
   <sfx-search-box clear-button></sfx-search-box>
 `)
+  .add('With custom placeholder text', () => `
+  <sfx-search-box placeholder-text="Search"></sfx-search-box>
+`)
 
 
 
