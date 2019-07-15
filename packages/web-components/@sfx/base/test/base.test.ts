@@ -1,5 +1,5 @@
 import { expect, spy, stub } from './utils';
-import Base from '@sfx/base';
+import Base from '../src/base';
 import { LitElement } from 'lit-element';
 import { TemplateResult } from 'lit-element';
 import * as BaseUtils from '../src/utils';
