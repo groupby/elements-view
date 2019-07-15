@@ -68,13 +68,11 @@ export class SearchBox extends LitElement {
   clickExposed() {
     let searchBoxClickedEvent = new CustomEvent('sfx::search_click_event')
     window.dispatchEvent(searchBoxClickedEvent);
-    console.log('clicked the box!')
   }
 
   hoverExposed() {
     let searchBoxHoveredEvent = new CustomEvent('sfx::search_hover_event')
     window.dispatchEvent(searchBoxHoveredEvent);
-    console.log('hovered the box!')
   }
 
   render() {
