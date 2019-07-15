@@ -20,3 +20,8 @@ export function createChildrenObserver(root: any) {
     });
   });
 }
+
+/**
+ * The above functions were pulled 
+ * directly from https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676.
+ */
