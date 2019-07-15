@@ -1,1 +1,1 @@
-import './list';
+export { default as List } from './list';

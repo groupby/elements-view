@@ -2,7 +2,7 @@ import { customElement, html, property } from 'lit-element';
 import Base from '@sfx/base';
 
 @customElement('sfx-list')
-export class List extends Base {
+export default class List extends Base {
   @property({ type: String }) title = '';
   @property({ type: Array }) items = [];
 
