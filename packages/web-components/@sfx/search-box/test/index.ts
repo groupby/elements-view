@@ -1,5 +1,5 @@
 import { expect, spy, stub, sinon } from './utils';
-import { SearchBox } from '../src/searchbox';
+import { SearchBox } from '../src/search-box';
 
 describe('SearchBox Component', () => {
   let searchbox;

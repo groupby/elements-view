@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import '../src/searchbox.ts';
+import '../src/search-box.ts';
 
 // start of event dispatch testing
 window.addEventListener('sfx::search_request', (e) => {
