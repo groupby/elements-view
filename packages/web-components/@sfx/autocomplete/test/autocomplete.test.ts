@@ -1,7 +1,7 @@
 import { expect, spy, stub } from './utils';
-import { Autocomplete } from '../src/index';
-import Base from '@sfx/base';
+import { Base } from '@sfx/base';
 import { TemplateResult } from 'lit-element';
+import Autocomplete from '../src/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
