@@ -9,28 +9,35 @@ const results = [
     title: 'Brands',
     items: [
       {
+        ...tbd,
         label: 'New Balance',
-        ...tbd
       }, {
+        ...tbd,
         label: 'Bauer',
-        ...tbd
       }
     ]
   }, {
     title: '',
     items: [
       {
+        ...tbd,
         label: 'Golf Ball',
-        ...tbd
       }, {
+        ...tbd,
         label: 'Basketball',
-        ...tbd
       }
     ]
   }
 ];
 
 const optionalTitle = 'Autocomplete Results';
+
+// function dispatchAutocompleteResults() {
+//   console.log('in dispatch...')
+//   const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', { detail: [{"title":"Brands","items":[{"label":"Cats"},{"label":"Dogs"}]},{"title":"","items":[{"label":"Cars"},{"label":"Bikes"}]}],
+//   bubbles: true });
+//   window.dispatchEvent(autocompleteDataReceivedEvent);
+// }
 
   /*
    * --- setup for testing event listeners ---
@@ -41,20 +48,6 @@ const optionalTitle = 'Autocomplete Results';
    * 
    * After the timeout, we should see the original data being replaced by the data contained in the custom event below.
    */
-const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', { detail: [{"title":"Brands","items":[{"label":"Cats"},{"label":"Dogs"}]},{"title":"","items":[{"label":"Cars"},{"label":"Bikes"}]}],
-bubbles: true });
-
-// window.customElements.whenDefined('sfx-autocomplete').then(() => {
-//   console.log('autocomplete defined')
-//   console.log('autocompleteDataReceivedEvent', autocompleteDataReceivedEvent)
-//   window.dispatchEvent(autocompleteDataReceivedEvent)
-// });
-setTimeout(() => {
-  window.dispatchEvent(autocompleteDataReceivedEvent)
-}, 3000);
- /*
-  * --- end of setup for testing event listeners ---
-  */
 
   /**
    * --- Slots Testing ---
