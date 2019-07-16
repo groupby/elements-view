@@ -6,13 +6,12 @@ import * as BaseUtils from '../../src/utils';
 
 
 describe('Base Class', () => {
-  let base: any = {}
+  let base;
   beforeEach(() => {
     base = new Base();
   });
 
   it('should extend from LitElement', () => {
-    const base = new Base();
     expect(base).to.be.an.instanceof(LitElement);
   });
 

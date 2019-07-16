@@ -3,7 +3,7 @@ import { makeSlot, createChildrenObserver } from './utils';
 
 @customElement('sfx-base')
 export default class Base extends LitElement {
-  observer: any;
+  observer: MutationObserver;
 
   constructor() {
     super();
@@ -20,9 +20,7 @@ export default class Base extends LitElement {
     super.connectedCallback();
     this.observer = createChildrenObserver(this);
 
-    this.observer.observe(this, {
-      childList: true,
-    });
+    this.observer.observe(this, { childList: true });
   }
 
   firstUpdate() {

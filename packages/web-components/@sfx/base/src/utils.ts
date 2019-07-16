@@ -1,3 +1,8 @@
+/*
+ * The above functions were pulled 
+ * directly from https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676.
+ */
+
 /* istanbul ignore file */
 
 export function makeSlot(name?: string) {
@@ -8,7 +13,7 @@ export function makeSlot(name?: string) {
   return slot;
 }
 
-export function createChildrenObserver(root: any) {
+export function createChildrenObserver(root: Node) {
   return new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       let mutedNodes = Array.from(mutation.removedNodes)
@@ -20,8 +25,3 @@ export function createChildrenObserver(root: any) {
     });
   });
 }
-
-/**
- * The above functions were pulled 
- * directly from https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676.
- */
