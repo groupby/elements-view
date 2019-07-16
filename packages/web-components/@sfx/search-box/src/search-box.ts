@@ -15,7 +15,18 @@ export class SearchBox extends LitElement {
   //     color: red;
   //   }`;
 
+  constructor() {
+    super();
+    this.updateText = this.updateText.bind(this);
+    console.log('in constructor')
+  }
+
+  createRenderRoot() {
+    return this;
+  }
+
   static get styles() {
+    console.log('this in styles', this)
     return css`
     .btn_clear {
       color: blue;
@@ -26,20 +37,9 @@ export class SearchBox extends LitElement {
     `
   }
 
-  constructor() {
-    super();
-    this.updateText = this.updateText.bind(this);
-  }
-
-  // createRenderRoot() {
-  //   return this;
-  // }
-
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener('sfx::autocomplete_hover', this.updateText)
-    console.log(this.searchButton, 'this.searchButton')
-    console.log(this.clearButton, 'this.clearButton')
+    window.addEventListener('sfx::autocomplete_hover', this.updateText);
   }
 
   disconnectedCallback() {
@@ -64,6 +64,7 @@ export class SearchBox extends LitElement {
   }
 
   updateText(e) {
+    console.log('in updateText')
     this.searchTerm = e.detail;
     let el = (<HTMLInputElement>this.querySelector('#searchInput')).value;
     el = e.detail;
@@ -76,8 +77,11 @@ export class SearchBox extends LitElement {
     else if (e.keyCode === 13) {
       this.emitSearchEvent();
     } else {
+      console.log('in handleKeydown')
       this.searchTerm = (<HTMLInputElement>this.querySelector('#searchInput')).value;
-      this.emitAutocompleteRequestEvent(this.searchTerm)
+      if (this.searchTerm.length > 3) {
+        this.emitAutocompleteRequestEvent(this.searchTerm);
+      }
     }
     console.log('this.searchTerm', this.searchTerm)
   }
@@ -89,12 +93,12 @@ export class SearchBox extends LitElement {
   }
 
   clickExposed() {
-    let searchBoxClickedEvent = new CustomEvent('sfx::search_click_event')
+    let searchBoxClickedEvent = new CustomEvent('sfx::searchbox_click_event')
     window.dispatchEvent(searchBoxClickedEvent);
   }
 
   hoverExposed() {
-    let searchBoxHoveredEvent = new CustomEvent('sfx::search_hover_event')
+    let searchBoxHoveredEvent = new CustomEvent('sfx::searchbox_hover_event')
     window.dispatchEvent(searchBoxHoveredEvent);
   }
 

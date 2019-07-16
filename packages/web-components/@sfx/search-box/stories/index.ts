@@ -18,12 +18,12 @@ window.addEventListener('sfx::search_box_cleared', (e) => {
   console.log('event', e)
 });
 
-window.addEventListener('sfx::search_hover_event', (e) => {
+window.addEventListener('sfx::searchbox_hover_event', (e) => {
   console.log('search box hovered event received')
   console.log('event', e)
 })
 
-window.addEventListener('sfx::search_click_event', (e) => {
+window.addEventListener('sfx::searchbox_click_event', (e) => {
   console.log('search box clicked event received')
   console.log('event', e)
 })
@@ -33,9 +33,9 @@ window.addEventListener('sfx::search_click_event', (e) => {
 const autocompleteHover = new CustomEvent('sfx::autocomplete_hover', { detail: 'catfood', bubbles: true });
 // end of event listener testing
 
-setTimeout(() => {
-  window.dispatchEvent(autocompleteHover)
-}, 3000)
+// setTimeout(() => {
+//   window.dispatchEvent(autocompleteHover)
+// }, 3000)
 
 storiesOf('Components|Searchbox', module)
   .addDecorator(withKnobs)
