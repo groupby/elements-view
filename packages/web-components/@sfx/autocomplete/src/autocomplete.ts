@@ -2,10 +2,14 @@ import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 import { Base } from '@sfx/base';
 
+const autococompleteReceivedResults = 'sfx::autocomplete_received_results'
 @customElement('sfx-autocomplete')
 export default class Autocomplete extends Base {
-  @property({ type: Array, reflect: true }) results:  Array<any> = [];
-  @property({ type: String, reflect: true, attribute: 'optional-title' }) optionalTitle: string = '';
+  // FIXME Type properly
+  @property({ type: Array }) results:  any[] = [];
+  @property({ type: String, reflect: true }) optionalTitle: string = '';
+
+  
 
   constructor() {
     super();
@@ -14,12 +18,12 @@ export default class Autocomplete extends Base {
 
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener('sfx::autocomplete_received_results', this.receivedResults);
+    window.addEventListener(autococompleteReceivedResults, this.receivedResults);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener('sfx::autocomplete_received_results', this.receivedResults);
+    window.removeEventListener(autococompleteReceivedResults, this.receivedResults);
   }
 
   receivedResults(e: CustomEvent) {
@@ -28,8 +32,8 @@ export default class Autocomplete extends Base {
 
   render() {
     return html`${this.optionalTitle ? html`<h3>${this.optionalTitle}</h3>` : ''}
-    ${
-      this.results.map(list => html`<sfx-list .title=${list.title === 'default' ? '' : list.title} .items=${list.items}></sfx-list>`)
+      ${
+      this.results.map(list => html`<sfx-list .title="${list.title}" .items="${list.items}"></sfx-list>`)
       }`;
     }
   }
