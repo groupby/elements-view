@@ -1,8 +1,8 @@
-import { expect, spy, stub } from './utils';
-import Base from '../src/base';
+import { expect, spy, stub } from '../utils';
+import Base from '../../src/base';
 import { LitElement } from 'lit-element';
 import { TemplateResult } from 'lit-element';
-import * as BaseUtils from '../src/utils';
+import * as BaseUtils from '../../src/utils';
 
 
 describe('Base Class', () => {

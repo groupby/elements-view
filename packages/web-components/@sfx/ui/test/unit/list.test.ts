@@ -1,5 +1,5 @@
-import { expect } from './utils';
-import List from '../src/list';
+import { expect } from '../utils';
+import List from '../../src/list';
 import { Base } from '@sfx/base';
 import { TemplateResult } from 'lit-element';
 
