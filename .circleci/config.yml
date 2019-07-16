@@ -1,17 +1,16 @@
 defaults:
-  image: &image
-    docker:
-      - image: cirlceci/node:11.6.0
+  docker: &docker
+    - image: cirlceci/node:11.6.0
 
 version: 2
 
 jobs:
   build:
-    <<: *image
+    <<: *docker
     steps:
   unit_test:
     build:
-    <<: *image
+    <<: *docker
     steps:
 
 workflows:
