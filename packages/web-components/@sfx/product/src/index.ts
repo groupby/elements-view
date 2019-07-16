@@ -1,15 +1,13 @@
-import { LitElement, customElement, property, html } from 'lit-element';
+import { customElement, property, html } from 'lit-element';
+import { BaseElement } from '../../base';
 
 @customElement('sfx-product')
-export class Product extends LitElement {
+export class Product extends BaseElement {
+  @property({ type: String }) display: 'full' | 'tile' = 'full';
   @property({ type: Object }) product: ProductModel = {};
 
   urlWrap(url, children) {
     return url ? html`<a href="${ url }">${children}</a>` : html`${children}`;
-  }
-
-  createRenderRoot() {
-    return this;
   }
 
   productNodes() {
@@ -32,15 +30,17 @@ export class Product extends LitElement {
   render() {
     const { name, price, variants, productUrl } = this.product;
 
+    this.classList.add(this.display);
+
     return html`
       <slot name="title">
         ${ this.urlWrap(productUrl, html`
           <h3>${ name }</h3>
         `) }
       </slot> 
-      <slot name="one"></slot>
-      <slot name="price"></slot>
-      <p>${ price }</p>
+      <slot name="price">
+        <p>${ price }</p>
+      </slot>
       ${ this.productNodes() }
     `;
   }

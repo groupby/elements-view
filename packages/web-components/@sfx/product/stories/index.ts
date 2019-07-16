@@ -29,7 +29,7 @@ storiesOf('Components|Product', module)
   <sfx-product 
     product="${text('Product Info', JSON.stringify(product))}"
   >
-    <p slot="one">Include me in slot "one".</p>
-    <p slot="price"><span>29.99</span> <span>19.99</span></p>
+    <h1 slot="title">No THANKS</h1>
+    <h4 slot="price"><span>29.99</span> <span>19.99</span></h4>
   </sfx-product>
 `);
