@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import '../src/index.ts';
+import '../src/index';
 
 const items = [
       {

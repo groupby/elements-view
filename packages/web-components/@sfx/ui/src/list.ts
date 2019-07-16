@@ -11,11 +11,9 @@ export default class List extends Base {
       ${ this.title ? html`<h4 id="list_title_${this.title}">${this.title}</h4>` : ''}
       ${ this.title ?
         html`<ul aria-labelledby="list_title_${this.title}">
-          ${ this.items.map(item => html`<li>${item.label}</li>
-            </ul>`)}` :
+          ${ this.items.map(item => html`<li>${item.label}</li></ul>`)}` :
         html`<ul>
-          ${ this.items.map(item => html`<li>${item.label}</li>`)} `}
-            </ul>
+          ${ this.items.map(item => html`<li>${item.label}</li></ul>`)}`}
       `;
     }
   }
