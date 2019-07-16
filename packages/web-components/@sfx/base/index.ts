@@ -10,7 +10,7 @@ export class BaseElement extends LitElement {
       const { slot, outerHTML } = node;
 
       if ( slot && outerHTML ) {
-        slots.push({ slot, outerHTML }); //[slot] = outerHTML;
+        slots.push({ slot, outerHTML });
       }
     });
 
@@ -34,8 +34,6 @@ export class BaseElement extends LitElement {
       }
     }); 
   }
-
-  
 }
 
 export interface Slot {
