@@ -13,49 +13,49 @@ describe('Autcomplete Component', () => {
     it('should extend the Base class', () => {
       expect(autocomplete).to.be.an.instanceof(Base);
     });
+
+    describe('Results property', () => {
+      it('should have default value of empty array', () => {
+        expect(autocomplete.results).to.deep.equal([]);
+      });
+    });
+  
+    describe('Optional title property', () => {
+      it('should have default value of empty string', () => {
+        expect(autocomplete.optionalTitle).to.equal('');
+      });
+    });
   });
 
   describe('connectedCallback', () => {
-    it('should add an eventListener to the window', () => {
-      spy(window, 'addEventListener');
-      autocomplete.connectedCallback();
-      expect(window.addEventListener).to.have.been.calledWith('sfx::autocomplete_received_results', autocomplete.receivedResults);
-    });
-
     it('should call its super connectedCallback', () => {
       const baseConnectedCallbackStub = stub(Base.prototype, 'connectedCallback');
       autocomplete.connectedCallback();
       expect(baseConnectedCallbackStub).to.have.been.called;
     });
+
+    it('should add an eventListener to the window', () => {
+      const windowEventListener = spy(window, 'addEventListener');
+      autocomplete.connectedCallback();
+      expect(windowEventListener).to.have.been.calledWith('sfx::autocomplete_received_results', autocomplete.receivedResults);
+    }); 
   });
 
   describe('disconnectedCallback', () => {
-    it('should remove eventListener from the window', () => {
-      spy(window, 'removeEventListener');
-      autocomplete.disconnectedCallback();
-      expect(window.removeEventListener).to.have.been.calledWith('sfx::autocomplete_received_results', autocomplete.receivedResults);
-    });
-
     it('should call its super disconnectedCallback', () => {
       const baseDisconnectedCallbackStub = stub(Base.prototype, 'disconnectedCallback');
       autocomplete.disconnectedCallback();
       expect(baseDisconnectedCallbackStub).to.have.been.called;
     });
-  });
 
-  describe('Results property', () => {
-    it('should have default value of empty array', () => {
-      expect(autocomplete.results).to.be.an('array').that.is.empty;
+    it('should remove eventListener from the window', () => {
+      const windowRemoveEventListener = spy(window, 'removeEventListener');
+      autocomplete.disconnectedCallback();
+      expect(windowRemoveEventListener).to.have.been.calledWith('sfx::autocomplete_received_results', autocomplete.receivedResults);
     });
   });
 
-  describe('Optional title property', () => {
-    it('should have default value of empty string', () => {
-      expect(autocomplete.optionalTitle).to.equal('');
-    });
-  });
-
-  describe('render function', () => {
+  describe('render', () => {
     it('should return an instance of TemplateResult', () => {
       const result = autocomplete.render();
       expect(result).to.be.an.instanceof(TemplateResult);
@@ -64,7 +64,7 @@ describe('Autcomplete Component', () => {
 
   describe('receivedResults', () => {
     it('should update the results property in response to data received', () => {
-      const detail = [{ "title": "Brands", "items": [{ "label": "Cats" }, { "label": "Dogs" }] }, { "title": "default", "items": [{ "label": "Cars" }, { "label": "Bikes" }] }]
+      const detail = [{ "title": "Brands", "items": [{ "label": "Cats" }, { "label": "Dogs" }] }, { "title": "default", "items": [{ "label": "Cars" }, { "label": "Bikes" }] }];
       autocomplete.receivedResults({ detail });
       expect(autocomplete.results).to.deep.equal(detail);
     });
