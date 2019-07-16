@@ -1,4 +1,4 @@
-import { LitElement, customElement, html, property } from 'lit-element';
+import { LitElement, customElement, html, property, css } from 'lit-element';
 
 @customElement('sfx-search-box')
 export class SearchBox extends LitElement {
@@ -7,14 +7,33 @@ export class SearchBox extends LitElement {
   @property({ type: Boolean, reflect: true, attribute: 'search-button' }) searchButton = false;
   @property({ type: Boolean, reflect: true, attribute: 'clear-button' }) clearButton = false;
 
+  // static styles = css`
+  //   .btn_clear {
+  //     color: blue;
+  //   }
+  //   p {
+  //     color: red;
+  //   }`;
+
+  static get styles() {
+    return css`
+    .btn_clear {
+      color: blue;
+    }
+    p {
+      color: red;
+    }
+    `
+  }
+
   constructor() {
     super();
     this.updateText = this.updateText.bind(this);
   }
 
-  createRenderRoot() {
-    return this;
-  }
+  // createRenderRoot() {
+  //   return this;
+  // }
 
   connectedCallback() {
     super.connectedCallback();
@@ -82,8 +101,9 @@ export class SearchBox extends LitElement {
   render() {
     return html`
     <input type="text" @mouseenter="${this.hoverExposed}" @click="${this.clickExposed}" id="searchInput" placeholder=${this.placeholder} @keyup="${this.handleKeydown}"></input>
-    ${this.clearButton ? html`<button @click=${this.clearSearch}>Clear</button>` : ''}
-    ${this.searchButton ? html`<button @click=${this.emitSearchEvent}>Search</button>` : ''}
+    ${this.clearButton ? html`<button class="btn_clear" @click=${this.clearSearch}>Clear</button>` : ''}
+    ${this.searchButton ? html`<button class="btn_search" @click=${this.emitSearchEvent}>Search</button>` : ''}
+    <p>Style test</p>
     `;
     }
   }
