@@ -10,7 +10,7 @@ const SEARCHBOX_EVENT = {
   SEARCHBOX_HOVER: 'sfx::searchbox_hover_event'
 };
 @customElement('sfx-search-box')
-export class SearchBox extends LitElement {
+export default class SearchBox extends LitElement {
   @property({ type: String, reflect: true, attribute: 'placeholder-text' })
   placeholder = 'Type your search';
   @property({ type: String }) searchTerm = '';
@@ -31,12 +31,18 @@ export class SearchBox extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener('sfx::autocomplete_hover', this.updateText);
+    window.addEventListener(
+      SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER,
+      this.updateText
+    );
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener('sfx::autocomplete_hover', this.updateText);
+    window.removeEventListener(
+      SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER,
+      this.updateText
+    );
   }
 
   emitSearchEvent() {
@@ -50,14 +56,16 @@ export class SearchBox extends LitElement {
 
   emitAutocompleteRequestEvent(letters: String) {
     let autocompleteRequestEvent = new CustomEvent(
-      'sfx::autocomplete_request',
+      SEARCHBOX_EVENT.AUTOCOMPLETE_REQUEST,
       { detail: letters, bubbles: true }
     );
     window.dispatchEvent(autocompleteRequestEvent);
   }
 
   emitSearchBoxClearedEvent() {
-    let searchboxxClearedEvent = new CustomEvent('sfx::search_box_cleared');
+    let searchboxxClearedEvent = new CustomEvent(
+      SEARCHBOX_EVENT.SEARCHBOX_CLEARED
+    );
     window.dispatchEvent(searchboxxClearedEvent);
   }
 
@@ -94,12 +102,16 @@ export class SearchBox extends LitElement {
   }
 
   clickExposed() {
-    let searchBoxClickedEvent = new CustomEvent('sfx::searchbox_click_event');
+    let searchBoxClickedEvent = new CustomEvent(
+      SEARCHBOX_EVENT.SEARCHBOX_CLICK
+    );
     window.dispatchEvent(searchBoxClickedEvent);
   }
 
   hoverExposed() {
-    let searchBoxHoveredEvent = new CustomEvent('sfx::searchbox_hover_event');
+    let searchBoxHoveredEvent = new CustomEvent(
+      SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER
+    );
     window.dispatchEvent(searchBoxHoveredEvent);
   }
 
