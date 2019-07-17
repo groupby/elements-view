@@ -1,10 +1,16 @@
+import { SEARCHBOX_EVENT } from './../src/utils';
 import { expect, spy, stub, sinon } from './utils';
 import SearchBox from '../src/search-box';
 
 describe('SearchBox Component', () => {
   let searchbox;
+  let windowDispatchEvent;
   beforeEach(() => {
     searchbox = new SearchBox();
+    windowDispatchEvent = spy(window, 'dispatchEvent');
+  });
+  afterEach(() => {
+    windowDispatchEvent.restore();
   });
 
   describe('Constructor', () => {
@@ -19,73 +25,67 @@ describe('SearchBox Component', () => {
     });
 
     it('should add an autocomplete_hover eventListener to the window', () => {
-      spy(window, 'addEventListener');
+      const windowAddEventListener = spy(window, 'addEventListener');
       searchbox.connectedCallback();
-      expect(window.addEventListener).to.have.been.calledWith(
-        'sfx::autocomplete_hover',
+      expect(windowAddEventListener).to.have.been.calledWith(
+        SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER,
         searchbox.updateText
       );
     });
   });
-  describe('connectCallback', () => {
-    it('should call its super connectedCallback', () => {
-      // need base
-    });
-
-    it('should add an autocomplete_hover eventListener to the window', () => {
-      spy(window, 'addEventListener');
-      searchbox.connectedCallback();
-      expect(window.addEventListener).to.have.been.calledWith(
-        'sfx::autocomplete_hover',
-        searchbox.updateText
-      );
-    });
-  });
-
   describe('disconnectCallback', () => {
     it('should call its super connectedCallback', () => {
       // need base
     });
 
-    it('should remove autocomplete_hover eventListener to the window', () => {
-      spy(window, 'removeEventListener');
+    it('should add an autocomplete_hover eventListener to the window', () => {
+      const windowRemoveEventListener = spy(window, 'removeEventListener');
       searchbox.disconnectedCallback();
-      expect(window.removeEventListener).to.have.been.calledWith(
-        'sfx::autocomplete_hover',
+      expect(windowRemoveEventListener).to.have.been.calledWith(
+        SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER,
         searchbox.updateText
       );
     });
   });
 
   describe('emitSearchEvent', () => {
-    it('should call clear search', () => {
-      const clearSearchStub = stub(searchbox, 'clearSearch');
-      searchbox.emitSearchEvent();
-      expect(clearSearchStub).to.have.been.called;
-    });
-
+    // let searchRequestEvent;
+    // beforeEach(() => {
+    //   searchRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+    //     detail: ,
+    //     bubbles: true
+    //   });
+    // });
     it('should dispatch a search request event', () => {
-      spy(window, 'dispatchEvent');
-      stub(searchbox, 'clearSearch');
-      let searchRequestEvent = new CustomEvent('sfx::search_request', {
+      searchbox.searchTerm = 'a';
+      let searchRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
         detail: 'a',
         bubbles: true
       });
       searchbox.emitSearchEvent();
-      expect(window.dispatchEvent).to.have.been.calledWith(searchRequestEvent);
-      // expect(window.dispatchEvent).to.have.been.calledWith('sfx::search_request', { detail: 'string', bubbles: true })
+      expect(windowDispatchEvent).to.have.been.calledWith(searchRequestEvent);
     });
+
+    // it('should use the passed in query value if provided', () => {
+    //   // PASSING BUT IT SHOULD FAIL!
+    //   searchbox.searchTerm = 'a';
+    //   searchbox.emitSearchEvent('a');
+    //   let payload = 'b';
+    //   let eventToDispatch = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+    //     detail: payload
+    //   });
+    //   expect(windowDispatchEvent).to.have.been.calledWith(searchRequestEvent);
+    // });
   });
 
   describe('emitAutocompleteRequestEvent', () => {
     it('should dispatch an autocomplete event', () => {
-      spy(window, 'dispatchEvent');
       let autocompleteRequestEvent = new CustomEvent(
         'sfx::autocomplete_request',
         { detail: 'b', bubbles: true }
       );
       searchbox.emitAutocompleteRequestEvent();
-      expect(window.dispatchEvent).to.have.been.calledWith(
+      expect(windowDispatchEvent).to.have.been.calledWith(
         autocompleteRequestEvent
       );
     });
@@ -93,10 +93,9 @@ describe('SearchBox Component', () => {
 
   describe('emitSearchBoxClearedEvent', () => {
     it('should dispatch an emitSearchBoxClearedEvent', () => {
-      spy(window, 'dispatchEvent');
       let searchboxxClearedEvent = new CustomEvent('sfx::search_box_cleared');
       searchbox.emitSearchBoxClearedEvent();
-      expect(window.dispatchEvent).to.have.been.calledWith(
+      expect(windowDispatchEvent).to.have.been.calledWith(
         searchboxxClearedEvent
       );
     });
@@ -127,21 +126,40 @@ describe('SearchBox Component', () => {
     // })
   });
 
-  describe('handleKeydown', () => {
-    it('should remove the last letter of the searchTerm string', () => {
+  describe('handleKeypress', () => {
+    it('should remove the last letter of the searchTerm stringif backpace is pressed', () => {
       searchbox.searchTerm = 'hello';
       const keyCode = 8;
-      searchbox.handleKeydown({ keyCode });
+      searchbox.handleKeypress({ keyCode });
       expect(searchbox.searchTerm).to.equal('hell');
+    });
+
+    it('should invoke the emitSearchEvent function if enter is pressed', () => {
+      const emitSearchSpy = spy(searchbox, 'emitSearchEvent');
+      searchbox.searchTerm = 'hello';
+      const keyCode = 13;
+      searchbox.handleKeypress({ keyCode });
+      expect(emitSearchSpy).to.have.been.calledWith('hello');
+    });
+
+    it('should invoke the emitAutocompleteRequestEvent function if 3 characters or more', () => {
+      // query selector in unit test?
+      const emitAutocompleteSpy = spy(
+        searchbox,
+        'emitAutocompleteRequestEvent'
+      );
+      searchbox.searchTerm = 'hello';
+      const keyCode = 68;
+      searchbox.handleKeypress({ keyCode });
+      expect(emitAutocompleteSpy).to.have.been.called;
     });
   });
 
   describe('clickExposed', () => {
     it('should dispatch an search box clicked event', () => {
-      spy(window, 'dispatchEvent');
       let searchboxClickedEvent = new CustomEvent('sfx::search_box_cleared');
       searchbox.clickExposed();
-      expect(window.dispatchEvent).to.have.been.calledWith(
+      expect(windowDispatchEvent).to.have.been.calledWith(
         searchboxClickedEvent
       );
     });
@@ -149,10 +167,9 @@ describe('SearchBox Component', () => {
 
   describe('hoverExposed', () => {
     it('should dispatch an search box clicked event', () => {
-      spy(window, 'dispatchEvent');
       let hoverExposedEvent = new CustomEvent('sfx::search_hover_event');
       searchbox.hoverExposed();
-      expect(window.dispatchEvent).to.have.been.calledWith(hoverExposedEvent);
+      expect(windowDispatchEvent).to.have.been.calledWith(hoverExposedEvent);
     });
   });
 });
