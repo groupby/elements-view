@@ -1,14 +1,6 @@
-import { LitElement, customElement, html, property, css } from 'lit-element';
-// import { SEARCHBOX_EVENT } from './utils';
+import { LitElement, customElement, html, property } from 'lit-element';
+import { SEARCHBOX_EVENT } from './utils';
 
-const SEARCHBOX_EVENT = {
-  AUTOCOMPLETE_HOVER: 'sfx::autocomplete_hover',
-  SEARCH_REQUEST: 'sfx::search_request',
-  AUTOCOMPLETE_REQUEST: 'sfx::autocomplete_request',
-  SEARCHBOX_CLEARED: 'sfx::search_box_cleared',
-  SEARCHBOX_CLICK: 'sfx::searchbox_click_event',
-  SEARCHBOX_HOVER: 'sfx::searchbox_hover_event'
-};
 @customElement('sfx-search-box')
 export default class SearchBox extends LitElement {
   @property({ type: String, reflect: true, attribute: 'placeholder-text' })
@@ -110,7 +102,7 @@ export default class SearchBox extends LitElement {
 
   hoverExposed() {
     let searchBoxHoveredEvent = new CustomEvent(
-      SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER
+      SEARCHBOX_EVENT.SEARCHBOX_HOVER
     );
     window.dispatchEvent(searchBoxHoveredEvent);
   }
