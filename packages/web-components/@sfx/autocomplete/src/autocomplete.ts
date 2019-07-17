@@ -2,55 +2,49 @@ import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 import { Base } from '@sfx/base';
 
+const autococompleteReceivedResults = 'sfx::autocomplete_received_results';
 /**
- * The autocomplete component is responsible for listening for the sfx::autocomplete_received_results event.
- * Upon receipt of the event, the component populates a list with the data received.
+ * Listens for the sfx::autocomplete_received_results event and populates a list with the data received.
  */
-
-const autococompleteReceivedResults = 'sfx::autocomplete_received_results'
-
 @customElement('sfx-autocomplete')
 export default class Autocomplete extends Base {
   // FIXME Type properly
-/**
- * results property. This array is populated with data received from the autocomplete event.
- * Once populated, it is iterated over to display the data in a user digestible format.
- */
+  /**
+   * Autocomplete request results.
+   */
   @property({ type: Array }) results:  any[] = [];
-/**
- * optionalTitle property. This string is populated by the consumer of the custom element. If an optional title is provided,
- * it will be used to populate an h3 when there are autcomplete results to display. The h3 is used to title the list.
- */
+  /**
+   * The text to use in the header.
+   */
   @property({ type: String, reflect: true }) optionalTitle: string = '';
 
-/**
- * Constructs an instance of Autocomplete. 
- * It binds the receivedResults function.. 
- */
+  /**
+   * Constructs an instance of Autocomplete.
+   * Binds receivedResults function to the class.
+   */
   constructor() {
     super();
     this.receivedResults = this.receivedResults.bind(this);
   }
 
-/**
- * The connectedCallback fires each time a custom element is appended into a document-connected element. 
- * MDN documentation: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks
- * The Autocomplete connectedCallback calls the connected callback of the Base class.
- *  
- */
+  /**
+   * Sets up event listeners.
+   */
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener(autococompleteReceivedResults, this.receivedResults);
   }
 
+  /**
+   * Removes event listeners. 
+   */
   disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener(autococompleteReceivedResults, this.receivedResults);
   }
 
   /**
-   * Invoked in response to the 'sfx::autocomplete_received_results' event.
-   * Updates the results property with the data received from the custom event.
+   * Saves the payload of the given event to `results`
    *
    * @param e The event object.
    */
@@ -64,7 +58,7 @@ export default class Autocomplete extends Base {
    * Because Storybook is contained in an iframe, for testing purposes, 
    * we are unable to dispatch events directly from the console.
    * 
-   * As an alternative - temporary, we have a button to click to dispatch event.
+   * As an alternative - temporarily, we have a button to click to dispatch event.
    * Should be updated when/if functionality is avaiable via Storybook tab.
    * 
    */
@@ -75,11 +69,7 @@ export default class Autocomplete extends Base {
   }
 
   /**
-   * Uses lit-html to render the element template. 
-   * 
-   * see [[Autocomplete.... how to link to property? for optionTitle details
-   * 
-   * Passes the results data to the sfx-list custom element, and renders.
+   * Renders results data in a list format using the `sfx-list` custom element.
    */
   render() {
     return html`${this.optionalTitle && this.results.length > 0 ? html`<h3>${this.optionalTitle}</h3>` : ''}
