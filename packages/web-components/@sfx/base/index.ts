@@ -1,6 +1,6 @@
 import { LitElement } from 'lit-element';
 
-export class BaseElement extends LitElement {
+export default class Base extends LitElement {
   protected slots: Slot[];
 
   createRenderRoot() {

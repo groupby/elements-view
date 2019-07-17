@@ -1,7 +1,7 @@
 import { LitElement, customElement, property, html } from 'lit-element';
-import { ProductVariantModel } from './index';
+import { ProductVariantModel } from './product';
 @customElement('sfx-product-variants')
-export class ProductVariants extends LitElement {
+export default class ProductVariants extends LitElement {
   @property({ type: String }) type = '';
   @property({ type: Array }) items: ProductVariantModel[] = [];
 
