@@ -6,8 +6,8 @@ import { Product, ProductModel } from '../src';
 const product = <ProductModel> {
   name: 'Cool Product',
   price: 39.99,
-  promo: 'DEALS TODAY',
-  salePrice: 12.39
+  label: 'New Product',
+  promo: '25% off'
 };
 
 storiesOf('Components|Product', module)
@@ -29,7 +29,7 @@ storiesOf('Components|Product', module)
   <sfx-product 
     product="${text('Product Info', JSON.stringify(product))}"
   >
-    <h1 slot="title">No THANKS</h1>
-    <h4 slot="price"><span>29.99</span> <span>19.99</span></h4>
+    <h1 slot="title">Slotted Title</h1>
+    <p slot="price"><span style="text-decoration: line-through">29.99</span> <span style="color: #C00">19.99</span></p>
   </sfx-product>
 `);
