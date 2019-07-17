@@ -1,8 +1,8 @@
 import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 import { Base } from '@sfx/base';
+import { autococompleteReceivedResults } from './utils';
 
-const autococompleteReceivedResults = 'sfx::autocomplete_received_results';
 /**
  * Listens for the sfx::autocomplete_received_results event and populates a list with the data received.
  */
