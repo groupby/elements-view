@@ -19,7 +19,7 @@ describe('Autcomplete Component', () => {
         expect(autocomplete.results).to.deep.equal([]);
       });
     });
-  
+
     describe('Optional title property', () => {
       it('should have default value of empty string', () => {
         expect(autocomplete.optionalTitle).to.equal('');
@@ -29,7 +29,10 @@ describe('Autcomplete Component', () => {
 
   describe('connectedCallback', () => {
     it('should call its super connectedCallback', () => {
-      const baseConnectedCallbackStub = stub(Base.prototype, 'connectedCallback');
+      const baseConnectedCallbackStub = stub(
+        Base.prototype,
+        'connectedCallback'
+      );
       autocomplete.connectedCallback();
       expect(baseConnectedCallbackStub).to.have.been.called;
     });
@@ -37,13 +40,19 @@ describe('Autcomplete Component', () => {
     it('should add an eventListener to the window', () => {
       const windowEventListener = spy(window, 'addEventListener');
       autocomplete.connectedCallback();
-      expect(windowEventListener).to.have.been.calledWith('sfx::autocomplete_received_results', autocomplete.receivedResults);
-    }); 
+      expect(windowEventListener).to.have.been.calledWith(
+        'sfx::autocomplete_received_results',
+        autocomplete.receivedResults
+      );
+    });
   });
 
   describe('disconnectedCallback', () => {
     it('should call its super disconnectedCallback', () => {
-      const baseDisconnectedCallbackStub = stub(Base.prototype, 'disconnectedCallback');
+      const baseDisconnectedCallbackStub = stub(
+        Base.prototype,
+        'disconnectedCallback'
+      );
       autocomplete.disconnectedCallback();
       expect(baseDisconnectedCallbackStub).to.have.been.called;
     });
@@ -51,7 +60,10 @@ describe('Autcomplete Component', () => {
     it('should remove eventListener from the window', () => {
       const windowRemoveEventListener = spy(window, 'removeEventListener');
       autocomplete.disconnectedCallback();
-      expect(windowRemoveEventListener).to.have.been.calledWith('sfx::autocomplete_received_results', autocomplete.receivedResults);
+      expect(windowRemoveEventListener).to.have.been.calledWith(
+        'sfx::autocomplete_received_results',
+        autocomplete.receivedResults
+      );
     });
   });
 
@@ -64,7 +76,10 @@ describe('Autcomplete Component', () => {
 
   describe('receivedResults', () => {
     it('should update the results property in response to data received', () => {
-      const detail = [{ "title": "Brands", "items": [{ "label": "Cats" }, { "label": "Dogs" }] }, { "title": "default", "items": [{ "label": "Cars" }, { "label": "Bikes" }] }];
+      const detail = [
+        { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
+        { title: 'default', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
+      ];
       autocomplete.receivedResults({ detail });
       expect(autocomplete.results).to.deep.equal(detail);
     });

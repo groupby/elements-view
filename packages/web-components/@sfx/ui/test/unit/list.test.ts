@@ -3,15 +3,15 @@ import List from '../../src/list';
 import { Base } from '@sfx/base';
 import { TemplateResult } from 'lit-element';
 
-  let list;
-  beforeEach(() => {
-    list = new List();
-  });
+let list;
+beforeEach(() => {
+  list = new List();
+});
 
-  describe('List component', () => {
-    it('should extend Base', () => {
-      expect(list).to.be.an.instanceof(Base);
-    });
+describe('List component', () => {
+  it('should extend Base', () => {
+    expect(list).to.be.an.instanceof(Base);
+  });
 
   describe('title property', () => {
     it('should default to an empty string', () => {

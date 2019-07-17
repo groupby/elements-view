@@ -12,11 +12,11 @@ export default class Autocomplete extends Base {
   /**
    * Autocomplete request results.
    */
-  @property({ type: Array }) results:  any[] = [];
+  @property({ type: Array }) results: any[] = [];
   /**
    * The text to use in the header.
    */
-  @property({ type: String, reflect: true }) optionalTitle: string = '';
+  @property({ type: String, reflect: true }) title: string = '';
 
   /**
    * Constructs an instance of Autocomplete.
@@ -32,15 +32,21 @@ export default class Autocomplete extends Base {
    */
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener(autococompleteReceivedResults, this.receivedResults);
+    window.addEventListener(
+      autococompleteReceivedResults,
+      this.receivedResults
+    );
   }
 
   /**
-   * Removes event listeners. 
+   * Removes event listeners.
    */
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener(autococompleteReceivedResults, this.receivedResults);
+    window.removeEventListener(
+      autococompleteReceivedResults,
+      this.receivedResults
+    );
   }
 
   /**
@@ -55,16 +61,24 @@ export default class Autocomplete extends Base {
   // FIXME Move this to the Storybook tab once functionality has been merged into sfx-view.
   /*
    * --- TEMPORARY: setup for testing event listeners ---
-   * Because Storybook is contained in an iframe, for testing purposes, 
+   * Because Storybook is contained in an iframe, for testing purposes,
    * we are unable to dispatch events directly from the console.
-   * 
+   *
    * As an alternative - temporarily, we have a button to click to dispatch event.
    * Should be updated when/if functionality is avaiable via Storybook tab.
-   * 
+   *
    */
   dispatchAutocompleteResults() {
-    const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', { detail: [{"title":"Brands","items":[{"label":"Cats"},{"label":"Dogs"}]},{"title":"","items":[{"label":"Cars"},{"label":"Bikes"}]}],
-    bubbles: true });
+    const autocompleteDataReceivedEvent = new CustomEvent(
+      'sfx::autocomplete_received_results',
+      {
+        detail: [
+          { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
+          { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
+        ],
+        bubbles: true
+      }
+    );
     window.dispatchEvent(autocompleteDataReceivedEvent);
   }
 
@@ -72,10 +86,21 @@ export default class Autocomplete extends Base {
    * Renders results data in a list format using the `sfx-list` custom element.
    */
   render() {
-    return html`${this.optionalTitle && this.results.length > 0 ? html`<h3>${this.optionalTitle}</h3>` : ''}
-      ${
-      this.results.map(list => html`<sfx-list .title="${list.title}" .items="${list.items}"></sfx-list>`)
-      }
-      <button @click=${this.dispatchAutocompleteResults}>Click to dispatch event</button>`;
-    }
+    return html`
+      ${this.title && this.results.length > 0
+        ? html`
+            <h3>${this.title}</h3>
+          `
+        : ''}
+      ${this.results.map(
+        list =>
+          html`
+            <sfx-list .title="${list.title}" .items="${list.items}"></sfx-list>
+          `
+      )}
+      <button @click=${this.dispatchAutocompleteResults}>
+        Click to dispatch event
+      </button>
+    `;
   }
+}

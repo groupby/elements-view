@@ -3,25 +3,34 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import '../src/index';
 
 const items = [
-      {
-        label: 'Pen',
-      }, 
-      {
-        label: 'Headphones',
-      },
-      {
-        label: 'Duck',
-      }, 
-      {
-        label: 'Chocolate',
-      }
-    ];
+  {
+    label: 'Pen'
+  },
+  {
+    label: 'Headphones'
+  },
+  {
+    label: 'Duck'
+  },
+  {
+    label: 'Chocolate'
+  }
+];
 
 storiesOf('UI|List', module)
   .addDecorator(withKnobs)
-    .add('Default', () => `
+  .add(
+    'Default',
+    () => `
       <sfx-list items="${text('List Items', JSON.stringify(items))}"></sfx-list>
-    `)
-    .add('With Title', () => `
-      <sfx-list sfxlisttitle="${text('Sfx List Title', "Items")}" items="${text('List Items', JSON.stringify(items))}"></sfx-list>
-    `);
+    `
+  )
+  .add(
+    'With Title',
+    () => `
+      <sfx-list sfxlisttitle="${text('Sfx List Title', 'Items')}" items="${text(
+      'List Items',
+      JSON.stringify(items)
+    )}"></sfx-list>
+    `
+  );

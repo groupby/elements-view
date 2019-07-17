@@ -4,8 +4,11 @@ import '../src/index.ts';
 
 storiesOf('Components|Base', module)
   .addDecorator(withKnobs)
-    .add('With inserted element', () => `
+  .add(
+    'With inserted element',
+    () => `
       <sfx-base>
       <p>Hello</p>
       </sfx-base>
-    `);
+    `
+  );

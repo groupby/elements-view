@@ -1,6 +1,9 @@
 import { LitElement, customElement, html } from 'lit-element';
 import { makeSlot, createChildrenObserver } from './utils';
 
+/**
+ * Extends LitElement and all components extend it.
+ */
 @customElement('sfx-base')
 export default class Base extends LitElement {
   /**
@@ -37,9 +40,9 @@ export default class Base extends LitElement {
     this.observer = createChildrenObserver(this);
 
     /**
-     * Configures the MutationObserver to watch for changes on the children of the 
+     * Configures the MutationObserver to watch for changes on the children of the
      * defined Node.
-     *  
+     *
      * @param this The Node to watch for changes.
      */
     this.observer.observe(this, { childList: true });
@@ -57,15 +60,15 @@ export default class Base extends LitElement {
    * Enables use of the light dom.
    */
   createRenderRoot() {
-    this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: 'open' });
     return this;
   }
 
   render() {
     return html`
-        <div slot="before"></div>
-        <div></div>
-        <div slot="after"></div>
+      <div slot="before"></div>
+      <div></div>
+      <div slot="after"></div>
     `;
   }
 }
