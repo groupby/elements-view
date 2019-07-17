@@ -1,6 +1,8 @@
 import { customElement, property, html } from 'lit-element';
 import { BaseElement } from '../../base';
 
+import './variants';
+
 @customElement('sfx-product')
 export class Product extends BaseElement {
   @property({ type: String }) display: 'full' | 'tile' = 'full';
@@ -28,11 +30,19 @@ export class Product extends BaseElement {
   }
   
   render() {
-    const { name, price, variants, productUrl } = this.product;
+    const { name, price, variants, productUrl, imageSrc, imageAlt } = this.product;
 
     this.classList.add(this.display);
 
     return html`
+      <slot name="image">
+        ${ imageSrc ? html`<img src="${imageSrc}" alt="${imageAlt}" />`: '' }
+      </slot>
+      <slot name="variants">
+        ${ variants ? 
+          html`<sfx-product-variants type="${ variants.type }" .items="${ variants.items }"></sfx-product-variants>`
+        : '' }
+      </slot>
       <slot name="title">
         ${ this.urlWrap(productUrl, html`
           <h3>${ name }</h3>
@@ -55,12 +65,12 @@ export interface ProductModel {
   variants?: ProductVariantsModel; 
 }
 
-interface ProductVariantsModel {
+export interface ProductVariantsModel {
   type: 'color' | 'image' | 'text';
   items: ProductVariantModel[];
 }
 
-interface ProductVariantModel {
+export interface ProductVariantModel {
   color?: String;
   image?: String;
   label?: String;

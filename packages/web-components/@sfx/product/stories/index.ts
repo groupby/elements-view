@@ -7,14 +7,19 @@ const product = <ProductModel> {
   name: 'Cool Product',
   price: 39.99,
   label: 'New Product',
-  promo: '25% off'
+  promo: '25% off',
+  imageSrc: 'https://spudsmart.com/wp-content/uploads/2017/10/NZ-Bag-of-potatoes-cropped.png',
+  imageAlt: 'Good bag of potatoes'
 };
 
 storiesOf('Components|Product', module)
   .addDecorator(withKnobs)
   .add('Default', () => `
     <sfx-product 
-      product="${text('Product Info', JSON.stringify(product))}"
+      product="${text('Product Info', JSON.stringify({
+        ...product,
+         variants: { type: 'color', items: [{ color: '#bed', text: 'Mint', product }, { color: '#edc', text: 'Taupe', product }] }
+      }))}"
     ></sfx-product>
   `, { 
     notes: { 
