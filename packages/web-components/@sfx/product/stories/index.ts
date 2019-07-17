@@ -25,9 +25,7 @@ storiesOf('Components|Product', module)
     notes: { 
       markdown: `
         # Product Tile
-        Hardcoded
-        
-        Here is the documentation for the SAYT component.
+        WIP: Still working on documentation
       `
     } 
 }).add('Slotted Price', () => `
