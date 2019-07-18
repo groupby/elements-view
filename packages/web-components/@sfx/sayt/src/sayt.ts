@@ -3,8 +3,12 @@ import { LitElement, customElement, html, property } from 'lit-element';
 import '@sfx/autocomplete';
 
 @customElement('sfx-sayt')
+// TODO: look into the Base class so this class can extend it again. The
+// issue that we're seeing is related to changing properties and having
+// the DOM update accurately in response to those property changes.
 export default class Sayt extends LitElement {
   @property({ type: Boolean, reflect: true }) hideAutocomplete = false;
+  @property({ type: Boolean, reflect: true }) hideSayt = true;
 
   constructor() {
     super();
@@ -13,16 +17,14 @@ export default class Sayt extends LitElement {
   }
 
   connectedCallback() {
-    // TODO: look into the Base class so this class can extend it again.
-    // super.connectedCallback();
+    super.connectedCallback();
 
     window.addEventListener('sayt_show', this.eventCallback);
     window.addEventListener('sayt_hide', this.eventCallback);
   }
 
   disconnectedCallback() {
-    // TODO: look into the Base class so this class can extend it again.
-    // super.disconnectedCallback();
+    super.disconnectedCallback();
 
     window.removeEventListener('sayt_show', this.eventCallback);
     window.removeEventListener('sayt_hide', this.eventCallback);
@@ -33,16 +35,32 @@ export default class Sayt extends LitElement {
     return this;
   }
 
-  eventCallback(e) {
-    console.log('logging out the event', e);
+  eventCallback(e: any) {
+    switch(e.type) {
+      case 'sayt_show':
+        console.log('SAYT SHOULD BE SHOWING!');
+        this.hideSayt = false;
+        break;
+      case 'sayt_hide':
+        console.log('SAYT SHOULD BE HIDING!');
+        this.hideSayt = true;
+        break;
+    }
   }
 
   render() {
     return html`
       ${
-       this.hideAutocomplete ? html`<h2>Test</h2>` : html`<sfx-autocomplete></sfx-autocomplete>`
+        this.hideSayt ? html`<p>sayt is not visible</p>` 
+        : html`
+          <div class="sayt-wrapper">
+            <h1>This is the Sayt Wrapper</h1>
+            ${
+              this.hideAutocomplete ? html`` : html`<sfx-autocomplete></sfx-autocomplete>`
+            }
+          </div>
+        `
       }
     `;
   }
-
 }
