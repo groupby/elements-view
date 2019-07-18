@@ -28,6 +28,7 @@ describe('List component', () => {
   describe('render function', () => {
     it('should return an instance of TemplateResult', () => {
       const result = list.render();
+      
       expect(result).to.be.an.instanceof(TemplateResult);
     });
   });

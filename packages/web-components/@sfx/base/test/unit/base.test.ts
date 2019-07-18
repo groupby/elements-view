@@ -17,7 +17,9 @@ describe('Base Class', () => {
   describe('constructor', () => {
     it('should add slots', () => {
       const addSlotsStub = stub(Base.prototype, 'addSlots');
+
       base = new Base();
+
       expect(addSlotsStub).to.have.been.called;
     });
   });
@@ -26,7 +28,9 @@ describe('Base Class', () => {
     it('should disconnect the observer', () => {
       const disconnect = spy();
       base.observer = { disconnect };
+
       base.firstUpdate();
+
       expect(disconnect).to.have.been.called;
     });
   });
@@ -37,7 +41,9 @@ describe('Base Class', () => {
         LitElement.prototype,
         'connectedCallback'
       );
+
       base.connectedCallback();
+
       expect(litElementConnectedCallbackStub).to.have.been.called;
     });
 
@@ -49,7 +55,9 @@ describe('Base Class', () => {
         BaseUtils,
         'createChildrenObserver'
       ).returns(observer);
+
       base.connectedCallback();
+
       expect(base.observer).to.equal(observer);
     });
 
@@ -59,7 +67,9 @@ describe('Base Class', () => {
         BaseUtils,
         'createChildrenObserver'
       ).returns({ observe });
+
       base.connectedCallback();
+
       expect(observe).to.have.been.calledWith(base, { childList: true });
     });
   });
@@ -67,20 +77,25 @@ describe('Base Class', () => {
   describe('render', () => {
     it('should return an instance of TemplateResult', () => {
       const result = base.render();
+
       expect(result).to.be.an.instanceof(TemplateResult);
     });
   });
 
   describe('createRenderRoot', () => {
-    it('should return its `this` value', () => {
+    it('should return the root of the instance itself', () => {
       base.attachShadow = () => {};
+
       const result = base.createRenderRoot();
+
       expect(result).to.equal(base);
     });
 
     it('should attach shadow root', () => {
       const attachShadow = (base.attachShadow = spy());
+
       base.createRenderRoot();
+      
       expect(attachShadow).to.have.been.called;
     });
   });

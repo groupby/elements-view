@@ -1,14 +1,13 @@
 import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 import { Base } from '@sfx/base';
-import { autococompleteReceivedResults } from './utils';
+import { autocompleteReceivedResults } from './utils';
 
 /**
  * Listens for the sfx::autocomplete_received_results event and populates a list with the data received.
  */
 @customElement('sfx-autocomplete')
 export default class Autocomplete extends Base {
-  // FIXME Type properly
   /**
    * Autocomplete request results.
    */
@@ -33,7 +32,7 @@ export default class Autocomplete extends Base {
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener(
-      autococompleteReceivedResults,
+      autocompleteReceivedResults,
       this.receivedResults
     );
   }
@@ -44,13 +43,13 @@ export default class Autocomplete extends Base {
   disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener(
-      autococompleteReceivedResults,
+      autocompleteReceivedResults,
       this.receivedResults
     );
   }
 
   /**
-   * Saves the payload of the given event to `results`
+   * Saves the payload of the given event to `results`.
    *
    * @param e The event object.
    */

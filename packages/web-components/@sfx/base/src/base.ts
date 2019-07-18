@@ -39,12 +39,6 @@ export default class Base extends LitElement {
     super.connectedCallback();
     this.observer = createChildrenObserver(this);
 
-    /**
-     * Configures the MutationObserver to watch for changes on the children of the
-     * defined Node.
-     *
-     * @param this The Node to watch for changes.
-     */
     this.observer.observe(this, { childList: true });
   }
 

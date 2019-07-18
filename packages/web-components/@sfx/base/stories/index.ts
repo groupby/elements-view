@@ -8,7 +8,7 @@ storiesOf('Components|Base', module)
     'With inserted element',
     () => `
       <sfx-base>
-      <p>Hello</p>
+        <p>Hello</p>
       </sfx-base>
     `
   );
