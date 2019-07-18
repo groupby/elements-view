@@ -1,6 +1,6 @@
-import { SEARCHBOX_EVENT } from './../src/utils';
-import { expect, spy, stub, sinon } from './utils';
-import SearchBox from '../src/search-box';
+import { SEARCHBOX_EVENT } from '../../src/utils';
+import { expect, spy, stub, sinon } from '../utils';
+import SearchBox from '../../src/search-box';
 
 describe('SearchBox Component', () => {
   let searchbox;
