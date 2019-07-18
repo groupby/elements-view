@@ -22,7 +22,7 @@ describe('Autcomplete Component', () => {
 
     describe('Optional title property', () => {
       it('should have default value of empty string', () => {
-        expect(autocomplete.optionalTitle).to.equal('');
+        expect(autocomplete.title).to.equal('');
       });
     });
   });
@@ -38,9 +38,9 @@ describe('Autcomplete Component', () => {
     });
 
     it('should add an eventListener to the window', () => {
-      const windowEventListener = spy(window, 'addEventListener');
+      const windowAddEventListener = spy(window, 'addEventListener');
       autocomplete.connectedCallback();
-      expect(windowEventListener).to.have.been.calledWith(
+      expect(windowAddEventListener).to.have.been.calledWith(
         'sfx::autocomplete_received_results',
         autocomplete.receivedResults
       );
