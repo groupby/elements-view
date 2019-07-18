@@ -1,33 +1,38 @@
 import { TemplateResult } from 'lit-element';
-import { Product } from '../../src/index';
 import { expect, spy, stub } from '../utils';
-import Base from '../../../base/index';
+
+import { Product } from '../../src/index';
+// import Base from '../../../base/index';
 
 describe('Product Component', () => {
-  let product;
+  let component: any = {};
 
   beforeEach(() => {
-    product = new Product();
+    component = new Product();
   });
 
   describe('constructor', () => {
-    it('Should extend the Base class', () => {
-      expect(product).to.be.an.instanceOf(Base);
-    });
+    // it('Should extend the Base class', () => {
+    //   expect(product).to.be.an.instanceOf(Base);
+    // });
 
-    describe('Type property', () => {
+    describe('display property', () => {
       it('Should have a default value of "full"', () => {
-        expect(product.type).to.equal('full');
+        console.log(Object.keys(component));
+        expect(component.display).to.equal('full');
       });
-      it('Should throw an error if the value is not "full" or "tile"', () => {
-        
-      });
-    })
+    });
   });
+
+  describe('productNodes', () => {
+    it('Should return a list of elements', () => {
+      expect()
+    })
+  })
 
   describe('render', () => {
     it('should return an instance of TemplateResult', () => {
-      const result = product.render();
+      const result = component.render();
       expect(result).to.be.an.instanceof(TemplateResult);
     });
   });

@@ -1,1 +1,1 @@
-import '@sfx/sayt';
+export * from '@sfx/product';

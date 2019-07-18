@@ -4,7 +4,7 @@ export default class Base extends LitElement {
   protected slots: Slot[];
 
   createRenderRoot() {
-    const slots = [];
+    const slots: Slot[] = [];
 
     this.childNodes.forEach((node: any) => {
       const { slot, outerHTML } = node;

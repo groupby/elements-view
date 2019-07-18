@@ -1,31 +1,31 @@
-import { customElement, property, html } from 'lit-element';
+import { customElement, property, html, TemplateResult } from 'lit-element';
 import Base from '../../base';
 
 import './variants';
 
 @customElement('sfx-product')
 export default class Product extends Base {
-  @property({ type: String }) display: 'full' | 'tile' = 'full';
-  @property({ type: Object }) product: ProductModel = {};
+  @property({ type: String, reflect: true }) display: 'full' | 'tile' = 'full';
+  @property({ type: Object, reflect: true }) product: ProductModel | any = {};
 
-  urlWrap(url, children) {
+  urlWrap(url: string, children: TemplateResult) {
     return url ? html`<a href="${ url }">${children}</a>` : html`${children}`;
   }
 
   productNodes() {
     const { product } = this;
 
-    const properties = Object.keys({
+    const properties = {
       name: '',
       price: 0,
       variants: { type: 'text', items: [] },
       productUrl: '',
       imageAlt: '',
       imageSrc: ''
-    } as ProductModel);
+    } as ProductModel;
 
-    return Object.keys(product).filter(p => !properties.includes(p)).map(p => html`
-      <span class="sfx-product-${p}">${product[p]}</span>
+    return Object.keys(product).filter(p => !(p in properties)).map(p => html`
+      <span class="sfx-product-${ p }">${ product[p] }</span>
     `);
   }
   
@@ -36,7 +36,7 @@ export default class Product extends Base {
 
     return html`
       <slot name="image">
-        ${ imageSrc ? html`<img src="${imageSrc}" alt="${imageAlt}" />`: '' }
+        ${ imageSrc ? html`<img src="${ imageSrc }" alt="${ imageAlt }" />`: '' }
       </slot>
       <slot name="variants">
         ${ variants ? 
@@ -57,11 +57,11 @@ export default class Product extends Base {
 }
 
 export interface ProductModel {
-  imageSrc?: String;
-  imageAlt?: String;
-  name?: String;
-  price?: Number;
-  productUrl?: String;
+  imageSrc?: string;
+  imageAlt?: string;
+  name?: string;
+  price?: number;
+  productUrl?: string;
   variants?: ProductVariantsModel; 
 }
 
@@ -71,9 +71,9 @@ export interface ProductVariantsModel {
 }
 
 export interface ProductVariantModel {
-  color?: String;
-  image?: String;
-  label?: String;
-  text: String;
-  product: String;
+  color?: string;
+  image?: string;
+  label?: string;
+  text: string;
+  product: string;
 }

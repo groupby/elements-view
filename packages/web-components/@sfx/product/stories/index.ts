@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import '../src/index.ts';
-import { Product, ProductModel } from '../src';
+import Product, { ProductModel } from '../src/product';
 
 const product = <ProductModel> {
   name: 'Cool Product',
@@ -30,6 +30,7 @@ storiesOf('Components|Product', module)
     } 
 }).add('Slotted Price', () => `
   <sfx-product 
+    class="full"
     product="${text('Product Info', JSON.stringify(product))}"
   >
     <h1 slot="title">Slotted Title</h1>
