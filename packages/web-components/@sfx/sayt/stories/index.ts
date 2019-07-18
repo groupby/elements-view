@@ -5,19 +5,11 @@ import '../src/index.ts';
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-
-    // setTimeout(() => {
-    //   window.dispatchEvent(new Event('sayt_show'));
-    // }, 2000);
-
-    // setTimeout(() => {
-    //   window.dispatchEvent(new Event('sayt_hide'));
-    // }, 6000);
-    const saytHideAttribute = boolean('hideSayt', true) ? 'hideSayt': '' 
+    const showAttribute = boolean('show', false) ? 'show' : '';
 
     return `
       <sfx-sayt
-        ${ saytHideAttribute }
+        ${ showAttribute }
       ></sfx-sayt>
     `
   }
@@ -30,4 +22,25 @@ storiesOf('Components|SAYT', module)
         Here is the documentation for the SAYT component.
       `
     } 
-});
+  })
+  .add('Receiving sayt_hide events and sayt_show ', () => {
+    setTimeout(() => {
+      window.dispatchEvent(new Event('sfx::sayt_show'));
+    }, 3000);
+
+    setTimeout(() => {
+      window.dispatchEvent(new Event('sfx::sayt_hide'));
+    }, 6000);
+
+    return `
+      <sfx-sayt></sfx-sayt>
+    `
+  }, {
+    notes: {
+      markdown:`
+        # Search As You Type (SAYT)
+        - Receiving sayt_hide event after 3 seconds.
+        - Receiving sayt_show event after 6 seconds.
+      `
+    }
+  })
