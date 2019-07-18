@@ -43,11 +43,11 @@ yarn test
 
 To run tests for a specific web component package, navigate to its directory and use one of the following commands based on the desired testing flow:
 
-- To run the tests once:
+- To run the tests for a specific package once:
 ```sh
 yarn test
 ```
-- To run the tests and watch the `src` and `test` directories to rerun the tests after any changes:
+- To run the tests for a specific package and watch the `src` and `test` directories to rerun the tests after any changes:
 ```sh
 yarn tdd
 ```
