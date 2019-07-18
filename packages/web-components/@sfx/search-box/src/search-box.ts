@@ -65,10 +65,6 @@ export default class SearchBox extends LitElement {
    */
   emitSearchEvent(query?: String) {
     const term = query && typeof query === 'string' ? query : this.searchTerm;
-    // const searchRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-    //   detail: term,
-    //   bubbles: true
-    // });
     window.dispatchEvent(
       new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
         detail: term,
