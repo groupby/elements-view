@@ -127,11 +127,19 @@ describe('SearchBox Component', () => {
   });
 
   describe('handleKeypress', () => {
-    it('should remove the last letter of the searchTerm stringif backpace is pressed', () => {
+    it('should remove the last letter of the searchTerm string if backpace is pressed', () => {
       searchbox.searchTerm = 'hello';
       const keyCode = 8;
       searchbox.handleKeypress({ keyCode });
       expect(searchbox.searchTerm).to.equal('hell');
+    });
+
+    it('should emit a searchBoxClearedEvent if backspace is pressed when there is one character remaining', () => {
+      const emitSearchBoxClearedEventSpy = spy(searchbox, 'emitSearchBoxClearedEvent')
+      searchbox.searchTerm = 'h';
+      const keyCode = 8;
+      searchbox.handleKeypress({ keyCode });
+      expect(emitSearchBoxClearedEventSpy).to.have.been.called;
     });
 
     it('should invoke the emitSearchEvent function if enter is pressed', () => {
@@ -148,10 +156,18 @@ describe('SearchBox Component', () => {
         searchbox,
         'emitAutocompleteRequestEvent'
       );
-      searchbox.searchTerm = 'hello';
+      
+      // searchbox.searchTerm = 'hello'
+      // let searchTermStub = stub(searchbox, 'searchTerm').value('hello')
+      // console.log(searchTermStub, 'searchTermStub')
+      // console.log(searchbox.searchTerm, 'search Term')
       const keyCode = 68;
       searchbox.handleKeypress({ keyCode });
-      expect(emitAutocompleteSpy).to.have.been.called;
+      const e = {
+        target: { value: 'hello' }
+      };
+      // searchTermStub = stub(searchbox, 'searchTerm').value('helloD')
+      expect(emitAutocompleteSpy).to.have.been.calledWith(e.target.value);
     });
   });
 
