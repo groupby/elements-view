@@ -113,7 +113,7 @@ export default class SearchBox extends LitElement {
    *
    * @param e The event object.
    */
-  updateText(e) {
+  updateText(e: CustomEvent) {
     this.searchTerm = e.detail;
     let el = (<HTMLInputElement>this.querySelector('#searchInput')).value;
     el = e.detail;
@@ -129,7 +129,8 @@ export default class SearchBox extends LitElement {
    *
    * @param e The event object.
    */
-  handleKeypress(e) {
+  handleKeypress(e: KeyboardEvent) {
+    console.log('type', e.type)
     if (e.keyCode === 8) {
       if (this.searchTerm.length === 1) {
         this.emitSearchBoxClearedEvent();
