@@ -1,4 +1,4 @@
-import { TemplateResult } from 'lit-element';
+import { html, TemplateResult } from 'lit-element';
 import { expect, spy, stub } from '../utils';
 
 import { Product } from '../../src/index';
@@ -16,19 +16,26 @@ describe('Product Component', () => {
     //   expect(product).to.be.an.instanceOf(Base);
     // });
 
-    describe('display property', () => {
+    describe('product property', () => {
       it('Should have a default value of "full"', () => {
-        console.log(Object.keys(component));
-        expect(component.display).to.equal('full');
+        expect(component.product).to.exist;
       });
     });
   });
 
-  describe('productNodes', () => {
-    it('Should return a list of elements', () => {
-      expect()
-    })
-  })
+  describe('additionalInfo', () => {
+    it('Should return a list of additional elements', () => {
+      const result = component.additionalInfo();
+      expect(result).to.eql([]);
+    });
+  });
+
+  describe('urlWrap', () => {
+    it('Should return the children wrapped in an "a" tag', () => {
+      const result = component.urlWrap('string', html`<span>foo</span>`);
+      expect(result).to.be.an.instanceof(TemplateResult);
+    });
+  });
 
   describe('render', () => {
     it('should return an instance of TemplateResult', () => {
