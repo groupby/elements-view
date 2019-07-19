@@ -20,7 +20,7 @@ describe('Sayt Component', () => {
   });
 
 
-  describe('disconnectedCallback', () => {
+  describe('disconnectedCallback()', () => {
     it('should remove event listeners on the window', () => {
       const removeEventListener = stub(window, 'removeEventListener');
 
@@ -31,9 +31,11 @@ describe('Sayt Component', () => {
     });
   });
 
-  it('should call a render function', () => {
-    const renderStub = stub(sayt, 'render').returns('component has rendered');
-    expect(sayt.render()).to.equal('component has rendered');
-    expect(renderStub).to.be.calledOnce;
-  });
+  describe('render()', () => {
+    it('should call a render function', () => {
+      const renderStub = stub(sayt, 'render').returns('component has rendered');
+      expect(sayt.render()).to.equal('component has rendered');
+      expect(renderStub).to.be.calledOnce;
+    });
+  })
 });
