@@ -176,7 +176,11 @@ describe('SearchBox Component', () => {
 
   describe('clearSearch', () => {
     it('should set the search term property to an empty string', () => {
-      stub(searchbox, 'getInputElement').returns(html`<input type="text" id="searchInput" placeholder="Type your search" />`);
+      stub(searchbox, 'getInputElement').returns(
+        html`
+          <input type="text" id="searchInput" placeholder="Type your search" />
+        `
+      );
       stub(searchbox, 'emitSearchBoxClearedEvent');
 
       searchbox.clearSearch();
@@ -185,7 +189,11 @@ describe('SearchBox Component', () => {
     });
 
     it('should invoke the emitSearchBoxClearedEvent', () => {
-      stub(searchbox, 'getInputElement').returns(html`<input type="text" id="searchInput" placeholder="Type your search" />`);
+      stub(searchbox, 'getInputElement').returns(
+        html`
+          <input type="text" id="searchInput" placeholder="Type your search" />
+        `
+      );
       const emitSearchBoxSpy = spy(searchbox, 'emitSearchBoxClearedEvent');
 
       searchbox.clearSearch();

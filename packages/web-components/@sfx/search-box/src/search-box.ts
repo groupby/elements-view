@@ -153,7 +153,6 @@ export default class SearchBox extends LitElement {
    */
   updateSearchTerm(inputVal: string) {
     this.searchTerm = inputVal;
-    console.log('searchTerm', this.searchTerm)
   }
 
   /**
