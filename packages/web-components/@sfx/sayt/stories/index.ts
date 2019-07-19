@@ -2,22 +2,18 @@ import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import '../src/index.ts';
 
+const autocompleteDataReceivedEvent = new CustomEvent('autocomplete_received_results',
+  { detail: [
+      { "title": "Brands", "items": [{ "label": "Cats" }, { "label": "Dogs" }] },
+      { "title": "default", "items": [{ "label": "Cars" }, { "label": "Bikes" }] }
+    ],
+    bubbles: true
+});
+
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
     const showAttribute = boolean('show', false) ? 'show' : '';
-    /**
-     * TODO: Need to revisit this and consider a new way to pass in data
-     * into the autocomplete component.
-     * */
-    const autocompleteDataReceivedEvent = new CustomEvent('autocomplete_received_results',
-    {
-      detail: [
-        { "title": "Brands", "items": [{ "label": "Cats" }, { "label": "Dogs" }] },
-        { "title": "default", "items": [{ "label": "Cars" }, { "label": "Bikes" }] }
-      ],
-      bubbles: true
-    });
 
     setTimeout(() => {
       window.dispatchEvent(autocompleteDataReceivedEvent);
@@ -41,6 +37,10 @@ storiesOf('Components|SAYT', module)
     } 
   })
   .add('Responding to Events - sayt_show & sayt_hide ', () => {
+    setTimeout(() => {
+      window.dispatchEvent(autocompleteDataReceivedEvent);
+    }, 100);
+
     setTimeout(() => {
       window.dispatchEvent(new Event('sfx::sayt_show'));
     }, 3000);
