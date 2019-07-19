@@ -2,15 +2,16 @@ import { LitElement, customElement, property, html } from 'lit-element';
 import { ProductVariantModel } from './product';
 @customElement('sfx-product-variants')
 export default class ProductVariants extends LitElement {
-  @property({ type: String }) type = '';
+  @property({ type: String }) type = 'text';
   @property({ type: Array }) items: ProductVariantModel[] = [];
 
-  listVariants(variant: ProductVariantModel) {
+  listVariant(variant: ProductVariantModel) {
     switch (this.type) {
       case 'color':
         return html`<li class="product-variant" style="background-color:${variant.color}" title="${variant.text}"></li>`;
       case 'image':
-        return html`<li class="product-variant" style="background-image:${variant.image};background-color:${variant.color}" title="${variant.text}"></li>`;
+        return html`<li class="product-variant" style="background-image:${variant.image}; background-color:${variant.color}" title="${variant.text}"></li>`;
+      case 'text':
       default:
         return html`<li class="product-variant">${variant.text}</li>`;
     }
@@ -33,7 +34,7 @@ export default class ProductVariants extends LitElement {
         }
       </style>
       <ul class="product-variants">
-        ${ this.items.map((v: ProductVariantModel) => this.listVariants(v)) }
+        ${ this.items.map((v: ProductVariantModel) => this.listVariant(v)) }
       </ul>
     `;
   }

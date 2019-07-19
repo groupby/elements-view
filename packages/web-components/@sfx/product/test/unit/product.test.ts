@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit-element';
 import { expect, spy, stub } from '../utils';
 
-import { Product } from '../../src/index';
+import Product from '../../src/product';
 // import Base from '../../../base/index';
 
 describe('Product Component', () => {
@@ -12,27 +12,44 @@ describe('Product Component', () => {
   });
 
   describe('constructor', () => {
-    // it('Should extend the Base class', () => {
+    // it('should extend the Base class', () => {
     //   expect(product).to.be.an.instanceOf(Base);
     // });
 
     describe('product property', () => {
-      it('Should have a default value of "full"', () => {
+      it('should have a default value of "full"', () => {
         expect(component.product).to.exist;
       });
     });
   });
 
   describe('additionalInfo', () => {
-    it('Should return a list of additional elements', () => {
+    it('should return an empty array if there are no additional properties', () => {
       const result = component.additionalInfo();
       expect(result).to.eql([]);
+    });
+
+    it('should return an array of TemplateResults there are additional properties', () => {
+      component.product = {
+        name: '',
+        salePrice: 0,
+        promo: '30% off'
+      };
+      
+      const result = component.additionalInfo();
+      
+      expect(result[1]).to.be.an.instanceOf(TemplateResult);
     });
   });
 
   describe('urlWrap', () => {
-    it('Should return the children wrapped in an "a" tag', () => {
+    it('should return the children wrapped in an "a" tag', () => {
       const result = component.urlWrap('string', html`<span>foo</span>`);
+      expect(result).to.be.an.instanceof(TemplateResult);
+    });
+    
+    it('should return the children', () => {
+      const result = component.urlWrap(undefined, html`<span>foo</span>`);
       expect(result).to.be.an.instanceof(TemplateResult);
     });
   });
@@ -41,6 +58,18 @@ describe('Product Component', () => {
     it('should return an instance of TemplateResult', () => {
       const result = component.render();
       expect(result).to.be.an.instanceof(TemplateResult);
+    });
+
+    it('should call the additionalInfo function', () => {
+      const additionalInfo = stub(component, 'additionalInfo')
+      component.render();
+      expect(additionalInfo).to.be.called;
+    });
+    
+    it('should call the urlWrap function', () => {
+      const urlWrap = stub(component, 'urlWrap')
+      component.render();
+      expect(urlWrap).to.be.called;
     });
   });
 })

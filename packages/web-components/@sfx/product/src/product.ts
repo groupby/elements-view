@@ -1,8 +1,6 @@
 import { customElement, property, html, TemplateResult, LitElement } from 'lit-element';
 import Base from '../../base';
 
-import './variants';
-
 @customElement('sfx-product')
 export default class Product extends Base {
   @property({ type: Object }) product: ProductModel | any = {};
