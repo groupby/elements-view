@@ -24,17 +24,6 @@ describe('Base Class', () => {
     });
   });
 
-  describe('firstUpdate', () => {
-    it('should disconnect the observer', () => {
-      const disconnect = spy();
-      base.observer = { disconnect };
-
-      base.firstUpdate();
-
-      expect(disconnect).to.have.been.called;
-    });
-  });
-
   describe('connectedCallback', () => {
     it('should call its super connectedCallback', () => {
       const litElementConnectedCallbackStub = stub(
@@ -74,6 +63,17 @@ describe('Base Class', () => {
     });
   });
 
+  describe('firstUpdate', () => {
+    it('should disconnect the observer', () => {
+      const disconnect = spy();
+      base.observer = { disconnect };
+
+      base.firstUpdate();
+
+      expect(disconnect).to.have.been.called;
+    });
+  });
+
   describe('render', () => {
     it('should return an instance of TemplateResult', () => {
       const result = base.render();
@@ -95,7 +95,7 @@ describe('Base Class', () => {
       const attachShadow = (base.attachShadow = spy());
 
       base.createRenderRoot();
-      
+
       expect(attachShadow).to.have.been.called;
     });
   });
