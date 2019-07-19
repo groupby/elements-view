@@ -126,7 +126,7 @@ export default class SearchBox extends LitElement {
    * @param e The event object.
    */
   handleKeypress(e: any) {
-    // console.log('e', e.target.value)
+    console.log('e', e);
     if (e.keyCode === 8) {
       if (this.searchTerm.length === 1) {
         this.emitSearchBoxClearedEvent();
@@ -135,11 +135,16 @@ export default class SearchBox extends LitElement {
     } else if (e.keyCode === 13) {
       this.emitSearchEvent(this.searchTerm);
     } else {
-      this.searchTerm = e.target.value;
+      this.updateSearchTerm(e.target.value);
+      console.log('this.searchTerm in handle keypress', this.searchTerm);
       if (this.searchTerm.length > 3) {
         this.emitAutocompleteRequestEvent(this.searchTerm);
       }
     }
+  }
+
+  updateSearchTerm(inputVal) {
+    this.searchTerm = inputVal;
   }
 
   /**
@@ -148,9 +153,7 @@ export default class SearchBox extends LitElement {
    */
   clearSearch() {
     this.searchTerm = '';
-    (<HTMLInputElement>(
-      this.querySelector('#searchInput')
-    )).value = '';
+    (<HTMLInputElement>this.querySelector('#searchInput')).value = '';
     this.emitSearchBoxClearedEvent();
   }
 
