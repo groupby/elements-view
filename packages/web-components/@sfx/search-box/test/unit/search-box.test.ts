@@ -39,7 +39,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('disconnectCallback', () => {
-    it('should removet the autocomplete_hover eventListener from the window', () => {
+    it('should remove the autocomplete_hover eventListener from the window', () => {
       const windowRemoveEventListener = spy(window, 'removeEventListener');
 
       searchbox.disconnectedCallback();
@@ -105,12 +105,12 @@ describe('SearchBox Component', () => {
     });
   });
 
-  describe('handleKeypress', () => {
+  describe('handleKeyup', () => {
     it('should remove the last letter of the searchTerm string if backpace is pressed', () => {
       searchbox.searchTerm = 'hello';
       const keyCode = 8;
 
-      searchbox.handleKeypress({ keyCode });
+      searchbox.handleKeyup({ keyCode });
 
       expect(searchbox.searchTerm).to.equal('hell');
     });
@@ -123,7 +123,7 @@ describe('SearchBox Component', () => {
       searchbox.searchTerm = 'h';
       const keyCode = 8;
 
-      searchbox.handleKeypress({ keyCode });
+      searchbox.handleKeyup({ keyCode });
 
       expect(emitSearchBoxClearedEventSpy).to.have.been.called;
     });
@@ -133,7 +133,7 @@ describe('SearchBox Component', () => {
       searchbox.searchTerm = 'hello';
       const keyCode = 13;
 
-      searchbox.handleKeypress({ keyCode });
+      searchbox.handleKeyup({ keyCode });
 
       expect(emitSearchSpy).to.have.been.calledWith('hello');
     });
@@ -145,12 +145,12 @@ describe('SearchBox Component', () => {
         value: 'dee'
       };
 
-      searchbox.handleKeypress({ keyCode, target });
+      searchbox.handleKeyup({ keyCode, target });
 
       expect(updateSearchTermSpy).to.have.been.calledWith('dee');
     });
 
-    it('should invoke the emitAutocompleteRequestEvent function if 3 characters or more', () => {
+    it('should invoke the emitAutocompleteRequestEvent function if character key is pressed and searchTerm is 3 characters or more', () => {
       stub(searchbox, 'updateSearchTerm');
       const emitAutocompleteSpy = spy(
         searchbox,
@@ -162,7 +162,7 @@ describe('SearchBox Component', () => {
         value: 'darkkkd'
       };
 
-      searchbox.handleKeypress({ keyCode, target });
+      searchbox.handleKeyup({ keyCode, target });
 
       expect(emitAutocompleteSpy).to.have.been.called;
     });
@@ -205,7 +205,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('clickExposed', () => {
-    it('should dispatch an search box clicked event', () => {
+    it('should dispatch a search box clicked event', () => {
       let searchboxClickedEvent = new CustomEvent('sfx::search_box_cleared');
 
       searchbox.clickExposed();
@@ -217,7 +217,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('hoverExposed', () => {
-    it('should dispatch an search box clicked event', () => {
+    it('should dispatch a search box hovered event', () => {
       let hoverExposedEvent = new CustomEvent('sfx::search_hover_event');
 
       searchbox.hoverExposed();

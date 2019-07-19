@@ -8,11 +8,11 @@ The component accepts text input and dispatches events based on input.
 
 #### `Hover` over search input
 
-This dispatches the event 'sfx::searchbox_hover_event'. This event is available so that listeners can define a set behaviour on input hover.
+Dispatches the event 'sfx::searchbox_hover_event'. This event is available so that listeners can define a set behaviour on input hover.
 
 #### `Click` on search input
 
-This dispatched the event 'sfx::searchbox_click_event'. This event is available so that listeners can define a set behaviour on input area clicks.
+Dispatches the event 'sfx::searchbox_click_event'. This event is available so that listeners can define a set behaviour on input area clicks.
 
 #### Character input within the input box:
 
@@ -22,13 +22,13 @@ Dispatches the event 'sfx::search_request'. This event sends the value to use fo
 
 #### Backspace
 
-If the searchTerm property has more than one character, removes one character from the searchTerm property.
-If the searchTerm property has one character, dispatches the 'sfx::search_box_cleared' event and clears the final letter. This event is available so that listeners can define a set behaviour on when the searchbox is cleared (e.g. remove the autocomplete modal).
+If the searchTerm property has more than one character, one character is removed from the searchTerm property.
+If the searchTerm property has one character, the 'sfx::search_box_cleared' event is dispatched and the final letter is removed from the searchTerm property. The 'sfx::search_box_cleared' event is available so that listeners can define a set behaviour when the searchbox is cleared.
 
 #### Text Character
 
 Search term property is updated on every text character inputed.
-If search term has greater than 3 characters, the 'sfx::autocomplete_request' event is dispatched.
+If the searchTerm property has more than 3 characters, the 'sfx::autocomplete_request' event is dispatched.
 
 ## Customizations
 

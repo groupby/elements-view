@@ -132,7 +132,7 @@ export default class SearchBox extends LitElement {
    *
    * @param e The KeyboardEvent object.
    */
-  handleKeypress(e: KeyboardEvent) {
+  handleKeyup(e: KeyboardEvent) {
     if (e.keyCode === 8) {
       if (this.searchTerm.length === 1) {
         this.emitSearchBoxClearedEvent();
@@ -213,7 +213,7 @@ export default class SearchBox extends LitElement {
     <input type="text" @mouseenter="${this.hoverExposed}" @click="${
       this.clickExposed
     }" id="searchInput" placeholder=${this.placeholderText} @keyup="${
-      this.handleKeypress
+      this.handleKeyup
     }"></input>
     ${
       this.clearButton
@@ -231,7 +231,7 @@ export default class SearchBox extends LitElement {
           `
         : ''
     }
-    <button @click=${this.dispatchAutocompleteHover}>
+      <button @click=${this.dispatchAutocompleteHover}>
         Click to dispatch autocomplete hover event
       </button>
     `;
