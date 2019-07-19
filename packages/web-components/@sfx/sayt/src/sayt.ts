@@ -35,6 +35,13 @@ export default class Sayt extends LitElement {
     return this;
   }
 
+  updated(changedProps) {
+    const showProp = changedProps.has('show');
+    if (showProp) {
+      this.hidden = !this.show;
+    }
+  }
+
   eventCallback(e: any) {
     switch(e.type) {
       case 'sfx::sayt_show':
@@ -49,13 +56,7 @@ export default class Sayt extends LitElement {
   render() {
     return html`
       ${
-        this.show ? html`
-          <div class="sayt-wrapper">
-            ${
-              this.hideAutocomplete ? html`` : html`<sfx-autocomplete></sfx-autocomplete>`
-            }
-          </div>`
-        : html``
+        this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>`
       }
     `;
   }
