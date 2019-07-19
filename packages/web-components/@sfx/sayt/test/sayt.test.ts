@@ -14,8 +14,8 @@ describe('Sayt Component', () => {
 
       sayt.connectedCallback();
 
-      expect(addEventListener).to.be.calledWith('sayt_show', sayt.eventCallback);
-      expect(addEventListener).to.be.calledWith('sayt_hide', sayt.eventCallback);
+      expect(addEventListener).to.be.calledWith('sfx::sayt_show', sayt.eventCallback);
+      expect(addEventListener).to.be.calledWith('sfx::sayt_hide', sayt.eventCallback);
     });
   });
 
@@ -26,8 +26,8 @@ describe('Sayt Component', () => {
 
       sayt.disconnectedCallback();
 
-      expect(removeEventListener).to.be.calledWith('sayt_show', sayt.eventCallback);
-      expect(removeEventListener).to.be.calledWith('sayt_hide', sayt.eventCallback);
+      expect(removeEventListener).to.be.calledWith('sfx::sayt_show', sayt.eventCallback);
+      expect(removeEventListener).to.be.calledWith('sfx::sayt_hide', sayt.eventCallback);
     });
   });
 
@@ -37,5 +37,5 @@ describe('Sayt Component', () => {
       expect(sayt.render()).to.equal('component has rendered');
       expect(renderStub).to.be.calledOnce;
     });
-  })
+  });
 });
