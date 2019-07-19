@@ -29,17 +29,6 @@ window.addEventListener('sfx::searchbox_click_event', e => {
 });
 // end of event dispatch testing
 
-// start of event listener testing
-const autocompleteHover = new CustomEvent('sfx::autocomplete_hover', {
-  detail: 'catfood',
-  bubbles: true
-});
-// end of event listener testing
-
-setTimeout(() => {
-  window.dispatchEvent(autocompleteHover);
-}, 3000);
-
 storiesOf('Components|Searchbox', module)
   .addDecorator(withKnobs)
   .add(
