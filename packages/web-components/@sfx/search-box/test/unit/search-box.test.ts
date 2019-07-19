@@ -54,10 +54,13 @@ describe('SearchBox Component', () => {
   describe('emitSearchEvent', () => {
     it('should dispatch a search request event', () => {
       searchbox.searchTerm = 'a';
-      let searchRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-        detail: 'a',
-        bubbles: true
-      });
+      const searchRequestEvent = new CustomEvent(
+        SEARCHBOX_EVENT.SEARCH_REQUEST,
+        {
+          detail: 'a',
+          bubbles: true
+        }
+      );
 
       searchbox.emitSearchEvent();
 
@@ -67,7 +70,7 @@ describe('SearchBox Component', () => {
 
   describe('emitAutocompleteRequestEvent', () => {
     it('should dispatch an autocomplete event', () => {
-      let autocompleteRequestEvent = new CustomEvent(
+      const autocompleteRequestEvent = new CustomEvent(
         'sfx::autocomplete_request',
         { detail: 'b', bubbles: true }
       );
@@ -82,7 +85,7 @@ describe('SearchBox Component', () => {
 
   describe('emitSearchBoxClearedEvent', () => {
     it('should dispatch an emitSearchBoxClearedEvent', () => {
-      let searchboxxClearedEvent = new CustomEvent('sfx::search_box_cleared');
+      const searchboxxClearedEvent = new CustomEvent('sfx::search_box_cleared');
 
       searchbox.emitSearchBoxClearedEvent();
 
@@ -206,7 +209,7 @@ describe('SearchBox Component', () => {
 
   describe('clickExposed', () => {
     it('should dispatch a search box clicked event', () => {
-      let searchboxClickedEvent = new CustomEvent('sfx::search_box_cleared');
+      const searchboxClickedEvent = new CustomEvent('sfx::search_box_cleared');
 
       searchbox.clickExposed();
 
@@ -218,7 +221,7 @@ describe('SearchBox Component', () => {
 
   describe('hoverExposed', () => {
     it('should dispatch a search box hovered event', () => {
-      let hoverExposedEvent = new CustomEvent('sfx::search_hover_event');
+      const hoverExposedEvent = new CustomEvent('sfx::search_hover_event');
 
       searchbox.hoverExposed();
 
