@@ -38,11 +38,9 @@ export default class Sayt extends LitElement {
   eventCallback(e: any) {
     switch(e.type) {
       case 'sfx::sayt_show':
-        console.log('SAYT SHOULD BE SHOWING!');
         this.show = true;
         break;
       case 'sfx::sayt_hide':
-        console.log('SAYT SHOULD BE HIDING!');
         this.show = false;
         break;
     }
@@ -53,12 +51,11 @@ export default class Sayt extends LitElement {
       ${
         this.show ? html`
           <div class="sayt-wrapper">
-            <h1>This is the Sayt Wrapper</h1>
             ${
               this.hideAutocomplete ? html`` : html`<sfx-autocomplete></sfx-autocomplete>`
             }
           </div>`
-        : html`<p> sayt is not visible </p>`
+        : html``
       }
     `;
   }
