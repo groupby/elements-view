@@ -6,10 +6,12 @@ import { TemplateResult, html, LitElement } from 'lit-element';
 describe('SearchBox Component', () => {
   let searchbox;
   let windowDispatchEvent;
+
   beforeEach(() => {
     searchbox = new SearchBox();
     windowDispatchEvent = spy(window, 'dispatchEvent');
   });
+
   afterEach(() => {
     windowDispatchEvent.restore();
   });
@@ -37,7 +39,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('disconnectCallback', () => {
-    it('should add an autocomplete_hover eventListener to the window', () => {
+    it('should removet the autocomplete_hover eventListener from the window', () => {
       const windowRemoveEventListener = spy(window, 'removeEventListener');
 
       searchbox.disconnectedCallback();
