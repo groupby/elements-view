@@ -36,8 +36,7 @@ export default class Sayt extends LitElement {
   }
 
   updated(changedProps) {
-    const showProp = changedProps.has('show');
-    if (showProp) {
+    if (changedProps.has('show')) {
       this.hidden = !this.show;
     }
   }
