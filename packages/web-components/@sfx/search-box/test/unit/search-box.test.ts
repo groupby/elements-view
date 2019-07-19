@@ -128,7 +128,7 @@ describe('SearchBox Component', () => {
       expect(emitSearchBoxClearedEventSpy).to.have.been.called;
     });
 
-    it('should invoke the emitSearchEvent function if enter is pressed', () => {
+    it('should invoke the emitSearchEvent function if enter is pressed and searchTerm property length is greater than 0', () => {
       const emitSearchSpy = spy(searchbox, 'emitSearchEvent');
       searchbox.searchTerm = 'hello';
       const keyCode = 13;

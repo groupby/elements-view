@@ -138,7 +138,7 @@ export default class SearchBox extends LitElement {
         this.emitSearchBoxClearedEvent();
       }
       this.searchTerm = this.searchTerm.slice(0, this.searchTerm.length - 1);
-    } else if (e.keyCode === 13) {
+    } else if (e.keyCode === 13 && this.searchTerm.length > 0) {
       this.emitSearchEvent(this.searchTerm);
     } else {
       this.updateSearchTerm((<HTMLInputElement>e.target).value);
