@@ -33,6 +33,10 @@ If the searchTerm property has more than 3 characters, the 'sfx::autocomplete_re
 ## Customizations
 
 Searchbox allows for optional inclusion of a clear button and a search button. Placeholder text within the search box is also customizable.
+Users of the component can add the following attributes to the custom element:
+`clearbutton` <- adds clear button
+`searchbutton` <- adds search button
+`placeholdertext` <- if populated with a string, will replace the default placeholder text in the input box.
 
 ## Testing
 
