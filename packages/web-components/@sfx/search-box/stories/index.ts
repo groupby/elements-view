@@ -36,9 +36,9 @@ const autocompleteHover = new CustomEvent('sfx::autocomplete_hover', {
 });
 // end of event listener testing
 
-// setTimeout(() => {
-//   window.dispatchEvent(autocompleteHover)
-// }, 3000)
+setTimeout(() => {
+  window.dispatchEvent(autocompleteHover)
+}, 3000)
 
 storiesOf('Components|Searchbox', module)
   .addDecorator(withKnobs)

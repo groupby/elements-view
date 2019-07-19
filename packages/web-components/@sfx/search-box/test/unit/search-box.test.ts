@@ -1,6 +1,7 @@
 import { SEARCHBOX_EVENT } from '../../src/utils';
 import { expect, spy, stub, sinon } from '../utils';
 import SearchBox from '../../src/search-box';
+import { TemplateResult, html } from 'lit-element';
 
 describe('SearchBox Component', () => {
   let searchbox;
@@ -53,13 +54,6 @@ describe('SearchBox Component', () => {
   });
 
   describe('emitSearchEvent', () => {
-    // let searchRequestEvent;
-    // beforeEach(() => {
-    //   searchRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-    //     detail: ,
-    //     bubbles: true
-    //   });
-    // });
     it('should dispatch a search request event', () => {
       searchbox.searchTerm = 'a';
       let searchRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
@@ -71,17 +65,6 @@ describe('SearchBox Component', () => {
 
       expect(windowDispatchEvent).to.have.been.calledWith(searchRequestEvent);
     });
-
-    // it('should use the passed in query value if provided', () => {
-    //   // PASSING BUT IT SHOULD FAIL!
-    //   searchbox.searchTerm = 'a';
-    //   searchbox.emitSearchEvent('a');
-    //   let payload = 'b';
-    //   let eventToDispatch = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-    //     detail: payload
-    //   });
-    //   expect(windowDispatchEvent).to.have.been.calledWith(searchRequestEvent);
-    // });
   });
 
   describe('emitAutocompleteRequestEvent', () => {
@@ -112,12 +95,12 @@ describe('SearchBox Component', () => {
   });
 
   describe('updateText', () => {
-    // it('should update the searchTerm property in response to data received', () => {
-    //   const detail = 'inputText'
-    //   let el = 'inputText'
-    //   searchbox.updateText({ detail })
-    //   expect(searchbox.searchTerm).to.equal(detail);
-    // })
+    it('should update the searchTerm property in response to data received', () => {
+      const detail = 'inputText';
+      stub(searchbox, 'getInput').returns(html`<input type="text" id="searchInput" placeholder="Type your search">`)
+      searchbox.updateText({ detail })
+      expect(searchbox.searchTerm).to.equal(detail);
+    })
   });
 
   describe('handleKeypress', () => {
@@ -191,6 +174,26 @@ describe('SearchBox Component', () => {
     });
   });
 
+  describe('clearSearch', () => {
+    it('should set the search term property to an empty string', () => {
+      stub(searchbox, 'getInput').returns(html`<input type="text" id="searchInput" placeholder="Type your search">`)
+      stub(searchbox, 'emitSearchBoxClearedEvent');
+
+      searchbox.clearSearch();
+
+      expect(searchbox.searchTerm).to.equal('');
+    });
+
+    it('should invoke the emitSearchBoxClearedEvent', () => {
+      stub(searchbox, 'getInput').returns(html`<input type="text" id="searchInput" placeholder="Type your search">`)
+      const emitSearchBoxSpy = spy(searchbox, 'emitSearchBoxClearedEvent');
+
+      searchbox.clearSearch();
+
+      expect(emitSearchBoxSpy).to.have.been.called;
+    });
+  });
+
   describe('clickExposed', () => {
     it('should dispatch an search box clicked event', () => {
       let searchboxClickedEvent = new CustomEvent('sfx::search_box_cleared');
@@ -210,6 +213,14 @@ describe('SearchBox Component', () => {
       searchbox.hoverExposed();
 
       expect(windowDispatchEvent).to.have.been.calledWith(hoverExposedEvent);
+    });
+  });
+
+  describe('render', () => {
+    it('should return an instance of TemplateResult', () => {
+      const result = searchbox.render();
+
+      expect(result).to.be.an.instanceof(TemplateResult);
     });
   });
 });

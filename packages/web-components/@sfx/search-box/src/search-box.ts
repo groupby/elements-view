@@ -71,7 +71,6 @@ export default class SearchBox extends LitElement {
         bubbles: true
       })
     );
-    // window.dispatchEvent(searchRequestEvent);
   }
 
   /**
@@ -111,15 +110,20 @@ export default class SearchBox extends LitElement {
    */
   updateText(e: CustomEvent) {
     this.searchTerm = e.detail;
-    let el = (<HTMLInputElement>this.querySelector('#searchInput')).value;
-    el = e.detail;
+    let el = this.getInputElement()
+    el.value = e.detail;
+  }
+
+  /**
+   * Returns the searchbox input element
+   */
+  getInputElement() {
+    return (<HTMLInputElement>this.querySelector('#searchInput'))
   }
 
   /**
    * Receives user input from searchbox and calls appropriate function based
    * on the input value.
-   *
-   * ***should details be included? as to the specific responses to specific key presses?***
    *
    * Invoked in response to a keyup.
    *
@@ -136,13 +140,17 @@ export default class SearchBox extends LitElement {
       this.emitSearchEvent(this.searchTerm);
     } else {
       this.updateSearchTerm(e.target.value);
-      console.log('this.searchTerm in handle keypress', this.searchTerm);
       if (this.searchTerm.length > 3) {
         this.emitAutocompleteRequestEvent(this.searchTerm);
       }
     }
   }
 
+  /**
+   * Updates the searchTerm property to the value passed to it.
+   *
+   * @param inputVal The value pulled directly from the input box.
+   */
   updateSearchTerm(inputVal) {
     this.searchTerm = inputVal;
   }
@@ -153,7 +161,8 @@ export default class SearchBox extends LitElement {
    */
   clearSearch() {
     this.searchTerm = '';
-    (<HTMLInputElement>this.querySelector('#searchInput')).value = '';
+    let el = this.getInputElement()
+    el.value = '';
     this.emitSearchBoxClearedEvent();
   }
 
