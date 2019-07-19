@@ -18,11 +18,11 @@ storiesOf('Components|SAYT', module)
       ],
       bubbles: true
     });
-    if (showAttribute) {
-      setTimeout(() => {
-        window.dispatchEvent(autocompleteDataReceivedEvent);
-      }, 100);
-    }
+
+    setTimeout(() => {
+      window.dispatchEvent(autocompleteDataReceivedEvent);
+    }, 100);
+
 
     return `
       <sfx-sayt
