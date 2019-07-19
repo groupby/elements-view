@@ -68,12 +68,14 @@ export default class SearchBox extends LitElement {
    */
   emitSearchEvent(query?: String) {
     const term = query && typeof query === 'string' ? query : this.searchTerm;
-    window.dispatchEvent(
-      new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+    const searchboxRequestEvent = new CustomEvent(
+      SEARCHBOX_EVENT.SEARCH_REQUEST,
+      {
         detail: term,
         bubbles: true
-      })
+      }
     );
+    window.dispatchEvent(searchboxRequestEvent);
   }
 
   /**
@@ -188,6 +190,24 @@ export default class SearchBox extends LitElement {
     window.dispatchEvent(searchBoxHoveredEvent);
   }
 
+  // FIXME Move this to the Storybook tab once functionality has been merged into sfx-view.
+  /*
+   * --- TEMPORARY: setup for testing event listeners ---
+   * Because Storybook is contained in an iframe, for testing purposes,
+   * we are unable to dispatch events directly from the console.
+   *
+   * As an alternative - temporarily, we have a button to click to dispatch event.
+   * Should be updated when/if functionality is avaiable via Storybook tab.
+   * This event would be dispatched when a user hovers on autocomplete.
+   */
+  dispatchAutocompleteHover() {
+    const autocompleteHover = new CustomEvent('sfx::autocomplete_hover', {
+      detail: 'catfood',
+      bubbles: true
+    });
+    window.dispatchEvent(autocompleteHover);
+  }
+
   render() {
     return html`
     <input type="text" @mouseenter="${this.hoverExposed}" @click="${
@@ -211,6 +231,9 @@ export default class SearchBox extends LitElement {
           `
         : ''
     }
+    <button @click=${this.dispatchAutocompleteHover}>
+        Click to dispatch autocomplete hover event
+      </button>
     `;
   }
 }
