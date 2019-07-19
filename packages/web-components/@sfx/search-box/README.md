@@ -16,14 +16,14 @@ This dispatched the event 'sfx::searchbox_click_event'. This event is available 
 
 #### Character input within the input box:
 
-##### Enter
+#### Enter
 
 Dispatches the event 'sfx::search_request'. This event sends the value to use for the search request.
 
 #### Backspace
 
-If input value is greater than 1, removes one character from the searchTerm property.
-If the input value is 1, dispatches the 'sfx::search_box_cleared' event. This event is available so that listeners can define a set behaviour on when the searchbox is cleared (e.g. remove the autocomplete modal).
+If the searchTerm property has more than one character, removes one character from the searchTerm property.
+If the searchTerm property has one character, dispatches the 'sfx::search_box_cleared' event and clears the final letter. This event is available so that listeners can define a set behaviour on when the searchbox is cleared (e.g. remove the autocomplete modal).
 
 #### Text Character
 
