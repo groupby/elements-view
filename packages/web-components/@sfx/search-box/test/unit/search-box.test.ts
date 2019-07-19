@@ -1,5 +1,5 @@
 import { SEARCHBOX_EVENT } from '../../src/utils';
-import { expect, spy, stub, sinon } from '../utils';
+import { expect, spy, stub } from '../utils';
 import SearchBox from '../../src/search-box';
 import { TemplateResult, html, LitElement } from 'lit-element';
 
@@ -35,6 +35,7 @@ describe('SearchBox Component', () => {
       );
     });
   });
+
   describe('disconnectCallback', () => {
     it('should add an autocomplete_hover eventListener to the window', () => {
       const windowRemoveEventListener = spy(window, 'removeEventListener');
@@ -92,7 +93,7 @@ describe('SearchBox Component', () => {
   describe('updateText', () => {
     it('should update the searchTerm property in response to data received', () => {
       const detail = 'inputText';
-      stub(searchbox, 'getInput').returns(
+      stub(searchbox, 'getInputElement').returns(
         html`
           <input type="text" id="searchInput" placeholder="Type your search" />
         `
@@ -175,11 +176,7 @@ describe('SearchBox Component', () => {
 
   describe('clearSearch', () => {
     it('should set the search term property to an empty string', () => {
-      stub(searchbox, 'getInput').returns(
-        html`
-          <input type="text" id="searchInput" placeholder="Type your search" />
-        `
-      );
+      stub(searchbox, 'getInputElement').returns(html`<input type="text" id="searchInput" placeholder="Type your search" />`);
       stub(searchbox, 'emitSearchBoxClearedEvent');
 
       searchbox.clearSearch();
@@ -188,11 +185,7 @@ describe('SearchBox Component', () => {
     });
 
     it('should invoke the emitSearchBoxClearedEvent', () => {
-      stub(searchbox, 'getInput').returns(
-        html`
-          <input type="text" id="searchInput" placeholder="Type your search" />
-        `
-      );
+      stub(searchbox, 'getInputElement').returns(html`<input type="text" id="searchInput" placeholder="Type your search" />`);
       const emitSearchBoxSpy = spy(searchbox, 'emitSearchBoxClearedEvent');
 
       searchbox.clearSearch();

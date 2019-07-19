@@ -139,7 +139,7 @@ export default class SearchBox extends LitElement {
     } else if (e.keyCode === 13) {
       this.emitSearchEvent(this.searchTerm);
     } else {
-      this.updateSearchTerm((<HTMLInputElement>event.target).value);
+      this.updateSearchTerm((<HTMLInputElement>e.target).value);
       if (this.searchTerm.length > 3) {
         this.emitAutocompleteRequestEvent(this.searchTerm);
       }
@@ -153,6 +153,7 @@ export default class SearchBox extends LitElement {
    */
   updateSearchTerm(inputVal: string) {
     this.searchTerm = inputVal;
+    console.log('searchTerm', this.searchTerm)
   }
 
   /**
