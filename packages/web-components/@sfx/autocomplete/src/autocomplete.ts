@@ -31,10 +31,7 @@ export default class Autocomplete extends Base {
    */
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener(
-      autocompleteReceivedResults,
-      this.receivedResults
-    );
+    window.addEventListener(autocompleteReceivedResults, this.receivedResults);
   }
 
   /**
@@ -94,7 +91,10 @@ export default class Autocomplete extends Base {
       ${this.results.map(
         list =>
           html`
-            <sfx-list .title="${list.title}" .items="${list.items}"></sfx-list>
+            <sfx-list
+              .sfxListTitle="${list.title}"
+              .items="${list.items}"
+            ></sfx-list>
           `
       )}
       <button @click=${this.dispatchAutocompleteResults}>

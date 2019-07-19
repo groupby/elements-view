@@ -19,7 +19,7 @@ const results = [
     ]
   },
   {
-    title: '',
+    stitle: '',
     items: [
       {
         ...tbd,
