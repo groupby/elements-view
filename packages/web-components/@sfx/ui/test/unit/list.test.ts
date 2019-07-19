@@ -3,12 +3,12 @@ import List from '../../src/list';
 import { Base } from '@sfx/base';
 import { TemplateResult } from 'lit-element';
 
-let list;
-beforeEach(() => {
-  list = new List();
-});
-
 describe('List component', () => {
+  let list;
+  beforeEach(() => {
+    list = new List();
+  });
+
   it('should extend Base', () => {
     expect(list).to.be.an.instanceof(Base);
   });
@@ -28,7 +28,7 @@ describe('List component', () => {
   describe('render function', () => {
     it('should return an instance of TemplateResult', () => {
       const result = list.render();
-      
+
       expect(result).to.be.an.instanceof(TemplateResult);
     });
   });
