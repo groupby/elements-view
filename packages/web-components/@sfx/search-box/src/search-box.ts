@@ -33,6 +33,9 @@ export default class SearchBox extends LitElement {
     this.updateText = this.updateText.bind(this);
   }
 
+  /*
+   * To be removed with introduction of Base.
+   */
   createRenderRoot() {
     return this;
   }
@@ -91,8 +94,6 @@ export default class SearchBox extends LitElement {
    * Dispatches an event notifying that the input box has been cleared.
    * Invoked in response to user input: clear button, remove all letters
    * using keypresses.
-   *
-   * @param letters A string of letters inputed into input box.
    */
   emitSearchBoxClearedEvent() {
     const searchboxClearedEvent = new CustomEvent(
@@ -110,7 +111,7 @@ export default class SearchBox extends LitElement {
    */
   updateText(e: CustomEvent) {
     this.searchTerm = e.detail;
-    let el = this.getInputElement()
+    let el = this.getInputElement();
     el.value = e.detail;
   }
 
@@ -118,7 +119,7 @@ export default class SearchBox extends LitElement {
    * Returns the searchbox input element
    */
   getInputElement() {
-    return (<HTMLInputElement>this.querySelector('#searchInput'))
+    return <HTMLInputElement>this.querySelector('#searchInput');
   }
 
   /**
@@ -127,10 +128,9 @@ export default class SearchBox extends LitElement {
    *
    * Invoked in response to a keyup.
    *
-   * @param e The event object.
+   * @param e The KeyboardEvent object.
    */
-  handleKeypress(e: any) {
-    console.log('e', e);
+  handleKeypress(e: KeyboardEvent) {
     if (e.keyCode === 8) {
       if (this.searchTerm.length === 1) {
         this.emitSearchBoxClearedEvent();
@@ -139,7 +139,7 @@ export default class SearchBox extends LitElement {
     } else if (e.keyCode === 13) {
       this.emitSearchEvent(this.searchTerm);
     } else {
-      this.updateSearchTerm(e.target.value);
+      this.updateSearchTerm((<HTMLInputElement>event.target).value);
       if (this.searchTerm.length > 3) {
         this.emitAutocompleteRequestEvent(this.searchTerm);
       }
@@ -151,7 +151,7 @@ export default class SearchBox extends LitElement {
    *
    * @param inputVal The value pulled directly from the input box.
    */
-  updateSearchTerm(inputVal) {
+  updateSearchTerm(inputVal: string) {
     this.searchTerm = inputVal;
   }
 
@@ -161,7 +161,7 @@ export default class SearchBox extends LitElement {
    */
   clearSearch() {
     this.searchTerm = '';
-    let el = this.getInputElement()
+    let el = this.getInputElement();
     el.value = '';
     this.emitSearchBoxClearedEvent();
   }
