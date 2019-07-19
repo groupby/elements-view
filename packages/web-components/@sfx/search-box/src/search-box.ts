@@ -212,26 +212,28 @@ export default class SearchBox extends LitElement {
     return html`
     <input type="text" @mouseenter="${this.hoverExposed}" @click="${
       this.clickExposed
-    }" id="searchInput" placeholder=${this.placeholderText} @keyup="${
+    }" id="searchInput" placeholder="${this.placeholderText}" @keyup="${
       this.handleKeyup
     }"></input>
     ${
       this.clearButton
         ? html`
-            <button class="btn_clear" @click=${this.clearSearch}>Clear</button>
+            <button class="btn_clear" @click="${this.clearSearch}">
+              Clear
+            </button>
           `
         : ''
     }
     ${
       this.searchButton
         ? html`
-            <button class="btn_search" @click=${this.emitSearchEvent}>
+            <button class="btn_search" @click="${this.emitSearchEvent}">
               Search
             </button>
           `
         : ''
     }
-      <button @click=${this.dispatchAutocompleteHover}>
+      <button @click="${this.dispatchAutocompleteHover}">
         Click to dispatch autocomplete hover event
       </button>
     `;
