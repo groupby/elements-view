@@ -31,6 +31,17 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe('updated()', () => {
+    it('should change the hidden property if the show property has changed', () => {
+      sayt.hidden = true;
+      sayt.show = true;
+
+      sayt.updated(new Map([['show', false]]));
+
+      expect(sayt.hidden).to.equal(false);
+    });
+  });
+
   describe('render()', () => {
     it('should call a render function', () => {
       const renderStub = stub(sayt, 'render').returns('component has rendered');
