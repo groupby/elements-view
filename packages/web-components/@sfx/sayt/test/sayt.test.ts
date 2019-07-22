@@ -43,6 +43,26 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe.only('handleVisibilityEvent()', () => {
+    it('should set the show prop to true when receiving a SAYT_SHOW event', () => {
+      const dispatchedEvent = new CustomEvent(SAYT_EVENT.SAYT_SHOW, { detail: 'test' });
+
+      sayt.handleVisibilityEvent(dispatchedEvent);
+
+      expect(sayt.show).to.equal(true);
+    });
+
+    it('should set the show prop to false when receiving a SAYT_HIDE event', () => {
+      sayt.hidden = false;
+      sayt.show = true;
+      const dispatchedEvent = new CustomEvent(SAYT_EVENT.SAYT_HIDE, { detail: 'test' });
+
+      sayt.handleVisibilityEvent(dispatchedEvent);
+
+      expect(sayt.show).to.equal(false);
+    });
+  });
+
   describe('render()', () => {
     it('should call a render function', () => {
       const renderStub = stub(sayt, 'render').returns('component has rendered');
