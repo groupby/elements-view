@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@sfx/base | SF-X</title>
+	<title>TestInterface | SF-X</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,107 +56,51 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="_sfx_base.html">@sfx/base</a>
+					<a href="../modules/_sfx_sayt.html">@sfx/sayt</a>
+				</li>
+				<li>
+					<a href="_sfx_sayt.testinterface.html">TestInterface</a>
 				</li>
 			</ul>
-			<h1>Package @sfx/base</h1>
+			<h1>Interface TestInterface</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<h1 id="sf-x-base">SF-X Base</h1>
-					<h2 id="functionality">Functionality</h2>
-					<p>This class extends <a href="https://lit-element.polymer-project.org/">LitElement</a> and is the class that all components will extend.
-					Any shared functionality should be contained within this class.</p>
-					<h3 id="slots">Slots</h3>
-					<p>A POC of slot functionality is contained within this class.
-						This functionality allows for components to insert slots into the light dom.
-						The method utilized does make use of the shadow-dom, however, the slots are rendered in the context of the custom element.
-					The current default adds slotted content after the content contained within the custom element, but within the custom element itself.</p>
-					<h2 id="testing">Testing</h2>
-					<p>The test suite for this component is contained in the <code>test</code> directory.
-					To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:</p>
-					<ul>
-						<li>To run the tests once:</li>
-					</ul>
-					<pre><code class="language-sh">yarn <span class="hljs-built_in">test</span></code></pre>
-					<ul>
-						<li>To run the tests and watch the <code>src</code> and <code>test</code> directories for changes:</li>
-					</ul>
-					<pre><code class="language-sh"><span class="hljs-attribute">yarn tdd</span></code></pre>
-				</div>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">TestInterface</span>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_base.base.html" class="tsd-kind-icon">Base</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Functions</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_sfx_base.html#createchildrenobserver" class="tsd-kind-icon">create<wbr>Children<wbr>Observer</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_sfx_base.html#makeslot" class="tsd-kind-icon">make<wbr>Slot</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_sfx_sayt.testinterface.html#label" class="tsd-kind-icon">label</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="createchildrenobserver" class="tsd-anchor"></a>
-					<h3>create<wbr>Children<wbr>Observer</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Children<wbr>Observer<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MutationObserver</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/26d80a1/packages/web-components/@sfx/base/src/utils.ts#L16">base/src/utils.ts:16</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>root: <span class="tsd-signature-type">Node</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">MutationObserver</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="makeslot" class="tsd-anchor"></a>
-					<h3>make<wbr>Slot</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">make<wbr>Slot<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLSlotElement</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/26d80a1/packages/web-components/@sfx/base/src/utils.ts#L8">base/src/utils.ts:8</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> name: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLSlotElement</span></h4>
-						</li>
-					</ul>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="label" class="tsd-anchor"></a>
+					<h3>label</h3>
+					<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/2bec2c9/packages/web-components/@sfx/sayt/src/index.ts#L15">index.ts:15</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -166,49 +110,36 @@
 					<li class="globals  ">
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_autocomplete.html">@sfx/autocomplete</a>
-					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_base.html">@sfx/base</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt.html">@sfx/sayt</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_ui.html">@sfx/ui</a>
+						<a href="../modules/_sfx_sayt.html">@sfx/sayt</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_autocomplete.html" class="tsd-kind-icon">@sfx/autocomplete</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_base.html" class="tsd-kind-icon">@sfx/base</a>
+						<a href="../modules/_sfx_sayt.html" class="tsd-kind-icon">@sfx/sayt</a>
 						<ul>
-							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_base.base.html" class="tsd-kind-icon">Base</a>
+							<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+								<a href="_sfx_sayt.testinterface.html" class="tsd-kind-icon">Test<wbr>Interface</a>
+								<ul>
+									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+										<a href="_sfx_sayt.testinterface.html#label" class="tsd-kind-icon">label</a>
+									</li>
+								</ul>
 							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="_sfx_base.html#createchildrenobserver" class="tsd-kind-icon">create<wbr>Children<wbr>Observer</a>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+								<a href="../modules/_sfx_sayt.html#testfunc" class="tsd-kind-icon">test<wbr>Func</a>
 							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="_sfx_base.html#makeslot" class="tsd-kind-icon">make<wbr>Slot</a>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
+								<a href="../modules/_sfx_sayt.html#testobj" class="tsd-kind-icon">test<wbr>Obj</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt.html" class="tsd-kind-icon">@sfx/sayt</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_ui.html" class="tsd-kind-icon">@sfx/ui</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
