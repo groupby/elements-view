@@ -4,39 +4,35 @@
 
 The component accepts text input and dispatches events based on input.
 
-### Input types
+### Events
 
-#### `Hover` over search box
+#### `sfx::searchbox_hover_event`
 
-Dispatches the event `sfx::searchbox_hover_event`. This event is available so that listeners can define a set behaviour on search box hover.
+Dispatched when a user hovers over the search box.
 
-#### `Click` on search box
+#### `sfx::searchbox_click_event`
 
-Dispatches the event `sfx::searchbox_click_event`. This event is available so that listeners can define a set behaviour on search box area clicks.
+Dispatched when a user clicks anywhere within the search box input area.
 
-#### Character input within the search box:
+#### `sfx::search_request`
 
-#### Enter
+Dispatched when a user clicks on the search button on hits `enter` within the search box. This event sends the search term value entered into the search box.
 
-Dispatches the event `sfx::search_request`. This event sends the value to use for the search request.
+#### `sfx::search_box_cleared`
 
-#### Backspace
+Dispatched when the value within the search box area is cleared. Occurs when a user clicks on the clear button, or when the final letter is removed from the search term.
 
-If the searchTerm property has more than one character, one character is removed from the searchTerm property.
-If the searchTerm property has one character, the `sfx::search_box_cleared` event is dispatched and the final letter is removed from the searchTerm property. The `sfx::search_box_cleared` event is available so that listeners can define a set behaviour when the search box is cleared.
+#### `sfx::autocomplete_request`
 
-#### Text Character
-
-Search term property is updated on every text character inputed.
-If the searchTerm property has more than 3 characters, the `sfx::autocomplete_request` event is dispatched.
+Dispatched when the search term value within the search box contains more than 3 characters. This event sends the search term value entered into the search box.
 
 ## Customizations
 
 The SF-X Search Box component allows for optional inclusion of a clear button and a search button. Placeholder text within the search box is also customizable.
 Users of the component can add the following attributes to the custom element:
-`clearbutton` <- adds clear button
-`searchbutton` <- adds search button
-`placeholdertext` <- if populated with a string, will replace the default placeholder text in the input box.
+`clearbutton`: adds clear button
+`searchbutton`: adds search button
+`placeholdertext`: if populated with a string, will replace the default placeholder text in the input box.
 
 ## Testing
 
