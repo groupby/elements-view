@@ -97,9 +97,9 @@ workflows:
   build_test:
     jobs:
       - generate_cache_key_file:
-          filters:
-            branches:
-              ignore: /release\/.*/
+          # filters:
+          #   branches:
+          #     ignore: /release\/.*/
 
       - build:
           name: build_base
@@ -109,6 +109,10 @@ workflows:
           name: build_ui
           requires:
             - build_base
+      - build:
+          name: build_autocomplete
+          requires:
+            - build_ui
       - build_final:
           requires:
             - build_base
@@ -119,4 +123,7 @@ workflows:
           <<: *requires_build
       - unit test:
           name: unit_test_ui
+          <<: *requires_build
+      - unit test:
+          name: unit_test_autocomplete
           <<: *requires_build
