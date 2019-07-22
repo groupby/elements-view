@@ -1,15 +1,16 @@
-import { SEARCHBOX_EVENT } from '../../src/utils';
+import { SEARCHBOX_EVENT } from '../../src/events';
 import { expect, spy, stub } from '../utils';
 import SearchBox from '../../src/search-box';
 import { TemplateResult, html, LitElement } from 'lit-element';
 
 describe('SearchBox Component', () => {
+
   let searchbox;
   let windowDispatchEvent;
 
   beforeEach(() => {
     searchbox = new SearchBox();
-    windowDispatchEvent = spy(window, 'dispatchEvent');
+    windowDispatchEvent = stub(window, 'dispatchEvent');
   });
 
   afterEach(() => {
@@ -27,7 +28,7 @@ describe('SearchBox Component', () => {
 
   describe('connectCallback', () => {
     it('should add an autocomplete_hover eventListener to the window', () => {
-      const windowAddEventListener = spy(window, 'addEventListener');
+      const windowAddEventListener = stub(window, 'addEventListener');
 
       searchbox.connectedCallback();
 
@@ -37,7 +38,7 @@ describe('SearchBox Component', () => {
 
   describe('disconnectCallback', () => {
     it('should remove the autocomplete_hover eventListener from the window', () => {
-      const windowRemoveEventListener = spy(window, 'removeEventListener');
+      const windowRemoveEventListener = stub(window, 'removeEventListener');
 
       searchbox.disconnectedCallback();
 
@@ -74,11 +75,11 @@ describe('SearchBox Component', () => {
 
   describe('emitSearchBoxClearedEvent', () => {
     it('should dispatch an emitSearchBoxClearedEvent', () => {
-      const searchboxxClearedEvent = new CustomEvent('sfx::search_box_cleared');
+      const searchboxClearedEvent = new CustomEvent('sfx::search_box_cleared');
 
       searchbox.emitSearchBoxClearedEvent();
 
-      expect(windowDispatchEvent).to.have.been.calledWith(searchboxxClearedEvent);
+      expect(windowDispatchEvent).to.have.been.calledWith(searchboxClearedEvent);
     });
   });
 
@@ -128,9 +129,7 @@ describe('SearchBox Component', () => {
     it('should invoke the updateValue function if word character is pressed', () => {
       const updateValueSpy = spy(searchbox, 'updateValue');
       const keyCode = 68;
-      const target = {
-        value: 'dee'
-      };
+      const target = { value: 'dee' };
 
       searchbox.handleKeyup({ keyCode, target });
 

@@ -27,34 +27,39 @@ window.addEventListener('sfx::searchbox_click_event', e => {
   console.log('search box clicked event received');
   console.log('event', e);
 });
+
+window.addEventListener('sfx::on_search_box_change', e => {
+  console.log('search box change event received');
+  console.log('event', e);
+});
 // end of event dispatch testing
 
 storiesOf('Components|Searchbox', module)
   .addDecorator(withKnobs)
-  .add(
-    'Default - with search and clear button',
-    () => `
-  <sfx-search-box searchbutton clearbutton></sfx-search-box>
-`
-  )
-  .add(
-    'Without any SFX provided buttons',
-    () => `
-  <sfx-search-box></sfx-search-box>
-`
-  )
-  .add(
-    'Without a clear button, without a search button',
-    () => `
-  <sfx-search-box clearbutton></sfx-search-box>
-`
-  )
-  .add(
-    'With custom placeholder text',
-    () => `
-  <sfx-search-box placeholder="${text(
-    'Placeholder Title',
-    'Search'
-  )}"></sfx-search-box>
-`
-  );
+    .add(
+      'Default - with search and clear button',
+      () => `
+    <sfx-search-box searchbutton clearbutton></sfx-search-box>
+  `
+    )
+    .add(
+      'Without any SFX provided buttons',
+      () => `
+    <sfx-search-box></sfx-search-box>
+  `
+    )
+    .add(
+      'Without a clear button, without a search button',
+      () => `
+    <sfx-search-box clearbutton></sfx-search-box>
+  `
+    )
+    .add(
+      'With custom placeholder text',
+      () => `
+    <sfx-search-box placeholder="${text(
+      'Placeholder Title',
+      'Search'
+    )}"></sfx-search-box>
+  `
+    );

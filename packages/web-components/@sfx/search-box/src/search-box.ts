@@ -1,5 +1,5 @@
 import { LitElement, customElement, html, property } from 'lit-element';
-import { SEARCHBOX_EVENT } from './utils';
+import { SEARCHBOX_EVENT, KEY_CODES } from './events';
 
 /**
  * This entity is responsible for receiving user input and dispatching events
@@ -34,7 +34,7 @@ export default class SearchBox extends LitElement {
   }
 
   /*
-   * TODO to be removed with introduction of Base.
+   * TODO To be removed with introduction of Base.
    */
   createRenderRoot() {
     return this;
@@ -100,49 +100,56 @@ export default class SearchBox extends LitElement {
    * @param e The event object.
    */
   updateText(e: CustomEvent) {
+    this.getInputElement().value = e.detail;
     this.value = e.detail;
-    let el = this.getInputElement();
-    el.value = e.detail;
   }
 
   /**
    * Returns the searchbox input element
    */
-  getInputElement() {
-    return <HTMLInputElement>this.querySelector('#searchInput');
+  getInputElement(): HTMLInputElement {
+    return this.querySelector('#searchInput') as HTMLInputElement;
   }
 
   /**
-   * Receives user input from searchbox and calls appropriate function based
-   * on the input value.
+   * Dispatches an `sfx::on_search_box_change` event, and updates the value
+   * property with the payload of the given event.
+   *
+   * Invoked in response to a change to the contents of the searchbox.
+   *
+   * @param e The KeyboardEvent object.
+   */
+  handleChange(e: KeyboardEvent) {
+    this.updateValue((e.target as HTMLInputElement).value);
+    window.dispatchEvent(
+      new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
+        detail: (e.target as HTMLInputElement).value,
+        bubbles: true
+      })
+    );
+  }
+
+  /**
+   * Dispatches a `sfx::search_request` event with the payload of the given
+   * event.
    *
    * Invoked in response to a keyup.
    *
    * @param e The KeyboardEvent object.
    */
-  handleKeyup(e: KeyboardEvent) {
-    if (e.keyCode === 8) {
-      if (this.value.length === 1) {
-        this.emitSearchBoxClearedEvent();
-      }
-      this.value = this.value.slice(0, this.value.length - 1);
-    } else if (e.keyCode === 13 && this.value.length > 0) {
+  handleKeyupTwo(e: KeyboardEvent) {
+    if (e.keyCode === KEY_CODES.ENTER && this.value.length > 0) {
       this.emitSearchEvent();
-    } else {
-      this.updateValue((<HTMLInputElement>e.target).value);
-      if (this.value.length > 3) {
-        this.emitAutocompleteRequestEvent(this.value);
-      }
     }
   }
 
   /**
    * Updates the value property to the value passed to it.
    *
-   * @param inputVal The value pulled directly from the input box.
+   * @param term The value pulled directly from the input box.
    */
-  updateValue(inputVal: string) {
-    this.value = inputVal;
+  updateValue(term: string) {
+    this.value = term;
   }
 
   /**
@@ -150,9 +157,8 @@ export default class SearchBox extends LitElement {
    * Invoked in response to click on `clear` button, or removal of all text from input.
    */
   clearSearch() {
+    this.getInputElement().value = '';
     this.value = '';
-    let el = this.getInputElement();
-    el.value = '';
     this.emitSearchBoxClearedEvent();
   }
 
@@ -194,25 +200,23 @@ export default class SearchBox extends LitElement {
 
   render() {
     return html`
-    <input type="text" @mouseenter="${this.hoverExposed}" @click="${this.clickExposed}" id="searchInput" placeholder="${
-      this.placeholder
-    }" @keyup="${this.handleKeyup}"></input>
+    <input 
+      type="text" 
+      @mouseenter="${this.hoverExposed}" 
+      @click="${this.clickExposed}" 
+      id="searchInput" 
+      placeholder="${this.placeholder}" 
+      @input="${this.handleChange}"
+      @keyup="${this.handleKeyupTwo}">
+    </input>
     ${
       this.clearButton
-        ? html`
-            <button class="btn_clear" @click="${this.clearSearch}">
-              Clear
-            </button>
-          `
+        ? html`<button @click="${this.clearSearch}">Clear</button>`
         : ''
     }
     ${
       this.searchButton
-        ? html`
-            <button class="btn_search" @click="${this.emitSearchEvent}">
-              Search
-            </button>
-          `
+        ? html`<button @click="${this.emitSearchEvent}">Search</button>`
         : ''
     }
       <button @click="${this.dispatchAutocompleteHover}">
