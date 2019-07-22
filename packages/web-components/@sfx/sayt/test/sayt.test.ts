@@ -1,5 +1,6 @@
 import { expect, spy, stub } from './utils';
 import Sayt from '../src/sayt';
+import { SAYT_EVENT } from '../src/events';
 
 describe('Sayt Component', () => {
   let sayt;
@@ -14,8 +15,8 @@ describe('Sayt Component', () => {
 
       sayt.connectedCallback();
 
-      expect(addEventListener).to.be.calledWith('sfx::sayt_show', sayt.eventCallback);
-      expect(addEventListener).to.be.calledWith('sfx::sayt_hide', sayt.eventCallback);
+      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.eventCallback);
+      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.eventCallback);
     });
   });
 
@@ -26,8 +27,8 @@ describe('Sayt Component', () => {
 
       sayt.disconnectedCallback();
 
-      expect(removeEventListener).to.be.calledWith('sfx::sayt_show', sayt.eventCallback);
-      expect(removeEventListener).to.be.calledWith('sfx::sayt_hide', sayt.eventCallback);
+      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.eventCallback);
+      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.eventCallback);
     });
   });
 

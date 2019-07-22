@@ -1,6 +1,7 @@
 import { LitElement, customElement, html, property } from 'lit-element';
 // import { Base } from '@sfx/base';
 import '@sfx/autocomplete';
+import { SAYT_EVENT } from './events';
 
 @customElement('sfx-sayt')
 // TODO: look into the Base class so this class can extend it again. The
@@ -19,15 +20,15 @@ export default class Sayt extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener('sfx::sayt_show', this.eventCallback);
-    window.addEventListener('sfx::sayt_hide', this.eventCallback);
+    window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.eventCallback);
+    window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.eventCallback);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    window.removeEventListener('sfx::sayt_show', this.eventCallback);
-    window.removeEventListener('sfx::sayt_hide', this.eventCallback);
+    window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.eventCallback);
+    window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.eventCallback);
   }
 
   // TODO: Remove createRenderRoot once Base class is extended.
@@ -43,10 +44,10 @@ export default class Sayt extends LitElement {
 
   eventCallback(e: CustomEvent) {
     switch(e.type) {
-      case 'sfx::sayt_show':
+      case SAYT_EVENT.SAYT_SHOW:
         this.show = true;
         break;
-      case 'sfx::sayt_hide':
+      case SAYT_EVENT.SAYT_HIDE:
         this.show = false;
         break;
     }
