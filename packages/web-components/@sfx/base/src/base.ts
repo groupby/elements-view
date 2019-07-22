@@ -15,7 +15,7 @@ export default class Base extends LitElement {
   observer: MutationObserver;
 
   /**
-   * Constructs an instance of the Base class and calls the addSlots
+   * Constructs an instance of the Base class and calls the [[addSlots]]
    * function.
    */
   constructor() {
@@ -24,10 +24,10 @@ export default class Base extends LitElement {
   }
 
   /**
-   * Adds slotted elements into the shadow dom.
+   * Adds slots to the shadow dom.
    * See [[makeSlot]] for more details. This function was pulled
    * directly from
-   * github.com/Polymer/lit-element/issues/42#issuecomment-442894676.
+   * https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676.
    */
   addSlots() {
     this.shadowRoot.appendChild(makeSlot('before'));
@@ -36,7 +36,7 @@ export default class Base extends LitElement {
   }
 
   /**
-   * Sets up the MutationObserver to begin receiving notifications.
+   * Sets up a MutationObserver to listen on changes to this element's child list.
    */
   connectedCallback() {
     super.connectedCallback();
@@ -53,9 +53,9 @@ export default class Base extends LitElement {
   }
 
   /**
-   * Attaches shadow root to the Node, and sets the render root to the
-   *  Node itself.
-   * Enables use of the light dom.
+   * Enables the use of the light dom with slots. A shadow dom is
+   * attached to this element and the render root is set to the element
+   * itself.
    */
   createRenderRoot() {
     this.attachShadow({ mode: 'open' });

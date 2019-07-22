@@ -13,9 +13,9 @@ describe('List component', () => {
     expect(list).to.be.an.instanceof(Base);
   });
 
-  describe('title property', () => {
+  describe('caption property', () => {
     it('should default to an empty string', () => {
-      expect(list.title).to.equal('');
+      expect(list.caption).to.equal('');
     });
   });
 

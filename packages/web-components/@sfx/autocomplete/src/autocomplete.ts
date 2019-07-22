@@ -4,7 +4,7 @@ import { Base } from '@sfx/base';
 import { autocompleteReceivedResults } from './events';
 
 /**
- * Listens for the sfx::autocomplete_received_results event and
+ * Listens for the `sfx::autocomplete_received_results` event and
  * populates a list with the data received.
  */
 @customElement('sfx-autocomplete')
@@ -16,7 +16,7 @@ export default class Autocomplete extends Base {
   /**
    * The text to use in the header.
    */
-  @property({ type: String, reflect: true }) title: string = '';
+  @property({ type: String, reflect: true }) caption: string = '';
 
   /**
    * Constructs an instance of Autocomplete.
@@ -75,19 +75,17 @@ export default class Autocomplete extends Base {
 
   /**
    * Renders results data in a list format using the `sfx-list` custom
-   *  element.
+   * element.
    */
   render() {
     return html`
-      ${this.title && this.results.length > 0
-        ? html`
-            <h3>${this.title}</h3>
-          `
+      ${this.caption && this.results.length > 0
+        ? html`<h3>${this.caption}</h3>`
         : ''}
       ${this.results.map(
         list =>
           html`
-            <sfx-list .sfxListTitle="${list.title}" .items="${list.items}"></sfx-list>
+            <sfx-list caption="${list.title}" .items="${list.items}"></sfx-list>
           `
       )}
       <button @click=${this.dispatchAutocompleteResults}>

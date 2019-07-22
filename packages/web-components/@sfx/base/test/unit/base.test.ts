@@ -6,6 +6,7 @@ import * as BaseUtils from '../../src/utils';
 
 describe('Base Class', () => {
   let base;
+  
   beforeEach(() => {
     base = new Base();
   });
@@ -91,8 +92,3 @@ describe('Base Class', () => {
     });
   });
 });
-/**
- * Some functions utilized in the Base class were pulled
- * directly from https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676.
- * This functionality is not currently being tested within this test suite.
- */

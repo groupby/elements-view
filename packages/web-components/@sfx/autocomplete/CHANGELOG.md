@@ -6,4 +6,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- SFX-152: Added the autocomplete sub-component.
+- SFX-152: Added the autocomplete component.
+  - This component renders a list of autocomplete terms.

@@ -28,9 +28,8 @@ storiesOf('UI|List', module)
   .add(
     'With Title',
     () => `
-      <sfx-list sfxlisttitle="${text('Sfx List Title', 'Items')}" items="${text(
-      'List Items',
-      JSON.stringify(items)
-    )}"></sfx-list>
+      <sfx-list 
+        caption="${text('Sfx List Title', 'Items')}" 
+        items="${text('List Items', JSON.stringify(items))}"></sfx-list>
     `
   );

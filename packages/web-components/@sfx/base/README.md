@@ -14,7 +14,7 @@ The current default adds slotted content after the content contained within the 
 
 ## Testing
 
-The test suite for this component is contained in the /packages/web-components/@sfx/base/test.
+The test suite for this component is contained in the `test` directory.
 To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:
 
 - To run the tests once:
@@ -23,7 +23,7 @@ To run the tests, navigate to this folder and use one of the following commands 
 yarn test
 ```
 
-- To run the tests and watch the `src` and `test` directories to rerun the tests after any changes:
+- To run the tests and watch the `src` and `test` directories for changes:
 
 ```sh
 yarn tdd
