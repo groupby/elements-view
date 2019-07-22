@@ -20,10 +20,6 @@ export default class List extends Base {
       ${this.sfxListTitle
         ? html`
             <h4 id="list_title_${this.sfxListTitle}">${this.sfxListTitle}</h4>
-          `
-        : ''}
-      ${this.sfxListTitle
-        ? html`
             <ul aria-labelledby="list_title_${this.sfxListTitle}">
               ${this.items.map(
                 item =>

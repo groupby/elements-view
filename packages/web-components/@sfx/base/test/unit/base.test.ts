@@ -37,7 +37,7 @@ describe('Base Class', () => {
       const observer = {
         observe: () => {}
       };
-      const createChildrenObserverStub = stub(BaseUtils, 'createChildrenObserver').returns(observer);
+      stub(BaseUtils, 'createChildrenObserver').returns(observer);
 
       base.connectedCallback();
 
@@ -46,7 +46,7 @@ describe('Base Class', () => {
 
     it('should observe changes to the child list', () => {
       const observe = spy();
-      const createChildrenObserverStub = stub(BaseUtils, 'createChildrenObserver').returns({ observe });
+      stub(BaseUtils, 'createChildrenObserver').returns({ observe });
 
       base.connectedCallback();
 

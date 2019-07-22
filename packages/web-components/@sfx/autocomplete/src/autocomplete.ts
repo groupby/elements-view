@@ -1,7 +1,7 @@
 import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 import { Base } from '@sfx/base';
-import { autocompleteReceivedResults } from './utils';
+import { autocompleteReceivedResults } from './events';
 
 /**
  * Listens for the sfx::autocomplete_received_results event and
