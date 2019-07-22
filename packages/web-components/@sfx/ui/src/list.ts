@@ -25,12 +25,22 @@ export default class List extends Base {
       ${this.sfxListTitle
         ? html`
             <ul aria-labelledby="list_title_${this.sfxListTitle}">
-              ${this.items.map(item => html`<li>${item.label}</li></ul>`)}
+              ${this.items.map(
+                item =>
+                  html`
+                    <li>${item.label}</li>
+                  `
+              )}
             </ul>
           `
         : html`
             <ul>
-              ${this.items.map(item => html`<li>${item.label}</li></ul>`)}
+              ${this.items.map(
+                item =>
+                  html`
+                    <li>${item.label}</li>
+                  `
+              )}
             </ul>
           `}
     `;
