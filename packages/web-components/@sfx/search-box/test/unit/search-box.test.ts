@@ -53,7 +53,7 @@ describe('SearchBox Component', () => {
 
   describe('emitSearchEvent', () => {
     it('should dispatch a search request event', () => {
-      searchbox.searchTerm = 'a';
+      searchbox.value = 'a';
       const searchRequestEvent = new CustomEvent(
         SEARCHBOX_EVENT.SEARCH_REQUEST,
         {
@@ -96,7 +96,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('updateText', () => {
-    it('should update the searchTerm property in response to data received', () => {
+    it('should update the value property in response to data received', () => {
       const detail = 'inputText';
       stub(searchbox, 'getInputElement').returns(
         html`
@@ -104,18 +104,18 @@ describe('SearchBox Component', () => {
         `
       );
       searchbox.updateText({ detail });
-      expect(searchbox.searchTerm).to.equal(detail);
+      expect(searchbox.value).to.equal(detail);
     });
   });
 
   describe('handleKeyup', () => {
-    it('should remove the last letter of the searchTerm string if backpace is pressed', () => {
-      searchbox.searchTerm = 'hello';
+    it('should remove the last letter of the value string if backpace is pressed', () => {
+      searchbox.value = 'hello';
       const keyCode = 8;
 
       searchbox.handleKeyup({ keyCode });
 
-      expect(searchbox.searchTerm).to.equal('hell');
+      expect(searchbox.value).to.equal('hell');
     });
 
     it('should emit a searchBoxClearedEvent if backspace is pressed when there is one character remaining', () => {
@@ -123,7 +123,7 @@ describe('SearchBox Component', () => {
         searchbox,
         'emitSearchBoxClearedEvent'
       );
-      searchbox.searchTerm = 'h';
+      searchbox.value = 'h';
       const keyCode = 8;
 
       searchbox.handleKeyup({ keyCode });
@@ -131,9 +131,9 @@ describe('SearchBox Component', () => {
       expect(emitSearchBoxClearedEventSpy).to.have.been.called;
     });
 
-    it('should invoke the emitSearchEvent function if enter is pressed and searchTerm property length is greater than 0', () => {
+    it('should invoke the emitSearchEvent function if enter is pressed and value property length is greater than 0', () => {
       const emitSearchSpy = spy(searchbox, 'emitSearchEvent');
-      searchbox.searchTerm = 'hello';
+      searchbox.value = 'hello';
       const keyCode = 13;
 
       searchbox.handleKeyup({ keyCode });
@@ -141,8 +141,8 @@ describe('SearchBox Component', () => {
       expect(emitSearchSpy).to.have.been.calledWith('hello');
     });
 
-    it('should invoke the updateSearchTerm function if word character is pressed', () => {
-      const updateSearchTermSpy = spy(searchbox, 'updateSearchTerm');
+    it('should invoke the updatevalue function if word character is pressed', () => {
+      const updatevalueSpy = spy(searchbox, 'updatevalue');
       const keyCode = 68;
       const target = {
         value: 'dee'
@@ -150,16 +150,16 @@ describe('SearchBox Component', () => {
 
       searchbox.handleKeyup({ keyCode, target });
 
-      expect(updateSearchTermSpy).to.have.been.calledWith('dee');
+      expect(updatevalueSpy).to.have.been.calledWith('dee');
     });
 
-    it('should invoke the emitAutocompleteRequestEvent function if character key is pressed and searchTerm is 3 characters or more', () => {
-      stub(searchbox, 'updateSearchTerm');
+    it('should invoke the emitAutocompleteRequestEvent function if character key is pressed and value is 3 characters or more', () => {
+      stub(searchbox, 'updatevalue');
       const emitAutocompleteSpy = spy(
         searchbox,
         'emitAutocompleteRequestEvent'
       );
-      searchbox.searchTerm = 'darkkk';
+      searchbox.value = 'darkkk';
       const keyCode = 68;
       const target = {
         value: 'darkkkd'
@@ -171,11 +171,11 @@ describe('SearchBox Component', () => {
     });
   });
 
-  describe('updateSearchTerm', () => {
+  describe('updatevalue', () => {
     it('should set the search term property to the input value', () => {
-      searchbox.updateSearchTerm('catfood');
+      searchbox.updatevalue('catfood');
 
-      expect(searchbox.searchTerm).to.equal('catfood');
+      expect(searchbox.value).to.equal('catfood');
     });
   });
 
@@ -190,7 +190,7 @@ describe('SearchBox Component', () => {
 
       searchbox.clearSearch();
 
-      expect(searchbox.searchTerm).to.equal('');
+      expect(searchbox.value).to.equal('');
     });
 
     it('should invoke the emitSearchBoxClearedEvent', () => {

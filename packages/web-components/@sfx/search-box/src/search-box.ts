@@ -1,32 +1,32 @@
 import { LitElement, customElement, html, property } from 'lit-element';
 import { SEARCHBOX_EVENT } from './utils';
 
-@customElement('sfx-search-box')
 /**
  * This entity is responsible for receiving user input and dispatching events
  * based on input.
  * The entity also listens for events, and updates data accordingly.
  */
+@customElement('sfx-search-box')
 export default class SearchBox extends LitElement {
   /**
    * Text used as placeholder in search box.
    */
-  @property({ type: String, reflect: true })
-  placeholderText = 'Type your search';
+  @property({ type: String })
+  placeholder: string = 'Type your search';
   /**
    * Search term generated via user input.
    */
-  @property({ type: String, reflect: true }) searchTerm = '';
+  @property({ type: String, reflect: true }) value: string = '';
   /**
-   * Boolean to determine whether or not to display search button.
+   * Determines whether or not the search button is present.
    */
   @property({ type: Boolean, reflect: true })
-  searchButton = false;
+  searchButton: boolean = false;
   /**
-   * Boolean to determine whether or not to display clear button.
+   * Determines whether or not the clear button is present.
    */
   @property({ type: Boolean, reflect: true })
-  clearButton = false;
+  clearButton: boolean = false;
 
   constructor() {
     super();
@@ -63,11 +63,11 @@ export default class SearchBox extends LitElement {
   }
 
   /**
-   * Dispatches a search request event with the `searchTerm` property or string passed in.
+   * Dispatches a search request event with the `value` property or string passed in.
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
   emitSearchEvent(query?: String) {
-    const term = query && typeof query === 'string' ? query : this.searchTerm;
+    const term = query && typeof query === 'string' ? query : this.value;
     const searchboxRequestEvent = new CustomEvent(
       SEARCHBOX_EVENT.SEARCH_REQUEST,
       {
@@ -112,7 +112,7 @@ export default class SearchBox extends LitElement {
    * @param e The event object.
    */
   updateText(e: CustomEvent) {
-    this.searchTerm = e.detail;
+    this.value = e.detail;
     let el = this.getInputElement();
     el.value = e.detail;
   }
@@ -134,35 +134,35 @@ export default class SearchBox extends LitElement {
    */
   handleKeyup(e: KeyboardEvent) {
     if (e.keyCode === 8) {
-      if (this.searchTerm.length === 1) {
+      if (this.value.length === 1) {
         this.emitSearchBoxClearedEvent();
       }
-      this.searchTerm = this.searchTerm.slice(0, this.searchTerm.length - 1);
-    } else if (e.keyCode === 13 && this.searchTerm.length > 0) {
-      this.emitSearchEvent(this.searchTerm);
+      this.value = this.value.slice(0, this.value.length - 1);
+    } else if (e.keyCode === 13 && this.value.length > 0) {
+      this.emitSearchEvent(this.value);
     } else {
-      this.updateSearchTerm((<HTMLInputElement>e.target).value);
-      if (this.searchTerm.length > 3) {
-        this.emitAutocompleteRequestEvent(this.searchTerm);
+      this.updatevalue((<HTMLInputElement>e.target).value);
+      if (this.value.length > 3) {
+        this.emitAutocompleteRequestEvent(this.value);
       }
     }
   }
 
   /**
-   * Updates the searchTerm property to the value passed to it.
+   * Updates the value property to the value passed to it.
    *
    * @param inputVal The value pulled directly from the input box.
    */
-  updateSearchTerm(inputVal: string) {
-    this.searchTerm = inputVal;
+  updatevalue(inputVal: string) {
+    this.value = inputVal;
   }
 
   /**
-   * Sets searchTerm property and searchbox input value to an empty string.
+   * Sets value property and searchbox input value to an empty string.
    * Invoked in response to click on `clear` button, or removal of all text from input.
    */
   clearSearch() {
-    this.searchTerm = '';
+    this.value = '';
     let el = this.getInputElement();
     el.value = '';
     this.emitSearchBoxClearedEvent();
@@ -212,7 +212,7 @@ export default class SearchBox extends LitElement {
     return html`
     <input type="text" @mouseenter="${this.hoverExposed}" @click="${
       this.clickExposed
-    }" id="searchInput" placeholder="${this.placeholderText}" @keyup="${
+    }" id="searchInput" placeholder="${this.placeholder}" @keyup="${
       this.handleKeyup
     }"></input>
     ${

@@ -52,7 +52,7 @@ storiesOf('Components|Searchbox', module)
   .add(
     'With custom placeholder text',
     () => `
-  <sfx-search-box placeholdertext="${text(
+  <sfx-search-box placeholder="${text(
     'Placeholder Title',
     'Search'
   )}"></sfx-search-box>
