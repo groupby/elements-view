@@ -16,7 +16,7 @@ export default class SearchBox extends LitElement {
   /**
    * Search term generated via user input.
    */
-  @property({ type: String, reflect: true }) value: string = '';
+  @property({ type: String }) value: string = '';
   /**
    * Determines whether or not the search button is present.
    */
@@ -34,7 +34,7 @@ export default class SearchBox extends LitElement {
   }
 
   /*
-   * To be removed with introduction of Base.
+   * TODO to be removed with introduction of Base.
    */
   createRenderRoot() {
     return this;
@@ -45,10 +45,7 @@ export default class SearchBox extends LitElement {
    */
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener(
-      SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER,
-      this.updateText
-    );
+    window.addEventListener(SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER, this.updateText);
   }
 
   /**
@@ -56,26 +53,19 @@ export default class SearchBox extends LitElement {
    */
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener(
-      SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER,
-      this.updateText
-    );
+    window.removeEventListener(SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER, this.updateText);
   }
 
   /**
    * Dispatches a search request event with the `value` property or string passed in.
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
-  emitSearchEvent(query?: string) {
-    const term = query && typeof query === 'string' ? query : this.value;
-    const searchboxRequestEvent = new CustomEvent(
-      SEARCHBOX_EVENT.SEARCH_REQUEST,
-      {
-        detail: term,
-        bubbles: true
-      }
-    );
-    window.dispatchEvent(searchboxRequestEvent);
+  emitSearchEvent() {
+    const searchboxRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+      detail: this.value,
+      bubbles: true
+    });
+    this.dispatchEvent(searchboxRequestEvent);
   }
 
   /**
@@ -85,10 +75,10 @@ export default class SearchBox extends LitElement {
    * @param text A string of text inputed into input box.
    */
   emitAutocompleteRequestEvent(text: string) {
-    const autocompleteRequestEvent = new CustomEvent(
-      SEARCHBOX_EVENT.AUTOCOMPLETE_REQUEST,
-      { detail: text, bubbles: true }
-    );
+    const autocompleteRequestEvent = new CustomEvent(SEARCHBOX_EVENT.AUTOCOMPLETE_REQUEST, {
+      detail: text,
+      bubbles: true
+    });
     window.dispatchEvent(autocompleteRequestEvent);
   }
 
@@ -98,9 +88,7 @@ export default class SearchBox extends LitElement {
    * using keypresses.
    */
   emitSearchBoxClearedEvent() {
-    const searchboxClearedEvent = new CustomEvent(
-      SEARCHBOX_EVENT.SEARCHBOX_CLEARED
-    );
+    const searchboxClearedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEARED);
     window.dispatchEvent(searchboxClearedEvent);
   }
 
@@ -139,9 +127,9 @@ export default class SearchBox extends LitElement {
       }
       this.value = this.value.slice(0, this.value.length - 1);
     } else if (e.keyCode === 13 && this.value.length > 0) {
-      this.emitSearchEvent(this.value);
+      this.emitSearchEvent();
     } else {
-      this.updatevalue((<HTMLInputElement>e.target).value);
+      this.updateValue((<HTMLInputElement>e.target).value);
       if (this.value.length > 3) {
         this.emitAutocompleteRequestEvent(this.value);
       }
@@ -153,7 +141,7 @@ export default class SearchBox extends LitElement {
    *
    * @param inputVal The value pulled directly from the input box.
    */
-  updatevalue(inputVal: string) {
+  updateValue(inputVal: string) {
     this.value = inputVal;
   }
 
@@ -173,9 +161,7 @@ export default class SearchBox extends LitElement {
    * Invoked in response to a user clicking inside of the searchbox input.
    */
   clickExposed() {
-    const searchBoxClickedEvent = new CustomEvent(
-      SEARCHBOX_EVENT.SEARCHBOX_CLICK
-    );
+    const searchBoxClickedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
     window.dispatchEvent(searchBoxClickedEvent);
   }
 
@@ -184,9 +170,7 @@ export default class SearchBox extends LitElement {
    * Invoked in response to a user hovering inside of the searchbox input.
    */
   hoverExposed() {
-    const searchBoxHoveredEvent = new CustomEvent(
-      SEARCHBOX_EVENT.SEARCHBOX_HOVER
-    );
+    const searchBoxHoveredEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_HOVER);
     window.dispatchEvent(searchBoxHoveredEvent);
   }
 
@@ -210,11 +194,9 @@ export default class SearchBox extends LitElement {
 
   render() {
     return html`
-    <input type="text" @mouseenter="${this.hoverExposed}" @click="${
-      this.clickExposed
-    }" id="searchInput" placeholder="${this.placeholder}" @keyup="${
-      this.handleKeyup
-    }"></input>
+    <input type="text" @mouseenter="${this.hoverExposed}" @click="${this.clickExposed}" id="searchInput" placeholder="${
+      this.placeholder
+    }" @keyup="${this.handleKeyup}"></input>
     ${
       this.clearButton
         ? html`

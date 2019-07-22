@@ -31,10 +31,7 @@ describe('SearchBox Component', () => {
 
       searchbox.connectedCallback();
 
-      expect(windowAddEventListener).to.have.been.calledWith(
-        SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER,
-        searchbox.updateText
-      );
+      expect(windowAddEventListener).to.have.been.calledWith(SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER, searchbox.updateText);
     });
   });
 
@@ -54,13 +51,10 @@ describe('SearchBox Component', () => {
   describe('emitSearchEvent', () => {
     it('should dispatch a search request event', () => {
       searchbox.value = 'a';
-      const searchRequestEvent = new CustomEvent(
-        SEARCHBOX_EVENT.SEARCH_REQUEST,
-        {
-          detail: 'a',
-          bubbles: true
-        }
-      );
+      const searchRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+        detail: 'a',
+        bubbles: true
+      });
 
       searchbox.emitSearchEvent();
 
@@ -70,16 +64,11 @@ describe('SearchBox Component', () => {
 
   describe('emitAutocompleteRequestEvent', () => {
     it('should dispatch an autocomplete event', () => {
-      const autocompleteRequestEvent = new CustomEvent(
-        'sfx::autocomplete_request',
-        { detail: 'b', bubbles: true }
-      );
+      const autocompleteRequestEvent = new CustomEvent('sfx::autocomplete_request', { detail: 'b', bubbles: true });
 
       searchbox.emitAutocompleteRequestEvent();
 
-      expect(windowDispatchEvent).to.have.been.calledWith(
-        autocompleteRequestEvent
-      );
+      expect(windowDispatchEvent).to.have.been.calledWith(autocompleteRequestEvent);
     });
   });
 
@@ -89,9 +78,7 @@ describe('SearchBox Component', () => {
 
       searchbox.emitSearchBoxClearedEvent();
 
-      expect(windowDispatchEvent).to.have.been.calledWith(
-        searchboxxClearedEvent
-      );
+      expect(windowDispatchEvent).to.have.been.calledWith(searchboxxClearedEvent);
     });
   });
 
@@ -119,10 +106,7 @@ describe('SearchBox Component', () => {
     });
 
     it('should emit a searchBoxClearedEvent if backspace is pressed when there is one character remaining', () => {
-      const emitSearchBoxClearedEventSpy = spy(
-        searchbox,
-        'emitSearchBoxClearedEvent'
-      );
+      const emitSearchBoxClearedEventSpy = spy(searchbox, 'emitSearchBoxClearedEvent');
       searchbox.value = 'h';
       const keyCode = 8;
 
@@ -141,8 +125,8 @@ describe('SearchBox Component', () => {
       expect(emitSearchSpy).to.have.been.calledWith('hello');
     });
 
-    it('should invoke the updatevalue function if word character is pressed', () => {
-      const updatevalueSpy = spy(searchbox, 'updatevalue');
+    it('should invoke the updateValue function if word character is pressed', () => {
+      const updateValueSpy = spy(searchbox, 'updateValue');
       const keyCode = 68;
       const target = {
         value: 'dee'
@@ -150,15 +134,12 @@ describe('SearchBox Component', () => {
 
       searchbox.handleKeyup({ keyCode, target });
 
-      expect(updatevalueSpy).to.have.been.calledWith('dee');
+      expect(updateValueSpy).to.have.been.calledWith('dee');
     });
 
     it('should invoke the emitAutocompleteRequestEvent function if character key is pressed and value is 3 characters or more', () => {
-      stub(searchbox, 'updatevalue');
-      const emitAutocompleteSpy = spy(
-        searchbox,
-        'emitAutocompleteRequestEvent'
-      );
+      stub(searchbox, 'updateValue');
+      const emitAutocompleteSpy = spy(searchbox, 'emitAutocompleteRequestEvent');
       searchbox.value = 'darkkk';
       const keyCode = 68;
       const target = {
@@ -171,9 +152,9 @@ describe('SearchBox Component', () => {
     });
   });
 
-  describe('updatevalue', () => {
+  describe('updateValue', () => {
     it('should set the search term property to the input value', () => {
-      searchbox.updatevalue('catfood');
+      searchbox.updateValue('catfood');
 
       expect(searchbox.value).to.equal('catfood');
     });
@@ -213,9 +194,7 @@ describe('SearchBox Component', () => {
 
       searchbox.clickExposed();
 
-      expect(windowDispatchEvent).to.have.been.calledWith(
-        searchboxClickedEvent
-      );
+      expect(windowDispatchEvent).to.have.been.calledWith(searchboxClickedEvent);
     });
   });
 
