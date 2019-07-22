@@ -44,10 +44,3 @@ To run the tests, navigate to this folder and use one of the following commands 
 ```sh
 yarn test
 ```
-
-- To run the tests and watch the `src` and `test` directories to rerun the tests after any changes:
-
-```sh
-yarn tdd
-``
-```
