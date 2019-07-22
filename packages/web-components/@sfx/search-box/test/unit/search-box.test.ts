@@ -17,7 +17,7 @@ describe('SearchBox Component', () => {
   });
 
   /*
-   * To be replaced with Base
+   * TODO To be removed with introduction of Base.
    */
   describe('Constructor', () => {
     it('should extend LitElement', () => {

@@ -66,7 +66,7 @@ export default class SearchBox extends LitElement {
    * Dispatches a search request event with the `value` property or string passed in.
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
-  emitSearchEvent(query?: String) {
+  emitSearchEvent(query?: string) {
     const term = query && typeof query === 'string' ? query : this.value;
     const searchboxRequestEvent = new CustomEvent(
       SEARCHBOX_EVENT.SEARCH_REQUEST,
@@ -82,19 +82,19 @@ export default class SearchBox extends LitElement {
    * Dispatches an autocomplete request event.
    * Invoked in response to user input: typed search term is greater than 3 characters.
    *
-   * @param letters A string of letters inputed into input box.
+   * @param text A string of text inputed into input box.
    */
-  emitAutocompleteRequestEvent(letters: String) {
+  emitAutocompleteRequestEvent(text: string) {
     const autocompleteRequestEvent = new CustomEvent(
       SEARCHBOX_EVENT.AUTOCOMPLETE_REQUEST,
-      { detail: letters, bubbles: true }
+      { detail: text, bubbles: true }
     );
     window.dispatchEvent(autocompleteRequestEvent);
   }
 
   /**
    * Dispatches an event notifying that the input box has been cleared.
-   * Invoked in response to user input: clear button, remove all letters
+   * Invoked in response to user input: clear button, remove all text
    * using keypresses.
    */
   emitSearchBoxClearedEvent() {
