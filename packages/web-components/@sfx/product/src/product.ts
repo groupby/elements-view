@@ -1,4 +1,6 @@
-import { customElement, property, html, TemplateResult, LitElement } from 'lit-element';
+import { customElement, property, html, TemplateResult } from 'lit-element';
+
+// import Base from '@sfx/base';
 import Base from '../../base';
 
 @customElement('sfx-product')

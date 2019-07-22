@@ -1,8 +1,8 @@
 import { html, TemplateResult } from 'lit-element';
 import { expect, spy, stub } from '../utils';
 
+// import Base from '@sfx/base';
 import Product from '../../src/product';
-// import Base from '../../../base/index';
 
 describe('Product Component', () => {
   let component: any = {};
@@ -13,7 +13,7 @@ describe('Product Component', () => {
 
   describe('constructor', () => {
     // it('should extend the Base class', () => {
-    //   expect(product).to.be.an.instanceOf(Base);
+    //   expect(component).to.be.an.instanceOf(Base);
     // });
 
     describe('product property', () => {
@@ -71,6 +71,7 @@ describe('Product Component', () => {
       component.render();
       expect(urlWrap).to.be.called;
     });
+
   });
 })
 

@@ -1,6 +1,7 @@
 import { html, TemplateResult } from 'lit-element';
 import { expect, spy, stub } from '../utils';
 
+// import Base from '@sfx/base';
 import Variants from '../../src/variants';
 
 describe('Variants Component', () => {
@@ -12,7 +13,7 @@ describe('Variants Component', () => {
 
   describe('constructor', () => {
     // it('should extend the Base class', () => {
-    //   expect(product).to.be.an.instanceOf(Base);
+    //   expect(component).to.be.an.instanceOf(Base);
     // });
 
     describe('type property', () => {
@@ -52,7 +53,7 @@ describe('Variants Component', () => {
       const result = component.render();
       expect(result).to.be.an.instanceof(TemplateResult);
     });
-
+    
     it('should call the listVariant function twice', () => {
       const listVariant = stub(component, 'listVariant');
 
