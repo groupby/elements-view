@@ -14,21 +14,21 @@ export default class Sayt extends LitElement {
   constructor() {
     super();
 
-    this.eventCallback = this.eventCallback.bind(this);
+    this.handleVisibilityEvent = this.handleVisibilityEvent.bind(this);
   }
 
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.eventCallback);
-    window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.eventCallback);
+    window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.handleVisibilityEvent);
+    window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.handleVisibilityEvent);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.eventCallback);
-    window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.eventCallback);
+    window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.handleVisibilityEvent);
+    window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.handleVisibilityEvent);
   }
 
   // TODO: Remove createRenderRoot once Base class is extended.
@@ -42,7 +42,7 @@ export default class Sayt extends LitElement {
     }
   }
 
-  eventCallback(e: CustomEvent) {
+  handleVisibilityEvent(e: CustomEvent) {
     switch(e.type) {
       case SAYT_EVENT.SAYT_SHOW:
         this.show = true;

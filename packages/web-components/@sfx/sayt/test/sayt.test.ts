@@ -15,8 +15,8 @@ describe('Sayt Component', () => {
 
       sayt.connectedCallback();
 
-      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.eventCallback);
-      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.eventCallback);
+      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.handleVisibilityEvent);
+      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.handleVisibilityEvent);
     });
   });
 
@@ -27,8 +27,8 @@ describe('Sayt Component', () => {
 
       sayt.disconnectedCallback();
 
-      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.eventCallback);
-      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.eventCallback);
+      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.handleVisibilityEvent);
+      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.handleVisibilityEvent);
     });
   });
 
