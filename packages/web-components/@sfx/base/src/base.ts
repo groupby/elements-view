@@ -1,72 +1,46 @@
 import { LitElement, customElement, html } from 'lit-element';
-import { makeSlot, createChildrenObserver } from './utils';
 
 /**
  * A base component for all SF-X components to extend. It is based on LitElement.
  */
 @customElement('sfx-base')
 export default class Base extends LitElement {
-  /**
-   * MutationObserver created via createChildrenObserver function.
-   * See [[createChildrenObserver]] for details. This function was
-   * pulled directly from
-   * https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676
-   */
-  observer: MutationObserver;
+  protected slots: Slot[];
 
-  /**
-   * Constructs an instance of the Base class and calls the [[addSlots]]
-   * function.
-   */
-  constructor() {
-    super();
-    this.addSlots();
-  }
-
-  /**
-   * Adds slots to the shadow dom.
-   * See [[makeSlot]] for more details. This function was pulled
-   * directly from
-   * https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676
-   */
-  addSlots() {
-    this.shadowRoot.appendChild(makeSlot('before'));
-    this.shadowRoot.appendChild(makeSlot());
-    this.shadowRoot.appendChild(makeSlot('after'));
-  }
-
-  /**
-   * Sets up a MutationObserver to listen on changes to this element's child list.
-   */
-  connectedCallback() {
-    super.connectedCallback();
-    this.observer = createChildrenObserver(this);
-
-    this.observer.observe(this, { childList: true });
-  }
-
-  /**
-   * Disconnects the MutationObserver.
-   */
-  firstUpdate() {
-    this.observer.disconnect();
-  }
-
-  /**
-   * Enables the use of the light dom with slots. A shadow dom is
-   * attached to this element and the render root is set to the element
-   * itself.
-   */
   createRenderRoot() {
-    this.attachShadow({ mode: 'open' });
+    const slots: Slot[] = [];
+
+    this.childNodes.forEach((node: any) => {
+      const { slot, outerHTML } = node;
+
+      if ( slot && outerHTML ) {
+        slots.push({ slot, outerHTML });
+      }
+    });
+
+    this.slots = slots;
+
     return this;
   }
 
-  render() {
-    return html`
-      <div slot="before"></div>
-      <div></div>
-      <div slot="after"></div>
-    `;
+  firstUpdated() {
+    this.slots.forEach(slot => {
+      try {
+        const newNode = document.createRange().createContextualFragment(slot.outerHTML);
+        const oldNode = this.querySelector(`slot[name="${slot.slot}"]`);
+        if (oldNode) {
+          this.replaceChild(newNode, oldNode);
+        } else {
+          throw new Error(`No slot with the name ${slot.slot}`);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }); 
   }
+}
+
+export interface Slot {
+  slot: string;
+  outerHTML: string;
 }
