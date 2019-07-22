@@ -2,18 +2,60 @@ defaults:
   image: &image
     docker:
       - image: cirlceci/node:11.6.0
+  yarn_cache: &yarn_cache
+    key: yarn_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
   yarn_install: &yarn_install
     name: Install
     command: yarn
+  setup_git: &setup_git
+    name: Setup Git user
+    command: |
+      git config --global user.email "ops@groupbyinc.com"
+      git config --global user.name "GroupBy Ops"
+      git config --global push.default simple
+
+  requires_build_structure: &requires_build_structure
+    requires:
+      - build_structure
+  requires_build: &requires_build
+    requires:
+      - build_final
 
 version: 2
 
 jobs:
+  ## Initialization jobs
+
+  ### generate_cache_key_file
+  ### Stores the current build number in a file to use in unique cache keys and branch names for this workflow.
+  ### The build number is guaranteed to be unique per build per project and is suitable for use as an identifier.
+  generate_cache_key_file:
+    <<: *image
+    working_directory: ~/
+    steps:
+      - run: echo "$CIRCLE_BUILD_NUM" > workflow-start
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - workflow-start
+
+  ## Build jobs
+
+  ### build: build_{package}
+  ### Builds {package} and stores them in a cache.
   build:
     <<: *image
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/
       - run:
+
+  ## Unit test jobs
+
+  ### unit_test: unit_test_{package}
+  ### Runs the tests for {package}.
   unit_test:
     build:
     <<: *image
