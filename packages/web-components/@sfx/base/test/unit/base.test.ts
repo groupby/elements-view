@@ -26,10 +26,7 @@ describe('Base Class', () => {
 
   describe('connectedCallback', () => {
     it('should call its super connectedCallback', () => {
-      const litElementConnectedCallbackStub = stub(
-        LitElement.prototype,
-        'connectedCallback'
-      );
+      const litElementConnectedCallbackStub = stub(LitElement.prototype, 'connectedCallback');
 
       base.connectedCallback();
 
@@ -40,10 +37,7 @@ describe('Base Class', () => {
       const observer = {
         observe: () => {}
       };
-      const createChildrenObserverStub = stub(
-        BaseUtils,
-        'createChildrenObserver'
-      ).returns(observer);
+      const createChildrenObserverStub = stub(BaseUtils, 'createChildrenObserver').returns(observer);
 
       base.connectedCallback();
 
@@ -52,10 +46,7 @@ describe('Base Class', () => {
 
     it('should observe changes to the child list', () => {
       const observe = spy();
-      const createChildrenObserverStub = stub(
-        BaseUtils,
-        'createChildrenObserver'
-      ).returns({ observe });
+      const createChildrenObserverStub = stub(BaseUtils, 'createChildrenObserver').returns({ observe });
 
       base.connectedCallback();
 

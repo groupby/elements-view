@@ -1,6 +1,7 @@
 /*
  * The below functions were pulled
- * directly from https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676.
+ * directly from
+ * github.com/Polymer/lit-element/issues/42#issuecomment-442894676.
  */
 
 /* istanbul ignore file */

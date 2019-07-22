@@ -29,10 +29,7 @@ describe('Autcomplete Component', () => {
 
   describe('connectedCallback', () => {
     it('should call its super connectedCallback', () => {
-      const baseConnectedCallbackStub = stub(
-        Base.prototype,
-        'connectedCallback'
-      );
+      const baseConnectedCallbackStub = stub(Base.prototype, 'connectedCallback');
 
       autocomplete.connectedCallback();
 
@@ -53,10 +50,7 @@ describe('Autcomplete Component', () => {
 
   describe('disconnectedCallback', () => {
     it('should call its super disconnectedCallback', () => {
-      const baseDisconnectedCallbackStub = stub(
-        Base.prototype,
-        'disconnectedCallback'
-      );
+      const baseDisconnectedCallbackStub = stub(Base.prototype, 'disconnectedCallback');
 
       autocomplete.disconnectedCallback();
 
@@ -91,7 +85,7 @@ describe('Autcomplete Component', () => {
       ];
 
       autocomplete.receivedResults({ detail });
-      
+
       expect(autocomplete.results).to.deep.equal(detail);
     });
   });

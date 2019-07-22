@@ -37,7 +37,8 @@ const optionalTitle = 'Autocomplete Results';
 
 /*
  * --- Slots Testing ---
- * The final story demonstrates that content slotted in (in this case, the <div> contained within the autocomplete custom element)
+ * The final story demonstrates that content slotted in (in this case,
+ * the <div> contained within the autocomplete custom element)
  * appears within the light-dom as desired.
  *
  */
@@ -47,10 +48,7 @@ storiesOf('Components|Autocomplete', module)
   .add(
     'Default',
     () => `
-      <sfx-autocomplete results="${text(
-        'Autocomplete Results',
-        JSON.stringify(results)
-      )}"></sfx-autocomplete>
+      <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
     `
   )
   .add(
@@ -63,10 +61,7 @@ storiesOf('Components|Autocomplete', module)
   .add(
     'With Slots',
     () => `
-      <sfx-autocomplete results="${text(
-        'Autocomplete Results',
-        JSON.stringify(results)
-      )}">
+      <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
         <div>Content appears after main content</div>
       </sfx-autocomplete>
     `
@@ -74,10 +69,10 @@ storiesOf('Components|Autocomplete', module)
   .add(
     'With title customization',
     () => `
-    <sfx-autocomplete title="${text(
-      'Optional Title',
-      optionalTitle
-    )}" results="${text('Autocomplete', JSON.stringify(results))}">
+    <sfx-autocomplete title="${text('Optional Title', optionalTitle)}" results="${text(
+      'Autocomplete',
+      JSON.stringify(results)
+    )}">
       </sfx-autocomplete>
     `
   );

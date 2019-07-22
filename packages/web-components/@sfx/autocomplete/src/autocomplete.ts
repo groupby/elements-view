@@ -4,7 +4,8 @@ import { Base } from '@sfx/base';
 import { autocompleteReceivedResults } from './utils';
 
 /**
- * Listens for the sfx::autocomplete_received_results event and populates a list with the data received.
+ * Listens for the sfx::autocomplete_received_results event and
+ * populates a list with the data received.
  */
 @customElement('sfx-autocomplete')
 export default class Autocomplete extends Base {
@@ -39,10 +40,7 @@ export default class Autocomplete extends Base {
    */
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener(
-      autocompleteReceivedResults,
-      this.receivedResults
-    );
+    window.removeEventListener(autocompleteReceivedResults, this.receivedResults);
   }
 
   /**
@@ -65,21 +63,19 @@ export default class Autocomplete extends Base {
    *
    */
   dispatchAutocompleteResults() {
-    const autocompleteDataReceivedEvent = new CustomEvent(
-      'sfx::autocomplete_received_results',
-      {
-        detail: [
-          { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-          { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
-        ],
-        bubbles: true
-      }
-    );
+    const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
+      detail: [
+        { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
+        { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
+      ],
+      bubbles: true
+    });
     window.dispatchEvent(autocompleteDataReceivedEvent);
   }
 
   /**
-   * Renders results data in a list format using the `sfx-list` custom element.
+   * Renders results data in a list format using the `sfx-list` custom
+   *  element.
    */
   render() {
     return html`
@@ -91,10 +87,7 @@ export default class Autocomplete extends Base {
       ${this.results.map(
         list =>
           html`
-            <sfx-list
-              .sfxListTitle="${list.title}"
-              .items="${list.items}"
-            ></sfx-list>
+            <sfx-list .sfxListTitle="${list.title}" .items="${list.items}"></sfx-list>
           `
       )}
       <button @click=${this.dispatchAutocompleteResults}>
