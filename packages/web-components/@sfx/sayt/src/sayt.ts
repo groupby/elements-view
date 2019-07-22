@@ -35,13 +35,13 @@ export default class Sayt extends LitElement {
     return this;
   }
 
-  updated(changedProps) {
+  updated(changedProps: Map<string, any>) {
     if (changedProps.has('show')) {
       this.hidden = !this.show;
     }
   }
 
-  eventCallback(e: any) {
+  eventCallback(e: CustomEvent) {
     switch(e.type) {
       case 'sfx::sayt_show':
         this.show = true;
