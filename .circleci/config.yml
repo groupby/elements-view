@@ -117,6 +117,7 @@ workflows:
           requires:
             - build_base
             - build_ui
+            - build_autocomplete
 
       - unit_test:
           name: unit_test_base
