@@ -83,4 +83,10 @@ workflows:
         - build_base
         - build_ui
 
-      # - unit_test:
+      - unit_test:
+        name: unit_test_base
+        requires:
+          <<: *requires_build
+      - unit test:
+        name: unit_test_ui
+          <<: *requires_build
