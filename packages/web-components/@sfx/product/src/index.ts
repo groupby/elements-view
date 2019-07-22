@@ -1,2 +1,2 @@
 export { default as Product } from './product';
-export { default as Variants } from './variants';
+export { default as Variant } from './variant';

@@ -38,6 +38,7 @@
     "@strictsoftware/typedoc-plugin-monorepo": "^0.2.1",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
+    "@types/shortid": "^0.0.29",
     "@types/sinon-chai": "^3.2.2",
     "@types/webpack-env": "^1.13.9",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",

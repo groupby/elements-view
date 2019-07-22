@@ -7,6 +7,30 @@ import Base from '../../base';
 export default class Product extends Base {
   @property({ type: Object }) product: ProductModel | any = {};
 
+  constructor() {
+    super();
+    this.updateVariant = this.updateVariant.bind(this);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('change_product_variant', this.updateVariant);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('change_product_variant', this.updateVariant);
+  }
+
+  updateVariant(e: CustomEvent) {
+    const product = e.detail;
+
+    this.product = {
+      ...this.product,
+      ...product
+    };
+  }
+  
   urlWrap(url: string, children: TemplateResult) {
     return url ? html`<a href="${ url }">${children}</a>` : html`${children}`;
   }
@@ -36,9 +60,13 @@ export default class Product extends Base {
         ${ imageSrc ? html`<img src="${ imageSrc }" alt="${ imageAlt }" />`: '' }
       </slot>
       <slot name="variants">
-        ${ variants ? 
-          html`<sfx-product-variants type="${ variants.type }" .items="${ variants.items }"></sfx-product-variants>`
-        : '' }
+        <ul>
+          ${
+            variants ? 
+              variants.items.map(v => html`<sfx-product-variant type="${variants.type}" .variant="${v}"></sfx-product-variant>`)
+            : ''
+          }
+        </ul>
       </slot>
       <slot name="title">
         ${ this.urlWrap(productUrl, html`
@@ -72,5 +100,5 @@ export interface ProductVariantModel {
   image?: string;
   label?: string;
   text: string;
-  product: string;
+  product: Partial<ProductModel>;
 }

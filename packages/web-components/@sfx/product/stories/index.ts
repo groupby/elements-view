@@ -18,14 +18,78 @@ storiesOf('Components|Product', module)
     <sfx-product 
       product="${text('Product Info', JSON.stringify({
         ...product,
-         variants: { type: 'color', items: [{ color: '#bed', text: 'Mint', product }, { color: '#edc', text: 'Taupe', product }] }
+        variants: { 
+          type: 'color', 
+          items: [
+            { color: '#da5', text: 'Brown', product},
+            { color: '#7a0', text: 'Green', product: { 
+              imageSrc: 'https://teara.govt.nz/files/p-9780-enz.jpg' },
+              imageAlt: 'Spicy green potatoes'
+            }, 
+            { color: '#546', text: 'Blue', product: { 
+              imageSrc: 'http://startuptipsdaily.com/wp-content/uploads/2016/12/purple-and-blue-potato.jpg' },
+              imageAlt: 'Mystery blue potatoes'
+            }, 
+          ] 
+        }
       }))}"
     ></sfx-product>
   `, { 
     notes: { 
       markdown: `
-        # Product Tile
-        WIP: Still working on documentation
+      # SF-X Product Component
+
+      \`\`\`html
+      <sfx-product product="{}"></sfx-product>
+      \`\`\`
+      
+      The product tile component will display information about a given product.
+
+      ## Functionality 
+
+      The 
+
+      This component takes one \`product\` attribute that uses the data format seen [here](#) (@todo Link to TSDoc)
+
+      \`\`\`js
+      {
+        "name": "Product Name",
+        "price": 3.55,
+        "productUrl": "http://url",
+        "imageSrc": "http://url",
+        "imageAlt": "Alternative image text"
+      }
+      \`\`\`
+
+      The component can also use variants to display different information based on what variant is selected
+      
+      \`\`\`js
+      {
+        ...
+        "variants": {
+          
+        }
+      }
+      \`\`\`
+      
+      ## Customizations
+      
+      ## Testing
+      
+      The test suite for this component is contained in /packages/web-components/@sfx/product/test.
+      To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:
+      
+      - To run the tests once:
+      
+      \`\`\`sh
+      yarn test
+      \`\`\`
+      
+      - To run the tests and watch the \`src\` and \`test\` directories to rerun the tests after any changes:
+      
+      \`\`\`sh
+      yarn tdd
+      \`\`\`
       `
     } 
 }).add('Slotted Price', () => `
