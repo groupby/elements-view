@@ -108,7 +108,7 @@ export default class SearchBox extends LitElement {
    * Returns the searchbox input element
    */
   getInputElement(): HTMLInputElement {
-    return this.querySelector('#searchInput') as HTMLInputElement;
+    return this.querySelector('[data-sfx-ref=searchInput]') as HTMLInputElement;
   }
 
   /**
@@ -121,7 +121,7 @@ export default class SearchBox extends LitElement {
    */
   handleChange(e: KeyboardEvent) {
     this.updateValue((e.target as HTMLInputElement).value);
-    window.dispatchEvent(
+    this.dispatchEvent(
       new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
         detail: (e.target as HTMLInputElement).value,
         bubbles: true
@@ -137,8 +137,9 @@ export default class SearchBox extends LitElement {
    *
    * @param e The KeyboardEvent object.
    */
-  handleKeyupTwo(e: KeyboardEvent) {
-    if (e.keyCode === KEY_CODES.ENTER && this.value.length > 0) {
+  handleKeyup(e: KeyboardEvent) {
+    console.log('in handleKeyup', e)
+    if (e.code === 'Enter' && this.value.length > 0) {
       this.emitSearchEvent();
     }
   }
@@ -204,10 +205,10 @@ export default class SearchBox extends LitElement {
       type="text" 
       @mouseenter="${this.hoverExposed}" 
       @click="${this.clickExposed}" 
-      id="searchInput" 
+      data-sfx-ref="searchInput" 
       placeholder="${this.placeholder}" 
       @input="${this.handleChange}"
-      @keyup="${this.handleKeyupTwo}">
+      @keyup="${this.handleKeyup}">
     </input>
     ${
       this.clearButton

@@ -1,4 +1,4 @@
-# Sf-X Search Box Component
+# SF-X Search Box Component
 
 ## Functionality
 
