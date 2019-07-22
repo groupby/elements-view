@@ -4,6 +4,13 @@ defaults:
       - image: cirlceci/node:11.6.0
   yarn_cache: &yarn_cache
     key: yarn_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+  archive_build: &archive_build
+    name: Archive build
+    command: tar cvf ../build.tar packages/@storefront/*/{dist,esnext}
+  extract_build_archive: &extract_build_archive
+    name: Extract archive
+    command: |
+      [[ ! -r ../build.tar ]] || tar xvf ../build.tar
 
   yarn_install: &yarn_install
     name: Install
@@ -50,7 +57,31 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/
+      - restore_cache: *yarn_cache
+      - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-
+      - run: *extract_build_archive
       - run:
+          name: Dependencies
+          command: sudo apt install -y rsync
+      - run: *yarn_install
+      - save_cache:
+          <<: *yarn_cache
+          paths:
+          - ~/.cache/yarn
+      - run:
+          name: Build
+          command: |
+          package="${CIRCLE_JOB#build_}"
+          package="${package//_/-}"
+
+          cd "packages/web-components/@sfx/${package}"
+          yarn build
+      - run: *archive_build
+      - save_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-{{ .Environment.CIRCLE_JOB }}-{{ epoch }}
+          paths:
+            - ~/build.tar
 
   ## Unit test jobs
 
@@ -71,22 +102,21 @@ workflows:
               ignore: /release\/.*/
 
       - build:
-        name: build_base
-        requires:
-          - generate_cache_key_file
+          name: build_base
+          requires:
+            - generate_cache_key_file
       - build:
-        name: build_ui
-        requires:
-          - build_ui
+          name: build_ui
+          requires:
+            - build_ui
       - build_final:
-        requires:
-        - build_base
-        - build_ui
+          requires:
+            - build_base
+            - build_ui
 
       - unit_test:
-        name: unit_test_base
-        requires:
+          name: unit_test_base
           <<: *requires_build
       - unit test:
-        name: unit_test_ui
+          name: unit_test_ui
           <<: *requires_build
