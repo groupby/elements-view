@@ -1,9 +1,9 @@
+/* istanbul ignore file */
+
 /*
  * The below functions were pulled directly from
  * https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676
  */
-
-/* istanbul ignore file */
 
 export function makeSlot(name?: string) {
   const slot = document.createElement('slot');

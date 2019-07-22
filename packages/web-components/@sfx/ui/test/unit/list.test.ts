@@ -5,6 +5,7 @@ import { TemplateResult } from 'lit-element';
 
 describe('List component', () => {
   let list;
+  
   beforeEach(() => {
     list = new List();
   });

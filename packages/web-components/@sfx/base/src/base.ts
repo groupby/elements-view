@@ -10,7 +10,7 @@ export default class Base extends LitElement {
    * MutationObserver created via createChildrenObserver function.
    * See [[createChildrenObserver]] for details. This function was
    * pulled directly from
-   * github.com/Polymer/lit-element/issues/42#issuecomment-442894676.
+   * https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676
    */
   observer: MutationObserver;
 
@@ -27,7 +27,7 @@ export default class Base extends LitElement {
    * Adds slots to the shadow dom.
    * See [[makeSlot]] for more details. This function was pulled
    * directly from
-   * https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676.
+   * https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676
    */
   addSlots() {
     this.shadowRoot.appendChild(makeSlot('before'));

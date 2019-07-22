@@ -5,6 +5,7 @@ import Autocomplete from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
+  
   beforeEach(() => {
     autocomplete = new Autocomplete();
   });
