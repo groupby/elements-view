@@ -108,7 +108,7 @@ workflows:
       - build:
           name: build_ui
           requires:
-            - build_ui
+            - build_base
       - build_final:
           requires:
             - build_base
