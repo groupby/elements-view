@@ -6,4 +6,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- SFX-152: Added the list sub-component.
+- SFX-152: Added the list component.
+  - This component renders a list with an optional header.

@@ -2,7 +2,7 @@ import { LitElement, customElement, html } from 'lit-element';
 import { makeSlot, createChildrenObserver } from './utils';
 
 /**
- * Extends LitElement and all components extend it.
+ * A base component for all SF-X components to extend. It is based on LitElement.
  */
 @customElement('sfx-base')
 export default class Base extends LitElement {

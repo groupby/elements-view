@@ -69,10 +69,9 @@ storiesOf('Components|Autocomplete', module)
   .add(
     'With title customization',
     () => `
-    <sfx-autocomplete title="${text('Optional Title', optionalTitle)}" results="${text(
-      'Autocomplete',
-      JSON.stringify(results)
-    )}">
-      </sfx-autocomplete>
+    <sfx-autocomplete 
+      caption="${text('Optional Title', optionalTitle)}" 
+      results="${text('Autocomplete', JSON.stringify(results))}">
+    </sfx-autocomplete>
     `
   );

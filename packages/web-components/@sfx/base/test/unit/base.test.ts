@@ -6,7 +6,7 @@ import * as BaseUtils from '../../src/utils';
 
 describe('Base Class', () => {
   let base;
-  
+
   beforeEach(() => {
     base = new Base();
   });
@@ -75,12 +75,12 @@ describe('Base Class', () => {
   });
 
   describe('createRenderRoot', () => {
-    it('should return the root of the instance itself', () => {
+    it('should return the element itself', () => {
       base.attachShadow = () => {};
 
-      const result = base.createRenderRoot();
+      const renderRoot = base.createRenderRoot();
 
-      expect(result).to.equal(base);
+      expect(renderRoot).to.equal(base);
     });
 
     it('should attach shadow root', () => {

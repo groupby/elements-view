@@ -8,7 +8,6 @@ The component then populates a list with the received data.
 ## Customizations
 
 Autocomplete allows for an optional title, which populates inside an `<h3>` tag. View the fourth Storybook story for a demonstration of its functionality.
-All other customizations will be inherited from SAYT.
 
 ## Testing
 

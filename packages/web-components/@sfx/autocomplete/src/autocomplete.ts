@@ -1,7 +1,7 @@
 import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 import { Base } from '@sfx/base';
-import { autocompleteReceivedResults } from './events';
+import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from './events';
 
 /**
  * Listens for the `sfx::autocomplete_received_results` event and
@@ -32,7 +32,7 @@ export default class Autocomplete extends Base {
    */
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener(autocompleteReceivedResults, this.receivedResults);
+    window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
   }
 
   /**
@@ -40,7 +40,7 @@ export default class Autocomplete extends Base {
    */
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener(autocompleteReceivedResults, this.receivedResults);
+    window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
   }
 
   /**

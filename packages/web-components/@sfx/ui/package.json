@@ -18,5 +18,8 @@
     "directory": "packages/web-components/@sfx/list"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "shortid": "^2.2.14"
+  }
 }

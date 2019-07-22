@@ -1,5 +1,6 @@
 import { customElement, html, property } from 'lit-element';
 import { Base } from '@sfx/base';
+import * as shortid from 'shortid';
 
 /**
  * Receives data to populate into a list.
@@ -15,30 +16,20 @@ export default class List extends Base {
    */
   @property({ type: Array }) items: any[] = [];
 
-  private randomStringId = 
+  private randomStringId = shortid.generate();
 
   render() {
     return html`
       ${this.caption
         ? html`
-            <h4 id="list_title_${this.caption}">${this.caption}</h4>
-            <ul aria-labelledby="list_title_${this.caption}">
-              ${this.items.map(
-                item =>
-                  html`
-                    <li>${item.label}</li>
-                  `
-              )}
+            <h4 id="sfx-list-title-${this.randomStringId}">${this.caption}</h4>
+            <ul aria-labelledby="sfx-list-title-${this.randomStringId}">
+              ${this.items.map(item => html`<li>${item.label}</li>`)}
             </ul>
           `
         : html`
             <ul>
-              ${this.items.map(
-                item =>
-                  html`
-                    <li>${item.label}</li>
-                  `
-              )}
+              ${this.items.map(item => html`<li>${item.label}</li>`)}
             </ul>
           `}
     `;
