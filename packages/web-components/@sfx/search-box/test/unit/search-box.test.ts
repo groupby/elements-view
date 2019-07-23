@@ -111,7 +111,7 @@ describe('SearchBox Component', () => {
 
   describe('handleKeydown', () => {
     it('should invoke the emitSearchEvent function if enter is pressed and value property length is greater than 0', () => {
-      const emitSearchStub = spy(searchbox, 'emitSearchEvent');
+      const emitSearchStub = stub(searchbox, 'emitSearchEvent');
       searchbox.value = 'hello';
 
       searchbox.handleKeydown({ keyCode: KEY_CODES.ENTER });
@@ -131,12 +131,12 @@ describe('SearchBox Component', () => {
     });
 
     it('should dispatch an search box change event', () => {
-      stub(searchbox, 'updateSearchTermValue');
       const target = { value: 'dee' };
       const searchboxChangeEvent = new CustomEvent('sfx::on_search_box_change', {
         detail: target,
         bubbles: true
       });
+      stub(searchbox, 'updateSearchTermValue');
 
       searchbox.handleChange({ target });
 

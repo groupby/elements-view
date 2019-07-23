@@ -57,7 +57,7 @@ export default class SearchBox extends LitElement {
   }
 
   /**
-   * Dispatches a search request event with the `value` property or string passed in.
+   * Dispatches a search request event with the `value` property.
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
   emitSearchEvent() {
@@ -70,8 +70,7 @@ export default class SearchBox extends LitElement {
 
   /**
    * Dispatches an event notifying that the input box has been cleared.
-   * Invoked in response to user input: clear button, remove all text
-   * using keypresses.
+   * Invoked in response to a click on the clear button.
    */
   emitSearchBoxClearedEvent() {
     const searchboxClearedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEARED, { bubbles: true });
@@ -79,15 +78,15 @@ export default class SearchBox extends LitElement {
   }
 
   /**
-   * Updates the contents of the search input box with the payload of the given
-   * event.
-   * Invoked in response to an autocomplete hover event.
+   * Updates the contents of the search input box and the value property
+   * with the payload of the given event.
+   * Invoked in response to an update search term event.
    *
    * @param e The event object.
    */
   updateText(e: CustomEvent) {
     this.getInputElement().value = e.detail;
-    this.value = e.detail;
+    this.updateSearchTermValue(e.detail)
   }
 
   /**
@@ -116,10 +115,8 @@ export default class SearchBox extends LitElement {
   }
 
   /**
-   * Dispatches a `sfx::search_request` event with the payload of the given
-   * event.
-   *
-   * Invoked in response to a keyup.
+   * Invokes the emitSearchEvent function when a user presses enter and 
+   * the value property length is greater than 0.
    *
    * @param e The KeyboardEvent object.
    */
@@ -140,7 +137,7 @@ export default class SearchBox extends LitElement {
 
   /**
    * Sets value property and searchbox input value to an empty string.
-   * Invoked in response to click on `clear` button, or removal of all text from input.
+   * Invoked in response to click on `clear` button.
    */
   clearSearch() {
     this.getInputElement().value = '';
@@ -166,7 +163,7 @@ export default class SearchBox extends LitElement {
     this.dispatchEvent(searchBoxHoveredEvent);
   }
 
-  // FIXME Move this to the Storybook tab once functionality has been merged into sfx-view.
+  // TODO Move this to the Storybook tab once functionality has been merged into sfx-view.
   /*
    * --- TEMPORARY: setup for testing event listeners ---
    * Because Storybook is contained in an iframe, for testing purposes,

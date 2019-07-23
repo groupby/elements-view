@@ -8,6 +8,5 @@ export const SEARCHBOX_EVENT = {
 };
 
 export const KEY_CODES = {
-  BACKSPACE: 8,
   ENTER: 13
 }
