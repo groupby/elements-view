@@ -7,8 +7,8 @@ const autocompleteDataReceivedEvent = new CustomEvent('autocomplete_received_res
       { "title": "Brands", "items": [{ "label": "Cats" }, { "label": "Dogs" }] },
       { "title": "default", "items": [{ "label": "Cars" }, { "label": "Bikes" }] }
     ],
-    bubbles: true
-});
+    bubbles: true }
+);
 
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
@@ -20,8 +20,7 @@ storiesOf('Components|SAYT', module)
     }, 100);
 
     return `<sfx-sayt ${ showAttribute }></sfx-sayt>`
-  }
-  , {
+  }, {
     notes: {
       markdown: `
         # Search As You Type (SAYT)
@@ -46,7 +45,7 @@ storiesOf('Components|SAYT', module)
 
     return `
       <sfx-sayt></sfx-sayt>
-    `
+    `;
   }, {
     notes: {
       markdown:`
