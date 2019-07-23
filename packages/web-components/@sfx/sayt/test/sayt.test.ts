@@ -1,4 +1,5 @@
-import { expect, spy, stub } from './utils';
+import { expect, stub } from './utils';
+import { TemplateResult } from 'lit-element';
 import Sayt from '../src/sayt';
 import { SAYT_EVENT } from '../src/events';
 
@@ -15,8 +16,8 @@ describe('Sayt Component', () => {
 
       sayt.connectedCallback();
 
-      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.handleVisibilityEvent);
-      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.handleVisibilityEvent);
+      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showSayt);
+      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideSayt);
     });
   });
 
@@ -27,8 +28,8 @@ describe('Sayt Component', () => {
 
       sayt.disconnectedCallback();
 
-      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.handleVisibilityEvent);
-      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.handleVisibilityEvent);
+      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showSayt);
+      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideSayt);
     });
   });
 
@@ -43,31 +44,30 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('handleVisibilityEvent()', () => {
-    it('should set the visible prop to true when receiving a SAYT_SHOW event', () => {
-      const dispatchedEvent = new CustomEvent(SAYT_EVENT.SAYT_SHOW, { detail: 'test' });
-
-      sayt.handleVisibilityEvent(dispatchedEvent);
+  describe('showSayt()', () => {
+    it('should set the visible prop to true', () => {
+      sayt.showSayt();
 
       expect(sayt.visible).to.be.true;
     });
+  });
 
-    it('should set the visible prop to false when receiving a SAYT_HIDE event', () => {
-      const dispatchedEvent = new CustomEvent(SAYT_EVENT.SAYT_HIDE, { detail: 'test' });
+  describe('hideSayt()', () => {
+    it('should set the visible prop to false', () => {
       sayt.hidden = false;
       sayt.visible = true;
 
-      sayt.handleVisibilityEvent(dispatchedEvent);
+      sayt.hideSayt();
 
       expect(sayt.visible).to.be.false;
     });
   });
 
-  describe('render()', () => {
-    it('should call a render function', () => {
-      const renderStub = stub(sayt, 'render').returns('component has rendered');
-      expect(sayt.render()).to.equal('component has rendered');
-      expect(renderStub).to.be.calledOnce;
+  describe('render', () => {
+    it('should return an instance of TemplateResult', () => {
+      const result = sayt.render();
+
+      expect(result).to.be.an.instanceof(TemplateResult);
     });
   });
 });

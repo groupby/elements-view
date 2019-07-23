@@ -18,7 +18,8 @@ export default class Sayt extends LitElement {
 
   constructor() {
     super();
-    this.handleVisibilityEvent = this.handleVisibilityEvent.bind(this);
+    this.showSayt = this.showSayt.bind(this);
+    this.hideSayt = this.hideSayt.bind(this);
   }
 
   /**
@@ -27,8 +28,8 @@ export default class Sayt extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.handleVisibilityEvent);
-    window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.handleVisibilityEvent);
+    window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showSayt);
+    window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideSayt);
   }
 
   /**
@@ -37,8 +38,8 @@ export default class Sayt extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.handleVisibilityEvent);
-    window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.handleVisibilityEvent);
+    window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showSayt);
+    window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideSayt);
   }
 
   createRenderRoot() {
@@ -57,20 +58,17 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Handles sayt visibility events.
-   *
-   * @param e The custom event received from sayt-visibility-related
-   * events.
+   * Changes the `visible` property to true.
    */
-  handleVisibilityEvent(e: CustomEvent) {
-      switch (e.type) {
-      case SAYT_EVENT.SAYT_SHOW:
-        this.visible = true;
-        break;
-      case SAYT_EVENT.SAYT_HIDE:
-        this.visible = false;
-        break;
-    }
+  showSayt() {
+    this.visible = true;
+  }
+
+  /**
+   * Changes the `visible` property to false.
+   */
+  hideSayt() {
+    this.visible = false;
   }
 
   render() {
