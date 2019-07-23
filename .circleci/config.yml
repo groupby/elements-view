@@ -105,9 +105,38 @@ jobs:
   ### unit_test: unit_test_{package}
   ### Runs the tests for {package}.
   unit_test:
-    build:
     <<: *image
     steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache: *yarn_cache
+      - restore_cache: *build_final_cache_partial
+      - run: *extract_build_archive
+      - run: *yarn_install
+      - run:
+          name: Test
+          command: |
+            package="${CIRCLE_JOB#unit_test_}"
+            package="${package//_/-}"
+
+            cd "packages/web-components/@sfx/${package}"
+            yarn test
+      - run:
+          name: Upload coverage
+          command: |
+            package="${CIRCLE_JOB#unit_test_}"
+            package="${package//_/-}"
+
+            cd "packages/web-components/@sfx/${package}"
+            yarn uploadCoverage
+
+  ### unit_test_final
+  ### No-op. This job exists to fan in all the unit test jobs.
+  unit_test_final:
+    <<: *image
+    steps:
+      - run: exit 0
 
 workflows:
   version: 2
@@ -138,9 +167,14 @@ workflows:
       - unit_test:
           name: unit_test_base
           <<: *requires_build_final
-      - unit test:
+      - unit_test:
           name: unit_test_ui
           <<: *requires_build_final
-      - unit test:
+      - unit_test:
           name: unit_test_autocomplete
           <<: *requires_build_final
+      - unit_test_final:
+          requires:
+            - unit_test_base
+            - unit_test_ui
+            - unit_test_autocomplete
