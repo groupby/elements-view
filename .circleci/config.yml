@@ -122,14 +122,6 @@ jobs:
 
             cd "packages/web-components/@sfx/${package}"
             yarn test
-      - run:
-          name: Upload coverage
-          command: |
-            package="${CIRCLE_JOB#unit_test_}"
-            package="${package//_/-}"
-
-            cd "packages/web-components/@sfx/${package}"
-            yarn uploadCoverage
 
   ### unit_test_final
   ### No-op. This job exists to fan in all the unit test jobs.
