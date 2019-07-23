@@ -43,7 +43,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe.only('handleVisibilityEvent()', () => {
+  describe('handleVisibilityEvent()', () => {
     it('should set the show prop to true when receiving a SAYT_SHOW event', () => {
       const dispatchedEvent = new CustomEvent(SAYT_EVENT.SAYT_SHOW, { detail: 'test' });
 
