@@ -63,7 +63,7 @@ export default class Sayt extends LitElement {
 
   /**
    * Method to handle the visibility events associated with the `sayt`
-   * component
+   * component.
    * @param e The custom event received from sayt-visibility-related
    * events.
    */
