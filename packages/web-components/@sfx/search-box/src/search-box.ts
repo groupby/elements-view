@@ -88,9 +88,8 @@ export default class SearchBox extends LitElement {
    * using keypresses.
    */
   emitSearchBoxClearedEvent() {
-    const searchboxClearedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEARED);
-    window.dispatchEvent(searchboxClearedEvent);
-    // window.dispatchEvent(searchboxClearedEvent);
+    const searchboxClearedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEARED, { bubbles: true });
+    this.dispatchEvent(searchboxClearedEvent);
   }
 
   /**
@@ -169,8 +168,8 @@ export default class SearchBox extends LitElement {
    * Invoked in response to a user clicking inside of the searchbox input.
    */
   clickExposed() {
-    const searchBoxClickedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
-    window.dispatchEvent(searchBoxClickedEvent);
+    const searchBoxClickedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK, { bubbles: true });
+    this.dispatchEvent(searchBoxClickedEvent);
   }
 
   /**
@@ -178,8 +177,8 @@ export default class SearchBox extends LitElement {
    * Invoked in response to a user hovering inside of the searchbox input.
    */
   hoverExposed() {
-    const searchBoxHoveredEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_HOVER);
-    window.dispatchEvent(searchBoxHoveredEvent);
+    const searchBoxHoveredEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_HOVER, { bubbles: true });
+    this.dispatchEvent(searchBoxHoveredEvent);
   }
 
   // FIXME Move this to the Storybook tab once functionality has been merged into sfx-view.
