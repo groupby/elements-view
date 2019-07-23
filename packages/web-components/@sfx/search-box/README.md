@@ -33,7 +33,6 @@ Users of the component can add the following attributes to the custom element:
 ## Testing
 
 The test suite for this component is contained in the `test` directory. To run the tests, navigate to this folder and use the following command:
-To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:
 
 ```sh
 yarn test
