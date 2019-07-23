@@ -84,11 +84,11 @@ describe('SearchBox Component', () => {
     });
   });
 
-  describe('emitSearchBoxClearedEvent', () => {
-    it('should dispatch an emitSearchBoxClearedEvent', () => {
-      const searchboxClearedEvent = new CustomEvent('sfx::search_box_cleared');
+  describe('emitSearchBoxClearClick', () => {
+    it('should dispatch an emitSearchBoxClearClick', () => {
+      const searchboxClearedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK);
 
-      searchbox.emitSearchBoxClearedEvent();
+      searchbox.emitSearchBoxClearClick();
 
       expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxClearedEvent);
     });
@@ -130,7 +130,7 @@ describe('SearchBox Component', () => {
 
     it('should dispatch a search box change event', () => {
       const target = { value: 'dee' };
-      const searchboxChangeEvent = new CustomEvent('sfx::on_search_box_change', {
+      const searchboxChangeEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
         detail: target,
         bubbles: true
       });
@@ -157,15 +157,15 @@ describe('SearchBox Component', () => {
           <input type="text" id="searchInput" placeholder="Type your search" />
         `
       );
-      stub(searchbox, 'emitSearchBoxClearedEvent');
+      stub(searchbox, 'emitSearchBoxClearClick');
 
       searchbox.clearSearch();
 
       expect(searchbox.value).to.equal('');
     });
 
-    it('should invoke the emitSearchBoxClearedEvent', () => {
-      const emitSearchBoxSpy = spy(searchbox, 'emitSearchBoxClearedEvent');
+    it('should invoke the emitSearchBoxClearClick', () => {
+      const emitSearchBoxSpy = spy(searchbox, 'emitSearchBoxClearClick');
       stub(searchbox, 'getInputElement').returns(
         html`
           <input type="text" id="searchInput" placeholder="Type your search" />
@@ -180,7 +180,7 @@ describe('SearchBox Component', () => {
 
   describe('clickExposed', () => {
     it('should dispatch a search box clicked event', () => {
-      const searchboxClickedEvent = new CustomEvent('sfx::search_box_cleared');
+      const searchboxClickedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
 
       searchbox.clickExposed();
 
@@ -190,7 +190,7 @@ describe('SearchBox Component', () => {
 
   describe('hoverExposed', () => {
     it('should dispatch a search box hovered event', () => {
-      const hoverExposedEvent = new CustomEvent('sfx::search_hover_event');
+      const hoverExposedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_HOVER);
 
       searchbox.hoverExposed();
 

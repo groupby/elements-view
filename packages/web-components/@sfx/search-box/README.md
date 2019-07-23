@@ -26,6 +26,10 @@ Dispatched when a user clicks on the search button or hits `enter` within the se
 
 Dispatched when the value changes inside the search box input.
 
+#### `sfx::update_search_term`
+
+Fired with a term as the payload. This component listens for that event and updates the value property and input box value with the payload.
+
 ## Customizations
 
 The SF-X Search Box component allows for optional inclusion of a clear button and a search button. Placeholder text within the search box is also customizable.
