@@ -98,7 +98,7 @@ export default class SearchBox extends Base {
    *
    * @param e The KeyboardEvent object.
    */
-  handleChange(e: KeyboardEvent) {
+  handleInput(e: KeyboardEvent) {
     this.updateSearchTermValue((e.target as HTMLInputElement).value);
     this.dispatchEvent(
       new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
@@ -149,15 +149,6 @@ export default class SearchBox extends Base {
     this.dispatchEvent(searchBoxClickedEvent);
   }
 
-  /**
-   * Dispatches an event notifying that the search box input bar has been hovered.
-   * Invoked in response to a user hovering inside of the searchbox input.
-   */
-  hoverExposed() {
-    const searchBoxHoveredEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_HOVER, { bubbles: true });
-    this.dispatchEvent(searchBoxHoveredEvent);
-  }
-
   // TODO Move this to the Storybook tab once functionality has been merged into sfx-view.
   /*
    * --- TEMPORARY: setup for testing event listeners ---
@@ -180,11 +171,10 @@ export default class SearchBox extends Base {
     return html`
     <input 
       type="text" 
-      @mouseenter="${this.hoverExposed}" 
       @click="${this.clickExposed}" 
       data-sfx-ref="searchInput" 
       placeholder="${this.placeholder}" 
-      @input="${this.handleChange}"
+      @input="${this.handleInput}"
       @keydown="${this.handleKeydown}">
     </input>
     ${

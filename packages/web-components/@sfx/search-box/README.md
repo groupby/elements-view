@@ -14,10 +14,6 @@ Dispatched when a user clicks on the clear button.
 
 Dispatched when a user clicks anywhere within the search box input area.
 
-#### `sfx::searchbox_hover_event`
-
-Dispatched when a user hovers over the search box.
-
 #### `sfx::search_request`
 
 Dispatched when a user clicks on the search button or hits `enter` within the search box. This event sends the search term value entered into the search box.

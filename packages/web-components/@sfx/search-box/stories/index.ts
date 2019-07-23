@@ -14,11 +14,6 @@ window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK, e => {
   console.log('event', e);
 });
 
-window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_HOVER, e => {
-  console.log('search box hovered event received');
-  console.log('event', e);
-});
-
 window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_CLICK, e => {
   console.log('search box clicked event received');
   console.log('event', e);

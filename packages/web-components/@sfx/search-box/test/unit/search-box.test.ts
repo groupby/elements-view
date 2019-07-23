@@ -118,12 +118,12 @@ describe('SearchBox Component', () => {
     });
   });
 
-  describe('handleChange', () => {
+  describe('handleInput', () => {
     it('should invoke the updateSearchTermValue function', () => {
       const updateSearchTermValueStub = stub(searchbox, 'updateSearchTermValue');
       const target = { value: 'dee' };
 
-      searchbox.handleChange({ target });
+      searchbox.handleInput({ target });
 
       expect(updateSearchTermValueStub).to.have.been.calledWith('dee');
     });
@@ -136,7 +136,7 @@ describe('SearchBox Component', () => {
       });
       stub(searchbox, 'updateSearchTermValue');
 
-      searchbox.handleChange({ target });
+      searchbox.handleInput({ target });
 
       expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxChangeEvent);
     });
@@ -185,16 +185,6 @@ describe('SearchBox Component', () => {
       searchbox.clickExposed();
 
       expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxClickedEvent);
-    });
-  });
-
-  describe('hoverExposed', () => {
-    it('should dispatch a search box hovered event', () => {
-      const hoverExposedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_HOVER);
-
-      searchbox.hoverExposed();
-
-      expect(searchboxDispatchEvent).to.have.been.calledWith(hoverExposedEvent);
     });
   });
 
