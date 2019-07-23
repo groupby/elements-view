@@ -1,4 +1,4 @@
-import { SEARCHBOX_EVENT } from '../../src/events';
+import { SEARCHBOX_EVENT, KEY_CODES } from '../../src/events';
 import { expect, spy, stub } from '../utils';
 import SearchBox from '../../src/search-box';
 import { TemplateResult, html, LitElement } from 'lit-element';
@@ -6,15 +6,15 @@ import { TemplateResult, html, LitElement } from 'lit-element';
 describe('SearchBox Component', () => {
 
   let searchbox;
-  let windowDispatchEvent;
+  let searchboxDispatchEvent;
 
   beforeEach(() => {
     searchbox = new SearchBox();
-    windowDispatchEvent = stub(window, 'dispatchEvent');
+    searchboxDispatchEvent = stub(searchbox, 'dispatchEvent');
   });
 
   afterEach(() => {
-    windowDispatchEvent.restore();
+    searchboxDispatchEvent.restore();
   });
 
   /*
@@ -51,15 +51,15 @@ describe('SearchBox Component', () => {
 
   describe('emitSearchEvent', () => {
     it('should dispatch a search request event', () => {
-      searchbox.value = 'a';
       const searchRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
         detail: 'a',
         bubbles: true
       });
+      searchbox.value = 'a';
 
       searchbox.emitSearchEvent();
 
-      expect(windowDispatchEvent).to.have.been.calledWith(searchRequestEvent);
+      expect(searchboxDispatchEvent).to.have.been.calledWith(searchRequestEvent);
     });
   });
 
@@ -69,7 +69,7 @@ describe('SearchBox Component', () => {
 
       searchbox.emitSearchBoxClearedEvent();
 
-      expect(windowDispatchEvent).to.have.been.calledWith(searchboxClearedEvent);
+      expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxClearedEvent);
     });
   });
 
@@ -78,7 +78,7 @@ describe('SearchBox Component', () => {
       const detail = 'inputText';
       stub(searchbox, 'getInputElement').returns(
         html`
-          <input type="text" id="searchInput" placeholder="Type your search" />
+          <input type="text" data-sfx-ref="searchInput" placeholder="Type your search" />
         `
       );
       searchbox.updateText({ detail });
@@ -86,64 +86,44 @@ describe('SearchBox Component', () => {
     });
   });
 
-  describe('handleKeyup', () => {
-    it('should remove the last letter of the value string if backpace is pressed', () => {
-      searchbox.value = 'hello';
-      const keyCode = 8;
-
-      searchbox.handleKeyup({ keyCode });
-
-      expect(searchbox.value).to.equal('hell');
-    });
-
-    it('should emit a searchBoxClearedEvent if backspace is pressed when there is one character remaining', () => {
-      const emitSearchBoxClearedEventSpy = spy(searchbox, 'emitSearchBoxClearedEvent');
-      searchbox.value = 'h';
-      const keyCode = 8;
-
-      searchbox.handleKeyup({ keyCode });
-
-      expect(emitSearchBoxClearedEventSpy).to.have.been.called;
-    });
-
+  describe('handleKeydown', () => {
     it('should invoke the emitSearchEvent function if enter is pressed and value property length is greater than 0', () => {
-      const emitSearchSpy = spy(searchbox, 'emitSearchEvent');
+      const emitSearchStub = spy(searchbox, 'emitSearchEvent');
       searchbox.value = 'hello';
-      const keyCode = 13;
+      
+      searchbox.handleKeydown({ keyCode: KEY_CODES.ENTER });
 
-      searchbox.handleKeyup({ keyCode });
-
-      expect(emitSearchSpy).to.have.been.calledWith('hello');
-    });
-
-    it('should invoke the updateValue function if word character is pressed', () => {
-      const updateValueSpy = spy(searchbox, 'updateValue');
-      const keyCode = 68;
-      const target = { value: 'dee' };
-
-      searchbox.handleKeyup({ keyCode, target });
-
-      expect(updateValueSpy).to.have.been.calledWith('dee');
-    });
-
-    it('should invoke the emitAutocompleteRequestEvent function if character key is pressed and value is 3 characters or more', () => {
-      stub(searchbox, 'updateValue');
-      const emitAutocompleteSpy = spy(searchbox, 'emitAutocompleteRequestEvent');
-      searchbox.value = 'darkkk';
-      const keyCode = 68;
-      const target = {
-        value: 'darkkkd'
-      };
-
-      searchbox.handleKeyup({ keyCode, target });
-
-      expect(emitAutocompleteSpy).to.have.been.called;
+      expect(emitSearchStub).to.have.been.called;
     });
   });
 
-  describe('updateValue', () => {
+    describe('handleChange', () => {
+      it('should invoke the updateSearchTermValue function', () => {
+        const updateSearchTermValueStub = stub(searchbox, 'updateSearchTermValue');
+        const target = { value: 'dee' };
+  
+        searchbox.handleChange({ target });
+  
+        expect(updateSearchTermValueStub).to.have.been.calledWith('dee');
+      });
+
+      it('should dispatch an search box change event', () => {
+        stub(searchbox, 'updateSearchTermValue');
+        const target = { value: 'dee' };
+        const searchboxChangeEvent = new CustomEvent('sfx::on_search_box_change', {
+          detail: target,
+          bubbles: true
+        });
+  
+        searchbox.handleChange({ target });
+  
+        expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxChangeEvent);
+      });
+    })
+
+  describe('updateSearchTermValue', () => {
     it('should set the search term property to the input value', () => {
-      searchbox.updateValue('catfood');
+      searchbox.updateSearchTermValue('catfood');
 
       expect(searchbox.value).to.equal('catfood');
     });
@@ -183,7 +163,7 @@ describe('SearchBox Component', () => {
 
       searchbox.clickExposed();
 
-      expect(windowDispatchEvent).to.have.been.calledWith(searchboxClickedEvent);
+      expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxClickedEvent);
     });
   });
 
@@ -193,7 +173,7 @@ describe('SearchBox Component', () => {
 
       searchbox.hoverExposed();
 
-      expect(windowDispatchEvent).to.have.been.calledWith(hoverExposedEvent);
+      expect(searchboxDispatchEvent).to.have.been.calledWith(hoverExposedEvent);
     });
   });
 

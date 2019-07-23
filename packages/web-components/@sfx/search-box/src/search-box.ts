@@ -106,7 +106,7 @@ export default class SearchBox extends LitElement {
    * @param e The KeyboardEvent object.
    */
   handleChange(e: KeyboardEvent) {
-    this.updateValue((e.target as HTMLInputElement).value);
+    this.updateSearchTermValue((e.target as HTMLInputElement).value);
     this.dispatchEvent(
       new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
         detail: (e.target as HTMLInputElement).value,
@@ -134,7 +134,7 @@ export default class SearchBox extends LitElement {
    *
    * @param term The value pulled directly from the input box.
    */
-  updateValue(term: string) {
+  updateSearchTermValue(term: string) {
     this.value = term;
   }
 
@@ -206,7 +206,7 @@ export default class SearchBox extends LitElement {
         : ''
     }
     <button @click="${this.updateTextEvent}">
-      Click to dispatch autocomplete hover event
+      Click to dispatch update search term event
     </button>
     `;
   }
