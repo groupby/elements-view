@@ -6,9 +6,6 @@ import { SAYT_EVENT } from './events';
  * `sfx-autocomplete` and `sfx-products` components.
  */
 @customElement('sfx-sayt')
-// TODO: look into the Base class so this class can extend it again. The
-// issue that we're seeing is related to changing properties and having
-// the DOM update accurately in response to those property changes.
 export default class Sayt extends LitElement {
   /**
    * Determines if the `sfx-autocomplete` component will be hidden or not.
@@ -44,7 +41,6 @@ export default class Sayt extends LitElement {
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.handleVisibilityEvent);
   }
 
-  // TODO: Remove createRenderRoot once Base class is extended.
   createRenderRoot() {
     return this;
   }
