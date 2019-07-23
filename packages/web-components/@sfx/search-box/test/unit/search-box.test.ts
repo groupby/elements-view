@@ -4,7 +4,6 @@ import SearchBox from '../../src/search-box';
 import { TemplateResult, html, LitElement } from 'lit-element';
 
 describe('SearchBox Component', () => {
-
   let searchbox;
   let searchboxDispatchEvent;
 
@@ -23,6 +22,30 @@ describe('SearchBox Component', () => {
   describe('Constructor', () => {
     it('should extend LitElement', () => {
       expect(searchbox).to.be.an.instanceof(LitElement);
+    });
+
+    describe('placeholder property', () => {
+      it('should have default value `Type your search`', () => {
+        expect(searchbox.placeholder).to.equal('Type your search');
+      });
+    });
+
+    describe('value property', () => {
+      it('should have default value of an empty string', () => {
+        expect(searchbox.value).to.equal('');
+      });
+    });
+
+    describe('searchButton property', () => {
+      it('should have default value of false', () => {
+        expect(searchbox.searchButton).to.equal(false);
+      });
+    });
+
+    describe('clearButton property', () => {
+      it('should have default value of false', () => {
+        expect(searchbox.clearButton).to.equal(false);
+      });
     });
   });
 
@@ -90,36 +113,36 @@ describe('SearchBox Component', () => {
     it('should invoke the emitSearchEvent function if enter is pressed and value property length is greater than 0', () => {
       const emitSearchStub = spy(searchbox, 'emitSearchEvent');
       searchbox.value = 'hello';
-      
+
       searchbox.handleKeydown({ keyCode: KEY_CODES.ENTER });
 
       expect(emitSearchStub).to.have.been.called;
     });
   });
 
-    describe('handleChange', () => {
-      it('should invoke the updateSearchTermValue function', () => {
-        const updateSearchTermValueStub = stub(searchbox, 'updateSearchTermValue');
-        const target = { value: 'dee' };
-  
-        searchbox.handleChange({ target });
-  
-        expect(updateSearchTermValueStub).to.have.been.calledWith('dee');
+  describe('handleChange', () => {
+    it('should invoke the updateSearchTermValue function', () => {
+      const updateSearchTermValueStub = stub(searchbox, 'updateSearchTermValue');
+      const target = { value: 'dee' };
+
+      searchbox.handleChange({ target });
+
+      expect(updateSearchTermValueStub).to.have.been.calledWith('dee');
+    });
+
+    it('should dispatch an search box change event', () => {
+      stub(searchbox, 'updateSearchTermValue');
+      const target = { value: 'dee' };
+      const searchboxChangeEvent = new CustomEvent('sfx::on_search_box_change', {
+        detail: target,
+        bubbles: true
       });
 
-      it('should dispatch an search box change event', () => {
-        stub(searchbox, 'updateSearchTermValue');
-        const target = { value: 'dee' };
-        const searchboxChangeEvent = new CustomEvent('sfx::on_search_box_change', {
-          detail: target,
-          bubbles: true
-        });
-  
-        searchbox.handleChange({ target });
-  
-        expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxChangeEvent);
-      });
-    })
+      searchbox.handleChange({ target });
+
+      expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxChangeEvent);
+    });
+  });
 
   describe('updateSearchTermValue', () => {
     it('should set the search term property to the input value', () => {
