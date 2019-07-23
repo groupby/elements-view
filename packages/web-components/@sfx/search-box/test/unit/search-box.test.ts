@@ -130,7 +130,7 @@ describe('SearchBox Component', () => {
       expect(updateSearchTermValueStub).to.have.been.calledWith('dee');
     });
 
-    it('should dispatch an search box change event', () => {
+    it('should dispatch a search box change event', () => {
       const target = { value: 'dee' };
       const searchboxChangeEvent = new CustomEvent('sfx::on_search_box_change', {
         detail: target,
@@ -167,13 +167,13 @@ describe('SearchBox Component', () => {
     });
 
     it('should invoke the emitSearchBoxClearedEvent', () => {
+      const emitSearchBoxSpy = spy(searchbox, 'emitSearchBoxClearedEvent');
       stub(searchbox, 'getInputElement').returns(
         html`
           <input type="text" id="searchInput" placeholder="Type your search" />
         `
       );
-      const emitSearchBoxSpy = spy(searchbox, 'emitSearchBoxClearedEvent');
-
+      
       searchbox.clearSearch();
 
       expect(emitSearchBoxSpy).to.have.been.called;
