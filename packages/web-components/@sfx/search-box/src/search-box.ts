@@ -90,6 +90,7 @@ export default class SearchBox extends LitElement {
   emitSearchBoxClearedEvent() {
     const searchboxClearedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEARED);
     window.dispatchEvent(searchboxClearedEvent);
+    // window.dispatchEvent(searchboxClearedEvent);
   }
 
   /**
@@ -225,4 +226,31 @@ export default class SearchBox extends LitElement {
       </button>
     `;
   }
+  // render() {
+  //   return html`
+  //   <input 
+  //     type="text" 
+  //     @mouseenter="${this.hoverExposed}" 
+  //     @click="${this.clickExposed}" 
+  //     data-sfx-ref="searchInput" 
+  //     placeholder="${this.placeholder}" 
+  //     @input="${this.handleChange}"
+  //     @input="${this.handleChange}"
+  //     @keyup="${this.handleKeyup}">
+  //   </input>
+  //   ${
+  //     this.clearButton
+  //       ? html`<button @click="${this.clearSearch}">Clear</button>`
+  //       : ''
+  //   }
+  //   ${
+  //     this.searchButton
+  //       ? html`<button @click="${this.emitSearchEvent}">Search</button>`
+  //       : ''
+  //   }
+  //     <button @click="${this.dispatchAutocompleteHover}">
+  //       Click to dispatch autocomplete hover event
+  //     </button>
+  //   `;
+  // }
 }

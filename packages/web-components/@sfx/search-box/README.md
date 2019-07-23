@@ -16,7 +16,7 @@ Dispatched when a user clicks anywhere within the search box input area.
 
 #### `sfx::search_request`
 
-Dispatched when a user clicks on the search button on hits `enter` within the search box. This event sends the search term value entered into the search box.
+Dispatched when a user clicks on the search button nd hits `enter` within the search box. This event sends the search term value entered into the search box.
 
 #### `sfx::search_box_cleared`
 
