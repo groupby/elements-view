@@ -8,11 +8,6 @@ window.addEventListener('sfx::search_request', e => {
   console.log('event', e);
 });
 
-window.addEventListener('sfx::autocomplete_request', e => {
-  console.log('autocomplete request received');
-  console.log('event', e);
-});
-
 window.addEventListener('sfx::search_box_cleared', e => {
   console.log('search box cleared event received');
   console.log('event', e);

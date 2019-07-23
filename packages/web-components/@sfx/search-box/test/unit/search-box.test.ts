@@ -32,7 +32,7 @@ describe('SearchBox Component', () => {
 
       searchbox.connectedCallback();
 
-      expect(windowAddEventListener).to.have.been.calledWith(SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER, searchbox.updateText);
+      expect(windowAddEventListener).to.have.been.calledWith(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, searchbox.updateText);
     });
   });
 
@@ -43,7 +43,7 @@ describe('SearchBox Component', () => {
       searchbox.disconnectedCallback();
 
       expect(windowRemoveEventListener).to.have.been.calledWith(
-        SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER,
+        SEARCHBOX_EVENT.UPDATE_SEARCH_TERM,
         searchbox.updateText
       );
     });
@@ -60,16 +60,6 @@ describe('SearchBox Component', () => {
       searchbox.emitSearchEvent();
 
       expect(windowDispatchEvent).to.have.been.calledWith(searchRequestEvent);
-    });
-  });
-
-  describe('emitAutocompleteRequestEvent', () => {
-    it('should dispatch an autocomplete event', () => {
-      const autocompleteRequestEvent = new CustomEvent('sfx::autocomplete_request', { detail: 'b', bubbles: true });
-
-      searchbox.emitAutocompleteRequestEvent();
-
-      expect(windowDispatchEvent).to.have.been.calledWith(autocompleteRequestEvent);
     });
   });
 

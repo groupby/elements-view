@@ -45,7 +45,7 @@ export default class SearchBox extends LitElement {
    */
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener(SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER, this.updateText);
+    window.addEventListener(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, this.updateText);
   }
 
   /**
@@ -53,7 +53,7 @@ export default class SearchBox extends LitElement {
    */
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener(SEARCHBOX_EVENT.AUTOCOMPLETE_HOVER, this.updateText);
+    window.removeEventListener(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, this.updateText);
   }
 
   /**
@@ -66,20 +66,6 @@ export default class SearchBox extends LitElement {
       bubbles: true
     });
     this.dispatchEvent(searchboxRequestEvent);
-  }
-
-  /**
-   * Dispatches an autocomplete request event.
-   * Invoked in response to user input: typed search term is greater than 3 characters.
-   *
-   * @param text A string of text inputed into input box.
-   */
-  emitAutocompleteRequestEvent(text: string) {
-    const autocompleteRequestEvent = new CustomEvent(SEARCHBOX_EVENT.AUTOCOMPLETE_REQUEST, {
-      detail: text,
-      bubbles: true
-    });
-    window.dispatchEvent(autocompleteRequestEvent);
   }
 
   /**
@@ -137,9 +123,8 @@ export default class SearchBox extends LitElement {
    *
    * @param e The KeyboardEvent object.
    */
-  handleKeyup(e: KeyboardEvent) {
-    console.log('in handleKeyup', e)
-    if (e.code === 'Enter' && this.value.length > 0) {
+  handleKeydown(e: KeyboardEvent) {
+    if (e.keyCode === KEY_CODES.ENTER && this.value.length > 0) {
       this.emitSearchEvent();
     }
   }
@@ -191,12 +176,12 @@ export default class SearchBox extends LitElement {
    * Should be updated when/if functionality is avaiable via Storybook tab.
    * This event would be dispatched when a user hovers on autocomplete.
    */
-  dispatchAutocompleteHover() {
-    const autocompleteHover = new CustomEvent('sfx::autocomplete_hover', {
+  updateTextEvent() {
+    const updateSearchTerm = new CustomEvent(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, {
       detail: 'catfood',
       bubbles: true
     });
-    window.dispatchEvent(autocompleteHover);
+    window.dispatchEvent(updateSearchTerm);
   }
 
   render() {
@@ -208,7 +193,7 @@ export default class SearchBox extends LitElement {
       data-sfx-ref="searchInput" 
       placeholder="${this.placeholder}" 
       @input="${this.handleChange}"
-      @keyup="${this.handleKeyup}">
+      @keydown="${this.handleKeydown}">
     </input>
     ${
       this.clearButton
@@ -220,36 +205,9 @@ export default class SearchBox extends LitElement {
         ? html`<button @click="${this.emitSearchEvent}">Search</button>`
         : ''
     }
-      <button @click="${this.dispatchAutocompleteHover}">
-        Click to dispatch autocomplete hover event
-      </button>
+    <button @click="${this.updateTextEvent}">
+      Click to dispatch autocomplete hover event
+    </button>
     `;
   }
-  // render() {
-  //   return html`
-  //   <input 
-  //     type="text" 
-  //     @mouseenter="${this.hoverExposed}" 
-  //     @click="${this.clickExposed}" 
-  //     data-sfx-ref="searchInput" 
-  //     placeholder="${this.placeholder}" 
-  //     @input="${this.handleChange}"
-  //     @input="${this.handleChange}"
-  //     @keyup="${this.handleKeyup}">
-  //   </input>
-  //   ${
-  //     this.clearButton
-  //       ? html`<button @click="${this.clearSearch}">Clear</button>`
-  //       : ''
-  //   }
-  //   ${
-  //     this.searchButton
-  //       ? html`<button @click="${this.emitSearchEvent}">Search</button>`
-  //       : ''
-  //   }
-  //     <button @click="${this.dispatchAutocompleteHover}">
-  //       Click to dispatch autocomplete hover event
-  //     </button>
-  //   `;
-  // }
 }

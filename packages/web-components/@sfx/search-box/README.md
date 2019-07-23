@@ -22,10 +22,6 @@ Dispatched when a user clicks on the search button nd hits `enter` within the se
 
 Dispatched when the value within the search box area is cleared. Occurs when a user clicks on the clear button, or when the final letter is removed from the search term.
 
-#### `sfx::autocomplete_request`
-
-Dispatched when the search term value within the search box contains more than 3 characters. This event sends the search term value entered into the search box.
-
 ## Customizations
 
 The SF-X Search Box component allows for optional inclusion of a clear button and a search button. Placeholder text within the search box is also customizable.
