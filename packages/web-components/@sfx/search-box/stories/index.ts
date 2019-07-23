@@ -9,7 +9,7 @@ window.addEventListener(SEARCHBOX_EVENT.SEARCH_REQUEST, e => {
   console.log('event', e);
 });
 
-window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_CLEARED, e => {
+window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK, e => {
   console.log('search box cleared event received');
   console.log('event', e);
 });

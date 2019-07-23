@@ -66,8 +66,8 @@ export default class SearchBox extends Base {
    * Dispatches an event notifying that the input box has been cleared.
    * Invoked in response to a click on the clear button.
    */
-  emitSearchBoxClearedEvent() {
-    const searchboxClearedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEARED, { bubbles: true });
+  emitSearchBoxClearClick() {
+    const searchboxClearedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK, { bubbles: true });
     this.dispatchEvent(searchboxClearedEvent);
   }
 
@@ -137,7 +137,7 @@ export default class SearchBox extends Base {
   clearSearch() {
     this.getInputElement().value = '';
     this.value = '';
-    this.emitSearchBoxClearedEvent();
+    this.emitSearchBoxClearClick();
   }
 
   /**
