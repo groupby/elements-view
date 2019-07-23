@@ -4,9 +4,11 @@ defaults:
       - image: cirlceci/node:11.6.0
   yarn_cache: &yarn_cache
     key: yarn_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+  build_final_cache_partial: &build_final_cache_partial
+    key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-all-
   archive_build: &archive_build
     name: Archive build
-    command: tar cvf ../build.tar packages/@storefront/*/{dist,esnext}
+    command: tar cvf ../build.tar packages/web-components/@sfx/*/{dist,esnext}
   extract_build_archive: &extract_build_archive
     name: Extract archive
     command: |
@@ -15,17 +17,11 @@ defaults:
   yarn_install: &yarn_install
     name: Install
     command: yarn
-  setup_git: &setup_git
-    name: Setup Git user
-    command: |
-      git config --global user.email "ops@groupbyinc.com"
-      git config --global user.name "GroupBy Ops"
-      git config --global push.default simple
 
   requires_build_ui: &requires_build_ui
     requires:
       - build_ui
-  requires_build: &requires_build
+  requires_build_final: &requires_build_final
     requires:
       - build_final
 
@@ -118,9 +114,9 @@ workflows:
   build_test:
     jobs:
       - generate_cache_key_file:
-          # filters:
-          #   branches:
-          #     ignore: /release\/.*/
+          filters:
+            branches:
+              ignore: /release\/.*/
 
       - build:
           name: build_base
@@ -132,8 +128,7 @@ workflows:
             - build_base
       - build:
           name: build_autocomplete
-          requires:
-            - build_ui
+          <<: *requires_ui
       - build_final:
           requires:
             - build_base
@@ -142,10 +137,10 @@ workflows:
 
       - unit_test:
           name: unit_test_base
-          <<: *requires_build
+          <<: *requires_build_final
       - unit test:
           name: unit_test_ui
-          <<: *requires_build
+          <<: *requires_build_final
       - unit test:
           name: unit_test_autocomplete
-          <<: *requires_build
+          <<: *requires_build_final
