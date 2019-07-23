@@ -7,4 +7,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - SFX-151: Added the SearchBox component.
-  - This component takes in search terms from user input and dispatches the queries accordingly.
+  - This component takes in search terms from user input and dispatches events accordingly.
