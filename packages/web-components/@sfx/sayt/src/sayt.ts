@@ -1,6 +1,4 @@
-import { LitElement, customElement, html, property } from 'lit-element';
-// import { Base } from '@sfx/base';
-import '@sfx/autocomplete';
+import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
 import { SAYT_EVENT } from './events';
 
 /**
@@ -27,7 +25,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Register event listeners.
+   * Registers event listeners.
    */
   connectedCallback() {
     super.connectedCallback();
@@ -37,7 +35,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Remove event listeners.
+   * Removes event listeners.
    */
   disconnectedCallback() {
     super.disconnectedCallback();
@@ -53,22 +51,23 @@ export default class Sayt extends LitElement {
 
   /**
    * Update component `hidden` property when the `show` property changes.
+   *
    * @param changedProps A map of the all the change properties.
    */
-  updated(changedProps: Map<string, any>) {
+  updated(changedProps: PropertyValues) {
     if (changedProps.has('show')) {
       this.hidden = !this.show;
     }
   }
 
   /**
-   * Method to handle the visibility events associated with the `sayt`
-   * component.
+   * Handles sayt visibility events.
+   *
    * @param e The custom event received from sayt-visibility-related
    * events.
    */
   handleVisibilityEvent(e: CustomEvent) {
-    switch(e.type) {
+      switch (e.type) {
       case SAYT_EVENT.SAYT_SHOW:
         this.show = true;
         break;
@@ -80,9 +79,7 @@ export default class Sayt extends LitElement {
 
   render() {
     return html`
-      ${
-        this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>`
-      }
+      ${ this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>` }
     `;
   }
 }
