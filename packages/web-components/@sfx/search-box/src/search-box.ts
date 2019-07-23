@@ -104,7 +104,7 @@ export default class SearchBox extends Base {
       new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
         detail: (e.target as HTMLInputElement).value,
         bubbles: true
-      });
+      })
     );
   }
 
