@@ -25,7 +25,7 @@ defaults:
     requires:
       - build_final
 
-version: 2
+version: 2.1
 
 jobs:
   ## Initialization jobs
@@ -68,11 +68,11 @@ jobs:
       - run:
           name: Build
           command: |
-          package="${CIRCLE_JOB#build_}"
-          package="${package//_/-}"
+            package="${CIRCLE_JOB#build_}"
+            package="${package//_/-}"
 
-          cd "packages/web-components/@sfx/${package}"
-          yarn build
+            cd "packages/web-components/@sfx/${package}"
+            yarn build
       - run: *archive_build
       - save_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-{{ .Environment.CIRCLE_JOB }}-{{ epoch }}
@@ -157,7 +157,7 @@ workflows:
             - build_base
       - build:
           name: build_autocomplete
-          <<: *requires_ui
+          <<: *requires_build_ui
       - build_final:
           requires:
             - build_base
