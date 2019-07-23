@@ -1,29 +1,30 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import '../src/search-box.ts';
+import '../src/search-box';
+import { SEARCHBOX_EVENT } from '../src/events';
 
 // start of event dispatch testing
-window.addEventListener('sfx::search_request', e => {
+window.addEventListener(SEARCHBOX_EVENT.SEARCH_REQUEST, e => {
   console.log('search request received');
   console.log('event', e);
 });
 
-window.addEventListener('sfx::search_box_cleared', e => {
+window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_CLEARED, e => {
   console.log('search box cleared event received');
   console.log('event', e);
 });
 
-window.addEventListener('sfx::searchbox_hover_event', e => {
+window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_HOVER, e => {
   console.log('search box hovered event received');
   console.log('event', e);
 });
 
-window.addEventListener('sfx::searchbox_click_event', e => {
+window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_CLICK, e => {
   console.log('search box clicked event received');
   console.log('event', e);
 });
 
-window.addEventListener('sfx::on_search_box_change', e => {
+window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, e => {
   console.log('search box change event received');
   console.log('event', e);
 });

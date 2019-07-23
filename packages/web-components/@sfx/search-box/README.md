@@ -6,21 +6,21 @@ The component accepts text input and dispatches events based on input.
 
 ### Events
 
-#### `sfx::searchbox_hover_event`
+#### `sfx::searchbox_cleared`
 
-Dispatched when a user hovers over the search box.
+Dispatched when the value within the search box area is cleared when a user clicks on the clear button.
 
 #### `sfx::searchbox_click_event`
 
 Dispatched when a user clicks anywhere within the search box input area.
 
+#### `sfx::searchbox_hover_event`
+
+Dispatched when a user hovers over the search box.
+
 #### `sfx::search_request`
 
 Dispatched when a user clicks on the search button and hits `enter` within the search box. This event sends the search term value entered into the search box.
-
-#### `sfx::search_box_cleared`
-
-Dispatched when the value within the search box area is cleared when a user clicks on the clear button.
 
 ## Customizations
 
