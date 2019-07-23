@@ -13,7 +13,7 @@ const autocompleteDataReceivedEvent = new CustomEvent('autocomplete_received_res
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-    const showAttribute = boolean('show', false) ? 'show' : '';
+    const showAttribute = boolean('visible', false) ? 'visible' : '';
 
     setTimeout(() => {
       window.dispatchEvent(autocompleteDataReceivedEvent);

@@ -33,33 +33,33 @@ describe('Sayt Component', () => {
   });
 
   describe('updated()', () => {
-    it('should change the hidden property if the show property has changed', () => {
+    it('should change the hidden property if the visible property has changed', () => {
       sayt.hidden = true;
-      sayt.show = true;
+      sayt.visible = true;
 
-      sayt.updated(new Map([['show', false]]));
+      sayt.updated(new Map([['visible', true]]));
 
-      expect(sayt.hidden).to.equal(false);
+      expect(sayt.hidden).to.be.false;
     });
   });
 
   describe('handleVisibilityEvent()', () => {
-    it('should set the show prop to true when receiving a SAYT_SHOW event', () => {
+    it('should set the visible prop to true when receiving a SAYT_SHOW event', () => {
       const dispatchedEvent = new CustomEvent(SAYT_EVENT.SAYT_SHOW, { detail: 'test' });
 
       sayt.handleVisibilityEvent(dispatchedEvent);
 
-      expect(sayt.show).to.equal(true);
+      expect(sayt.visible).to.equal(true);
     });
 
-    it('should set the show prop to false when receiving a SAYT_HIDE event', () => {
+    it('should set the visible prop to false when receiving a SAYT_HIDE event', () => {
       sayt.hidden = false;
-      sayt.show = true;
+      sayt.visible = true;
       const dispatchedEvent = new CustomEvent(SAYT_EVENT.SAYT_HIDE, { detail: 'test' });
 
       sayt.handleVisibilityEvent(dispatchedEvent);
 
-      expect(sayt.show).to.equal(false);
+      expect(sayt.visible).to.equal(false);
     });
   });
 

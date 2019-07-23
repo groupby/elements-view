@@ -17,7 +17,7 @@ export default class Sayt extends LitElement {
   /**
    * Determines the visibility of the `sayt` component.
    */
-  @property({ type: Boolean, reflect: true }) show = false;
+  @property({ type: Boolean, reflect: true }) visible = false;
 
   constructor() {
     super();
@@ -50,13 +50,13 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Update component `hidden` property when the `show` property changes.
+   * Update component `hidden` property when the `visible` property changes.
    *
    * @param changedProps A map of the all the change properties.
    */
   updated(changedProps: PropertyValues) {
-    if (changedProps.has('show')) {
-      this.hidden = !this.show;
+    if (changedProps.has('visible')) {
+      this.hidden = !this.visible;
     }
   }
 
@@ -69,10 +69,10 @@ export default class Sayt extends LitElement {
   handleVisibilityEvent(e: CustomEvent) {
       switch (e.type) {
       case SAYT_EVENT.SAYT_SHOW:
-        this.show = true;
+        this.visible = true;
         break;
       case SAYT_EVENT.SAYT_HIDE:
-        this.show = false;
+        this.visible = false;
         break;
     }
   }
