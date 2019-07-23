@@ -104,7 +104,7 @@ export default class SearchBox extends Base {
       new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
         detail: (e.target as HTMLInputElement).value,
         bubbles: true
-      })
+      });
     );
   }
 
@@ -171,12 +171,11 @@ export default class SearchBox extends Base {
     return html`
     <input 
       type="text" 
-      @click="${this.clickExposed}" 
-      data-sfx-ref="searchInput" 
       placeholder="${this.placeholder}" 
+      data-sfx-ref="searchInput" 
       @input="${this.handleInput}"
+      @click="${this.clickExposed}"
       @keydown="${this.handleKeydown}">
-    </input>
     ${
       this.clearButton
         ? html`<button @click="${this.clearSearch}">Clear</button>`
