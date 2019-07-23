@@ -49,17 +49,17 @@ describe('Sayt Component', () => {
 
       sayt.handleVisibilityEvent(dispatchedEvent);
 
-      expect(sayt.visible).to.equal(true);
+      expect(sayt.visible).to.be.true;
     });
 
     it('should set the visible prop to false when receiving a SAYT_HIDE event', () => {
+      const dispatchedEvent = new CustomEvent(SAYT_EVENT.SAYT_HIDE, { detail: 'test' });
       sayt.hidden = false;
       sayt.visible = true;
-      const dispatchedEvent = new CustomEvent(SAYT_EVENT.SAYT_HIDE, { detail: 'test' });
 
       sayt.handleVisibilityEvent(dispatchedEvent);
 
-      expect(sayt.visible).to.equal(false);
+      expect(sayt.visible).to.be.false;
     });
   });
 
