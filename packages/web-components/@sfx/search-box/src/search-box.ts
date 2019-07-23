@@ -136,7 +136,8 @@ export default class SearchBox extends LitElement {
   }
 
   /**
-   * Sets value property and searchbox input value to an empty string.
+   * Sets value property and searchbox input value to an empty string and
+   * invokes the emitSearchBoxClearedEvent function.
    * Invoked in response to click on `clear` button.
    */
   clearSearch() {
@@ -146,7 +147,7 @@ export default class SearchBox extends LitElement {
   }
 
   /**
-   * Dispatches an event notifying that the input bar has been clicked.
+   * Dispatches an event notifying that the search box input bar has been clicked.
    * Invoked in response to a user clicking inside of the searchbox input.
    */
   clickExposed() {
@@ -155,7 +156,7 @@ export default class SearchBox extends LitElement {
   }
 
   /**
-   * Dispatches an event notifying that the input bar has been hovered.
+   * Dispatches an event notifying that the search box input bar has been hovered.
    * Invoked in response to a user hovering inside of the searchbox input.
    */
   hoverExposed() {
