@@ -19,12 +19,7 @@ storiesOf('Components|SAYT', module)
       window.dispatchEvent(autocompleteDataReceivedEvent);
     }, 100);
 
-
-    return `
-      <sfx-sayt
-        ${ showAttribute }
-      ></sfx-sayt>
-    `
+    return `<sfx-sayt ${ showAttribute }></sfx-sayt>`
   }
   , {
     notes: {
