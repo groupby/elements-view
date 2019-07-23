@@ -16,11 +16,11 @@ Dispatched when a user clicks anywhere within the search box input area.
 
 #### `sfx::search_request`
 
-Dispatched when a user clicks on the search button nd hits `enter` within the search box. This event sends the search term value entered into the search box.
+Dispatched when a user clicks on the search button and hits `enter` within the search box. This event sends the search term value entered into the search box.
 
 #### `sfx::search_box_cleared`
 
-Dispatched when the value within the search box area is cleared. Occurs when a user clicks on the clear button, or when the final letter is removed from the search term.
+Dispatched when the value within the search box area is cleared when a user clicks on the clear button.
 
 ## Customizations
 
@@ -28,14 +28,12 @@ The SF-X Search Box component allows for optional inclusion of a clear button an
 Users of the component can add the following attributes to the custom element:
 `clearbutton`: adds clear button
 `searchbutton`: adds search button
-`placeholdertext`: if populated with a string, will replace the default placeholder text in the input box.
+`placeholder`: if populated with a string, will replace the default placeholder text in the search box.
 
 ## Testing
 
-The test suite for this component is contained in /packages/web-components/@sfx/search-box/test.
+The test suite for this component is contained in the `test` directory. To run the tests, navigate to this folder and use the following command:
 To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:
-
-- To run the tests once:
 
 ```sh
 yarn test
