@@ -1,7 +1,8 @@
 import { SEARCHBOX_EVENT, KEY_CODES } from '../../src/events';
 import { expect, spy, stub } from '../utils';
 import SearchBox from '../../src/search-box';
-import { TemplateResult, html, LitElement } from 'lit-element';
+import { TemplateResult, html } from 'lit-element';
+import { Base } from '@sfx/base';
 
 describe('SearchBox Component', () => {
   let searchbox;
@@ -16,12 +17,9 @@ describe('SearchBox Component', () => {
     searchboxDispatchEvent.restore();
   });
 
-  /*
-   * TODO To be removed with introduction of Base.
-   */
   describe('Constructor', () => {
-    it('should extend LitElement', () => {
-      expect(searchbox).to.be.an.instanceof(LitElement);
+    it('should extend Base', () => {
+      expect(searchbox).to.be.an.instanceof(Base);
     });
 
     describe('placeholder property', () => {

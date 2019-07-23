@@ -1,4 +1,5 @@
-import { LitElement, customElement, html, property } from 'lit-element';
+import { customElement, html, property } from 'lit-element';
+import { Base } from '@sfx/base';
 import { SEARCHBOX_EVENT, KEY_CODES } from './events';
 
 /**
@@ -7,7 +8,7 @@ import { SEARCHBOX_EVENT, KEY_CODES } from './events';
  * The entity also listens for events, and updates data accordingly.
  */
 @customElement('sfx-search-box')
-export default class SearchBox extends LitElement {
+export default class SearchBox extends Base {
   /**
    * Text used as placeholder in search box.
    */
@@ -31,13 +32,6 @@ export default class SearchBox extends LitElement {
   constructor() {
     super();
     this.updateText = this.updateText.bind(this);
-  }
-
-  /*
-   * TODO To be removed with introduction of Base.
-   */
-  createRenderRoot() {
-    return this;
   }
 
   /**
