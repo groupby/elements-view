@@ -1,10 +1,10 @@
 const webpack = require('../webpack.config.js');
 
 module.exports = async ({ config, mode }) => {
-  return {
-    ...config,
+  return { 
+    ...config, 
     module: { 
-      ...config.module, 
+      ...config.module,
       rules: webpack.module.rules 
     }, 
     resolve: {
