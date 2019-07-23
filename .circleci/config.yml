@@ -14,6 +14,9 @@ defaults:
     command: |
       [[ ! -r ../build.tar ]] || tar xvf ../build.tar
 
+  git_submodule_install: &git_submodule_install
+    name: Install git submodules
+    command: git submodule update --init
   yarn_install: &yarn_install
     name: Install
     command: yarn
@@ -60,6 +63,7 @@ jobs:
       - run:
           name: Dependencies
           command: sudo apt install -y rsync
+      - run: *git_submodule_install
       - run: *yarn_install
       - save_cache:
           <<: *yarn_cache
