@@ -46,6 +46,8 @@ describe('Sayt Component', () => {
 
   describe('showSayt()', () => {
     it('should set the visible prop to true', () => {
+      sayt.visible = false;
+
       sayt.showSayt();
 
       expect(sayt.visible).to.be.true;
