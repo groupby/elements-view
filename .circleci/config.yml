@@ -167,7 +167,6 @@ workflows:
             - build_autocomplete
             - build_sayt
 
-
       - unit_test:
           name: unit_test_base
           <<: *requires_build_final
