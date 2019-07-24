@@ -18,7 +18,7 @@ defaults:
     name: Install git submodules
     command: git submodule update --init
   yarn_install: &yarn_install
-    name: Install
+    name: Install dependencies
     command: yarn
 
   requires_build_ui: &requires_build_ui
@@ -83,6 +83,8 @@ jobs:
           paths:
             - ~/build.tar
 
+  ### build_final
+  ### Generates a cache that includes all built packages.
   build_final:
     <<: *image
     steps:
