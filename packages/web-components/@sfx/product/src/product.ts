@@ -55,11 +55,12 @@ export default class Product extends Base {
     const { name, price, variants, productUrl, imageSrc, imageAlt } = this.product;
 
     return html`
+      <style>.product-variants { padding: 0 }</style>
       <slot name="image">
         ${ imageSrc ? html`<img src="${ imageSrc }" alt="${ imageAlt }" />`: '' }
       </slot>
       <slot name="variants">
-        <ul>
+        <ul class="product-variants">
           ${
             variants ?
               variants.items.map((v: ProductVariantModel) => html`<sfx-product-variant type="${variants.type}" .variant="${v}"></sfx-product-variant>`)

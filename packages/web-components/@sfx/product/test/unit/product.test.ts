@@ -166,6 +166,54 @@ describe('Variant Component', () => {
       expect(addEventListener).to.have.been.called;
     });
 
+    it('should set role to "listitem"', () => {
+      component.connectedCallback();
+      expect(component.getAttribute('role')).to.equal('listitem');
+    });
+
+    it('should have "product-variant" as a className', () => {
+      component.connectedCallback();
+      expect(component.className).to.include('product-variant');
+    });
+
+    describe('variant types', () => {
+      let setAttribute;
+
+      beforeEach(() => {
+        setAttribute = stub(component, 'setAttribute');
+
+        component.variant = {
+          text: 'Foo',
+          color: '#bed',
+          image: 'src.png',
+          product: {}
+        };
+      });
+
+      it('should set title and style if the type is "color"', () => {
+        component.type = 'color';
+        component.connectedCallback();
+        expect(setAttribute).to.be.calledWith('style', `background-color:${component.variant.color}`);
+        expect(setAttribute).to.be.calledWith('title', component.variant.text);
+      });
+
+      it('should set title and style if the type is "image"', () => {
+        component.type = 'image';
+        component.connectedCallback();
+        expect(setAttribute).to.be.calledWith(
+          'style',
+          `background-image:${component.variant.image};background-color:${component.variant.color}`
+        );
+        expect(setAttribute).to.be.calledWith('title', component.variant.text);
+      });
+
+      it('should set innerText if the type is "text"', () => {
+        component.type = 'text';
+        component.connectedCallback();
+        expect(component.innerText).to.equal(component.variant.text);
+      });
+    });
+
     it('should dispatch an event when component is clicked', () => {
       const dispatchEvent = spy(component, 'dispatchEvent');
 
@@ -175,23 +223,7 @@ describe('Variant Component', () => {
   });
 
   describe('render', () => {
-    it('should return a list element with text', () => {
-      const result = component.render();
-      expect(result).to.be.an.instanceof(TemplateResult);
-    });
-
-    it('should return a list element with a background color', () => {
-      component.type = 'color';
-      component.variant = { text: 'foo', color: '#bed', product: {} };
-
-      const result = component.render();
-      expect(result).to.be.an.instanceof(TemplateResult);
-    });
-
-    it('should return a list element with a background image', () => {
-      component.type = 'image';
-      component.variant = { text: 'foo', image: '#', product: {} };
-
+    it('should return an instance of TemplateResult', () => {
       const result = component.render();
       expect(result).to.be.an.instanceof(TemplateResult);
     });
