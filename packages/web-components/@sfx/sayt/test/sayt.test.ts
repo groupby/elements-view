@@ -65,7 +65,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('render', () => {
+  describe('render()', () => {
     it('should return an instance of TemplateResult', () => {
       const result = sayt.render();
 
