@@ -8,7 +8,7 @@ defaults:
     key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-all-
   archive_build: &archive_build
     name: Archive build
-    command: tar cvf ../build.tar packages/web-components/@sfx/*/{dist,esnext}
+    command: tar cvf ../build.tar packages/*/@sfx/*/{dist,esnext}
   extract_build_archive: &extract_build_archive
     name: Extract archive
     command: |
@@ -75,7 +75,7 @@ jobs:
             package="${CIRCLE_JOB#build_}"
             package="${package//_/-}"
 
-            cd "packages/web-components/@sfx/${package}"
+            cd packages/*/"@sfx/${package}"
             yarn build
       - run: *archive_build
       - save_cache:
@@ -127,7 +127,7 @@ jobs:
             package="${CIRCLE_JOB#unit_test_}"
             package="${package//_/-}"
 
-            cd "packages/web-components/@sfx/${package}"
+            cd packages/*/"@sfx/${package}"
             yarn test
 
   ### unit_test_final
