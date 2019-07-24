@@ -1,0 +1,189 @@
+defaults:
+  image: &image
+    docker:
+      - image: circleci/node:11.6.0-browsers
+  yarn_cache: &yarn_cache
+    key: yarn_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+  build_final_cache_partial: &build_final_cache_partial
+    key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-all-
+  archive_build: &archive_build
+    name: Archive build
+    command: tar cvf ../build.tar packages/*/@sfx/*/{dist,esnext}
+  extract_build_archive: &extract_build_archive
+    name: Extract archive
+    command: |
+      [[ ! -r ../build.tar ]] || tar xvf ../build.tar
+
+  git_submodule_install: &git_submodule_install
+    name: Install git submodules
+    command: git submodule update --init
+  yarn_install: &yarn_install
+    name: Install dependencies
+    command: yarn
+
+  requires_build_ui: &requires_build_ui
+    requires:
+      - build_ui
+  requires_build_final: &requires_build_final
+    requires:
+      - build_final
+
+version: 2.1
+
+jobs:
+  ## Initialization jobs
+
+  ### generate_cache_key_file
+  ### Stores the current build number in a file to use in unique cache keys and branch names for this workflow.
+  ### The build number is guaranteed to be unique per build per project and is suitable for use as an identifier.
+  generate_cache_key_file:
+    <<: *image
+    working_directory: ~/
+    steps:
+      - run: echo "$CIRCLE_BUILD_NUM" > workflow-start
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - workflow-start
+
+  ## Build jobs
+
+  ### build: build_{package}
+  ### Builds {package} and stores them in a cache.
+  build:
+    <<: *image
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache: *yarn_cache
+      - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-
+      - run: *extract_build_archive
+      - run:
+          name: Dependencies
+          command: sudo apt install -y rsync
+      - run: *git_submodule_install
+      - run: *yarn_install
+      - save_cache:
+          <<: *yarn_cache
+          paths:
+          - ~/.cache/yarn
+      - run:
+          name: Build
+          command: |
+            package="${CIRCLE_JOB#build_}"
+            package="${package//_/-}"
+
+            cd packages/*/"@sfx/${package}"
+            yarn build
+      - run: *archive_build
+      - save_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-{{ .Environment.CIRCLE_JOB }}-{{ epoch }}
+          paths:
+            - ~/build.tar
+
+  ### build_final
+  ### Generates a cache that includes all built packages.
+  build_final:
+    <<: *image
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_autocomplete-
+      - run: *extract_build_archive
+      - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_base-
+      - run: *extract_build_archive
+      - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt-
+      - run: *extract_build_archive
+      - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_ui-
+      - run: *extract_build_archive
+      - run: *archive_build
+      - save_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-all-{{ epoch }}
+          paths:
+            - ~/build.tar
+
+  ## Unit test jobs
+
+  ### unit_test: unit_test_{package}
+  ### Runs the tests for {package}.
+  unit_test:
+    <<: *image
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache: *yarn_cache
+      - restore_cache: *build_final_cache_partial
+      - run: *extract_build_archive
+      - run: *yarn_install
+      - run:
+          name: Test
+          command: |
+            package="${CIRCLE_JOB#unit_test_}"
+            package="${package//_/-}"
+
+            cd packages/*/"@sfx/${package}"
+            yarn test
+
+  ### unit_test_final
+  ### No-op. This job exists to fan in all the unit test jobs.
+  unit_test_final:
+    <<: *image
+    steps:
+      - run: exit 0
+
+workflows:
+  version: 2
+  build_test:
+    jobs:
+      - generate_cache_key_file:
+          filters:
+            branches:
+              ignore: /release\/.*/
+
+      - build:
+          name: build_base
+          requires:
+            - generate_cache_key_file
+      - build:
+          name: build_ui
+          requires:
+            - build_base
+      - build:
+          name: build_autocomplete
+          <<: *requires_build_ui
+      - build:
+          name: build_sayt
+          <<: *requires_build_ui
+      - build_final:
+          requires:
+            - build_base
+            - build_ui
+            - build_autocomplete
+            - build_sayt
+
+      - unit_test:
+          name: unit_test_base
+          <<: *requires_build_final
+      - unit_test:
+          name: unit_test_ui
+          <<: *requires_build_final
+      - unit_test:
+          name: unit_test_autocomplete
+          <<: *requires_build_final
+      - unit_test:
+          name: unit_test_sayt
+          <<: *requires_build_final
+      - unit_test_final:
+          requires:
+            - unit_test_base
+            - unit_test_ui
+            - unit_test_autocomplete
+            - unit_test_sayt
