@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit-element';
 import { expect, spy, stub } from '../utils';
 
-// import Base from '@sfx/base';
+import { Base } from '@sfx/base';
 import Variant from '../../src/variant';
 
 describe('Variant Component', () => {
@@ -12,9 +12,9 @@ describe('Variant Component', () => {
   });
 
   describe('constructor', () => {
-    // it('should extend the Base class', () => {
-    //   expect(component).to.be.an.instanceOf(Base);
-    // });
+    it('should extend the Base class', () => {
+      expect(component).to.be.an.instanceOf(Base);
+    });
 
     describe('type property', () => {
       it('should have a default value of "full"', () => {

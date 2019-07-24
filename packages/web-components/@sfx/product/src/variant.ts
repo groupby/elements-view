@@ -1,8 +1,7 @@
 import { customElement, property, html } from 'lit-element';
 import { ProductVariantModel } from './product';
 
-// import Base from '@sfx/base';
-import Base from '../../base';
+import { Base } from '@sfx/base';
 
 @customElement('sfx-product-variant')
 export default class Variant extends Base {

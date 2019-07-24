@@ -1,7 +1,6 @@
 import { customElement, property, html, TemplateResult } from 'lit-element';
 
-// import Base from '@sfx/base';
-import Base from '../../base';
+import { Base } from '@sfx/base';
 
 @customElement('sfx-product')
 export default class Product extends Base {
@@ -63,7 +62,7 @@ export default class Product extends Base {
         <ul>
           ${
             variants ? 
-              variants.items.map(v => html`<sfx-product-variant type="${variants.type}" .variant="${v}"></sfx-product-variant>`)
+              variants.items.map((v: ProductVariantModel) => html`<sfx-product-variant type="${variants.type}" .variant="${v}"></sfx-product-variant>`)
             : ''
           }
         </ul>
