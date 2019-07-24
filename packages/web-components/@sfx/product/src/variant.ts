@@ -10,15 +10,15 @@ export default class Variant extends Base {
 
   connectedCallback() {
     super.connectedCallback();
-    
+
     this.addEventListener('click', () => {
-      this.dispatchEvent(new CustomEvent('change_product_variant', {
+      this.dispatchEvent(new CustomEvent('sfx::change_product_variant', {
         bubbles: true,
         detail: this.variant.product
       }));
     });
   }
-  
+
   render() {
     const { type, variant } = this;
 

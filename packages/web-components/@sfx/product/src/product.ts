@@ -13,12 +13,12 @@ export default class Product extends Base {
 
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener('change_product_variant', this.updateVariant);
+    window.addEventListener('sfx::change_product_variant', this.updateVariant);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener('change_product_variant', this.updateVariant);
+    window.removeEventListener('sfx::change_product_variant', this.updateVariant);
   }
 
   updateVariant(e: CustomEvent) {
@@ -29,7 +29,7 @@ export default class Product extends Base {
       ...product
     };
   }
-  
+
   urlWrap(url: string, children: TemplateResult) {
     return url ? html`<a href="${ url }">${children}</a>` : html`${children}`;
   }
@@ -50,7 +50,7 @@ export default class Product extends Base {
       <span class="sfx-product-${ p }">${ product[p] }</span>
     `);
   }
-  
+
   render() {
     const { name, price, variants, productUrl, imageSrc, imageAlt } = this.product;
 
@@ -61,7 +61,7 @@ export default class Product extends Base {
       <slot name="variants">
         <ul>
           ${
-            variants ? 
+            variants ?
               variants.items.map((v: ProductVariantModel) => html`<sfx-product-variant type="${variants.type}" .variant="${v}"></sfx-product-variant>`)
             : ''
           }
@@ -71,7 +71,7 @@ export default class Product extends Base {
         ${ this.urlWrap(productUrl, html`
           <h3>${ name }</h3>
         `) }
-      </slot> 
+      </slot>
       <slot name="price">
         <p>${ price }</p>
       </slot>
@@ -86,7 +86,7 @@ export interface ProductModel {
   name?: string;
   price?: number;
   productUrl?: string;
-  variants?: ProductVariantsModel; 
+  variants?: ProductVariantsModel;
 }
 
 export interface ProductVariantsModel {
