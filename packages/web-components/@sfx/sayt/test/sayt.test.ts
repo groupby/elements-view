@@ -31,6 +31,7 @@ describe('Sayt Component', () => {
 
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showSayt);
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideSayt);
+      expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
     });
   });
 

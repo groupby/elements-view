@@ -41,6 +41,7 @@ export default class Sayt extends LitElement {
 
     window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideSayt);
+    window.removeEventListener('click', this.processClick);
   }
 
   createRenderRoot() {
