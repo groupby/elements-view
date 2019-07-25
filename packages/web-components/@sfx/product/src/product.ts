@@ -37,14 +37,14 @@ export default class Product extends Base {
   additionalInfo() {
     const { product } = this;
 
-    const properties: ProductModel = {
-      name: '',
+    const properties = {
+      title: '',
       price: 0,
       variants: { type: 'text', items: [] },
       productUrl: '',
       imageAlt: '',
       imageSrc: ''
-    };
+    } as ProductModel;
 
     return Object.keys(product).filter(p => !(p in properties)).map(p => html`
       <span class="sfx-product-${ p }">${ product[p] }</span>

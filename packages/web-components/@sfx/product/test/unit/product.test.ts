@@ -88,7 +88,7 @@ describe('Product Component', () => {
 
     it('should return an array of TemplateResults if there are additional properties', () => {
       component.product = {
-        name: '',
+        title: '',
         salePrice: 0,
         promo: '30% off'
       };
