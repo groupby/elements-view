@@ -20,6 +20,7 @@ export default class Sayt extends LitElement {
     super();
     this.showSayt = this.showSayt.bind(this);
     this.hideSayt = this.hideSayt.bind(this);
+    this.processClick = this.processClick.bind(this);
   }
 
   /**
