@@ -30,7 +30,7 @@ export default class Sayt extends LitElement {
 
     window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideSayt);
-    window.addEventListener('click', this.hideSayt);
+    window.addEventListener('click', this.processClick);
   }
 
   /**
@@ -70,6 +70,10 @@ export default class Sayt extends LitElement {
    */
   hideSayt() {
     this.visible = false;
+  }
+
+  processClick(event) {
+    console.log(event);
   }
 
   render() {
