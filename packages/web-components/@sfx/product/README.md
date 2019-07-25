@@ -6,34 +6,33 @@
 
 The product component will display information about a given product.
 
-## Functionality 
+## Functionality
 
-The component takes one `product` attribute (please refer [here](#) (@todo Link to TSDoc) to the format of the product object).
+The component takes one `product` attribute (refer to the `ProductModel` instance for the data format).
 
 ```js
-{     
-  "name": "Product Name",
+{
+  "title": "Product Name",
   "price": 3.55,
-  "productUrl": "http://url",
-  "imageSrc": "http://url",
+  "productUrl": "http://example.com/img.jpg",
+  "imageSrc": "http://example.com/img.jpg",
   "imageAlt": "Alternative image text"
 }
 ```
 
 ## Customizations
 
-Optionally the product can use `variants` to display different information based on what variant is selected. The format to use variants can be found [here](#). (@todo Link to TSDoc)
+Optionally the product can use `variants` to display different information based on what variant is selected (refer to the `ProductVariantsModel` instance for the data format).
 
 ```js
 {
-  ...
   "variants": {
     "type": "text" // default, can be either "text", "image", "color"
     "items": [
-      { 
-        "text": "Variant Label", 
+      {
+        "text": "Variant Label",
         "product": {
-          // Info that will be overwritten in the product component
+          // Data that will be overwritten in the product component
         }
       }
     ]
@@ -41,14 +40,20 @@ Optionally the product can use `variants` to display different information based
 }
 ```
 
-The `image`, `variants`, `title` and `price` can be changed using slots. 
+The `image`, `variants`, `title` and `price` can be changed using slots.
 
-> **Any properties that are not identified in the ProductModel, will be rendered as additional `<span>` tags in the component.**
+```html
+<sfx-product product="{}">
+  <h1 slot="title">Slotted Title</h1>
+</sfx-product>
+```
+
+**Any properties that are not identified in the ProductModel, will be rendered as additional `<span>` tags in the component.**
 
 
 ## Testing
 
-The test suite for this component is contained in /packages/web-components/@sfx/product/test.
+The test suite for this component is contained in `test` directory.
 To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:
 
 - To run the tests once:
@@ -57,7 +62,7 @@ To run the tests, navigate to this folder and use one of the following commands 
 yarn test
 ```
 
-- To run the tests and watch the `src` and `test` directories to rerun the tests after any changes:
+- To run the tests and watch the `src` and `test` directories for changes:
 
 ```sh
 yarn tdd

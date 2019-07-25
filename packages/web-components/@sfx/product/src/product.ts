@@ -4,7 +4,7 @@ import { Base } from '@sfx/base';
 
 @customElement('sfx-product')
 export default class Product extends Base {
-  @property({ type: Object }) product: ProductModel | any = {};
+  @property({ type: Object }) product: ProductModel = {};
 
   constructor() {
     super();
@@ -13,12 +13,12 @@ export default class Product extends Base {
 
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener('sfx::change_product_variant', this.updateVariant);
+    this.addEventListener('sfx::product_variant_change', this.updateVariant);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener('sfx::change_product_variant', this.updateVariant);
+    this.removeEventListener('sfx::product_variant_change', this.updateVariant);
   }
 
   updateVariant(e: CustomEvent) {
@@ -31,7 +31,7 @@ export default class Product extends Base {
   }
 
   urlWrap(url: string, children: TemplateResult) {
-    return url ? html`<a href="${ url }">${children}</a>` : html`${children}`;
+    return url ? html`<a href="${ url }">${children}</a>` : children;
   }
 
   additionalInfo() {
@@ -52,7 +52,7 @@ export default class Product extends Base {
   }
 
   render() {
-    const { name, price, variants, productUrl, imageSrc, imageAlt } = this.product;
+    const { title, price, variants, productUrl, imageSrc, imageAlt } = this.product;
 
     return html`
       <style>.product-variants { padding: 0 }</style>
@@ -63,15 +63,15 @@ export default class Product extends Base {
         <ul class="product-variants">
           ${
             variants ?
-              variants.items.map((v: ProductVariantModel) => html`<sfx-product-variant type="${variants.type}" .variant="${v}"></sfx-product-variant>`)
+              variants.items.map(v =>
+                html`<sfx-product-variant type="${variants.type}" .variant="${v}"></sfx-product-variant>`
+              )
             : ''
           }
         </ul>
       </slot>
       <slot name="title">
-        ${ this.urlWrap(productUrl, html`
-          <h3>${ name }</h3>
-        `) }
+        ${ this.urlWrap(productUrl, html`<h3>${ title }</h3>`) }
       </slot>
       <slot name="price">
         <p>${ price }</p>
@@ -84,10 +84,11 @@ export default class Product extends Base {
 export interface ProductModel {
   imageSrc?: string;
   imageAlt?: string;
-  name?: string;
+  title?: string;
   price?: number;
   productUrl?: string;
   variants?: ProductVariantsModel;
+  [prop: string]: any;
 }
 
 export interface ProductVariantsModel {
@@ -98,7 +99,6 @@ export interface ProductVariantsModel {
 export interface ProductVariantModel {
   color?: string;
   image?: string;
-  label?: string;
   text: string;
   product: Partial<ProductModel>;
 }

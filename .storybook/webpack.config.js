@@ -1,14 +1,12 @@
 const webpack = require('../webpack.config.js');
 
 module.exports = async ({ config, mode }) => {
-  return { 
-    ...config, 
-    module: { 
+  return {
+    ...config,
+    module: {
       ...config.module,
-      rules: webpack.module.rules 
-    }, 
-    resolve: {
-      extensions: webpack.resolve.extensions
-    } 
+      rules: webpack.module.rules
+    },
+    resolve: webpack.resolve
   };
 };
