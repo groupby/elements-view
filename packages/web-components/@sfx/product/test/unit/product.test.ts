@@ -95,6 +95,7 @@ describe('Product Component', () => {
 
       const result = component.additionalInfo();
 
+      expect(result[0]).to.be.an.instanceOf(TemplateResult);
       expect(result[1]).to.be.an.instanceOf(TemplateResult);
     });
   });
