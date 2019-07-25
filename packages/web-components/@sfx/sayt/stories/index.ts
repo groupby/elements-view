@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import '../src/index.ts';
 
-const autocompleteDataReceivedEvent = new CustomEvent('autocomplete_received_results',
+const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results',
   { detail: [
       { "title": "Brands", "items": [{ "label": "Cats" }, { "label": "Dogs" }] },
       { "title": "default", "items": [{ "label": "Cars" }, { "label": "Bikes" }] }
