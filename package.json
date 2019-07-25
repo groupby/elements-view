@@ -5,7 +5,9 @@
   "private": true,
   "workspaces": [
     ".storybook/*",
-    "packages/web-components/@sfx/*"
+    "packages/*/@sfx/base",
+    "packages/*/@sfx/ui",
+    "packages/*/@sfx/*"
   ],
   "scripts": {
     "bundle": "webpack",
