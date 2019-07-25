@@ -55,3 +55,23 @@ storiesOf('Components|SAYT', module)
       `
     }
   })
+  .add('SAYT with simple search input', () => {
+    const showAttribute = boolean('visible', true) ? 'visible' : '';
+
+    setTimeout(() => {
+      window.dispatchEvent(autocompleteDataReceivedEvent);
+    }, 500);
+
+    return `
+      <input type="text" id="search-bar" placeholder="Search here" />
+      <br />
+      <sfx-sayt searchbar="search-bar" ${ showAttribute }></sfx-sayt>
+    `
+  }, {
+    notes: {
+      markdown:`
+        #Search As You Type (SAYT)
+        Demonstrating initially visible SAYT for showing/hiding.
+      `
+    }
+  });
