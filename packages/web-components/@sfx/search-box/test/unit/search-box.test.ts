@@ -13,10 +13,6 @@ describe('SearchBox Component', () => {
     searchboxDispatchEvent = stub(searchbox, 'dispatchEvent');
   });
 
-  afterEach(() => {
-    searchboxDispatchEvent.restore();
-  });
-
   describe('Constructor', () => {
     it('should extend Base', () => {
       expect(searchbox).to.be.an.instanceof(Base);
