@@ -25,6 +25,7 @@ export default class Sayt extends LitElement {
     this.showSayt = this.showSayt.bind(this);
     this.hideSayt = this.hideSayt.bind(this);
     this.processClick = this.processClick.bind(this);
+    this.nodeInSearchBar = this.nodeInSearchBar.bind(this);
   }
 
   /**
@@ -81,9 +82,13 @@ export default class Sayt extends LitElement {
   processClick(event: Event) {
     const target = event.target as Node;
     if (this.contains(target)) return;
-    const searchbar = document.querySelector(this.searchbar);
-    if (searchbar.contains(target)) return;
+    if (this.nodeInSearchBar(target)) return;
     this.hideSayt();
+  }
+
+  nodeInSearchBar(node) {
+    const searchBar = document.querySelector(this.searchbar);
+    return searchBar && searchBar.contains(node);
   }
 
   render() {

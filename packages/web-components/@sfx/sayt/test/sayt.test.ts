@@ -84,10 +84,7 @@ describe('Sayt Component', () => {
       event = {
         target: node,
       } as Event;
-      searchbar = {
-        contains: () => false,
-      };
-      stub(document, 'querySelector').callsFake(() => searchbar);
+      sayt.nodeInSearchBar = () => false;
     });
 
     it('should hide SAYT if the event target is not contained by SAYT', () => {
@@ -112,15 +109,27 @@ describe('Sayt Component', () => {
 
     it.skip('should not hide SAYT if the event target is the provided search box', () => {
       sayt.contains = stub().returns(false);
+      sayt.searchbar = searchbar;
+      searchbar.contains = stub().returns(true);
       sayt.hideSayt = spy();
-      sayt.searchbar = 'searchbar-id';
-      // querySelector
 
       sayt.processClick(event);
 
       expect(sayt.contains).to.be.calledWith(event);
-
+      expect(sayt.searchbar.contains).to.be.calledWith(node);
       expect(sayt.hideSayt).to.not.be.called;
     });
+  });
+
+  describe('nodeInSearchBar', () => {
+    it('should return true if given node is contained in the search bar', () => {
+      const searchbar = {
+        contains: stub().returns(true),
+      };
+      stub(document, 'querySelector').callsFake(() => searchbar);
+
+      sayt.nodeInSearchBar('node');
+    });
+    it('should return false if given node is not contained in the search bar');
   });
 });
