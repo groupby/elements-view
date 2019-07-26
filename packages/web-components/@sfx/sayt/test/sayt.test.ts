@@ -89,5 +89,19 @@ describe('Sayt Component', () => {
       expect(sayt.contains).to.be.calledWith(node);
       expect(sayt.hideSayt).to.be.called;
     });
+
+    it('should not SAYT if the event target is contained by SAYT', () => {
+      const node: any = 'some-node';
+      sayt.contains = stub().returns(true);
+      sayt.hideSayt = spy();
+      const event = {
+        target: node,
+      } as Event;
+
+      sayt.processClick(event);
+
+      expect(sayt.contains).to.be.calledWith(node);
+      expect(sayt.hideSayt).to.not.be.called;
+    });
   });
 });
