@@ -80,7 +80,7 @@ export default class SearchBox extends Base {
    */
   updateText(e: CustomEvent) {
     this.getInputElement().value = e.detail;
-    this.updateSearchTermValue(e.detail)
+    this.updateSearchTermValue(e.detail);
   }
 
   /**

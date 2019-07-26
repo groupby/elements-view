@@ -91,15 +91,16 @@ describe('SearchBox Component', () => {
   });
 
   describe('updateText', () => {
-    it('should update the value property in response to data received', () => {
+    it('should update the value property of the input element in response to data received', () => {
       const detail = 'inputText';
-      stub(searchbox, 'getInputElement').returns(
-        html`
-          <input type="text" data-sfx-ref="searchInput" placeholder="Type your search" />
-        `
-      );
-      searchbox.updateText({ detail });
+      const inputObject = { value: 'Placeholder text' };
+      const inputEvent = new CustomEvent(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, { detail: detail });
+      stub(searchbox, 'getInputElement').returns(inputObject);
+
+      searchbox.updateText(inputEvent);
+
       expect(searchbox.value).to.equal(detail);
+      expect(searchbox.value).to.equal(inputObject.value);
     });
   });
 
