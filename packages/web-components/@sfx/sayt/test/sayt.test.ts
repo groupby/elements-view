@@ -138,10 +138,13 @@ describe('Sayt Component', () => {
       const searchbar = {
         contains: stub().returns(false),
       };
-      stub(document, 'querySelector').callsFake(() => searchbar);
+      const querySelector = stub(document, 'querySelector').callsFake(() => searchbar);
+      sayt.searchbar = 'searchbar-id';
 
       const result = sayt.nodeInSearchBar('node');
 
+      expect(querySelector).to.be.calledWith('searchbar-id');
+      expect(searchbar.contains).to.be.calledWith('node');
       expect(result).to.equal(false);
     });
   });
