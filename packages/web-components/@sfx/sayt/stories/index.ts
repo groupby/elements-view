@@ -77,17 +77,21 @@ storiesOf('Components|SAYT', module)
     }
   })
   .add('SAYT with multiple search inputs', () => {
-    const showAttribute = boolean('visible', true) ? 'visible' : '';
+    const showAttribute1 = boolean('visible (first)', true) ? 'visible' : '';
+    const showAttribute2 = boolean('visible (second)', true) ? 'visible' : '';
 
     setTimeout(() => {
       window.dispatchEvent(autocompleteDataReceivedEvent);
     }, 500);
 
     return `
-      <input type="text" placeholder="Click me to close SAYT." />
-      <input type="text" id="search-bar" placeholder="Search here" />
+      <input type="text" id="search-bar1" placeholder="Search here" />
       <br />
-      <sfx-sayt searchbar="search-bar" ${ showAttribute }></sfx-sayt>
+      <sfx-sayt searchbar="search-bar1" ${ showAttribute1 }></sfx-sayt>
+      <hr />
+      <input type="text" id="search-bar2" placeholder="Or search here" />
+      <br />
+      <sfx-sayt searchbar="search-bar2" ${ showAttribute2 }></sfx-sayt>
     `
   }, {
     notes: {
