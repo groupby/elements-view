@@ -78,7 +78,6 @@ describe('Sayt Component', () => {
   describe('processClick', () => {
     let node: any = 'some-node';
     let event: Event;
-    let searchbar;
 
     beforeEach(() => {
       event = {
@@ -87,7 +86,7 @@ describe('Sayt Component', () => {
       sayt.nodeInSearchBar = () => false;
     });
 
-    it('should hide SAYT if the event target is not contained by SAYT', () => {
+    it('should hide SAYT if the event target is nowhere relevant', () => {
       sayt.contains = stub().returns(false);
       sayt.hideSayt = spy();
 
@@ -107,16 +106,15 @@ describe('Sayt Component', () => {
       expect(sayt.hideSayt).to.not.be.called;
     });
 
-    it.skip('should not hide SAYT if the event target is the provided search box', () => {
+    it('should not hide SAYT if the event target is the provided search box', () => {
       sayt.contains = stub().returns(false);
-      sayt.searchbar = searchbar;
-      searchbar.contains = stub().returns(true);
+      sayt.nodeInSearchBar = stub().returns(true);
       sayt.hideSayt = spy();
 
       sayt.processClick(event);
 
-      expect(sayt.contains).to.be.calledWith(event);
-      expect(sayt.searchbar.contains).to.be.calledWith(node);
+      expect(sayt.contains).to.be.calledWith(node);
+      expect(sayt.nodeInSearchBar).to.be.calledWith(node);
       expect(sayt.hideSayt).to.not.be.called;
     });
   });
