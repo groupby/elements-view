@@ -149,16 +149,14 @@ describe('SearchBox Component', () => {
 
   describe('clearSearch', () => {
     it('should set the search term property to an empty string', () => {
-      stub(searchbox, 'getInputElement').returns(
-        html`
-          <input type="text" id="searchInput" placeholder="Type your search" />
-        `
-      );
+      const inputObject = { value: 'Placeholder text' };
+      stub(searchbox, 'getInputElement').returns(inputObject);
       stub(searchbox, 'emitSearchBoxClearClick');
 
       searchbox.clearSearch();
 
       expect(searchbox.value).to.equal('');
+      expect(searchbox.value).to.equal(inputObject.value);
     });
 
     it('should invoke the emitSearchBoxClearClick', () => {
