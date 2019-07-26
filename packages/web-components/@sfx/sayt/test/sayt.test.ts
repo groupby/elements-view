@@ -128,8 +128,11 @@ describe('Sayt Component', () => {
       };
       stub(document, 'querySelector').callsFake(() => searchbar);
 
-      sayt.nodeInSearchBar('node');
+      const result = sayt.nodeInSearchBar('node');
+
+      expect(result).to.equal(true);
     });
+
     it('should return false if given node is not contained in the search bar');
   });
 });
