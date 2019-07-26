@@ -1,4 +1,4 @@
-import { SEARCHBOX_EVENT, KEY_CODES } from '../../src/events';
+import { SEARCHBOX_EVENT } from '../../src/events';
 import { expect, spy, stub } from '../utils';
 import SearchBox from '../../src/search-box';
 import { TemplateResult, html } from 'lit-element';
@@ -109,7 +109,7 @@ describe('SearchBox Component', () => {
       const emitSearchStub = stub(searchbox, 'emitSearchEvent');
       searchbox.value = 'hello';
 
-      searchbox.handleKeydown({ keyCode: KEY_CODES.ENTER });
+      searchbox.handleKeydown({ key: "Enter" });
 
       expect(emitSearchStub).to.have.been.called;
     });

@@ -1,6 +1,6 @@
 import { customElement, html, property } from 'lit-element';
 import { Base } from '@sfx/base';
-import { SEARCHBOX_EVENT, KEY_CODES } from './events';
+import { SEARCHBOX_EVENT } from './events';
 
 /**
  * This entity is responsible for receiving user input and dispatching events
@@ -115,7 +115,7 @@ export default class SearchBox extends Base {
    * @param e The KeyboardEvent object.
    */
   handleKeydown(e: KeyboardEvent) {
-    if (e.keyCode === KEY_CODES.ENTER && this.value.length > 0) {
+    if (e.key === "Enter" && this.value.length > 0) {
       this.emitSearchEvent();
     }
   }

@@ -5,7 +5,3 @@ export const SEARCHBOX_EVENT = {
   SEARCHBOX_CLICK: 'sfx::searchbox_click_event',
   SEARCHBOX_CHANGE: 'sfx::searchbox_change'
 };
-
-export const KEY_CODES = {
-  ENTER: 13
-}
