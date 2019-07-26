@@ -147,5 +147,13 @@ describe('Sayt Component', () => {
       expect(searchbar.contains).to.be.calledWith('node');
       expect(result).to.equal(false);
     });
+
+    it('should return false if there is no search bar can be found', () => {
+      const querySelector = stub(document, 'querySelector').returns(null);
+
+      const result = sayt.nodeInSearchBar('node');
+
+      expect(result).to.be.false;
+    });
   });
 });

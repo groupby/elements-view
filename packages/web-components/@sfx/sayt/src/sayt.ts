@@ -88,7 +88,7 @@ export default class Sayt extends LitElement {
 
   nodeInSearchBar(node) {
     const searchBar = document.querySelector(this.searchbar);
-    return searchBar && searchBar.contains(node);
+    return !!searchBar && searchBar.contains(node);
   }
 
   render() {
