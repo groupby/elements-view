@@ -16,7 +16,7 @@ export default class Sayt extends LitElement {
    */
   @property({ type: Boolean, reflect: true }) visible = false;
   /**
-   * Determines the visibility of the `sayt` component.
+   * Stores the ID of the relevant search element.
    */
   @property({ type: String, reflect: true }) searchbar;
 
