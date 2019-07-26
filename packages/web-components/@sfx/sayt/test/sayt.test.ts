@@ -133,6 +133,15 @@ describe('Sayt Component', () => {
       expect(result).to.equal(true);
     });
 
-    it('should return false if given node is not contained in the search bar');
+    it('should return false if given node is not contained in the search bar', () => {
+      const searchbar = {
+        contains: stub().returns(false),
+      };
+      stub(document, 'querySelector').callsFake(() => searchbar);
+
+      const result = sayt.nodeInSearchBar('node');
+
+      expect(result).to.equal(false);
+    });
   });
 });
