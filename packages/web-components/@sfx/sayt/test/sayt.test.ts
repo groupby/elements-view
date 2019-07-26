@@ -175,9 +175,13 @@ describe('Sayt Component', () => {
 
     it('should not hide SAYT when pressing any character other than escape', () => {
       const event = { key: "j" } as KeyboardEvent;
+      const event2 = { key: "Enter" } as KeyboardEvent;
+      const event3 = { key: "Space" } as KeyboardEvent;
       sayt.hideSayt = spy();
 
       sayt.processKeyPress(event);
+      sayt.processKeyPress(event2);
+      sayt.processKeyPress(event3);
 
       expect(sayt.hideSayt).to.not.be.called;
     });
