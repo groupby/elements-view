@@ -30,6 +30,7 @@ storiesOf('Components|SAYT', module)
       `
     } 
   })
+  // @TODO Remove these setTimeouts when opening a new story
   .add('Responding to Events - sayt_show & sayt_hide ', () => {
     setTimeout(() => {
       window.dispatchEvent(autocompleteDataReceivedEvent);
