@@ -131,7 +131,7 @@ describe('Sayt Component', () => {
 
       const result = sayt.nodeInSearchBar('node');
 
-      expect(querySelector).to.be.calledWith('searchbar-id');
+      expect(querySelector).to.be.calledWith('#searchbar-id');
       expect(searchbar.contains).to.be.calledWith('node');
       expect(result).to.equal(true);
     });
@@ -145,7 +145,7 @@ describe('Sayt Component', () => {
 
       const result = sayt.nodeInSearchBar('node');
 
-      expect(querySelector).to.be.calledWith('searchbar-id');
+      expect(querySelector).to.be.calledWith('#searchbar-id');
       expect(searchbar.contains).to.be.calledWith('node');
       expect(result).to.equal(false);
     });

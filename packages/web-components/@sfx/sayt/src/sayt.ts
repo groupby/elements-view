@@ -90,11 +90,12 @@ export default class Sayt extends LitElement {
   processClick(event: Event) {
     const target = event.target as Node;
     if (this.contains(target) || this.nodeInSearchBar(target)) return;
+
     this.hideSayt();
   }
 
   nodeInSearchBar(node) {
-    const searchBar = document.querySelector(this.searchbar);
+    const searchBar = document.querySelector('#' + this.searchbar);
     return !!searchBar && searchBar.contains(node);
   }
 
