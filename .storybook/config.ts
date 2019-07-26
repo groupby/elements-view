@@ -1,4 +1,5 @@
 import { configure, addDecorator, addParameters } from '@storybook/html';
+import { withCssResources } from '@storybook/addon-cssresources';
 import { withA11y } from '@storybook/addon-a11y';
 import GroupByTheme from './theme';
 
@@ -7,10 +8,23 @@ const req = require['context']('../packages/web-components', true, /\/stories\/i
 
 function loadStories() {
   addDecorator(withA11y);
+  addDecorator(withCssResources)
   addParameters({
     options: {
       theme: GroupByTheme,
-    }
+    },
+    cssresources: [
+      {
+        id: `bluetheme`,
+        code: `<style>body { background-color: lightblue; }</style>`,
+        picked: true,
+      },
+      {
+        id: `pinktheme`,
+        code: `<style>body { background-color: lightpink; }</style>`,
+        picked: false,
+      },
+    ],
   });
   req.keys().forEach(req);
 }
