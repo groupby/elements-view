@@ -98,9 +98,11 @@ export default class Sayt extends LitElement {
     return !!searchBar && searchBar.contains(node);
   }
 
-  processKeyPress(event: Event) {
+  processKeyPress(event: KeyboardEvent) {
     // @TODO Refactor escape out keycode 
-    console.log(event);
+    if (event.keyCode === 27) { // escape
+      this.hideSayt();
+    }
   }
 
   render() {

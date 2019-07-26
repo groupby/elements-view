@@ -163,5 +163,23 @@ describe('Sayt Component', () => {
     it('should exist as a function', () => {
       expect(sayt.processKeyPress).to.be.a('function');
     });
+
+    it('should hide SAYT when pressing escape', () => {
+      const event = { keyCode: 27 } as KeyboardEvent;
+      sayt.hideSayt = spy();
+
+      sayt.processKeyPress(event);
+
+      expect(sayt.hideSayt).to.be.called;
+    });
+
+    it('should not hide SAYT when pressing any character other than escape', () => {
+      const event = { keyCode: 35 } as KeyboardEvent;
+      sayt.hideSayt = spy();
+
+      sayt.processKeyPress(event);
+
+      expect(sayt.hideSayt).to.not.be.called;
+    });
   });
 });
