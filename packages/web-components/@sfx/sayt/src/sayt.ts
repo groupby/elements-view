@@ -18,7 +18,7 @@ export default class Sayt extends LitElement {
   /**
    * Stores the ID of the relevant search element.
    */
-  @property({ type: String, reflect: true }) searchbar;
+  @property({ type: String, reflect: true }) searchbar = '';
 
   constructor() {
     super();
@@ -94,7 +94,7 @@ export default class Sayt extends LitElement {
     this.hideSayt();
   }
 
-  nodeInSearchBar(node) {
+  nodeInSearchBar(node: Node) {
     const searchBar = document.querySelector('#' + this.searchbar);
     return !!searchBar && searchBar.contains(node);
   }
