@@ -76,13 +76,18 @@ describe('Sayt Component', () => {
   });
 
   describe('processClick', () => {
-    it('should hide SAYT if the event target is not contained by SAYT', () => {
-      const node: any = 'some-node';
-      sayt.contains = stub().returns(false);
-      sayt.hideSayt = spy();
-      const event = {
+    let node: any = 'some-node';
+    let event: Event;
+
+    beforeEach(() => {
+      event = {
         target: node,
       } as Event;
+    });
+
+    it('should hide SAYT if the event target is not contained by SAYT', () => {
+      sayt.contains = stub().returns(false);
+      sayt.hideSayt = spy();
 
       sayt.processClick(event);
 
@@ -91,12 +96,8 @@ describe('Sayt Component', () => {
     });
 
     it('should not SAYT if the event target is contained by SAYT', () => {
-      const node: any = 'some-node';
       sayt.contains = stub().returns(true);
       sayt.hideSayt = spy();
-      const event = {
-        target: node,
-      } as Event;
 
       sayt.processClick(event);
 
