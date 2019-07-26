@@ -79,10 +79,14 @@ export default class Sayt extends LitElement {
     this.visible = false;
   }
 
+  /**
+   * Processes a click event in order to determine whether or not to close SAYT.
+   * 
+   * @param event The click event.
+   */
   processClick(event: Event) {
     const target = event.target as Node;
-    if (this.contains(target)) return;
-    if (this.nodeInSearchBar(target)) return;
+    if (this.contains(target) || this.nodeInSearchBar(target)) return;
     this.hideSayt();
   }
 
