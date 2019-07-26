@@ -165,7 +165,7 @@ describe('Sayt Component', () => {
     });
 
     it('should hide SAYT when pressing escape', () => {
-      const event = { keyCode: 27 } as KeyboardEvent;
+      const event = { key: "Escape" } as KeyboardEvent;
       sayt.hideSayt = spy();
 
       sayt.processKeyPress(event);
@@ -174,7 +174,7 @@ describe('Sayt Component', () => {
     });
 
     it('should not hide SAYT when pressing any character other than escape', () => {
-      const event = { keyCode: 35 } as KeyboardEvent;
+      const event = { key: "j" } as KeyboardEvent;
       sayt.hideSayt = spy();
 
       sayt.processKeyPress(event);

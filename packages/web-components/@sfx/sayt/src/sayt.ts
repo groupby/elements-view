@@ -99,8 +99,7 @@ export default class Sayt extends LitElement {
   }
 
   processKeyPress(event: KeyboardEvent) {
-    // @TODO Refactor escape out keycode 
-    if (event.keyCode === 27) { // escape
+    if (event.key === "Escape") {
       this.hideSayt();
     }
   }
