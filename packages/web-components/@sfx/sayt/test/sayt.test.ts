@@ -1,4 +1,4 @@
-import { expect, stub } from './utils';
+import { expect, spy, stub } from './utils';
 import { TemplateResult } from 'lit-element';
 import Sayt from '../src/sayt';
 import { SAYT_EVENT } from '../src/events';
@@ -72,6 +72,22 @@ describe('Sayt Component', () => {
       const result = sayt.render();
 
       expect(result).to.be.an.instanceof(TemplateResult);
+    });
+  });
+
+  describe('processClick', () => {
+    it('should hide SAYT if the event target is not contained by SAYT', () => {
+      const node: any = 'some-node';
+      sayt.contains = stub().returns(false);
+      sayt.hideSayt = spy();
+      const event = {
+        target: node,
+      } as Event;
+
+      sayt.processClick(event);
+
+      expect(sayt.contains).to.be.calledWith(node);
+      expect(sayt.hideSayt).to.be.called;
     });
   });
 });

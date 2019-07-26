@@ -74,8 +74,11 @@ export default class Sayt extends LitElement {
     this.visible = false;
   }
 
-  processClick(event) {
-    console.log(event);
+  processClick(event: Event) {
+    const target = event.target as Node;
+    if (!this.contains(target)) {
+      this.hideSayt();
+    }
   }
 
   render() {
