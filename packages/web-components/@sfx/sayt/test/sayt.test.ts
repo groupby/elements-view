@@ -19,6 +19,7 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showSayt);
       expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideSayt);
       expect(addEventListener).to.be.calledWith('click', sayt.processClick);
+      expect(addEventListener).to.be.calledWith('keypress', sayt.processKeyPress);
     });
   });
 
@@ -32,6 +33,7 @@ describe('Sayt Component', () => {
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showSayt);
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
+      expect(removeEventListener).to.be.calledWith('keypress', sayt.processKeyPress);
     });
   });
 
@@ -75,7 +77,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('processClick', () => {
+  describe('processClick()', () => {
     let node: any = 'some-node';
     let event: Event;
 
@@ -119,7 +121,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('nodeInSearchBar', () => {
+  describe('nodeInSearchBar()', () => {
     it('should return true if given node is contained in the search bar', () => {
       const searchbar = {
         contains: stub().returns(true),
@@ -154,6 +156,12 @@ describe('Sayt Component', () => {
       const result = sayt.nodeInSearchBar('node');
 
       expect(result).to.be.false;
+    });
+  });
+
+  describe('processKeyPress()', () => {
+    it('should exist as a function', () => {
+      expect(sayt.processKeyPress).to.be.a('function');
     });
   });
 });

@@ -26,6 +26,7 @@ export default class Sayt extends LitElement {
     this.hideSayt = this.hideSayt.bind(this);
     this.processClick = this.processClick.bind(this);
     this.nodeInSearchBar = this.nodeInSearchBar.bind(this);
+    this.processKeyPress = this.processKeyPress.bind(this);
   }
 
   /**
@@ -37,6 +38,7 @@ export default class Sayt extends LitElement {
     window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideSayt);
     window.addEventListener('click', this.processClick);
+    window.addEventListener('keypress', this.processKeyPress);
   }
 
   /**
@@ -48,6 +50,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideSayt);
     window.removeEventListener('click', this.processClick);
+    window.removeEventListener('keypress', this.processKeyPress);
   }
 
   createRenderRoot() {
@@ -93,6 +96,11 @@ export default class Sayt extends LitElement {
   nodeInSearchBar(node) {
     const searchBar = document.querySelector(this.searchbar);
     return !!searchBar && searchBar.contains(node);
+  }
+
+  processKeyPress(event: Event) {
+    // @TODO Refactor escape out keycode 
+    console.log(event);
   }
 
   render() {
