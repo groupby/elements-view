@@ -74,4 +74,25 @@ storiesOf('Components|SAYT', module)
         Demonstrating initially visible SAYT for showing/hiding.
       `
     }
+  })
+  .add('SAYT with multiple search inputs', () => {
+    const showAttribute = boolean('visible', true) ? 'visible' : '';
+
+    setTimeout(() => {
+      window.dispatchEvent(autocompleteDataReceivedEvent);
+    }, 500);
+
+    return `
+      <input type="text" placeholder="Click me to close SAYT." />
+      <input type="text" id="search-bar" placeholder="Search here" />
+      <br />
+      <sfx-sayt searchbar="search-bar" ${ showAttribute }></sfx-sayt>
+    `
+  }, {
+    notes: {
+      markdown:`
+        #Search As You Type (SAYT)
+        Demonstrating multiple SAYT components. This proves that each Search/SAYT pair acts independently.
+      `
+    }
   });
