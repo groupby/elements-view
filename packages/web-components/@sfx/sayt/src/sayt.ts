@@ -15,6 +15,10 @@ export default class Sayt extends LitElement {
    * Determines the visibility of the `sayt` component.
    */
   @property({ type: Boolean, reflect: true }) visible = false;
+  /**
+   * Determines the visibility of the `sayt` component.
+   */
+  @property({ type: String, reflect: true }) searchbar;
 
   constructor() {
     super();
@@ -77,6 +81,8 @@ export default class Sayt extends LitElement {
   processClick(event: Event) {
     const target = event.target as Node;
     if (this.contains(target)) return;
+    const searchbar = document.querySelector(this.searchbar);
+    if (searchbar.contains(target)) return;
     this.hideSayt();
   }
 

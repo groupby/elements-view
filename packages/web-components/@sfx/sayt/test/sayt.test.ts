@@ -78,11 +78,16 @@ describe('Sayt Component', () => {
   describe('processClick', () => {
     let node: any = 'some-node';
     let event: Event;
+    let searchbar;
 
     beforeEach(() => {
       event = {
         target: node,
       } as Event;
+      searchbar = {
+        contains: () => false,
+      };
+      stub(document, 'querySelector').callsFake(() => searchbar);
     });
 
     it('should hide SAYT if the event target is not contained by SAYT', () => {
@@ -102,6 +107,19 @@ describe('Sayt Component', () => {
       sayt.processClick(event);
 
       expect(sayt.contains).to.be.calledWith(node);
+      expect(sayt.hideSayt).to.not.be.called;
+    });
+
+    it.skip('should not hide SAYT if the event target is the provided search box', () => {
+      sayt.contains = stub().returns(false);
+      sayt.hideSayt = spy();
+      sayt.searchbar = 'searchbar-id';
+      // querySelector
+
+      sayt.processClick(event);
+
+      expect(sayt.contains).to.be.calledWith(event);
+
       expect(sayt.hideSayt).to.not.be.called;
     });
   });
