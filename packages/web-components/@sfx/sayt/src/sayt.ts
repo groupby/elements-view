@@ -19,6 +19,10 @@ export default class Sayt extends LitElement {
    * Stores the ID of the relevant search element.
    */
   @property({ type: String, reflect: true }) searchbar = '';
+  /**
+   * Customizes the text in the close button.
+   */
+  @property({ type: String }) closeText = 'Close';
 
   /**
    * Calls superclass constructor and bind methods.
@@ -174,7 +178,7 @@ export default class Sayt extends LitElement {
   render() {
     return html`
       ${ this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>` }
-      <a href="#" .onclick=${this.clickCloseSayt}>Close</a>
+      <a href="#" aria-label="Close" .onclick=${this.clickCloseSayt}>${this.closeText}</a>
     `;
   }
 }
