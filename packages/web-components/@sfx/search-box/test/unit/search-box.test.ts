@@ -108,7 +108,7 @@ describe('SearchBox Component', () => {
       const emitSearchStub = stub(searchbox, 'emitSearchEvent');
       searchbox.value = 'hello';
 
-      searchbox.handleKeydown({ key: "Enter" });
+      searchbox.handleKeydown({ key: 'Enter' });
 
       expect(emitSearchStub).to.have.been.called;
     });
@@ -152,7 +152,7 @@ describe('SearchBox Component', () => {
     it('should invoke the emitSearchBoxClearClick', () => {
       const emitSearchBoxSpy = spy(searchbox, 'emitSearchBoxClearClick');
       stub(searchbox, 'getInputElement').returns({});
-      
+
       searchbox.clearSearch();
 
       expect(emitSearchBoxSpy).to.have.been.called;
@@ -174,9 +174,9 @@ describe('SearchBox Component', () => {
       const inputObject = { value: 'Placeholder text' };
       searchbox.value = 'cars';
       stub(searchbox, 'getInputElement').returns(inputObject);
-  
+
       searchbox.updated(new Map([['value', 'cars']]));
-  
+
       expect(inputObject.value).to.equal('cars');
     });
   });

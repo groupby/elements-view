@@ -108,7 +108,7 @@ export default class SearchBox extends Base {
   }
 
   /**
-   * Invokes the emitSearchEvent function when a user presses enter and 
+   * Invokes the emitSearchEvent function when a user presses enter and
    * the value property length is greater than 0.
    *
    * @param e The KeyboardEvent object.
@@ -148,7 +148,7 @@ export default class SearchBox extends Base {
   }
 
   /**
-   * Update component `value` property when the `value` property changes.
+   * Update search input box `value` property when the `value` property changes.
    *
    * @param changedProps A map of the all the change properties.
    */
@@ -178,26 +178,27 @@ export default class SearchBox extends Base {
 
   render() {
     return html`
-    <input 
-      type="text" 
-      placeholder="${this.placeholder}" 
-      data-sfx-ref="searchInput" 
-      @input="${this.handleInput}"
-      @click="${this.clickExposed}"
-      @keydown="${this.handleKeydown}">
-    ${
-      this.clearButton
-        ? html`<button @click="${this.clearSearch}">Clear</button>`
-        : ''
-    }
-    ${
-      this.searchButton
-        ? html`<button @click="${this.emitSearchEvent}">Search</button>`
-        : ''
-    }
-    <button @click="${this.updateTextEvent}">
-      Click to dispatch update search term event
-    </button>
+      <input
+        type="text"
+        placeholder="${this.placeholder}"
+        data-sfx-ref="searchInput"
+        @input="${this.handleInput}"
+        @click="${this.clickExposed}"
+        @keydown="${this.handleKeydown}"
+      />
+      ${this.clearButton
+        ? html`
+            <button @click="${this.clearSearch}">Clear</button>
+          `
+        : ''}
+      ${this.searchButton
+        ? html`
+            <button @click="${this.emitSearchEvent}">Search</button>
+          `
+        : ''}
+      <button @click="${this.updateTextEvent}">
+        Click to dispatch update search term event
+      </button>
     `;
   }
 }
