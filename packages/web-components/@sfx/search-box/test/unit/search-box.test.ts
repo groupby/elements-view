@@ -91,7 +91,18 @@ describe('SearchBox Component', () => {
   });
 
   describe('updateText', () => {
-    it('should update the value property of the input element in response to data received', () => {
+    it('should update the value of the input element in response to data received', () => {
+      const detail = 'inputText';
+      const inputObject = { value: 'Placeholder text' };
+      const inputEvent = new CustomEvent(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, { detail });
+      stub(searchbox, 'getInputElement').returns(inputObject);
+
+      searchbox.updateText(inputEvent);
+
+      expect(inputObject.value).to.equal(detail);
+    });
+
+    it('should update the value property in response to the data received', () => {
       const detail = 'inputText';
       const inputObject = { value: 'Placeholder text' };
       const inputEvent = new CustomEvent(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, { detail });
@@ -100,7 +111,6 @@ describe('SearchBox Component', () => {
       searchbox.updateText(inputEvent);
 
       expect(searchbox.value).to.equal(detail);
-      expect(inputObject.value).to.equal(detail);
     });
   });
 
@@ -157,6 +167,16 @@ describe('SearchBox Component', () => {
       searchbox.clearSearch();
 
       expect(searchbox.value).to.equal('');
+    });
+
+    it('should set the input box value to an empty string', () => {
+      const inputObject = { value: 'Placeholder text' };
+      stub(searchbox, 'getInputElement').returns(inputObject);
+      stub(searchbox, 'emitSearchBoxClearClick');
+
+      searchbox.clearSearch();
+
+      expect(inputObject.value).to.equal('');
     });
 
     it('should invoke the emitSearchBoxClearClick', () => {
