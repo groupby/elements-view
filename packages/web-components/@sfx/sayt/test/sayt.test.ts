@@ -131,6 +131,35 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe('isCorrectSayt()', () => {
+    it('should return true if event provides the correct searchbar ID', () => {
+      const searchbar = sayt.searchbar = 'some-searchbar-id';
+      const event = { detail: { searchbar } };
+
+      const result = sayt.isCorrectSayt(event);
+
+      expect(result).to.be.true;
+    });
+
+    it('should return true if event does not provide a searchbar ID', () => {
+      const searchbar = sayt.searchbar = 'some-searchbar-id';
+      const event = { detail: {} };
+
+      const result = sayt.isCorrectSayt(event);
+
+      expect(result).to.be.true;
+    });
+
+    it('should return false if event provides the wrong searchbar ID', () => {
+      sayt.searchbar = 'correct-searchbar-id';
+      const event = { detail: { searchbar: 'wrong-searchbar-id' } };
+
+      const result = sayt.isCorrectSayt(event);
+
+      expect(result).to.be.false;
+    });
+  });
+
   describe('render()', () => {
     it('should return an instance of TemplateResult', () => {
       const result = sayt.render();
