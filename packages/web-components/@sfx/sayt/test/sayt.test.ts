@@ -153,6 +153,12 @@ describe('Sayt Component', () => {
 
       expect(result).to.be.true;
     });
+
+    it('should not error if passed an event without a detail attribute', () => {
+      const event = {};
+
+      expect(() => sayt.isCorrectSayt(event)).to.not.throw();
+    });
   });
 
   describe('render()', () => {

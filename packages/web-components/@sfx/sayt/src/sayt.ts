@@ -119,7 +119,7 @@ export default class Sayt extends LitElement {
    * @param event An event that can contain a searchbar ID for comparison.
    */
   isCorrectSayt(event: CustomEvent) {
-    const searchbar = event.detail.searchbar;
+    const searchbar = event.detail && event.detail.searchbar;
     return this.searchbar === undefined ||
       searchbar === this.searchbar ||
       searchbar === undefined;
