@@ -72,7 +72,7 @@ describe('Sayt Component', () => {
   describe('hideCorrectSayt()', () => {
     it('should call hideSayt() when provided ID matches stored searchbar ID', () => {
       const hideSayt = stub(sayt, 'hideSayt');
-      const searchbar = sayt.searchbar = 'some-searchbar-id'
+      const searchbar = sayt.searchbar = 'some-searchbar-id';
       const event = { detail: { searchbar } };
 
       sayt.hideCorrectSayt(event);
@@ -97,6 +97,37 @@ describe('Sayt Component', () => {
       sayt.hideCorrectSayt(event);
 
       expect(hideSayt).to.not.be.called;
+    });
+  });
+
+  describe('showCorrectSayt()', () => {
+    it('should call showSayt() when provided ID matches stored searchbar ID', () => {
+      const showSayt = stub(sayt, 'showSayt');
+      const searchbar = sayt.searchbar = 'some-searchbar-id';
+      const event = { detail: { searchbar } };
+
+      sayt.showCorrectSayt(event);
+
+      expect(showSayt).to.be.calledOnce;
+    });
+
+    it('should call showSayt() when no searchbar ID is provided', () => {
+      const showSayt = stub(sayt, 'showSayt');
+      const event = { detail: {} };
+
+      sayt.showCorrectSayt(event);
+
+      expect(showSayt).to.be.calledOnce;
+    });
+
+    it('should not call showSayt() when the wrong searchbar ID is provided', () => {
+      const showSayt = stub(sayt, 'showSayt');
+      sayt.searchbar = 'correct-searchbar-id';
+      const event = { detail: { searchbar: 'wrong-searchbar-id' } };
+
+      sayt.showCorrectSayt(event);
+
+      expect(showSayt).to.not.be.called;
     });
   });
 

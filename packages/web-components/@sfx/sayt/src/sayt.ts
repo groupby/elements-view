@@ -32,6 +32,7 @@ export default class Sayt extends LitElement {
     this.processKeyPress = this.processKeyPress.bind(this);
     this.nodeInSearchBar = this.nodeInSearchBar.bind(this);
     this.hideCorrectSayt = this.hideCorrectSayt.bind(this);
+    this.showCorrectSayt = this.showCorrectSayt.bind(this);
   }
 
   /**
@@ -78,6 +79,13 @@ export default class Sayt extends LitElement {
    */
   showSayt() {
     this.visible = true;
+  }
+
+  showCorrectSayt(event: CustomEvent) {
+    const searchbar = event.detail.searchbar;
+    if (searchbar === this.searchbar || searchbar === undefined) {
+      this.showSayt();
+    }
   }
 
   /**
