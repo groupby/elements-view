@@ -94,32 +94,25 @@ describe('Sayt Component', () => {
   });
 
   describe('showCorrectSayt()', () => {
-    it('should call showSayt() when provided ID matches stored searchbar ID', () => {
+    it('should call showSayt() when event specifies correct searchbar ID ', () => {
       const showSayt = stub(sayt, 'showSayt');
-      const searchbar = sayt.searchbar = 'some-searchbar-id';
-      const event = { detail: { searchbar } };
+      const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(true);
+      const event = {};
 
       sayt.showCorrectSayt(event);
 
+      expect(isCorrectSayt).to.be.calledOnceWith(event);
       expect(showSayt).to.be.calledOnce;
     });
 
-    it('should call showSayt() when no searchbar ID is provided', () => {
+    it('should not call showSayt() when event specifies wrong searchbar ID', () => {
       const showSayt = stub(sayt, 'showSayt');
-      const event = { detail: {} };
+      const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(false);
+      const event = {};
 
       sayt.showCorrectSayt(event);
 
-      expect(showSayt).to.be.calledOnce;
-    });
-
-    it('should not call showSayt() when the wrong searchbar ID is provided', () => {
-      const showSayt = stub(sayt, 'showSayt');
-      sayt.searchbar = 'correct-searchbar-id';
-      const event = { detail: { searchbar: 'wrong-searchbar-id' } };
-
-      sayt.showCorrectSayt(event);
-
+      expect(isCorrectSayt).to.be.calledOnceWith(event);
       expect(showSayt).to.not.be.called;
     });
   });
