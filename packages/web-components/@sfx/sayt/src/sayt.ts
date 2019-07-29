@@ -23,6 +23,10 @@ export default class Sayt extends LitElement {
    * Customizes the text in the close button.
    */
   @property({ type: String }) closeText = 'Close';
+  /**
+   * Shows a button to allow for closing SAYT manually.
+   */
+  @property({ type: Boolean }) showCloseButton = false;
 
   /**
    * Calls superclass constructor and bind methods.
@@ -177,8 +181,13 @@ export default class Sayt extends LitElement {
    */
   render() {
     return html`
+      ${ this.showCloseButton ?
+        html`<a href="#" aria-label="Close" .onclick=${this.clickCloseSayt}>
+          ${this.closeText}
+        </a>`
+        : ``
+      }
       ${ this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>` }
-      <a href="#" aria-label="Close" .onclick=${this.clickCloseSayt}>${this.closeText}</a>
     `;
   }
 }

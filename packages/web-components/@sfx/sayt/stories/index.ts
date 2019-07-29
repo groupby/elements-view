@@ -14,13 +14,18 @@ storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
     const showAttribute = boolean('visible', true) ? 'visible' : '';
-    const closeText = text('Close link text', 'Close');
+    const closeText = text('Close button text', 'Close');
+    const showCloseButton = boolean('Show Close button', false) ? 'showclosebutton' : '';
 
     setTimeout(() => {
       window.dispatchEvent(autocompleteDataReceivedEvent);
     }, 100);
 
-    return `<sfx-sayt ${ showAttribute } closetext="${closeText}"></sfx-sayt>`
+    return `<sfx-sayt
+      closetext="${closeText}"
+      ${ showCloseButton }
+      ${ showAttribute }
+    ></sfx-sayt>`
   }, {
     notes: {
       markdown: `
@@ -60,6 +65,7 @@ storiesOf('Components|SAYT', module)
   .add('SAYT with simple search input', () => {
     const showAttribute = boolean('visible', true) ? 'visible' : '';
     const closeText = text('Close link text', 'Close');
+    const showCloseButton = boolean('Show Close button', false) ? 'showclosebutton' : '';
 
     setTimeout(() => {
       window.dispatchEvent(autocompleteDataReceivedEvent);
@@ -69,8 +75,8 @@ storiesOf('Components|SAYT', module)
       <input type="text" id="search-bar" placeholder="Search here" />
       <br />
       <sfx-sayt
-        searchbar="search-bar"
         closetext="${closeText}"
+        ${ showCloseButton }
         ${ showAttribute }
       ></sfx-sayt>
     `
