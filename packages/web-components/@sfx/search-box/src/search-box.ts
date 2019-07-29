@@ -1,4 +1,4 @@
-import { customElement, html, property } from 'lit-element';
+import { customElement, html, property, PropertyValues } from 'lit-element';
 import { Base } from '@sfx/base';
 import { SEARCHBOX_EVENT } from './events';
 
@@ -79,7 +79,6 @@ export default class SearchBox extends Base {
    * @param e The event object.
    */
   updateText(e: CustomEvent) {
-    this.getInputElement().value = e.detail;
     this.updateSearchTermValue(e.detail);
   }
 
@@ -135,7 +134,6 @@ export default class SearchBox extends Base {
    * Invoked in response to click on `clear` button.
    */
   clearSearch() {
-    this.getInputElement().value = '';
     this.value = '';
     this.emitSearchBoxClearClick();
   }
@@ -147,6 +145,17 @@ export default class SearchBox extends Base {
   clickExposed() {
     const searchBoxClickedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK, { bubbles: true });
     this.dispatchEvent(searchBoxClickedEvent);
+  }
+
+  /**
+   * Update component `value` property when the `value` property changes.
+   *
+   * @param changedProps A map of the all the change properties.
+   */
+  updated(changedProps: PropertyValues) {
+    if (changedProps.has('value')) {
+      this.getInputElement().value = this.value;
+    }
   }
 
   // TODO Move this to the Storybook tab once functionality has been merged into sfx-view.
