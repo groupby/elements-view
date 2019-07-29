@@ -42,7 +42,7 @@ export default class Sayt extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showSayt);
+    window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keypress', this.processKeyPress);
@@ -54,7 +54,7 @@ export default class Sayt extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showSayt);
+    window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keypress', this.processKeyPress);

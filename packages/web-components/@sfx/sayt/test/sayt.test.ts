@@ -16,7 +16,7 @@ describe('Sayt Component', () => {
 
       sayt.connectedCallback();
 
-      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showSayt);
+      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showCorrectSayt);
       expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(addEventListener).to.be.calledWith('click', sayt.processClick);
       expect(addEventListener).to.be.calledWith('keypress', sayt.processKeyPress);
@@ -30,7 +30,7 @@ describe('Sayt Component', () => {
 
       sayt.disconnectedCallback();
 
-      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showSayt);
+      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showCorrectSayt);
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keypress', sayt.processKeyPress);
