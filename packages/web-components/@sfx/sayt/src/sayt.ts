@@ -34,6 +34,7 @@ export default class Sayt extends LitElement {
     this.hideCorrectSayt = this.hideCorrectSayt.bind(this);
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
     this.isCorrectSayt = this.isCorrectSayt.bind(this);
+    this.clickCloseSayt = this.clickCloseSayt.bind(this);
   }
 
   /**
@@ -138,6 +139,16 @@ export default class Sayt extends LitElement {
   }
 
   /**
+   * Handles hiding SAYT on click on a close link/button (or other event).
+   *
+   * @param event An event with a default action to be prevented.
+   */
+  clickCloseSayt(event: Event) {
+    event.preventDefault();
+    this.hideSayt();
+  }
+
+  /**
    * Checks whether a given node is inside of SAYT's identified search bar.
    * 
    * @param node The node to check for containment.
@@ -163,6 +174,7 @@ export default class Sayt extends LitElement {
   render() {
     return html`
       ${ this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>` }
+      <a href="#" .onclick=${this.clickCloseSayt}>Close</a>
     `;
   }
 }
