@@ -97,8 +97,7 @@ export default class Sayt extends LitElement {
   }
 
   hideCorrectSayt(event: CustomEvent) {
-    const searchbar = event.detail.searchbar;
-    if (searchbar === this.searchbar || searchbar === undefined) {
+    if (this.isCorrectSayt(event)) {
       this.hideSayt();
     }
   }

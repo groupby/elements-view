@@ -70,32 +70,25 @@ describe('Sayt Component', () => {
   });
 
   describe('hideCorrectSayt()', () => {
-    it('should call hideSayt() when provided ID matches stored searchbar ID', () => {
+    it('should call hideSayt() when event specifies correct searchbar ID ', () => {
       const hideSayt = stub(sayt, 'hideSayt');
-      const searchbar = sayt.searchbar = 'some-searchbar-id';
-      const event = { detail: { searchbar } };
+      const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(true);
+      const event = {};
 
       sayt.hideCorrectSayt(event);
 
+      expect(isCorrectSayt).to.be.calledOnceWith(event);
       expect(hideSayt).to.be.calledOnce;
     });
 
-    it('should call hideSayt() when no searchbar ID is provided', () => {
+    it('should not call hideSayt() when event specifies wrong searchbar ID', () => {
       const hideSayt = stub(sayt, 'hideSayt');
-      const event = { detail: {} };
+      const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(false);
+      const event = {};
 
       sayt.hideCorrectSayt(event);
 
-      expect(hideSayt).to.be.calledOnce;
-    });
-
-    it('should not call hideSayt() when the wrong searchbar ID is provided', () => {
-      const hideSayt = stub(sayt, 'hideSayt');
-      sayt.searchbar = 'correct-searchbar-id';
-      const event = { detail: { searchbar: 'wrong-searchbar-id' } };
-
-      sayt.hideCorrectSayt(event);
-
+      expect(isCorrectSayt).to.be.calledOnceWith(event);
       expect(hideSayt).to.not.be.called;
     });
   });
