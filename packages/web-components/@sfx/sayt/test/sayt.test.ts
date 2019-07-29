@@ -144,6 +144,15 @@ describe('Sayt Component', () => {
 
       expect(result).to.be.false;
     });
+
+    it('should return true if event specifies a searchbar but SAYT has none specified', () => {
+      sayt.searchbar = undefined;
+      const event = { detail: { searchbar: 'some-searchbar-id' } };
+
+      const result = sayt.isCorrectSayt(event);
+
+      expect(result).to.be.true;
+    });
   });
 
   describe('render()', () => {

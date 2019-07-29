@@ -113,14 +113,16 @@ export default class Sayt extends LitElement {
 
   /**
    * Determines whether an event refers to the correct SAYT. This is true if
-   * either a matching `searchbar` ID is specified, or if no `searchbar` ID
-   * is specified at all.
+   * a matching `searchbar` ID is specified, if the event has no `searchbar`
+   * ID specified, or if SAYT has no `searchbar` ID specified.
    *
    * @param event An event that can contain a searchbar ID for comparison.
    */
   isCorrectSayt(event: CustomEvent) {
     const searchbar = event.detail.searchbar;
-    return searchbar === this.searchbar || searchbar === undefined;
+    return this.searchbar === undefined ||
+      searchbar === this.searchbar ||
+      searchbar === undefined;
   }
 
   /**
