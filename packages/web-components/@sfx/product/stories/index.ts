@@ -93,6 +93,7 @@ storiesOf('Components|Product', module)
     <sfx-product
       product="${text('Product Info', JSON.stringify({
         ...product,
+        productUrl: 'https://groupbyinc.com',
         variants: {
           type: 'color',
           items: [
