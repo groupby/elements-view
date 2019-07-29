@@ -69,6 +69,37 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe('hideCorrectSayt()', () => {
+    it('should call hideSayt() when provided ID matches stored searchbar ID', () => {
+      const hideSayt = stub(sayt, 'hideSayt');
+      const searchbar = sayt.searchbar = 'some-searchbar-id'
+      const event = { detail: { searchbar } };
+
+      sayt.hideCorrectSayt(event);
+
+      expect(hideSayt).to.be.calledOnce;
+    });
+
+    it('should call hideSayt() when no searchbar ID is provided', () => {
+      const hideSayt = stub(sayt, 'hideSayt');
+      const event = { detail: {} };
+
+      sayt.hideCorrectSayt(event);
+
+      expect(hideSayt).to.be.calledOnce;
+    });
+
+    it('should not call hideSayt() when the wrong searchbar ID is provided', () => {
+      const hideSayt = stub(sayt, 'hideSayt');
+      sayt.searchbar = 'correct-searchbar-id';
+      const event = { detail: { searchbar: 'wrong-searchbar-id' } };
+
+      sayt.hideCorrectSayt(event);
+
+      expect(hideSayt).to.not.be.called;
+    });
+  });
+
   describe('render()', () => {
     it('should return an instance of TemplateResult', () => {
       const result = sayt.render();
