@@ -100,7 +100,7 @@ describe('SearchBox Component', () => {
       searchbox.updateText(inputEvent);
 
       expect(searchbox.value).to.equal(detail);
-      expect(inputObject.value).to.equal('inputText');
+      expect(inputObject.value).to.equal(detail);
     });
   });
 
