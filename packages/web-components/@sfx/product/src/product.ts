@@ -100,5 +100,5 @@ export interface ProductVariantModel {
   color?: string;
   image?: string;
   text: string;
-  product: Partial<ProductModel>;
+  product: ProductModel;
 }

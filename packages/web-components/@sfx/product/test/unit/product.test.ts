@@ -19,7 +19,7 @@ describe('Product Component', () => {
 
     describe('product property', () => {
       it('should have a default empty product object', () => {
-        expect(component.product).to.eql({});
+        expect(component.product).to.deep.equal({});
       });
     });
   });
@@ -102,16 +102,18 @@ describe('Product Component', () => {
   });
 
   describe('urlWrap', () => {
+    const child = html`<span>foo</span>`;
+
     it('should return the second argument wrapped in an "a" tag', () => {
-      const result = component.urlWrap('string', html`<span>foo</span>`);
+      const result = component.urlWrap('string', child);
 
       expect(result).to.be.an.instanceof(TemplateResult);
     });
 
     it('should return the second argument', () => {
-      const result = component.urlWrap(undefined, html`<span>foo</span>`);
+      const result = component.urlWrap(undefined, child);
 
-      expect(result).to.be.an.instanceof(TemplateResult);
+      expect(result).to.equal(child);
     });
   });
 
@@ -138,7 +140,7 @@ describe('Product Component', () => {
       expect(urlWrap).to.be.called;
     });
   });
-})
+});
 
 describe('Variant Component', () => {
   let component;
@@ -195,7 +197,7 @@ describe('Variant Component', () => {
       beforeEach(() => {
         component.variant = {
           text: 'Foo',
-          color: '#bed',
+          color: '#bed', // 'rgb(187, 238, 221)'
           image: 'src.png',
           product: {}
         };
@@ -206,7 +208,7 @@ describe('Variant Component', () => {
 
         component.connectedCallback();
 
-        // expect(component.style.backgroundColor).to.equal(component.variant.color);
+        expect(component.style.backgroundColor).to.equal('rgb(187, 238, 221)');
         expect(component.title).to.equal(component.variant.text);
       });
 
@@ -215,7 +217,7 @@ describe('Variant Component', () => {
 
         component.connectedCallback();
 
-        // expect(component.style.backgroundColor).to.equal(component.variant.color);
+        expect(component.style.backgroundColor).to.equal('rgb(187, 238, 221)');
         expect(component.style.backgroundImage).to.equal(`url("${component.variant.image}")`);
         expect(component.title).to.equal(component.variant.text);
       });
@@ -227,6 +229,24 @@ describe('Variant Component', () => {
 
         expect(component.innerText).to.equal(component.variant.text);
       });
+    });
+  });
+
+  describe('disconnectedCallback', () => {
+    it('should call its super disconnectedCallback', () => {
+      const disconnectedCallback = stub(Base.prototype, 'disconnectedCallback');
+
+      component.disconnectedCallback();
+
+      expect(disconnectedCallback).to.have.been.called;
+    });
+
+    it('should remove the eventListener for click', () => {
+      const removeEventListener = stub(component, 'removeEventListener');
+
+      component.disconnectedCallback();
+
+      expect(removeEventListener).to.have.been.calledWith('click', component.changeVariant);
     });
   });
 

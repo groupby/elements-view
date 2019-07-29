@@ -34,6 +34,11 @@ export default class Variant extends Base {
     this.addEventListener('click', this.changeVariant);
   }
 
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('click', this.changeVariant);
+  }
+
   changeVariant() {
     this.dispatchEvent(new CustomEvent('sfx::product_variant_change', {
       bubbles: true,
