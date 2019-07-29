@@ -1,6 +1,10 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { XmlEntities } from 'html-entities';
+
 import '../src/index.ts';
+
+const entities = new XmlEntities();
 
 const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results',
   { detail: [
@@ -10,22 +14,49 @@ const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_receive
     bubbles: true }
 );
 
+function getSayt(searchbar='', showSayt=true): string {
+  const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
+  const closeText = text('Close link text', 'Close');
+  const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
+
+  return `<sfx-sayt${searchbar ? ` searchbar="${searchbar}"` : ''}
+  closetext="${closeText}"${showCloseButton ? `
+  ${ showCloseButton }` : ''}${showAttribute ? `
+  ${ showAttribute }` : ''}
+></sfx-sayt>`;
+}
+
+// @TODO Move this CSS elsewhere. Should be loaded globally.
+function getDisplayCode(code: string): string {
+  return `
+    <style>
+      pre.code-output {
+        padding: 15px;
+        background-color: #EEEEEE;
+      }
+    </style>
+    <h3>The code</h3>
+    <pre class="code-output"><code>${entities.encode(code)}</code></pre>
+  `
+}
+
+function emitEventInFuture(event, timeout=100) {
+  setTimeout(() => {
+    window.dispatchEvent(event);
+  }, timeout);
+}
+
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-    const showAttribute = boolean('visible', true) ? 'visible' : '';
-    const closeText = text('Close button text', 'Close');
-    const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
+    emitEventInFuture(autocompleteDataReceivedEvent, 100);
 
-    setTimeout(() => {
-      window.dispatchEvent(autocompleteDataReceivedEvent);
-    }, 100);
+    const sayt = getSayt();
+    return `
+      ${sayt}
 
-    return `<sfx-sayt
-      closetext="${closeText}"
-      ${ showCloseButton }
-      ${ showAttribute }
-    ></sfx-sayt>`
+      ${getDisplayCode(sayt)}
+    `;
   }, {
     notes: {
       markdown: `
@@ -38,47 +69,35 @@ storiesOf('Components|SAYT', module)
   })
   // @TODO Remove these setTimeouts when opening a new story
   .add('Responding to Events - sayt_show & sayt_hide ', () => {
-    setTimeout(() => {
-      window.dispatchEvent(autocompleteDataReceivedEvent);
-    }, 100);
+    emitEventInFuture(autocompleteDataReceivedEvent, 100);
+    emitEventInFuture(new Event('sfx::sayt_show'), 2000);
+    emitEventInFuture(new Event('sfx::sayt_hide'), 4000);
 
-    setTimeout(() => {
-      window.dispatchEvent(new Event('sfx::sayt_show'));
-    }, 3000);
-
-    setTimeout(() => {
-      window.dispatchEvent(new Event('sfx::sayt_hide'));
-    }, 6000);
-
+    const sayt = getSayt('', false);
     return `
-      <sfx-sayt></sfx-sayt>
+      ${sayt}
+      ${getDisplayCode(sayt)}
     `;
   }, {
     notes: {
       markdown:`
         # Search As You Type (SAYT)
-        - Receiving sayt_show event after 3 seconds.
-        - Receiving sayt_hide event after 6 seconds.
+        - Receiving sayt_show event after 2 seconds.
+        - Receiving sayt_hide event after 4 seconds.
       `
     }
   })
   .add('SAYT with simple search input', () => {
-    const showAttribute = boolean('visible', true) ? 'visible' : '';
-    const closeText = text('Close link text', 'Close');
-    const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
+    emitEventInFuture(autocompleteDataReceivedEvent, 100);
 
-    setTimeout(() => {
-      window.dispatchEvent(autocompleteDataReceivedEvent);
-    }, 500);
-
+    const input = `<input type="text" id="search-bar" placeholder="Search here" />`;
+    const sayt = getSayt();
     return `
-      <input type="text" id="search-bar" placeholder="Search here" />
+      ${input}
       <br />
-      <sfx-sayt
-        closetext="${closeText}"
-        ${ showCloseButton }
-        ${ showAttribute }
-      ></sfx-sayt>
+      ${sayt}
+      ${getDisplayCode(`${input}
+${sayt}`)}
     `
   }, {
     notes: {
@@ -89,35 +108,24 @@ storiesOf('Components|SAYT', module)
     }
   })
   .add('SAYT with multiple search inputs', () => {
-    const showAttribute1 = boolean('visible (first)', true) ? 'visible' : '';
-    const showAttribute2 = boolean('visible (second)', true) ? 'visible' : '';
-    const closeText1 = text('Close link text (first)', 'Close');
-    const closeText2 = text('Close link text (second)', 'Close');
-    const showCloseButton1 = boolean('Show Close button (first)', true) ? 'showclosebutton' : '';
-    const showCloseButton2 = boolean('Show Close button (second)', true) ? 'showclosebutton' : '';
+    emitEventInFuture(autocompleteDataReceivedEvent, 100);
 
-    setTimeout(() => {
-      window.dispatchEvent(autocompleteDataReceivedEvent);
-    }, 500);
+    const input1 = `<input type="text" id="search-bar1" placeholder="Search here" />`;
+    const input2 = `<input type="text" id="search-bar2" placeholder="Or search here" />`;
+    const sayt1 = getSayt('search-bar1');
+    const sayt2 = getSayt('search-bar2');
 
-    return `
-      <input type="text" id="search-bar1" placeholder="Search here" />
-      <br />
-      <sfx-sayt
-        searchbar="search-bar1"
-        closetext="${closeText1}"
-        ${ showCloseButton1 }
-        ${ showAttribute1 }
-      ></sfx-sayt>
-      <hr />
-      <input type="text" id="search-bar2" placeholder="Or search here" />
-      <br />
-      <sfx-sayt
-        searchbar="search-bar2"
-        closetext="${closeText2}"
-        ${ showCloseButton2 }
-        ${ showAttribute2 }
-      ></sfx-sayt>
+    return `${input1}<br />
+${sayt1}
+<hr />
+${input2}<br />
+${sayt2}
+
+${getDisplayCode(`${input1}
+${sayt1}
+
+${input2}
+${sayt2}`)}
     `
   }, {
     notes: {
