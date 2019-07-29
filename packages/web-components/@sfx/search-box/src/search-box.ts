@@ -115,7 +115,7 @@ export default class SearchBox extends Base {
    * @param e The KeyboardEvent object.
    */
   handleKeydown(e: KeyboardEvent) {
-    if (e.key === "Enter" && this.value.length > 0) {
+    if (e.key === 'Enter' && this.value.length > 0) {
       this.emitSearchEvent();
     }
   }

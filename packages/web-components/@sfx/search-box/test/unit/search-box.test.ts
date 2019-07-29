@@ -32,13 +32,13 @@ describe('SearchBox Component', () => {
 
     describe('searchButton property', () => {
       it('should have default value of false', () => {
-        expect(searchbox.searchButton).to.equal(false);
+        expect(searchbox.searchButton).to.be.false;
       });
     });
 
     describe('clearButton property', () => {
       it('should have default value of false', () => {
-        expect(searchbox.clearButton).to.equal(false);
+        expect(searchbox.clearButton).to.be.false;
       });
     });
   });
@@ -94,13 +94,13 @@ describe('SearchBox Component', () => {
     it('should update the value property of the input element in response to data received', () => {
       const detail = 'inputText';
       const inputObject = { value: 'Placeholder text' };
-      const inputEvent = new CustomEvent(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, { detail: detail });
+      const inputEvent = new CustomEvent(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, { detail });
       stub(searchbox, 'getInputElement').returns(inputObject);
 
       searchbox.updateText(inputEvent);
 
       expect(searchbox.value).to.equal(detail);
-      expect(searchbox.value).to.equal(inputObject.value);
+      expect(inputObject.value).to.equal('inputText');
     });
   });
 
@@ -118,11 +118,11 @@ describe('SearchBox Component', () => {
   describe('handleInput', () => {
     it('should invoke the updateSearchTermValue function', () => {
       const updateSearchTermValueStub = stub(searchbox, 'updateSearchTermValue');
-      const target = { value: 'dee' };
+      const searchTerm = 'dee';
 
-      searchbox.handleInput({ target });
+      searchbox.handleInput({ target: { value: searchTerm } });
 
-      expect(updateSearchTermValueStub).to.have.been.calledWith('dee');
+      expect(updateSearchTermValueStub).to.have.been.calledWith(searchTerm);
     });
 
     it('should dispatch a search box change event', () => {
@@ -141,9 +141,10 @@ describe('SearchBox Component', () => {
 
   describe('updateSearchTermValue', () => {
     it('should set the search term property to the input value', () => {
-      searchbox.updateSearchTermValue('catfood');
+      const searchTerm = 'catfood'
+      searchbox.updateSearchTermValue(searchTerm);
 
-      expect(searchbox.value).to.equal('catfood');
+      expect(searchbox.value).to.equal(searchTerm);
     });
   });
 
@@ -156,16 +157,11 @@ describe('SearchBox Component', () => {
       searchbox.clearSearch();
 
       expect(searchbox.value).to.equal('');
-      expect(searchbox.value).to.equal(inputObject.value);
     });
 
     it('should invoke the emitSearchBoxClearClick', () => {
       const emitSearchBoxSpy = spy(searchbox, 'emitSearchBoxClearClick');
-      stub(searchbox, 'getInputElement').returns(
-        html`
-          <input type="text" id="searchInput" placeholder="Type your search" />
-        `
-      );
+      stub(searchbox, 'getInputElement').returns({});
       
       searchbox.clearSearch();
 

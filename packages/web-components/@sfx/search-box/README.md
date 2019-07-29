@@ -24,15 +24,15 @@ Dispatched when the value changes inside the search box input.
 
 #### `sfx::update_search_term`
 
-Fired with a term as the payload. This component listens for that event and updates the value property and input box value with the payload.
+This component listens for this event, whose payload is the search term, and updates the value property and input box value with the event's payload.
 
 ## Customizations
 
 The SF-X Search Box component allows for optional inclusion of a clear button and a search button. Placeholder text within the search box is also customizable.
 Users of the component can add the following attributes to the custom element:
-`clearbutton`: adds clear button
-`searchbutton`: adds search button
-`placeholder`: if populated with a string, will replace the default placeholder text in the search box.
+- `clearbutton`: adds clear button
+- `searchbutton`: adds search button
+- `placeholder`: if populated with a string, will replace the default placeholder text in the search box.
 
 ## Testing
 
