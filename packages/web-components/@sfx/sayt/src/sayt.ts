@@ -162,6 +162,7 @@ export default class Sayt extends LitElement {
    * @param node The node to check for containment.
    */
   nodeInSearchBar(node: Node) {
+    if (!this.searchbar) return false;
     const searchBar = document.querySelector('#' + this.searchbar);
     return !!searchBar && searchBar.contains(node);
   }
