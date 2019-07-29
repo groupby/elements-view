@@ -82,6 +82,11 @@ export default class Sayt extends LitElement {
     this.visible = true;
   }
 
+  /**
+   * Makes SAYT visible if the event refers to the correct SAYT component.
+   *
+   * @param event An event that can contain a searchbar ID.
+   */
   showCorrectSayt(event: CustomEvent) {
     if (this.isCorrectSayt(event)) {
       this.showSayt();
@@ -95,12 +100,24 @@ export default class Sayt extends LitElement {
     this.visible = false;
   }
 
+  /**
+   * Hides SAYT if the event refers to the correct SAYT component.
+   *
+   * @param event An event that can contain a searchbar ID.
+   */
   hideCorrectSayt(event: CustomEvent) {
     if (this.isCorrectSayt(event)) {
       this.hideSayt();
     }
   }
 
+  /**
+   * Determines whether an event refers to the correct SAYT. This is true if
+   * either a matching `searchbar` ID is specified, or if no `searchbar` ID
+   * is specified at all.
+   *
+   * @param event An event that can contain a searchbar ID for comparison.
+   */
   isCorrectSayt(event: CustomEvent) {
     const searchbar = event.detail.searchbar;
     return searchbar === this.searchbar || searchbar === undefined;
