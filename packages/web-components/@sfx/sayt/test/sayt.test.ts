@@ -69,30 +69,6 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('hideCorrectSayt()', () => {
-    it('should call hideSayt() when event specifies correct searchbar ID ', () => {
-      const hideSayt = stub(sayt, 'hideSayt');
-      const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(true);
-      const event = {};
-
-      sayt.hideCorrectSayt(event);
-
-      expect(isCorrectSayt).to.be.calledOnceWith(event);
-      expect(hideSayt).to.be.calledOnce;
-    });
-
-    it('should not call hideSayt() when event specifies wrong searchbar ID', () => {
-      const hideSayt = stub(sayt, 'hideSayt');
-      const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(false);
-      const event = {};
-
-      sayt.hideCorrectSayt(event);
-
-      expect(isCorrectSayt).to.be.calledOnceWith(event);
-      expect(hideSayt).to.not.be.called;
-    });
-  });
-
   describe('showCorrectSayt()', () => {
     it('should call showSayt() when event specifies correct searchbar ID ', () => {
       const showSayt = stub(sayt, 'showSayt');
@@ -114,6 +90,30 @@ describe('Sayt Component', () => {
 
       expect(isCorrectSayt).to.be.calledOnceWith(event);
       expect(showSayt).to.not.be.called;
+    });
+  });
+
+  describe('hideCorrectSayt()', () => {
+    it('should call hideSayt() when event specifies correct searchbar ID ', () => {
+      const hideSayt = stub(sayt, 'hideSayt');
+      const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(true);
+      const event = {};
+
+      sayt.hideCorrectSayt(event);
+
+      expect(isCorrectSayt).to.be.calledOnceWith(event);
+      expect(hideSayt).to.be.calledOnce;
+    });
+
+    it('should not call hideSayt() when event specifies wrong searchbar ID', () => {
+      const hideSayt = stub(sayt, 'hideSayt');
+      const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(false);
+      const event = {};
+
+      sayt.hideCorrectSayt(event);
+
+      expect(isCorrectSayt).to.be.calledOnceWith(event);
+      expect(hideSayt).to.not.be.called;
     });
   });
 
