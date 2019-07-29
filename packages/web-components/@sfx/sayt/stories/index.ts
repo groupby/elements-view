@@ -13,13 +13,14 @@ const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_receive
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-    const showAttribute = boolean('visible', false) ? 'visible' : '';
+    const showAttribute = boolean('visible', true) ? 'visible' : '';
+    const closeText = text('Close link text', 'Close');
 
     setTimeout(() => {
       window.dispatchEvent(autocompleteDataReceivedEvent);
     }, 100);
 
-    return `<sfx-sayt ${ showAttribute }></sfx-sayt>`
+    return `<sfx-sayt ${ showAttribute } closetext="${closeText}"></sfx-sayt>`
   }, {
     notes: {
       markdown: `
