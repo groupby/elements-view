@@ -59,6 +59,7 @@ storiesOf('Components|SAYT', module)
   })
   .add('SAYT with simple search input', () => {
     const showAttribute = boolean('visible', true) ? 'visible' : '';
+    const closeText = text('Close link text', 'Close');
 
     setTimeout(() => {
       window.dispatchEvent(autocompleteDataReceivedEvent);
@@ -67,7 +68,11 @@ storiesOf('Components|SAYT', module)
     return `
       <input type="text" id="search-bar" placeholder="Search here" />
       <br />
-      <sfx-sayt searchbar="search-bar" ${ showAttribute }></sfx-sayt>
+      <sfx-sayt
+        searchbar="search-bar"
+        closetext="${closeText}"
+        ${ showAttribute }
+      ></sfx-sayt>
     `
   }, {
     notes: {
