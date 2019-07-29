@@ -242,7 +242,7 @@ describe('Sayt Component', () => {
       expect(result).to.equal(false);
     });
 
-    it('should return false if there is no search bar can be found', () => {
+    it('should return false if there is no search bar on the page', () => {
       const querySelector = stub(document, 'querySelector').returns(null);
 
       const result = sayt.nodeInSearchBar('node');
