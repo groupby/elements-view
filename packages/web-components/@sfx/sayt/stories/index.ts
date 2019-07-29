@@ -15,7 +15,7 @@ storiesOf('Components|SAYT', module)
   .add('Default', () => {
     const showAttribute = boolean('visible', true) ? 'visible' : '';
     const closeText = text('Close button text', 'Close');
-    const showCloseButton = boolean('Show Close button', false) ? 'showclosebutton' : '';
+    const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
 
     setTimeout(() => {
       window.dispatchEvent(autocompleteDataReceivedEvent);
@@ -65,7 +65,7 @@ storiesOf('Components|SAYT', module)
   .add('SAYT with simple search input', () => {
     const showAttribute = boolean('visible', true) ? 'visible' : '';
     const closeText = text('Close link text', 'Close');
-    const showCloseButton = boolean('Show Close button', false) ? 'showclosebutton' : '';
+    const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
 
     setTimeout(() => {
       window.dispatchEvent(autocompleteDataReceivedEvent);
@@ -91,6 +91,10 @@ storiesOf('Components|SAYT', module)
   .add('SAYT with multiple search inputs', () => {
     const showAttribute1 = boolean('visible (first)', true) ? 'visible' : '';
     const showAttribute2 = boolean('visible (second)', true) ? 'visible' : '';
+    const closeText1 = text('Close link text (first)', 'Close');
+    const closeText2 = text('Close link text (second)', 'Close');
+    const showCloseButton1 = boolean('Show Close button (first)', true) ? 'showclosebutton' : '';
+    const showCloseButton2 = boolean('Show Close button (second)', true) ? 'showclosebutton' : '';
 
     setTimeout(() => {
       window.dispatchEvent(autocompleteDataReceivedEvent);
@@ -99,11 +103,21 @@ storiesOf('Components|SAYT', module)
     return `
       <input type="text" id="search-bar1" placeholder="Search here" />
       <br />
-      <sfx-sayt searchbar="search-bar1" ${ showAttribute1 }></sfx-sayt>
+      <sfx-sayt
+        searchbar="search-bar1"
+        closetext="${closeText1}"
+        ${ showCloseButton1 }
+        ${ showAttribute1 }
+      ></sfx-sayt>
       <hr />
       <input type="text" id="search-bar2" placeholder="Or search here" />
       <br />
-      <sfx-sayt searchbar="search-bar2" ${ showAttribute2 }></sfx-sayt>
+      <sfx-sayt
+        searchbar="search-bar2"
+        closetext="${closeText2}"
+        ${ showCloseButton2 }
+        ${ showAttribute2 }
+      ></sfx-sayt>
     `
   }, {
     notes: {
