@@ -93,10 +93,8 @@ describe('SearchBox Component', () => {
   describe('updateText', () => {
     it('should update the value property in response to the data received', () => {
       const detail = 'inputText';
-      const inputObject = { value: 'Placeholder text' };
       const inputEvent = new CustomEvent(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, { detail });
-      stub(searchbox, 'getInputElement').returns(inputObject);
-
+  
       searchbox.updateText(inputEvent);
 
       expect(searchbox.value).to.equal(detail);
@@ -159,7 +157,6 @@ describe('SearchBox Component', () => {
 
     it('should invoke the emitSearchBoxClearClick', () => {
       const emitSearchBoxStub = stub(searchbox, 'emitSearchBoxClearClick');
-      stub(searchbox, 'getInputElement').returns({});
 
       searchbox.clearSearch();
 
@@ -174,20 +171,6 @@ describe('SearchBox Component', () => {
       searchbox.clickExposed();
 
       expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxClickedEvent);
-    });
-  });
-
-  describe('updated', () => {
-    it('should update the value of the input box if the value property has changed', () => {
-      const value = 'Placeoholder text';
-      const newValue = 'cars';
-      const inputObject = { value };
-      searchbox.value = newValue;
-      stub(searchbox, 'getInputElement').returns(inputObject);
-
-      searchbox.updated(new Map([['value', value]]));
-
-      expect(inputObject.value).to.equal(newValue);
     });
   });
 
