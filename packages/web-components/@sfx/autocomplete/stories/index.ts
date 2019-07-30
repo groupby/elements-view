@@ -6,6 +6,19 @@ const tbd = {};
 
 const results = [
   {
+    title: '',
+    items: [
+      {
+        ...tbd,
+        label: 'Golf Ball'
+      },
+      {
+        ...tbd,
+        label: 'Basketball'
+      }
+    ]
+  },
+  {
     title: 'Brands',
     items: [
       {
@@ -18,19 +31,6 @@ const results = [
       }
     ]
   },
-  {
-    title: '',
-    items: [
-      {
-        ...tbd,
-        label: 'Golf Ball'
-      },
-      {
-        ...tbd,
-        label: 'Basketball'
-      }
-    ]
-  }
 ];
 
 const optionalTitle = 'Autocomplete Results';
@@ -69,8 +69,8 @@ storiesOf('Components|Autocomplete', module)
   .add(
     'With title customization',
     () => `
-    <sfx-autocomplete 
-      caption="${text('Optional Title', optionalTitle)}" 
+    <sfx-autocomplete
+      caption="${text('Optional Title', optionalTitle)}"
       results="${text('Autocomplete', JSON.stringify(results))}">
     </sfx-autocomplete>
     `
