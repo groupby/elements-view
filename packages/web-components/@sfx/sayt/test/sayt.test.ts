@@ -249,6 +249,15 @@ describe('Sayt Component', () => {
 
       expect(result).to.be.false;
     });
+
+    it('should not call document.querySelector() if this.searchbar is not set', () => {
+      sayt.searchbar = undefined;
+      const querySelector = stub(document, 'querySelector');
+
+      sayt.nodeInSearchBar('node');
+
+      expect(querySelector).to.not.be.called;
+    });
   });
 
   describe('processKeyPress()', () => {
