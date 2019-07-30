@@ -1,5 +1,5 @@
 import { SEARCHBOX_EVENT } from '../../src/events';
-import { expect, spy, stub } from '../utils';
+import { expect, stub } from '../utils';
 import SearchBox from '../../src/search-box';
 import { TemplateResult, html } from 'lit-element';
 import { Base } from '@sfx/base';
@@ -150,8 +150,6 @@ describe('SearchBox Component', () => {
 
   describe('clearSearch', () => {
     it('should set the search term property to an empty string', () => {
-      const inputObject = { value: 'Placeholder text' };
-      stub(searchbox, 'getInputElement').returns(inputObject);
       stub(searchbox, 'emitSearchBoxClearClick');
 
       searchbox.clearSearch();
@@ -160,12 +158,12 @@ describe('SearchBox Component', () => {
     });
 
     it('should invoke the emitSearchBoxClearClick', () => {
-      const emitSearchBoxSpy = spy(searchbox, 'emitSearchBoxClearClick');
+      const emitSearchBoxStub = stub(searchbox, 'emitSearchBoxClearClick');
       stub(searchbox, 'getInputElement').returns({});
 
       searchbox.clearSearch();
 
-      expect(emitSearchBoxSpy).to.have.been.called;
+      expect(emitSearchBoxStub).to.have.been.called;
     });
   });
 
@@ -187,7 +185,7 @@ describe('SearchBox Component', () => {
       searchbox.value = newValue;
       stub(searchbox, 'getInputElement').returns(inputObject);
 
-      searchbox.updated(new Map([['value', newValue]]));
+      searchbox.updated(new Map([['value', value]]));
 
       expect(inputObject.value).to.equal(newValue);
     });
