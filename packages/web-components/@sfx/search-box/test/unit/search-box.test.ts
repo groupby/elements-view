@@ -181,4 +181,32 @@ describe('SearchBox Component', () => {
       expect(result).to.be.an.instanceof(TemplateResult);
     });
   });
+
+  describe.only('interaction tests', () => {
+    it('is a weird test', () => {
+      searchbox.clearButton = true;
+      searchbox.searchButton = true;
+
+      document.body.appendChild(searchbox);
+
+      return window.customElements.whenDefined('sfx-search-box').then(() => {
+        const searchboxNode = document.querySelector('sfx-search-box');
+        const searchboxInput = searchboxNode.querySelector('input');
+        const searchboxButtons = searchboxNode.querySelectorAll('button');
+        const searchboxClearButton = searchboxButtons[0];
+
+        searchboxInput.value = "Search Term";
+        searchboxClearButton.click();
+      }).then(() => {
+        return searchbox.updateComplete;
+      }).then(() => {
+        const searchboxNode = document.querySelector('sfx-search-box');
+        const searchboxInput = searchboxNode.querySelector('input');
+
+
+        console.log('searchbox input value', searchboxInput.value); 
+        expect(searchboxInput.value).to.equal('');
+      });
+    });
+  });
 });
