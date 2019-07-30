@@ -12,8 +12,7 @@ export default class SearchBox extends Base {
   /**
    * Text used as placeholder in search box.
    */
-  @property({ type: String })
-  placeholder: string = 'Type your search';
+  @property({ type: String }) placeholder: string = 'Type your search';
   /**
    * Search term generated via user input.
    */
@@ -21,13 +20,11 @@ export default class SearchBox extends Base {
   /**
    * Determines whether or not the search button is present.
    */
-  @property({ type: Boolean, reflect: true })
-  searchButton: boolean = false;
+  @property({ type: Boolean, reflect: true }) searchButton: boolean = false;
   /**
    * Determines whether or not the clear button is present.
    */
-  @property({ type: Boolean, reflect: true })
-  clearButton: boolean = false;
+  @property({ type: Boolean, reflect: true }) clearButton: boolean = false;
 
   constructor() {
     super();
