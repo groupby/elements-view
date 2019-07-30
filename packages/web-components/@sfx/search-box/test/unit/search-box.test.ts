@@ -149,6 +149,16 @@ describe('SearchBox Component', () => {
   });
 
   describe('clearSearch', () => {
+    it('should set the search term property to an empty string', () => {
+      const inputObject = { value: 'Placeholder text' };
+      stub(searchbox, 'getInputElement').returns(inputObject);
+      stub(searchbox, 'emitSearchBoxClearClick');
+
+      searchbox.clearSearch();
+
+      expect(searchbox.value).to.equal('');
+    });
+
     it('should invoke the emitSearchBoxClearClick', () => {
       const emitSearchBoxSpy = spy(searchbox, 'emitSearchBoxClearClick');
       stub(searchbox, 'getInputElement').returns({});
@@ -171,13 +181,15 @@ describe('SearchBox Component', () => {
 
   describe('updated', () => {
     it('should update the value of the input box if the value property has changed', () => {
-      const inputObject = { value: 'Placeholder text' };
-      searchbox.value = 'cars';
+      const value = 'Placeoholder text';
+      const newValue = 'cars';
+      const inputObject = { value };
+      searchbox.value = newValue;
       stub(searchbox, 'getInputElement').returns(inputObject);
 
-      searchbox.updated(new Map([['value', 'cars']]));
+      searchbox.updated(new Map([['value', newValue]]));
 
-      expect(inputObject.value).to.equal('cars');
+      expect(inputObject.value).to.equal(newValue);
     });
   });
 
