@@ -80,13 +80,6 @@ export default class SearchBox extends Base {
   }
 
   /**
-   * Returns the searchbox input element
-   */
-  getInputElement(): HTMLInputElement {
-    return this.querySelector('[data-sfx-ref=searchInput]') as HTMLInputElement;
-  }
-
-  /**
    * Dispatches an `sfx::on_search_box_change` event, and updates the value
    * property with the payload of the given event.
    *
@@ -144,17 +137,6 @@ export default class SearchBox extends Base {
     this.dispatchEvent(searchBoxClickedEvent);
   }
 
-  /**
-   * Update search input box `value` property when the `value` property changes.
-   *
-   * @param changedProps A map of the all the changed properties.
-   */
-  updated(changedProps: PropertyValues) {
-    if (changedProps.has('value')) {
-      this.getInputElement().value = this.value;
-    }
-  }
-
   // TODO Move this to the Storybook tab once functionality has been merged into sfx-view.
   /*
    * --- TEMPORARY: setup for testing event listeners ---
@@ -178,7 +160,7 @@ export default class SearchBox extends Base {
       <input
         type="text"
         placeholder="${this.placeholder}"
-        data-sfx-ref="searchInput"
+        .value="${this.value}"
         @input="${this.handleInput}"
         @click="${this.clickExposed}"
         @keydown="${this.handleKeydown}"
