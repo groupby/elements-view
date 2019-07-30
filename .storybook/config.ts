@@ -16,12 +16,12 @@ function loadStories() {
     cssresources: [
       {
         id: `bluetheme`,
-        code: `<style>body { background-color: lightblue; }</style>`,
+        code: `<link rel="stylesheet" type="text/css" href="./presets/themes/blue"></link>`,
         picked: true,
       },
       {
         id: `pinktheme`,
-        code: `<style>body { background-color: lightpink; }</style>`,
+        code: `<link rel="stylesheet" type="text/css" href="./presets/themes/blue"></link>`,
         picked: false,
       },
     ],
