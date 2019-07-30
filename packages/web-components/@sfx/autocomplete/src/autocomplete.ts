@@ -65,8 +65,8 @@ export default class Autocomplete extends Base {
   dispatchAutocompleteResults() {
     const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
       detail: [
+        { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] },
         { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-        { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
       ],
       bubbles: true
     });
