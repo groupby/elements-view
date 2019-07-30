@@ -150,7 +150,7 @@ export default class SearchBox extends Base {
   /**
    * Update search input box `value` property when the `value` property changes.
    *
-   * @param changedProps A map of the all the change properties.
+   * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues) {
     if (changedProps.has('value')) {
