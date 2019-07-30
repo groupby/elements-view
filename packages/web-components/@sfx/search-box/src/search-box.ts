@@ -161,7 +161,6 @@ export default class SearchBox extends Base {
         type="text"
         placeholder="${this.placeholder}"
         .value="${this.value}"
-        data-sfx-ref="searchInput"
         @input="${this.handleInput}"
         @click="${this.clickExposed}"
         @keydown="${this.handleKeydown}"
