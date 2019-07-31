@@ -1,4 +1,4 @@
 {
-  "ext": "ts,json",
-  "watch": "src"
+  "ext": "ts,json,scss",
+  "watch": ["src/*", "css/*"]
 }

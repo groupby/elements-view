@@ -1,0 +1,23 @@
+sfx-search-box {
+  --search-box-button-width: 75px;
+  background: white;
+  display: grid;
+  grid-template-columns: auto repeat(2, var(--search-box-button-width));
+  // grid-column-gap: var(--default-spacing);
+
+  input {
+    padding: calc(var(--default-spacing) * 2);
+    border: none;
+    &:active {
+      z-index: 5;
+    }
+  }
+  button {
+    padding: calc(var(--default-spacing) * 2);
+    border: none;
+    width: var(--search-box-button-width);
+    &:active {
+      z-index: 5;
+    }
+  }
+}

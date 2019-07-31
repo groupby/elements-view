@@ -1,5 +1,7 @@
 @import '../../packages/web-components/@sfx/theme/src/general.scss';
+@import '@sfx/search-box/css/sfx-elegant-search-box.scss';
 
 :root {
-  --background-color: gainsboro;
+  --background-color: whitesmoke;
+  --default-spacing: 4px;
 }

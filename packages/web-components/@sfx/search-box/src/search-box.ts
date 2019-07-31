@@ -190,18 +190,16 @@ export default class SearchBox extends Base {
         @click="${this.clickExposed}"
         @keydown="${this.handleKeydown}"
       />
-      <div>
-        ${this.clearButton
-          ? html`
-              <button @click="${this.clearSearch}">Clear</button>
-            `
-          : ''}
-        ${this.searchButton
-          ? html`
-              <button @click="${this.emitSearchEvent}">Search</button>
-            `
-          : ''}
-      </div>
+      ${this.clearButton
+        ? html`
+            <button @click="${this.clearSearch}">Clear</button>
+          `
+        : ''}
+      ${this.searchButton
+        ? html`
+            <button @click="${this.emitSearchEvent}">Search</button>
+          `
+        : ''}
     `;
   }
 }

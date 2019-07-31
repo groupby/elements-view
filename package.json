@@ -15,7 +15,8 @@
     "storybook": "start-storybook -s ./dist -p 9000",
     "docs": "typedoc --options ./typedoc.js packages",
     "test": "yarn workspaces run test",
-    "coverage": "cat coverage/lcov.info | codecov"
+    "coverage": "cat coverage/lcov.info | codecov",
+    "watch": "nodemon -e scss -x webpack"
   },
   "repository": {
     "type": "git",

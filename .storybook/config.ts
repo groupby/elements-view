@@ -15,13 +15,13 @@ function loadStories() {
     },
     cssresources: [
       {
-        id: `Bold Theme`,
-        code: `<link rel="stylesheet" type="text/css" href="/sfx-bold-theme.css"></link>`,
+        id: `Elegant Theme`,
+        code: `<link rel="stylesheet" type="text/css" href="/sfx-elegant-theme.css"></link>`,
         picked: true,
       },
       {
-        id: `Elegant Theme`,
-        code: `<link rel="stylesheet" type="text/css" href="/sfx-elegant-theme.css"></link>`,
+        id: `Bold Theme`,
+        code: `<link rel="stylesheet" type="text/css" href="/sfx-bold-theme.css"></link>`,
         picked: false,
       },
     ],
