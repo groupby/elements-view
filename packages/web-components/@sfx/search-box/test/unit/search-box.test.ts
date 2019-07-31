@@ -199,8 +199,6 @@ describe('SearchBox Component', () => {
       container.innerHTML = '';
     });
 
-    // search box typing and the value updates
-    // search button is clicked and event is emitted
     it('should set the searchbox input value when the searchbox.value property is updated', () => {
       container.appendChild(searchbox);
 
@@ -257,6 +255,45 @@ describe('SearchBox Component', () => {
 
         expect(searchbox.value).to.equal('');
         expect(searchboxInput.value).to.equal('');
+      });
+    });
+
+    // search button is clicked/enter key and event is emitted
+    // Create a new promise, and the event listener resolves that promise, add the promise at the end of then chain.
+    it('should dispatch a search event when the search button is clicked', () => {
+      searchbox.clearButton = true;
+      searchbox.searchButton = true;
+      let eventListenerResolve;
+      const eventListenerPromise = new Promise((resolve) => eventListenerResolve = resolve);
+
+      container.appendChild(searchbox);
+
+      const searchboxNode = container.querySelector('sfx-search-box');
+
+      searchboxNode.addEventListener(SEARCHBOX_EVENT.SEARCH_REQUEST, (e: any) => {
+        eventListenerResolve(e);
+      });
+
+      return window.customElements.whenDefined('sfx-search-box').then(() => {
+        const searchboxNode = document.querySelector('sfx-search-box');
+        const searchboxInput = searchboxNode.querySelector('input');
+
+        searchbox.value = searchboxInput.value = "Search Term";
+
+        return waitForUpdateComplete(searchbox);
+      }).then(() => {
+        const searchboxButtons = searchbox.querySelectorAll('button');
+        const searchboxSearchButton = searchboxButtons[1];
+
+        searchboxSearchButton.click();
+
+        return waitForUpdateComplete(searchbox);
+      }).then(() => {
+
+        return eventListenerPromise;
+      }).then((e: any) => {
+
+        expect(e.detail).to.equal('Search Term');
       });
     });
   });
