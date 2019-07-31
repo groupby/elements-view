@@ -8,3 +8,7 @@ export const chai = global.chai || chaiImport;
 export const expect = chai.expect;
 export const stub = sinon.stub;
 export const spy = sinon.spy;
+
+export function waitForUpdateComplete(node) {
+  return node.updateComplete.then((hasUpdateCompleted) => hasUpdateCompleted || waitForUpdateComplete(node));
+}
