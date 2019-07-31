@@ -182,8 +182,8 @@ describe('SearchBox Component', () => {
     });
   });
 
-  describe.only('interaction tests', () => {
-    it('is a weird test', () => {
+  describe('interaction tests', () => {
+    it('should clear the searchbox when the clear button is clicked', () => {
       searchbox.clearButton = true;
       searchbox.searchButton = true;
 
@@ -192,19 +192,22 @@ describe('SearchBox Component', () => {
       return window.customElements.whenDefined('sfx-search-box').then(() => {
         const searchboxNode = document.querySelector('sfx-search-box');
         const searchboxInput = searchboxNode.querySelector('input');
+
+        searchbox.value = searchboxInput.value = "Search Term";
+
+        return searchbox.updateComplete;
+      }).then((update) => {
+        const searchboxNode = document.querySelector('sfx-search-box');
         const searchboxButtons = searchboxNode.querySelectorAll('button');
         const searchboxClearButton = searchboxButtons[0];
-
-        searchboxInput.value = "Search Term";
         searchboxClearButton.click();
-      }).then(() => {
+
         return searchbox.updateComplete;
-      }).then(() => {
+      }).then((update) => {
         const searchboxNode = document.querySelector('sfx-search-box');
         const searchboxInput = searchboxNode.querySelector('input');
 
-
-        console.log('searchbox input value', searchboxInput.value); 
+        expect(searchbox.value).to.equal('');
         expect(searchboxInput.value).to.equal('');
       });
     });
