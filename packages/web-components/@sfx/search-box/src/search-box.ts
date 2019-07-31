@@ -132,7 +132,7 @@ export default class SearchBox extends Base {
    * Invoked in response to a user clicking inside of the searchbox input.
    */
   clickExposed() {
-    const searchBoxClickedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK, { bubbles: true });
+    const searchBoxClickedEvent = this.getCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
     this.dispatchEvent(searchBoxClickedEvent);
   }
 
