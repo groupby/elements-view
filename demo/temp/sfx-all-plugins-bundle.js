@@ -19027,6 +19027,7 @@ __export(__webpack_require__(/*! @sfx/dom-events-plugin */ "./packages/@sfx/dom-
 __export(__webpack_require__(/*! @sfx/sayt-driver-plugin */ "./packages/@sfx/sayt-driver-plugin/src/index.ts"));
 __export(__webpack_require__(/*! @sfx/sayt-plugin */ "./packages/@sfx/sayt-plugin/src/index.ts"));
 __export(__webpack_require__(/*! @sfx/search-plugin */ "./packages/@sfx/search-plugin/src/index.ts"));
+__export(__webpack_require__(/*! @sfx/search-driver-plugin */ "./packages/@sfx/search-driver-plugin/src/index.ts"));
 
 
 /***/ }),
@@ -19624,6 +19625,143 @@ var SaytPlugin = /** @class */ (function () {
     return SaytPlugin;
 }());
 exports.default = SaytPlugin;
+
+
+/***/ }),
+
+/***/ "./packages/@sfx/search-driver-plugin/src/events.ts":
+/*!**********************************************************!*\
+  !*** ./packages/@sfx/search-driver-plugin/src/events.ts ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Fired to request a search. Its payload is the search term to use.
+ */
+exports.SEARCH_REQUEST_EVENT = 'sfx::search_request';
+/**
+ * Fired when a search response has been received from the server.
+ * The payload is the search response.
+ */
+exports.SEARCH_RESPONSE_EVENT = 'sfx::search_response';
+/**
+ * Fired when an error has occurred during a search request.
+ */
+exports.SEARCH_ERROR_EVENT = 'sfx::search_error';
+
+
+/***/ }),
+
+/***/ "./packages/@sfx/search-driver-plugin/src/index.ts":
+/*!*********************************************************!*\
+  !*** ./packages/@sfx/search-driver-plugin/src/index.ts ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var search_driver_plugin_1 = __webpack_require__(/*! ./search-driver-plugin */ "./packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts");
+exports.SearchDriverPlugin = search_driver_plugin_1.default;
+
+
+/***/ }),
+
+/***/ "./packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts":
+/*!************************************************************************!*\
+  !*** ./packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var events_1 = __webpack_require__(/*! ./events */ "./packages/@sfx/search-driver-plugin/src/events.ts");
+/**
+ * This plugin is responsible for exposing events that allow
+ * for interacting with GroupBy's Search API.
+ */
+var SearchDriverPlugin = /** @class */ (function () {
+    /**
+     * Constructs a new instance of the plugin and binds the necessary
+     * callbacks.
+     */
+    function SearchDriverPlugin() {
+        /**
+         * Name of the events plugin.
+         */
+        this.eventsPluginName = 'dom_events';
+        this.fetchSearchData = this.fetchSearchData.bind(this);
+    }
+    Object.defineProperty(SearchDriverPlugin.prototype, "metadata", {
+        get: function () {
+            return {
+                name: 'search_driver',
+                depends: [this.eventsPluginName, 'search'],
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Saves the plugin registry for later use. This plugin does not
+     * expose a value.
+     *
+     * @param plugins the plugin registry to use.
+     */
+    SearchDriverPlugin.prototype.register = function (plugins) {
+        this.core = plugins;
+    };
+    /**
+     * Registers event listeners. The following events are listened for:
+     *
+     * - [[SEARCH_REQUEST_EVENT]]
+     */
+    SearchDriverPlugin.prototype.ready = function () {
+        this.core[this.eventsPluginName].registerListener(events_1.SEARCH_REQUEST_EVENT, this.fetchSearchData);
+    };
+    /**
+     * Unregisters event listeners.
+     */
+    SearchDriverPlugin.prototype.unregister = function () {
+        this.core[this.eventsPluginName].unregisterListener(events_1.SEARCH_REQUEST_EVENT, this.fetchSearchData);
+    };
+    /**
+     * Performs a search with the given search term and emits the result
+     * through an event. The result is emitted in a
+     * [[SEARCH_RESPONSE_EVENT]] event. If the search fails for any
+     * reason, a [[SEARCH_ERROR_EVENT]] is dispatched with the error.
+     *
+     * @param event the event whose payload is the search term.
+     */
+    SearchDriverPlugin.prototype.fetchSearchData = function (event) {
+        var _this = this;
+        var searchTerm = event.detail;
+        this.sendSearchApiRequest(searchTerm)
+            .then(function (results) {
+            _this.core[_this.eventsPluginName].dispatchEvent(events_1.SEARCH_RESPONSE_EVENT, results);
+        })
+            .catch(function (e) {
+            _this.core[_this.eventsPluginName].dispatchEvent(events_1.SEARCH_ERROR_EVENT, e);
+        });
+    };
+    /**
+     * Sends a search request using the GroupBy API.
+     *
+     * @param query the query to send.
+     */
+    SearchDriverPlugin.prototype.sendSearchApiRequest = function (query) {
+        return this.core.search.search(query);
+    };
+    return SearchDriverPlugin;
+}());
+exports.default = SearchDriverPlugin;
 
 
 /***/ }),

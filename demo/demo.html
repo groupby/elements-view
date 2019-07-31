@@ -4,6 +4,7 @@
 <head>
 <title>Demo of Logic and View Integration</title>
 <script src="../dist/components.js"></script>
+<<<<<<< Updated upstream
 <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js">
 const core = new Core();
 const saytPlugin = new SaytPlugin();
@@ -18,5 +19,40 @@ core.register(saytPlugin);
 <!-- <script>
 
 </script> -->
+=======
+<!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"> -->
+<script src="../demo/temp/sfx-all-plugins-bundle.js">
+// const core = new Core();
+// const saytPlugin = new SaytPlugin({subdomain: 'cvs', collection: 'productsLeaf'});
+// const saytDriverPlugin = new SaytDriverPlugin();
+// setTimeout(function(){ alert("Hello"); }, 3000);
+console.log('.. core', this)
+// core.register([saytPlugin, saytDriverPlugin]);
+ // front > driver - request sfx::autocomplete_fetch_data
+ // > sayt plugin - driver response > front
+ // const test = saytDriverPlugin.sendSaytApiRequest('red', {subdomain: 'cvs', collection: 'productsLeaf'})
+ // //get results
+ // console.log('>>> test', test)
+</script>
+</head>
+<body>
+<sfx-search-box></sfx-search-box>
+<sfx-sayt></sfx-sayt>
+<sfx-autocomplete></sfx-autocomplete>
+
+<script>
+const core = new this.sfxCore.Core();
+
+const domEventsPlugin = new this.sfxPlugins.DomEventsPlugin()
+const saytPlugin = new this.sfxPlugins.SaytPlugin({subdomain: 'cvs', collection: 'productsLeaf'});
+const saytDriverPlugin = new this.sfxPlugins.SaytDriverPlugin();
+const searchPlugin = new this.sfxPlugins.SearchPlugin({ customerId: 'cvs'});
+const searchDriverPlugin = new this.sfxPlugins.SearchDriverPlugin();
+console.log('>>> saytPlugin', domEventsPlugin, saytPlugin, saytDriverPlugin, searchPlugin, searchDriverPlugin)
+
+core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
+
+</script>
+>>>>>>> Stashed changes
 </body>
 </html>
