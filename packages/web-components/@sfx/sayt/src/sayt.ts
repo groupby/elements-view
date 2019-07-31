@@ -1,5 +1,6 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
 import { SAYT_EVENT } from './events';
+import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
 
 /**
  * The `sfx-sayt` component is responsible for displaying and hiding the
@@ -52,6 +53,7 @@ export default class Sayt extends LitElement {
     super.connectedCallback();
 
     window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
+    window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keypress', this.processKeyPress);

@@ -2,6 +2,7 @@ import { expect, spy, stub } from './utils';
 import { TemplateResult } from 'lit-element';
 import Sayt from '../src/sayt';
 import { SAYT_EVENT } from '../src/events';
+import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
 
 describe('Sayt Component', () => {
   let sayt;
@@ -20,6 +21,7 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(addEventListener).to.be.calledWith('click', sayt.processClick);
       expect(addEventListener).to.be.calledWith('keypress', sayt.processKeyPress);
+      expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT);
     });
   });
 
