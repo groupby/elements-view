@@ -1,5 +1,5 @@
 import { SEARCHBOX_EVENT } from '../../src/events';
-import { expect, stub } from '../utils';
+import { expect, stub, waitForUpdateComplete } from '../utils';
 import SearchBox from '../../src/search-box';
 import { TemplateResult, html } from 'lit-element';
 import { Base } from '@sfx/base';
@@ -182,7 +182,7 @@ describe('SearchBox Component', () => {
     });
   });
 
-  describe('interaction tests', () => {
+  describe.only('interaction tests', () => {
     it('should clear the searchbox when the clear button is clicked', () => {
       searchbox.clearButton = true;
       searchbox.searchButton = true;
@@ -195,15 +195,15 @@ describe('SearchBox Component', () => {
 
         searchbox.value = searchboxInput.value = "Search Term";
 
-        return searchbox.updateComplete;
-      }).then((update) => {
+        return waitForUpdateComplete(searchbox);
+      }).then(() => {
         const searchboxNode = document.querySelector('sfx-search-box');
         const searchboxButtons = searchboxNode.querySelectorAll('button');
         const searchboxClearButton = searchboxButtons[0];
         searchboxClearButton.click();
 
-        return searchbox.updateComplete;
-      }).then((update) => {
+        return waitForUpdateComplete(searchbox);
+      }).then(() => {
         const searchboxNode = document.querySelector('sfx-search-box');
         const searchboxInput = searchboxNode.querySelector('input');
 
