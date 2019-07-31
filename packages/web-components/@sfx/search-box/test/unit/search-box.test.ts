@@ -69,12 +69,16 @@ describe('SearchBox Component', () => {
   describe('emitSearchEvent', () => {
     it('should dispatch a search request event', () => {
       const value = searchbox.value = 'a';
+      const id = searchbox.id = 'some-id';
 
       searchbox.emitSearchEvent();
       const passedEvent = searchboxDispatchEvent.getCall(0).args[0];
 
       expect(passedEvent.type).to.equal(SEARCHBOX_EVENT.SEARCH_REQUEST);
-      expect(passedEvent.detail).to.equal(value);
+      expect(passedEvent.detail).to.deep.equal({
+        value,
+        searchbox: id,
+      });
       expect(passedEvent.bubbles).to.equal(true);
     });
   });
@@ -171,6 +175,27 @@ describe('SearchBox Component', () => {
 
       expect(passedEvent.type).to.equal(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
       expect(passedEvent.bubbles).to.be.true;
+    });
+  });
+
+  describe('getCustomEvent', () => {
+    it('should return a CustomEvent with the provided type and detail', () => {
+      const type = 'event-type';
+      const detail = { a: 1, b: 2 };
+
+      const result = searchbox.getCustomEvent(type, detail);
+
+      expect(result.type).to.equal(type);
+      expect(result.detail).to.include(detail);
+    });
+
+    it('should return a CustomEvent that bubbles and has a searchbox attribute', () => {
+      const id = searchbox.id = 'some-id';
+
+      const result = searchbox.getCustomEvent('some-type');
+
+      expect(result.bubbles).to.be.true;
+      expect(result.detail.searchbox).to.equal(id);
     });
   });
 

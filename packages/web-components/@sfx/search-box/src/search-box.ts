@@ -53,7 +53,10 @@ export default class SearchBox extends Base {
    */
   emitSearchEvent() {
     const searchboxRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-      detail: this.value,
+      detail: {
+        value: this.value,
+        searchbox: this.id,
+      },
       bubbles: true
     });
     this.dispatchEvent(searchboxRequestEvent);
@@ -135,6 +138,22 @@ export default class SearchBox extends Base {
   clickExposed() {
     const searchBoxClickedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK, { bubbles: true });
     this.dispatchEvent(searchBoxClickedEvent);
+  }
+
+  /**
+   * Returns an event with a standard structure.
+   *
+   * @param type The type (or name) of the event to be emitted.
+   * @param detail A payload to be sent with the event.
+   */
+  getCustomEvent(type: string, detail: object) {
+    return new CustomEvent(type, {
+      detail: {
+        ...detail,
+        searchbox: this.id,
+      },
+      bubbles: true,
+    })
   }
 
   // TODO Move this to the Storybook tab once functionality has been merged into sfx-view.
