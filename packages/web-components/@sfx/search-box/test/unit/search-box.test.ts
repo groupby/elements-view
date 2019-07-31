@@ -183,11 +183,27 @@ describe('SearchBox Component', () => {
   });
 
   describe.only('interaction tests', () => {
+    let container;
+
+    before(() => {
+      container = document.createElement('div');
+      container.id = "interaction-container";
+      document.body.appendChild(container);
+    });
+
+    after(() => {
+      container.parentNode.removeChild(container);
+    });
+
+    beforeEach(() => {
+      container.innerHTML = '';
+    });
+
     it('should clear the searchbox when the clear button is clicked', () => {
       searchbox.clearButton = true;
       searchbox.searchButton = true;
 
-      document.body.appendChild(searchbox);
+      container.appendChild(searchbox);
 
       return window.customElements.whenDefined('sfx-search-box').then(() => {
         const searchboxNode = document.querySelector('sfx-search-box');
