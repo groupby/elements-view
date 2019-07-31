@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     components: [
       './presets/components.ts',
-      './presets/themes/sfx-blue.scss',
+      './presets/themes/sfx-groupby.scss',
       './presets/themes/sfx-lightpink.scss',
     ],
 
@@ -43,9 +43,10 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
+            // loader: 'style-loader',
             loader: 'file-loader',
             options: {
-              name: 'css/[name].css',
+              name: '[name].css',
             },
           },
           'extract-loader',

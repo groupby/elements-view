@@ -10,18 +10,18 @@ function loadStories() {
   addDecorator(withA11y);
   addDecorator(withCssResources)
   addParameters({
-    options: {
-      theme: GroupByTheme,
-    },
+    // options: {
+    //   theme: GroupByTheme,
+    // },
     cssresources: [
       {
-        id: `bluetheme`,
-        code: `<link rel="stylesheet" type="text/css" href="./presets/themes/blue"></link>`,
+        id: `Groupby Theme`,
+        code: `<link rel="stylesheet" type="text/css" src=""></link>`,
         picked: true,
       },
       {
         id: `pinktheme`,
-        code: `<link rel="stylesheet" type="text/css" href="./presets/themes/blue"></link>`,
+        code: `<link rel="stylesheet" type="text/css" src="./presets/themes/blue"></link>`,
         picked: false,
       },
     ],
