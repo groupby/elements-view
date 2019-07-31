@@ -1,39 +1,35 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-<title>Demo of Logic and View Integration</title>
-<script src="../dist/components.js"></script>
-<!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"> -->
-<script src="../demo/temp/sfx-all-plugins-bundle.js">
-// const core = new Core();
-// const saytPlugin = new SaytPlugin({subdomain: 'cvs', collection: 'productsLeaf'});
-// const saytDriverPlugin = new SaytDriverPlugin();
-// setTimeout(function(){ alert("Hello"); }, 3000);
-console.log('.. core', this)
-// core.register([saytPlugin, saytDriverPlugin]);
- // front > driver - request sfx::autocomplete_fetch_data
- // > sayt plugin - driver response > front
+  <head>
+    <title>Demo of Logic and View Integration</title>
+    <script src="../dist/components.js"></script>
+    <!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"> -->
+    <!-- <script src="../demo/temp/sfx-all-plugins-bundle.js"></script> -->
+    <script src="../demo/temp-2/sfx-all-plugins-bundle.js"></script>
+  </head>
+  <body>
+    <sfx-search-box placeholder="search" clearbutton searchbutton></sfx-search-box>
+    <sfx-sayt></sfx-sayt>
+    <sfx-autocomplete></sfx-autocomplete>
+    <sfx-list class="product-grid"></sfx-list>
 
-</script>
-</head>
-<body>
-<sfx-search-box placeholder="search" clearbutton searchbutton></sfx-search-box>
-<sfx-sayt></sfx-sayt>
-<sfx-autocomplete></sfx-autocomplete>
+    <script>
+      const core = new sfxCore.Core();
 
-<script>
-const core = new this.sfxCore.Core();
+      const domEventsPlugin = new sfxPlugins.DomEventsPlugin()
+      const saytPlugin = new sfxPlugins.SaytPlugin({subdomain: 'apparel', collection: 'products'});
+      const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin();
+      const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel', collection: 'products', area: 'Storefront'});
+      const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin();
 
-const domEventsPlugin = new this.sfxPlugins.DomEventsPlugin()
-const saytPlugin = new this.sfxPlugins.SaytPlugin({subdomain: 'cvs', collection: 'productsLeaf'});
-const saytDriverPlugin = new this.sfxPlugins.SaytDriverPlugin();
-const searchPlugin = new this.sfxPlugins.SearchPlugin({ customerId: 'cvs'});
-const searchDriverPlugin = new this.sfxPlugins.SearchDriverPlugin();
-console.log('>>> saytPlugin', domEventsPlugin, saytPlugin, saytDriverPlugin, searchPlugin, searchDriverPlugin)
+      core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 
-core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
-
-</script>
-</body>
+      window.addEventListener("sfx::search_response", (e) => {
+         const testListResults = e.detail.records.map(item => {
+          return {label : item.title };
+        })
+        document.getElementsByClassName('product-grid')[0].setAttribute('items', JSON.stringify(testListResults));
+      });
+    </script>
+  </body>
 </html>
