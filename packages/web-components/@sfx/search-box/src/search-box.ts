@@ -172,14 +172,17 @@ export default class SearchBox extends Base {
     return html`
       <style>
         sfx-search-box {
-          display: inline-block;
+          display: flex;
         }
-
         sfx-search-box[hidden] {
           display: none;
         }
+        sfx-search-box > input {
+          flex-grow: 1;
+        }
       </style>
       <input
+        class="sfx-search__input"
         type="text"
         placeholder="${this.placeholder}"
         .value="${this.value}"
@@ -187,19 +190,18 @@ export default class SearchBox extends Base {
         @click="${this.clickExposed}"
         @keydown="${this.handleKeydown}"
       />
-      ${this.clearButton
-        ? html`
-            <button @click="${this.clearSearch}">Clear</button>
-          `
-        : ''}
-      ${this.searchButton
-        ? html`
-            <button @click="${this.emitSearchEvent}">Search</button>
-          `
-        : ''}
-      <button @click="${this.updateTextEvent}">
-        Click to dispatch update search term event
-      </button>
+      <div>
+        ${this.clearButton
+          ? html`
+              <button @click="${this.clearSearch}">Clear</button>
+            `
+          : ''}
+        ${this.searchButton
+          ? html`
+              <button @click="${this.emitSearchEvent}">Search</button>
+            `
+          : ''}
+      </div>
     `;
   }
 }

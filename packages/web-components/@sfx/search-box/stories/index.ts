@@ -31,18 +31,27 @@ storiesOf('Components|Searchbox', module)
       'Default - with search and clear button',
       () => `
     <sfx-search-box searchbutton clearbutton></sfx-search-box>
+    <button @click="${this.updateTextEvent}">
+      Click to dispatch update search term event
+    </button>
   `
     )
     .add(
       'Without any SFX provided buttons',
       () => `
     <sfx-search-box></sfx-search-box>
+    <button @click="${this.updateTextEvent}">
+      Click to dispatch update search term event
+    </button>
   `
     )
     .add(
       'With a clear button, without a search button',
       () => `
     <sfx-search-box clearbutton></sfx-search-box>
+    <button @click="${this.updateTextEvent}">
+      Click to dispatch update search term event
+    </button>
   `
     )
     .add(
@@ -52,5 +61,8 @@ storiesOf('Components|Searchbox', module)
       'Placeholder Title',
       'Placeholder here...'
     )}"></sfx-search-box>
+    <button @click="${this.updateTextEvent}">
+      Click to dispatch update search term event
+    </button>
   `
     );
