@@ -8,20 +8,20 @@ const req = require['context']('../packages/web-components', true, /\/stories\/i
 
 function loadStories() {
   addDecorator(withA11y);
-  addDecorator(withCssResources)
+  addDecorator(withCssResources);
   addParameters({
-    // options: {
-    //   theme: GroupByTheme,
-    // },
+    options: {
+      theme: GroupByTheme,
+    },
     cssresources: [
       {
-        id: `Groupby Theme`,
-        code: `<link rel="stylesheet" type="text/css" src=""></link>`,
+        id: `Bold Theme`,
+        code: `<link rel="stylesheet" type="text/css" href="/sfx-bold-theme.css"></link>`,
         picked: true,
       },
       {
-        id: `pinktheme`,
-        code: `<link rel="stylesheet" type="text/css" src="./presets/themes/blue"></link>`,
+        id: `Elegant Theme`,
+        code: `<link rel="stylesheet" type="text/css" href="/sfx-elegant-theme.css"></link>`,
         picked: false,
       },
     ],
