@@ -40,7 +40,7 @@ storiesOf('Components|Searchbox', module)
   `
     )
     .add(
-      'Without a clear button, without a search button',
+      'With a clear button, without a search button',
       () => `
     <sfx-search-box clearbutton></sfx-search-box>
   `
@@ -50,7 +50,7 @@ storiesOf('Components|Searchbox', module)
       () => `
     <sfx-search-box placeholder="${text(
       'Placeholder Title',
-      'Search'
+      'Placeholder here...'
     )}"></sfx-search-box>
   `
     );
