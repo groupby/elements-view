@@ -87,11 +87,11 @@ export default class SearchBox extends Base {
    * @param e The KeyboardEvent object.
    */
   handleInput(e: KeyboardEvent) {
-    this.updateSearchTermValue((e.target as HTMLInputElement).value);
+    const value = (e.target as HTMLInputElement).value;
+    this.updateSearchTermValue(value);
     this.dispatchEvent(
-      new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
-        detail: (e.target as HTMLInputElement).value,
-        bubbles: true
+      this.getCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
+        value,
       })
     );
   }
@@ -142,7 +142,7 @@ export default class SearchBox extends Base {
    * @param type The type (or name) of the event to be emitted.
    * @param detail A payload to be sent with the event.
    */
-  getCustomEvent(type: string, detail: object) {
+  getCustomEvent(type: string, detail: object = {}) {
     return new CustomEvent(type, {
       detail: {
         ...detail,
