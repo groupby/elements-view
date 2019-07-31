@@ -4,22 +4,6 @@
 <head>
 <title>Demo of Logic and View Integration</title>
 <script src="../dist/components.js"></script>
-<<<<<<< Updated upstream
-<script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js">
-const core = new Core();
-const saytPlugin = new SaytPlugin();
-const saytDriverPlugin = new SaytDriverPlugin();
-
-core.register(saytPlugin);
-</script>
-</head>
-<body>
-<sfx-sayt show-attribute="visable" items="[1,2,3]"></sfx-sayt>
-<sfx-autocomplete ></sfx-autocomplete>
-<!-- <script>
-
-</script> -->
-=======
 <!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"> -->
 <script src="../demo/temp/sfx-all-plugins-bundle.js">
 // const core = new Core();
@@ -30,9 +14,7 @@ console.log('.. core', this)
 // core.register([saytPlugin, saytDriverPlugin]);
  // front > driver - request sfx::autocomplete_fetch_data
  // > sayt plugin - driver response > front
- // const test = saytDriverPlugin.sendSaytApiRequest('red', {subdomain: 'cvs', collection: 'productsLeaf'})
- // //get results
- // console.log('>>> test', test)
+
 </script>
 </head>
 <body>
@@ -53,6 +35,5 @@ console.log('>>> saytPlugin', domEventsPlugin, saytPlugin, saytDriverPlugin, sea
 core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 
 </script>
->>>>>>> Stashed changes
 </body>
 </html>
