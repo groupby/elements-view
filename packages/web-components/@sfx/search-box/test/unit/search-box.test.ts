@@ -199,6 +199,22 @@ describe('SearchBox Component', () => {
       container.innerHTML = '';
     });
 
+    // search box typing and the value updates
+    // search button is clicked and event is emitted
+    it('should set the searchbox input value when the searchbox.value property is updated', () => {
+      container.appendChild(searchbox);
+
+      return window.customElements.whenDefined('sfx-search-box').then(() => {
+        searchbox.value = "Search Term";
+
+        return waitForUpdateComplete(searchbox);
+      }).then(() => {
+        const searchboxInput = searchbox.querySelector('input');
+
+        expect(searchboxInput.value).to.equal('Search Term');
+      });
+    });
+
     it('should clear the searchbox when the clear button is clicked', () => {
       searchbox.clearButton = true;
       searchbox.searchButton = true;
