@@ -104,6 +104,9 @@ jobs:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt-
       - run: *extract_build_archive
       - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_box-
+      - run: *extract_build_archive
+      - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_ui-
       - run: *extract_build_archive
       - run: *archive_build
@@ -168,6 +171,9 @@ workflows:
       - build:
           name: build_sayt
           <<: *requires_build_ui
+      - build:
+          name: build_search_box
+          <<: *requires_build_ui
       - build_final:
           requires:
             - build_base
@@ -175,6 +181,7 @@ workflows:
             - build_autocomplete
             - build_product
             - build_sayt
+            - build_search_box
 
       - unit_test:
           name: unit_test_base
@@ -191,6 +198,9 @@ workflows:
       - unit_test:
           name: unit_test_sayt
           <<: *requires_build_final
+      - unit_test:
+          name: unit_test_search_box
+          <<: *requires_build_final
       - unit_test_final:
           requires:
             - unit_test_base
@@ -198,3 +208,4 @@ workflows:
             - unit_test_autocomplete
             - unit_test_product
             - unit_test_sayt
+            - unit_test_search_box
