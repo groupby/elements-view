@@ -66,6 +66,7 @@ export default class Sayt extends LitElement {
     super.disconnectedCallback();
 
     window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
+    window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keypress', this.processKeyPress);
