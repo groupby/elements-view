@@ -30,23 +30,9 @@ export default class Variant extends Base {
       default:
         this.innerText = variant.text;
     };
-
-    this.addEventListener('click', this.changeVariant);
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    this.removeEventListener('click', this.changeVariant);
-  }
-
-  changeVariant() {
-    this.dispatchEvent(new CustomEvent('sfx::product_variant_change', {
-      bubbles: true,
-      detail: this.variant.product
-    }));
   }
 
   render() {
-    return html`<style>sfx-product-variant { width: 15px; height: 15px; display: inline-block; margin: 2px; }</style>`;
+    return html`<style>sfx-product-variant { width: 15px; height: 15px; display: inline-block; margin: 2px; cursor: pointer}</style>`;
   }
 }

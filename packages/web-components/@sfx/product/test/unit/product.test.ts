@@ -24,24 +24,24 @@ describe('Product Component', () => {
     });
   });
 
-  describe('connectedCallback', () => {
-    it('should call its super connectedCallback', () => {
-      const connectedCallback = stub(Base.prototype, 'connectedCallback');
-
-      component.connectedCallback();
-
-      expect(connectedCallback).to.have.been.called;
-    });
-
-    it('should add an eventListener to the component', () => {
+  describe('firstUpdated', () => {
+    it('shoud not add eventListeners if there are no variants', () => {
       const addEventListener = stub(component, 'addEventListener');
 
-      component.connectedCallback();
+      component.firstUpdated();
 
-      expect(addEventListener).to.have.been.calledWith(
-        'sfx::product_variant_change',
-        component.updateVariant
-      );
+      expect(addEventListener).to.not.have.been.called;
+    });
+
+    it('should add an eventListener to child components', () => {
+      component.product = { variants: true };
+
+      const nodes = document.createDocumentFragment().appendChild(new Variant());
+      const querySelectorAll = stub(component, 'querySelectorAll').returns(nodes.childNodes);
+
+      component.firstUpdated();
+
+      expect(querySelectorAll).to.have.been.called;
     });
   });
 
@@ -55,14 +55,20 @@ describe('Product Component', () => {
     });
 
     it('should remove eventListener from the component', () => {
-      const removeEventListener = stub(component, 'removeEventListener');
+      component.product = { variants: true };
+
+      const nodes = document.createDocumentFragment().appendChild(new Variant());
+      const querySelectorAll = stub(component, 'querySelectorAll').returns(nodes.childNodes);
 
       component.disconnectedCallback();
 
-      expect(removeEventListener).to.have.been.calledWith(
-        'sfx::product_variant_change',
-        component.updateVariant
-      );
+      expect(querySelectorAll).to.have.been.called;
+
+      nodes.childNodes.forEach(v => {
+        const removeEventListener = stub(v, 'removeEventListener');
+
+        expect(removeEventListener).to.have.been.calledWith('click', component.updateVariant);
+      });
     });
   });
 
@@ -70,7 +76,7 @@ describe('Product Component', () => {
     it('should update the product property with new info', () => {
       const name = 'Foo';
       const price = 12.34;
-      const event = { detail: { name, price } };
+      const event = { srcElement: { variant: { product: { name, price } } } };
 
       component.updateVariant(event);
 
@@ -177,13 +183,6 @@ describe('Variant Component', () => {
       expect(connectedCallback).to.have.been.called;
     });
 
-    it('should add an eventListener to the component', () => {
-      const addEventListener = stub(component, 'addEventListener');
-
-      component.connectedCallback();
-
-      expect(addEventListener).to.have.been.calledWith('click', component.changeVariant);
-    });
 
     it('should set role to "listitem"', () => {
       const setAttribute = stub(component, 'setAttribute');
@@ -229,34 +228,6 @@ describe('Variant Component', () => {
 
         expect(component.innerText).to.equal(component.variant.text);
       });
-    });
-  });
-
-  describe('disconnectedCallback', () => {
-    it('should call its super disconnectedCallback', () => {
-      const disconnectedCallback = stub(Base.prototype, 'disconnectedCallback');
-
-      component.disconnectedCallback();
-
-      expect(disconnectedCallback).to.have.been.called;
-    });
-
-    it('should remove the eventListener for click', () => {
-      const removeEventListener = stub(component, 'removeEventListener');
-
-      component.disconnectedCallback();
-
-      expect(removeEventListener).to.have.been.calledWith('click', component.changeVariant);
-    });
-  });
-
-  describe('changeVariant', () => {
-    it('should dispatch an event', () => {
-      const dispatchEvent = stub(component, 'dispatchEvent');
-
-      component.changeVariant();
-
-      expect(dispatchEvent).to.have.been.called;
     });
   });
 

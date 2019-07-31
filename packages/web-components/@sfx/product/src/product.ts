@@ -1,6 +1,7 @@
 import { customElement, property, html, TemplateResult } from 'lit-element';
 
 import { Base } from '@sfx/base';
+import { type } from 'os';
 
 @customElement('sfx-product')
 export default class Product extends Base {
@@ -11,23 +12,34 @@ export default class Product extends Base {
     this.updateVariant = this.updateVariant.bind(this);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.addEventListener('sfx::product_variant_change', this.updateVariant);
+  firstUpdated() {
+    if ( 'variants' in this.product ) {
+      this.querySelectorAll('sfx-product-variant').forEach(variant => {
+        variant.addEventListener('click', this.updateVariant);
+      });
+    }
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.removeEventListener('sfx::product_variant_change', this.updateVariant);
+    if ( 'variants' in this.product ) {
+      this.querySelectorAll('sfx-product-variant').forEach(variant =>
+        variant.removeEventListener('click', this.updateVariant)
+      );
+    }
   }
 
-  updateVariant(e: CustomEvent) {
-    const product = e.detail;
+  updateVariant(e: Event) {
+    const { srcElement = {} as any } = e;
 
-    this.product = {
-      ...this.product,
-      ...product
-    };
+    if ( 'variant' in srcElement ) {
+      const { product = {} } = srcElement.variant;
+
+      this.product = {
+        ...this.product,
+        ...product,
+      };
+    }
   }
 
   urlWrap(url: string, children: TemplateResult) {
