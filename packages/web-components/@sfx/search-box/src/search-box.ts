@@ -52,12 +52,8 @@ export default class SearchBox extends Base {
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
   emitSearchEvent() {
-    const searchboxRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-      detail: {
-        value: this.value,
-        searchbox: this.id,
-      },
-      bubbles: true
+    const searchboxRequestEvent = this.getCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+      value: this.value,
     });
     this.dispatchEvent(searchboxRequestEvent);
   }
@@ -67,7 +63,7 @@ export default class SearchBox extends Base {
    * Invoked in response to a click on the clear button.
    */
   emitSearchBoxClearClick() {
-    const searchboxClearedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK, { bubbles: true });
+    const searchboxClearedEvent = this.getCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK);
     this.dispatchEvent(searchboxClearedEvent);
   }
 

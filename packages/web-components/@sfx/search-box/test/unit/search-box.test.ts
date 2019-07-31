@@ -136,7 +136,7 @@ describe('SearchBox Component', () => {
 
       expect(passedEvent.bubbles).to.equal(true);
       expect(passedEvent.type).to.equal(SEARCHBOX_EVENT.SEARCHBOX_CHANGE);
-      expect(passedEvent.detail).to.equal(searchTerm);
+      expect(passedEvent.detail).to.include({ value: searchTerm });
     });
   });
 
