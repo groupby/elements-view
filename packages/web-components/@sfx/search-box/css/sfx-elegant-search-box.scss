@@ -1,3 +1,17 @@
+// @mixin form-focus {
+//   &:focus {
+//     box-shadow: 0 0 5px var(--color-primary);
+//     outline: none;
+//     transition: box-shadow 0.10s ease-in-out;
+//   }
+// }
+
+// @mixin form-active {
+//   &:active {
+//     z-index: 5;
+//   }
+// }
+
 sfx-search-box {
   --search-box-button-width: 75px;
   background: white;
@@ -5,19 +19,24 @@ sfx-search-box {
   grid-template-columns: auto repeat(2, var(--search-box-button-width));
   grid-column-gap: var(--default-spacing);
 
+  button,
   input {
+    border: 1px solid var(--color-border);
     padding: calc(var(--default-spacing) * 2);
-    border: none;
+
     &:active {
       z-index: 5;
+    }
+
+    &:focus {
+      box-shadow: 0 0 5px var(--color-primary);
+      outline: none;
+      transition: box-shadow 0.10s ease-in-out;
     }
   }
+
   button {
-    padding: calc(var(--default-spacing) * 2);
-    border: none;
+    background-color: var(--color-tertiary);
     width: var(--search-box-button-width);
-    &:active {
-      z-index: 5;
-    }
   }
 }
