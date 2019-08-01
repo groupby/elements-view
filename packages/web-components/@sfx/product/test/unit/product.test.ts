@@ -24,54 +24,6 @@ describe('Product Component', () => {
     });
   });
 
-  describe('firstUpdated', () => {
-    it('shoud not add eventListeners if there are no variants', () => {
-      const addEventListener = stub(component, 'addEventListener');
-
-      component.firstUpdated();
-
-      expect(addEventListener).to.not.have.been.called;
-    });
-
-    it('should add an eventListener to child components', () => {
-      component.product = { variants: true };
-
-      const nodes = document.createDocumentFragment().appendChild(new Variant());
-      const querySelectorAll = stub(component, 'querySelectorAll').returns(nodes.childNodes);
-
-      component.firstUpdated();
-
-      expect(querySelectorAll).to.have.been.called;
-    });
-  });
-
-  describe('disconnectedCallback', () => {
-    it('should call its super disconnectedCallback', () => {
-      const disconnectedCallback = stub(Base.prototype, 'disconnectedCallback');
-
-      component.disconnectedCallback();
-
-      expect(disconnectedCallback).to.have.been.called;
-    });
-
-    it('should remove eventListener from the component', () => {
-      component.product = { variants: true };
-
-      const nodes = document.createDocumentFragment().appendChild(new Variant());
-      const querySelectorAll = stub(component, 'querySelectorAll').returns(nodes.childNodes);
-
-      component.disconnectedCallback();
-
-      expect(querySelectorAll).to.have.been.called;
-
-      nodes.childNodes.forEach(v => {
-        const removeEventListener = stub(v, 'removeEventListener');
-
-        expect(removeEventListener).to.have.been.calledWith('click', component.updateVariant);
-      });
-    });
-  });
-
   describe('updateVariant', () => {
     it('should update the product property with new info', () => {
       const name = 'Foo';
@@ -193,11 +145,13 @@ describe('Variant Component', () => {
     });
 
     describe('variant types', () => {
+      const color = 'rgb(187, 238, 221)';
+
       beforeEach(() => {
         component.variant = {
           text: 'Foo',
-          color: '#bed', // 'rgb(187, 238, 221)'
           image: 'src.png',
+          color,
           product: {}
         };
       });
@@ -207,7 +161,7 @@ describe('Variant Component', () => {
 
         component.connectedCallback();
 
-        expect(component.style.backgroundColor).to.equal('rgb(187, 238, 221)');
+        expect(component.style.backgroundColor).to.equal(color);
         expect(component.title).to.equal(component.variant.text);
       });
 
@@ -216,7 +170,7 @@ describe('Variant Component', () => {
 
         component.connectedCallback();
 
-        expect(component.style.backgroundColor).to.equal('rgb(187, 238, 221)');
+        expect(component.style.backgroundColor).to.equal(color);
         expect(component.style.backgroundImage).to.equal(`url("${component.variant.image}")`);
         expect(component.title).to.equal(component.variant.text);
       });

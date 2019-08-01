@@ -26,9 +26,11 @@ export default class Variant extends Base {
         this.style.backgroundColor = variant.color;
         this.style.backgroundImage = `url(${variant.image})`;
         this.title = variant.text;
+        break;
       case 'text':
       default:
         this.innerText = variant.text;
+        break;
     };
   }
 

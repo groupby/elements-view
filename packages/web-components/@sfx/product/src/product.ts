@@ -1,7 +1,6 @@
 import { customElement, property, html, TemplateResult } from 'lit-element';
 
 import { Base } from '@sfx/base';
-import { type } from 'os';
 
 @customElement('sfx-product')
 export default class Product extends Base {
@@ -10,23 +9,6 @@ export default class Product extends Base {
   constructor() {
     super();
     this.updateVariant = this.updateVariant.bind(this);
-  }
-
-  firstUpdated() {
-    if ( 'variants' in this.product ) {
-      this.querySelectorAll('sfx-product-variant').forEach(variant => {
-        variant.addEventListener('click', this.updateVariant);
-      });
-    }
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    if ( 'variants' in this.product ) {
-      this.querySelectorAll('sfx-product-variant').forEach(variant =>
-        variant.removeEventListener('click', this.updateVariant)
-      );
-    }
   }
 
   updateVariant(e: Event) {
@@ -49,16 +31,16 @@ export default class Product extends Base {
   additionalInfo() {
     const { product } = this;
 
-    const properties = {
-      title: '',
-      price: 0,
-      variants: { type: 'text', items: [] },
-      productUrl: '',
-      imageAlt: '',
-      imageSrc: ''
-    } as ProductModel;
+    const properties: Set<keyof ProductModel> = new Set([
+      'title',
+      'price',
+      'variants',
+      'productUrl',
+      'imageAlt',
+      'imageSrc',
+    ]);
 
-    return Object.keys(product).filter(p => !(p in properties)).map(p => html`
+    return Object.keys(product).filter(p => !properties.has(p)).map(p => html`
       <span class="sfx-product-${ p }">${ product[p] }</span>
     `);
   }
@@ -76,7 +58,7 @@ export default class Product extends Base {
           ${
             variants ?
               variants.items.map(v =>
-                html`<sfx-product-variant type="${variants.type}" .variant="${v}"></sfx-product-variant>`
+                html`<sfx-product-variant @click="${this.updateVariant}" type="${variants.type}" .variant="${v}"></sfx-product-variant>`
               )
             : ''
           }
