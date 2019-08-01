@@ -131,7 +131,7 @@ storiesOf('Components|Product', module)
   product="${text('Product Info', JSON.stringify({
     ...product,
     variants: {
-      type: 'color',
+      type: 'image',
       items: [
         { color: '#c00', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80', text: 'Red', product },
         { color: '#28e', image: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80', text: 'Blue', product: {
