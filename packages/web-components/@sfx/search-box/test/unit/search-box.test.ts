@@ -70,26 +70,23 @@ describe('SearchBox Component', () => {
     it('should dispatch a search request event', () => {
       const value = searchbox.value = 'a';
       const id = searchbox.id = 'some-id';
+      const getCustomEvent = stub(searchbox, 'getCustomEvent').returns('some-event');
 
       searchbox.emitSearchEvent();
-      const passedEvent = searchboxDispatchEvent.getCall(0).args[0];
 
-      expect(passedEvent.type).to.equal(SEARCHBOX_EVENT.SEARCH_REQUEST);
-      expect(passedEvent.detail).to.deep.equal({
-        value,
-        searchbox: id,
-      });
-      expect(passedEvent.bubbles).to.equal(true);
+      expect(getCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCH_REQUEST, { value });
+      expect(searchboxDispatchEvent).to.be.calledWith('some-event');
     });
   });
 
   describe('emitSearchBoxClearClick', () => {
     it('should dispatch an emitSearchBoxClearClick', () => {
-      searchbox.emitSearchBoxClearClick();
-      const passedEvent = searchboxDispatchEvent.getCall(0).args[0];
+      const getCustomEvent = stub(searchbox, 'getCustomEvent').returns('some-event');
 
-      expect(passedEvent.type).to.equal(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK);
-      expect(passedEvent.bubbles).to.equal(true);
+      searchbox.emitSearchBoxClearClick();
+
+      expect(getCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK);
+      expect(searchboxDispatchEvent).to.be.calledWith('some-event');
     });
   });
 
@@ -122,21 +119,21 @@ describe('SearchBox Component', () => {
       const searchTerm = 'dee';
 
       searchbox.handleInput({ target: { value: searchTerm } });
-      const passedEvent = searchboxDispatchEvent.getCall(0).args[0];
 
       expect(updateSearchTermValueStub).to.have.been.calledWith(searchTerm);
     });
 
-    it('should dispatch a search box change event', () => {
-      const updateSearchTermValueStub = stub(searchbox, 'updateSearchTermValue');
+    it('should dispatch a search box change event with a value from the event', () => {
       const searchTerm = 'dee';
+      const getCustomEvent = stub(searchbox, 'getCustomEvent').returns('some-event');
 
       searchbox.handleInput({ target: { value: searchTerm } });
-      const passedEvent = searchboxDispatchEvent.getCall(0).args[0];
 
-      expect(passedEvent.bubbles).to.equal(true);
-      expect(passedEvent.type).to.equal(SEARCHBOX_EVENT.SEARCHBOX_CHANGE);
-      expect(passedEvent.detail).to.include({ value: searchTerm });
+      expect(getCustomEvent).to.be.calledWith(
+        SEARCHBOX_EVENT.SEARCHBOX_CHANGE,
+        { value: searchTerm },
+      );
+      expect(searchboxDispatchEvent).to.be.calledWith('some-event');
     });
   });
 
@@ -170,11 +167,12 @@ describe('SearchBox Component', () => {
 
   describe('clickExposed', () => {
     it('should dispatch a search box clicked event', () => {
-      searchbox.clickExposed();
-      const passedEvent = searchboxDispatchEvent.getCall(0).args[0];
+      const getCustomEvent = stub(searchbox, 'getCustomEvent').returns('some-event');
 
-      expect(passedEvent.type).to.equal(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
-      expect(passedEvent.bubbles).to.be.true;
+      searchbox.clickExposed();
+
+      expect(getCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
+      expect(searchboxDispatchEvent).to.be.calledWith('some-event');
     });
   });
 
