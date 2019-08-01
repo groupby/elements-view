@@ -211,7 +211,6 @@ describe('Variant Component', () => {
     });
   });
 
-
   describe('render', () => {
     it('should return an instance of TemplateResult', () => {
       const result = component.render();

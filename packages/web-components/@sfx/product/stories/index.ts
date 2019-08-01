@@ -138,7 +138,7 @@ storiesOf('Components|Product', module)
           imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80' },
           imageAlt: 'Sonic blue, gotta go fast'
         },
-          { color: '#555', image: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80', text: 'Grey', product: {
+        { color: '#555', image: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80', text: 'Grey', product: {
           imageSrc: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80' },
           imageAlt: 'Magic hovering shoes'
         },
