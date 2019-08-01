@@ -28,9 +28,9 @@ describe('Product Component', () => {
     it('should update the product property with new info', () => {
       const name = 'Foo';
       const price = 12.34;
-      const event = { srcElement: { variant: { product: { name, price } } } };
+      const variant = { product: { name, price } };
 
-      component.updateVariant(event);
+      component.updateVariant(variant)();
 
       expect(component.product.name).to.equal(name);
       expect(component.product.price).to.equal(price);

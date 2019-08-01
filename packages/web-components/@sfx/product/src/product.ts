@@ -11,17 +11,13 @@ export default class Product extends Base {
     this.updateVariant = this.updateVariant.bind(this);
   }
 
-  updateVariant(e: Event) {
-    const { srcElement = {} as any } = e;
-
-    if ( 'variant' in srcElement ) {
-      const { product = {} } = srcElement.variant;
-
+  updateVariant(variant: ProductVariantModel) {
+    return () => {
       this.product = {
         ...this.product,
-        ...product,
+        ...variant.product,
       };
-    }
+    };
   }
 
   urlWrap(url: string, children: TemplateResult) {
@@ -58,7 +54,7 @@ export default class Product extends Base {
           ${
             variants ?
               variants.items.map(v =>
-                html`<sfx-product-variant @click="${this.updateVariant}" type="${variants.type}" .variant="${v}"></sfx-product-variant>`
+                html`<sfx-product-variant @click="${this.updateVariant(v)}" type="${variants.type}" .variant="${v}"></sfx-product-variant>`
               )
             : ''
           }
