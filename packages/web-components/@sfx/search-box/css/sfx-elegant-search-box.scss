@@ -3,7 +3,7 @@ sfx-search-box {
   background: white;
   display: grid;
   grid-template-columns: auto repeat(2, var(--search-box-button-width));
-  // grid-column-gap: var(--default-spacing);
+  grid-column-gap: var(--default-spacing);
 
   input {
     padding: calc(var(--default-spacing) * 2);
