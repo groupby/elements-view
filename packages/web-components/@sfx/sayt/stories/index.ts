@@ -6,7 +6,7 @@ import '../src/index.ts';
 
 const entities = new XmlEntities();
 
-// @TODO allow for sending event with searchbar ID. This should allow for one 
+// @TODO allow for sending event with searchbar ID. This should allow for one
 // story's events to not affect another story.
 const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results',
   { detail: [

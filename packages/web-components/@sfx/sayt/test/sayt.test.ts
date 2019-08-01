@@ -159,8 +159,9 @@ describe('Sayt Component', () => {
 
     it('should not error if passed an event without a detail attribute', () => {
       const event = {};
+      const callback = () => sayt.isCorrectSayt(event);
 
-      expect(() => sayt.isCorrectSayt(event)).to.not.throw();
+      expect(callback).to.not.throw();
     });
   });
 
