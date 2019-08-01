@@ -56,8 +56,8 @@ export default class Variant extends Base {
           height: auto;
           min-width: var(--product-variant-size);
           min-height: var(--product-variant-size);
-          max-width: 150%;
-          max-height: 150%;
+          max-width: 100%;
+          max-height: 100%;
         }
       </style>
       ${ this.type === 'image' ? html`<img src="${ variant.image }" alt="${ variant.text }" />` : '' }
