@@ -14,8 +14,9 @@ export default class Variant extends Base {
 
     const { type, variant } = this;
 
-    // Configure variant component
-    this.setAttribute('role', 'listitem');
+    if (!this.getAttribute('role')) {
+      this.setAttribute('role', 'listitem');
+    }
 
     switch (type) {
       case 'color':

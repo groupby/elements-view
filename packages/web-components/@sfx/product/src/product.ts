@@ -75,14 +75,13 @@ export default class Product extends Base {
   }
 }
 
-export interface ProductModel {
-  imageSrc?: string;
-  imageAlt?: string;
+export interface ProductModel extends Record<string, any>{
   title?: string;
   price?: number;
+  imageSrc?: string;
+  imageAlt?: string;
   productUrl?: string;
   variants?: ProductVariantsModel;
-  [prop: string]: any;
 }
 
 export interface ProductVariantsModel {
