@@ -42,16 +42,21 @@ export class Products extends LitElement {
           flex-direction: row;
           flex-wrap: wrap;
         }
-        sfx-product {
+        .product-wrapper {
           padding: 10px;
+        }
+        sfx-product {
+          width: 100%;
         }
       </style>
 
       ${this.getRenderableProducts().map(product => {
         return html`
-          <sfx-product
-            .product="${product}"
-            />
+          <div class="product-wrapper">
+            <sfx-product
+              .product="${product}"
+              />
+          </div>
         `
       })}
     `;
