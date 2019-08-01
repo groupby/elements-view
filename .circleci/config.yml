@@ -138,6 +138,27 @@ jobs:
             cd packages/*/"@sfx/${package}"
             yarn test
 
+  ### unit_test_interaction: unit_test_interaction_{package}
+  ### Runs the interaction tests for {package}.
+  unit_test_interaction:
+    <<: *image
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache: *yarn_cache
+      - restore_cache: *build_final_cache_partial
+      - run: *extract_build_archive
+      - run: *yarn_install
+      - run:
+          name: Test
+          command: |
+            package="${CIRCLE_JOB#unit_test_interaction_}"
+            package="${package//_/-}"
+
+            cd packages/*/"@sfx/${package}"
+            yarn test:interaction
+
   ### unit_test_final
   ### No-op. This job exists to fan in all the unit test jobs.
   unit_test_final:
@@ -201,6 +222,10 @@ workflows:
       - unit_test:
           name: unit_test_search_box
           <<: *requires_build_final
+
+      - unit_test_interaction:
+          name: unit_test_interaction_search_box
+          <<: *requires_build_final
       - unit_test_final:
           requires:
             - unit_test_base
@@ -209,3 +234,4 @@ workflows:
             - unit_test_product
             - unit_test_sayt
             - unit_test_search_box
+            - unit_test_interaction_search_box
