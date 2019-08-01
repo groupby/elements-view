@@ -38,6 +38,20 @@ storiesOf('Components|Products', module)
     window.setTimeout(sendSampleProducts, 300);
 
     return `
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+        sfx-product {
+          width: 30%;
+          display: inline-block;
+          box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
+          padding: 12px;
+        }
+        sfx-product img {
+          width: 100%;
+        }
+      </style>
       <sfx-products
         maxItems="${number('Max items', 12)}"
       ></sfx-products>
