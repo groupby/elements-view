@@ -6,6 +6,8 @@ import '../src/index.ts';
 
 const entities = new XmlEntities();
 
+// @TODO allow for sending event with searchbar ID. This should allow for one 
+// story's events to not affect another story.
 const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results',
   { detail: [
       { "title": "Brands", "items": [{ "label": "Cats" }, { "label": "Dogs" }] },
@@ -68,10 +70,10 @@ storiesOf('Components|SAYT', module)
     } 
   })
   // @TODO Remove these setTimeouts when opening a new story
-  .add('Responding to Events - sayt_show & sayt_hide ', () => {
+  .add('Responding to Events - sayt_hide & sayt_show ', () => {
     emitEventInFuture(autocompleteDataReceivedEvent, 100);
-    emitEventInFuture(new Event('sfx::sayt_show'), 2000);
-    emitEventInFuture(new Event('sfx::sayt_hide'), 4000);
+    emitEventInFuture(new Event('sfx::sayt_hide'), 2000);
+    emitEventInFuture(new Event('sfx::sayt_show'), 4000);
 
     const sayt = getSayt('', false);
     return `
@@ -82,8 +84,9 @@ storiesOf('Components|SAYT', module)
     notes: {
       markdown:`
         # Search As You Type (SAYT)
-        - Receiving sayt_show event after 2 seconds.
-        - Receiving sayt_hide event after 4 seconds.
+        - Show automatically once sub-component Autocomplete receives results.
+        - Receiving sayt_hide event after 2 seconds.
+        - Receiving sayt_show event after 4 seconds.
       `
     }
   })
