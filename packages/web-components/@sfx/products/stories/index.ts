@@ -23,6 +23,10 @@ const sampleProducts = [
   } as ProductModel,
 ];
 
+for (let i = 0; i < 12; i++) {
+  sampleProducts.push(sampleProducts[i % 2]);
+}
+
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
@@ -42,14 +46,18 @@ storiesOf('Components|Products', module)
         * {
           box-sizing: border-box;
         }
+        .product-wrapper {
+          width: 33%;
+          padding: 6px;
+        }
         sfx-product {
-          width: 30%;
-          display: inline-block;
           box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
           padding: 12px;
         }
         sfx-product img {
           width: 100%;
+        }
+        sfx-product {
         }
       </style>
       <sfx-products

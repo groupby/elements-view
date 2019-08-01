@@ -43,10 +43,11 @@ export class Products extends LitElement {
           flex-wrap: wrap;
         }
         .product-wrapper {
-          padding: 10px;
+          display: block;
         }
         sfx-product {
           width: 100%;
+          display: block;
         }
       </style>
 
