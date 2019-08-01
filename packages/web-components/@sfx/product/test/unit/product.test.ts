@@ -120,8 +120,7 @@ describe('Variant Component', () => {
 
     describe('variant property', () => {
       it('should default to an object with a text string and an empty product object', () => {
-        expect(component.variant.text).to.equal('');
-        expect(component.variant.product).to.deep.equal({});
+        expect(component.variant).to.deep.equal({ text: '', product: {} });
       });
     });
   });
@@ -141,7 +140,7 @@ describe('Variant Component', () => {
 
       component.connectedCallback();
 
-      expect(setAttribute).to.have.not.been.called;
+      expect(setAttribute).to.have.not.been.calledWith('role', 'listitem');
     });
 
     it('should set role to "listitem" if no role is set', () => {
@@ -153,13 +152,14 @@ describe('Variant Component', () => {
     });
 
     describe('variant types', () => {
+      const text = 'Foo';
       const color = 'rgb(187, 238, 221)';
 
       beforeEach(() => {
         component.variant = {
-          text: 'Foo',
           image: 'src.png',
           color,
+          text,
           product: {}
         };
       });
@@ -170,7 +170,7 @@ describe('Variant Component', () => {
         component.connectedCallback();
 
         expect(component.style.backgroundColor).to.equal(color);
-        expect(component.title).to.equal(component.variant.text);
+        expect(component.title).to.equal(text);
       });
 
       it('should set title and style if the type is "image"', () => {
@@ -179,19 +179,38 @@ describe('Variant Component', () => {
         component.connectedCallback();
 
         expect(component.style.backgroundColor).to.equal(color);
-        expect(component.style.backgroundImage).to.equal(`url("${component.variant.image}")`);
-        expect(component.title).to.equal(component.variant.text);
+        expect(component.title).to.equal(text);
       });
 
-      it('should set innerText if the type is "text"', () => {
-        component.type = 'text';
+      it('should not set aria-label if aria-label attribute is set', () => {
+        component.setAttribute('aria-label', 'Product Variant');
+        const setAttribute = stub(component, 'setAttribute');
 
         component.connectedCallback();
 
-        expect(component.innerText).to.equal(component.variant.text);
+        expect(setAttribute).to.have.not.been.calledWith('aria-label', text);
+      });
+
+      it('should not set aria-label variant type is not color', () => {
+        component.type = 'text';
+        const setAttribute = stub(component, 'setAttribute');
+
+        component.connectedCallback();
+
+        expect(setAttribute).to.have.not.been.calledWith('aria-label', text);
+      });
+
+      it('should set aria-label if aria-label attribute is not set and variant type is color', () => {
+        component.type = 'color';
+        const setAttribute = stub(component, 'setAttribute');
+
+        component.connectedCallback();
+
+        expect(setAttribute).to.have.been.calledWith('aria-label', text);
       });
     });
   });
+
 
   describe('render', () => {
     it('should return an instance of TemplateResult', () => {

@@ -26,24 +26,42 @@ export default class Variant extends Base {
       this.setAttribute('role', 'listitem');
     }
 
-    switch (type) {
-      case 'color':
-        this.style.backgroundColor = variant.color;
-        this.title = variant.text;
-        break;
-      case 'image':
-        this.style.backgroundColor = variant.color;
-        this.style.backgroundImage = `url(${variant.image})`;
-        this.title = variant.text;
-        break;
-      case 'text':
-      default:
-        this.innerText = variant.text;
-        break;
-    };
+    if ( type === 'color' || this.type === 'image' ) {
+      this.style.backgroundColor = variant.color;
+      this.title = variant.text;
+    }
+
+    if (type === 'color' && !this.getAttribute('aria-label')) {
+      this.setAttribute('aria-label', variant.text);
+    }
   }
 
   render() {
-    return html`<style>sfx-product-variant { width: 15px; height: 15px; display: inline-block; margin: 2px; cursor: pointer}</style>`;
+    const { variant } = this;
+
+    return html`
+      <style>
+        sfx-product-variant {
+          --product-variant-size: 15px;
+          width: var(--product-variant-size);
+          height: var(--product-variant-size);
+          display: inline-block;
+          background-size: cover;
+          margin: 2px;
+          overflow: hidden;
+          cursor: pointer;
+        }
+        sfx-product-variant img {
+          width: auto;
+          height: auto;
+          min-width: var(--product-variant-size);
+          min-height: var(--product-variant-size);
+          max-width: 150%;
+          max-height: 150%;
+        }
+      </style>
+      ${ this.type === 'image' ? html`<img src="${ variant.image }" alt="${ variant.text }" />` : '' }
+      ${ this.type === 'text' ? variant.text : '' }
+    `;
   }
 }
