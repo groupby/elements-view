@@ -3,7 +3,7 @@ import { customElement, property, html, TemplateResult } from 'lit-element';
 import { Base } from '@sfx/base';
 
 /**
- * The product component that consumes product data to display.
+ * A product component that consumes product data to display.
  */
 @customElement('sfx-product')
 export default class Product extends Base {
