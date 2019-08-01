@@ -10,7 +10,7 @@ describe('SearchBox Component', () => {
     searchbox = new SearchBox();
   });
 
-  describe.only('interaction tests', () => {
+  describe('interaction tests', () => {
     let container;
 
     before(() => {
