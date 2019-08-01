@@ -10,11 +10,11 @@ module.exports = (config) => {
     reporters: ['spec', 'coverage-istanbul'],
     files: [
       'test/*.ts',
-      'test/unit/*.test.ts'
+      'test/interaction/*.test.ts'
     ],
     preprocessors: {
       'test/*.ts': ['webpack'],
-      'test/unit/*.test.ts': ['webpack']
+      'test/interaction/*.test.ts': ['webpack']
     },
     mime: {
       'text/x-typescript': ['ts', 'tsx'],
