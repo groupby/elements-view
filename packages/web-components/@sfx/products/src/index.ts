@@ -4,29 +4,7 @@
  */
 import { LitElement, customElement, css, html, property } from 'lit-element';
 
-@customElement('sfx-product')
-class Product extends LitElement {
-  @property({ type: Object }) product: any = {}
-
-  render() {
-    return html`
-      <style>
-        sfx-product {
-          padding: 5px;
-        }
-      </style>
-      <div>
-        <img class="${this.product.imageSource}" src="${this.product.imageSource}" />
-        <p class="price">${this.product.name}: $${this.product.price}.95</p>
-        <p class="${this.product.description}">${this.product.description}</p>
-      </div>
-    `
-  }
-
-  createRenderRoot() {
-    return this;
-  }
-}
+import Product from '../../product/src/product';
 
 @customElement('sfx-products')
 export class Products extends LitElement {
