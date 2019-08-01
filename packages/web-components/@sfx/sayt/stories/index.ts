@@ -1,10 +1,8 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
-import { XmlEntities } from 'html-entities';
 
 import '../src/index.ts';
-
-const entities = new XmlEntities();
+import { getDisplayCode } from '../../../../../.storybook/common';
 
 // @TODO allow for sending event with searchbar ID. This should allow for one
 // story's events to not affect another story.
@@ -26,20 +24,6 @@ function getSayt(searchbar='', showSayt=true): string {
   ${ showCloseButton }` : ''}${showAttribute ? `
   ${ showAttribute }` : ''}
 ></sfx-sayt>`;
-}
-
-// @TODO Move this CSS elsewhere. Should be loaded globally.
-function getDisplayCode(code: string): string {
-  return `
-    <style>
-      pre.code-output {
-        padding: 15px;
-        background-color: #EEEEEE;
-      }
-    </style>
-    <h3>The code</h3>
-    <pre class="code-output"><code>${entities.encode(code)}</code></pre>
-  `
 }
 
 function emitEventInFuture(event, timeout=100) {
