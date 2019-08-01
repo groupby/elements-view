@@ -25,7 +25,7 @@ describe('SearchBox Component Interaction Tests', () => {
   it('should set the searchbox input value when the searchbox.value property is updated', () => {
     container.appendChild(searchbox);
 
-    return window.customElements.whenDefined('sfx-search-box').then(() => {
+    return waitForUpdateComplete(searchbox).then(() => {
       searchbox.value = "Search Term";
 
       return waitForUpdateComplete(searchbox);
@@ -39,7 +39,7 @@ describe('SearchBox Component Interaction Tests', () => {
   it('should update the searchbox value property when an input event is dispatched', () => {
     container.appendChild(searchbox);
 
-    return window.customElements.whenDefined('sfx-search-box').then(() => {
+    return waitForUpdateComplete(searchbox).then(() => {
       const searchboxInput = searchbox.querySelector('input');
       searchboxInput.value = "Search Term";
       const inputEvent = new Event('input', { 'bubbles': true });
@@ -58,7 +58,7 @@ describe('SearchBox Component Interaction Tests', () => {
 
     container.appendChild(searchbox);
 
-    return window.customElements.whenDefined('sfx-search-box').then(() => {
+    return waitForUpdateComplete(searchbox).then(() => {
       const searchboxNode = document.querySelector('sfx-search-box');
       const searchboxInput = searchboxNode.querySelector('input');
 
@@ -95,7 +95,7 @@ describe('SearchBox Component Interaction Tests', () => {
       eventListenerResolve(e);
     });
 
-    return window.customElements.whenDefined('sfx-search-box').then(() => {
+    return waitForUpdateComplete(searchbox).then(() => {
       const searchboxNode = document.querySelector('sfx-search-box');
       const searchboxInput = searchboxNode.querySelector('input');
 
