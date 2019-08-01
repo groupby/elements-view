@@ -98,6 +98,9 @@ jobs:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_base-
       - run: *extract_build_archive
       - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_product-
+      - run: *extract_build_archive
+      - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt-
       - run: *extract_build_archive
       - restore_cache:
@@ -163,6 +166,9 @@ workflows:
           name: build_autocomplete
           <<: *requires_build_ui
       - build:
+          name: build_product
+          <<: *requires_build_ui
+      - build:
           name: build_sayt
           <<: *requires_build_ui
       - build:
@@ -173,6 +179,7 @@ workflows:
             - build_base
             - build_ui
             - build_autocomplete
+            - build_product
             - build_sayt
             - build_search_box
 
@@ -186,6 +193,9 @@ workflows:
           name: unit_test_autocomplete
           <<: *requires_build_final
       - unit_test:
+          name: unit_test_product
+          <<: *requires_build_final
+      - unit_test:
           name: unit_test_sayt
           <<: *requires_build_final
       - unit_test:
@@ -196,5 +206,6 @@ workflows:
             - unit_test_base
             - unit_test_ui
             - unit_test_autocomplete
+            - unit_test_product
             - unit_test_sayt
             - unit_test_search_box
