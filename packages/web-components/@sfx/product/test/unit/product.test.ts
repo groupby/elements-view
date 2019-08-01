@@ -135,8 +135,16 @@ describe('Variant Component', () => {
       expect(connectedCallback).to.have.been.called;
     });
 
+    it('should not set role if role attribute is set', () => {
+      component.setAttribute('role', 'button');
+      const setAttribute = stub(component, 'setAttribute');
 
-    it('should set role to "listitem"', () => {
+      component.connectedCallback();
+
+      expect(setAttribute).to.have.not.been.called;
+    });
+
+    it('should set role to "listitem" if no role is set', () => {
       const setAttribute = stub(component, 'setAttribute');
 
       component.connectedCallback();
