@@ -19,9 +19,9 @@ function getSayt(searchbar='', showSayt=true): string {
   const closeText = text('Close link text', 'Close');
   const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
 
-  return `<sfx-sayt${searchbar ? ` searchbar="${searchbar}"` : ''}
-  closetext="${closeText}"${showCloseButton ? `
-  ${ showCloseButton }` : ''}${showAttribute ? `
+  return `<sfx-sayt${ searchbar ? ` searchbar="${ searchbar }"` : '' }
+  closetext="${ closeText }"${ showCloseButton ? `
+  ${ showCloseButton }` : ''}${ showAttribute ? `
   ${ showAttribute }` : ''}
 ></sfx-sayt>`;
 }
@@ -39,9 +39,9 @@ storiesOf('Components|SAYT', module)
 
     const sayt = getSayt();
     return `
-      ${sayt}
+      ${ sayt }
 
-      ${getDisplayCode(sayt)}
+      ${ getDisplayCode(sayt) }
     `;
   }, {
     notes: {
@@ -61,8 +61,8 @@ storiesOf('Components|SAYT', module)
 
     const sayt = getSayt('', false);
     return `
-      ${sayt}
-      ${getDisplayCode(sayt)}
+      ${ sayt }
+      ${ getDisplayCode(sayt) }
     `;
   }, {
     notes: {
@@ -80,11 +80,11 @@ storiesOf('Components|SAYT', module)
     const input = `<input type="text" id="search-bar" placeholder="Search here" />`;
     const sayt = getSayt();
     return `
-      ${input}
+      ${ input }
       <br />
-      ${sayt}
-      ${getDisplayCode(`${input}
-${sayt}`)}
+      ${ sayt }
+      ${ getDisplayCode(`${ input }
+${ sayt }`) }
     `
   }, {
     notes: {
@@ -102,18 +102,18 @@ ${sayt}`)}
     const sayt1 = getSayt('search-bar1');
     const sayt2 = getSayt('search-bar2');
 
-    return `${input1}<br />
-${sayt1}
+    return `${ input1 }<br />
+${ sayt1 }
 <hr />
-${input2}<br />
-${sayt2}
+${ input2 }<br />
+${ sayt2 }
 
-${getDisplayCode(`${input1}
-${sayt1}
+${ getDisplayCode(`${ input1 }
+${ sayt1 }
 
-${input2}
-${sayt2}`)}
-    `
+${ input2 }
+${ sayt2 }`) }
+    `;
   }, {
     notes: {
       markdown:`

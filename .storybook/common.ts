@@ -11,6 +11,6 @@ export function getDisplayCode(code: string): string {
         }
       </style>
       <h3>The code</h3>
-      <pre class="code-output"><code>${entities.encode(code)}</code></pre>
+      <pre class="code-output"><code>${ entities.encode(code) }</code></pre>
     `
   }

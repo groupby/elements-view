@@ -186,8 +186,8 @@ export default class Sayt extends LitElement {
   render() {
     return html`
       ${ this.showCloseButton ?
-        html`<a href="#" aria-label="Close" .onclick=${this.clickCloseSayt}>
-          ${this.closeText}
+        html`<a href="#" aria-label="Close" .onclick=${ this.clickCloseSayt }>
+          ${ this.closeText }
         </a>`
         : ``
       }
