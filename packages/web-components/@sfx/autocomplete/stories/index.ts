@@ -49,6 +49,9 @@ storiesOf('Components|Autocomplete', module)
     'Default',
     () => `
       <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
+      <button @click=${this.dispatchAutocompleteResults}>
+        Click to dispatch event
+      </button>
     `
   )
   .add(
@@ -56,6 +59,9 @@ storiesOf('Components|Autocomplete', module)
     () => `
       <sfx-autocomplete>
       </sfx-autocomplete>
+      <button @click=${this.dispatchAutocompleteResults}>
+        Click to dispatch event
+      </button>
     `
   )
   .add(
@@ -64,14 +70,20 @@ storiesOf('Components|Autocomplete', module)
       <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
         <div>Content appears after main content</div>
       </sfx-autocomplete>
+      <button @click=${this.dispatchAutocompleteResults}>
+        Click to dispatch event
+      </button>
     `
   )
   .add(
     'With title customization',
     () => `
-    <sfx-autocomplete
-      caption="${text('Optional Title', optionalTitle)}"
-      results="${text('Autocomplete', JSON.stringify(results))}">
-    </sfx-autocomplete>
+      <sfx-autocomplete
+        caption="${text('Optional Title', optionalTitle)}"
+        results="${text('Autocomplete', JSON.stringify(results))}">
+      </sfx-autocomplete>
+      <button @click=${this.dispatchAutocompleteResults}>
+        Click to dispatch event
+      </button>
     `
   );
