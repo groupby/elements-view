@@ -83,9 +83,7 @@ export default class Products extends Base {
       ${this.getRenderableProducts().map(product => {
         return html`
           <div class="product-wrapper">
-            <sfx-product
-              .product="${product}"
-            ></sfx-product>
+            <sfx-product .product="${product}"></sfx-product>
           </div>
         `
       })}
