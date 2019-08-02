@@ -55,7 +55,7 @@ export default class Products extends LitElement {
           <div class="product-wrapper">
             <sfx-product
               .product="${product}"
-              />
+            ></sfx-product>
           </div>
         `
       })}
