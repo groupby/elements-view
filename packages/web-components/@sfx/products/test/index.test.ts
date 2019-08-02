@@ -2,7 +2,7 @@ import { expect, sinon, spy, stub } from './utils';
 import Products from '../src/products';
 
 describe('Products Component ', () => {
-  let component: any = {};
+  let component;
   beforeEach(() => {
     component = new Products();
   });
