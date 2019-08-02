@@ -19,12 +19,30 @@ describe('Products Component ', () => {
   });
 
   describe('connectedCallback', () => {
-    it('should set up event listener for a provide-products event to set products', () => {
-      const listenStub = sinon.stub(window, 'addEventListener');
+    it('should call super', () => {
+      const superConnectedCallback = stub(component.__proto__, 'connectedCallback');
 
       component.connectedCallback();
 
-      expect(listenStub).to.be.calledWith('sfx:provide-products', component.setProductsFromEvent);
+      expect(superConnectedCallback).to.be.calledOnce;
+    });
+
+    it('should set up event listener for a provide-products event to set products', () => {
+      const addEventListener = sinon.stub(window, 'addEventListener');
+
+      component.connectedCallback();
+
+      expect(addEventListener).to.be.calledWith('sfx:provide-products', component.setProductsFromEvent);
+    });
+  });
+
+  describe('disconnectedCallback', () => {
+    it('should remove provide-products event listener', () => {
+      const removeEventListener = sinon.stub(window, 'removeEventListener');
+
+      component.disconnectedCallback();
+
+      expect(removeEventListener).to.be.calledWith('sfx:provide-products', component.setProductsFromEvent);
     });
   });
 

@@ -31,6 +31,15 @@ export default class Products extends LitElement {
     window.addEventListener('sfx:provide-products', this.setProductsFromEvent);
   }
 
+  /**
+   * Removes event listeners.
+   */
+  disconnectedCallback() {
+    super.disconnectedCallback();
+
+    window.removeEventListener('sfx:provide-products', this.setProductsFromEvent);
+  }
+
   setProductsFromEvent(event: CustomEvent) {
     this.products = event.detail.products;
   }
