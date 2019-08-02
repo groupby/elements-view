@@ -1,8 +1,7 @@
-import { TemplateResult } from 'lit-element';
-import { expect, sinon, spy, stub } from './utils';
+import { expect, sinon, stub } from './utils';
 import Products, { PRODUCTS_EVENT } from '../src/products';
 
-describe('Products Component ', () => {
+describe('Products Component', () => {
   let component;
   beforeEach(() => {
     component = new Products();
