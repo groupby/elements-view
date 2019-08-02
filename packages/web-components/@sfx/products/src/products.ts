@@ -1,7 +1,12 @@
 
-import { LitElement, customElement, css, html, property } from 'lit-element';
+import {
+  LitElement,
+  customElement,
+  html,
+  property,
+  TemplateResult,
+} from 'lit-element';
 import Product from '../../product/src/product';
-import { TemplateResult } from 'lit-element';
 
 /**
  * The sfx-products web component wraps and renders a number of
