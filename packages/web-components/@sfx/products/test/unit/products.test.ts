@@ -7,7 +7,7 @@ describe('Products Component', () => {
     component = new Products();
   });
 
-  describe('general', () => {
+  describe('constructor', () => {
     it('should default to have an empty array of products', () => {
       expect(component.products).to.deep.equal([]);
     });
