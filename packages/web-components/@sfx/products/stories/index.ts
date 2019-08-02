@@ -39,7 +39,11 @@ storiesOf('Components|Products', module)
       window.dispatchEvent(productsEvent);
     }
     // @TODO Find other way of setting default products. Hacky.
-    window.setTimeout(sendSampleProducts, 300);
+    // window.setTimeout(sendSampleProducts, 300);
+    window.customElements.whenDefined('sfx-products')
+      .then(() => {
+        sendSampleProducts();
+      });
 
     return `
       <style>
