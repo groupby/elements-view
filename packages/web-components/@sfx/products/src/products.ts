@@ -80,11 +80,9 @@ export default class Products extends Base {
         return html`
           <div class="product-wrapper">
             <sfx-product .product="${product}"></sfx-product>
-            <p>test inside</p>
           </div>
         `;
       })}
-      <p>test outside</p>
     `;
   }
 }

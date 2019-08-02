@@ -87,6 +87,24 @@ storiesOf('Components|SAYT', module)
 
       const sayt = getSayt();
       return `
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+        .product-wrapper {
+          width: 33%;
+          padding: 6px;
+        }
+        sfx-product {
+          box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
+          padding: 12px;
+        }
+        sfx-product img {
+          width: 100%;
+        }
+        sfx-product {
+        }
+      </style>
       ${sayt}
 
       ${getDisplayCode(sayt)}

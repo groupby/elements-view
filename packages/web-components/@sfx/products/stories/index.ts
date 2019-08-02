@@ -10,17 +10,19 @@ const sampleProducts = [
     price: 39.99,
     label: 'New Product',
     promo: '25% off',
-    imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-    imageAlt: 'A spicy red shoe',
+    imageSrc:
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+    imageAlt: 'A spicy red shoe'
   } as ProductModel,
   {
     title: 'Greatest Shoe',
     price: 49.99,
     label: 'Classic Product',
     promo: '25% off',
-    imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-    imageAlt: 'A classic red shoe',
-  } as ProductModel,
+    imageSrc:
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+    imageAlt: 'A classic red shoe'
+  } as ProductModel
 ];
 
 for (let i = 0; i < 12; i++) {
@@ -29,22 +31,23 @@ for (let i = 0; i < 12; i++) {
 
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
-  .add('Default', () => {
-    function sendSampleProducts() {
-      const productsEvent = new CustomEvent('sfx:provide-products', {
-        detail: {
-          products: sampleProducts,
-        },
-      });
-      window.dispatchEvent(productsEvent);
-    }
+  .add(
+    'Default',
+    () => {
+      function sendSampleProducts() {
+        const productsEvent = new CustomEvent('sfx:provide-products', {
+          detail: {
+            products: sampleProducts
+          }
+        });
+        window.dispatchEvent(productsEvent);
+      }
 
-    window.customElements.whenDefined('sfx-products')
-      .then(() => {
+      window.customElements.whenDefined('sfx-products').then(() => {
         sendSampleProducts();
       });
 
-    return `
+      return `
       <style>
         * {
           box-sizing: border-box;
@@ -66,13 +69,16 @@ storiesOf('Components|Products', module)
       <sfx-products
         maxItems="${number('Max items', 12)}"
       ></sfx-products>
-    `}, {
-    notes: {
-      markdown: `
+    `;
+    },
+    {
+      notes: {
+        markdown: `
         # Products
         Hardcoded
 
         Here is the documentation for the Products component.
       `
-    },
-});
+      }
+    }
+  );
