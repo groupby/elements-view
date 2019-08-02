@@ -13,17 +13,21 @@ export default class Products extends LitElement {
   @property({ type: Number, reflect: true }) maxItems = 12;
   @property({ type: Array }) products: Product[] = [];
 
+  /**
+   * Binds relevant methods.
+   */
   constructor() {
     super();
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
+    this.getRenderableProducts = this.getRenderableProducts.bind(this);
   }
 
+  /**
+   * Registers event listeners.
+   */
   connectedCallback() {
     super.connectedCallback();
-    this.setUpEventListeners();
-  }
 
-  setUpEventListeners() {
     window.addEventListener('sfx:provide-products', this.setProductsFromEvent);
   }
 

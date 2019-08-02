@@ -19,12 +19,12 @@ describe('Products Component ', () => {
   });
 
   describe('connectedCallback', () => {
-    it('should set up event listeners after connecting', () => {
-      const listenStub = sinon.stub(component, 'setUpEventListeners');
+    it('should set up event listener for a provide-products event to set products', () => {
+      const listenStub = sinon.stub(window, 'addEventListener');
 
       component.connectedCallback();
 
-      expect(listenStub).to.be.called;
+      expect(listenStub).to.be.calledWith('sfx:provide-products', component.setProductsFromEvent);
     });
   });
 
@@ -37,16 +37,6 @@ describe('Products Component ', () => {
       component.setProductsFromEvent(event);
 
       expect(component.products).to.equal(products);
-    });
-  });
-
-  describe('setUpEventListeners', () => {
-    it('should listen for a provide products event to set products', () => {
-      const listenStub = sinon.stub(window, 'addEventListener');
-
-      component.setUpEventListeners();
-
-      expect(listenStub).to.be.calledWith('sfx:provide-products', component.setProductsFromEvent);
     });
   });
 
