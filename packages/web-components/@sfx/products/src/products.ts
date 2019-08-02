@@ -9,7 +9,7 @@ import Product from '../../product/src/product';
 @customElement('sfx-products')
 export default class Products extends LitElement {
   @property({ type: Number, reflect: true }) maxItems = 12;
-  @property({ type: Array }) products = [];
+  @property({ type: Array }) products: Product[] = [];
 
   constructor() {
     super()
