@@ -1,6 +1,7 @@
 /**
  * The sfx-products web component is designed to wrap and render a number of
- * sfx-product components.
+ * sfx-product components. It wraps each sfx-product component in an
+ * additional wrapper for flexibility.
  */
 import { LitElement, customElement, css, html, property } from 'lit-element';
 import Product from '../../product/src/product';
