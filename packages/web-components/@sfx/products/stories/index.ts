@@ -2,9 +2,9 @@ import { storiesOf } from '@storybook/html';
 import { withKnobs, number } from '@storybook/addon-knobs';
 
 import { PRODUCTS_EVENT } from '../src/index';
-import { ProductModel } from '../../product/src/product';
+import { ProductModel } from '@sfx/product';
 
-const sampleProducts = [
+const sampleProducts: ProductModel[] = [
   {
     title: 'Best Shoe',
     price: 39.99,
@@ -12,15 +12,15 @@ const sampleProducts = [
     promo: '25% off',
     imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
     imageAlt: 'A spicy red shoe',
-  } as ProductModel,
+  },
   {
     title: 'Greatest Shoe',
     price: 49.99,
     label: 'Classic Product',
     promo: '25% off',
-    imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-    imageAlt: 'A classic red shoe',
-  } as ProductModel,
+    imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+    imageAlt: 'A classic blue shoe',
+  },
 ];
 
 for (let i = 0; i < 10; i++) {
@@ -39,10 +39,9 @@ storiesOf('Components|Products', module)
       window.dispatchEvent(productsEvent);
     }
 
-    window.customElements.whenDefined('sfx-products')
-      .then(() => {
-        sendSampleProducts();
-      });
+    setTimeout(() => {
+      sendSampleProducts();
+    }, 1000);
 
     return `
       <style>
