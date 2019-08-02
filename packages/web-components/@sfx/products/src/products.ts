@@ -11,7 +11,7 @@ export default class Products extends LitElement {
   @property({ type: Array }) products: Product[] = [];
 
   constructor() {
-    super()
+    super();
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
   }
 

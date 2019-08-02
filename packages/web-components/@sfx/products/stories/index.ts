@@ -34,7 +34,7 @@ storiesOf('Components|Products', module)
       const productsEvent = new CustomEvent('sfx:provide-products', {
         detail: {
           products: sampleProducts,
-        }
+        },
       });
       window.dispatchEvent(productsEvent);
     }
