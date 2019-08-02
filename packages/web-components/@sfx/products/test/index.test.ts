@@ -13,7 +13,7 @@ describe('Products Component ', () => {
     });
 
     it('should default to 12 maxItems', () => {
-      expect(component.maxItems).to.deep.equal(12);
+      expect(component.maxItems).to.equal(12);
     });
   });
 
@@ -31,7 +31,7 @@ describe('Products Component ', () => {
     it('should set the event products payload into the component', () => {
       const products = [1, 2, 3];
       const event = { detail: { products }};
-      expect(component.products).to.deep.equal([]);
+      component.products = [];
 
       component.setProductsFromEvent(event);
 
