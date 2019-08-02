@@ -7,11 +7,12 @@ import {
 import { ProductModel } from '@sfx/product';
 import { Base } from '@sfx/base';
 
-export const PRODUCTS_EVENT: string = 'sfx::provide-products'
+/** The name of the event that contains product data. */
+export const PRODUCTS_EVENT: string = 'sfx::provide_products'
 
 /**
- * The sfx-products web component wraps and renders a number of
- * sfx-product components. It wraps each sfx-product component in an
+ * The `sfx-products` web component wraps and renders a number of
+ * `sfx-product` components. It wraps each `sfx-product` component in an
  * additional wrapper for flexibility.
  */
 @customElement('sfx-products')
@@ -83,6 +84,10 @@ export default class Products extends Base {
   }
 }
 
+/**
+ * The type of the payload of the [[PRODUCTS_EVENT]] event.
+ */
 export interface ProductsEventPayload {
+  /** The products. */
   products: ProductModel[];
 }
