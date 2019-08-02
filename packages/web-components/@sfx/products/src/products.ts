@@ -7,6 +7,7 @@ import {
   TemplateResult,
 } from 'lit-element';
 import Product from '../../product/src/product';
+import { Base } from '@sfx/base';
 
 /**
  * The sfx-products web component wraps and renders a number of
@@ -14,7 +15,7 @@ import Product from '../../product/src/product';
  * additional wrapper for flexibility.
  */
 @customElement('sfx-products')
-export default class Products extends LitElement {
+export default class Products extends Base {
   @property({ type: Number, reflect: true }) maxItems = 12;
   @property({ type: Array }) products: Product[] = [];
 
@@ -88,9 +89,5 @@ export default class Products extends LitElement {
         `
       })}
     `;
-  }
-
-  createRenderRoot() {
-    return this;
   }
 }
