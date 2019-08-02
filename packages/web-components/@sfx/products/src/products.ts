@@ -4,7 +4,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import Product from '@sfx/product/src/product';
+import { Product } from '@sfx/product';
 import { Base } from '@sfx/base';
 
 export const PRODUCTS_EVENT: string = 'sfx::provide-products'
