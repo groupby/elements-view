@@ -1,3 +1,4 @@
+import { TemplateResult } from 'lit-element';
 import { expect, sinon, spy, stub } from './utils';
 import Products from '../src/products';
 
@@ -42,11 +43,10 @@ describe('Products Component ', () => {
   describe('setUpEventListeners', () => {
     it('should listen for a provide products event to set products', () => {
       const listenStub = sinon.stub(window, 'addEventListener');
-      const callbackStub = sinon.stub(component, 'setProductsFromEvent');
 
       component.setUpEventListeners();
 
-      expect(listenStub).to.be.calledWith('sfx:provide-products', callbackStub);
+      expect(listenStub).to.be.calledWith('sfx:provide-products', component.setProductsFromEvent);
     });
   });
 
@@ -54,8 +54,8 @@ describe('Products Component ', () => {
     it('should return zero products if there are none', () => {
       const renderableProducts = component.getRenderableProducts();
 
-      expect(component.products.length).to.equal(0);
-      expect(renderableProducts.length).to.equal(0);
+      expect(component.products).to.be.empty;
+      expect(renderableProducts).to.be.empty;
     });
 
     it('should return all products if maxItems is greater than the number of products', () => {
@@ -80,10 +80,10 @@ describe('Products Component ', () => {
   });
 
   describe('render', () => {
-    it('should return an object to be rendered', () => {
+    it('should return an instance of TemplateResult', () => {
       const result = component.render();
 
-      expect(result).to.be.an('object');
+      expect(result).to.be.an.instanceof(TemplateResult);
     })
   });
 });
