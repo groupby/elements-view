@@ -23,7 +23,7 @@ const sampleProducts = [
   } as ProductModel,
 ];
 
-for (let i = 0; i < 12; i++) {
+for (let i = 0; i < 10; i++) {
   sampleProducts.push(sampleProducts[i % 2]);
 }
 
@@ -63,9 +63,7 @@ storiesOf('Components|Products', module)
         sfx-product {
         }
       </style>
-      <sfx-products
-        maxItems="${number('Max items', 12)}"
-      ></sfx-products>
+      <sfx-products></sfx-products>
     `}, {
     notes: {
       markdown: `

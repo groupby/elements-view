@@ -16,7 +16,6 @@ export const PRODUCTS_EVENT: string = 'sfx::provide-products'
  */
 @customElement('sfx-products')
 export default class Products extends Base {
-  @property({ type: Number, reflect: true }) maxItems = 12;
   @property({ type: Array }) products: ProductModel[] = [];
 
   /**
@@ -26,7 +25,6 @@ export default class Products extends Base {
     super();
 
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
-    this.getRenderableProducts = this.getRenderableProducts.bind(this);
   }
 
   /**
@@ -56,13 +54,6 @@ export default class Products extends Base {
     this.products = event.detail.products;
   }
 
-  /**
-   * Returns an array of products limited by the `maxItems` property.
-   */
-  getRenderableProducts(): ProductModel[] {
-    return this.products.slice(0, this.maxItems);
-  }
-
   render(): TemplateResult {
     return html`
       <style>
@@ -80,7 +71,7 @@ export default class Products extends Base {
         }
       </style>
 
-      ${this.getRenderableProducts().map(product => {
+      ${this.products.map(product => {
         return html`
           <div class="product-wrapper">
             <sfx-product .product="${product}"></sfx-product>
