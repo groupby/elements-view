@@ -3,7 +3,6 @@
  * sfx-product components.
  */
 import { LitElement, customElement, css, html, property } from 'lit-element';
-
 import Product from '../../product/src/product';
 
 @customElement('sfx-products')
@@ -22,7 +21,6 @@ export default class Products extends LitElement {
   }
 
   setUpEventListeners() {
-    // @TODO the `event` param should be of type Event, or a custom interface.
     window.addEventListener('sfx:provide-products', this.setProductsFromEvent);
   }
 
