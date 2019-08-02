@@ -1,0 +1,26 @@
+sfx-autocomplete {
+
+  sfx-list {
+    h4 {
+      border-bottom: 1px solid var(--color-border);
+      border-top: 1px solid var(--color-border);
+      margin: 0;
+      padding-bottom: 0.25em;
+      padding-top: 0.5em;
+    }
+
+    ul {
+      background-color: var(--color-background);
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      padding: 0.25em 0.5em;
+
+      &:hover {
+        background-color: var(--color-primary);
+      }
+    }
+  }
+}
