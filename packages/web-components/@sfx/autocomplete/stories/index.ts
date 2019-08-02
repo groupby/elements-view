@@ -15,7 +15,11 @@ const results = [
       {
         ...tbd,
         label: 'Basketball'
-      }
+      },
+      {
+        ...tbd,
+        label: 'Baseball'
+      },
     ]
   },
   {
@@ -28,7 +32,24 @@ const results = [
       {
         ...tbd,
         label: 'Bauer'
-      }
+      },
+      {
+        ...tbd,
+        label: 'CCM'
+      },
+    ]
+  },
+  {
+    title: 'Categories',
+    items: [
+      {
+        ...tbd,
+        label: 'Sport Equipment'
+      },
+      {
+        ...tbd,
+        label: 'Sport Apparel'
+      },
     ]
   },
 ];
