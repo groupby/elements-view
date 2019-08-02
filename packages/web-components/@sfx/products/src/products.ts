@@ -22,6 +22,7 @@ export default class Products extends Base {
    */
   constructor() {
     super();
+
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
     this.getRenderableProducts = this.getRenderableProducts.bind(this);
   }
