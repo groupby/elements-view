@@ -71,6 +71,30 @@ function getSayt(searchbar = '', showSayt = true): string {
 ></sfx-sayt>`;
 }
 
+function getStyle() {
+  return `    <style>
+  sfx-sayt {
+    width: 60%;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .product-wrapper {
+    width: 33%;
+    padding: 6px;
+  }
+  sfx-product {
+    box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
+    padding: 12px;
+  }
+  sfx-product img {
+    width: 100%;
+  }
+  sfx-product {
+  }
+</style>`;
+}
+
 function emitEventInFuture(event, timeout = 100) {
   setTimeout(() => {
     window.dispatchEvent(event);
@@ -86,25 +110,9 @@ storiesOf('Components|SAYT', module)
       emitEventInFuture(autocompleteDataReceivedEvent, 500);
 
       const sayt = getSayt();
+      const style = getStyle();
       return `
-      <style>
-        * {
-          box-sizing: border-box;
-        }
-        .product-wrapper {
-          width: 33%;
-          padding: 6px;
-        }
-        sfx-product {
-          box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
-          padding: 12px;
-        }
-        sfx-product img {
-          width: 100%;
-        }
-        sfx-product {
-        }
-      </style>
+      ${style}
       ${sayt}
 
       ${getDisplayCode(sayt)}
@@ -125,12 +133,15 @@ storiesOf('Components|SAYT', module)
   .add(
     'Responding to Events - sayt_hide & sayt_show ',
     () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 100);
+      emitEventInFuture(autocompleteDataReceivedEvent, 300);
+      emitEventInFuture(productsEvent, 300);
       emitEventInFuture(new Event('sfx::sayt_hide'), 2000);
       emitEventInFuture(new Event('sfx::sayt_show'), 4000);
 
       const sayt = getSayt('', false);
+      const style = getStyle();
       return `
+      ${style}
       ${sayt}
       ${getDisplayCode(sayt)}
     `;
@@ -140,6 +151,7 @@ storiesOf('Components|SAYT', module)
         markdown: `
         # Search As You Type (SAYT)
         - Show automatically once sub-component Autocomplete receives results.
+        - Show automatically once sub-component Products receives results.
         - Receiving sayt_hide event after 2 seconds.
         - Receiving sayt_show event after 4 seconds.
       `
@@ -150,12 +162,15 @@ storiesOf('Components|SAYT', module)
     'SAYT with simple search input',
     () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
+      emitEventInFuture(productsEvent, 100);
 
       const input = `<input type="text" id="search-bar" placeholder="Search here" />`;
       const sayt = getSayt();
+      const style = getStyle();
       return `
       ${input}
       <br />
+      ${style}
       ${sayt}
       ${getDisplayCode(`${input}
 ${sayt}`)}
@@ -174,13 +189,16 @@ ${sayt}`)}
     'SAYT with multiple search inputs',
     () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
+      emitEventInFuture(productsEvent, 100);
 
       const input1 = `<input type="text" id="search-bar1" placeholder="Search here" />`;
       const input2 = `<input type="text" id="search-bar2" placeholder="Or search here" />`;
       const sayt1 = getSayt('search-bar1');
       const sayt2 = getSayt('search-bar2');
+      const style = getStyle();
 
       return `${input1}<br />
+${style}
 ${sayt1}
 <hr />
 ${input2}<br />
@@ -198,6 +216,32 @@ ${sayt2}`)}
         markdown: `
         #Search As You Type (SAYT)
         Demonstrating multiple SAYT components. This proves that each Search/SAYT pair acts independently.
+      `
+      }
+    }
+  )
+  .add(
+    'SAYT with events received at different points',
+    () => {
+      emitEventInFuture(autocompleteDataReceivedEvent, 1000);
+      emitEventInFuture(productsEvent, 3000);
+
+      const sayt = getSayt();
+      const style = getStyle();
+
+      return `
+      ${style}
+      ${sayt}
+
+      ${getDisplayCode(sayt)}
+    `;
+    },
+    {
+      notes: {
+        markdown: `
+        #Search As You Type (SAYT)
+        Demonstrating functionality of SAYT when products and autocomplete events are received at different points.
+        Each portion of SAYT (autocomplete, products) should display when its respective data is received.
       `
       }
     }

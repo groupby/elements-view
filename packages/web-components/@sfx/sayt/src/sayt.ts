@@ -202,7 +202,7 @@ export default class Sayt extends LitElement {
       <style>
         .sfx-sayt {
           display: flex;
-          width: 60%;
+          width: 70%;
         }
         sfx-autocomplete {
           flex: 1;
