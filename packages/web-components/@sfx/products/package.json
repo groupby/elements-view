@@ -2,7 +2,7 @@
   "name": "@sfx/products",
   "version": "0.0.0",
   "description": "",
-  "main": "./src/index.ts",
+  "main": "dist/index.ts",
   "types": "dist/index.d.ts",
   "esnext": "esnext/index.js",
   "scripts": {
