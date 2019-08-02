@@ -4,6 +4,7 @@
  */
 import { LitElement, customElement, css, html, property } from 'lit-element';
 import Product from '../../product/src/product';
+import { TemplateResult } from 'lit-element';
 
 @customElement('sfx-products')
 export default class Products extends LitElement {
@@ -32,7 +33,7 @@ export default class Products extends LitElement {
     return this.products.slice(0, this.maxItems);
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
       <style>
         sfx-products {
