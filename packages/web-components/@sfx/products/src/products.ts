@@ -28,7 +28,7 @@ export default class Products extends LitElement {
     this.products = event.detail.products;
   }
 
-  getRenderableProducts() {
+  getRenderableProducts(): Product[] {
     return this.products.slice(0, this.maxItems);
   }
 
