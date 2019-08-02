@@ -1,6 +1,6 @@
 import { TemplateResult } from 'lit-element';
 import { expect, sinon, spy, stub } from './utils';
-import Products from '../src/products';
+import Products, { PRODUCTS_EVENT } from '../src/products';
 
 describe('Products Component ', () => {
   let component;
@@ -32,7 +32,7 @@ describe('Products Component ', () => {
 
       component.connectedCallback();
 
-      expect(addEventListener).to.be.calledWith('sfx:provide-products', component.setProductsFromEvent);
+      expect(addEventListener).to.be.calledWith(PRODUCTS_EVENT, component.setProductsFromEvent);
     });
   });
 
@@ -50,7 +50,7 @@ describe('Products Component ', () => {
 
       component.disconnectedCallback();
 
-      expect(removeEventListener).to.be.calledWith('sfx:provide-products', component.setProductsFromEvent);
+      expect(removeEventListener).to.be.calledWith(PRODUCTS_EVENT, component.setProductsFromEvent);
     });
   });
 

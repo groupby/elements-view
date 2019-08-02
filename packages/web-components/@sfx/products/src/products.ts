@@ -7,6 +7,8 @@ import {
 import Product from '@sfx/product/src/product';
 import { Base } from '@sfx/base';
 
+export const PRODUCTS_EVENT: string = 'sfx::provide-products'
+
 /**
  * The sfx-products web component wraps and renders a number of
  * sfx-product components. It wraps each sfx-product component in an
@@ -33,7 +35,7 @@ export default class Products extends Base {
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener('sfx:provide-products', this.setProductsFromEvent);
+    window.addEventListener(PRODUCTS_EVENT, this.setProductsFromEvent);
   }
 
   /**
@@ -42,7 +44,7 @@ export default class Products extends Base {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    window.removeEventListener('sfx:provide-products', this.setProductsFromEvent);
+    window.removeEventListener(PRODUCTS_EVENT, this.setProductsFromEvent);
   }
 
   /**

@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, number } from '@storybook/addon-knobs';
 
-import '../src/index.ts';
+import { PRODUCTS_EVENT } from '../src/index';
 import { ProductModel } from '../../product/src/product';
 
 const sampleProducts = [
@@ -31,7 +31,7 @@ storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
     function sendSampleProducts() {
-      const productsEvent = new CustomEvent('sfx:provide-products', {
+      const productsEvent = new CustomEvent(PRODUCTS_EVENT, {
         detail: {
           products: sampleProducts,
         },
