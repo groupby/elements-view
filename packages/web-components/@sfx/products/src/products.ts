@@ -4,7 +4,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { Product } from '@sfx/product';
+import { ProductModel } from '@sfx/product';
 import { Base } from '@sfx/base';
 
 export const PRODUCTS_EVENT: string = 'sfx::provide-products'
@@ -17,7 +17,7 @@ export const PRODUCTS_EVENT: string = 'sfx::provide-products'
 @customElement('sfx-products')
 export default class Products extends Base {
   @property({ type: Number, reflect: true }) maxItems = 12;
-  @property({ type: Array }) products: Product[] = [];
+  @property({ type: Array }) products: ProductModel[] = [];
 
   /**
    * Binds relevant methods.
@@ -52,14 +52,14 @@ export default class Products extends Base {
    *
    * @param event A custom event containing information about products.
    */
-  setProductsFromEvent(event: CustomEvent) {
+  setProductsFromEvent(event: CustomEvent<ProductsEventPayload>) {
     this.products = event.detail.products;
   }
 
   /**
    * Returns an array of products limited by the `maxItems` property.
    */
-  getRenderableProducts(): Product[] {
+  getRenderableProducts(): ProductModel[] {
     return this.products.slice(0, this.maxItems);
   }
 
@@ -91,4 +91,8 @@ export default class Products extends Base {
       })}
     `;
   }
+}
+
+export interface ProductsEventPayload {
+  products: ProductModel[];
 }
