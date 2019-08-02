@@ -1,6 +1,5 @@
 
 import {
-  LitElement,
   customElement,
   html,
   property,
