@@ -22,6 +22,24 @@ describe('Products Component', () => {
       expect(superConnected).to.be.calledOnce;
     });
 
+    it('should set role attribute if not set', () => {
+      const setAttribute = stub(component, 'setAttribute');
+      stub(component, 'getAttribute').withArgs('role').returns(null);
+
+      component.connectedCallback();
+
+      expect(setAttribute).to.be.calledWith('role', 'list');
+    });
+
+    it('should not set role attribute if already present', () => {
+      const setAttribute = stub(component, 'setAttribute');
+      stub(component, 'getAttribute').withArgs('role').returns('button');
+
+      component.connectedCallback();
+
+      expect(setAttribute).to.not.be.called;
+    });
+
     it('should set up event listener for a provide-products event to set products', () => {
       const addEventListener = sinon.stub(window, 'addEventListener');
 

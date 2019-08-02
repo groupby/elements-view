@@ -33,6 +33,11 @@ export default class Products extends Base {
   connectedCallback() {
     super.connectedCallback();
 
+
+    if (!this.getAttribute('role')) {
+      this.setAttribute('role', 'list');
+    }
+
     window.addEventListener(PRODUCTS_EVENT, this.setProductsFromEvent);
   }
 
@@ -69,10 +74,10 @@ export default class Products extends Base {
 
       ${this.products.map(product => {
         return html`
-          <div class="product-wrapper">
+          <div class="product-wrapper" role="listitem">
             <sfx-product .product="${product}"></sfx-product>
           </div>
-        `
+        `;
       })}
     `;
   }
