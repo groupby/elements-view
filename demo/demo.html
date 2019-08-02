@@ -4,8 +4,7 @@
     <title>Demo of Logic and View Integration</title>
     <script src="../dist/components.js"></script>
     <!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"> -->
-    <!-- <script src="../demo/temp/sfx-all-plugins-bundle.js"></script> -->
-    <script src="../demo/temp-2/sfx-all-plugins-bundle.js"></script>
+    <script src="../demo/temp/sfx-all-plugins-bundle.js"></script>
   </head>
   <body>
     <sfx-search-box placeholder="search" clearbutton searchbutton></sfx-search-box>
@@ -14,22 +13,30 @@
     <sfx-list class="product-grid"></sfx-list>
 
     <script>
+      // init core and plugins
       const core = new sfxCore.Core();
-
       const domEventsPlugin = new sfxPlugins.DomEventsPlugin()
       const saytPlugin = new sfxPlugins.SaytPlugin({subdomain: 'apparel', collection: 'products'});
       const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin();
       const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel', collection: 'products', area: 'Storefront'});
       const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin();
-
+      // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 
+      // search integration/functionality test
       window.addEventListener("sfx::search_response", (e) => {
-         const testListResults = e.detail.records.map(item => {
-          return {label : item.title };
-        })
+        const testListResults = e.detail.records.map(item => {
+          return { label : item.title };
+        });
         document.getElementsByClassName('product-grid')[0].setAttribute('items', JSON.stringify(testListResults));
       });
+
+      // autocomplate integration/functionality test hardcoded for now
+      const autocompleteDataFetchEvent = new CustomEvent('sfx::autocomplete_fetch_data', {
+        detail: { query: 'pants'},
+        bubbles: true
+      });
+      setTimeout(() => { window.dispatchEvent(autocompleteDataFetchEvent); }, 3000);
     </script>
   </body>
 </html>

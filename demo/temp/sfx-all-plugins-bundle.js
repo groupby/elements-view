@@ -19463,6 +19463,7 @@ var SaytDriverPlugin = /** @class */ (function () {
          */
         this.saytErrorEvent = 'sfx::autocomplete_sayt_error';
         this.fetchSaytData = this.fetchSaytData.bind(this);
+        this.autocompleteCallback = this.autocompleteCallback.bind(this);
     }
     Object.defineProperty(SaytDriverPlugin.prototype, "metadata", {
         get: function () {
