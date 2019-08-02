@@ -1,4 +1,10 @@
-import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
+import {
+  LitElement,
+  customElement,
+  html,
+  property,
+  PropertyValues
+} from 'lit-element';
 import { SAYT_EVENT } from './events';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
 
@@ -53,7 +59,10 @@ export default class Sayt extends LitElement {
     super.connectedCallback();
 
     window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
-    window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
+    window.addEventListener(
+      AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
+      this.showCorrectSayt
+    );
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keypress', this.processKeyPress);
@@ -66,7 +75,10 @@ export default class Sayt extends LitElement {
     super.disconnectedCallback();
 
     window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
-    window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
+    window.removeEventListener(
+      AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
+      this.showCorrectSayt
+    );
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keypress', this.processKeyPress);
@@ -132,14 +144,16 @@ export default class Sayt extends LitElement {
    */
   isCorrectSayt(event: CustomEvent) {
     const searchbar = event.detail && event.detail.searchbar;
-    return this.searchbar === undefined ||
+    return (
+      this.searchbar === undefined ||
       searchbar === this.searchbar ||
-      searchbar === undefined;
+      searchbar === undefined
+    );
   }
 
   /**
    * Processes a click event in order to close SAYT under the right conditions.
-   * 
+   *
    * @param event The click event.
    */
   processClick(event: Event) {
@@ -161,7 +175,7 @@ export default class Sayt extends LitElement {
 
   /**
    * Checks whether a given node is inside of SAYT's identified search bar.
-   * 
+   *
    * @param node The node to check for containment.
    */
   nodeInSearchBar(node: Node) {
@@ -172,10 +186,10 @@ export default class Sayt extends LitElement {
 
   /**
    * Processes a keypress event in order to close SAYT under the right conditions.
-   * @param event 
+   * @param event
    */
   processKeyPress(event: KeyboardEvent) {
-    if (event.key === "Escape") {
+    if (event.key === 'Escape') {
       this.hideSayt();
     }
   }
@@ -185,13 +199,19 @@ export default class Sayt extends LitElement {
    */
   render() {
     return html`
-      ${ this.showCloseButton ?
-        html`<a href="#" aria-label="Close" .onclick=${ this.clickCloseSayt }>
-          ${ this.closeText }
-        </a>`
-        : ``
-      }
-      ${ this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>` }
+      ${this.showCloseButton
+        ? html`
+            <a href="#" aria-label="Close" .onclick=${this.clickCloseSayt}>
+              ${this.closeText}
+            </a>
+          `
+        : ``}
+      ${this.hideAutocomplete
+        ? ''
+        : html`
+            <sfx-autocomplete></sfx-autocomplete>
+          `}
+      <sfx-products></sfx-products>
     `;
   }
 }

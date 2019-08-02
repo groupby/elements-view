@@ -3,6 +3,32 @@ import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 
 import '../src/index.ts';
 import { getDisplayCode } from '../../../../../.storybook/common';
+import { ProductModel } from '../../product/src/product';
+
+const sampleProducts = [
+  {
+    title: 'Best Shoe',
+    price: 39.99,
+    label: 'New Product',
+    promo: '25% off',
+    imageSrc:
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+    imageAlt: 'A spicy red shoe'
+  } as ProductModel,
+  {
+    title: 'Greatest Shoe',
+    price: 49.99,
+    label: 'Classic Product',
+    promo: '25% off',
+    imageSrc:
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+    imageAlt: 'A classic red shoe'
+  } as ProductModel
+];
+
+for (let i = 0; i < 12; i++) {
+  sampleProducts.push(sampleProducts[i % 2]);
+}
 
 // @TODO allow for sending event with searchbar ID. This should allow for one
 // story's events to not affect another story.
@@ -16,6 +42,12 @@ const autocompleteDataReceivedEvent = new CustomEvent(
     bubbles: true
   }
 );
+
+const productsEvent = new CustomEvent('sfx:provide-products', {
+  detail: {
+    products: sampleProducts
+  }
+});
 
 function getSayt(searchbar = '', showSayt = true): string {
   const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
@@ -50,7 +82,8 @@ storiesOf('Components|SAYT', module)
   .add(
     'Default',
     () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 1000);
+      emitEventInFuture(productsEvent, 500);
+      emitEventInFuture(autocompleteDataReceivedEvent, 500);
 
       const sayt = getSayt();
       return `

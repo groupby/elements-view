@@ -1,9 +1,4 @@
-import {
-  customElement,
-  html,
-  property,
-  TemplateResult,
-} from 'lit-element';
+import { customElement, html, property, TemplateResult } from 'lit-element';
 import Product from '@sfx/product/src/product';
 import { Base } from '@sfx/base';
 
@@ -42,7 +37,10 @@ export default class Products extends Base {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    window.removeEventListener('sfx:provide-products', this.setProductsFromEvent);
+    window.removeEventListener(
+      'sfx:provide-products',
+      this.setProductsFromEvent
+    );
   }
 
   /**
@@ -81,12 +79,12 @@ export default class Products extends Base {
       ${this.getRenderableProducts().map(product => {
         return html`
           <div class="product-wrapper">
-            <sfx-product
-              .product="${product}"
-            ></sfx-product>
+            <sfx-product .product="${product}"></sfx-product>
+            <p>test inside</p>
           </div>
-        `
+        `;
       })}
+      <p>test outside</p>
     `;
   }
 }
