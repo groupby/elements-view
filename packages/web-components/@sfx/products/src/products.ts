@@ -59,14 +59,10 @@ export default class Products extends Base {
       <style>
         sfx-products {
           display: flex;
-          flex-direction: row;
           flex-wrap: wrap;
         }
-        .product-wrapper {
-          display: block;
-        }
+
         sfx-product {
-          width: 100%;
           display: block;
         }
       </style>
