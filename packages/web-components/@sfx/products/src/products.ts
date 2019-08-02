@@ -40,10 +40,18 @@ export default class Products extends LitElement {
     window.removeEventListener('sfx:provide-products', this.setProductsFromEvent);
   }
 
+  /**
+   * Sets the `products` property from the products in an event.
+   *
+   * @param event A custom event containing information about products.
+   */
   setProductsFromEvent(event: CustomEvent) {
     this.products = event.detail.products;
   }
 
+  /**
+   * Returns an array of products limited by the `maxItems` property.
+   */
   getRenderableProducts(): Product[] {
     return this.products.slice(0, this.maxItems);
   }
