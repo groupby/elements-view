@@ -20,11 +20,11 @@ describe('Products Component ', () => {
 
   describe('connectedCallback', () => {
     it('should call super', () => {
-      const superConnectedCallback = stub(component.__proto__, 'connectedCallback');
+      const superConnected = stub(component.__proto__, 'connectedCallback');
 
       component.connectedCallback();
 
-      expect(superConnectedCallback).to.be.calledOnce;
+      expect(superConnected).to.be.calledOnce;
     });
 
     it('should set up event listener for a provide-products event to set products', () => {
@@ -37,6 +37,14 @@ describe('Products Component ', () => {
   });
 
   describe('disconnectedCallback', () => {
+    it('should call super', () => {
+      const superDisconnected = stub(component.__proto__, 'disconnectedCallback');
+
+      component.disconnectedCallback();
+
+      expect(superDisconnected).to.be.calledOnce;
+    });
+
     it('should remove provide-products event listener', () => {
       const removeEventListener = sinon.stub(window, 'removeEventListener');
 
