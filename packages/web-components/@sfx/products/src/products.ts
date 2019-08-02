@@ -5,7 +5,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import Product from '../../product/src/product';
+import Product from '@sfx/product/src/product';
 import { Base } from '@sfx/base';
 
 /**
