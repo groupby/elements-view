@@ -22,32 +22,36 @@ describe('SearchBox Component Interaction Tests', () => {
   });
 
   it('should set the searchbox input value when the searchbox.value property is updated', () => {
+    const searchTerm = 'Search Term';
+
     container.appendChild(searchbox);
 
     return waitForUpdateComplete(searchbox).then(() => {
-      searchbox.value = 'Search Term';
+      searchbox.value = searchTerm;
 
       return waitForUpdateComplete(searchbox);
     }).then(() => {
       const searchboxInput = searchbox.querySelector('input');
 
-      expect(searchboxInput.value).to.equal('Search Term');
+      expect(searchboxInput.value).to.equal(searchTerm);
     });
   });
 
   it('should update the searchbox value property when an input event is dispatched', () => {
+    const searchTerm = 'Search Term';
+
     container.appendChild(searchbox);
 
     return waitForUpdateComplete(searchbox).then(() => {
       const searchboxInput = searchbox.querySelector('input');
       const inputEvent = new Event('input', { 'bubbles': true });
-      searchboxInput.value = 'Search Term';
+      searchboxInput.value = searchTerm;
 
       searchboxInput.dispatchEvent(inputEvent);
 
       return waitForUpdateComplete(searchbox);
     }).then(() => {
-      expect(searchbox.value).to.equal('Search Term');
+      expect(searchbox.value).to.equal(searchTerm);
     });
   });
 
@@ -81,6 +85,7 @@ describe('SearchBox Component Interaction Tests', () => {
   it('should dispatch a search event when the search button is clicked', () => {
     let eventListenerResolve;
     const eventListenerPromise: Promise<any> = new Promise((resolve) => eventListenerResolve = resolve);
+    const searchTerm = 'Search Term';
     searchbox.clearButton = true;
     searchbox.searchButton = true;
 
@@ -93,7 +98,7 @@ describe('SearchBox Component Interaction Tests', () => {
     return waitForUpdateComplete(searchbox).then(() => {
       const searchboxInput = searchbox.querySelector('input');
 
-      searchbox.value = searchboxInput.value = 'Search Term';
+      searchbox.value = searchboxInput.value = searchTerm;
 
       return waitForUpdateComplete(searchbox);
     }).then(() => {
@@ -106,7 +111,7 @@ describe('SearchBox Component Interaction Tests', () => {
     }).then(() => {
       return eventListenerPromise;
     }).then((e) => {
-      expect(e.detail).to.equal('Search Term');
+      expect(e.detail).to.equal(searchTerm);
     });
   });
 });
