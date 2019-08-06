@@ -3,7 +3,7 @@ import { SEARCHBOX_EVENT } from '../../src/events';
 import SearchBox from '../../src/search-box';
 
 describe('SearchBox Component Interaction Tests', () => {
-  let searchbox;
+  let searchbox: SearchBox;
   let container;
 
   before(() => {
@@ -80,13 +80,13 @@ describe('SearchBox Component Interaction Tests', () => {
 
   it('should dispatch a search event when the search button is clicked', () => {
     let eventListenerResolve;
-    const eventListenerPromise = new Promise((resolve) => eventListenerResolve = resolve);
+    const eventListenerPromise: Promise<any> = new Promise((resolve) => eventListenerResolve = resolve);
     searchbox.clearButton = true;
     searchbox.searchButton = true;
 
     container.appendChild(searchbox);
 
-    searchbox.addEventListener(SEARCHBOX_EVENT.SEARCH_REQUEST, (e: any) => {
+    searchbox.addEventListener(SEARCHBOX_EVENT.SEARCH_REQUEST, (e) => {
       eventListenerResolve(e);
     });
 
@@ -105,7 +105,7 @@ describe('SearchBox Component Interaction Tests', () => {
       return waitForUpdateComplete(searchbox);
     }).then(() => {
       return eventListenerPromise;
-    }).then((e: any) => {
+    }).then((e) => {
       expect(e.detail).to.equal('Search Term');
     });
   });
