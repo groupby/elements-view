@@ -15,7 +15,7 @@ describe('Products Component', () => {
 
   describe('connectedCallback', () => {
     it('should call super', () => {
-      const superConnected = stub(component.__proto__, 'connectedCallback');
+      const superConnected = stub(Object.getPrototypeOf(component), 'connectedCallback');
 
       component.connectedCallback();
 
@@ -51,7 +51,7 @@ describe('Products Component', () => {
 
   describe('disconnectedCallback', () => {
     it('should call super', () => {
-      const superDisconnected = stub(component.__proto__, 'disconnectedCallback');
+      const superDisconnected = stub(Object.getPrototypeOf(component), 'disconnectedCallback');
 
       component.disconnectedCallback();
 
