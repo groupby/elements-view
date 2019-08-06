@@ -6,9 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- SFX-151: Added the SearchBox component.
+  - This component takes in search terms from user input and dispatches events accordingly.
 - SFX-148: Added interaction tests for the SearchBox component.
   - Introduced a suite of interaction tests for the SearchBox component.
   - Introduced new utils to support interaction tests.
   - Create interaction test specific commands and karma configurations.
-- SFX-151: Added the SearchBox component.
-  - This component takes in search terms from user input and dispatches events accordingly.
