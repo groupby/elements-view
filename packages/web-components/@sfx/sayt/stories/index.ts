@@ -50,19 +50,14 @@ function getSayt(searchbar = '', showSayt = true): string {
   const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
   const closeText = text('Close link text', 'Close');
   const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
+  const hideAutocomplete = boolean('Hide Autocomplete', false) ? 'hideAutocomplete' : '';
+  const hideProducts = boolean('Hide Products', false) ? 'hideProducts' : '';
 
   return `<sfx-sayt${searchbar ? ` searchbar="${searchbar}"` : ''}
-  closetext="${closeText}"${
-    showCloseButton
-      ? `
-  ${showCloseButton}`
-      : ''
-  }${
-    showAttribute
-      ? `
-  ${showAttribute}`
-      : ''
-  }
+  closetext="${closeText}"${showCloseButton ? ` ${showCloseButton}` : ''}
+  ${showAttribute ? `${showAttribute}` : ''}
+  ${hideAutocomplete ? `${hideAutocomplete}` : ''}
+  ${hideProducts ? `${hideProducts}` : ''}
 ></sfx-sayt>`;
 }
 
@@ -242,26 +237,27 @@ ${sayt2}`)}
     }
   )
   .add(
-    'SAYT with autocomplete hidden',
+    'SAYT with only autocomplete event received',
     () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 500);
-      emitEventInFuture(productsEvent, 500);
-      const hideAutocompplete = boolean('hideAutocomplete', false) ? 'hideAutocomplete' : '';
-      const hideProducts = boolean('hideProducts', false) ? 'hideProducts' : '';
+      emitEventInFuture(autocompleteDataReceivedEvent, 100);
+
+      const sayt = getSayt();
       const style = getStyle();
 
       return `
       ${style}
-      <sfx-sayt ${hideAutocompplete ? `${hideAutocompplete}` : ''}
-      ${hideProducts ? `${hideProducts}` : ''}
-      ></sfx-sayt>`;
+      ${sayt}
+
+      ${getDisplayCode(sayt)}
+    `;
     },
     {
       notes: {
         markdown: `
-      #Search As You Type (SAYT)
-      Demonstrating customization functionality to hide.
-      `
+        #Search As You Type (SAYT)
+        Demonstrating functionality of SAYT when only receiving one of autocomplete and products events.
+        Autocomplete data should appear if products data is not received, and vice versa.
+        `
       }
     }
   );
