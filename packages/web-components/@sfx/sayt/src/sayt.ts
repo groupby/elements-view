@@ -146,7 +146,6 @@ export default class Sayt extends LitElement {
    */
   processClick(event: Event) {
     const target = event.target as Node;
-    console.log('target click', target);
     if (this.contains(target) || this.nodeInSearchBar(target)) return;
 
     this.hideSayt();
