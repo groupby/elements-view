@@ -23,45 +23,67 @@ const sampleProducts: ProductModel[] = [
   },
 ];
 
-for (let i = 0; i < 10; i++) {
-  sampleProducts.push(sampleProducts[i % 2]);
+function getProducts(quantity) {
+  const products = [];
+  for (let i = 0; i < quantity; i++) {
+    const randomIndex = Math.floor(Math.random() * sampleProducts.length);
+    products.push(sampleProducts[randomIndex]);
+  }
+  return products;
+}
+
+function getRandomProducts() {
+  return getProducts(Math.ceil(Math.random() * 6));
+}
+
+function getProductsReceivedEvent(products) {
+  return new CustomEvent(PRODUCTS_EVENT, {
+    detail: {
+      products,
+    },
+    bubbles: true,
+  });
+}
+
+function sendSampleProducts(products) {
+  const productsEvent = getProductsReceivedEvent(products);
+  window.dispatchEvent(productsEvent);
+}
+
+function getStyles() {
+  return `
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .product-tile-wrapper {
+        width: 33%;
+        padding: 6px;
+      }
+      sfx-product {
+        box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
+        padding: 12px;
+      }
+      sfx-product img {
+        width: 100%;
+      }
+      sfx-product {
+      }
+    </style>
+  `;
 }
 
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-    function sendSampleProducts() {
-      const productsEvent = new CustomEvent(PRODUCTS_EVENT, {
-        detail: {
-          products: sampleProducts,
-        },
-      });
-      window.dispatchEvent(productsEvent);
-    }
 
     setTimeout(() => {
-      sendSampleProducts();
-    }, 1000);
+      const products = getProducts(10);
+      sendSampleProducts(products);
+    }, 100);
 
     return `
-      <style>
-        * {
-          box-sizing: border-box;
-        }
-        .product-tile-wrapper {
-          width: 33%;
-          padding: 6px;
-        }
-        sfx-product {
-          box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
-          padding: 12px;
-        }
-        sfx-product img {
-          width: 100%;
-        }
-        sfx-product {
-        }
-      </style>
+      ${getStyles()}
       <sfx-products></sfx-products>
     `}, {
     notes: {
@@ -72,4 +94,41 @@ storiesOf('Components|Products', module)
         Here is the documentation for the Products component.
       `
     },
-});
+  })
+  .add('Default - event listening', () => {
+    const products = getRandomProducts();
+
+    setTimeout(() => {
+      const products = getRandomProducts();
+      sendSampleProducts(products);
+    }, 2000);
+
+    setTimeout(() => {
+      const products = getRandomProducts();
+      sendSampleProducts(products);
+    }, 4000);
+
+    setTimeout(() => {
+      const products = getRandomProducts();
+      sendSampleProducts(products);
+    }, 6000);
+
+    setTimeout(() => {
+      const products = getRandomProducts();
+      sendSampleProducts(products);
+    }, 8000);
+
+    return `
+      ${getStyles()}
+      <sfx-products></sfx-products>
+    `;
+  }, {
+    notes: {
+      markdown: `
+        # Products - event listening
+
+        This demonstrates the Products component listening to the
+        products-received event a number of times.
+      `,
+    }
+  });
