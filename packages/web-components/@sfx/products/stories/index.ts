@@ -98,25 +98,12 @@ storiesOf('Components|Products', module)
   .add('Default - event listening', () => {
     const products = getRandomProducts();
 
-    setTimeout(() => {
-      const products = getRandomProducts();
-      sendSampleProducts(products);
-    }, 2000);
-
-    setTimeout(() => {
-      const products = getRandomProducts();
-      sendSampleProducts(products);
-    }, 4000);
-
-    setTimeout(() => {
-      const products = getRandomProducts();
-      sendSampleProducts(products);
-    }, 6000);
-
-    setTimeout(() => {
-      const products = getRandomProducts();
-      sendSampleProducts(products);
-    }, 8000);
+    for (let i = 1; i < 6; i++) {
+      setTimeout(() => {
+        const products = getRandomProducts();
+        sendSampleProducts(products);
+      }, i * 2000);
+    }
 
     return `
       ${getStyles()}
