@@ -1,36 +1,8 @@
-const webpackConfig = require('./webpack.config');
-const path = require('path');
-
-delete webpackConfig.entry;
+const createDefaultConf = require('./test-tools/default.karma.conf');
 
 module.exports = (config) => {
-  config.set({
-    browsers: ['ChromeHeadless'],
-    frameworks: ['mocha', 'sinon-chai'],
-    reporters: ['spec', 'coverage-istanbul'],
-    files: [
-      'test/*.ts',
-      'test/unit/*.test.ts'
-    ],
-    preprocessors: {
-      'test/*.ts': ['webpack'],
-      'test/unit/*.test.ts': ['webpack']
-    },
-    mime: {
-      'text/x-typescript': ['ts', 'tsx'],
-    },
-    webpack: webpackConfig,
-    webpackMiddleware: {
-      stats: 'errors-only',
-    },
-    coverageIstanbulReporter: {
-      reports: [ 'html', 'text-summary', 'lcovonly' ],
-      dir: path.join(__dirname, 'coverage'),
-      fixWebpackSourcePaths: true,
-      'report-config': {
-        html: { outdir: 'html' }
-      }
-    },
-    singleRun: true
-  })
+  const conf = createDefaultConf();
+  conf.files.push('test/unit/**/*.test.ts');
+
+  config.set(conf);
 };
