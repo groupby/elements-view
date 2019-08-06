@@ -58,23 +58,20 @@ describe('SearchBox Component Interaction Tests', () => {
     container.appendChild(searchbox);
 
     return waitForUpdateComplete(searchbox).then(() => {
-      const searchboxNode = document.querySelector('sfx-search-box');
-      const searchboxInput = searchboxNode.querySelector('input');
+      const searchboxInput = searchbox.querySelector('input');
 
       searchbox.value = searchboxInput.value = 'Search Term';
 
       return waitForUpdateComplete(searchbox);
     }).then(() => {
-      const searchboxNode = document.querySelector('sfx-search-box');
-      const searchboxButtons = searchboxNode.querySelectorAll('button');
+      const searchboxButtons = searchbox.querySelectorAll('button');
       const searchboxClearButton = searchboxButtons[0];
 
       searchboxClearButton.click();
 
       return waitForUpdateComplete(searchbox);
     }).then(() => {
-      const searchboxNode = document.querySelector('sfx-search-box');
-      const searchboxInput = searchboxNode.querySelector('input');
+      const searchboxInput = searchbox.querySelector('input');
 
       expect(searchbox.value).to.equal('');
       expect(searchboxInput.value).to.equal('');
@@ -89,15 +86,12 @@ describe('SearchBox Component Interaction Tests', () => {
 
     container.appendChild(searchbox);
 
-    const searchboxNode = container.querySelector('sfx-search-box');
-
-    searchboxNode.addEventListener(SEARCHBOX_EVENT.SEARCH_REQUEST, (e: any) => {
+    searchbox.addEventListener(SEARCHBOX_EVENT.SEARCH_REQUEST, (e: any) => {
       eventListenerResolve(e);
     });
 
     return waitForUpdateComplete(searchbox).then(() => {
-      const searchboxNode = document.querySelector('sfx-search-box');
-      const searchboxInput = searchboxNode.querySelector('input');
+      const searchboxInput = searchbox.querySelector('input');
 
       searchbox.value = searchboxInput.value = 'Search Term';
 
