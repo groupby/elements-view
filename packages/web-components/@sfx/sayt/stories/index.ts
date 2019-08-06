@@ -21,7 +21,7 @@ function getSayt(searchbar = '', showSayt = true): string {
   const hideAutocomplete = boolean('Hide Autocomplete', false) ? 'hideAutocomplete' : '';
   const hideProducts = boolean('Hide Products', false) ? 'hideProducts' : '';
 
-  return `<sfx-sayt${searchbar ? ` searchbar="${searchbar}"` : ''}
+  return `<sfx-sayt class="sayt" ${searchbar ? ` searchbar="${searchbar}"` : ''}
   closetext="${closeText}"${showCloseButton ? ` ${showCloseButton}` : ''}
   ${showAttribute ? `${showAttribute}` : ''}
   ${hideAutocomplete ? `${hideAutocomplete}` : ''}
@@ -29,9 +29,12 @@ function getSayt(searchbar = '', showSayt = true): string {
 ></sfx-sayt>`;
 }
 
+// NOTE - letting this span the full width for now.
+// when setting a width with display block and clicking outside of the sayt component,
+// hide functionality is not triggered as the root node contains sayt
 function getStyle() {
   return `    <style>
-  sfx-sayt {
+  .sayt {
     width: 60%;
   }
   * {
