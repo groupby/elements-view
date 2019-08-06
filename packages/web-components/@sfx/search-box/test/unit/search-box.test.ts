@@ -1,8 +1,8 @@
-import { TemplateResult } from 'lit-element';
-import { expect, stub } from '../utils';
-import { Base } from '@sfx/base';
 import { SEARCHBOX_EVENT } from '../../src/events';
+import { expect, stub } from '../utils';
 import SearchBox from '../../src/search-box';
+import { TemplateResult, html } from 'lit-element';
+import { Base } from '@sfx/base';
 
 describe('SearchBox Component', () => {
   let searchbox;
@@ -94,7 +94,7 @@ describe('SearchBox Component', () => {
     it('should update the value property in response to the data received', () => {
       const detail = 'inputText';
       const inputEvent = new CustomEvent(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, { detail });
-
+  
       searchbox.updateText(inputEvent);
 
       expect(searchbox.value).to.equal(detail);
