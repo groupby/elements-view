@@ -115,7 +115,10 @@ storiesOf('Components|Products', module)
         # Products - event listening
 
         This demonstrates the Products component listening to the
-        products-received event a number of times.
+        products-received event.
+
+        The event is fired once every two seconds, stopping after
+        five total event emissions.
       `,
     }
   });
