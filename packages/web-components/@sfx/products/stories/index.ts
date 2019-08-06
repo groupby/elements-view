@@ -89,9 +89,11 @@ storiesOf('Components|Products', module)
     notes: {
       markdown: `
         # Products
-        Hardcoded
 
-        Here is the documentation for the Products component.
+        The Products component (\`sfx-product\`) is used for rendering
+        a collection of products. It can be passed products directly
+        via the \`products\` attribute on the DOM element, or by
+        emitting an event which contains the products to be rendered.
       `
     },
   })
