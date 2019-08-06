@@ -13,7 +13,7 @@
     "test": "karma start",
     "tdd:interaction": "karma start interaction.karma.conf.js --no-single-run --auto-watch",
     "test:interaction": "karma start interaction.karma.conf.js",
-    "test:all": "npm run test; npm run test:interaction"
+    "test:all": "ec=0; npm run test || ec=1; npm run test:interaction || ec=1; exit $ec"
   },
   "repository": {
     "type": "git",
