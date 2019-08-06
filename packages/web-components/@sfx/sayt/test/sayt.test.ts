@@ -1,5 +1,5 @@
 import { expect, spy, stub } from './utils';
-import { TemplateResult } from 'lit-element';
+import { TemplateResult, LitElement } from 'lit-element';
 import Sayt from '../src/sayt';
 import { SAYT_EVENT } from '../src/events';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
@@ -9,6 +9,24 @@ describe('Sayt Component', () => {
 
   beforeEach(() => {
     sayt = new Sayt();
+  });
+
+  describe('Constructor', () => {
+    it('should extend the LitElement class', () => {
+      expect(sayt).to.be.an.instanceof(LitElement);
+    });
+
+    describe('hideAutocomplete property', () => {
+      it('should have default value of false', () => {
+        expect(sayt.hideAutocomplete).to.be.false;
+      });
+    });
+
+    describe('hideProducts property', () => {
+      it('should have default value of empty string', () => {
+        expect(sayt.hideProducts).to.be.false;
+      });
+    });
   });
 
   describe('connectedCallback()', () => {
@@ -24,7 +42,6 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT);
     });
   });
-
 
   describe('disconnectedCallback()', () => {
     it('should remove event listeners on the window', () => {
@@ -122,7 +139,7 @@ describe('Sayt Component', () => {
 
   describe('isCorrectSayt()', () => {
     it('should return true if event provides the correct searchbar ID', () => {
-      const searchbar = sayt.searchbar = 'some-searchbar-id';
+      const searchbar = (sayt.searchbar = 'some-searchbar-id');
       const event = { detail: { searchbar } };
 
       const result = sayt.isCorrectSayt(event);
@@ -131,7 +148,7 @@ describe('Sayt Component', () => {
     });
 
     it('should return true if event does not provide a searchbar ID', () => {
-      const searchbar = sayt.searchbar = 'some-searchbar-id';
+      const searchbar = (sayt.searchbar = 'some-searchbar-id');
       const event = { detail: {} };
 
       const result = sayt.isCorrectSayt(event);
@@ -179,7 +196,7 @@ describe('Sayt Component', () => {
 
     beforeEach(() => {
       event = {
-        target: node,
+        target: node
       } as Event;
       sayt.nodeInSearchBar = () => false;
     });
@@ -220,7 +237,7 @@ describe('Sayt Component', () => {
   describe('nodeInSearchBar()', () => {
     it('should return true if given node is contained in the search bar', () => {
       const searchbar = {
-        contains: stub().returns(true),
+        contains: stub().returns(true)
       };
       const querySelector = stub(document, 'querySelector').callsFake(() => searchbar);
       sayt.searchbar = 'searchbar-id';
@@ -234,7 +251,7 @@ describe('Sayt Component', () => {
 
     it('should return false if given node is not contained in the search bar', () => {
       const searchbar = {
-        contains: stub().returns(false),
+        contains: stub().returns(false)
       };
       const querySelector = stub(document, 'querySelector').callsFake(() => searchbar);
       sayt.searchbar = 'searchbar-id';
@@ -270,7 +287,7 @@ describe('Sayt Component', () => {
     });
 
     it('should hide SAYT when pressing escape', () => {
-      const event = { key: "Escape" } as KeyboardEvent;
+      const event = { key: 'Escape' } as KeyboardEvent;
       sayt.hideSayt = spy();
 
       sayt.processKeyPress(event);
@@ -279,9 +296,9 @@ describe('Sayt Component', () => {
     });
 
     it('should not hide SAYT when pressing any character other than escape', () => {
-      const event = { key: "j" } as KeyboardEvent;
-      const event2 = { key: "Enter" } as KeyboardEvent;
-      const event3 = { key: "Space" } as KeyboardEvent;
+      const event = { key: 'j' } as KeyboardEvent;
+      const event2 = { key: 'Enter' } as KeyboardEvent;
+      const event3 = { key: 'Space' } as KeyboardEvent;
       sayt.hideSayt = spy();
 
       sayt.processKeyPress(event);
