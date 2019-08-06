@@ -26,7 +26,8 @@
         const testListResults = e.detail.records.map(item => {
           return { label : item.title };
         });
-        document.getElementsByClassName('product-grid')[0].setAttribute('items', JSON.stringify(testListResults));
+        document.getElementsByClassName('product-grid')[0]
+        .setAttribute('items', JSON.stringify(testListResults));
       });
 
       // autocomplate integration/functionality test hardcoded for now
