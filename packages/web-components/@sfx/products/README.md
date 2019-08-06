@@ -12,9 +12,7 @@ Upon receiving this event, the `sfx-products` component will accept
 the passed products data and update/add/remove any child product tiles.
 
 ## Customization
-The SF-X Products component allows for configuring the quantity of displayed
-products. The following attributes are available:
-- `maxitems`: A number that limits the quantity of product tiles shown.
+This component does not have any customization attributes.
 
 ## Testing
 The test suite for this component is contained in `/packages/web-components/@sfx/products/test`.

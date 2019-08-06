@@ -29,7 +29,8 @@ export default class Products extends Base {
   }
 
   /**
-   * Registers event listeners.
+   * Registers event listeners and sets the ARIA role. The ARIA role is
+   * set to `list` if one is not already specified.
    */
   connectedCallback() {
     super.connectedCallback();
