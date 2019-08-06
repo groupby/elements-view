@@ -76,7 +76,7 @@ export default class Products extends Base {
 
       ${this.products.map(product => {
         return html`
-          <div class="product-wrapper" role="listitem">
+          <div class="product-tile-wrapper" role="listitem">
             <sfx-product .product="${product}"></sfx-product>
           </div>
         `;

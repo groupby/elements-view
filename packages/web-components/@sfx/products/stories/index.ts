@@ -48,7 +48,7 @@ storiesOf('Components|Products', module)
         * {
           box-sizing: border-box;
         }
-        .product-wrapper {
+        .product-tile-wrapper {
           width: 33%;
           padding: 6px;
         }
