@@ -1,7 +1,6 @@
+import { expect, waitForUpdateComplete } from '../utils';
 import { SEARCHBOX_EVENT } from '../../src/events';
-import { expect, stub, waitForUpdateComplete } from '../utils';
 import SearchBox from '../../src/search-box';
-import { TemplateResult, html } from 'lit-element';
 
 describe('SearchBox Component Interaction Tests', () => {
   let searchbox;
