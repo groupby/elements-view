@@ -1,29 +1,8 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, number } from '@storybook/addon-knobs';
+import { sampleProducts, productsEvent } from '../../../../../.storybook/common';
 
 import '../src/index.ts';
-import { ProductModel } from '../../product/src/product';
-
-const sampleProducts = [
-  {
-    title: 'Best Shoe',
-    price: 39.99,
-    label: 'New Product',
-    promo: '25% off',
-    imageSrc:
-      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-    imageAlt: 'A spicy red shoe'
-  } as ProductModel,
-  {
-    title: 'Greatest Shoe',
-    price: 49.99,
-    label: 'Classic Product',
-    promo: '25% off',
-    imageSrc:
-      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-    imageAlt: 'A classic red shoe'
-  } as ProductModel
-];
 
 for (let i = 0; i < 12; i++) {
   sampleProducts.push(sampleProducts[i % 2]);
@@ -35,11 +14,6 @@ storiesOf('Components|Products', module)
     'Default',
     () => {
       function sendSampleProducts() {
-        const productsEvent = new CustomEvent('sfx:provide-products', {
-          detail: {
-            products: sampleProducts
-          }
-        });
         window.dispatchEvent(productsEvent);
       }
 
