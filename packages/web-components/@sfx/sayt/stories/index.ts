@@ -32,16 +32,13 @@ for (let i = 0; i < 12; i++) {
 
 // @TODO allow for sending event with searchbar ID. This should allow for one
 // story's events to not affect another story.
-const autocompleteDataReceivedEvent = new CustomEvent(
-  'sfx::autocomplete_received_results',
-  {
-    detail: [
-      { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-      { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
-    ],
-    bubbles: true
-  }
-);
+const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
+  detail: [
+    { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
+    { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
+  ],
+  bubbles: true
+});
 
 const productsEvent = new CustomEvent('sfx:provide-products', {
   detail: {
@@ -52,9 +49,7 @@ const productsEvent = new CustomEvent('sfx:provide-products', {
 function getSayt(searchbar = '', showSayt = true): string {
   const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
   const closeText = text('Close link text', 'Close');
-  const showCloseButton = boolean('Show Close button', true)
-    ? 'showclosebutton'
-    : '';
+  const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
 
   return `<sfx-sayt${searchbar ? ` searchbar="${searchbar}"` : ''}
   closetext="${closeText}"${
@@ -123,7 +118,7 @@ storiesOf('Components|SAYT', module)
         markdown: `
         # Search As You Type (SAYT)
         Hardcoded
-        
+
         Here is the documentation for the SAYT component.
       `
       }
@@ -242,6 +237,30 @@ ${sayt2}`)}
         #Search As You Type (SAYT)
         Demonstrating functionality of SAYT when products and autocomplete events are received at different points.
         Each portion of SAYT (autocomplete, products) should display when its respective data is received.
+      `
+      }
+    }
+  )
+  .add(
+    'SAYT with autocomplete hidden',
+    () => {
+      emitEventInFuture(autocompleteDataReceivedEvent, 500);
+      emitEventInFuture(productsEvent, 500);
+      const hideAutocompplete = boolean('hideAutocomplete', false) ? 'hideAutocomplete' : '';
+      const hideProducts = boolean('hideProducts', false) ? 'hideProducts' : '';
+      const style = getStyle();
+
+      return `
+      ${style}
+      <sfx-sayt ${hideAutocompplete ? `${hideAutocompplete}` : ''}
+      ${hideProducts ? `${hideProducts}` : ''}
+      ></sfx-sayt>`;
+    },
+    {
+      notes: {
+        markdown: `
+      #Search As You Type (SAYT)
+      Demonstrating customization functionality to hide.
       `
       }
     }

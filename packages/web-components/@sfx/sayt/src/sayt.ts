@@ -1,10 +1,4 @@
-import {
-  LitElement,
-  customElement,
-  html,
-  property,
-  PropertyValues
-} from 'lit-element';
+import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
 import { SAYT_EVENT } from './events';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
 
@@ -18,6 +12,10 @@ export default class Sayt extends LitElement {
    * Determines if the `sfx-autocomplete` component will be hidden or not.
    */
   @property({ type: Boolean, reflect: true }) hideAutocomplete = false;
+  /**
+   * Determines if the `sfx-products` component will be hidden or not.
+   */
+  @property({ type: Boolean, reflect: true }) hideProducts = false;
   /**
    * Determines the visibility of the `sayt` component.
    */
@@ -59,10 +57,7 @@ export default class Sayt extends LitElement {
     super.connectedCallback();
 
     window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
-    window.addEventListener(
-      AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
-      this.showCorrectSayt
-    );
+    window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keypress', this.processKeyPress);
@@ -75,10 +70,7 @@ export default class Sayt extends LitElement {
     super.disconnectedCallback();
 
     window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
-    window.removeEventListener(
-      AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
-      this.showCorrectSayt
-    );
+    window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keypress', this.processKeyPress);
@@ -144,11 +136,7 @@ export default class Sayt extends LitElement {
    */
   isCorrectSayt(event: CustomEvent) {
     const searchbar = event.detail && event.detail.searchbar;
-    return (
-      this.searchbar === undefined ||
-      searchbar === this.searchbar ||
-      searchbar === undefined
-    );
+    return this.searchbar === undefined || searchbar === this.searchbar || searchbar === undefined;
   }
 
   /**
@@ -224,7 +212,11 @@ export default class Sayt extends LitElement {
           : html`
               <sfx-autocomplete></sfx-autocomplete>
             `}
-        <sfx-products></sfx-products>
+        ${this.hideProducts
+          ? ''
+          : html`
+              <sfx-products></sfx-products>
+            `}
       </div>
     `;
   }
