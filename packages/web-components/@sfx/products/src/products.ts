@@ -1,11 +1,11 @@
 import {
   customElement,
   html,
+  LitElement,
   property,
   TemplateResult,
 } from 'lit-element';
 import { ProductModel } from '@sfx/product';
-import { Base } from '@sfx/base';
 
 /** The name of the event that contains product data. */
 export const PRODUCTS_EVENT: string = 'sfx::provide_products'
@@ -16,7 +16,7 @@ export const PRODUCTS_EVENT: string = 'sfx::provide_products'
  * additional wrapper for flexibility.
  */
 @customElement('sfx-products')
-export default class Products extends Base {
+export default class Products extends LitElement {
   @property({ type: Array }) products: ProductModel[] = [];
 
   /**
@@ -82,6 +82,10 @@ export default class Products extends Base {
         `;
       })}
     `;
+  }
+
+  createRenderRoot() {
+    return this;
   }
 }
 
