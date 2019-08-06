@@ -1,0 +1,16 @@
+sfx-sayt {
+  border: 1px solid var(--color-border);
+  display: flex;
+  position: absolute;
+
+  sfx-autocomplete {
+    // border-right: 1px solid var(--color-border);
+    // margin-right: -1px;
+    flex: 33%;
+    margin-top: -1px;
+  }
+
+  sfx-products {
+    flex: 66%;
+  }
+}
