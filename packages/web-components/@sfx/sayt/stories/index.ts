@@ -90,7 +90,8 @@ ${ sayt }`) }
     notes: {
       markdown:`
         #Search As You Type (SAYT)
-        Demonstrating initially visible SAYT for showing/hiding.
+        Demonstrating SAYT working with a standard input element,
+        rather than our Seach component.
       `
     }
   })
@@ -118,7 +119,20 @@ ${ sayt2 }`) }
     notes: {
       markdown:`
         #Search As You Type (SAYT)
-        Demonstrating multiple SAYT components. This proves that each Search/SAYT pair acts independently.
-      `
-    }
+        Demonstrating multiple SAYT components.This proves that eachSearch/SAYT
+        pair acts independently.
+
+        Note that it is virtually impossible to open two SAYT windows simultaneously.
+        Nevertheless, this proves two open SAYT components are acting independently.
+
+        * Clicking anywhere but either of the SAYT components should result in both
+        being closed due to lost focus.
+        * Clicking on a given SAYT component should leave that component
+        open, and any other SAYT component would be closed.
+        * Clicking \`Close\` on a given SAYT will close both SAYTs because:
+
+          * You have closed the SAYT for which you have clicked Close.
+          * The other SAYT has closed due to lost focus.
+      `,
+    },
   });
