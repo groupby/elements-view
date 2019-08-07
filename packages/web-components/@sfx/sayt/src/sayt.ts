@@ -149,7 +149,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Handles hiding SAYT on click on a close link/button (or other event).
+   * Handles hiding SAYT on click of a close link/button (or other event).
    *
    * @param event An event with a default action to be prevented.
    */
