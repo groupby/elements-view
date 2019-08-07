@@ -43,7 +43,6 @@ export default class Sayt extends LitElement {
     this.hideCorrectSayt = this.hideCorrectSayt.bind(this);
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
     this.isCorrectSayt = this.isCorrectSayt.bind(this);
-    this.clickCloseSayt = this.clickCloseSayt.bind(this);
   }
 
   /**
@@ -185,7 +184,7 @@ export default class Sayt extends LitElement {
   render() {
     return html`
       ${ this.showCloseButton ?
-        html`<button aria-label="Close" .onclick=${ this.clickCloseSayt }>
+        html`<button aria-label="Close" @click=${ this.clickCloseSayt }>
           ${ this.closeText }
         </button>`
         : ``
