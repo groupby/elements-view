@@ -131,7 +131,7 @@ export default class Sayt extends LitElement {
    *
    * @param event An event that can contain a searchbox ID for comparison.
    */
-  isCorrectSayt(event: CustomEvent) {
+  isCorrectSayt(event: CustomEvent): boolean {
     const searchbox = event.detail && event.detail.searchbox;
     return this.searchbox === undefined ||
       searchbox === this.searchbox ||
@@ -165,7 +165,7 @@ export default class Sayt extends LitElement {
    * 
    * @param node The node to check for containment.
    */
-  nodeInSearchBar(node: Node) {
+  nodeInSearchBar(node: Node): boolean {
     if (!this.searchbox) return false;
     const searchBar = document.querySelector('#' + this.searchbox);
     return !!searchBar && searchBar.contains(node);
