@@ -13,7 +13,7 @@ const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_receive
     bubbles: true }
 );
 
-function getSayt(searchbox='', showSayt=true): string {
+function getSayt(searchbox = '', showSayt = true): string {
   const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
   const closeText = text('Close link text', 'Close');
   const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
@@ -25,7 +25,7 @@ function getSayt(searchbox='', showSayt=true): string {
 ></sfx-sayt>`;
 }
 
-function emitEventInFuture(event, timeout=100) {
+function emitEventInFuture(event, timeout = 100) {
   setTimeout(() => {
     window.dispatchEvent(event);
   }, timeout);
