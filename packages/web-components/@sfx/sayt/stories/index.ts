@@ -8,7 +8,7 @@ import '../src/index';
 const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results',
   { detail: [
       { "title": "Brands", "items": [{ "label": "Cats" }, { "label": "Dogs" }] },
-      { "title": "default", "items": [{ "label": "Cars" }, { "label": "Bikes" }] }
+      { "title": "", "items": [{ "label": "Cars" }, { "label": "Bikes" }] }
     ],
     bubbles: true }
 );
