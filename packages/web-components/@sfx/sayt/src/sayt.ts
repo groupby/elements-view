@@ -23,11 +23,11 @@ export default class Sayt extends LitElement {
   /**
    * Customizes the text in the close button.
    */
-  @property({ type: String }) closeText = 'Close';
+  @property({ type: String, reflect: true }) closeText = 'Close';
   /**
    * Shows a button to allow for closing SAYT manually.
    */
-  @property({ type: Boolean }) showCloseButton = false;
+  @property({ type: Boolean, reflect: true }) showCloseButton = false;
 
   /**
    * Calls superclass constructor and bind methods.
