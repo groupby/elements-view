@@ -96,6 +96,7 @@ export default class Sayt extends LitElement {
 
   /**
    * Makes SAYT visible if the event refers to the correct SAYT component.
+   * See isCorrectSayt().
    *
    * @param event An event that can contain a searchbox ID.
    */
