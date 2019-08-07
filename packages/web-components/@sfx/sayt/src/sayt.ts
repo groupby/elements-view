@@ -133,9 +133,7 @@ export default class Sayt extends LitElement {
    */
   isCorrectSayt(event: CustomEvent): boolean {
     const searchbox = event.detail && event.detail.searchbox;
-    return this.searchbox === undefined ||
-      searchbox === this.searchbox ||
-      searchbox === undefined;
+    return !searchbox || !this.searchbox || searchbox === this.searchbox;
   }
 
   /**
