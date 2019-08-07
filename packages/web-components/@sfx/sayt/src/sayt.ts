@@ -165,7 +165,7 @@ export default class Sayt extends LitElement {
    */
   nodeInSearchBar(node: Node): boolean {
     if (!this.searchbox) return false;
-    const searchBar = document.querySelector('#' + this.searchbox);
+    const searchBar = document.getElementById(this.searchbox);
     return !!searchBar && searchBar.contains(node);
   }
 

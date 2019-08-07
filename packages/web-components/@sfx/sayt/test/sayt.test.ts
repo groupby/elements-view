@@ -222,12 +222,12 @@ describe('Sayt Component', () => {
       const searchbox = {
         contains: stub().returns(true),
       };
-      const querySelector = stub(document, 'querySelector').callsFake(() => searchbox);
+      const getElementById = stub(document, 'getElementById').callsFake(() => searchbox);
       sayt.searchbox = 'searchbox-id';
 
       const result = sayt.nodeInSearchBar('node');
 
-      expect(querySelector).to.be.calledWith('#searchbox-id');
+      expect(getElementById).to.be.calledWith('searchbox-id');
       expect(searchbox.contains).to.be.calledWith('node');
       expect(result).to.equal(true);
     });
@@ -236,12 +236,12 @@ describe('Sayt Component', () => {
       const searchbox = {
         contains: stub().returns(false),
       };
-      const querySelector = stub(document, 'querySelector').callsFake(() => searchbox);
+      const getElementById = stub(document, 'getElementById').callsFake(() => searchbox);
       sayt.searchbox = 'searchbox-id';
 
       const result = sayt.nodeInSearchBar('node');
 
-      expect(querySelector).to.be.calledWith('#searchbox-id');
+      expect(getElementById).to.be.calledWith('searchbox-id');
       expect(searchbox.contains).to.be.calledWith('node');
       expect(result).to.equal(false);
     });
