@@ -73,7 +73,7 @@ describe('Sayt Component', () => {
   });
 
   describe('showCorrectSayt()', () => {
-    it('should call showSayt() when event specifies correct searchbar ID ', () => {
+    it('should call showSayt() when event specifies correct searchbox ID ', () => {
       const showSayt = stub(sayt, 'showSayt');
       const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(true);
       const event = {};
@@ -84,7 +84,7 @@ describe('Sayt Component', () => {
       expect(showSayt).to.be.calledOnce;
     });
 
-    it('should not call showSayt() when event specifies wrong searchbar ID', () => {
+    it('should not call showSayt() when event specifies wrong searchbox ID', () => {
       const showSayt = stub(sayt, 'showSayt');
       const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(false);
       const event = {};
@@ -97,7 +97,7 @@ describe('Sayt Component', () => {
   });
 
   describe('hideCorrectSayt()', () => {
-    it('should call hideSayt() when event specifies correct searchbar ID ', () => {
+    it('should call hideSayt() when event specifies correct searchbox ID ', () => {
       const hideSayt = stub(sayt, 'hideSayt');
       const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(true);
       const event = {};
@@ -108,7 +108,7 @@ describe('Sayt Component', () => {
       expect(hideSayt).to.be.calledOnce;
     });
 
-    it('should not call hideSayt() when event specifies wrong searchbar ID', () => {
+    it('should not call hideSayt() when event specifies wrong searchbox ID', () => {
       const hideSayt = stub(sayt, 'hideSayt');
       const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(false);
       const event = {};
@@ -121,17 +121,17 @@ describe('Sayt Component', () => {
   });
 
   describe('isCorrectSayt()', () => {
-    it('should return true if event provides the correct searchbar ID', () => {
-      const searchbar = sayt.searchbar = 'some-searchbar-id';
-      const event = { detail: { searchbar } };
+    it('should return true if event provides the correct searchbox ID', () => {
+      const searchbox = sayt.searchbox = 'some-searchbox-id';
+      const event = { detail: { searchbox } };
 
       const result = sayt.isCorrectSayt(event);
 
       expect(result).to.be.true;
     });
 
-    it('should return true if event does not provide a searchbar ID', () => {
-      const searchbar = sayt.searchbar = 'some-searchbar-id';
+    it('should return true if event does not provide a searchbox ID', () => {
+      const searchbox = sayt.searchbox = 'some-searchbox-id';
       const event = { detail: {} };
 
       const result = sayt.isCorrectSayt(event);
@@ -139,18 +139,18 @@ describe('Sayt Component', () => {
       expect(result).to.be.true;
     });
 
-    it('should return false if event provides the wrong searchbar ID', () => {
-      sayt.searchbar = 'correct-searchbar-id';
-      const event = { detail: { searchbar: 'wrong-searchbar-id' } };
+    it('should return false if event provides the wrong searchbox ID', () => {
+      sayt.searchbox = 'correct-searchbox-id';
+      const event = { detail: { searchbox: 'wrong-searchbox-id' } };
 
       const result = sayt.isCorrectSayt(event);
 
       expect(result).to.be.false;
     });
 
-    it('should return true if event specifies a searchbar but SAYT has none specified', () => {
-      sayt.searchbar = undefined;
-      const event = { detail: { searchbar: 'some-searchbar-id' } };
+    it('should return true if event specifies a searchbox but SAYT has none specified', () => {
+      sayt.searchbox = undefined;
+      const event = { detail: { searchbox: 'some-searchbox-id' } };
 
       const result = sayt.isCorrectSayt(event);
 
@@ -219,30 +219,30 @@ describe('Sayt Component', () => {
 
   describe('nodeInSearchBar()', () => {
     it('should return true if given node is contained in the search bar', () => {
-      const searchbar = {
+      const searchbox = {
         contains: stub().returns(true),
       };
-      const querySelector = stub(document, 'querySelector').callsFake(() => searchbar);
-      sayt.searchbar = 'searchbar-id';
+      const querySelector = stub(document, 'querySelector').callsFake(() => searchbox);
+      sayt.searchbox = 'searchbox-id';
 
       const result = sayt.nodeInSearchBar('node');
 
-      expect(querySelector).to.be.calledWith('#searchbar-id');
-      expect(searchbar.contains).to.be.calledWith('node');
+      expect(querySelector).to.be.calledWith('#searchbox-id');
+      expect(searchbox.contains).to.be.calledWith('node');
       expect(result).to.equal(true);
     });
 
     it('should return false if given node is not contained in the search bar', () => {
-      const searchbar = {
+      const searchbox = {
         contains: stub().returns(false),
       };
-      const querySelector = stub(document, 'querySelector').callsFake(() => searchbar);
-      sayt.searchbar = 'searchbar-id';
+      const querySelector = stub(document, 'querySelector').callsFake(() => searchbox);
+      sayt.searchbox = 'searchbox-id';
 
       const result = sayt.nodeInSearchBar('node');
 
-      expect(querySelector).to.be.calledWith('#searchbar-id');
-      expect(searchbar.contains).to.be.calledWith('node');
+      expect(querySelector).to.be.calledWith('#searchbox-id');
+      expect(searchbox.contains).to.be.calledWith('node');
       expect(result).to.equal(false);
     });
 
@@ -254,8 +254,8 @@ describe('Sayt Component', () => {
       expect(result).to.be.false;
     });
 
-    it('should not call document.querySelector() if this.searchbar is not set', () => {
-      sayt.searchbar = undefined;
+    it('should not call document.querySelector() if this.searchbox is not set', () => {
+      sayt.searchbox = undefined;
       const querySelector = stub(document, 'querySelector');
 
       sayt.nodeInSearchBar('node');

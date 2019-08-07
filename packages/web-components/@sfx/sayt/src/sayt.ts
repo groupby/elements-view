@@ -19,7 +19,7 @@ export default class Sayt extends LitElement {
   /**
    * Stores the ID of the relevant search element.
    */
-  @property({ type: String, reflect: true }) searchbar = '';
+  @property({ type: String, reflect: true }) searchbox = '';
   /**
    * Customizes the text in the close button.
    */
@@ -97,7 +97,7 @@ export default class Sayt extends LitElement {
   /**
    * Makes SAYT visible if the event refers to the correct SAYT component.
    *
-   * @param event An event that can contain a searchbar ID.
+   * @param event An event that can contain a searchbox ID.
    */
   showCorrectSayt(event: CustomEvent) {
     if (this.isCorrectSayt(event)) {
@@ -115,7 +115,7 @@ export default class Sayt extends LitElement {
   /**
    * Hides SAYT if the event refers to the correct SAYT component.
    *
-   * @param event An event that can contain a searchbar ID.
+   * @param event An event that can contain a searchbox ID.
    */
   hideCorrectSayt(event: CustomEvent) {
     if (this.isCorrectSayt(event)) {
@@ -125,16 +125,16 @@ export default class Sayt extends LitElement {
 
   /**
    * Determines whether an event refers to the correct SAYT. This is true if
-   * a matching `searchbar` ID is specified, if the event has no `searchbar`
-   * ID specified, or if SAYT has no `searchbar` ID specified.
+   * a matching `searchbox` ID is specified, if the event has no `searchbox`
+   * ID specified, or if SAYT has no `searchbox` ID specified.
    *
-   * @param event An event that can contain a searchbar ID for comparison.
+   * @param event An event that can contain a searchbox ID for comparison.
    */
   isCorrectSayt(event: CustomEvent) {
-    const searchbar = event.detail && event.detail.searchbar;
-    return this.searchbar === undefined ||
-      searchbar === this.searchbar ||
-      searchbar === undefined;
+    const searchbox = event.detail && event.detail.searchbox;
+    return this.searchbox === undefined ||
+      searchbox === this.searchbox ||
+      searchbox === undefined;
   }
 
   /**
@@ -165,8 +165,8 @@ export default class Sayt extends LitElement {
    * @param node The node to check for containment.
    */
   nodeInSearchBar(node: Node) {
-    if (!this.searchbar) return false;
-    const searchBar = document.querySelector('#' + this.searchbar);
+    if (!this.searchbox) return false;
+    const searchBar = document.querySelector('#' + this.searchbox);
     return !!searchBar && searchBar.contains(node);
   }
 

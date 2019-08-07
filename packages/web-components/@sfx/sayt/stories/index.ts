@@ -4,7 +4,7 @@ import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import '../src/index.ts';
 import { getDisplayCode } from '../../../../../.storybook/common';
 
-// @TODO allow for sending event with searchbar ID. This should allow for one
+// @TODO allow for sending event with searchbox ID. This should allow for one
 // story's events to not affect another story.
 const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results',
   { detail: [
@@ -14,12 +14,12 @@ const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_receive
     bubbles: true }
 );
 
-function getSayt(searchbar='', showSayt=true): string {
+function getSayt(searchbox='', showSayt=true): string {
   const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
   const closeText = text('Close link text', 'Close');
   const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
 
-  return `<sfx-sayt${ searchbar ? ` searchbar="${ searchbar }"` : '' }
+  return `<sfx-sayt${ searchbox ? ` searchbox="${ searchbox }"` : '' }
   closetext="${ closeText }"${ showCloseButton ? `
   ${ showCloseButton }` : ''}${ showAttribute ? `
   ${ showAttribute }` : ''}
