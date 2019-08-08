@@ -1,4 +1,4 @@
-import { expect, spy, stub } from './utils';
+import { expect, sinon, spy, stub } from './utils';
 import { TemplateResult } from 'lit-element';
 import Sayt from '../src/sayt';
 import { SAYT_EVENT } from '../src/events';
@@ -181,7 +181,7 @@ describe('Sayt Component', () => {
 
       sayt.processClick(event);
 
-      expect(sayt.contains).to.be.calledWith(node);
+      expect(sayt.contains).to.be.calledWith(sinon.match.same(node));
       expect(sayt.hideSayt).to.be.called;
     });
 
