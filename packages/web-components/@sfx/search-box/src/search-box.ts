@@ -149,7 +149,7 @@ export default class SearchBox extends Base {
         searchbox: this.id,
       },
       bubbles: true,
-    })
+    });
   }
 
   // TODO Move this to the Storybook tab once functionality has been merged into sfx-view.

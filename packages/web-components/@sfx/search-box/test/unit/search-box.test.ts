@@ -91,7 +91,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('updateText', () => {
-    it('should update the value property with information from the event', () => {
+    it('should update the value property with data from the event', () => {
       const detail = 'inputText';
       const inputEvent = new CustomEvent('some-test-type', { detail });
       const updateSearchTermValue = stub(searchbox, 'updateSearchTermValue');
