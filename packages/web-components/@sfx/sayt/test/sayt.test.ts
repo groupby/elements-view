@@ -167,12 +167,10 @@ describe('Sayt Component', () => {
 
   describe('processClick()', () => {
     let node: any = 'some-node';
-    let event: Event;
+    let event: any;
 
     beforeEach(() => {
-      event = {
-        target: node,
-      } as Event;
+      event = { target: node };
       sayt.nodeInSearchBar = () => false;
     });
 
