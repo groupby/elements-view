@@ -208,7 +208,7 @@ describe('Sayt Component', () => {
   });
 
   describe('clickCloseSayt()', () => {
-    it('should close SAYT when activated', () => {
+    it('should close SAYT', () => {
       const hideSayt = stub(sayt, 'hideSayt');
       const event = { preventDefault: () => null };
 
@@ -217,10 +217,10 @@ describe('Sayt Component', () => {
       expect(hideSayt).to.be.calledOnce;
     });
 
-    it('should prevent the default event action when activated', () => {
-      stub(sayt, 'hideSayt');
+    it('should prevent the default event action', () => {
       const preventDefault = spy();
       const event = { preventDefault };
+      stub(sayt, 'hideSayt');
 
       sayt.clickCloseSayt(event);
 
