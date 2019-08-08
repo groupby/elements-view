@@ -52,7 +52,7 @@ export default class SearchBox extends Base {
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
   emitSearchEvent() {
-    const searchboxRequestEvent = this.getCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+    const searchboxRequestEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
       value: this.value,
     });
     this.dispatchEvent(searchboxRequestEvent);
@@ -63,7 +63,7 @@ export default class SearchBox extends Base {
    * Invoked in response to a click on the clear button.
    */
   emitSearchBoxClearClick() {
-    const searchboxClearedEvent = this.getCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK);
+    const searchboxClearedEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK);
     this.dispatchEvent(searchboxClearedEvent);
   }
 
@@ -90,7 +90,7 @@ export default class SearchBox extends Base {
     const value = (e.target as HTMLInputElement).value;
     this.updateSearchTermValue(value);
     this.dispatchEvent(
-      this.getCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
+      this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
         value,
       })
     );
@@ -132,7 +132,7 @@ export default class SearchBox extends Base {
    * Invoked in response to a user clicking inside of the searchbox input.
    */
   clickExposed() {
-    const searchBoxClickedEvent = this.getCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
+    const searchBoxClickedEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
     this.dispatchEvent(searchBoxClickedEvent);
   }
 
@@ -142,7 +142,7 @@ export default class SearchBox extends Base {
    * @param type The type (or name) of the event to be emitted.
    * @param detail A payload to be sent with the event.
    */
-  getCustomEvent(type: string, detail: object = {}) {
+  createCustomEvent(type: string, detail: object = {}) {
     return new CustomEvent(type, {
       detail: {
         ...detail,
