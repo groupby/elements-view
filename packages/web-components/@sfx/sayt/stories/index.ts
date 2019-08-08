@@ -78,7 +78,7 @@ storiesOf('Components|SAYT', module)
     emitEventInFuture(autocompleteDataReceivedEvent, 100);
 
     const input = `<input type="text" id="search-box" placeholder="Search here" />`;
-    const sayt = getSayt();
+    const sayt = getSayt('search-box');
     return `
       ${ input }
       <br />
