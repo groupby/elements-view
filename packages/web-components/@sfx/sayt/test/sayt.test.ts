@@ -61,17 +61,6 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('hideSayt()', () => {
-    it('should set the visible prop to false', () => {
-      sayt.hidden = false;
-      sayt.visible = true;
-
-      sayt.hideSayt();
-
-      expect(sayt.visible).to.be.false;
-    });
-  });
-
   describe('showCorrectSayt()', () => {
     it('should call showSayt() when event specifies correct searchbox ID ', () => {
       const showSayt = stub(sayt, 'showSayt');
@@ -93,6 +82,17 @@ describe('Sayt Component', () => {
 
       expect(isCorrectSayt).to.be.calledOnceWith(event);
       expect(showSayt).to.not.be.called;
+    });
+  });
+
+  describe('hideSayt()', () => {
+    it('should set the visible prop to false', () => {
+      sayt.hidden = false;
+      sayt.visible = true;
+
+      sayt.hideSayt();
+
+      expect(sayt.visible).to.be.false;
     });
   });
 
@@ -165,14 +165,6 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('render()', () => {
-    it('should return an instance of TemplateResult', () => {
-      const result = sayt.render();
-
-      expect(result).to.be.an.instanceof(TemplateResult);
-    });
-  });
-
   describe('processClick()', () => {
     let node: any = 'some-node';
     let event: Event;
@@ -214,6 +206,27 @@ describe('Sayt Component', () => {
       expect(sayt.contains).to.be.calledWith(node);
       expect(sayt.nodeInSearchBar).to.be.calledWith(node);
       expect(sayt.hideSayt).to.not.be.called;
+    });
+  });
+
+  describe('clickCloseSayt()', () => {
+    it('should close SAYT when activated', () => {
+      const hideSayt = stub(sayt, 'hideSayt');
+      const event = { preventDefault: () => null };
+
+      sayt.clickCloseSayt(event);
+
+      expect(hideSayt).to.be.calledOnce;
+    });
+
+    it('should prevent the default event action when activated', () => {
+      stub(sayt, 'hideSayt');
+      const preventDefault = spy();
+      const event = { preventDefault };
+
+      sayt.clickCloseSayt(event);
+
+      expect(preventDefault).to.be.calledOnce;
     });
   });
 
@@ -292,24 +305,11 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('clickCloseSayt()', () => {
-    it('should close SAYT when activated', () => {
-      const hideSayt = stub(sayt, 'hideSayt');
-      const event = { preventDefault: () => null };
+  describe('render()', () => {
+    it('should return an instance of TemplateResult', () => {
+      const result = sayt.render();
 
-      sayt.clickCloseSayt(event);
-
-      expect(hideSayt).to.be.calledOnce;
-    });
-
-    it('should prevent the default event action when activated', () => {
-      stub(sayt, 'hideSayt');
-      const preventDefault = spy();
-      const event = { preventDefault };
-
-      sayt.clickCloseSayt(event);
-
-      expect(preventDefault).to.be.calledOnce;
+      expect(result).to.be.an.instanceof(TemplateResult);
     });
   });
 });
