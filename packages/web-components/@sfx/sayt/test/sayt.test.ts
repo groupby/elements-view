@@ -258,11 +258,13 @@ describe('Sayt Component', () => {
     });
 
     it('should return false if there is no search bar on the page', () => {
-      const querySelector = stub(document, 'querySelector').returns(null);
+      const getElementById = stub(document, 'getElementById').returns(null);
+      sayt.searchbox = 'searchbox-id';
 
       const result = sayt.nodeInSearchBar('node');
 
       expect(result).to.be.false;
+      expect(getElementById).to.be.calledWith('searchbox-id');
     });
 
     it('should not call document.querySelector() if this.searchbox is not set', () => {
