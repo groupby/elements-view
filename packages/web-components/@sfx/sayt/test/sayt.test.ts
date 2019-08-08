@@ -231,7 +231,7 @@ describe('Sayt Component', () => {
   describe('nodeInSearchBar()', () => {
     it('should return true if given node is contained in the search bar', () => {
       const searchbox = {
-        contains: stub().returns(true),
+        contains: spy(() => true),
       };
       const getElementById = stub(document, 'getElementById').callsFake(() => searchbox);
       sayt.searchbox = 'searchbox-id';
