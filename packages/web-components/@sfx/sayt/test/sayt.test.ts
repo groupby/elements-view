@@ -267,24 +267,18 @@ describe('Sayt Component', () => {
       expect(getElementById).to.be.calledWith('searchbox-id');
     });
 
-    it('should return false and avoid querying for searchbox if this.searchbox is not set', () => {
+    it('should return false if this.searchbox is not set', () => {
       sayt.searchbox = undefined;
-      const getElementById = stub(document, 'getElementById');
 
       const result = sayt.nodeInSearchBar('node');
 
       expect(result).to.be.false;
-      expect(getElementById).to.not.be.called;
     });
   });
 
   describe('processKeyPress()', () => {
-    it('should exist as a function', () => {
-      expect(sayt.processKeyPress).to.be.a('function');
-    });
-
     it('should hide SAYT when pressing escape', () => {
-      const event = { key: "Escape" } as KeyboardEvent;
+      const event: any = { key: "Escape" };
       sayt.hideSayt = spy();
 
       sayt.processKeyPress(event);
@@ -293,9 +287,9 @@ describe('Sayt Component', () => {
     });
 
     it('should not hide SAYT when pressing any character other than escape', () => {
-      const event = { key: "j" } as KeyboardEvent;
-      const event2 = { key: "Enter" } as KeyboardEvent;
-      const event3 = { key: "Space" } as KeyboardEvent;
+      const event: any = { key: "j" };
+      const event2: any = { key: "Enter" };
+      const event3: any = { key: "Space" };
       sayt.hideSayt = spy();
 
       sayt.processKeyPress(event);
