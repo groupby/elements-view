@@ -18,11 +18,12 @@ function getSayt(searchbox = '', showSayt = true): string {
   const closeText = text('Close link text', 'Close');
   const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
 
-  return `<sfx-sayt${ searchbox ? ` searchbox="${ searchbox }"` : '' }
-  closetext="${ closeText }"${ showCloseButton ? `
-  ${ showCloseButton }` : ''}${ showAttribute ? `
-  ${ showAttribute }` : ''}
-></sfx-sayt>`;
+  return '<sfx-sayt\n'
+    + (searchbox ? `  searchbox="${searchbox}"\n` : '')
+    + `  closetext="${closeText}"\n`
+    + (showCloseButton ? `  ${showCloseButton}\n` : '')
+    + (showAttribute ? `  ${showAttribute}\n` : '')
+    + '></sfx-sayt>';
 }
 
 function emitEventInFuture(event, timeout = 100) {
@@ -76,14 +77,13 @@ storiesOf('Components|SAYT', module)
   .add('SAYT with simple search input', () => {
     emitEventInFuture(autocompleteDataReceivedEvent, 100);
 
-    const input = `<input type="text" id="search-bar" placeholder="Search here" />`;
+    const input = `<input type="text" id="search-box" placeholder="Search here" />`;
     const sayt = getSayt();
     return `
       ${ input }
       <br />
       ${ sayt }
-      ${ getDisplayCode(`${ input }
-${ sayt }`) }
+      ${ getDisplayCode(`${ input }\n${ sayt }`) }
     `
   }, {
     notes: {
@@ -97,10 +97,10 @@ ${ sayt }`) }
   .add('SAYT with multiple search inputs', () => {
     emitEventInFuture(autocompleteDataReceivedEvent, 100);
 
-    const input1 = `<input type="text" id="search-bar1" placeholder="Search here" />`;
-    const input2 = `<input type="text" id="search-bar2" placeholder="Or search here" />`;
-    const sayt1 = getSayt('search-bar1');
-    const sayt2 = getSayt('search-bar2');
+    const input1 = `<input type="text" id="search-box1" placeholder="Search here" />`;
+    const input2 = `<input type="text" id="search-box2" placeholder="Or search here" />`;
+    const sayt1 = getSayt('search-box1');
+    const sayt2 = getSayt('search-box2');
 
     return `${ input1 }<br />
 ${ sayt1 }

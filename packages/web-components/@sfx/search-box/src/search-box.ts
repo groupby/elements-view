@@ -90,9 +90,7 @@ export default class SearchBox extends Base {
     const value = (e.target as HTMLInputElement).value;
     this.updateSearchTermValue(value);
     this.dispatchEvent(
-      this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
-        value,
-      })
+      this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, { value })
     );
   }
 

@@ -131,8 +131,8 @@ describe('Sayt Component', () => {
     });
 
     it('should return true if event does not provide a searchbox ID', () => {
-      sayt.searchbox = 'some-searchbox-id';
       const event = { detail: {} };
+      sayt.searchbox = 'some-searchbox-id';
 
       const result = sayt.isCorrectSayt(event);
 
@@ -166,16 +166,17 @@ describe('Sayt Component', () => {
   });
 
   describe('processClick()', () => {
-    let node: any = 'some-node';
+    let node: any;
     let event: any;
 
     beforeEach(() => {
+      node = {};
       event = { target: node };
     });
 
     it('should hide SAYT if the event target is nowhere relevant', () => {
       stub(sayt, 'contains').returns(false);
-      stub(sayt, 'nodeInSearchBar').returns(false);
+      stub(sayt, 'nodeInSearchbox').returns(false);
       stub(sayt, 'hideSayt');
 
       sayt.processClick(event);
@@ -196,13 +197,13 @@ describe('Sayt Component', () => {
 
     it('should not hide SAYT if the event target is the provided search box', () => {
       stub(sayt, 'contains').returns(false);
-      stub(sayt, 'nodeInSearchBar').returns(true);
+      stub(sayt, 'nodeInSearchbox').returns(true);
       stub(sayt, 'hideSayt');
 
       sayt.processClick(event);
 
       expect(sayt.contains).to.be.calledWith(node);
-      expect(sayt.nodeInSearchBar).to.be.calledWith(node);
+      expect(sayt.nodeInSearchbox).to.be.calledWith(node);
       expect(sayt.hideSayt).to.not.be.called;
     });
   });
@@ -224,19 +225,19 @@ describe('Sayt Component', () => {
 
       sayt.clickCloseSayt(event);
 
-      expect(preventDefault).to.be.calledOnce;
+      expect(preventDefault).to.be.called;
     });
   });
 
-  describe('nodeInSearchBar()', () => {
+  describe('nodeInSearchbox()', () => {
     it('should return true if given node is contained in the search bar', () => {
       const searchbox = {
         contains: spy(() => true),
       };
-      const getElementById = stub(document, 'getElementById').callsFake(() => searchbox);
+      const getElementById = stub(document, 'getElementById').returns(searchbox);
       sayt.searchbox = 'searchbox-id';
 
-      const result = sayt.nodeInSearchBar('node');
+      const result = sayt.nodeInSearchbox('node');
 
       expect(getElementById).to.be.calledWith('searchbox-id');
       expect(searchbox.contains).to.be.calledWith('node');
@@ -247,10 +248,10 @@ describe('Sayt Component', () => {
       const searchbox = {
         contains: stub().returns(false),
       };
-      const getElementById = stub(document, 'getElementById').callsFake(() => searchbox);
+      const getElementById = stub(document, 'getElementById').returns(searchbox);
       sayt.searchbox = 'searchbox-id';
 
-      const result = sayt.nodeInSearchBar('node');
+      const result = sayt.nodeInSearchbox('node');
 
       expect(getElementById).to.be.calledWith('searchbox-id');
       expect(searchbox.contains).to.be.calledWith('node');
@@ -261,7 +262,7 @@ describe('Sayt Component', () => {
       const getElementById = stub(document, 'getElementById').returns(null);
       sayt.searchbox = 'searchbox-id';
 
-      const result = sayt.nodeInSearchBar('node');
+      const result = sayt.nodeInSearchbox('node');
 
       expect(result).to.be.false;
       expect(getElementById).to.be.calledWith('searchbox-id');
@@ -270,7 +271,7 @@ describe('Sayt Component', () => {
     it('should return false if this.searchbox is not set', () => {
       sayt.searchbox = undefined;
 
-      const result = sayt.nodeInSearchBar('node');
+      const result = sayt.nodeInSearchbox('node');
 
       expect(result).to.be.false;
     });

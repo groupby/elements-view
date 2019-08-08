@@ -39,7 +39,7 @@ export default class Sayt extends LitElement {
     this.hideSayt = this.hideSayt.bind(this);
     this.processClick = this.processClick.bind(this);
     this.processKeyPress = this.processKeyPress.bind(this);
-    this.nodeInSearchBar = this.nodeInSearchBar.bind(this);
+    this.nodeInSearchbox = this.nodeInSearchbox.bind(this);
     this.hideCorrectSayt = this.hideCorrectSayt.bind(this);
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
     this.isCorrectSayt = this.isCorrectSayt.bind(this);
@@ -140,9 +140,9 @@ export default class Sayt extends LitElement {
    * 
    * @param event The click event.
    */
-  processClick(event: Event) {
+  processClick(event: MouseEvent) {
     const target = event.target as Node;
-    if (this.contains(target) || this.nodeInSearchBar(target)) return;
+    if (this.contains(target) || this.nodeInSearchbox(target)) return;
 
     this.hideSayt();
   }
@@ -162,15 +162,18 @@ export default class Sayt extends LitElement {
    * 
    * @param node The node to check for containment.
    */
-  nodeInSearchBar(node: Node): boolean {
+  nodeInSearchbox(node: Node): boolean {
     if (!this.searchbox) return false;
-    const searchBar = document.getElementById(this.searchbox);
-    return !!searchBar && searchBar.contains(node);
+    const searchbox = document.getElementById(this.searchbox);
+    return !!searchbox && searchbox.contains(node);
   }
 
   /**
-   * Processes a keypress event in order to close SAYT under the right conditions.
-   * @param event 
+   * Processes a keyboard event in order to close SAYT when certain keys are pressed.
+   * Namely:
+   *   - Escape
+   *
+   * @param event A keyboard event used for checking which key has been pressed.
    */
   processKeyPress(event: KeyboardEvent) {
     if (event.key === 'Escape') {
@@ -187,7 +190,7 @@ export default class Sayt extends LitElement {
         html`<button aria-label="Close" @click=${ this.clickCloseSayt }>
           ${ this.closeText }
         </button>`
-        : ``
+        : ''
       }
       ${ this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>` }
     `;
