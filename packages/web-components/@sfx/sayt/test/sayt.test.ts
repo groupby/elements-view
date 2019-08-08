@@ -171,11 +171,11 @@ describe('Sayt Component', () => {
 
     beforeEach(() => {
       event = { target: node };
-      sayt.nodeInSearchBar = () => false;
     });
 
     it('should hide SAYT if the event target is nowhere relevant', () => {
-      sayt.contains = stub().returns(false);
+      stub(sayt, 'contains').returns(false);
+      stub(sayt, 'nodeInSearchBar').returns(false);
       sayt.hideSayt = spy();
 
       sayt.processClick(event);
@@ -185,7 +185,7 @@ describe('Sayt Component', () => {
     });
 
     it('should not SAYT if the event target is contained by SAYT', () => {
-      sayt.contains = stub().returns(true);
+      stub(sayt, 'contains').returns(true);
       sayt.hideSayt = spy();
 
       sayt.processClick(event);
@@ -195,8 +195,8 @@ describe('Sayt Component', () => {
     });
 
     it('should not hide SAYT if the event target is the provided search box', () => {
-      sayt.contains = stub().returns(false);
-      sayt.nodeInSearchBar = stub().returns(true);
+      stub(sayt, 'contains').returns(false);
+      stub(sayt, 'nodeInSearchBar').returns(true);
       sayt.hideSayt = spy();
 
       sayt.processClick(event);
