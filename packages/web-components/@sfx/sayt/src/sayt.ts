@@ -55,7 +55,7 @@ export default class Sayt extends LitElement {
     window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
-    window.addEventListener('keypress', this.processKeyPress);
+    window.addEventListener('keydown', this.processKeyPress);
   }
 
   /**
@@ -68,7 +68,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
-    window.removeEventListener('keypress', this.processKeyPress);
+    window.removeEventListener('keydown', this.processKeyPress);
   }
 
   createRenderRoot() {
