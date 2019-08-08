@@ -267,13 +267,13 @@ describe('Sayt Component', () => {
       expect(getElementById).to.be.calledWith('searchbox-id');
     });
 
-    it('should not call document.querySelector() if this.searchbox is not set', () => {
+    it('should not query for searchbox if this.searchbox is not set', () => {
       sayt.searchbox = undefined;
-      const querySelector = stub(document, 'querySelector');
+      const getElementById = stub(document, 'getElementById');
 
       sayt.nodeInSearchBar('node');
 
-      expect(querySelector).to.not.be.called;
+      expect(getElementById).to.not.be.called;
     });
   });
 
