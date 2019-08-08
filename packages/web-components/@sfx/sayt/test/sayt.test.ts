@@ -240,7 +240,7 @@ describe('Sayt Component', () => {
 
       expect(getElementById).to.be.calledWith('searchbox-id');
       expect(searchbox.contains).to.be.calledWith('node');
-      expect(result).to.equal(true);
+      expect(result).to.be.true;
     });
 
     it('should return false if given node is not contained in the search bar', () => {
@@ -254,7 +254,7 @@ describe('Sayt Component', () => {
 
       expect(getElementById).to.be.calledWith('searchbox-id');
       expect(searchbox.contains).to.be.calledWith('node');
-      expect(result).to.equal(false);
+      expect(result).to.be.false;
     });
 
     it('should return false if there is no search bar on the page', () => {
@@ -267,12 +267,13 @@ describe('Sayt Component', () => {
       expect(getElementById).to.be.calledWith('searchbox-id');
     });
 
-    it('should not query for searchbox if this.searchbox is not set', () => {
+    it('should return false and avoid querying for searchbox if this.searchbox is not set', () => {
       sayt.searchbox = undefined;
       const getElementById = stub(document, 'getElementById');
 
-      sayt.nodeInSearchBar('node');
+      const result = sayt.nodeInSearchBar('node');
 
+      expect(result).to.be.false;
       expect(getElementById).to.not.be.called;
     });
   });
