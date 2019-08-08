@@ -173,7 +173,7 @@ export default class Sayt extends LitElement {
    * @param event 
    */
   processKeyPress(event: KeyboardEvent) {
-    if (event.key === "Escape") {
+    if (event.key === 'Escape') {
       this.hideSayt();
     }
   }
