@@ -111,7 +111,7 @@ describe('SearchBox Component Interaction Tests', () => {
     }).then(() => {
       return eventListenerPromise;
     }).then((e) => {
-      expect(e.detail).to.equal(searchTerm);
+      expect(e.detail.value).to.equal(searchTerm);
     });
   });
 });
