@@ -20,7 +20,7 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showCorrectSayt);
       expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(addEventListener).to.be.calledWith('click', sayt.processClick);
-      expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyPress);
+      expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
     });
   });
@@ -36,7 +36,7 @@ describe('Sayt Component', () => {
       expect(removeEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
-      expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyPress);
+      expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
     });
   });
 
@@ -185,7 +185,7 @@ describe('Sayt Component', () => {
       expect(sayt.hideSayt).to.be.called;
     });
 
-    it('should not SAYT if the event target is contained by SAYT', () => {
+    it('should not hide SAYT if the event target is contained by SAYT', () => {
       stub(sayt, 'contains').returns(true);
       stub(sayt, 'hideSayt');
 
@@ -277,12 +277,12 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('processKeyPress()', () => {
+  describe('processKeyEvent()', () => {
     it('should hide SAYT when pressing escape', () => {
       const event: any = { key: "Escape" };
       const hideSayt = stub(sayt, 'hideSayt');
 
-      sayt.processKeyPress(event);
+      sayt.processKeyEvent(event);
 
       expect(hideSayt).to.be.called;
     });
@@ -293,9 +293,9 @@ describe('Sayt Component', () => {
       const event3: any = { key: "Space" };
       const hideSayt = stub(sayt, 'hideSayt');
 
-      sayt.processKeyPress(event);
-      sayt.processKeyPress(event2);
-      sayt.processKeyPress(event3);
+      sayt.processKeyEvent(event);
+      sayt.processKeyEvent(event2);
+      sayt.processKeyEvent(event3);
 
       expect(hideSayt).to.not.be.called;
     });

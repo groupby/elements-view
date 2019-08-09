@@ -118,7 +118,7 @@ ${ sayt2 }`) }
     notes: {
       markdown:`
         #Search As You Type (SAYT)
-        Demonstrating multiple SAYT components.This proves that eachSearch/SAYT
+        Demonstrating multiple SAYT components.This proves that each Search/SAYT
         pair acts independently.
 
         Note that it is virtually impossible to open two SAYT windows simultaneously.

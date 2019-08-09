@@ -38,7 +38,7 @@ export default class Sayt extends LitElement {
     this.showSayt = this.showSayt.bind(this);
     this.hideSayt = this.hideSayt.bind(this);
     this.processClick = this.processClick.bind(this);
-    this.processKeyPress = this.processKeyPress.bind(this);
+    this.processKeyEvent = this.processKeyEvent.bind(this);
     this.nodeInSearchbox = this.nodeInSearchbox.bind(this);
     this.hideCorrectSayt = this.hideCorrectSayt.bind(this);
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
@@ -55,7 +55,7 @@ export default class Sayt extends LitElement {
     window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
-    window.addEventListener('keydown', this.processKeyPress);
+    window.addEventListener('keydown', this.processKeyEvent);
   }
 
   /**
@@ -68,7 +68,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
-    window.removeEventListener('keydown', this.processKeyPress);
+    window.removeEventListener('keydown', this.processKeyEvent);
   }
 
   createRenderRoot() {
@@ -175,7 +175,7 @@ export default class Sayt extends LitElement {
    *
    * @param event A keyboard event used for checking which key has been pressed.
    */
-  processKeyPress(event: KeyboardEvent) {
+  processKeyEvent(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       this.hideSayt();
     }

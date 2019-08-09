@@ -140,7 +140,7 @@ export default class SearchBox extends Base {
    * @param type The type (or name) of the event to be emitted.
    * @param detail A payload to be sent with the event.
    */
-  createCustomEvent(type: string, detail?: object) {
+  createCustomEvent<T>(type: string, detail?: T): CustomEvent<T> {
     return new CustomEvent(type, {
       detail: {
         ...detail,
