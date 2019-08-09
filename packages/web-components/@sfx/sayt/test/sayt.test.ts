@@ -230,7 +230,7 @@ describe('Sayt Component', () => {
   });
 
   describe('nodeInSearchbox()', () => {
-    it('should return true if given node is contained in the search bar', () => {
+    it('should return true if given node is contained in the search box', () => {
       const searchbox = {
         contains: spy(() => true),
       };
@@ -244,7 +244,7 @@ describe('Sayt Component', () => {
       expect(result).to.be.true;
     });
 
-    it('should return false if given node is not contained in the search bar', () => {
+    it('should return false if given node is not contained in the search box', () => {
       const searchbox = {
         contains: stub().returns(false),
       };
@@ -258,7 +258,7 @@ describe('Sayt Component', () => {
       expect(result).to.be.false;
     });
 
-    it('should return false if there is no search bar on the page', () => {
+    it('should return false if there is no search box on the page', () => {
       const getElementById = stub(document, 'getElementById').returns(null);
       sayt.searchbox = 'searchbox-id';
 

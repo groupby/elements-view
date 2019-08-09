@@ -158,7 +158,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Checks whether a given node is inside of SAYT's identified search bar.
+   * Checks whether a given node is inside of SAYT's identified search box.
    * 
    * @param node The node to check for containment.
    */
