@@ -52,9 +52,8 @@ export default class SearchBox extends Base {
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
   emitSearchEvent() {
-    const searchboxRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-      detail: this.value,
-      bubbles: true
+    const searchboxRequestEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+      value: this.value,
     });
     this.dispatchEvent(searchboxRequestEvent);
   }
@@ -64,7 +63,7 @@ export default class SearchBox extends Base {
    * Invoked in response to a click on the clear button.
    */
   emitSearchBoxClearClick() {
-    const searchboxClearedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK, { bubbles: true });
+    const searchboxClearedEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK);
     this.dispatchEvent(searchboxClearedEvent);
   }
 
@@ -88,12 +87,10 @@ export default class SearchBox extends Base {
    * @param e The KeyboardEvent object.
    */
   handleInput(e: KeyboardEvent) {
-    this.updateSearchTermValue((e.target as HTMLInputElement).value);
+    const value = (e.target as HTMLInputElement).value;
+    this.updateSearchTermValue(value);
     this.dispatchEvent(
-      new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
-        detail: (e.target as HTMLInputElement).value,
-        bubbles: true
-      })
+      this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, { value })
     );
   }
 
@@ -133,8 +130,24 @@ export default class SearchBox extends Base {
    * Invoked in response to a user clicking inside of the searchbox input.
    */
   clickExposed() {
-    const searchBoxClickedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK, { bubbles: true });
+    const searchBoxClickedEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
     this.dispatchEvent(searchBoxClickedEvent);
+  }
+
+  /**
+   * Returns an event with a standard structure.
+   *
+   * @param type The type (or name) of the event to be emitted.
+   * @param detail A payload to be sent with the event.
+   */
+  createCustomEvent<T>(type: string, detail?: T): CustomEvent<T> {
+    return new CustomEvent(type, {
+      detail: {
+        ...detail,
+        searchbox: this.id,
+      },
+      bubbles: true,
+    });
   }
 
   // TODO Move this to the Storybook tab once functionality has been merged into sfx-view.

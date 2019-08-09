@@ -68,36 +68,37 @@ describe('SearchBox Component', () => {
 
   describe('emitSearchEvent', () => {
     it('should dispatch a search request event', () => {
-      const searchRequestEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-        detail: 'a',
-        bubbles: true
-      });
-      searchbox.value = 'a';
+      const value = searchbox.value = 'a';
+      const id = searchbox.id = 'some-id';
+      const createCustomEvent = stub(searchbox, 'createCustomEvent').returns('some-event');
 
       searchbox.emitSearchEvent();
 
-      expect(searchboxDispatchEvent).to.have.been.calledWith(searchRequestEvent);
+      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCH_REQUEST, { value });
+      expect(searchboxDispatchEvent).to.be.calledWith('some-event');
     });
   });
 
   describe('emitSearchBoxClearClick', () => {
     it('should dispatch an emitSearchBoxClearClick', () => {
-      const searchboxClearedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK);
+      const createCustomEvent = stub(searchbox, 'createCustomEvent').returns('some-event');
 
       searchbox.emitSearchBoxClearClick();
 
-      expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxClearedEvent);
+      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK);
+      expect(searchboxDispatchEvent).to.be.calledWith('some-event');
     });
   });
 
   describe('updateText', () => {
-    it('should update the value property in response to the data received', () => {
+    it('should update the value property with data from the event', () => {
       const detail = 'inputText';
-      const inputEvent = new CustomEvent(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, { detail });
+      const inputEvent = new CustomEvent('some-test-type', { detail });
+      const updateSearchTermValue = stub(searchbox, 'updateSearchTermValue');
   
       searchbox.updateText(inputEvent);
 
-      expect(searchbox.value).to.equal(detail);
+      expect(updateSearchTermValue).to.be.calledWith(detail);
     });
   });
 
@@ -113,7 +114,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('handleInput', () => {
-    it('should invoke the updateSearchTermValue function', () => {
+    it('should invoke the updateSearchTermValue function with a value from the event', () => {
       const updateSearchTermValueStub = stub(searchbox, 'updateSearchTermValue');
       const searchTerm = 'dee';
 
@@ -122,17 +123,17 @@ describe('SearchBox Component', () => {
       expect(updateSearchTermValueStub).to.have.been.calledWith(searchTerm);
     });
 
-    it('should dispatch a search box change event', () => {
-      const target = { value: 'dee' };
-      const searchboxChangeEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, {
-        detail: target,
-        bubbles: true
-      });
-      stub(searchbox, 'updateSearchTermValue');
+    it('should dispatch a search box change event with a value from the event', () => {
+      const searchTerm = 'dee';
+      const createCustomEvent = stub(searchbox, 'createCustomEvent').returns('some-event');
 
-      searchbox.handleInput({ target });
+      searchbox.handleInput({ target: { value: searchTerm } });
 
-      expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxChangeEvent);
+      expect(createCustomEvent).to.be.calledWith(
+        SEARCHBOX_EVENT.SEARCHBOX_CHANGE,
+        { value: searchTerm },
+      );
+      expect(searchboxDispatchEvent).to.be.calledWith('some-event');
     });
   });
 
@@ -166,11 +167,33 @@ describe('SearchBox Component', () => {
 
   describe('clickExposed', () => {
     it('should dispatch a search box clicked event', () => {
-      const searchboxClickedEvent = new CustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
+      const createCustomEvent = stub(searchbox, 'createCustomEvent').returns('some-event');
 
       searchbox.clickExposed();
 
-      expect(searchboxDispatchEvent).to.have.been.calledWith(searchboxClickedEvent);
+      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
+      expect(searchboxDispatchEvent).to.be.calledWith('some-event');
+    });
+  });
+
+  describe('createCustomEvent', () => {
+    it('should return a CustomEvent with the provided type and detail', () => {
+      const type = 'event-type';
+      const detail = { a: 1, b: 2 };
+
+      const result = searchbox.createCustomEvent(type, detail);
+
+      expect(result.type).to.equal(type);
+      expect(result.detail).to.include(detail);
+    });
+
+    it('should return a CustomEvent that bubbles and has a searchbox attribute', () => {
+      const id = searchbox.id = 'some-id';
+
+      const result = searchbox.createCustomEvent('some-type');
+
+      expect(result.bubbles).to.be.true;
+      expect(result.detail.searchbox).to.equal(id);
     });
   });
 

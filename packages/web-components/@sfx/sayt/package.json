@@ -18,5 +18,8 @@
     "directory": "packages/web-components/@sfx/sayt"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "html-entities": "^1.2.1"
+  }
 }
