@@ -88,6 +88,9 @@ export default class Autocomplete extends Base {
             <sfx-list caption="${list.title}" .items="${list.items}"></sfx-list>
           `
       )}
+      <button @click=${this.dispatchAutocompleteResults}>
+        Click to dispatch event
+      </button>
     `;
   }
 }

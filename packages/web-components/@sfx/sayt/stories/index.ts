@@ -61,9 +61,7 @@ function emitEventInFuture(event, timeout = 100) {
 
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
-  .add(
-    'Default',
-    () => {
+  .add('Default', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 500);
       setTimeout(() => {
         const products = getProducts(10);
@@ -76,7 +74,7 @@ storiesOf('Components|SAYT', module)
       ${ style }
       ${ sayt }
 
-      ${getDisplayCode(sayt)}
+      ${ getDisplayCode(sayt) }
     `;
     },
     {
@@ -91,9 +89,7 @@ storiesOf('Components|SAYT', module)
     }
   )
   // @TODO Remove these setTimeouts when opening a new story
-  .add(
-    'Responding to Events - sayt_hide & sayt_show ',
-    () => {
+  .add('Responding to Events - sayt_hide & sayt_show ', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
         const products = getProducts(10);

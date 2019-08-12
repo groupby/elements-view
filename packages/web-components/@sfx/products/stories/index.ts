@@ -45,13 +45,13 @@ storiesOf('Components|Products', module)
   {
     notes: {
       markdown: `
-      # Products
+        # Products
 
-      The Products component (\`sfx-product\`) is used for rendering
-      a collection of products. It can be passed products directly
-      via the \`products\` attribute on the DOM element, or by
-      emitting an event which contains the products to be rendered.
-    `
+        The Products component (\`sfx-product\`) is used for rendering
+        a collection of products. It can be passed products directly
+        via the \`products\` attribute on the DOM element, or by
+        emitting an event which contains the products to be rendered.
+      `
     }
   })
   .add('Default - event listening', () => {
@@ -70,13 +70,13 @@ storiesOf('Components|Products', module)
   {
     notes: {
       markdown: `
-      # Products - event listening
+        # Products - event listening
 
-      This demonstrates the Products component listening to the
-      products-received event.
+        This demonstrates the Products component listening to the
+        products-received event.
 
-      The event is fired once every two seconds, stopping after
-      five total event emissions.
-    `
+        The event is fired once every two seconds, stopping after
+        five total event emissions.
+      `
     }
   });
