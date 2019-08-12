@@ -191,7 +191,7 @@ export default class Sayt extends LitElement {
   render() {
     return html`
       <style>
-        .sfx-sayt {
+        .sfx-sayt-container {
           display: flex;
         }
         sfx-autocomplete {
@@ -208,7 +208,7 @@ export default class Sayt extends LitElement {
             </button>
           `
         : ''}
-      <div class="sfx-sayt">
+      <div class="sfx-sayt-container">
         ${this.hideAutocomplete
           ? ''
           : html`<sfx-autocomplete></sfx-autocomplete>`}
