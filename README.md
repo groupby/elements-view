@@ -41,15 +41,29 @@ To run the tests for all web component packages together, run the following comm
 yarn test
 ```
 
-To run tests for a specific web component package, navigate to its directory and use one of the following commands based on the desired testing flow:
+To run unit tests for a specific web component package, navigate to its directory and use one of the following commands based on the desired testing flow:
 
-- To run the tests for a specific package once:
+- To run the unit tests for a specific package once:
 ```sh
 yarn test
 ```
-- To run the tests for a specific package and watch the `src` and `test` directories to rerun the tests after any changes:
+- To run the unit tests for a specific package and watch the `src` and `test` directories to rerun the tests after any changes:
 ```sh
 yarn tdd
+```
+
+- To run the interaction tests for a specific package once:
+```sh
+yarn test:interaction
+```
+- To run the interaction tests for a specific package and watch the `src` and `test` directories to rerun the tests after any changes:
+```sh
+yarn tdd:interaction
+```
+
+- To run both the unit and interaction tests for a specific package once:
+```sh
+yarn test:all
 ```
 
 Test coverage is also provided using [Istanbul](https://github.com/istanbuljs/istanbuljs).

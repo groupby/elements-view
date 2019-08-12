@@ -23,15 +23,15 @@ export default class Sayt extends LitElement {
   /**
    * Stores the ID of the relevant search element.
    */
-  @property({ type: String, reflect: true }) searchbar = '';
+  @property({ type: String, reflect: true }) searchbox = '';
   /**
    * Customizes the text in the close button.
    */
-  @property({ type: String }) closeText = 'Close';
+  @property({ type: String, reflect: true }) closeText = 'Close';
   /**
    * Shows a button to allow for closing SAYT manually.
    */
-  @property({ type: Boolean }) showCloseButton = false;
+  @property({ type: Boolean, reflect: true }) showCloseButton = false;
 
   /**
    * Calls superclass constructor and bind methods.
@@ -42,12 +42,11 @@ export default class Sayt extends LitElement {
     this.showSayt = this.showSayt.bind(this);
     this.hideSayt = this.hideSayt.bind(this);
     this.processClick = this.processClick.bind(this);
-    this.processKeyPress = this.processKeyPress.bind(this);
-    this.nodeInSearchBar = this.nodeInSearchBar.bind(this);
+    this.processKeyEvent = this.processKeyEvent.bind(this);
+    this.nodeInSearchbox = this.nodeInSearchbox.bind(this);
     this.hideCorrectSayt = this.hideCorrectSayt.bind(this);
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
     this.isCorrectSayt = this.isCorrectSayt.bind(this);
-    this.clickCloseSayt = this.clickCloseSayt.bind(this);
   }
 
   /**
@@ -60,7 +59,7 @@ export default class Sayt extends LitElement {
     window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
-    window.addEventListener('keypress', this.processKeyPress);
+    window.addEventListener('keydown', this.processKeyEvent);
   }
 
   /**
@@ -73,7 +72,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
-    window.removeEventListener('keypress', this.processKeyPress);
+    window.removeEventListener('keydown', this.processKeyEvent);
   }
 
   createRenderRoot() {
@@ -100,8 +99,9 @@ export default class Sayt extends LitElement {
 
   /**
    * Makes SAYT visible if the event refers to the correct SAYT component.
+   * @see [[isCorrectSayt]]
    *
-   * @param event An event that can contain a searchbar ID.
+   * @param event An event that can contain a searchbox ID.
    */
   showCorrectSayt(event: CustomEvent) {
     if (this.isCorrectSayt(event)) {
@@ -119,7 +119,7 @@ export default class Sayt extends LitElement {
   /**
    * Hides SAYT if the event refers to the correct SAYT component.
    *
-   * @param event An event that can contain a searchbar ID.
+   * @param event An event that can contain a searchbox ID.
    */
   hideCorrectSayt(event: CustomEvent) {
     if (this.isCorrectSayt(event)) {
@@ -129,14 +129,14 @@ export default class Sayt extends LitElement {
 
   /**
    * Determines whether an event refers to the correct SAYT. This is true if
-   * a matching `searchbar` ID is specified, if the event has no `searchbar`
-   * ID specified, or if SAYT has no `searchbar` ID specified.
+   * a matching `searchbox` ID is specified, if the event has no `searchbox`
+   * ID specified, or if SAYT has no `searchbox` ID specified.
    *
-   * @param event An event that can contain a searchbar ID for comparison.
+   * @param event An event that can contain a searchbox ID for comparison.
    */
-  isCorrectSayt(event: CustomEvent) {
-    const searchbar = event.detail && event.detail.searchbar;
-    return this.searchbar === undefined || searchbar === this.searchbar || searchbar === undefined;
+  isCorrectSayt(event: CustomEvent): boolean {
+    const searchbox = event.detail && event.detail.searchbox;
+    return !searchbox || !this.searchbox || searchbox === this.searchbox;
   }
 
   /**
@@ -144,15 +144,15 @@ export default class Sayt extends LitElement {
    *
    * @param event The click event.
    */
-  processClick(event: Event) {
+  processClick(event: MouseEvent) {
     const target = event.target as Node;
-    if (this.contains(target) || this.nodeInSearchBar(target)) return;
+    if (this.contains(target) || this.nodeInSearchbox(target)) return;
 
     this.hideSayt();
   }
 
   /**
-   * Handles hiding SAYT on click on a close link/button (or other event).
+   * Handles hiding SAYT on click of a close link/button (or other event).
    *
    * @param event An event with a default action to be prevented.
    */
@@ -162,21 +162,24 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Checks whether a given node is inside of SAYT's identified search bar.
+   * Checks whether a given node is inside of SAYT's identified search box.
    *
    * @param node The node to check for containment.
    */
-  nodeInSearchBar(node: Node) {
-    if (!this.searchbar) return false;
-    const searchBar = document.querySelector('#' + this.searchbar);
-    return !!searchBar && searchBar.contains(node);
+  nodeInSearchbox(node: Node): boolean {
+    if (!this.searchbox) return false;
+    const searchbox = document.getElementById(this.searchbox);
+    return !!searchbox && searchbox.contains(node);
   }
 
   /**
-   * Processes a keypress event in order to close SAYT under the right conditions.
-   * @param event
+   * Processes a keyboard event in order to close SAYT when certain keys are pressed.
+   * Namely:
+   *   - Escape
+   *
+   * @param event A keyboard event used for checking which key has been pressed.
    */
-  processKeyPress(event: KeyboardEvent) {
+  processKeyEvent(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       this.hideSayt();
     }
@@ -201,22 +204,13 @@ export default class Sayt extends LitElement {
       </style>
       <div class="sfx-sayt">
         ${this.showCloseButton
-          ? html`
-              <a href="#" aria-label="Close" .onclick=${this.clickCloseSayt}>
-                ${this.closeText}
-              </a>
-            `
-          : ``}
-        ${this.hideAutocomplete
-          ? ''
-          : html`
-              <sfx-autocomplete></sfx-autocomplete>
-            `}
-        ${this.hideProducts
-          ? ''
-          : html`
-              <sfx-products></sfx-products>
-            `}
+          ? html`<button aria-label="Close" @click=${ this.clickCloseSayt }>
+              ${ this.closeText }
+        </button>`
+          : ''
+        }
+        ${ this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>` }
+        ${ this.hideProducts ? '' : html`<sfx-products></sfx-products>` }
       </div>
     `;
   }

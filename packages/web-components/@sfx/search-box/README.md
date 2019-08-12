@@ -36,8 +36,27 @@ Users of the component can add the following attributes to the custom element:
 
 ## Testing
 
-The test suite for this component is contained in the `test` directory. To run the tests, navigate to this folder and use the following command:
+The test suite for this component is contained in the `test` directory. To run the tests, use the following commands:
 
+- To run the unit tests once:
 ```sh
 yarn test
+```
+- To run the unit tests and watch the `src` and `test` directories to rerun the tests after any changes:
+```sh
+yarn tdd
+```
+
+- To run the interaction tests once:
+```sh
+yarn test:interaction
+```
+- To run the interaction tests and watch the `src` and `test` directories to rerun the tests after any changes:
+```sh
+yarn tdd:interaction
+```
+
+- To run both the unit and interaction tests once:
+```sh
+yarn test:all
 ```

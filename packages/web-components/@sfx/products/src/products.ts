@@ -1,16 +1,23 @@
-import { customElement, html, property, TemplateResult } from 'lit-element';
-import Product from '@sfx/product/src/product';
-import { Base } from '@sfx/base';
+import {
+  customElement,
+  html,
+  LitElement,
+  property,
+  TemplateResult,
+} from 'lit-element';
+import { ProductModel } from '@sfx/product';
+
+/** The name of the event that contains product data. */
+export const PRODUCTS_EVENT: string = 'sfx::provide_products'
 
 /**
- * The sfx-products web component wraps and renders a number of
- * sfx-product components. It wraps each sfx-product component in an
+ * The `sfx-products` web component wraps and renders a number of
+ * `sfx-product` components. It wraps each `sfx-product` component in an
  * additional wrapper for flexibility.
  */
 @customElement('sfx-products')
-export default class Products extends Base {
-  @property({ type: Number, reflect: true }) maxItems = 12;
-  @property({ type: Array }) products: Product[] = [];
+export default class Products extends LitElement {
+  @property({ type: Array }) products: ProductModel[] = [];
 
   /**
    * Binds relevant methods.
@@ -19,16 +26,21 @@ export default class Products extends Base {
     super();
 
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
-    this.getRenderableProducts = this.getRenderableProducts.bind(this);
   }
 
   /**
-   * Registers event listeners.
+   * Registers event listeners and sets the ARIA role. The ARIA role is
+   * set to `list` if one is not already specified.
    */
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener('sfx:provide-products', this.setProductsFromEvent);
+
+    if (!this.getAttribute('role')) {
+      this.setAttribute('role', 'list');
+    }
+
+    window.addEventListener(PRODUCTS_EVENT, this.setProductsFromEvent);
   }
 
   /**
@@ -37,10 +49,7 @@ export default class Products extends Base {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    window.removeEventListener(
-      'sfx:provide-products',
-      this.setProductsFromEvent
-    );
+    window.removeEventListener(PRODUCTS_EVENT, this.setProductsFromEvent);
   }
 
   /**
@@ -48,15 +57,8 @@ export default class Products extends Base {
    *
    * @param event A custom event containing information about products.
    */
-  setProductsFromEvent(event: CustomEvent) {
+  setProductsFromEvent(event: CustomEvent<ProductsEventPayload>) {
     this.products = event.detail.products;
-  }
-
-  /**
-   * Returns an array of products limited by the `maxItems` property.
-   */
-  getRenderableProducts(): Product[] {
-    return this.products.slice(0, this.maxItems);
   }
 
   render(): TemplateResult {
@@ -64,25 +66,33 @@ export default class Products extends Base {
       <style>
         sfx-products {
           display: flex;
-          flex-direction: row;
           flex-wrap: wrap;
         }
-        .product-wrapper {
-          display: block;
-        }
+
         sfx-product {
-          width: 100%;
           display: block;
         }
       </style>
 
-      ${this.getRenderableProducts().map(product => {
+      ${this.products.map(product => {
         return html`
-          <div class="product-wrapper">
+          <div class="product-tile-wrapper" role="listitem">
             <sfx-product .product="${product}"></sfx-product>
           </div>
         `;
       })}
     `;
   }
+
+  createRenderRoot() {
+    return this;
+  }
+}
+
+/**
+ * The type of the payload of the [[PRODUCTS_EVENT]] event.
+ */
+export interface ProductsEventPayload {
+  /** The products. */
+  products: ProductModel[];
 }
