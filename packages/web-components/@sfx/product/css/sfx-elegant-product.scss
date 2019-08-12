@@ -1,0 +1,29 @@
+sfx-product {
+  // width: 40%;
+  align-items: center;
+  box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
+  color: var(--color-font);
+  display: inline-flex;
+  flex-direction: column;
+  margin: 12px;
+  padding: 12px;
+
+  img {
+    width: 100%;
+  }
+
+  a {
+    color: var(--color-font);
+    text-decoration: none;
+  }
+
+  .sfx-product-label {
+    background-color: var(--color-primary);
+    left: 2em;
+    padding: 0.25em;
+    position: absolute;
+    // left: 1em;
+    // top: 3em;
+    // transform: rotate(315deg);
+  }
+}
