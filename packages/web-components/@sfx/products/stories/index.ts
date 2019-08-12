@@ -6,36 +6,12 @@ function dispatchRandomProducts() {
   return dispatchProvideProductsEvent(Math.ceil(Math.random() * 6));
 }
 
-function getStyles() {
-  return `
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      .product-tile-wrapper {
-        width: 33%;
-        padding: 6px;
-      }
-      sfx-product {
-        box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
-        padding: 12px;
-      }
-      sfx-product img {
-        width: 100%;
-      }
-      sfx-product {
-      }
-    </style>
-  `;
-}
-
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
     setTimeout(() => dispatchProvideProductsEvent(), 100);
 
     return `
-      ${getStyles()}
       <sfx-products></sfx-products>
     `;
   },
@@ -57,7 +33,6 @@ storiesOf('Components|Products', module)
     }
 
     return `
-      ${getStyles()}
       <sfx-products></sfx-products>
     `;
   },
