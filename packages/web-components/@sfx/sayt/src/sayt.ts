@@ -201,14 +201,17 @@ export default class Sayt extends LitElement {
         sfx-products {
           flex: 2;
         }
+        sfx-product {
+          display: block;
+        }
       </style>
-      <div class="sfx-sayt">
         ${this.showCloseButton
           ? html`<button aria-label="Close" @click=${ this.clickCloseSayt }>
               ${ this.closeText }
         </button>`
           : ''
         }
+        <div class="sfx-sayt">
         ${ this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>` }
         ${ this.hideProducts ? '' : html`<sfx-products></sfx-products>` }
       </div>

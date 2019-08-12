@@ -48,12 +48,12 @@ const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_receive
 function getStyle() {
   return `    <style>
   .sayt {
-    width: 60%;
+    width: 70%;
   }
   * {
     box-sizing: border-box;
   }
-  .product-wrapper {
+  .product-tile-wrapper {
     width: 33%;
     padding: 6px;
   }
@@ -65,6 +65,7 @@ function getStyle() {
     width: 100%;
   }
   sfx-product {
+
   }
 </style>`;
 }
@@ -131,7 +132,9 @@ storiesOf('Components|SAYT', module)
     emitEventInFuture(new Event('sfx::sayt_show'), 4000);
 
     const sayt = getSayt('', false);
+    const style = getStyle();
     return `
+      ${ style }
       ${ sayt }
       ${ getDisplayCode(sayt) }
     `;
