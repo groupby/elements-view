@@ -33,6 +33,32 @@ function getStyle() {
   </style>`;
 }
 
+const productsDataReceivedEvent = new CustomEvent('sfx::provide_products',
+  {
+    detail: {
+      products: [
+        {
+          title: 'Best Shoe',
+          price: 39.99,
+          label: 'New Product',
+          promo: '25% off',
+          imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+          imageAlt: 'A spicy red shoe',
+        },
+        {
+          title: 'Greatest Shoe',
+          price: 49.99,
+          label: 'Classic Product',
+          promo: '25% off',
+          imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+          imageAlt: 'A classic blue shoe',
+        },
+      ],
+    },
+    bubbles: true,
+  }
+);
+
 function getSayt(searchbox = '', showSayt = true): string {
   const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
   const closeText = text('Close link text', 'Close');
@@ -71,8 +97,6 @@ storiesOf('Components|SAYT', module)
     return `
     ${ getStyle() }
     ${ sayt }
-
-    ${ getDisplayCode(sayt) }
   `;
     },
     {
