@@ -44,6 +44,24 @@ const productsDataReceivedEvent = new CustomEvent('sfx::provide_products',
           promo: '25% off',
           imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
           imageAlt: 'A spicy red shoe',
+          variants: {
+            type: 'color',
+            items: [
+              { color: '#c00', text: 'Red', product: {
+                imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+                imageAlt: 'A spicy red shoe',
+              }
+             },
+              { color: '#28e', text: 'Blue', product: {
+                imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80' },
+                imageAlt: 'Sonic blue, gotta go fast'
+              },
+              { color: '#555', text: 'Grey', product: {
+                imageSrc: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80' },
+                imageAlt: 'Magic hovering shoes'
+              },
+            ]
+          }
         },
         {
           title: 'Greatest Shoe',
