@@ -170,6 +170,11 @@ export default class SearchBox extends Base {
 
   render() {
     return html`
+      <style>
+        sfx-search-box {
+          display: block;
+        }
+      </style>
       <input
         type="text"
         placeholder="${this.placeholder}"
