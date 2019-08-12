@@ -1,33 +1,9 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs } from '@storybook/addon-knobs';
-import { sampleProducts, productsEvent } from '../../../../../.storybook/common';
-import { PRODUCTS_EVENT } from '../src/index';
-
-function getProducts(quantity) {
-  const products = [];
-  for (let i = 0; i < quantity; i++) {
-    const randomIndex = Math.floor(Math.random() * sampleProducts.length);
-    products.push(sampleProducts[randomIndex]);
-  }
-  return products;
-}
+import { sendSampleProducts, getProducts } from '../../../../../.storybook/common';
 
 function getRandomProducts() {
   return getProducts(Math.ceil(Math.random() * 6));
-}
-
-function getProductsReceivedEvent(products) {
-  return new CustomEvent(PRODUCTS_EVENT, {
-    detail: {
-      products,
-    },
-    bubbles: true,
-  });
-}
-
-function sendSampleProducts(products) {
-  const productsEvent = getProductsReceivedEvent(products);
-  window.dispatchEvent(productsEvent);
 }
 
 function getStyles() {

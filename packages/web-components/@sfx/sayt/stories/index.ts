@@ -2,35 +2,7 @@ import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { getDisplayCode } from '../test/utils';
 import '../src';
-import { productsEvent, sampleProducts } from '../../../../../.storybook/common';
-// import { PRODUCTS_EVENT } from '@sfx/products';
-
-function getProducts(quantity) {
-  const products = [];
-  for (let i = 0; i < quantity; i++) {
-    const randomIndex = Math.floor(Math.random() * sampleProducts.length);
-    products.push(sampleProducts[randomIndex]);
-  }
-  return products;
-}
-
-function getRandomProducts() {
-  return getProducts(Math.ceil(Math.random() * 6));
-}
-
-function getProductsReceivedEvent(products) {
-  return new CustomEvent('sfx::provide_products', {
-    detail: {
-      products,
-    },
-    bubbles: true,
-  });
-}
-
-function sendSampleProducts(products) {
-  const productsEvent = getProductsReceivedEvent(products);
-  window.dispatchEvent(productsEvent);
-}
+import { sendSampleProducts, getProducts } from '../../../../../.storybook/common';
 
 // @TODO allow for sending event with searchbox ID. This should allow for one
 // story's events to not affect another story.
@@ -42,9 +14,6 @@ const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_receive
     bubbles: true }
 );
 
-// NOTE - letting this span the full width for now.
-// when setting a width with display block and clicking outside of the sayt component,
-// hide functionality is not triggered as the root node contains sayt
 function getStyle() {
   return `    <style>
   .sayt {

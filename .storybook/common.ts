@@ -1,5 +1,6 @@
 import { XmlEntities } from 'html-entities';
 import { ProductModel } from '@sfx/product';
+import { PRODUCTS_EVENT } from '@sfx/products';
 
 const entities = new XmlEntities();
 
@@ -37,9 +38,31 @@ export function getDisplayCode(code: string): string {
     } as ProductModel
   ];
 
-
-  export const productsEvent = new CustomEvent('sfx:provide-products', {
-    detail: {
-      products: sampleProducts
+  export function getProducts(quantity) {
+    const products = [];
+    for (let i = 0; i < quantity; i++) {
+      const randomIndex = Math.floor(Math.random() * sampleProducts.length);
+      products.push(sampleProducts[randomIndex]);
     }
-  });
+    return products;
+  }
+
+  export function getProductsReceivedEvent(products) {
+    return new CustomEvent(PRODUCTS_EVENT, {
+      detail: {
+        products,
+      },
+      bubbles: true,
+    });
+  }
+
+  export function sendSampleProducts(products) {
+    const productsEvent = getProductsReceivedEvent(products);
+    window.dispatchEvent(productsEvent);
+  }
+
+  // export const productsEvent = new CustomEvent('sfx:provide-products', {
+  //   detail: {
+  //     products: sampleProducts
+  //   }
+  // });
