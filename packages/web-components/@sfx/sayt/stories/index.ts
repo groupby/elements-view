@@ -118,9 +118,7 @@ storiesOf('Components|SAYT', module)
       }
     }
   )
-  .add(
-    'SAYT with simple search input',
-    () => {
+  .add('SAYT with simple search input', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
         const products = getProducts(10);
@@ -148,9 +146,7 @@ storiesOf('Components|SAYT', module)
       }
     }
   )
-  .add(
-    'SAYT with multiple search inputs',
-    () => {
+  .add('SAYT with multiple search inputs', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
         const products = getProducts(10);
