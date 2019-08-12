@@ -6,19 +6,17 @@ import { sendSampleProducts, getProducts } from '../../../../../.storybook/commo
 
 // @TODO allow for sending event with searchbox ID. This should allow for one
 // story's events to not affect another story.
-const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results',
-  { detail: [
-      { "title": "Brands", "items": [{ "label": "Cats" }, { "label": "Dogs" }] },
-      { "title": "", "items": [{ "label": "Cars" }, { "label": "Bikes" }] }
-    ],
-    bubbles: true }
-);
+const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
+  detail: [
+    { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
+    { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
+  ],
+  bubbles: true
+});
 
 function getStyle() {
-  return `    <style>
-  .sayt {
-    width: 70%;
-  }
+  return `
+  <style>
   * {
     box-sizing: border-box;
   }
@@ -33,9 +31,6 @@ function getStyle() {
   sfx-product img {
     width: 100%;
   }
-  sfx-product {
-
-  }
 </style>`;
 }
 
@@ -46,14 +41,16 @@ function getSayt(searchbox = '', showSayt = true): string {
   const hideAutocomplete = boolean('Hide Autocomplete', false) ? 'hideAutocomplete' : '';
   const hideProducts = boolean('Hide Products', false) ? 'hideProducts' : '';
 
-  return '<sfx-sayt\n'
-    + (searchbox ? `  searchbox="${searchbox}"\n` : '')
-    + `  closetext="${closeText}"\n`
-    + (showCloseButton ? `  ${showCloseButton}\n` : '')
-    + (showAttribute ? `  ${showAttribute}\n` : '')
-    + (hideAutocomplete ? `  ${hideAutocomplete}\n` : '')
-    + (hideProducts ? `  ${hideProducts}\n` : '')
-    + '></sfx-sayt>';
+  return (
+    '<sfx-sayt\n' +
+    (searchbox ? `  searchbox="${searchbox}"\n` : '') +
+    `  closetext="${closeText}"\n` +
+    (showCloseButton ? `  ${showCloseButton}\n` : '') +
+    (showAttribute ? `  ${showAttribute}\n` : '') +
+    (hideAutocomplete ? `  ${hideAutocomplete}\n` : '') +
+    (hideProducts ? `  ${hideProducts}\n` : '') +
+    '></sfx-sayt>'
+  );
 }
 
 function emitEventInFuture(event, timeout = 100) {
@@ -64,48 +61,53 @@ function emitEventInFuture(event, timeout = 100) {
 
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
-  .add('Default', () => {
-    emitEventInFuture(autocompleteDataReceivedEvent, 500);
-    setTimeout(() => {
-      const products = getProducts(10);
-      sendSampleProducts(products);
-    }, 500);
-    // emitEventInFuture(productsEvent, 500);
+  .add(
+    'Default',
+    () => {
+      emitEventInFuture(autocompleteDataReceivedEvent, 500);
+      setTimeout(() => {
+        const products = getProducts(10);
+        sendSampleProducts(products);
+      }, 500);
 
-    const sayt = getSayt();
-    const style = getStyle();
-    return `
-      ${style}
+      const sayt = getSayt();
+      const style = getStyle();
+      return `
+      ${ style }
       ${ sayt }
 
-      ${ getDisplayCode(sayt) }
+      ${getDisplayCode(sayt)}
     `;
-  }, {
-    notes: {
-      markdown: `
+    },
+    {
+      notes: {
+        markdown: `
         # Search As You Type (SAYT)
         Hardcoded
 
         Here is the documentation for the SAYT component.
       `
+      }
     }
-  })
+  )
   // @TODO Remove these setTimeouts when opening a new story
-  .add('Responding to Events - sayt_hide & sayt_show ', () => {
-    emitEventInFuture(autocompleteDataReceivedEvent, 100);
-    setTimeout(() => {
-      const products = getProducts(10);
-      sendSampleProducts(products);
-    }, 100);
-    emitEventInFuture(new Event('sfx::sayt_hide'), 2000);
-    emitEventInFuture(new Event('sfx::sayt_show'), 4000);
+  .add(
+    'Responding to Events - sayt_hide & sayt_show ',
+    () => {
+      emitEventInFuture(autocompleteDataReceivedEvent, 100);
+      setTimeout(() => {
+        const products = getProducts(10);
+        sendSampleProducts(products);
+      }, 100);
+      emitEventInFuture(new Event('sfx::sayt_hide'), 2000);
+      emitEventInFuture(new Event('sfx::sayt_show'), 4000);
 
-    const sayt = getSayt('', false);
-    const style = getStyle();
-    return `
+      const sayt = getSayt('', false);
+      const style = getStyle();
+      return `
       ${ style }
       ${ sayt }
-      ${ getDisplayCode(sayt) }
+      ${getDisplayCode(sayt)}
     `;
     },
     {
@@ -133,11 +135,11 @@ storiesOf('Components|SAYT', module)
       const sayt = getSayt('search-box');
       const style = getStyle();
       return `
-      ${input}
+      ${ input }
       <br />
-      ${style}
-      ${sayt}
-      ${getDisplayCode(`${input}\n${sayt}`)}
+      ${ style }
+      ${ sayt }
+      ${getDisplayCode(`${ input }\n${ sayt }`)}
     `;
     },
     {
@@ -157,7 +159,7 @@ storiesOf('Components|SAYT', module)
       setTimeout(() => {
         const products = getProducts(10);
         sendSampleProducts(products);
-      }, 100);;
+      }, 100);
 
       const input1 = `<input type="text" id="search-bar1" placeholder="Search here" />`;
       const input2 = `<input type="text" id="search-bar2" placeholder="Or search here" />`;
@@ -165,18 +167,18 @@ storiesOf('Components|SAYT', module)
       const sayt2 = getSayt('search-box2');
       const style = getStyle();
 
-      return `${input1}<br />
-${style}
-${sayt1}
+      return `${ input1 }<br />
+${ style }
+${ sayt1 }
 <hr />
-${input2}<br />
-${sayt2}
+${ input2 }<br />
+${ sayt2 }
 
-${getDisplayCode(`${input1}
-${sayt1}
+${getDisplayCode(`${ input1 }
+${ sayt1 }
 
-${input2}
-${sayt2}`)}
+${ input2 }
+${ sayt2 }`)}
     `;
     },
     {
@@ -211,8 +213,8 @@ ${sayt2}`)}
       const style = getStyle();
 
       return `
-      ${style}
-      ${sayt}
+      ${ style }
+      ${ sayt }
 
       ${getDisplayCode(sayt)}
     `;
@@ -236,8 +238,8 @@ ${sayt2}`)}
       const style = getStyle();
 
       return `
-      ${style}
-      ${sayt}
+      ${ style }
+      ${ sayt }
 
       ${getDisplayCode(sayt)}
     `;

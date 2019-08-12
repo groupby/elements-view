@@ -193,7 +193,6 @@ export default class Sayt extends LitElement {
       <style>
         .sfx-sayt {
           display: flex;
-          width: 70%;
         }
         sfx-autocomplete {
           flex: 1;
@@ -201,19 +200,25 @@ export default class Sayt extends LitElement {
         sfx-products {
           flex: 2;
         }
-        sfx-product {
-          display: block;
-        }
       </style>
-        ${this.showCloseButton
-          ? html`<button aria-label="Close" @click=${ this.clickCloseSayt }>
-              ${ this.closeText }
-        </button>`
-          : ''
-        }
-        <div class="sfx-sayt">
-        ${ this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>` }
-        ${ this.hideProducts ? '' : html`<sfx-products></sfx-products>` }
+      ${this.showCloseButton
+        ? html`
+            <button aria-label="Close" @click=${this.clickCloseSayt}>
+              ${this.closeText}
+            </button>
+          `
+        : ''}
+      <div class="sfx-sayt">
+        ${this.hideAutocomplete
+          ? ''
+          : html`
+              <sfx-autocomplete></sfx-autocomplete>
+            `}
+        ${this.hideProducts
+          ? ''
+          : html`
+              <sfx-products></sfx-products>
+            `}
       </div>
     `;
   }

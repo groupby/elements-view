@@ -31,19 +31,22 @@ function getStyles() {
 
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
-  .add('Default', () => {
+  .add(
+    'Default',
+    () => {
+      setTimeout(() => {
+        const products = getProducts(10);
+        sendSampleProducts(products);
+      }, 100);
 
-    setTimeout(() => {
-      const products = getProducts(10);
-      sendSampleProducts(products);
-    }, 100);
-
-    return `
+      return `
       ${getStyles()}
       <sfx-products></sfx-products>
-    `}, {
-    notes: {
-      markdown: `
+    `;
+    },
+    {
+      notes: {
+        markdown: `
         # Products
 
         The Products component (\`sfx-product\`) is used for rendering
@@ -51,24 +54,27 @@ storiesOf('Components|Products', module)
         via the \`products\` attribute on the DOM element, or by
         emitting an event which contains the products to be rendered.
       `
-    },
-  })
-  .add('Default - event listening', () => {
-
-    for (let i = 1; i < 6; i++) {
-      setTimeout(() => {
-        const products = getRandomProducts();
-        sendSampleProducts(products);
-      }, i * 2000);
+      }
     }
+  )
+  .add(
+    'Default - event listening',
+    () => {
+      for (let i = 1; i < 6; i++) {
+        setTimeout(() => {
+          const products = getRandomProducts();
+          sendSampleProducts(products);
+        }, i * 2000);
+      }
 
-    return `
+      return `
       ${getStyles()}
       <sfx-products></sfx-products>
     `;
-  }, {
-    notes: {
-      markdown: `
+    },
+    {
+      notes: {
+        markdown: `
         # Products - event listening
 
         This demonstrates the Products component listening to the
@@ -76,6 +82,7 @@ storiesOf('Components|Products', module)
 
         The event is fired once every two seconds, stopping after
         five total event emissions.
-      `,
+      `
+      }
     }
-  });
+  );

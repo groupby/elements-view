@@ -32,10 +32,7 @@ export default class Autocomplete extends Base {
    */
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener(
-      AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
-      this.receivedResults
-    );
+    window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
   }
 
   /**
@@ -43,10 +40,7 @@ export default class Autocomplete extends Base {
    */
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener(
-      AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
-      this.receivedResults
-    );
+    window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
   }
 
   /**
@@ -69,16 +63,13 @@ export default class Autocomplete extends Base {
    *
    */
   dispatchAutocompleteResults() {
-    const autocompleteDataReceivedEvent = new CustomEvent(
-      'sfx::autocomplete_received_results',
-      {
-        detail: [
-          { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-          { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
-        ],
-        bubbles: true
-      }
-    );
+    const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
+      detail: [
+        { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
+        { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
+      ],
+      bubbles: true
+    });
     window.dispatchEvent(autocompleteDataReceivedEvent);
   }
 
