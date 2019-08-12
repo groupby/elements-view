@@ -326,143 +326,75 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('processClick()', () => {
-    let node: any = 'some-node';
-    let event: Event;
-
-    beforeEach(() => {
-      event = {
-        target: node
-      } as Event;
-      sayt.nodeInSearchBar = () => false;
-    });
-
-    it('should hide SAYT if the event target is nowhere relevant', () => {
-      sayt.contains = stub().returns(false);
-      sayt.hideSayt = spy();
-
-      sayt.processClick(event);
-
-      expect(sayt.contains).to.be.calledWith(node);
-      expect(sayt.hideSayt).to.be.called;
-    });
-
-    it('should not SAYT if the event target is contained by SAYT', () => {
-      sayt.contains = stub().returns(true);
-      sayt.hideSayt = spy();
-
-      sayt.processClick(event);
-
-      expect(sayt.contains).to.be.calledWith(node);
-      expect(sayt.hideSayt).to.not.be.called;
-    });
-
-    it('should not hide SAYT if the event target is the provided search box', () => {
-      sayt.contains = stub().returns(false);
-      sayt.nodeInSearchBar = stub().returns(true);
-      sayt.hideSayt = spy();
-
-      sayt.processClick(event);
-
-      expect(sayt.contains).to.be.calledWith(node);
-      expect(sayt.nodeInSearchBar).to.be.calledWith(node);
-      expect(sayt.hideSayt).to.not.be.called;
-    });
-  });
-
-  describe('nodeInSearchBar()', () => {
-    it('should return true if given node is contained in the search bar', () => {
-      const searchbar = {
-        contains: stub().returns(true)
+  describe('nodeInSearchbox()', () => {
+    it('should return true if given node is contained in the search box', () => {
+      const searchbox = {
+        contains: spy(() => true),
       };
-      const querySelector = stub(document, 'querySelector').callsFake(() => searchbar);
-      sayt.searchbar = 'searchbar-id';
+      const getElementById = stub(document, 'getElementById').returns(searchbox);
+      sayt.searchbox = 'searchbox-id';
 
-      const result = sayt.nodeInSearchBar('node');
+      const result = sayt.nodeInSearchbox('node');
 
-      expect(querySelector).to.be.calledWith('#searchbar-id');
-      expect(searchbar.contains).to.be.calledWith('node');
-      expect(result).to.equal(true);
+      expect(getElementById).to.be.calledWith('searchbox-id');
+      expect(searchbox.contains).to.be.calledWith('node');
+      expect(result).to.be.true;
     });
 
-    it('should return false if given node is not contained in the search bar', () => {
-      const searchbar = {
-        contains: stub().returns(false)
+    it('should return false if given node is not contained in the search box', () => {
+      const searchbox = {
+        contains: stub().returns(false),
       };
-      const querySelector = stub(document, 'querySelector').callsFake(() => searchbar);
-      sayt.searchbar = 'searchbar-id';
+      const getElementById = stub(document, 'getElementById').returns(searchbox);
+      sayt.searchbox = 'searchbox-id';
 
-      const result = sayt.nodeInSearchBar('node');
+      const result = sayt.nodeInSearchbox('node');
 
-      expect(querySelector).to.be.calledWith('#searchbar-id');
-      expect(searchbar.contains).to.be.calledWith('node');
-      expect(result).to.equal(false);
-    });
-
-    it('should return false if there is no search bar on the page', () => {
-      const querySelector = stub(document, 'querySelector').returns(null);
-
-      const result = sayt.nodeInSearchBar('node');
-
+      expect(getElementById).to.be.calledWith('searchbox-id');
+      expect(searchbox.contains).to.be.calledWith('node');
       expect(result).to.be.false;
     });
 
-    it('should not call document.querySelector() if this.searchbar is not set', () => {
-      sayt.searchbar = undefined;
-      const querySelector = stub(document, 'querySelector');
+    it('should return false if there is no search box on the page', () => {
+      const getElementById = stub(document, 'getElementById').returns(null);
+      sayt.searchbox = 'searchbox-id';
 
-      sayt.nodeInSearchBar('node');
+      const result = sayt.nodeInSearchbox('node');
 
-      expect(querySelector).to.not.be.called;
+      expect(result).to.be.false;
+      expect(getElementById).to.be.calledWith('searchbox-id');
+    });
+
+    it('should return false if this.searchbox is not set', () => {
+      sayt.searchbox = undefined;
+
+      const result = sayt.nodeInSearchbox('node');
+
+      expect(result).to.be.false;
     });
   });
 
-  describe('processKeyPress()', () => {
-    it('should exist as a function', () => {
-      expect(sayt.processKeyPress).to.be.a('function');
-    });
-
+  describe('processKeyEvent()', () => {
     it('should hide SAYT when pressing escape', () => {
-      const event = { key: 'Escape' } as KeyboardEvent;
-      sayt.hideSayt = spy();
+      const event: any = { key: "Escape" };
+      const hideSayt = stub(sayt, 'hideSayt');
 
-      sayt.processKeyPress(event);
+      sayt.processKeyEvent(event);
 
-      expect(sayt.hideSayt).to.be.called;
+      expect(hideSayt).to.be.called;
     });
 
     it('should not hide SAYT when pressing any character other than escape', () => {
-      const event = { key: 'j' } as KeyboardEvent;
-      const event2 = { key: 'Enter' } as KeyboardEvent;
-      const event3 = { key: 'Space' } as KeyboardEvent;
-      sayt.hideSayt = spy();
-
-      sayt.processKeyPress(event);
-      sayt.processKeyPress(event2);
-      sayt.processKeyPress(event3);
-
-      expect(sayt.hideSayt).to.not.be.called;
-    });
-  });
-
-  describe('clickCloseSayt()', () => {
-    it('should close SAYT when activated', () => {
+      const event: any = { key: "j" };
+      const event2: any = { key: "Enter" };
+      const event3: any = { key: "Space" };
       const hideSayt = stub(sayt, 'hideSayt');
-      const event = { preventDefault: () => null };
 
-      sayt.clickCloseSayt(event);
+      sayt.processKeyEvent(event);
+      sayt.processKeyEvent(event2);
+      sayt.processKeyEvent(event3);
 
-      expect(hideSayt).to.be.calledOnce;
-    });
-
-    it('should prevent the default event action when activated', () => {
-      stub(sayt, 'hideSayt');
-      const preventDefault = spy();
-      const event = { preventDefault };
-
-      sayt.clickCloseSayt(event);
-
-      expect(preventDefault).to.be.calledOnce;
+      expect(hideSayt).to.not.be.called;
     });
   });
 });

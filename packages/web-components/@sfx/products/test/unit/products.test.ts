@@ -24,9 +24,7 @@ describe('Products Component', () => {
 
     it('should set role attribute if not set', () => {
       const setAttribute = stub(component, 'setAttribute');
-      stub(component, 'getAttribute')
-        .withArgs('role')
-        .returns(null);
+      stub(component, 'getAttribute').withArgs('role').returns(null);
 
       component.connectedCallback();
 
@@ -35,9 +33,7 @@ describe('Products Component', () => {
 
     it('should not set role attribute if already present', () => {
       const setAttribute = stub(component, 'setAttribute');
-      stub(component, 'getAttribute')
-        .withArgs('role')
-        .returns('button');
+      stub(component, 'getAttribute').withArgs('role').returns('button');
 
       component.connectedCallback();
 
@@ -74,7 +70,7 @@ describe('Products Component', () => {
   describe('setProductsFromEvent', () => {
     it('should set the event products payload into the component', () => {
       const products = [1, 2, 3];
-      const event = { detail: { products } };
+      const event = { detail: { products }};
       component.products = [];
 
       component.setProductsFromEvent(event);

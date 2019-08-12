@@ -107,7 +107,7 @@ storiesOf('Components|SAYT', module)
       return `
       ${ style }
       ${ sayt }
-      ${getDisplayCode(sayt)}
+      ${ getDisplayCode(sayt) }
     `;
     },
     {
@@ -139,7 +139,7 @@ storiesOf('Components|SAYT', module)
       <br />
       ${ style }
       ${ sayt }
-      ${getDisplayCode(`${ input }\n${ sayt }`)}
+      ${ getDisplayCode(`${ input }\n${ sayt }`) }
     `;
     },
     {
@@ -174,11 +174,11 @@ ${ sayt1 }
 ${ input2 }<br />
 ${ sayt2 }
 
-${getDisplayCode(`${ input1 }
+${ getDisplayCode(`${ input1 }
 ${ sayt1 }
 
 ${ input2 }
-${ sayt2 }`)}
+${ sayt2 }`) }
     `;
     },
     {

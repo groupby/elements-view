@@ -211,14 +211,10 @@ export default class Sayt extends LitElement {
       <div class="sfx-sayt">
         ${this.hideAutocomplete
           ? ''
-          : html`
-              <sfx-autocomplete></sfx-autocomplete>
-            `}
+          : html`<sfx-autocomplete></sfx-autocomplete>`}
         ${this.hideProducts
           ? ''
-          : html`
-              <sfx-products></sfx-products>
-            `}
+          : html`<sfx-products></sfx-products>`}
       </div>
     `;
   }

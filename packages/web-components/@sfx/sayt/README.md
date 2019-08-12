@@ -19,7 +19,6 @@ attribute to itself and hide its child elements.
 The SF-X Sayt component allows for the option to not display its children
 components. Users of the component can add the following attributes for
 particular customizations:
-
 - `hideAutocomplete`: Prevents the `sfx-autocomplete` component from rendering.
 - `hideProducts`: Prevents the `sfx-products` component from rendering.
 
