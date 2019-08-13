@@ -75,7 +75,7 @@ const productsDataReceivedEvent = new CustomEvent('sfx::provide_products',
 
 function getSayt(searchbox = '', showSayt = true): string {
   const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
-  const closeText = text('Close link text', 'Close');
+  const closeText = text('Close link text', 'X');
   const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
   const hideAutocomplete = boolean('Hide Autocomplete', false) ? 'hideAutocomplete' : '';
   const hideProducts = boolean('Hide Products', false) ? 'hideProducts' : '';

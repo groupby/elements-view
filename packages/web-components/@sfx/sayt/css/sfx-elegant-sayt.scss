@@ -3,6 +3,14 @@ sfx-sayt {
   display: flex;
   position: absolute;
 
+  > button {
+    border: none;
+    padding: 7px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
   sfx-autocomplete {
     border-right: 1px solid var(--color-border);
     flex: 33%;
