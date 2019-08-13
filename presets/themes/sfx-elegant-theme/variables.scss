@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Blinker&display=swap');
+
 :root {
   --color-background: whitesmoke;
   --color-border: #707070;
@@ -5,6 +7,8 @@
   --color-primary: #8cce0e;
   --color-secondary: #46badd;
   --color-tertiary: #d6ef02;
+
+  --font-default: 'Blinker', sans-serif;
 
   --spacing-default: 4px;
   --spacing-product: 12px;
