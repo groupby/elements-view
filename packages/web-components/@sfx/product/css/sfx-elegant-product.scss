@@ -1,15 +1,20 @@
 sfx-product {
-  // width: 40%;
   align-items: center;
   box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
   color: var(--color-font);
   display: inline-flex;
   flex-direction: column;
-  margin: 12px;
-  padding: 12px;
+  margin: var(--spacing-product);
+  padding: var(--spacing-product);
+  height: calc(100% - var(--spacing-product) * 2);
+  position: relative;
 
   img {
     width: 100%;
+  }
+
+  h3 {
+    text-align: center;
   }
 
   a {
@@ -19,7 +24,9 @@ sfx-product {
 
   .sfx-product-label {
     background-color: var(--color-primary);
-    left: 2em;
+    left: 0em;
+    font-size: 12px;
+    font-weight: 600;
     padding: 0.25em;
     position: absolute;
     // left: 1em;
