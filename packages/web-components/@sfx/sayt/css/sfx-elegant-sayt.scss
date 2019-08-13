@@ -4,9 +4,9 @@ sfx-sayt {
   position: absolute;
 
   sfx-autocomplete {
-    // border-right: 1px solid var(--color-border);
-    // margin-right: -1px;
+    border-right: 1px solid var(--color-border);
     flex: 33%;
+    margin-right: -1px;
     margin-top: -1px;
   }
 
