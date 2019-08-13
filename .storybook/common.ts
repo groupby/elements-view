@@ -7,13 +7,20 @@ const entities = new XmlEntities();
 export function getDisplayCode(code: string): string {
   return `
       <style>
+        #the-code {
+          position: absolute;
+          bottom: 0;
+        }
         pre.code-output {
+          font-size: 12px;
           padding: 15px;
           background-color: #EEEEEE;
         }
       </style>
-      <h3>The code</h3>
-      <pre class="code-output"><code>${entities.encode(code)}</code></pre>
+      <div id="the-code">
+        <h3>The code</h3>
+        <pre class="code-output"><code>${entities.encode(code)}</code></pre>
+      </div
     `;
 }
 

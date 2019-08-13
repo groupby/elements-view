@@ -117,9 +117,10 @@ storiesOf('Components|SAYT', module)
     const sayt = getSayt();
 
     return `
-    ${ getStyle() }
-    ${ sayt }
-  `;
+      ${ getStyle() }
+      ${ sayt }
+
+      ${ getDisplayCode(sayt) }`;
     },
     {
       notes: {
@@ -171,10 +172,20 @@ storiesOf('Components|SAYT', module)
       const sayt = getSayt('search-box');
 
       return `
-      ${ input }
-      <br />
-      ${ getStyle() }
-      ${ sayt }
+      <style>
+        .search-container {
+          float: left;
+          position: relative;
+          width: 100%;
+        }
+        #search-box {
+          width: 100%;
+        }
+      </style>
+      <div class="search-container">
+        ${ input }
+        ${ sayt }
+      </div>
       ${ getDisplayCode(`${ input }\n${ sayt }`) }
     `;
     },
@@ -199,19 +210,26 @@ storiesOf('Components|SAYT', module)
       const sayt1 = getSayt('search-box1');
       const sayt2 = getSayt('search-box2');
 
-      return `${ input1 }<br />
-${ getStyle() }
-${ sayt1 }
-<hr />
-${ input2 }<br />
-${ sayt2 }
-
-${ getDisplayCode(`${ input1 }
-${ sayt1 }
-
-${ input2 }
-${ sayt2 }`) }
-    `;
+    return `
+      <style>
+        .search-container {
+          float: left;
+          position: relative;
+          width: 50%;
+        }
+        #search-box1, #search-box2 {
+          width: 100%;
+        }
+      </style>
+      <div class="search-container">
+        ${ input1 }
+        ${ sayt1 }
+      </div>
+      <div class="search-container">
+        ${ input2 }
+        ${ sayt2 }
+      </div>
+      ${ getDisplayCode(`${ input1 }${ sayt1 }${ input2 }${ sayt2 }`) }`;
     },
     {
       notes: {
