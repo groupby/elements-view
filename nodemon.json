@@ -1,4 +1,4 @@
 {
   "ext": "ts,json,scss",
-  "watch": ["src/*", "css/*"]
+  "watch": ["src/*", "presets/themes/*"]
 }
