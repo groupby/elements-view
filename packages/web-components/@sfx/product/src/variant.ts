@@ -40,26 +40,6 @@ export default class Variant extends Base {
     const { variant } = this;
 
     return html`
-      <style>
-        sfx-product-variant {
-          --product-variant-size: 15px;
-          width: var(--product-variant-size);
-          height: var(--product-variant-size);
-          display: inline-block;
-          background-size: cover;
-          margin: 2px;
-          overflow: hidden;
-          cursor: pointer;
-        }
-        sfx-product-variant img {
-          width: auto;
-          height: auto;
-          min-width: var(--product-variant-size);
-          min-height: var(--product-variant-size);
-          max-width: 100%;
-          max-height: 100%;
-        }
-      </style>
       ${ this.type === 'image' ? html`<img src="${ variant.image }" alt="${ variant.text }" />` : '' }
       ${ this.type === 'text' ? variant.text : '' }
     `;
