@@ -219,6 +219,7 @@ ${ sayt2 }`) }
         #Search As You Type (SAYT)
         Demonstrating functionality of SAYT when products and autocomplete events are received at different points.
         Each portion of SAYT (autocomplete, products) should display when its respective data is received.
+        Autocomplete should appear at 1 second, products should appear at 3 seconds.
       `
       }
     }
@@ -244,6 +245,7 @@ ${ sayt2 }`) }
         #Search As You Type (SAYT)
         Demonstrating functionality of SAYT when only receiving one of autocomplete and products events.
         Autocomplete data should appear if products data is not received, and vice versa.
+        Only autocomplete should appear in this specific story.
         `
       }
     }
