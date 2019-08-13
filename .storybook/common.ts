@@ -17,7 +17,7 @@ export function getDisplayCode(code: string): string {
     `;
 }
 
-export const sampleProducts = [
+export const sampleProducts: ProductModel[] = [
   {
     title: 'Best Shoe',
     price: 39.99,
@@ -26,7 +26,7 @@ export const sampleProducts = [
     imageSrc:
       'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
     imageAlt: 'A spicy red shoe'
-  } as ProductModel,
+  },
   {
     title: 'Greatest Shoe',
     price: 49.99,
@@ -35,7 +35,7 @@ export const sampleProducts = [
     imageSrc:
       'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
     imageAlt: 'A classic red shoe'
-  } as ProductModel
+  }
 ];
 
 export function getProducts(quantity) {

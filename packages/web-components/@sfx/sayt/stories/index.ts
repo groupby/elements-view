@@ -61,11 +61,11 @@ function emitEventInFuture(event, timeout = 100) {
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 500);
+      emitEventInFuture(autocompleteDataReceivedEvent, 5000);
       setTimeout(() => {
         const products = getProducts(10);
         sendSampleProducts(products);
-      }, 500);
+      }, 5000);
 
       const sayt = getSayt();
       const style = getStyle();
@@ -197,11 +197,11 @@ ${ sayt2 }`) }
   .add(
     'SAYT with events received at different points',
     () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 1000);
+      emitEventInFuture(autocompleteDataReceivedEvent, 3000);
       setTimeout(() => {
         const products = getProducts(10);
         sendSampleProducts(products);
-      }, 3000);
+      }, 1000);
 
       const sayt = getSayt();
       const style = getStyle();

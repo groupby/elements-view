@@ -1,4 +1,5 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
+import { PRODUCTS_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
 
@@ -57,6 +58,7 @@ export default class Sayt extends LitElement {
 
     window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
     window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
+    window.addEventListener(PRODUCTS_EVENT, this.showCorrectSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
@@ -70,6 +72,7 @@ export default class Sayt extends LitElement {
 
     window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
     window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
+    window.removeEventListener(PRODUCTS_EVENT, this.showCorrectSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
