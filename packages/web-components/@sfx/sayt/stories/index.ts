@@ -1,8 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
-import { getDisplayCode } from '../test/utils';
 import '../src';
-import { sendSampleProducts, getProducts } from '../../../../../.storybook/common';
+import { getDisplayCode, sendSampleProducts, getProducts } from '../../../../../.storybook/common';
 
 // @TODO allow for sending event with searchbox ID. This should allow for one
 // story's events to not affect another story.
