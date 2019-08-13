@@ -8,4 +8,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - SFX-191: Added the `sayt` component.
   - This component renders `sayt` related components such as `sfx-autocomplete` and `sfx-products`.
-- SFX-253: Added `sfx-products` to the autocomplete component.
+- SFX-253: Added `sfx-products` to dispay autocomplete products.
