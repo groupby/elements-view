@@ -167,8 +167,11 @@ export default class Sayt extends LitElement {
    * @param node The node to check for containment.
    */
   nodeInSearchbox(node: Node): boolean {
+    console.log('this.searchbox', this.searchbox)
+    console.log('node in searchbox', node)
     if (!this.searchbox) return false;
     const searchbox = document.getElementById(this.searchbox);
+    console.log('searchbox', searchbox)
     return !!searchbox && searchbox.contains(node);
   }
 

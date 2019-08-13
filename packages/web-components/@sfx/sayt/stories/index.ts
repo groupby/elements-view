@@ -124,7 +124,7 @@ storiesOf('Components|SAYT', module)
         sendSampleProducts(products);
       }, 100);
 
-      const input = `<input type="text" id="search-bar" placeholder="Search here" />`;
+      const input = `<input type="text" id="search-box" placeholder="Search here" />`;
       const sayt = getSayt('search-box');
       const style = getStyle();
       return `
@@ -152,8 +152,8 @@ storiesOf('Components|SAYT', module)
         sendSampleProducts(products);
       }, 100);
 
-      const input1 = `<input type="text" id="search-bar1" placeholder="Search here" />`;
-      const input2 = `<input type="text" id="search-bar2" placeholder="Or search here" />`;
+      const input1 = `<input type="text" id="search-box1" placeholder="Search here" />`;
+      const input2 = `<input type="text" id="search-box2" placeholder="Or search here" />`;
       const sayt1 = getSayt('search-box1');
       const sayt2 = getSayt('search-box2');
       const style = getStyle();
