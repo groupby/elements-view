@@ -17,7 +17,28 @@ export function getDisplayCode(code: string): string {
     `;
 }
 
-export const sampleProducts: ProductModel[] = [
+// export const sampleProducts: ProductModel[] = [
+//   {
+//     title: 'Best Shoe',
+//     price: 39.99,
+//     label: 'New Product',
+//     promo: '25% off',
+//     imageSrc:
+//       'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+//     imageAlt: 'A spicy red shoe'
+//   },
+//   {
+//     title: 'Greatest Shoe',
+//     price: 49.99,
+//     label: 'Classic Product',
+//     promo: '25% off',
+//     imageSrc:
+//       'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+//     imageAlt: 'A classic red shoe'
+//   }
+// ];
+export function getSampleProducts() {
+  return [
   {
     title: 'Best Shoe',
     price: 39.99,
@@ -36,10 +57,11 @@ export const sampleProducts: ProductModel[] = [
       'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
     imageAlt: 'A classic red shoe'
   }
-];
+]};
 
 export function getProducts(quantity) {
   const products = [];
+  const sampleProducts = getSampleProducts();
   for (let i = 0; i < quantity; i++) {
     const randomIndex = Math.floor(Math.random() * sampleProducts.length);
     products.push(sampleProducts[randomIndex]);
