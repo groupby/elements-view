@@ -14,12 +14,26 @@ sfx-product {
   }
 
   h3 {
+    height: 3.5em;
+    margin-top: 0;
     text-align: center;
+  }
+
+  ul.product-variants {
+    height: 1.5em;
+    margin: var(--spacing-default) 0;
   }
 
   a {
     color: var(--color-font);
     text-decoration: none;
+  }
+
+  slot[name="price"] p {
+    margin: 0;
+    &::before {
+      content: "$";
+    }
   }
 
   .sfx-product-label {
@@ -29,8 +43,5 @@ sfx-product {
     font-weight: 600;
     padding: 0.25em;
     position: absolute;
-    // left: 1em;
-    // top: 3em;
-    // transform: rotate(315deg);
   }
 }
