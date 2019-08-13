@@ -9,6 +9,11 @@ sfx-product {
   height: calc(100% - var(--spacing-product) * 2);
   position: relative;
 
+  &:hover {
+    box-shadow: 0 0 30px -5px rgba(0,0,0,0.5);
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
   img {
     width: 100%;
   }
