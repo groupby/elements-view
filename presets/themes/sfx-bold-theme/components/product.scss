@@ -1,0 +1,53 @@
+sfx-product {
+  align-items: center;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
+  color: var(--color-font);
+  display: inline-flex;
+  flex-direction: column;
+  margin: var(--spacing-product);
+  padding: var(--spacing-product);
+  height: calc(100% - var(--spacing-product) * 2);
+  position: relative;
+
+  &:hover {
+    box-shadow: 0 0 30px -5px rgba(0,0,0,0.5);
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h3 {
+    height: 3.5em;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  ul.product-variants {
+    height: 1.5em;
+    margin: var(--spacing-default) 0;
+  }
+
+  a {
+    color: var(--color-font);
+    text-decoration: none;
+  }
+
+  slot[name="price"] p {
+    margin: 0;
+    &::before {
+      content: "$";
+    }
+  }
+
+  .sfx-product-label {
+    background-color: var(--color-secondary);
+    left: 0em;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0.25em;
+    position: absolute;
+  }
+}
