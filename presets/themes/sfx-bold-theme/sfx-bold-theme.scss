@@ -1,3 +1,4 @@
-:root {
-  --color-background: blue;
-}
+@import '../sfx-theme-setup.scss';
+@import 'variables.scss';
+
+@import 'components/search-box.scss';
