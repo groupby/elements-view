@@ -1,17 +1,3 @@
-// @mixin form-focus {
-//   &:focus {
-//     box-shadow: 0 0 5px var(--color-primary);
-//     outline: none;
-//     transition: box-shadow 0.10s ease-in-out;
-//   }
-// }
-
-// @mixin form-active {
-//   &:active {
-//     z-index: 5;
-//   }
-// }
-
 sfx-search-box {
   --search-box-button-width: 75px;
   background: white;
