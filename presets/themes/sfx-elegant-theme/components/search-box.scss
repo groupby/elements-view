@@ -2,6 +2,7 @@ sfx-search-box {
   --search-box-button-width: 75px;
   background: white;
   display: grid;
+  font-family: var(--font-default);
   grid-template-columns: auto repeat(2, var(--search-box-button-width));
   grid-column-gap: var(--spacing-default);
 
