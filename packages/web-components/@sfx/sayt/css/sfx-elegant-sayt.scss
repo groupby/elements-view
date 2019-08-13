@@ -5,10 +5,16 @@ sfx-sayt {
 
   > button {
     border: none;
-    padding: 7px;
+    padding: var(--spacing-default);
     position: absolute;
     right: 0;
     top: 0;
+
+    &:focus,
+    &:hover {
+      color: var(--color-primary);
+      transition: all 0.10s ease;
+    }
   }
 
   sfx-autocomplete {

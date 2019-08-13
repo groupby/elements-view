@@ -17,21 +17,24 @@ sfx-search-box {
   background: white;
   display: grid;
   grid-template-columns: auto repeat(2, var(--search-box-button-width));
-  grid-column-gap: var(--default-spacing);
+  grid-column-gap: var(--spacing-default);
 
   button,
   input {
     border: 1px solid var(--color-border);
-    padding: calc(var(--default-spacing) * 2);
+    padding: calc(var(--spacing-default) * 2);
 
     &:active {
       z-index: 5;
     }
+  }
 
-    &:focus {
+  button {
+    &:focus,
+    &:hover {
       box-shadow: 0 0 5px var(--color-primary);
-      outline: none;
-      transition: box-shadow 0.10s ease-in-out;
+      background-color: var(--color-tertiary);
+      transition: all 0.10s ease;
     }
   }
 
