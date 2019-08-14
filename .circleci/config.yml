@@ -202,7 +202,7 @@ workflows:
           name: build_search_box
           <<: *requires_build_ui
       - collect_builds:
-          name: collect_independent_builds2
+          name: collect_dependent_builds
           requires:
             - build_autocomplete
             - build_product
@@ -211,11 +211,12 @@ workflows:
       - build:
           name: build_products
           requires:
-            - collect_independent_builds2
+            - collect_dependent_builds
       - build:
           name: build_sayt
           requires:
-            - collect_independent_builds2
+            - build_products
+            - collect_dependent_builds
 
       - collect_builds:
           name: build_final
