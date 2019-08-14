@@ -72,6 +72,10 @@ export default class Products extends LitElement {
         sfx-product {
           display: block;
         }
+
+        sfx-product[hidden] {
+          display: none;
+        }
       </style>
 
       ${this.products.map(product => {
