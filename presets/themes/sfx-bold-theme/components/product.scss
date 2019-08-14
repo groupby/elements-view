@@ -50,4 +50,8 @@ sfx-product {
     padding: 0.25em;
     position: absolute;
   }
+
+  &[hidden] {
+    display: none;
+  }
 }
