@@ -69,6 +69,10 @@ export default class Products extends LitElement {
           flex-wrap: wrap;
         }
 
+        sfx-products[hidden] {
+          display: none;
+        }
+
         sfx-product {
           display: block;
         }
