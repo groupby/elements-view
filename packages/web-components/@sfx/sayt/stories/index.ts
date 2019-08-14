@@ -16,21 +16,21 @@ const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_receive
 function getStyle() {
   return `
   <style>
-  * {
-    box-sizing: border-box;
-  }
-  .product-tile-wrapper {
-    width: 33%;
-    padding: 6px;
-  }
-  sfx-product {
-    box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
-    padding: 12px;
-  }
-  sfx-product img {
-    width: 100%;
-  }
-</style>`;
+    * {
+      box-sizing: border-box;
+    }
+    .product-tile-wrapper {
+      width: 33%;
+      padding: 6px;
+    }
+    sfx-product {
+      box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
+      padding: 12px;
+    }
+    sfx-product img {
+      width: 100%;
+    }
+  </style>`;
 }
 
 function getSayt(searchbox = '', showSayt = true): string {
@@ -60,9 +60,7 @@ function emitEventInFuture(event, timeout = 100) {
 
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
-  .add(
-    'Default',
-    () => {
+  .add('Default', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
         const products = getProducts(10);
@@ -70,12 +68,12 @@ storiesOf('Components|SAYT', module)
       }, 100);
 
       const sayt = getSayt();
-      const style = getStyle();
-      return `
-      ${style}
-      ${sayt}
 
-      ${getDisplayCode(sayt)}
+      return `
+      ${ getStyle() }
+      ${ sayt }
+
+      ${ getDisplayCode(sayt) }
     `;
     },
     {
@@ -90,9 +88,7 @@ storiesOf('Components|SAYT', module)
     }
   )
   // @TODO Remove these setTimeouts when opening a new story
-  .add(
-    'Responding to Events - sayt_hide & sayt_show ',
-    () => {
+  .add('Responding to Events - sayt_hide & sayt_show ', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
         const products = getProducts(10);
@@ -102,11 +98,11 @@ storiesOf('Components|SAYT', module)
       emitEventInFuture(new Event('sfx::sayt_show'), 4000);
 
       const sayt = getSayt('', false);
-      const style = getStyle();
+
       return `
-      ${style}
-      ${sayt}
-      ${getDisplayCode(sayt)}
+      ${ getStyle() }
+      ${ sayt }
+      ${ getDisplayCode(sayt) }
     `;
     },
     {
@@ -121,9 +117,7 @@ storiesOf('Components|SAYT', module)
       }
     }
   )
-  .add(
-    'SAYT with simple search input',
-    () => {
+  .add('SAYT with simple search input', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
         const products = getProducts(10);
@@ -132,13 +126,13 @@ storiesOf('Components|SAYT', module)
 
       const input = `<input type="text" id="search-box" placeholder="Search here" />`;
       const sayt = getSayt('search-box');
-      const style = getStyle();
+
       return `
-      ${input}
+      ${ input }
       <br />
-      ${style}
-      ${sayt}
-      ${getDisplayCode(`${input}\n${sayt}`)}
+      ${ getStyle() }
+      ${ sayt }
+      ${ getDisplayCode(`${ input }\n${ sayt }`) }
     `;
     },
     {
@@ -151,9 +145,7 @@ storiesOf('Components|SAYT', module)
       }
     }
   )
-  .add(
-    'SAYT with multiple search inputs',
-    () => {
+  .add('SAYT with multiple search inputs', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
         const products = getProducts(10);
@@ -164,20 +156,19 @@ storiesOf('Components|SAYT', module)
       const input2 = `<input type="text" id="search-box2" placeholder="Or search here" />`;
       const sayt1 = getSayt('search-box1');
       const sayt2 = getSayt('search-box2');
-      const style = getStyle();
 
-      return `${input1}<br />
-${style}
-${sayt1}
+      return `${ input1 }<br />
+${ getStyle() }
+${ sayt1 }
 <hr />
-${input2}<br />
-${sayt2}
+${ input2 }<br />
+${ sayt2 }
 
-${getDisplayCode(`${input1}
-${sayt1}
+${ getDisplayCode(`${ input1 }
+${ sayt1 }
 
-${input2}
-${sayt2}`)}
+${ input2 }
+${ sayt2 }`) }
     `;
     },
     {
@@ -212,11 +203,10 @@ ${sayt2}`)}
       }, 1000);
 
       const sayt = getSayt();
-      const style = getStyle();
 
       return `
-      ${style}
-      ${sayt}
+      ${ getStyle() }
+      ${ sayt }
 
       ${getDisplayCode(sayt)}
     `;
@@ -238,11 +228,10 @@ ${sayt2}`)}
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
 
       const sayt = getSayt();
-      const style = getStyle();
 
       return `
-      ${style}
-      ${sayt}
+      ${ getStyle() }
+      ${ sayt }
 
       ${getDisplayCode(sayt)}
     `;
