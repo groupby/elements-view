@@ -61,19 +61,19 @@ function emitEventInFuture(event, timeout = 100) {
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 100);
-      setTimeout(() => {
-        dispatchProvideProductsEvent();
-      }, 100);
+    emitEventInFuture(autocompleteDataReceivedEvent, 100);
+    setTimeout(() => {
+      dispatchProvideProductsEvent();
+    }, 100);
 
-      const sayt = getSayt();
+    const sayt = getSayt();
 
-      return `
-      ${ getStyle() }
-      ${ sayt }
+    return `
+    ${ getStyle() }
+    ${ sayt }
 
-      ${ getDisplayCode(sayt) }
-    `;
+    ${ getDisplayCode(sayt) }
+  `;
     },
     {
       notes: {
