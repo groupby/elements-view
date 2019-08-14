@@ -197,12 +197,6 @@ export default class Sayt extends LitElement {
         .sfx-sayt-container {
           display: flex;
         }
-        sfx-autocomplete {
-          flex: 1;
-        }
-        sfx-products {
-          flex: 2;
-        }
       </style>
       <div>
         ${this.showCloseButton
