@@ -83,6 +83,10 @@ export default class Autocomplete extends Base {
         sfx-autocomplete {
           display: block;
         }
+
+        sfx-autocomplete[hidden] {
+          display: none;
+        }
       </style>
       ${this.caption && this.results.length > 0
         ? html`<h3>${this.caption}</h3>`
