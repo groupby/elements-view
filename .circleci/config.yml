@@ -198,7 +198,7 @@ workflows:
             - build_product
       - build:
           name: build_sayt
-          - requires:
+          requires:
             - build_ui
             - build_products
             - build_autocomplete
