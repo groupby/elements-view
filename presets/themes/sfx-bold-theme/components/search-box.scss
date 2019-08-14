@@ -18,16 +18,14 @@ sfx-search-box {
   }
 
   button {
+    background-color: var(--color-primary);
+    width: var(--search-box-button-width);
+
     &:focus,
     &:hover {
       box-shadow: 0 0 5px var(--color-primary);
       background-color: var(--color-tertiary);
       transition: all 0.10s ease;
     }
-  }
-
-  button {
-    background-color: var(--color-primary);
-    width: var(--search-box-button-width);
   }
 }
