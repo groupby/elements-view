@@ -43,7 +43,6 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            // loader: 'style-loader',
             loader: 'file-loader',
             options: {
               name: '[name].css',

@@ -115,18 +115,6 @@ storiesOf('Components|Product', module)
       markdown
     }
 }).add('Two Tiles', () => `
-  <style>
-  // sfx-product {
-  //   width: 40%;
-  //   display: inline-block;
-  //   box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
-  //   padding: 12px;
-  //   margin: 12px;
-  // }
-  // sfx-product img {
-  //   width: 100%;
-  // }
-  </style>
   <sfx-product
   product="${text('Product Info', JSON.stringify({
     ...product,
