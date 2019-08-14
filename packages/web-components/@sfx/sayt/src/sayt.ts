@@ -1,5 +1,5 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
-import { PRODUCTS_EVENT } from '@sfx/products';
+import { PRODUCTS_EVENT } from '../../products/src/index';
 import { SAYT_EVENT } from './events';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
 
