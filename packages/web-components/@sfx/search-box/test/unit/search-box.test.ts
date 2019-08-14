@@ -95,7 +95,7 @@ describe('SearchBox Component', () => {
       const detail = 'inputText';
       const inputEvent = new CustomEvent('some-test-type', { detail });
       const updateSearchTermValue = stub(searchbox, 'updateSearchTermValue');
-
+  
       searchbox.updateText(inputEvent);
 
       expect(updateSearchTermValue).to.be.calledWith(detail);

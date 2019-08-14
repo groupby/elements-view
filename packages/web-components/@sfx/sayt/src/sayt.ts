@@ -204,20 +204,22 @@ export default class Sayt extends LitElement {
           flex: 2;
         }
       </style>
-      ${this.showCloseButton
-        ? html`
-            <button aria-label="Close" @click=${this.clickCloseSayt}>
-              ${this.closeText}
-            </button>
-          `
-        : ''}
-      <div class="sfx-sayt-container">
-        ${this.hideAutocomplete
-          ? ''
-          : html`<sfx-autocomplete></sfx-autocomplete>`}
-        ${this.hideProducts
-          ? ''
-          : html`<sfx-products></sfx-products>`}
+      <div>
+        ${this.showCloseButton
+          ? html`
+              <button aria-label="Close" @click=${this.clickCloseSayt}>
+                ${this.closeText}
+              </button>
+            `
+          : ''}
+        <div class="sfx-sayt-container">
+          ${this.hideAutocomplete
+            ? ''
+            : html`<sfx-autocomplete></sfx-autocomplete>`}
+          ${this.hideProducts
+            ? ''
+            : html`<sfx-products></sfx-products>`}
+        </div>
       </div>
     `;
   }
