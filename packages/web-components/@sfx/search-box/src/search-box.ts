@@ -183,7 +183,7 @@ export default class SearchBox extends Base {
         }
       </style>
       <input
-        aria-label="${this.placeholder}"
+        aria-label="Search"
         class="sfx-search-box__input"
         type="text"
         placeholder="${this.placeholder}"

@@ -2,22 +2,17 @@ import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import '../src/index';
 
-const tbd = {};
-
 const results = [
   {
     title: '',
     items: [
       {
-        ...tbd,
         label: 'Golf Ball'
       },
       {
-        ...tbd,
         label: 'Basketball'
       },
       {
-        ...tbd,
         label: 'Baseball'
       },
     ]
@@ -26,15 +21,12 @@ const results = [
     title: 'Brands',
     items: [
       {
-        ...tbd,
         label: 'New Balance'
       },
       {
-        ...tbd,
         label: 'Bauer'
       },
       {
-        ...tbd,
         label: 'CCM'
       },
     ]
@@ -43,11 +35,9 @@ const results = [
     title: 'Categories',
     items: [
       {
-        ...tbd,
         label: 'Sport Equipment'
       },
       {
-        ...tbd,
         label: 'Sport Apparel'
       },
     ]
