@@ -60,20 +60,22 @@ function emitEventInFuture(event, timeout = 100) {
 
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
-  .add('Default', () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 5000);
+  .add(
+    'Default',
+    () => {
+      emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
         const products = getProducts(10);
         sendSampleProducts(products);
-      }, 5000);
+      }, 100);
 
       const sayt = getSayt();
       const style = getStyle();
       return `
-      ${ style }
-      ${ sayt }
+      ${style}
+      ${sayt}
 
-      ${ getDisplayCode(sayt) }
+      ${getDisplayCode(sayt)}
     `;
     },
     {
@@ -88,7 +90,9 @@ storiesOf('Components|SAYT', module)
     }
   )
   // @TODO Remove these setTimeouts when opening a new story
-  .add('Responding to Events - sayt_hide & sayt_show ', () => {
+  .add(
+    'Responding to Events - sayt_hide & sayt_show ',
+    () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
         const products = getProducts(10);
@@ -100,9 +104,9 @@ storiesOf('Components|SAYT', module)
       const sayt = getSayt('', false);
       const style = getStyle();
       return `
-      ${ style }
-      ${ sayt }
-      ${ getDisplayCode(sayt) }
+      ${style}
+      ${sayt}
+      ${getDisplayCode(sayt)}
     `;
     },
     {
@@ -117,7 +121,9 @@ storiesOf('Components|SAYT', module)
       }
     }
   )
-  .add('SAYT with simple search input', () => {
+  .add(
+    'SAYT with simple search input',
+    () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
         const products = getProducts(10);
@@ -128,11 +134,11 @@ storiesOf('Components|SAYT', module)
       const sayt = getSayt('search-box');
       const style = getStyle();
       return `
-      ${ input }
+      ${input}
       <br />
-      ${ style }
-      ${ sayt }
-      ${ getDisplayCode(`${ input }\n${ sayt }`) }
+      ${style}
+      ${sayt}
+      ${getDisplayCode(`${input}\n${sayt}`)}
     `;
     },
     {
@@ -145,7 +151,9 @@ storiesOf('Components|SAYT', module)
       }
     }
   )
-  .add('SAYT with multiple search inputs', () => {
+  .add(
+    'SAYT with multiple search inputs',
+    () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
         const products = getProducts(10);
@@ -158,18 +166,18 @@ storiesOf('Components|SAYT', module)
       const sayt2 = getSayt('search-box2');
       const style = getStyle();
 
-      return `${ input1 }<br />
-${ style }
-${ sayt1 }
+      return `${input1}<br />
+${style}
+${sayt1}
 <hr />
-${ input2 }<br />
-${ sayt2 }
+${input2}<br />
+${sayt2}
 
-${ getDisplayCode(`${ input1 }
-${ sayt1 }
+${getDisplayCode(`${input1}
+${sayt1}
 
-${ input2 }
-${ sayt2 }`) }
+${input2}
+${sayt2}`)}
     `;
     },
     {
@@ -207,8 +215,8 @@ ${ sayt2 }`) }
       const style = getStyle();
 
       return `
-      ${ style }
-      ${ sayt }
+      ${style}
+      ${sayt}
 
       ${getDisplayCode(sayt)}
     `;
@@ -233,8 +241,8 @@ ${ sayt2 }`) }
       const style = getStyle();
 
       return `
-      ${ style }
-      ${ sayt }
+      ${style}
+      ${sayt}
 
       ${getDisplayCode(sayt)}
     `;
