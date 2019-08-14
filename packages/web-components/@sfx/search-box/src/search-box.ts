@@ -174,6 +174,10 @@ export default class SearchBox extends Base {
         sfx-search-box {
           display: inline-block;
         }
+
+        sfx-search-box[hidden] {
+          display: none;
+        }
       </style>
       <input
         type="text"
