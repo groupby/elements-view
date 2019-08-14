@@ -5,8 +5,8 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { ProductModel } from '../../product/src/index';
-// import { ProductModel } from '@sfx/product';
+// import { ProductModel } from '../../product/src/index';
+import { ProductModel } from '@sfx/product';
 
 /** The name of the event that contains product data. */
 export const PRODUCTS_EVENT: string = 'sfx::provide_products'

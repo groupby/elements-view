@@ -83,9 +83,9 @@ jobs:
           paths:
             - ~/build.tar
 
-  ### build_final
+  ### collect_builds
   ### Generates a cache that includes all built packages.
-  build_final:
+  collect_builds:
     <<: *image
     steps:
       - checkout
@@ -186,6 +186,12 @@ workflows:
           name: build_ui
           requires:
             - build_base
+      - collect_builds:
+          name: collect_independent_builds
+          requires:
+            - build_base
+            - build_ui
+
       - build:
           name: build_autocomplete
           <<: *requires_build_ui
@@ -193,27 +199,29 @@ workflows:
           name: build_product
           <<: *requires_build_ui
       - build:
+          name: build_search_box
+          <<: *requires_build_ui
+      - collect_builds:
+          name: collect_independent_builds2
+          requires:
+            - build_autocomplete
+            - build_product
+            - build_search_box
+
+      - build:
           name: build_products
           requires:
-            - build_product
+            - collect_independent_builds2
       - build:
           name: build_sayt
           requires:
-            - build_ui
-            - build_products
-            - build_autocomplete
-      - build:
-          name: build_search_box
-          <<: *requires_build_ui
-      - build_final:
+            - collect_independent_builds2
+
+      - collect_builds:
+          name: build_final
           requires:
-            - build_base
-            - build_ui
-            - build_autocomplete
-            - build_product
             - build_products
             - build_sayt
-            - build_search_box
 
       - unit_test:
           name: unit_test_base
