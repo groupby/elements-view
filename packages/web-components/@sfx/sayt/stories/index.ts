@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import '../src';
-import { getDisplayCode, sendSampleProducts, getProducts } from '../../../../../.storybook/common';
+import { getDisplayCode, dispatchProvideProductsEvent } from '../../../../../.storybook/common';
 
 // @TODO allow for sending event with searchbox ID. This should allow for one
 // story's events to not affect another story.
@@ -63,8 +63,7 @@ storiesOf('Components|SAYT', module)
   .add('Default', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
-        const products = getProducts(10);
-        sendSampleProducts(products);
+        dispatchProvideProductsEvent();
       }, 100);
 
       const sayt = getSayt();
@@ -91,8 +90,7 @@ storiesOf('Components|SAYT', module)
   .add('Responding to Events - sayt_hide & sayt_show ', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
-        const products = getProducts(10);
-        sendSampleProducts(products);
+        dispatchProvideProductsEvent();
       }, 100);
       emitEventInFuture(new Event('sfx::sayt_hide'), 2000);
       emitEventInFuture(new Event('sfx::sayt_show'), 4000);
@@ -120,8 +118,7 @@ storiesOf('Components|SAYT', module)
   .add('SAYT with simple search input', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
-        const products = getProducts(10);
-        sendSampleProducts(products);
+        dispatchProvideProductsEvent();
       }, 100);
 
       const input = `<input type="text" id="search-box" placeholder="Search here" />`;
@@ -148,8 +145,7 @@ storiesOf('Components|SAYT', module)
   .add('SAYT with multiple search inputs', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
-        const products = getProducts(10);
-        sendSampleProducts(products);
+        dispatchProvideProductsEvent();
       }, 100);
 
       const input1 = `<input type="text" id="search-box1" placeholder="Search here" />`;
@@ -198,8 +194,7 @@ ${ sayt2 }`) }
     () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 3000);
       setTimeout(() => {
-        const products = getProducts(10);
-        sendSampleProducts(products);
+        dispatchProvideProductsEvent();
       }, 1000);
 
       const sayt = getSayt();
@@ -217,14 +212,12 @@ ${ sayt2 }`) }
         #Search As You Type (SAYT)
         Demonstrating functionality of SAYT when products and autocomplete events are received at different points.
         Each portion of SAYT (autocomplete, products) should display when its respective data is received.
-        Autocomplete should appear at 1 second, products should appear at 3 seconds.
+        Autocomplete should appear at 1 second, and products should appear at 3 seconds.
       `
       }
     }
   )
-  .add(
-    'SAYT with only autocomplete event received',
-    () => {
+  .add('SAYT with only autocomplete event received', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
 
       const sayt = getSayt();
