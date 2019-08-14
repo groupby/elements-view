@@ -40,7 +40,14 @@ export default class Variant extends Base {
     const { variant } = this;
 
     return html`
-      ${ this.type === 'image' ? html`<img src="${ variant.image }" alt="${ variant.text }" />` : '' }
+      ${ this.type === 'image' ?
+        html`<img
+          class="sfx-product-variant__image"
+          src="${ variant.image }"
+          alt="${ variant.text }"
+        />`
+        : ''
+      }
       ${ this.type === 'text' ? variant.text : '' }
     `;
   }

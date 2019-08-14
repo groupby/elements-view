@@ -73,24 +73,33 @@ export default class Product extends Base {
         }
       </style>
       <slot name="image">
-        ${ imageSrc ? html`<img src="${ imageSrc }" alt="${ imageAlt }" />`: '' }
+        ${ imageSrc ?
+          html`<img
+            class="sfx-product__image"
+            src="${ imageSrc }"
+            alt="${ imageAlt }" />`
+          : '' }
       </slot>
       <slot name="variants">
         <ul class="product-variants">
           ${
             variants ?
               variants.items.map(v =>
-                html`<sfx-product-variant @click="${this.updateVariant(v)}" type="${variants.type}" .variant="${v}"></sfx-product-variant>`
-              )
-            : ''
+                html`<sfx-product-variant
+                  class="sfx-product-variant"
+                  @click="${this.updateVariant(v)}"
+                  type="${variants.type}"
+                  .variant="${v}"
+                ></sfx-product-variant>`)
+              : ''
           }
         </ul>
       </slot>
       <slot name="title">
-        ${ this.urlWrap(productUrl, html`<h3>${ title }</h3>`) }
+        ${ this.urlWrap(productUrl, html`<h3 class="sfx-product-title">${ title }</h3>`) }
       </slot>
       <slot name="price">
-        <p>${ price }</p>
+        <p class="sfx-product-price">${ price }</p>
       </slot>
       ${ this.additionalInfo() }
     `;
