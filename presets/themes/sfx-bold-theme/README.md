@@ -1,5 +1,5 @@
 # SFX Bold Theme
-This theme is used by components in the SFX-View repository.
+This theme is used by components in the SF-X View repository.
 It contains a CSS Normalize.
 
 ## Usage
