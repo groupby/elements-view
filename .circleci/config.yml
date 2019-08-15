@@ -194,17 +194,19 @@ workflows:
 
       - build:
           name: build_autocomplete
-          <<: *requires_build_ui
+          requires:
+            - collect_independent_builds
       - build:
           name: build_product
-          <<: *requires_build_ui
+          requires:
+            - collect_independent_builds
       - build:
           name: build_search_box
-          <<: *requires_build_ui
+          requires:
+            - collect_independent_builds
       - collect_builds:
           name: collect_dependent_builds
           requires:
-            - collect_independent_builds
             - build_autocomplete
             - build_product
             - build_search_box
@@ -212,20 +214,14 @@ workflows:
       - build:
           name: build_products
           requires:
-            - collect_independent_builds
             - collect_dependent_builds
       - build:
           name: build_sayt
           requires:
-            - build_products
-            - collect_independent_builds
             - collect_dependent_builds
-
       - collect_builds:
           name: build_final
           requires:
-            - collect_independent_builds
-            - collect_dependent_builds
             - build_products
             - build_sayt
 
