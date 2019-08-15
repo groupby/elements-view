@@ -10,10 +10,6 @@ sfx-search-box {
   input {
     border: 1px solid var(--sfx-color-border);
     padding: calc(var(--sfx-spacing-default) * 2);
-
-    &:active {
-      z-index: 5;
-    }
   }
 
   button {

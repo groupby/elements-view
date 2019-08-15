@@ -11,10 +11,6 @@ sfx-search-box {
     border: 1px solid var(--sfx-color-border);
     border-radius: var(--border-radius);
     padding: calc(var(--sfx-spacing-default) * 2);
-
-    &:active {
-      z-index: 5;
-    }
   }
 
   button {
