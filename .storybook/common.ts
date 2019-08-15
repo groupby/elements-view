@@ -64,7 +64,6 @@ export function sendSampleProducts(products: ProductModel[]) {
   window.dispatchEvent(productsEvent);
 }
 
-// TODO update function name once events repo is integrated - 'PRODUCTS_EVENT' will have been renamed
 export function dispatchProvideProductsEvent() {
   const products = getProducts(10);
   sendSampleProducts(products);
