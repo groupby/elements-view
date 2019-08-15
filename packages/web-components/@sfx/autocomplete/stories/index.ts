@@ -156,9 +156,7 @@ const optionalTitle = 'Autocomplete Results';
 //   )
   storiesOf('Components|Autocomplete', module)
     .addDecorator(withKnobs)
-    .add(
-      'Default',
-      () => `
+    .add('Default', () => `
         <sfx-autocomplete caption="${text('Optional Title', optionalTitle)}" results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
       `,
       {
@@ -174,7 +172,7 @@ const optionalTitle = 'Autocomplete Results';
               - Use Knobs (contained within the first tab) to change or remove the Optional Title or Autocomplete Data.
             `
         }
-      },
+      }
     )
   .add(
     'No initial data - emit event to populate with data',
@@ -196,5 +194,5 @@ const optionalTitle = 'Autocomplete Results';
             * The payload of the event (event detail) should populate on the page.
           `,
       }
-    },
+    }
   );
