@@ -179,7 +179,6 @@ export default class SearchBox extends Base {
         }
         sfx-search-box > input {
           flex-grow: 1;
-          width: 100%;
         }
       </style>
       <input
