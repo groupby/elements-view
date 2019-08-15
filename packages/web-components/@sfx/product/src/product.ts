@@ -86,7 +86,6 @@ export default class Product extends Base {
             variants ?
               variants.items.map(v =>
                 html`<sfx-product-variant
-                  class="sfx-product-variant"
                   @click="${this.updateVariant(v)}"
                   type="${variants.type}"
                   .variant="${v}"
