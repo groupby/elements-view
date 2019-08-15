@@ -6,13 +6,15 @@ sfx-sayt {
   position: absolute;
 
   > button {
+    background: none;
     border: none;
     border-radius: var(--border-radius);
+    font-size: 20px;
     line-height: 1;
     padding: var(--sfx-spacing-default);
     position: absolute;
     right: 0;
-    top: 0;
+    top: -5px;
 
     &:focus,
     &:hover {
