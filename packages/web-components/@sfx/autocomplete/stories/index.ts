@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/html';
+import { storiesOf, addParameters } from '@storybook/html';
 import addons from '@storybook/addons';
 import { getDisplayCode } from '../../../../../.storybook/common';
 import { withKnobs, text } from '@storybook/addon-knobs';
@@ -99,9 +99,7 @@ const autocompleteReceivedResultsEvent = [
 
 function getAutocomplete(): string {
   const optionalTitle = text('Optional Title', 'Autocomplete Results');
-  return '<sfx-autocomplete\n'
-    + ` caption="${optionalTitle}"\n`
-    + '></sfx-autocomplete>';
+  return '<sfx-autocomplete\n' + ` caption="${optionalTitle}"\n` + '></sfx-autocomplete>';
 }
 
 const optionalTitle = 'Autocomplete Results';
@@ -154,45 +152,92 @@ const optionalTitle = 'Autocomplete Results';
 //     // }
 //     // autocompleteReceivedResultsEvent
 //   )
-  storiesOf('Components|Autocomplete', module)
-    .addDecorator(withKnobs)
-    .add('Default', () => `
-        <sfx-autocomplete caption="${text('Optional Title', optionalTitle)}" results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
-      `,
-      {
-        customEvents: autocompleteReceivedResultsEvent
-      },
-      {
-        notes: {
-          markdown: `
-            # Autocomplete
-            Hardcoded
+// storiesOf('Components|Autocomplete', module)
+//   .addDecorator(withKnobs)
+//   .addParameters({
+//     options: {
+//       customEvents: autocompleteReceivedResultsEvent,
+//       notes: {
+//         markdown: `
+//             #TEST!`
+//       }
+//     }
+//   })
+//   .add(
+//     'Default',
+//     () => `
+//         <sfx-autocomplete caption="${text('Optional Title', optionalTitle)}" results="${text(
+//       'Autocomplete Results',
+//       JSON.stringify(results)
+//     )}"></sfx-autocomplete>
+//       `
+//   );
+// .add(
+//   'No initial data - emit event to populate with data',
+//   () => `
+//     <sfx-autocomplete>
+//     </sfx-autocomplete>
+//   `,
+//   {
+//     customEvents: autocompleteReceivedResultsEvent
+//   },
+//   {
+//     notes: {
+//       markdown: `
+//         #Autocomplete
+//         Demonstrating autocomplete populating with autocomplete data in response to the autocomplete received results event.
 
-            - Display hardcoded data with one titled autocomplete grouping, one untitled autocomplete grouping and optional title.
-              - Use Knobs (contained within the first tab) to change or remove the Optional Title or Autocomplete Data.
-            `
-        }
-      }
-    )
+//         * To emit the event, visit the Custom Events tab and view the 'sfx::autocomplete_received_results' event.
+//         * Clicking 'emit' will fire the event, which sfx-autocomplete listens on.
+//           * The payload of the event (event detail) should populate on the page.
+//         `
+//     }
+//   }
+// );
+storiesOf('Components|Autocomplete', module)
+  .addDecorator(withKnobs)
   .add(
-    'No initial data - emit event to populate with data',
+    'Default',
     () => `
-      <sfx-autocomplete>
-      </sfx-autocomplete>
+      <sfx-autocomplete caption="${text('Optional Title', optionalTitle)}" results="${text(
+      'Autocomplete Results',
+      JSON.stringify(results)
+    )}"></sfx-autocomplete>
     `,
     {
       customEvents: autocompleteReceivedResultsEvent
     },
     {
       notes: {
-        markdown:`
-          #Autocomplete
-          Demonstrating autocomplete populating with autocomplete data in response to the autocomplete received results event.
+        markdown: `
+          # Autocomplete
+          Hardcoded
 
-          * To emit the event, visit the Custom Events tab and view the 'sfx::autocomplete_received_results' event.
-          * Clicking 'emit' will fire the event, which sfx-autocomplete listens on.
-            * The payload of the event (event detail) should populate on the page.
-          `,
+          - Display hardcoded data with one titled autocomplete grouping, one untitled autocomplete grouping and optional title.
+            - Use Knobs (contained within the first tab) to change or remove the Optional Title or Autocomplete Data.
+          `
+      }
+    }
+  )
+  .add(
+    'No initial data - emit event to populate with data',
+    () => `
+    <sfx-autocomplete>
+    </sfx-autocomplete>
+  `,
+    {
+      customEvents: autocompleteReceivedResultsEvent
+    },
+    {
+      notes: {
+        markdown: `
+        #Autocomplete
+        Demonstrating autocomplete populating with autocomplete data in response to the autocomplete received results event.
+
+        * To emit the event, visit the Custom Events tab and view the 'sfx::autocomplete_received_results' event.
+        * Clicking 'emit' will fire the event, which sfx-autocomplete listens on.
+          * The payload of the event (event detail) should populate on the page.
+        `
       }
     }
   );

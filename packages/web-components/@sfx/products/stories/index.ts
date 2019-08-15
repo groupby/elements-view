@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs } from '@storybook/addon-knobs';
 import { dispatchProvideProductsEvent } from '../../../../../.storybook/common';
+import addons from '@storybook/addons';
 
 function dispatchRandomProducts() {
   return dispatchProvideProductsEvent(Math.ceil(Math.random() * 6));
@@ -14,6 +15,9 @@ storiesOf('Components|Products', module)
     return `
       <sfx-products></sfx-products>
     `;
+  },
+  {
+    customEvents: productsResultsEvent
   },
   {
     notes: {
@@ -48,4 +52,5 @@ storiesOf('Components|Products', module)
         five total event emissions.
       `
     }
-  });
+  }
+  );
