@@ -197,9 +197,11 @@ export default class Sayt extends LitElement {
         sfx-sayt {
           display: block;
         }
+
         sfx-sayt[hidden] {
           display: none;
         }
+
         .sfx-sayt-container {
           display: flex;
         }
