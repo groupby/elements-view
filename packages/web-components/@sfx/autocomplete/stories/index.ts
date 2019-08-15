@@ -45,6 +45,28 @@ const results = [
   },
 ];
 
+const autocompleteReceivedResultsEvent = {
+  customEvents: [
+    {
+      name: 'sfx::autocomplete_received_results',
+      payload: [
+        {
+          title: '',
+          items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+        },
+        {
+          title: 'Brands',
+          items: [{ label: 'Kashi' }, { label: 'Excel' }]
+        },
+        {
+          title: 'Colors',
+          items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+        }
+      ]
+    }
+  ]
+};
+
 const optionalTitle = 'Autocomplete Results';
 
 /*
@@ -62,26 +84,16 @@ storiesOf('Components|Autocomplete', module)
     () => `
       <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
     `,
+    autocompleteReceivedResultsEvent,
     {
-      customEvents: [
-        {
-          name: 'autocomplete_received_results',
-          payload: [
-            {
-              title: 'default',
-              items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-            },
-            {
-              title: 'Brands',
-              items: [{ label: 'Kashi' }, { label: 'Excel' }]
-            },
-            {
-              title: 'Colors',
-              items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-            }
-          ]
-        }
-      ]
+      notes: {
+        markdown: `
+          # Autocomplete
+          Hardcoded
+
+          - Display hardcoded data with one titled autocomplete grouping, and one untitled autocomplete grouping.
+          `
+      }
     }
   )
   .add(
@@ -89,10 +101,8 @@ storiesOf('Components|Autocomplete', module)
     () => `
       <sfx-autocomplete>
       </sfx-autocomplete>
-      <button @click=${this.dispatchAutocompleteResults}>
-        Click to dispatch event
-      </button>
-    `
+    `,
+    autocompleteReceivedResultsEvent
   )
   .add(
     'With Slots',
@@ -100,10 +110,8 @@ storiesOf('Components|Autocomplete', module)
       <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
         <div>Content appears after main content</div>
       </sfx-autocomplete>
-      <button @click=${this.dispatchAutocompleteResults}>
-        Click to dispatch event
-      </button>
-    `
+    `,
+    autocompleteReceivedResultsEvent
   )
   .add(
     'With title customization',
@@ -112,5 +120,6 @@ storiesOf('Components|Autocomplete', module)
       caption="${text('Optional Title', optionalTitle)}"
       results="${text('Autocomplete', JSON.stringify(results))}">
     </sfx-autocomplete>
-    `
+    `,
+    autocompleteReceivedResultsEvent
   );

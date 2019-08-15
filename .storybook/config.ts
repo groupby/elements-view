@@ -30,10 +30,13 @@ function loadStories() {
   req.keys().forEach(req);
 }
 
-addons.getChannel().on('customEvents/emitEvent', (event) => {
-  window.dispatchEvent(new CustomEvent(event.name, {
-    detail: event.payload
-  }));
+addons.getChannel().on('customEvents/emitEvent', event => {
+  console.log('in addons function');
+  window.dispatchEvent(
+    new CustomEvent(event.name, {
+      detail: event.payload
+    })
+  );
 });
 
 configure(loadStories, module);
