@@ -1,5 +1,6 @@
 import { configure, addDecorator, addParameters } from '@storybook/html';
 import { withCssResources } from '@storybook/addon-cssresources';
+import addons from '@storybook/addons';
 import { withA11y } from '@storybook/addon-a11y';
 import GroupByTheme from './theme';
 
@@ -28,5 +29,11 @@ function loadStories() {
   });
   req.keys().forEach(req);
 }
+
+addons.getChannel().on('customEvents/emitEvent', (event) => {
+  window.dispatchEvent(new CustomEvent(event.name, {
+    detail: event.payload
+  }));
+});
 
 configure(loadStories, module);

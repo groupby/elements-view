@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/html';
+import addons from '@storybook/addons';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import '../src/index';
 
@@ -60,10 +61,28 @@ storiesOf('Components|Autocomplete', module)
     'Default',
     () => `
       <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
-      <button @click=${this.dispatchAutocompleteResults}>
-        Click to dispatch event
-      </button>
-    `
+    `,
+    {
+      customEvents: [
+        {
+          name: 'autocomplete_received_results',
+          payload: [
+            {
+              title: 'default',
+              items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+            },
+            {
+              title: 'Brands',
+              items: [{ label: 'Kashi' }, { label: 'Excel' }]
+            },
+            {
+              title: 'Colors',
+              items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+            }
+          ]
+        }
+      ]
+    }
   )
   .add(
     'No Data - populate with data received',
@@ -89,12 +108,9 @@ storiesOf('Components|Autocomplete', module)
   .add(
     'With title customization',
     () => `
-      <sfx-autocomplete
-        caption="${text('Optional Title', optionalTitle)}"
-        results="${text('Autocomplete', JSON.stringify(results))}">
-      </sfx-autocomplete>
-      <button @click=${this.dispatchAutocompleteResults}>
-        Click to dispatch event
-      </button>
+    <sfx-autocomplete
+      caption="${text('Optional Title', optionalTitle)}"
+      results="${text('Autocomplete', JSON.stringify(results))}">
+    </sfx-autocomplete>
     `
   );
