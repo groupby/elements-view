@@ -21,7 +21,7 @@ export default class List extends Base {
   render() {
     return html`
       <style>
-        sfx-list li {
+        sfx-list > ul {
           list-style: none;
         }
       </style>

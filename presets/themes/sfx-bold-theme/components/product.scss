@@ -5,6 +5,7 @@ sfx-product {
   color: var(--color-font);
   display: inline-flex;
   flex-direction: column;
+  font-family: var(--font-default);
   margin: var(--spacing-product);
   padding: var(--spacing-product);
   height: calc(100% - var(--spacing-product) * 2);
@@ -44,9 +45,9 @@ sfx-product {
 
   .sfx-product-label {
     background-color: var(--color-secondary);
-    left: 0em;
+    left: 0;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: bold;
     padding: 0.25em;
     position: absolute;
   }
