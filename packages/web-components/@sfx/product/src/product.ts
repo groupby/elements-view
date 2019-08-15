@@ -67,7 +67,11 @@ export default class Product extends Base {
     const { title, price, variants, productUrl, imageSrc, imageAlt } = this.product;
 
     return html`
-      <style>.product-variants { padding: 0 }</style>
+      <style>
+        .product-variants {
+          padding: 0;
+        }
+      </style>
       <slot name="image">
         ${ imageSrc ? html`<img src="${ imageSrc }" alt="${ imageAlt }" />`: '' }
       </slot>

@@ -218,11 +218,10 @@ workflows:
       - build:
           name: build_sayt
           requires:
-            - collect_dependent_builds
+            - build_products
       - collect_builds:
           name: build_final
           requires:
-            - build_products
             - build_sayt
 
       - unit_test:
