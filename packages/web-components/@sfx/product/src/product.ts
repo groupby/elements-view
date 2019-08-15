@@ -75,7 +75,7 @@ export default class Product extends Base {
       <slot name="image">
         ${ imageSrc ?
           html`<img
-            class="sfx-product__image"
+            class="sfx-product-image"
             src="${ imageSrc }"
             alt="${ imageAlt }" />`
           : '' }

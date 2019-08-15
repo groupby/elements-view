@@ -88,7 +88,7 @@ export default class Autocomplete extends Base {
         }
       </style>
       ${this.caption && this.results.length > 0
-        ? html`<h3 class="sfx-autocomplete__header">${this.caption}</h3>`
+        ? html`<h3 class="sfx-autocomplete-header">${this.caption}</h3>`
         : ''}
       ${this.results.map(
         list =>
