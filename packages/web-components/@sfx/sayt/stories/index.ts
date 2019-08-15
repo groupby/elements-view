@@ -47,7 +47,7 @@ storiesOf('Components|SAYT', module)
     }, 100);
 
     const sayt = getSayt();
-
+    console.log(sayt, 'sayt')
     return `
       ${ sayt }
 
