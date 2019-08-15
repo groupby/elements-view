@@ -16,7 +16,7 @@
     "docs": "typedoc --options ./typedoc.js packages",
     "test": "yarn workspaces run test",
     "coverage": "cat coverage/lcov.info | codecov",
-    "watch": "nodemon -e scss -x webpack"
+    "dev:themes": "nodemon -e scss -x webpack"
   },
   "repository": {
     "type": "git",

@@ -88,7 +88,7 @@ Styled themes are available for components in the `./presets` folder. These can 
 
 ```sh
 yarn storybook
-yarn watch
+yarn dev:themes
 ```
 
 These will run Storybook and watch the `./presets` directory for all changes to `.scss` files. Themes can be toggled in the `CSS Resources` addon tab.
