@@ -2,13 +2,13 @@ sfx-product {
   align-items: center;
   border-radius: var(--border-radius);
   box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
-  color: var(--color-font);
+  color: var(--sfx-color-font);
   display: inline-flex;
   flex-direction: column;
-  font-family: var(--font-default);
-  margin: var(--spacing-product);
-  padding: var(--spacing-product);
-  height: calc(100% - var(--spacing-product) * 2);
+  font-family: var(--sfx-font-default);
+  margin: var(--sfx-spacing-product);
+  padding: var(--sfx-spacing-product);
+  height: calc(100% - var(--sfx-spacing-product) * 2);
   position: relative;
 
   &:hover {
@@ -28,11 +28,11 @@ sfx-product {
 
   ul.product-variants {
     height: 1.5em;
-    margin: var(--spacing-default) 0;
+    margin: var(--sfx-spacing-default) 0;
   }
 
   a {
-    color: var(--color-font);
+    color: var(--sfx-color-font);
     text-decoration: none;
   }
 
@@ -44,7 +44,7 @@ sfx-product {
   }
 
   .sfx-product-label {
-    background-color: var(--color-secondary);
+    background-color: var(--sfx-color-secondary);
     left: 0;
     font-size: 12px;
     font-weight: bold;

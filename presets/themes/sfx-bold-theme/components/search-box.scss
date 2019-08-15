@@ -2,15 +2,15 @@ sfx-search-box {
   --search-box-button-width: 75px;
   background: white;
   display: grid;
-  font-family: var(--font-default);
+  font-family: var(--sfx-font-default);
   grid-template-columns: auto repeat(2, var(--search-box-button-width));
-  grid-column-gap: var(--spacing-default);
+  grid-column-gap: var(--sfx-spacing-default);
 
   button,
   input {
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--sfx-color-border);
     border-radius: var(--border-radius);
-    padding: calc(var(--spacing-default) * 2);
+    padding: calc(var(--sfx-spacing-default) * 2);
 
     &:active {
       z-index: 5;
@@ -18,13 +18,13 @@ sfx-search-box {
   }
 
   button {
-    background-color: var(--color-primary);
+    background-color: var(--sfx-color-primary);
     width: var(--search-box-button-width);
 
     &:focus,
     &:hover {
-      box-shadow: 0 0 5px var(--color-primary);
-      background-color: var(--color-tertiary);
+      box-shadow: 0 0 5px var(--sfx-color-primary);
+      background-color: var(--sfx-color-tertiary);
       transition: all 0.10s ease;
     }
   }
