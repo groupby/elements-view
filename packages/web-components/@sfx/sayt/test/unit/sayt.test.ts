@@ -1,7 +1,6 @@
 import { expect, sinon, spy, stub } from '../utils';
 import { TemplateResult, LitElement } from 'lit-element';
 import { PRODUCTS_EVENT } from '@sfx/products';
-// import { PRODUCTS_EVENT } from '../../../products/src/index';
 import Sayt from '../../src/sayt';
 import { SAYT_EVENT } from '../../src/events';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../../autocomplete/src/events';
