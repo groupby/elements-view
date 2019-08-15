@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/html';
-// import addons from '@storybook/addons';
-// import { getDisplayCode } from '../../../../../.storybook/common';
+import addons from '@storybook/addons';
+import { getDisplayCode } from '../../../../../.storybook/common';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import '../src/index';
 
@@ -46,25 +46,25 @@ const results = [
   },
 ];
 
-// const autocompleteReceivedResultsEvent = [
-//   {
-//     name: 'sfx::autocomplete_received_results',
-//     payload: [
-//       {
-//         title: '',
-//         items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-//       },
-//       {
-//         title: 'Brands',
-//         items: [{ label: 'Kashi' }, { label: 'Excel' }]
-//       },
-//       {
-//         title: 'Colors',
-//         items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-//       }
-//     ]
-//   }
-// ];
+const autocompleteReceivedResultsEvent = [
+  {
+    name: 'sfx::autocomplete_received_results',
+    payload: [
+      {
+        title: '',
+        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+      },
+      {
+        title: 'Brands',
+        items: [{ label: 'Kashi' }, { label: 'Excel' }]
+      },
+      {
+        title: 'Colors',
+        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+      }
+    ]
+  }
+];
 
 // const autocompleteReceivedResultsEvent = {
 //   customEvents: [
@@ -104,7 +104,7 @@ function getAutocomplete(): string {
     + '></sfx-autocomplete>';
 }
 
-// const optionalTitle = 'Autocomplete Results';
+const optionalTitle = 'Autocomplete Results';
 
 /*
  * --- Slots Testing ---
@@ -123,81 +123,78 @@ function getAutocomplete(): string {
 //       ${autocomplete}
 //       ${ getDisplayCode(autocomplete) }`;
 //     }
-storiesOf('Components|Autocomplete', module)
-  .addDecorator(withKnobs)
-  .add('Default', () => {
-      const autocomplete = getAutocomplete();
-      console.log(autocomplete, 'autocomplete')
-      return `${autocomplete}`;
-    }
 // storiesOf('Components|Autocomplete', module)
 //   .addDecorator(withKnobs)
 //   .add('Default', () => {
 //       const autocomplete = getAutocomplete();
 //       console.log(autocomplete, 'autocomplete')
-//       return `
-//       ${autocomplete}
-//       ${ getDisplayCode(autocomplete) }`;
-//     },
-    // {
-    //   customEvents: autocompleteReceivedResultsEvent
-    // },
-    // {
-    //   notes: {
-    //     markdown: `
-    //       # Autocomplete
-    //       Hardcoded
+//       return `${autocomplete}`;
+//     }
+// // storiesOf('Components|Autocomplete', module)
+// //   .addDecorator(withKnobs)
+// //   .add('Default', () => {
+// //       const autocomplete = getAutocomplete();
+// //       console.log(autocomplete, 'autocomplete')
+// //       return `
+// //       ${autocomplete}
+// //       ${ getDisplayCode(autocomplete) }`;
+// //     },
+//     // {
+//     //   customEvents: autocompleteReceivedResultsEvent
+//     // },
+//     // {
+//     //   notes: {
+//     //     markdown: `
+//     //       # Autocomplete
+//     //       Hardcoded
 
-    //       - Display hardcoded data with one titled autocomplete grouping, and one untitled autocomplete grouping.
-    //       `
-    //   }
-    // }
-    // autocompleteReceivedResultsEvent
-  )
-  // storiesOf('Components|Autocomplete', module)
-  //   .addDecorator(withKnobs)
-  //   .add(
-  //     'Default',
-  //     () => `
-  //       <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
-  //     `,
-  //     // autocompleteReceivedResultsEvent,
-  //     {
-  //       notes: {
-  //         markdown: `
-  //           # Autocomplete
-  //           Hardcoded
+//     //       - Display hardcoded data with one titled autocomplete grouping, and one untitled autocomplete grouping.
+//     //       `
+//     //   }
+//     // }
+//     // autocompleteReceivedResultsEvent
+//   )
+  storiesOf('Components|Autocomplete', module)
+    .addDecorator(withKnobs)
+    .add(
+      'Default',
+      () => `
+        <sfx-autocomplete caption="${text('Optional Title', optionalTitle)}" results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
+      `,
+      {
+        customEvents: autocompleteReceivedResultsEvent
+      },
+      {
+        notes: {
+          markdown: `
+            # Autocomplete
+            Hardcoded
 
-  //           - Display hardcoded data with one titled autocomplete grouping, and one untitled autocomplete grouping.
-  //           `
-  //       }
-  //     },
-  //     autocompleteReceivedResultsEvent
-  //   )
-  // .add(
-  //   'No Data - populate with data received',
-  //   () => `
-  //     <sfx-autocomplete>
-  //     </sfx-autocomplete>
-  //   `,
-  //   autocompleteReceivedResultsEvent
-  // )
-  // .add(
-  //   'With Slots',
-  //   () => `
-  //     <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
-  //       <div>Content appears after main content</div>
-  //     </sfx-autocomplete>
-  //   `,
-  //   autocompleteReceivedResultsEvent
-  // )
-  // .add(
-  //   'With title customization',
-  //   () => `
-  //   <sfx-autocomplete
-  //     caption="${text('Optional Title', optionalTitle)}"
-  //     results="${text('Autocomplete', JSON.stringify(results))}">
-  //   </sfx-autocomplete>
-  //   `,
-  //   autocompleteReceivedResultsEvent
-  // );
+            - Display hardcoded data with one titled autocomplete grouping, one untitled autocomplete grouping and optional title.
+              - Use Knobs (contained within the first tab) to change or remove the Optional Title or Autocomplete Data.
+            `
+        }
+      },
+    )
+  .add(
+    'No initial data - emit event to populate with data',
+    () => `
+      <sfx-autocomplete>
+      </sfx-autocomplete>
+    `,
+    {
+      customEvents: autocompleteReceivedResultsEvent
+    },
+    {
+      notes: {
+        markdown:`
+          #Autocomplete
+          Demonstrating autocomplete populating with autocomplete data in response to the autocomplete received results event.
+
+          * To emit the event, visit the Custom Events tab and view the 'sfx::autocomplete_received_results' event.
+          * Clicking 'emit' will fire the event, which sfx-autocomplete listens on.
+            * The payload of the event (event detail) should populate on the page.
+          `,
+      }
+    },
+  );
