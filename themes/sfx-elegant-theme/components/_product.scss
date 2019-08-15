@@ -5,9 +5,8 @@ sfx-product {
   display: inline-flex;
   flex-direction: column;
   font-family: var(--sfx-font-default);
-  margin: var(--sfx-spacing-product);
+  height: 100%;
   padding: var(--sfx-spacing-product);
-  height: calc(100% - var(--sfx-spacing-product) * 2);
   position: relative;
 
   &:hover {

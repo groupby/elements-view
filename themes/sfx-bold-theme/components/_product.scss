@@ -6,9 +6,10 @@ sfx-product {
   display: inline-flex;
   flex-direction: column;
   font-family: var(--sfx-font-default);
-  margin: var(--sfx-spacing-product);
+  height: 100%;
+  // height: calc(100% - var(--sfx-spacing-product) * 2);
+  // margin: var(--sfx-spacing-product);
   padding: var(--sfx-spacing-product);
-  height: calc(100% - var(--sfx-spacing-product) * 2);
   position: relative;
 
   &:hover {
@@ -45,10 +46,10 @@ sfx-product {
 
   .sfx-product-label {
     background-color: var(--sfx-color-secondary);
-    left: 0;
     font-size: 12px;
     font-weight: bold;
-    padding: 0.25em;
+    left: 0;
+    padding: 0 0.25em;
     position: absolute;
   }
 

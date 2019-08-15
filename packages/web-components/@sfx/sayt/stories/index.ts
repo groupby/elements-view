@@ -44,6 +44,8 @@ const productsDataReceivedEvent = new CustomEvent('sfx::provide_products',
           promo: '25% off',
           imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
           imageAlt: 'A spicy red shoe',
+          info: 'Info 1',
+          info2: 'Info 2',
           variants: {
             type: 'color',
             items: [
