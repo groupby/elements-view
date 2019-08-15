@@ -27,9 +27,10 @@ sfx-product {
     text-align: center;
   }
 
-  ul.product-variants {
+  ul.sfx-product-variants {
     height: 1.5em;
     margin: var(--sfx-spacing-default) 0;
+    padding: 0;
   }
 
   a {
@@ -44,7 +45,7 @@ sfx-product {
     }
   }
 
-  .sfx-product-label {
+  .sfx-label {
     background-color: var(--sfx-color-secondary);
     font-size: 12px;
     font-weight: bold;

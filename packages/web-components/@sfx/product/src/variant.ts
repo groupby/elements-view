@@ -42,7 +42,7 @@ export default class Variant extends Base {
     return html`
       ${ this.type === 'image' ?
         html`<img
-          class="sfx-product-variant__image"
+          class="sfx-variant-image"
           src="${ variant.image }"
           alt="${ variant.text }"
         />`
