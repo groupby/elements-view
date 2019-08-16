@@ -49,7 +49,7 @@ export default class Autocomplete extends Base {
    * @param e The event object.
    */
   receivedResults(e: CustomEvent) {
-    this.results = e.detail;
+    this.results = e.detail.results;
   }
 
   // FIXME Move this to the Storybook tab once functionality has been merged into sfx-view.

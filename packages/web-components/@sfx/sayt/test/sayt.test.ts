@@ -22,6 +22,7 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith('click', sayt.processClick);
       expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
+      expect(addEventListener).to.be.calledWith('sfx::searchbox_change', this.requestSayt);
     });
   });
 
@@ -118,6 +119,12 @@ describe('Sayt Component', () => {
       expect(isCorrectSayt).to.be.calledOnceWith(event);
       expect(hideSayt).to.not.be.called;
     });
+  });
+
+  describe('requestSayt()', () => {
+    it('should return if the event does not provide the correct searchbox ID', () => {
+      
+    })
   });
 
   describe('isCorrectSayt()', () => {

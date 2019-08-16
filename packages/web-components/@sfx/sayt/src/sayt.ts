@@ -28,7 +28,10 @@ export default class Sayt extends LitElement {
    * Shows a button to allow for closing SAYT manually.
    */
   @property({ type: Boolean, reflect: true }) showCloseButton = false;
-
+  /**
+   * Customizes the number of characters entered in searchbox before opening SAYT.
+   */
+  @property({ type: Number, reflect: true }) minchars = 3;
   /**
    * Calls superclass constructor and bind methods.
    */
@@ -43,6 +46,7 @@ export default class Sayt extends LitElement {
     this.hideCorrectSayt = this.hideCorrectSayt.bind(this);
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
     this.isCorrectSayt = this.isCorrectSayt.bind(this);
+    this.requestSayt = this.requestSayt.bind(this);
   }
 
   /**
@@ -56,6 +60,7 @@ export default class Sayt extends LitElement {
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
+    window.addEventListener('sfx::searchbox_change', this.requestSayt);
   }
 
   /**
@@ -69,6 +74,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
+    window.removeEventListener('sfx::searchbox_change', this.requestSayt);
   }
 
   createRenderRoot() {
@@ -124,6 +130,23 @@ export default class Sayt extends LitElement {
   }
 
   /**
+   * Determines whether an autocomplete call should be made based on minchars attribute.
+   * Then fires the autocomplete fetch data event to communicate with the sayt driver.  .
+   *
+   * @param event An event that can contain a searchbox ID.
+   */
+  requestSayt(event: CustomEvent) {
+    if (!this.isCorrectSayt(event)) return;
+    if(event.detail.value.length >= this.minchars) {
+      const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
+        detail: { query: event.detail.value, searchbox: event.detail.searchbox },
+        bubbles: true,
+      });
+    window.dispatchEvent(requestSaytResults);
+    }
+  }
+
+  /**
    * Determines whether an event refers to the correct SAYT. This is true if
    * a matching `searchbox` ID is specified, if the event has no `searchbox`
    * ID specified, or if SAYT has no `searchbox` ID specified.
@@ -137,13 +160,12 @@ export default class Sayt extends LitElement {
 
   /**
    * Processes a click event in order to close SAYT under the right conditions.
-   * 
+   *
    * @param event The click event.
    */
   processClick(event: MouseEvent) {
     const target = event.target as Node;
     if (this.contains(target) || this.nodeInSearchbox(target)) return;
-
     this.hideSayt();
   }
 
@@ -159,7 +181,7 @@ export default class Sayt extends LitElement {
 
   /**
    * Checks whether a given node is inside of SAYT's identified search box.
-   * 
+   *
    * @param node The node to check for containment.
    */
   nodeInSearchbox(node: Node): boolean {

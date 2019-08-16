@@ -3,11 +3,15 @@
   <head>
     <title>Demo of Logic and View Integration</title>
     <script src="../dist/components.js"></script>
-    <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script>
+    <script src='./temp/sfx-all-plugins-bundle.js'></script> 
+    <!-- above tag to be removed when the cdn PR passes with the updated bundle -->
+    <!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script> -->
   </head>
   <body>
-    <sfx-search-box placeholder="search" clearbutton searchbutton></sfx-search-box>
-    <sfx-sayt visible></sfx-sayt>
+    <sfx-search-box placeholder="search" clearbutton searchbutton id='searchbox1'></sfx-search-box>
+    <sfx-sayt title='basic' searchbox='searchbox1'></sfx-sayt>
+    <sfx-search-box placeholder="search" clearbutton searchbutton id='searchbox2'></sfx-search-box>
+    <sfx-sayt minchars=5 title='minch' searchbox='searchbox2'></sfx-sayt>
     <sfx-list class="product-grid"></sfx-list>
 
     <script>
@@ -29,13 +33,6 @@
         document.getElementsByClassName('product-grid')[0]
         .setAttribute('items', JSON.stringify(testListResults));
       });
-
-      // autocomplate integration/functionality test hardcoded for now
-      const autocompleteDataFetchEvent = new CustomEvent('sfx::autocomplete_fetch_data', {
-        detail: { query: 'pants'},
-        bubbles: true
-      });
-      setTimeout(() => { window.dispatchEvent(autocompleteDataFetchEvent); }, 3000);
     </script>
   </body>
 </html>
