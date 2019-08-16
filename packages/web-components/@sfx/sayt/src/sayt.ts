@@ -131,7 +131,7 @@ export default class Sayt extends LitElement {
 
   /**
    * Determines whether an autocomplete call should be made based on minchars attribute.
-   * Then fires the autocomplete fetch data event to communicate with the sayt driver.  .
+   * Then fires the autocomplete fetch data event to communicate with the sayt driver.
    *
    * @param event An event that can contain a searchbox ID.
    */
