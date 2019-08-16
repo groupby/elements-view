@@ -33,16 +33,37 @@ export function getSampleProducts(): ProductModel[] {
       promo: '25% off',
       imageSrc:
         'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-      imageAlt: 'A spicy red shoe'
+      imageAlt: 'A spicy red shoe',
+      info: 'Info 1',
+      info2: 'Info 2',
+      variants: {
+        type: 'color',
+        items: [
+          {
+            color: '#c00',
+            text: 'Red',
+            product: {
+              imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+              imageAlt: 'A spicy red shoe',
+            },
+          }, {
+            color: '#28e',
+            text: 'Blue',
+            product: {
+              imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+              imageAlt: 'Sonic blue, gotta go fast',
+            },
+          },
+        ]
+      },
     },
     {
       title: 'Greatest Shoe',
       price: 49.99,
       label: 'Classic Product',
       promo: '25% off',
-      imageSrc:
-        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-      imageAlt: 'A classic red shoe'
+      imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+      imageAlt: 'A classic blue shoe',
     }
   ];
 }

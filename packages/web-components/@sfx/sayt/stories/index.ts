@@ -7,81 +7,11 @@ import { getDisplayCode, dispatchProvideProductsEvent } from '../../../../../.st
 // story's events to not affect another story.
 const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
   detail: [
+    { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] },
     { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-    { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
   ],
   bubbles: true
 });
-
-function getStyle() {
-  return `
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    .product-tile-wrapper {
-      width: 33%;
-      padding: 6px;
-    }
-    sfx-product {
-      box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
-      padding: 12px;
-    }
-    sfx-product img {
-      width: 100%;
-    }
-  </style>`;
-}
-
-const productsDataReceivedEvent = new CustomEvent('sfx::provide_products',
-  {
-    detail: {
-      products: [
-        {
-          title: 'Best Shoe',
-          price: 39.99,
-          label: 'New Product',
-          promo: '25% off',
-          imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-          imageAlt: 'A spicy red shoe',
-          info: 'Info 1',
-          info2: 'Info 2',
-          variants: {
-            type: 'color',
-            items: [
-              { color: '#c00', text: 'Red', product: {
-                imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-                imageAlt: 'A spicy red shoe',
-              }
-             },
-              { color: '#28e', text: 'Blue', product: {
-                imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80' },
-                imageAlt: 'Sonic blue, gotta go fast'
-              },
-            ]
-          }
-        },
-        {
-          title: 'Greatest Shoe',
-          price: 49.99,
-          label: 'Classic Product',
-          promo: '25% off',
-          imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-          imageAlt: 'A classic blue shoe',
-        },
-        {
-          title: 'Greatest Shoe',
-          price: 49.99,
-          label: 'Classic Product',
-          promo: '25% off',
-          imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-          imageAlt: 'A classic blue shoe',
-        },
-      ],
-    },
-    bubbles: true,
-  }
-);
 
 function getSayt(searchbox = '', showSayt = true): string {
   const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
@@ -113,13 +43,12 @@ storiesOf('Components|SAYT', module)
   .add('Default', () => {
     emitEventInFuture(autocompleteDataReceivedEvent, 100);
     setTimeout(() => {
-      dispatchProvideProductsEvent();
+      dispatchProvideProductsEvent(3);
     }, 100);
 
     const sayt = getSayt();
 
     return `
-      ${ getStyle() }
       ${ sayt }
 
       ${ getDisplayCode(sayt) }`;
@@ -139,7 +68,7 @@ storiesOf('Components|SAYT', module)
   .add('Responding to Events - sayt_hide & sayt_show ', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
-        dispatchProvideProductsEvent();
+        dispatchProvideProductsEvent(3);
       }, 100);
       emitEventInFuture(new Event('sfx::sayt_hide'), 2000);
       emitEventInFuture(new Event('sfx::sayt_show'), 4000);
@@ -147,7 +76,6 @@ storiesOf('Components|SAYT', module)
       const sayt = getSayt('', false);
 
       return `
-      ${ getStyle() }
       ${ sayt }
       ${ getDisplayCode(sayt) }
     `;
@@ -167,7 +95,7 @@ storiesOf('Components|SAYT', module)
   .add('SAYT with simple search input', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
-        dispatchProvideProductsEvent();
+        dispatchProvideProductsEvent(3);
       }, 100);
 
       const input = `<input type="text" id="search-box" placeholder="Search here" />`;
@@ -204,7 +132,7 @@ storiesOf('Components|SAYT', module)
   .add('SAYT with multiple search inputs', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
-        dispatchProvideProductsEvent();
+        dispatchProvideProductsEvent(2);
       }, 100);
 
       const input1 = `<input type="text" id="search-box1" placeholder="Search here" />`;
@@ -260,13 +188,12 @@ storiesOf('Components|SAYT', module)
     () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 3000);
       setTimeout(() => {
-        dispatchProvideProductsEvent();
+        dispatchProvideProductsEvent(3);
       }, 1000);
 
       const sayt = getSayt();
 
       return `
-      ${ getStyle() }
       ${ sayt }
 
       ${getDisplayCode(sayt)}
@@ -289,7 +216,6 @@ storiesOf('Components|SAYT', module)
       const sayt = getSayt();
 
       return `
-      ${ getStyle() }
       ${ sayt }
 
       ${getDisplayCode(sayt)}
