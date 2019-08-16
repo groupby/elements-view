@@ -1,4 +1,5 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
+import { PRODUCTS_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
 
@@ -12,6 +13,10 @@ export default class Sayt extends LitElement {
    * Determines if the `sfx-autocomplete` component will be hidden or not.
    */
   @property({ type: Boolean, reflect: true }) hideAutocomplete = false;
+  /**
+   * Determines if the `sfx-products` component will be hidden or not.
+   */
+  @property({ type: Boolean, reflect: true }) hideProducts = false;
   /**
    * Determines the visibility of the `sayt` component.
    */
@@ -53,6 +58,7 @@ export default class Sayt extends LitElement {
 
     window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
     window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
+    window.addEventListener(PRODUCTS_EVENT, this.showCorrectSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
@@ -66,6 +72,7 @@ export default class Sayt extends LitElement {
 
     window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
     window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
+    window.removeEventListener(PRODUCTS_EVENT, this.showCorrectSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
@@ -137,7 +144,7 @@ export default class Sayt extends LitElement {
 
   /**
    * Processes a click event in order to close SAYT under the right conditions.
-   * 
+   *
    * @param event The click event.
    */
   processClick(event: MouseEvent) {
@@ -159,7 +166,7 @@ export default class Sayt extends LitElement {
 
   /**
    * Checks whether a given node is inside of SAYT's identified search box.
-   * 
+   *
    * @param node The node to check for containment.
    */
   nodeInSearchbox(node: Node): boolean {
@@ -194,14 +201,26 @@ export default class Sayt extends LitElement {
         sfx-sayt[hidden] {
           display: none;
         }
+
+        .sfx-sayt-container {
+          display: flex;
+        }
       </style>
-      ${ this.showCloseButton ?
-        html`<button aria-label="Close" @click=${ this.clickCloseSayt }>
-          ${ this.closeText }
-        </button>`
-        : ''
-      }
-      ${ this.hideAutocomplete ? '' : html`<sfx-autocomplete></sfx-autocomplete>` }
+        ${this.showCloseButton
+          ? html`
+              <button aria-label="Close" @click=${this.clickCloseSayt}>
+                ${this.closeText}
+              </button>
+            `
+          : ''}
+        <div class="sfx-sayt-container">
+          ${this.hideAutocomplete
+            ? ''
+            : html`<sfx-autocomplete></sfx-autocomplete>`}
+          ${this.hideProducts
+            ? ''
+            : html`<sfx-products></sfx-products>`}
+        </div>
     `;
   }
 }

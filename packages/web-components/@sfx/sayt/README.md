@@ -20,6 +20,7 @@ The SF-X Sayt component allows for the option to not display its children
 components. Users of the component can add the following attributes for
 particular customizations:
 - `hideAutocomplete`: Prevents the `sfx-autocomplete` component from rendering.
+- `hideProducts`: Prevents the `sfx-products` component from rendering.
 
 ## Testing
 The test suite for this component is contained in `/packages/web-components/@sfx/sayt/test`.
@@ -27,6 +28,6 @@ To run the tests, navigate to this folder and use one of the following commands 
 
 - To run the tests once:
 
- ```sh
+```sh
 yarn test
 ```

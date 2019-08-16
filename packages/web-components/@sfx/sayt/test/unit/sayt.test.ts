@@ -1,14 +1,33 @@
-import { expect, sinon, spy, stub } from './utils';
-import { TemplateResult } from 'lit-element';
-import Sayt from '../src/sayt';
-import { SAYT_EVENT } from '../src/events';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
+import { expect, sinon, spy, stub } from '../utils';
+import { TemplateResult, LitElement } from 'lit-element';
+import { PRODUCTS_EVENT } from '@sfx/products';
+import Sayt from '../../src/sayt';
+import { SAYT_EVENT } from '../../src/events';
+import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../../autocomplete/src/events';
 
 describe('Sayt Component', () => {
   let sayt;
 
   beforeEach(() => {
     sayt = new Sayt();
+  });
+
+  describe('Constructor', () => {
+    it('should extend the LitElement class', () => {
+      expect(sayt).to.be.an.instanceof(LitElement);
+    });
+
+    describe('hideAutocomplete property', () => {
+      it('should have default value of false', () => {
+        expect(sayt.hideAutocomplete).to.be.false;
+      });
+    });
+
+    describe('hideProducts property', () => {
+      it('should have default value of false', () => {
+        expect(sayt.hideProducts).to.be.false;
+      });
+    });
   });
 
   describe('connectedCallback()', () => {
@@ -22,9 +41,9 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith('click', sayt.processClick);
       expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
+      expect(addEventListener).to.be.calledWith(PRODUCTS_EVENT, sayt.showCorrectSayt);
     });
   });
-
 
   describe('disconnectedCallback()', () => {
     it('should remove event listeners on the window', () => {
@@ -34,6 +53,7 @@ describe('Sayt Component', () => {
 
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showCorrectSayt);
       expect(removeEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
+      expect(removeEventListener).to.be.calledWith(PRODUCTS_EVENT, sayt.showCorrectSayt);
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);

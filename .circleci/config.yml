@@ -83,9 +83,9 @@ jobs:
           paths:
             - ~/build.tar
 
-  ### build_final
+  ### collect_builds
   ### Generates a cache that includes all built packages.
-  build_final:
+  collect_builds:
     <<: *image
     steps:
       - checkout
@@ -99,6 +99,9 @@ jobs:
       - run: *extract_build_archive
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_product-
+      - run: *extract_build_archive
+      - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_products-
       - run: *extract_build_archive
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt-
@@ -183,26 +186,38 @@ workflows:
           name: build_ui
           requires:
             - build_base
+
       - build:
           name: build_autocomplete
-          <<: *requires_build_ui
+          requires:
+            - build_ui
       - build:
           name: build_product
-          <<: *requires_build_ui
-      - build:
-          name: build_sayt
-          <<: *requires_build_ui
+          requires:
+            - build_ui
       - build:
           name: build_search_box
-          <<: *requires_build_ui
-      - build_final:
           requires:
-            - build_base
             - build_ui
+      - collect_builds:
+          name: collect_independent_builds
+          requires:
             - build_autocomplete
             - build_product
-            - build_sayt
             - build_search_box
+
+      - build:
+          name: build_products
+          requires:
+            - collect_independent_builds
+      - build:
+          name: build_sayt
+          requires:
+            - build_products
+      - collect_builds:
+          name: build_final
+          requires:
+            - build_sayt
 
       - unit_test:
           name: unit_test_base
@@ -215,6 +230,9 @@ workflows:
           <<: *requires_build_final
       - unit_test:
           name: unit_test_product
+          <<: *requires_build_final
+      - unit_test:
+          name: unit_test_products
           <<: *requires_build_final
       - unit_test:
           name: unit_test_sayt
@@ -233,6 +251,7 @@ workflows:
             - unit_test_ui
             - unit_test_autocomplete
             - unit_test_product
+            - unit_test_products
             - unit_test_sayt
             - unit_test_search_box
             - interaction_test_search_box
