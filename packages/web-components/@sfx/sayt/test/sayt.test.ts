@@ -38,6 +38,7 @@ describe('Sayt Component', () => {
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
+      expect(removeEventListener).to.be.calledWith('sfx::searchbox_change', this.requestSayt);
     });
   });
 
@@ -123,7 +124,7 @@ describe('Sayt Component', () => {
 
   describe('requestSayt()', () => {
     it('should return if the event does not provide the correct searchbox ID', () => {
-      
+
     })
   });
 

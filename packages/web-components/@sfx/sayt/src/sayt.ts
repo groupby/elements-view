@@ -29,9 +29,9 @@ export default class Sayt extends LitElement {
    */
   @property({ type: Boolean, reflect: true }) showCloseButton = false;
   /**
-   * Customizes the number of characters entered in searchbox before opening SAYT.
+   * The minimum length of the search term required before a SAYT request will be made with it.
    */
-  @property({ type: Number, reflect: true }) minchars = 3;
+  @property({ type: Number, reflect: true }) minSearchLength = 3;
   /**
    * Calls superclass constructor and bind methods.
    */
@@ -130,20 +130,20 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Determines whether an autocomplete call should be made based on minchars attribute.
-   * Then fires the autocomplete fetch data event to communicate with the sayt driver.
+   * Dispatches an `sfx::autocomplete_fetch_data` event with the provided data.
+   * The event will only be dispatched if this SAYT component is the "correct" SAYT
+   * (see [[isCorrectSayt]]) and if the term is at least [[minSearchLength]] long.
    *
-   * @param event An event that can contain a searchbox ID.
+   * @param event An event that can contain a searchbox ID to identify its associated sayt.
    */
   requestSayt(event: CustomEvent) {
-    if (!this.isCorrectSayt(event)) return;
-    if(event.detail.value.length >= this.minchars) {
-      const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
-        detail: { query: event.detail.value, searchbox: event.detail.searchbox },
-        bubbles: true,
-      });
+    if (!this.isCorrectSayt(event) || event.detail.value.length < this.minSearchLength) return;
+
+    const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
+      detail: { query: event.detail.value, searchbox: event.detail.searchbox },
+      bubbles: true,
+    });
     window.dispatchEvent(requestSaytResults);
-    }
   }
 
   /**

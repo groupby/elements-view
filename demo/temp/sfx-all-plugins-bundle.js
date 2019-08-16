@@ -19499,7 +19499,7 @@ var SaytDriverPlugin = /** @class */ (function () {
     SaytDriverPlugin.prototype.fetchSaytData = function (event) {
         var _this = this;
         var _a = event.detail, query = _a.query, searchbox = _a.searchbox, config = _a.config;
-        this.sendSaytApiRequest({ query: query, config: config })
+        this.sendSaytApiRequest(query, config)
             .then(function (results) {
             _this.core[_this.eventsPluginName].dispatchEvent(_this.saytResponseEvent, { results: results, searchbox: searchbox });
         })
@@ -19514,8 +19514,7 @@ var SaytDriverPlugin = /** @class */ (function () {
      * @returns A promise from the Sayt API that has been reformatted
      * with the passed callback.
      */
-    SaytDriverPlugin.prototype.sendSaytApiRequest = function (_a) {
-        var query = _a.query, config = _a.config;
+    SaytDriverPlugin.prototype.sendSaytApiRequest = function (query, config) {
         return this.core.sayt.autocomplete(query, config).then(this.autocompleteCallback);
     };
     /**

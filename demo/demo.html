@@ -3,24 +3,24 @@
   <head>
     <title>Demo of Logic and View Integration</title>
     <script src="../dist/components.js"></script>
-    <script src='./temp/sfx-all-plugins-bundle.js'></script> 
+    <script src='./temp/sfx-all-plugins-bundle.js'></script>
     <!-- above tag to be removed when the cdn PR passes with the updated bundle -->
     <!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script> -->
   </head>
   <body>
-    <sfx-search-box placeholder="search" clearbutton searchbutton id='searchbox1'></sfx-search-box>
-    <sfx-sayt title='basic' searchbox='searchbox1'></sfx-sayt>
-    <sfx-search-box placeholder="search" clearbutton searchbutton id='searchbox2'></sfx-search-box>
-    <sfx-sayt minchars=5 title='minch' searchbox='searchbox2'></sfx-sayt>
+    <sfx-search-box id="searchbox1" placeholder="search" clearbutton searchbutton></sfx-search-box>
+    <sfx-sayt searchbox="searchbox1"></sfx-sayt>
+    <sfx-search-box id="searchbox2" placeholder="search" clearbutton searchbutton></sfx-search-box>
+    <sfx-sayt searchbox="searchbox2" minSearchLength=5></sfx-sayt>
     <sfx-list class="product-grid"></sfx-list>
 
     <script>
       // init core and plugins
       const core = new sfxCore.Core();
       const domEventsPlugin = new sfxPlugins.DomEventsPlugin()
-      const saytPlugin = new sfxPlugins.SaytPlugin({subdomain: 'apparel', collection: 'products'});
+      const saytPlugin = new sfxPlugins.SaytPlugin({subdomain: "apparel", collection: "products"});
       const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin();
-      const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel', collection: 'products', area: 'Storefront'});
+      const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: "apparel", collection: "products", area: "Storefront"});
       const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin();
       // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
@@ -30,8 +30,8 @@
         const testListResults = e.detail.records.map(item => {
           return { label : item.title };
         });
-        document.getElementsByClassName('product-grid')[0]
-        .setAttribute('items', JSON.stringify(testListResults));
+        document.getElementsByClassName("product-grid")[0]
+        .setAttribute("items", JSON.stringify(testListResults));
       });
     </script>
   </body>
