@@ -208,6 +208,15 @@ export default class Sayt extends LitElement {
    */
   render() {
     return html`
+      <style>
+        sfx-sayt {
+          display: block;
+        }
+
+        sfx-sayt[hidden] {
+          display: none;
+        }
+      </style>
       ${ this.showCloseButton ?
         html`<button aria-label="Close" @click=${ this.clickCloseSayt }>
           ${ this.closeText }
