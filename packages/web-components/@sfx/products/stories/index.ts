@@ -1,9 +1,9 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs } from '@storybook/addon-knobs';
-import { sendSampleProducts, getProducts } from '../../../../../.storybook/common';
+import { dispatchProvideProductsEvent } from '../../../../../.storybook/common';
 
-function getRandomProducts() {
-  return getProducts(Math.ceil(Math.random() * 6));
+function dispatchRandomProducts() {
+  return dispatchProvideProductsEvent(Math.ceil(Math.random() * 6));
 }
 
 function getStyles() {
@@ -32,10 +32,7 @@ function getStyles() {
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-    setTimeout(() => {
-        const products = getProducts(10);
-        sendSampleProducts(products);
-      }, 100);
+    setTimeout(() => dispatchProvideProductsEvent(), 100);
 
     return `
       ${getStyles()}
@@ -56,10 +53,7 @@ storiesOf('Components|Products', module)
   })
   .add('Default - event listening', () => {
     for (let i = 1; i < 6; i++) {
-      setTimeout(() => {
-        const products = getRandomProducts();
-        sendSampleProducts(products);
-      }, i * 2000);
+      setTimeout(() => dispatchRandomProducts(), i * 2000);
     }
 
     return `

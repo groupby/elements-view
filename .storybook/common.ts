@@ -64,7 +64,7 @@ export function sendSampleProducts(products: ProductModel[]) {
   window.dispatchEvent(productsEvent);
 }
 
-export function dispatchProvideProductsEvent() {
-  const products = getProducts(10);
+export function dispatchProvideProductsEvent(count: number = 10) {
+  const products = getProducts(count);
   sendSampleProducts(products);
 }
