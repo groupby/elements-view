@@ -84,14 +84,14 @@ Keywords from the testing frameworks can then be imported to your test files fro
 
 ### Themes
 
-Styled themes are available for components in the `./presets` folder. These can be viewed and developed by using Storybook and by running two active terminal processes:
+Styled themes are available for components in the `./themes` folder. These can be viewed and developed by using Storybook and by running two active terminal processes:
 
 ```sh
 yarn storybook
 yarn dev:themes
 ```
 
-These will run Storybook and watch the `./presets` directory for all changes to `.scss` files. Themes can be toggled in the `CSS Resources` addon tab.
+These will run Storybook and watch the `./themes` directory for all changes to `.scss` files. Themes can be toggled in the `CSS Resources` addon tab.
 
 ##Documentation
 The following command will generate documentation for each module in the `packages` directory. It uses [TypeDoc](https://typedoc.org/) and outputs to the `docs` directory.
