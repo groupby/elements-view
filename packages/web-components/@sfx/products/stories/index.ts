@@ -1,53 +1,9 @@
 import { storiesOf } from '@storybook/html';
-import { withKnobs, number } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
+import { dispatchProvideProductsEvent } from '../../../../../.storybook/common';
 
-import { PRODUCTS_EVENT } from '../src/index';
-import { ProductModel } from '@sfx/product';
-
-const sampleProducts: ProductModel[] = [
-  {
-    title: 'Best Shoe',
-    price: 39.99,
-    label: 'New Product',
-    promo: '25% off',
-    imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-    imageAlt: 'A spicy red shoe',
-  },
-  {
-    title: 'Greatest Shoe',
-    price: 49.99,
-    label: 'Classic Product',
-    promo: '25% off',
-    imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-    imageAlt: 'A classic blue shoe',
-  },
-];
-
-function getProducts(quantity) {
-  const products = [];
-  for (let i = 0; i < quantity; i++) {
-    const randomIndex = Math.floor(Math.random() * sampleProducts.length);
-    products.push(sampleProducts[randomIndex]);
-  }
-  return products;
-}
-
-function getRandomProducts() {
-  return getProducts(Math.ceil(Math.random() * 6));
-}
-
-function getProductsReceivedEvent(products) {
-  return new CustomEvent(PRODUCTS_EVENT, {
-    detail: {
-      products,
-    },
-    bubbles: true,
-  });
-}
-
-function sendSampleProducts(products) {
-  const productsEvent = getProductsReceivedEvent(products);
-  window.dispatchEvent(productsEvent);
+function dispatchRandomProducts() {
+  return dispatchProvideProductsEvent(Math.ceil(Math.random() * 6));
 }
 
 function getStyles() {
@@ -76,16 +32,14 @@ function getStyles() {
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-
-    setTimeout(() => {
-      const products = getProducts(10);
-      sendSampleProducts(products);
-    }, 100);
+    setTimeout(() => dispatchProvideProductsEvent(), 100);
 
     return `
       ${getStyles()}
       <sfx-products></sfx-products>
-    `}, {
+    `;
+  },
+  {
     notes: {
       markdown: `
         # Products
@@ -95,23 +49,19 @@ storiesOf('Components|Products', module)
         via the \`products\` attribute on the DOM element, or by
         emitting an event which contains the products to be rendered.
       `
-    },
+    }
   })
   .add('Default - event listening', () => {
-    const products = getRandomProducts();
-
     for (let i = 1; i < 6; i++) {
-      setTimeout(() => {
-        const products = getRandomProducts();
-        sendSampleProducts(products);
-      }, i * 2000);
+      setTimeout(() => dispatchRandomProducts(), i * 2000);
     }
 
     return `
       ${getStyles()}
       <sfx-products></sfx-products>
     `;
-  }, {
+  },
+  {
     notes: {
       markdown: `
         # Products - event listening
@@ -121,6 +71,6 @@ storiesOf('Components|Products', module)
 
         The event is fired once every two seconds, stopping after
         five total event emissions.
-      `,
+      `
     }
   });
