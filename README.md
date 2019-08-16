@@ -84,7 +84,7 @@ Keywords from the testing frameworks can then be imported to your test files fro
 
 ### Themes
 
-Styled themes are available for components in the `./presets` folder. These can be developed in Storybook by running two active terminal processes:
+Styled themes are available for components in the `./presets` folder. These can be viewed and developed by using Storybook and by running two active terminal processes:
 
 ```sh
 yarn storybook
