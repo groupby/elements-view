@@ -7,9 +7,29 @@
     <link rel="stylesheet" href="client.css">
   </head>
   <body>
-    <sfx-search-box placeholder="search" clearbutton searchbutton></sfx-search-box>
-    <sfx-sayt visible></sfx-sayt>
-    <sfx-list class="product-grid"></sfx-list>
+    <!-- Sections you are going to need:
+      - Home/Hero
+      - New Arrivals
+      - Info/shipping and money back stuff
+      - Create a new lookbook
+      - footer/contact us
+    -->
+    <header>
+      <div class="logo">
+        <p>Put a logo here</p>
+      </div>
+      <nav class="header-nav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#new-arrivals">New Arrivals</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#lookbook">LookBook</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <sfx-search-box placeholder="search" clearbutton searchbutton></sfx-search-box>
+      <sfx-sayt></sfx-sayt>
+    </header>
 
     <script>
       // init core and plugins
