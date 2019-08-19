@@ -97,6 +97,39 @@ describe('Sayt Component', () => {
       //   expect(removeEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
       // // }
     });
+
+    it('should unregister listener for searchbox change if searchbox is not given', () => {
+      const removeEventListener = stub(window, 'removeEventListener');
+      sayt.searchbox = '';
+
+      sayt.disconnectedCallback();
+
+      expect(removeEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
+    });
+
+    // it('should listen for input change if specified searchbox element exists', () => {
+    //   const searchboxAddEventListener = spy();
+    //   const windowAddEventListener = stub(window, 'addEventListener');
+    //   const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
+    //   const searchboxId = sayt.searchbox = 'searchbox1';
+    //
+    //   sayt.connectedCallback();
+    //
+    //   expect(getElementById).to.be.calledWith(searchboxId);
+    //   expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
+    //   expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
+    // });
+    //
+    // it('should not listen for input when searchbox ID is given but the element does not exist', () => {
+    //   const windowAddEventListener = stub(window, 'addEventListener');
+    //   const getElementById = stub(document, 'getElementById').returns(null);
+    //   sayt.searchbox = 'searchbox1';
+    //
+    //   sayt.connectedCallback();
+    //
+    //   // It is implicitly tested that input is not being listened for because there is no element to attach it to
+    //   expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
+    // });
   });
 
   describe('updated()', () => {
