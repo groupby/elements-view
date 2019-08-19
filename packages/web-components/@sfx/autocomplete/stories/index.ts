@@ -89,15 +89,46 @@ storiesOf('Components|Autocomplete', module)
       ${getDisplayCode(autocomplete)}`;
     },
     {
-      customEvents: autocompleteReceivedResultsEvent
-    },
-    {
+      customEvents: autocompleteReceivedResultsEvent,
       notes: {
         markdown: `
-          # Autocomplete
-          Hardcoded
+          # SF-X Autocomplete Component
 
-          - Display hardcoded data with one titled autocomplete grouping, and one untitled autocomplete grouping.
+          [Here](https://wwww.google.com "SF-X Autocomplete Documentation") is the documentation for the SF-X Autocomplete component.
+
+          ## Demonstrated in this story:
+
+          * Rendering of hardcoded autocomplete data
+            * hardcoding includes the optional title (contained in the caption attribute)
+
+          \`\`\`html
+          <sfx-autocomplete
+          caption="Autocomplete Results"
+          results="[
+            {
+              title: 'Brands',
+              items: [
+                {
+                  label: 'New Balance'
+                },
+                {
+                  label: 'Bauer'
+                }
+              ]
+            },
+            {
+              title: '',
+              items: [
+                {
+                  label: 'Golf Ball'
+                },
+                {
+                  label: 'Basketball'
+                }
+              ]
+            }
+          ]"></sfx-autocomplete>
+          \`\`\`
           `
       }
     }
@@ -111,12 +142,12 @@ storiesOf('Components|Autocomplete', module)
       ${getDisplayCode(autocomplete)}`
     },
     {
-      customEvents: autocompleteReceivedResultsEvent
-    },
-    {
+      customEvents: autocompleteReceivedResultsEvent,
       notes: {
         markdown: `
-            #Autocomplete
+            # SFX-Autocomplete
+
+            ## Demonstrated in this story:
             Demonstrating autocomplete populating with autocomplete data in response to the autocomplete received results event.
 
             * To emit the event, visit the Custom Events tab and view the 'sfx::autocomplete_received_results' event.
@@ -125,4 +156,18 @@ storiesOf('Components|Autocomplete', module)
             `
       }
     }
+    // {
+    //   notes: {
+    //     markdown: `
+    //         # SFX-Autocomplete
+
+    //         ## Demonstrated in this story:
+    //         Demonstrating autocomplete populating with autocomplete data in response to the autocomplete received results event.
+
+    //         * To emit the event, visit the Custom Events tab and view the 'sfx::autocomplete_received_results' event.
+    //         * Clicking 'emit' will fire the event, which sfx-autocomplete listens on.
+    //           * The payload of the event (event detail) should populate on the page.
+    //         `
+    //   }
+    // }
   );
