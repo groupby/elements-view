@@ -8,6 +8,14 @@ function dispatchRandomProducts() {
   return dispatchProvideProductsEvent(Math.ceil(Math.random() * 6));
 }
 
+
+const productsNotesMarkdownIntro =
+` # SF-X Autocomplete Component
+
+[SF-X Autocomplete README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/autocomplete "SF-X Autocomplete README").
+
+## Demonstrated in this story:`;
+
 const sampleProducts: ProductModel[] = [
   {
     title: 'Best Shoe',
@@ -41,7 +49,7 @@ const productsResultsEvent = [
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-    setTimeout(() => dispatchProvideProductsEvent(), 100);
+    setTimeout(() => dispatchProvideProductsEvent(), 10);
 
     return `
       <sfx-products></sfx-products>
@@ -51,7 +59,9 @@ storiesOf('Components|Products', module)
     customEvents: productsResultsEvent,
     notes: {
       markdown: `
-        # Products
+        ${productsNotesMarkdownIntro}
+
+
 
         The Products component (\`sfx-product\`) is used for rendering
         a collection of products. It can be passed products directly
