@@ -42,14 +42,6 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
       expect(addEventListener).to.be.calledWith(PRODUCTS_EVENT, sayt.showCorrectSayt);
-      // if (searchbox) {
-      //   // const box = document.getElementById(searchbox);
-      //   // sayt.box = 'searchbox-id';
-      //   // console.log('>> box', )
-      //     expect(addEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
-      // } else {
-      //   expect(addEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
-      // }
     });
 
     it('should listen on searchbox change if searchbox is not given', () => {
@@ -62,21 +54,27 @@ describe('Sayt Component', () => {
     });
 
     it('should listen for input change if specified searchbox element exists', () => {
-      const addEventListener = spy();
-      const getElementById = stub(document, 'getElementById').returns({ addEventListener });
+      const searchboxAddEventListener = spy();
+      const windowAddEventListener = stub(window, 'addEventListener');
+      const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
       const searchboxId = sayt.searchbox = 'searchbox1';
 
       sayt.connectedCallback();
 
       expect(getElementById).to.be.calledWith(searchboxId);
-      expect(addEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
+      expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
+      expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
     });
 
-    it('should listen for input when searchbox element does not exist', () => {
+    it('should not listen for input when searchbox ID is given but the element does not exist', () => {
+      const windowAddEventListener = stub(window, 'addEventListener');
       const getElementById = stub(document, 'getElementById').returns(null);
-      const callback = () => sayt.connectedCallback();
+      sayt.searchbox = 'searchbox1';
 
-      expect(callback).to.not.throw();
+      sayt.connectedCallback();
+
+      // It is implicitly tested that input is not being listened for because there is no element to attach it to
+      expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
     });
   });
 
@@ -84,8 +82,6 @@ describe('Sayt Component', () => {
   describe('disconnectedCallback()', () => {
     it('should remove event listeners on the window', () => {
       const removeEventListener = stub(window, 'removeEventListener');
-      // const searchbox = stub(document, 'getElementById');
-      // console.log('>> searchbox', searchbox)
 
       sayt.disconnectedCallback();
 
