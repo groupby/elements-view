@@ -28,6 +28,13 @@
         document.getElementsByClassName('product-grid')[0]
         .setAttribute('items', JSON.stringify(testListResults));
       });
+
+      // autocomplate integration/functionality test hardcoded for now
+      const autocompleteDataFetchEvent = new CustomEvent('sfx::autocomplete_fetch_data', {
+        detail: { query: 'pants'},
+        bubbles: true
+      });
+      // setTimeout(() => { window.dispatchEvent(autocompleteDataFetchEvent); }, 3000);
     </script>
   </body>
 </html>
