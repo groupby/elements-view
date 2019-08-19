@@ -60,6 +60,17 @@ describe('Sayt Component', () => {
 
       expect(addEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
     });
+
+    it('should listen for input change if specified searchbox element exists', () => {
+      const addEventListener = spy();
+      const getElementById = stub(document, 'getElementById').returns({ addEventListener });
+      const searchboxId = sayt.searchbox = 'searchbox1';
+
+      sayt.connectedCallback();
+
+      expect(getElementById).to.be.calledWith(searchboxId);
+      expect(addEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
+    });
   });
 
 
