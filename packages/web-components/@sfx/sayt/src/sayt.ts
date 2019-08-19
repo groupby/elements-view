@@ -52,6 +52,9 @@ export default class Sayt extends LitElement {
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
     this.isCorrectSayt = this.isCorrectSayt.bind(this);
     this.requestSayt = this.requestSayt.bind(this);
+    this.processSearchboxInput = this.processSearchboxInput.bind(this);
+    this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
+
   }
 
   /**
@@ -66,9 +69,14 @@ export default class Sayt extends LitElement {
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
-    // checkInputType()
-    window.addEventListener('sfx::searchbox_change', this.requestSayt);
-    // window.addEventListener('input')
+          console.log('>>> sayt', this.searchbox )
+    if (this.searchbox) {
+      // console.log('>>> sayt', this.searchbox)
+      const searchbox = document.getElementById(this.searchbox);
+      if (searchbox) searchbox.addEventListener('input', this.processSearchboxInput);
+    } else {
+      window.addEventListener('sfx::searchbox_change', this.processSfxSearchboxChange);
+    }
   }
 
   /**
@@ -83,8 +91,13 @@ export default class Sayt extends LitElement {
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
-    window.removeEventListener('sfx::searchbox_change', this.requestSayt);
-     //
+
+    if (this.searchbox) {
+      const searchbox = document.getElementById(this.searchbox);
+      if (searchbox) searchbox.removeEventListener('input', this.processSearchboxInput);
+    } else {
+      window.removeEventListener('sfx::searchbox_change', this.processSfxSearchboxChange);
+    }
   }
 
   createRenderRoot() {
@@ -141,19 +154,38 @@ export default class Sayt extends LitElement {
 
   /**
    * Dispatches an `sfx::autocomplete_fetch_data` event with the provided data.
-   * The event will only be dispatched if this SAYT component is the "correct" SAYT
-   * (see [[isCorrectSayt]]) and if the term is at least [[minsearchlength]] long.
+   * The event will be dispatched if the term is at least [[minsearchlength]] long.
    *
    * @param event The searchbox change event dispatched from the searchbox.
    */
-  requestSayt(event: CustomEvent) {
-    if (!this.isCorrectSayt(event) || event.detail.value.length < this.minsearchlength) return;
+  requestSayt(query: string, searchbox: string) {
+    if (query.length < this.minsearchlength) return;
 
     const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
-      detail: { query: event.detail.value, searchbox: event.detail.searchbox },
+      detail: { query, searchbox },
       bubbles: true,
     });
     window.dispatchEvent(requestSaytResults);
+  }
+
+  /**
+   * Handles the searchbox input in the case where no searchbox ID is given, and
+   * triggers the `requestSayt` function with the query and searchbox data.
+   *
+   * @param event The searchbox input event dispatched from the searchbox.
+   */
+  processSearchboxInput(event: Event) {
+    this.requestSayt((event.target as HTMLInputElement).value, this.searchbox);
+  }
+
+  /**
+   * Handles the SF- X searchbox changes in the case where a searchbox ID is given, and
+   * triggers the `requestSayt` function with the query and specific searchbox ID.
+   *
+   * @param event The searchbox change event dispatched from the searchbox.
+   */
+  processSfxSearchboxChange(event: CustomEvent) {
+    this.requestSayt(event.detail.value, event.detail.searchbox);
   }
 
   /**
