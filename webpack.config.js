@@ -5,7 +5,12 @@ module.exports = {
   mode: 'development',
 
   entry: {
-    components: './presets/components.ts',
+    components: [
+      './presets/components.ts',
+      './presets/sfx-bold-theme.scss',
+      './presets/sfx-elegant-theme.scss',
+    ],
+
   },
 
   devtool: 'source-map',
@@ -32,6 +37,21 @@ module.exports = {
           loader: 'istanbul-instrumenter-loader',
           options: { esModules: true }
         }
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].css',
+            },
+          },
+          'extract-loader',
+          'css-loader?-url',
+          'sass-loader'
+        ]
       }
     ]
   },

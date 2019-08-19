@@ -1,0 +1,26 @@
+sfx-search-box {
+  --search-box-button-width: 75px;
+  background: white;
+  display: grid;
+  font-family: var(--sfx-font-default);
+  grid-template-columns: auto repeat(2, var(--search-box-button-width));
+  grid-column-gap: var(--sfx-spacing-default);
+
+  button,
+  input {
+    border: 1px solid var(--sfx-color-border);
+    padding: calc(var(--sfx-spacing-default) * 2);
+  }
+
+  button {
+    background-color: var(--sfx-color-primary);
+    width: var(--search-box-button-width);
+
+    &:focus,
+    &:hover {
+      box-shadow: 0 0 5px var(--sfx-color-primary);
+      background-color: var(--sfx-color-tertiary);
+      transition: all 0.10s ease;
+    }
+  }
+}

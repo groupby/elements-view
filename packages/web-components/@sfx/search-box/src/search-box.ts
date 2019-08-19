@@ -172,14 +172,18 @@ export default class SearchBox extends Base {
     return html`
       <style>
         sfx-search-box {
-          display: inline-block;
+          display: inline-flex;
         }
-
         sfx-search-box[hidden] {
           display: none;
         }
+        sfx-search-box > input {
+          flex-grow: 1;
+        }
       </style>
       <input
+        aria-label="Search"
+        class="sfx-input"
         type="text"
         placeholder="${this.placeholder}"
         .value="${this.value}"
@@ -189,17 +193,20 @@ export default class SearchBox extends Base {
       />
       ${this.clearButton
         ? html`
-            <button @click="${this.clearSearch}">Clear</button>
+            <button
+              class="sfx-clear"
+              @click="${this.clearSearch}"
+            >Clear</button>
           `
         : ''}
       ${this.searchButton
         ? html`
-            <button @click="${this.emitSearchEvent}">Search</button>
+            <button
+              class="sfx-submit"
+              @click="${this.emitSearchEvent}"
+            >Search</button>
           `
         : ''}
-      <button @click="${this.updateTextEvent}">
-        Click to dispatch update search term event
-      </button>
     `;
   }
 }

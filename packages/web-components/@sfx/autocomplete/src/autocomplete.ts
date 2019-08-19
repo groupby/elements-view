@@ -65,8 +65,8 @@ export default class Autocomplete extends Base {
   dispatchAutocompleteResults() {
     const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
       detail: [
+        { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] },
         { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-        { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
       ],
       bubbles: true
     });
@@ -83,13 +83,12 @@ export default class Autocomplete extends Base {
         sfx-autocomplete {
           display: block;
         }
-
         sfx-autocomplete[hidden] {
           display: none;
         }
       </style>
       ${this.caption && this.results.length > 0
-        ? html`<h3>${this.caption}</h3>`
+        ? html`<h3 class="sfx-header">${this.caption}</h3>`
         : ''}
       ${this.results.map(
         list =>
@@ -97,9 +96,6 @@ export default class Autocomplete extends Base {
             <sfx-list caption="${list.title}" .items="${list.items}"></sfx-list>
           `
       )}
-      <button @click=${this.dispatchAutocompleteResults}>
-        Click to dispatch event
-      </button>
     `;
   }
 }

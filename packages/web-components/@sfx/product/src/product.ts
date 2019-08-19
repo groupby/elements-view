@@ -59,7 +59,7 @@ export default class Product extends Base {
     ]);
 
     return Object.keys(product).filter(p => !properties.has(p)).map(p => html`
-      <span class="sfx-product-${ toLowerCaseKebab(p) }">${ product[p] }</span>
+      <span class="sfx-${ toLowerCaseKebab(p) }">${ product[p] }</span>
     `);
   }
 
@@ -73,24 +73,31 @@ export default class Product extends Base {
         }
       </style>
       <slot name="image">
-        ${ imageSrc ? html`<img src="${ imageSrc }" alt="${ imageAlt }" />`: '' }
+        ${ imageSrc ?
+          html`<img
+            class="sfx-image"
+            src="${ imageSrc }"
+            alt="${ imageAlt }" />`
+          : '' }
       </slot>
       <slot name="variants">
-        <ul class="product-variants">
-          ${
-            variants ?
-              variants.items.map(v =>
-                html`<sfx-product-variant @click="${this.updateVariant(v)}" type="${variants.type}" .variant="${v}"></sfx-product-variant>`
-              )
+        <ul class="sfx-product-variants">
+          ${variants ?
+            variants.items.map(v =>
+              html`<sfx-product-variant
+                @click="${this.updateVariant(v)}"
+                type="${variants.type}"
+                .variant="${v}"
+              ></sfx-product-variant>`)
             : ''
           }
         </ul>
       </slot>
       <slot name="title">
-        ${ this.urlWrap(productUrl, html`<h3>${ title }</h3>`) }
+        ${ this.urlWrap(productUrl, html`<h3 class="sfx-title">${ title }</h3>`) }
       </slot>
       <slot name="price">
-        <p>${ price }</p>
+        <p class="sfx-price">${ price }</p>
       </slot>
       ${ this.additionalInfo() }
     `;

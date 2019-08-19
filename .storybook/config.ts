@@ -1,4 +1,5 @@
 import { configure, addDecorator, addParameters } from '@storybook/html';
+import { withCssResources } from '@storybook/addon-cssresources';
 import { withA11y } from '@storybook/addon-a11y';
 import GroupByTheme from './theme';
 
@@ -7,10 +8,23 @@ const req = require['context']('../packages/web-components', true, /\/stories\/i
 
 function loadStories() {
   addDecorator(withA11y);
+  addDecorator(withCssResources);
   addParameters({
     options: {
       theme: GroupByTheme,
-    }
+    },
+    cssresources: [
+      {
+        id: `Elegant Theme`,
+        code: `<link rel="stylesheet" type="text/css" href="/sfx-elegant-theme.css"></link>`,
+        picked: true,
+      },
+      {
+        id: `Bold Theme`,
+        code: `<link rel="stylesheet" type="text/css" href="/sfx-bold-theme.css"></link>`,
+        picked: false,
+      },
+    ],
   });
   req.keys().forEach(req);
 }

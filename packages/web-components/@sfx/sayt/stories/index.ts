@@ -7,35 +7,15 @@ import { getDisplayCode, dispatchProvideProductsEvent } from '../../../../../.st
 // story's events to not affect another story.
 const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
   detail: [
+    { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] },
     { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-    { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
   ],
   bubbles: true
 });
 
-function getStyle() {
-  return `
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    .product-tile-wrapper {
-      width: 33%;
-      padding: 6px;
-    }
-    sfx-product {
-      box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
-      padding: 12px;
-    }
-    sfx-product img {
-      width: 100%;
-    }
-  </style>`;
-}
-
 function getSayt(searchbox = '', showSayt = true): string {
   const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
-  const closeText = text('Close link text', 'Close');
+  const closeText = text('Close link text', '×');
   const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
   const hideAutocomplete = boolean('Hide Autocomplete', false) ? 'hideAutocomplete' : '';
   const hideProducts = boolean('Hide Products', false) ? 'hideProducts' : '';
@@ -63,17 +43,15 @@ storiesOf('Components|SAYT', module)
   .add('Default', () => {
     emitEventInFuture(autocompleteDataReceivedEvent, 100);
     setTimeout(() => {
-      dispatchProvideProductsEvent();
+      dispatchProvideProductsEvent(3);
     }, 100);
 
     const sayt = getSayt();
 
     return `
-    ${ getStyle() }
-    ${ sayt }
+      ${ sayt }
 
-    ${ getDisplayCode(sayt) }
-  `;
+      ${ getDisplayCode(sayt) }`;
     },
     {
       notes: {
@@ -90,7 +68,7 @@ storiesOf('Components|SAYT', module)
   .add('Responding to Events - sayt_hide & sayt_show ', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
-        dispatchProvideProductsEvent();
+        dispatchProvideProductsEvent(3);
       }, 100);
       emitEventInFuture(new Event('sfx::sayt_hide'), 2000);
       emitEventInFuture(new Event('sfx::sayt_show'), 4000);
@@ -98,7 +76,6 @@ storiesOf('Components|SAYT', module)
       const sayt = getSayt('', false);
 
       return `
-      ${ getStyle() }
       ${ sayt }
       ${ getDisplayCode(sayt) }
     `;
@@ -118,17 +95,27 @@ storiesOf('Components|SAYT', module)
   .add('SAYT with simple search input', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
-        dispatchProvideProductsEvent();
+        dispatchProvideProductsEvent(3);
       }, 100);
 
       const input = `<input type="text" id="search-box" placeholder="Search here" />`;
       const sayt = getSayt('search-box');
 
       return `
-      ${ input }
-      <br />
-      ${ getStyle() }
-      ${ sayt }
+      <style>
+        .search-container {
+          float: left;
+          position: relative;
+          width: 100%;
+        }
+        #search-box {
+          width: 100%;
+        }
+      </style>
+      <div class="search-container">
+        ${ input }
+        ${ sayt }
+      </div>
       ${ getDisplayCode(`${ input }\n${ sayt }`) }
     `;
     },
@@ -145,7 +132,7 @@ storiesOf('Components|SAYT', module)
   .add('SAYT with multiple search inputs', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
-        dispatchProvideProductsEvent();
+        dispatchProvideProductsEvent(2);
       }, 100);
 
       const input1 = `<input type="text" id="search-box1" placeholder="Search here" />`;
@@ -153,19 +140,26 @@ storiesOf('Components|SAYT', module)
       const sayt1 = getSayt('search-box1');
       const sayt2 = getSayt('search-box2');
 
-      return `${ input1 }<br />
-${ getStyle() }
-${ sayt1 }
-<hr />
-${ input2 }<br />
-${ sayt2 }
-
-${ getDisplayCode(`${ input1 }
-${ sayt1 }
-
-${ input2 }
-${ sayt2 }`) }
-    `;
+    return `
+      <style>
+        .search-container {
+          float: left;
+          position: relative;
+          width: 50%;
+        }
+        #search-box1, #search-box2 {
+          width: 100%;
+        }
+      </style>
+      <div class="search-container">
+        ${ input1 }
+        ${ sayt1 }
+      </div>
+      <div class="search-container">
+        ${ input2 }
+        ${ sayt2 }
+      </div>
+      ${ getDisplayCode(`${ input1 }${ sayt1 }${ input2 }${ sayt2 }`) }`;
     },
     {
       notes: {
@@ -194,13 +188,12 @@ ${ sayt2 }`) }
     () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 3000);
       setTimeout(() => {
-        dispatchProvideProductsEvent();
+        dispatchProvideProductsEvent(3);
       }, 1000);
 
       const sayt = getSayt();
 
       return `
-      ${ getStyle() }
       ${ sayt }
 
       ${getDisplayCode(sayt)}
@@ -223,7 +216,6 @@ ${ sayt2 }`) }
       const sayt = getSayt();
 
       return `
-      ${ getStyle() }
       ${ sayt }
 
       ${getDisplayCode(sayt)}
