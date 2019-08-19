@@ -172,7 +172,7 @@ export default class SearchBox extends Base {
     return html`
       <style>
         sfx-search-box {
-          display: flex;
+          display: inline-flex;
         }
         sfx-search-box[hidden] {
           display: none;
