@@ -6,6 +6,13 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 /* CUSTOM STYLES START HERE! */
 /* CSS VARIABLES START HERE! */
+/* Current Color Set
+  #E6AF2A - Mustard Yellow
+  #25283D - Dark Blue
+  #FFFFFF - White
+  #353531 - Dark Gray
+  #BA3B46 - Deep Chestnut
+*/
 :root {
   /* Background Color Variables */
   --background-color-primary: #BA3B46;
