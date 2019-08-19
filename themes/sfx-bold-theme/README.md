@@ -15,7 +15,7 @@ Themes can be modified by targetting the element classes and the theme variables
 ### CSS Variables
 Variables currently being used in this theme:
 
-- `--border-radius`
+- `--sfx-border-radius`
 - `--sfx-color-background`
 - `--sfx-color-border`
 - `--sfx-color-font`

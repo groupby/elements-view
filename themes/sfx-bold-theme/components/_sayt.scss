@@ -1,7 +1,7 @@
 sfx-sayt {
   .sfx-sayt-container {
     border: 1px solid var(--sfx-color-border);
-    border-radius: var(--border-radius);
+    border-radius: var(--sfx-border-radius);
     font-family: var(--sfx-font-default);
     position: absolute;
   }
@@ -9,7 +9,7 @@ sfx-sayt {
   > button {
     background: none;
     border: none;
-    border-radius: var(--border-radius);
+    border-radius: var(--sfx-border-radius);
     font-size: 20px;
     line-height: 1;
     padding: var(--sfx-spacing-default);

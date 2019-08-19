@@ -9,7 +9,7 @@ sfx-search-box {
   button,
   input {
     border: 1px solid var(--sfx-color-border);
-    border-radius: var(--border-radius);
+    border-radius: var(--sfx-border-radius);
     padding: calc(var(--sfx-spacing-default) * 2);
   }
 
