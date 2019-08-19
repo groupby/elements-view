@@ -5,14 +5,32 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 /* CUSTOM STYLES START HERE! */
+/* CSS VARIABLES START HERE! */
+:root {
+  /* Background Color Variables */
+  --background-color-primary: #BA3B46;
+  --background-color-secondary: #25283D;
+  /* Font Color Variables */
+  --font-color-primary: #ffffff;
+  --font-color-secondary: #e6af2a;
+  --font-color-tertiary: #353531;
+  /* Accent Color Variables */
+  --accent-color-primary: #353531;
+  --accent-color-secondary: #BA3B46;
+
+  /* Header Height Variable */
+  --header-height: 60px;
+}
+/* CSS VARIABLES END HERE! */
 /* BASE STYLES START HERE! */
 html {
   font-size: 62.5%;
 }
 
-h1, h2, h3, h4, p, ul, li {
+h1, h2, h3, h4, p, ul, li, button {
   margin: 0;
   padding: 0;
+  border: 0;
 }
 
 a {
@@ -29,4 +47,91 @@ ul {
   max-width: 1140px;
 }
 /* BASE STYLES END HERE! */
+
+/* HEADER STYLES START HERE! */
+header {
+  color: var(--font-color-secondary);
+}
+
+header .wrapper {
+  display: flex;
+  height: var(--header-height);
+  padding: 15px 0;
+  justify-content: space-between;
+}
+
+header .logo {
+  font-size: 3rem;
+}
+
+.header-nav ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header-nav li {
+  margin: 0 20px;
+  color: var(--font-color-tertiary);
+  font-size: 2rem;
+  text-transform: uppercase;
+  padding: 2px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+.header-nav li:hover {
+  color: var(--accent-color-secondary);
+  border-bottom: 1px solid var(--accent-color-secondary);
+}
+
+header sfx-search-box {
+  font-size: 1.6rem;
+}
+
+sfx-search-box button {
+  /* border: 0;
+  padding: 0; */
+}
+
+/* HEADER STYLES END HERE! */
+
+/* HERO SECTION STYLES START HERE! */
+.hero {
+  background-image: url('./assets/hero.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: calc( 100vh - var(--header-height) );
+}
+
+.hero h1 {
+  margin: 50px 0;
+  color: var(--font-color-primary);
+  font-size: 15rem;
+  text-align: right;
+}
+
+.hero a {
+  display: block;
+  width: 200px;
+  height: 80px;
+  padding: 30px 0;
+  border: solid 1px var(--font-color-primary);
+  color: var(--font-color-primary);
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+.hero a:hover {
+  background-color: var(--font-color-primary);
+  color: var(--font-color-secondary);
+}
+
+.hero .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+/* HERO SECTION STYLES END HERE! */
 /* CUSTOM STYLES END HERE! */
