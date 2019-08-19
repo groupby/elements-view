@@ -69,9 +69,7 @@ export default class Sayt extends LitElement {
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
-          console.log('>>> sayt', this.searchbox )
     if (this.searchbox) {
-      // console.log('>>> sayt', this.searchbox)
       const searchbox = document.getElementById(this.searchbox);
       if (searchbox) searchbox.addEventListener('input', this.processSearchboxInput);
     } else {
@@ -179,7 +177,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Handles the SF- X searchbox changes in the case where a searchbox ID is given, and
+   * Handles the SF-X searchbox changes in the case where a searchbox ID is given, and
    * triggers the `requestSayt` function with the query and specific searchbox ID.
    *
    * @param event The searchbox change event dispatched from the searchbox.
