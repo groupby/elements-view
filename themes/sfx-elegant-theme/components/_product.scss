@@ -9,6 +9,10 @@ sfx-product {
   padding: var(--sfx-spacing-product);
   position: relative;
 
+  &[hidden] {
+    display: hidden;
+  }
+
   &:hover {
     box-shadow: 0 0 30px -5px rgba(0,0,0,0.5);
     transition: box-shadow 0.2s ease-in-out;
@@ -49,9 +53,5 @@ sfx-product {
     font-weight: bold;
     padding: 0.25em;
     position: absolute;
-  }
-
-  &[hidden] {
-    display: hidden;
   }
 }

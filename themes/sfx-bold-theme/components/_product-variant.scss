@@ -8,6 +8,10 @@ sfx-product-variant {
   overflow: hidden;
   cursor: pointer;
 
+  &[hidden] {
+    display: none;
+  }
+
   img {
     width: auto;
     height: auto;
@@ -15,9 +19,5 @@ sfx-product-variant {
     min-height: var(--product-variant-size);
     max-width: 100%;
     max-height: 100%;
-  }
-
-  &[hidden] {
-    display: none;
   }
 }
