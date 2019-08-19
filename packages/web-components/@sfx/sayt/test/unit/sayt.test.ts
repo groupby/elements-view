@@ -41,7 +41,7 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith('click', sayt.processClick);
       expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
-      expect(addEventListener).to.be.calledWith('sfx::searchbox_change', this.requestSayt);
+      // expect(addEventListener).to.be.calledWith('sfx::searchbox_change', this.requestSayt);
       expect(addEventListener).to.be.calledWith(PRODUCTS_EVENT, sayt.showCorrectSayt);
     });
   });
@@ -58,7 +58,7 @@ describe('Sayt Component', () => {
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
-      expect(removeEventListener).to.be.calledWith('sfx::searchbox_change', this.requestSayt);
+      // expect(removeEventListener).to.be.calledWith('sfx::searchbox_change', this.requestSayt);
     });
   });
 

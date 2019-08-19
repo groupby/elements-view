@@ -2,7 +2,7 @@ import { LitElement, customElement, html, property, PropertyValues } from 'lit-e
 import { PRODUCTS_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
-
+import { SEARCHBOX_EVENT } from '../../search-box/src/events';
 /**
  * The `sfx-sayt` component is responsible for displaying and hiding the
  * `sfx-autocomplete` and `sfx-products` components.
@@ -36,7 +36,7 @@ export default class Sayt extends LitElement {
   /**
    * The minimum length of the search term required before a SAYT request will be made with it.
    */
-  @property({ type: Number, reflect: true }) minSearchLength = 3;
+  @property({ type: Number, reflect: true }) minsearchlength = 3;
   /**
    * Calls superclass constructor and bind methods.
    */
@@ -139,12 +139,12 @@ export default class Sayt extends LitElement {
   /**
    * Dispatches an `sfx::autocomplete_fetch_data` event with the provided data.
    * The event will only be dispatched if this SAYT component is the "correct" SAYT
-   * (see [[isCorrectSayt]]) and if the term is at least [[minSearchLength]] long.
+   * (see [[isCorrectSayt]]) and if the term is at least [[minsearchlength]] long.
    *
-   * @param event An event that can contain a searchbox ID to identify its associated sayt.
+   * @param event The searchbox change event dispatched from the searchbox.
    */
   requestSayt(event: CustomEvent) {
-    if (!this.isCorrectSayt(event) || event.detail.value.length < this.minSearchLength) return;
+    if (!this.isCorrectSayt(event) || event.detail.value.length < this.minsearchlength) return;
 
     const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
       detail: { query: event.detail.value, searchbox: event.detail.searchbox },
