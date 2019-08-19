@@ -67,8 +67,9 @@ const autocompleteReceivedResultsEvent = [
 ];
 
 function getAutocomplete(title ='', results =[]): string {
-  const optionalTitle = text('Optional Title', title);
-  const autocompleteResults = text('Autocomplete Results', JSON.stringify(results));
+  const optionalTitle = text('Optional Caption', title);
+  const autocompleteResults = text('Results', JSON.stringify(results));
+
   return (
     '<sfx-autocomplete\n'
     + ` caption="${optionalTitle}"\n`
@@ -83,9 +84,9 @@ storiesOf('Components|Autocomplete', module)
     'Default',
     () => {
       const autocomplete = getAutocomplete('Autocomplete Results', results);
-      console.log(autocomplete, 'autocomplete');
       return `
       ${autocomplete}
+
       ${getDisplayCode(autocomplete)}`;
     },
     {
@@ -147,27 +148,17 @@ storiesOf('Components|Autocomplete', module)
         markdown: `
             # SFX-Autocomplete
 
+            \`\`\`html
+            <sfx-autocomplete></sfx-autocomplete>
+            \`\`\`
+
             ## Demonstrated in this story:
             Demonstrating autocomplete populating with autocomplete data in response to the autocomplete received results event.
 
-            * To emit the event, visit the Custom Events tab and view the 'sfx::autocomplete_received_results' event.
+            * To emit the event, visit the Custom Events tab and view the sfx::autocomplete\_received\_results event.
             * Clicking 'emit' will fire the event, which sfx-autocomplete listens on.
               * The payload of the event (event detail) should populate on the page.
             `
       }
     }
-    // {
-    //   notes: {
-    //     markdown: `
-    //         # SFX-Autocomplete
-
-    //         ## Demonstrated in this story:
-    //         Demonstrating autocomplete populating with autocomplete data in response to the autocomplete received results event.
-
-    //         * To emit the event, visit the Custom Events tab and view the 'sfx::autocomplete_received_results' event.
-    //         * Clicking 'emit' will fire the event, which sfx-autocomplete listens on.
-    //           * The payload of the event (event detail) should populate on the page.
-    //         `
-    //   }
-    // }
   );
