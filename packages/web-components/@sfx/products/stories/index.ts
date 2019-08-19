@@ -10,7 +10,7 @@ function dispatchRandomProducts() {
 
 
 const productsNotesMarkdownIntro =
-` # SF-X Autocomplete Component
+` # SF-X Products Component
 
 [SF-X Autocomplete README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/autocomplete "SF-X Autocomplete README").
 
