@@ -66,7 +66,9 @@ export default class Sayt extends LitElement {
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
+    // checkInputType()
     window.addEventListener('sfx::searchbox_change', this.requestSayt);
+    // window.addEventListener('input')
   }
 
   /**
@@ -82,6 +84,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
     window.removeEventListener('sfx::searchbox_change', this.requestSayt);
+     //
   }
 
   createRenderRoot() {

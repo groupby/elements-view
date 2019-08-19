@@ -5,7 +5,7 @@ import Autocomplete from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
-  
+
   beforeEach(() => {
     autocomplete = new Autocomplete();
   });
@@ -80,14 +80,15 @@ describe('Autcomplete Component', () => {
 
   describe('receivedResults', () => {
     it('should update the results property in response to data received', () => {
-      const detail = [
+
+      const results = [
         { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
         { title: 'default', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
       ];
 
-      autocomplete.receivedResults({ detail });
+      autocomplete.receivedResults({ detail: { results } });
 
-      expect(autocomplete.results).to.deep.equal(detail);
+      expect(autocomplete.results).to.deep.equal(results);
     });
   });
 });
