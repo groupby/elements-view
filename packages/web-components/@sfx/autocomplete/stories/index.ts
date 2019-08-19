@@ -4,6 +4,14 @@ import { getDisplayCode } from '../../../../../.storybook/common';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import '../src/index';
 
+
+const autocompleteNotesMarkdownIntro =
+` # SF-X Autocomplete Component
+
+[SF-X Autocomplete README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/autocomplete "SF-X Autocomplete README").
+
+## Demonstrated in this story:`;
+
 const results = [
   {
     title: '',
@@ -93,14 +101,10 @@ storiesOf('Components|Autocomplete', module)
       customEvents: autocompleteReceivedResultsEvent,
       notes: {
         markdown: `
-          # SF-X Autocomplete Component
-
-          [Here](https://wwww.google.com "SF-X Autocomplete Documentation") is the documentation for the SF-X Autocomplete component.
-
-          ## Demonstrated in this story:
+        ${autocompleteNotesMarkdownIntro}
 
           * Rendering of hardcoded autocomplete data
-            * hardcoding includes the optional title (contained in the caption attribute)
+            * Hardcoding includes the optional title (contained in the caption attribute)
 
           \`\`\`html
           <sfx-autocomplete
@@ -146,13 +150,14 @@ storiesOf('Components|Autocomplete', module)
       customEvents: autocompleteReceivedResultsEvent,
       notes: {
         markdown: `
-            # SFX-Autocomplete
+          ${autocompleteNotesMarkdownIntro}
 
             \`\`\`html
             <sfx-autocomplete></sfx-autocomplete>
             \`\`\`
 
             ## Demonstrated in this story:
+
             Demonstrating autocomplete populating with autocomplete data in response to the autocomplete received results event.
 
             * To emit the event, visit the Custom Events tab and view the sfx::autocomplete\_received\_results event.
