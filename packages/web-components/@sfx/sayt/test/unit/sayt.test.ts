@@ -71,6 +71,13 @@ describe('Sayt Component', () => {
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(addEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
     });
+
+    it('should listen for input when searchbox element does not exist', () => {
+      const getElementById = stub(document, 'getElementById').returns(null);
+      const callback = () => sayt.connectedCallback();
+
+      expect(callback).to.not.throw();
+    });
   });
 
 
