@@ -1,9 +1,10 @@
 sfx-sayt {
+  position: absolute;
+
   .sfx-sayt-container {
     border: 1px solid var(--sfx-color-border);
     border-radius: var(--sfx-border-radius);
     font-family: var(--sfx-font-default);
-    position: absolute;
   }
 
   > button {

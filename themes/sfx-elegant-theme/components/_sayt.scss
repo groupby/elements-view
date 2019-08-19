@@ -1,11 +1,13 @@
 sfx-sayt {
+  position: absolute;
+
   .sfx-sayt-container {
     border: 1px solid var(--sfx-color-border);
     font-family: var(--sfx-font-default);
-    position: absolute;
   }
 
   > button {
+    background: none;
     border: none;
     line-height: 1;
     padding: var(--sfx-spacing-default);
