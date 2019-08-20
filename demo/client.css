@@ -16,7 +16,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 :root {
   /* Fonts */
   --font-family-header: 'Montserrat', sans-serif;
-  --font-family-text: 'Crimson Text', serif;
+  --font-family-text: 'Roboto', sans-serif;
 
   /* Background Color Variables */
   --background-color-primary: #BA3B46;
@@ -78,8 +78,8 @@ header .wrapper {
   justify-content: space-between;
 }
 
-header .logo {
-  font-size: 3rem;
+.logo i {
+  font-size: 2.7rem;
 }
 
 .header-nav ul {
