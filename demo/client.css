@@ -16,11 +16,12 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 :root {
   /* Fonts */
   --font-family-header: 'Montserrat', sans-serif;
-  --font-family-text: 'Roboto', sans-serif;
+  --font-family-text: 'Lato', sans-serif;
 
   /* Background Color Variables */
   --background-color-primary: #BA3B46;
   --background-color-secondary: #25283D;
+  --background-color-tertiary: #e6af2a;
 
   /* Font Color Variables */
   --font-color-primary: #ffffff;
@@ -62,7 +63,7 @@ ul {
 
 .wrapper {
   margin: 0 auto;
-  max-width: 1140px;
+  max-width: 1200px;
 }
 /* BASE STYLES END HERE! */
 
@@ -102,8 +103,34 @@ header .wrapper {
   border-bottom: 1px solid var(--accent-color-secondary);
 }
 
-header sfx-search-box {
-  font-size: 1.6rem;
+header .sfx-search-controls {
+  display: flex;
+  width: 300px;
+  font-size: 2rem;
+}
+
+header .sfx-input {
+  padding: 12px;
+  border: 1px solid var(--accent-color-primary);
+}
+
+header .clear, header .submit {
+  background-color: var(--background-color-tertiary);
+  color: var(--font-color-primary);
+  width: 100%;
+  text-align: center;
+  border: 1px solid var(--accent-color-primary);
+  border-left: none;
+  transition: all 0.3s;
+}
+
+header .submit {
+  font-size: 1.8rem;
+}
+
+header .clear:hover, header .submit:hover {
+  background-color: var(--accent-color-secondary);
+  color: var(--accent-color-primary);
 }
 /* HEADER STYLES END HERE! */
 

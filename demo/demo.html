@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>M.King Apparel</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat:400,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b47cfcd035.js"></script>
     <script src="../dist/components.js"></script>
     <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script>
@@ -23,8 +23,12 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-        <sfx-search-box placeholder="Search" clearbutton searchbutton></sfx-search-box>
-        <sfx-sayt></sfx-sayt>
+        <div class="sfx-search-controls">
+          <sfx-search-box placeholder="Search"></sfx-search-box>
+          <button class="clear"><i class="fas fa-times"></i></button>
+          <button class="submit"><i class="fas fa-search"></i></button>
+          <sfx-sayt></sfx-sayt>
+        </div>
       </div>
     </header>
 
