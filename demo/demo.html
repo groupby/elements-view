@@ -23,11 +23,11 @@
             <li><a class="scroll" href="#contact">Contact</a></li>
           </ul>
         </nav>
-        <div class="sfx-search-controls">
-          <sfx-search-box placeholder="Search"></sfx-search-box>
+        <div class="sfx-header-search-controls">
+          <sfx-search-box id="header-searchbox" placeholder="Search"></sfx-search-box>
           <button class="clear"><i class="fas fa-times"></i></button>
           <button class="submit"><i class="fas fa-search"></i></button>
-          <sfx-sayt></sfx-sayt>
+          <sfx-sayt searchbox="header-searchbox"></sfx-sayt>
         </div>
       </div>
     </header>
@@ -57,8 +57,16 @@
         </section>
       </div>
 
-      <section id="catalogue">
-        <h2>Our Catalogue</h2>
+      <section id="catalogue" class="catalogue">
+        <div class="wrapper">
+          <h2>Our Catalogue</h2>
+          <div class="sfx-catalogue-search-controls">
+            <sfx-search-box id="catalogue-searchbox" placeholder="Search"></sfx-search-box>
+            <button class="clear"><i class="fas fa-times"></i></button>
+            <button class="submit"><i class="fas fa-search"></i></button>
+            <sfx-sayt searchbox="catalogue-searchbox"></sfx-sayt>
+          </div>
+        </div>
       </section>
 
       <section>

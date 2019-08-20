@@ -107,7 +107,7 @@ header .wrapper {
   border-bottom: 1px solid var(--accent-color-secondary);
 }
 
-header .sfx-search-controls {
+header .sfx-header-search-controls {
   display: flex;
   width: 300px;
   font-size: 1.8rem;
@@ -178,15 +178,20 @@ header .clear:hover, header .submit:hover {
 }
 /* HERO SECTION STYLES END HERE! */
 
+/* MAIN SECTION STYLES START HERE! */
+main h2 {
+  font-size: 3.5rem;
+  text-align: center;
+}
+/* MAIN SECTION STYLES END HERE! */
+
 /* NEW ARRIVALS SECTION STYLES START HERE! */
 .new-arrivals {
-  padding-top: 150px;
+  margin-top: 150px;
 }
 
 .new-arrivals h2 {
   color: var(--font-color-tertiary);
-  text-align: center;
-  font-size: 3.5rem;
   margin-bottom: 50px;
 }
 
@@ -198,7 +203,6 @@ header .clear:hover, header .submit:hover {
 .new-arrivals-section {
   width: calc(33.3333% - 20px);
   height: 500px;
-  /* border: 2px solid var(--accent-color-primary); */
   box-shadow: 0px 3px 15px rgba(0,0,0,0.5);
 }
 
@@ -206,6 +210,15 @@ header .clear:hover, header .submit:hover {
   height: 100%;
 }
 
-
 /* NEW ARRIVALS SECTION STYLES END HERE! */
+
+/* CATALOGUE SECTION STYLES START HERE! */
+.catalogue {
+  margin-top: 150px;
+  background-color: var(--background-color-primary);
+  color: var(--font-color-primary);
+}
+/* CATALOGUE SECTION STYLES END HERE! */
+
+
 /* CUSTOM STYLES END HERE! */
