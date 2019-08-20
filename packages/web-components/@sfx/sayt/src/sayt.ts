@@ -111,6 +111,14 @@ export default class Sayt extends LitElement {
     if (changedProps.has('visible')) {
       this.hidden = !this.visible;
     }
+    if (changedProps.has('searchbox')) {
+      if (this.searchbox) {
+        const searchbox = document.getElementById(this.searchbox);
+        if (searchbox) searchbox.removeEventListener('input', this.processSearchboxInput);
+      } else {
+        window.removeEventListener('sfx::searchbox_change', this.processSfxSearchboxChange);
+      }
+    }
   }
 
   /**
@@ -165,6 +173,7 @@ export default class Sayt extends LitElement {
     });
     window.dispatchEvent(requestSaytResults);
   }
+
 
   /**
    * Handles the searchbox input in the case where no searchbox ID is given, and

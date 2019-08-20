@@ -128,13 +128,45 @@ describe('Sayt Component', () => {
   });
 
   describe('updated()', () => {
-    it('should change the hidden property if the visible property has changed', () => {
-      sayt.hidden = true;
-      sayt.visible = true;
+    describe('visible', () => {
+      it('should change the hidden property if the visible property has changed', () => {
+        sayt.hidden = true;
+        sayt.visible = true;
 
-      sayt.updated(new Map([['visible', true]]));
+        sayt.updated(new Map([['visible', true]]));
 
-      expect(sayt.hidden).to.be.false;
+        expect(sayt.hidden).to.be.false;
+      });
+    });
+
+    describe('searchbox', () => {
+      it('should unregister sfx::searchbox_change event if searchbox ID is present on update', () => {
+        // const searchboxAddEventListener = spy();
+        const windowAddEventListener = stub(window, 'addEventListener');
+        // const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
+        // const searchboxId = sayt.searchbox = 'updatedSearchbox';
+        // const removeEventListener = stub(window, 'removeEventListener');
+        // // sayt.searchbox = 'updatedSearchbox';
+        //
+        // sayt.updated(sayt.searchbox);
+        //
+        // expect(removeEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
+        // expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
+        expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
+
+      });
+      // existing searchbox change to new unregister old, register new
+      // if no searchbox, unregister old sfx, register new
+      //  serachbox new unregistr it from searchbox and register global
+
+      // if old value is empty string or falsy - test unrehister sfx event
+      //  if old value truthy attempt to unregister old listener
+           // if old el exists unregister it
+           // doesnt exist make sure we dont throw
+
+       // new valueis falsey register sfx event
+       //  new value truthy and el exusts register it
+       // new value truthy and el does not exist dont throw
     });
   });
 
