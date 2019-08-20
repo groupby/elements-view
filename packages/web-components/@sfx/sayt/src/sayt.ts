@@ -119,6 +119,12 @@ export default class Sayt extends LitElement {
       } else {
         window.removeEventListener('sfx::searchbox_change', this.processSfxSearchboxChange);
       }
+      if (this.searchbox) {
+        const searchbox = document.getElementById(this.searchbox);
+        if (searchbox) searchbox.addEventListener('input', this.processSearchboxInput);
+      } else {
+        window.addEventListener('sfx::searchbox_change', this.processSfxSearchboxChange);
+      }
     }
   }
 

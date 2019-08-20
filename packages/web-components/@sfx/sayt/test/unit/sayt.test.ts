@@ -167,14 +167,38 @@ describe('Sayt Component', () => {
         expect(callback).to.not.throw();
       });
 
-      //>> if old value is empty string or falsy - test unrehister sfx event
-      //>>  if old value truthy attempt to unregister old listener
-           // >>if old el exists unregister it
-           // >>doesnt exist make sure we dont throw
+      it('should register sfx::searchbox_change event listener if the current searchbox ID is empty', () => {
+        const addEventListener = stub(window, 'addEventListener');
+        sayt.searchbox = '';
 
-       // new valueis falsey register sfx event
-       //  new value truthy and el exusts register it
-       // new value truthy and el does not exist dont throw
+        sayt.updated(new Map([['searchbox', 'searchboxId']]));
+
+        expect(addEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
+      });
+
+      it('should listen for input change if specified searchbox element exists', () => {
+        const searchboxAddEventListener = spy();
+        const addEventListener = stub(window, 'addEventListener');
+        const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
+        const searchboxId = sayt.searchbox = 'searchbox1';
+
+        sayt.updated(new Map([['searchbox', '']]));
+
+        expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
+        expect(addEventListener).to.not.be.calledWith('sfx::searchbox_change');
+        expect(getElementById).to.be.calledWith(searchboxId);
+      });
+
+      it('should not register listeners if the searchbox does not exist', () => {
+        const windowAddEventListener = stub(window, 'addEventListener');
+        const getElementById = stub(document, 'getElementById').returns(null);
+        sayt.searchbox = 'searchbox1';
+
+        sayt.updated(new Map([['searchbox', '']]));
+
+        // It is implicitly tested that input is not being listened for because there is no element to attach it to
+        expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
+      });
     });
   });
 
@@ -246,12 +270,6 @@ describe('Sayt Component', () => {
       expect(hideSayt).to.not.be.called;
     });
   });
-
-  // describe('requestSayt()', () => {
-  //   it('should return if the event does not provide the correct searchbox ID', () => {
-  //
-  //   })
-  // });
 
   describe('isCorrectSayt()', () => {
     it('should return true if event provides the correct searchbox ID', () => {
