@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/html';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, text } from '@storybook/addon-knobs';
 import { dispatchProvideProductsEvent } from '../../../../../.storybook/common';
 import addons from '@storybook/addons';
 import { ProductModel } from '@sfx/product'
@@ -8,11 +8,22 @@ function dispatchRandomProducts() {
   return dispatchProvideProductsEvent(Math.ceil(Math.random() * 6));
 }
 
+function getProductsComponent(productsArray) {
+  const products = text('Products Array', JSON.stringify(productsArray));
+
+  return 'sfx-products\n'
+  + ` products="${products}"\n`
+  + 'sfx-products>'
+}
+
+// <div class="sfx-product-tile-wrapper" role="listitem">
+// <sfx-product .product="${product}"></sfx-product>
+// </div>
 
 const productsNotesMarkdownIntro =
 ` # SF-X Products Component
 
-[SF-X Autocomplete README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/autocomplete "SF-X Autocomplete README").
+[SF-X Products README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
 
 ## Demonstrated in this story:`;
 
@@ -49,8 +60,9 @@ const productsResultsEvent = [
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-    setTimeout(() => dispatchProvideProductsEvent(), 10);
-
+    const products = getProductsComponent(sampleProducts);
+    console.log('products', products)
+    // setTimeout(() => dispatchProvideProductsEvent(), 10);
     return `
       <sfx-products></sfx-products>
     `;
@@ -59,14 +71,17 @@ storiesOf('Components|Products', module)
     customEvents: productsResultsEvent,
     notes: {
       markdown: `
-        ${productsNotesMarkdownIntro}
+      ${productsNotesMarkdownIntro}
 
-
-
-        The Products component (\`sfx-product\`) is used for rendering
-        a collection of products. It can be passed products directly
-        via the \`products\` attribute on the DOM element, or by
-        emitting an event which contains the products to be rendered.
+        * Rendering a collection of products
+          * Two methods exist to receive the product data:
+            * It can be passed products directly via the \`products\` attribute on the DOM element.
+              * To demonstrate this, navigate to the 'Knobs' tab
+              * Populate the 'products' attribute with an array of product data that adheres to the product interfaces.
+            * It can listen for the 'sfx::provide_products' event, that contains the products to be rendered as the payload.
+              * To emit an event, navigate to the 'Custom Events' tab
+              * To emit the provided event on the left, click the 'emit' button
+              * To create another event, add an event name and event detail in the provided area on the right
       `
     }
   },

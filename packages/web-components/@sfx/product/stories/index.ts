@@ -60,44 +60,44 @@ storiesOf('Components|Product', module)
     `
     } , {
     notes: {
-      markdown:
-      `
+      markdown: `
       ${productMarkdownIntro}
 
-      * Rendering of hardcoded product data
-        * No styling applied
-        * Hardcoded product data includes variants
+        * Rendering of hardcoded product data
+          * No styling applied
+          * Hardcoded product data includes variants
 
-      * Demonstrating toggling between variants
-        * To view toggling in story, click on the various coloured squares, and see the product image change.
+        * Demonstrating toggling between variants
+          * To view toggling in story, click on the various coloured squares, and see the product image change.
 
-        \`\`\`html
-        <sfx-product
-        product = "{
-        title: 'Best Shoe',
-        price: 39.99,
-        label: 'New Product',
-        promo: '25% off',
-        imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-        imageAlt: 'A spicy red shoe',
-        productUrl: 'https://groupbyinc.com',
-        variants: {
-          type: 'color',
-          items: [
-            { color: '#c00', text: 'Red', product },
-            { color: '#28e', text: 'Blue', product: {
-              imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80' },
-              imageAlt: 'Sonic blue, gotta go fast'
-            },
-            { color: '#555', text: 'Grey', product: {
-              imageSrc: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80' },
-              imageAlt: 'Magic hovering shoes'
-            },
-          ]
-        }
-      }))}"
-    ></sfx-product>
-  `}
+          \`\`\`html
+          <sfx-product
+          product = "{
+          title: 'Best Shoe',
+          price: 39.99,
+          label: 'New Product',
+          promo: '25% off',
+          imageSrc: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+          imageAlt: 'A spicy red shoe',
+          productUrl: 'https://groupbyinc.com',
+          variants: {
+            type: 'color',
+            items: [
+              { color: '#c00', text: 'Red', product },
+              { color: '#28e', text: 'Blue', product: {
+                imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80' },
+                imageAlt: 'Sonic blue, gotta go fast'
+              },
+              { color: '#555', text: 'Grey', product: {
+                imageSrc: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80' },
+                imageAlt: 'Magic hovering shoes'
+              },
+            ]
+          }
+        }))}"
+      ></sfx-product>
+      \`\`\`
+    `}
 })
 // .add('Two Tiles', () => {
 //   const product = getProduct(productWithVariant);

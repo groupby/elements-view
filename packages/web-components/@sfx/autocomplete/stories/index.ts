@@ -94,7 +94,6 @@ storiesOf('Components|Autocomplete', module)
       const autocomplete = getAutocomplete('Autocomplete Results', results);
       return `
       ${autocomplete}
-
       ${getDisplayCode(autocomplete)}`;
     },
     {
