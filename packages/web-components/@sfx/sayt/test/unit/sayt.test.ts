@@ -140,21 +140,37 @@ describe('Sayt Component', () => {
     });
 
     describe('searchbox', () => {
-      it('should unregister sfx::searchbox_change event if the old searchbox ID was empty', () => {
+      it('should unregister sfx::searchbox_change event listener if the old searchbox ID was empty', () => {
         const removeEventListener = stub(window, 'removeEventListener');
 
         sayt.updated(new Map([['searchbox', '']]));
 
         expect(removeEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
       });
-      // existing searchbox change to new unregister old, register new
-      // if no searchbox, unregister old sfx, register new
-      //  serachbox new unregistr it from searchbox and register global
 
-      // if old value is empty string or falsy - test unrehister sfx event
-      //  if old value truthy attempt to unregister old listener
-           // if old el exists unregister it
-           // doesnt exist make sure we dont throw
+      it('should unregister seachbox input event listener if the old searchbox ID was valid', () => {
+        const searchboxRemoveEventListener = spy();
+        const getElementById = stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener });
+        const searchboxId = 'searchbox1';
+
+        sayt.updated(new Map([['searchbox', searchboxId]]));
+
+        expect(searchboxRemoveEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
+        expect(getElementById).to.be.calledWith(searchboxId);
+      });
+
+      it('should not throw if the searchbox does not exist', () => {
+        const getElementById = stub(document, 'getElementById').returns(null);
+
+        const callback = () => sayt.updated(new Map([['searchbox', 'searchbox1']]));
+
+        expect(callback).to.not.throw();
+      });
+
+      //>> if old value is empty string or falsy - test unrehister sfx event
+      //>>  if old value truthy attempt to unregister old listener
+           // >>if old el exists unregister it
+           // >>doesnt exist make sure we dont throw
 
        // new valueis falsey register sfx event
        //  new value truthy and el exusts register it
@@ -231,11 +247,11 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('requestSayt()', () => {
-    it('should return if the event does not provide the correct searchbox ID', () => {
-
-    })
-  });
+  // describe('requestSayt()', () => {
+  //   it('should return if the event does not provide the correct searchbox ID', () => {
+  //
+  //   })
+  // });
 
   describe('isCorrectSayt()', () => {
     it('should return true if event provides the correct searchbox ID', () => {
