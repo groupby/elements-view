@@ -112,12 +112,12 @@ export default class Sayt extends LitElement {
       this.hidden = !this.visible;
     }
     if (changedProps.has('searchbox')) {
-      if (this.searchbox) {
-        const searchbox = document.getElementById(this.searchbox);
-        if (searchbox) searchbox.removeEventListener('input', this.processSearchboxInput);
-      } else {
+    //   if (this.searchbox) {
+    //     const searchbox = document.getElementById(this.searchbox);
+    //     if (searchbox) searchbox.removeEventListener('input', this.processSearchboxInput);
+    //   } else {
         window.removeEventListener('sfx::searchbox_change', this.processSfxSearchboxChange);
-      }
+    //   }
     }
   }
 
