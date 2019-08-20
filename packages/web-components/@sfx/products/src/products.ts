@@ -84,7 +84,7 @@ export default class Products extends LitElement {
 
       ${this.products.map(product => {
         return html`
-          <div class="product-tile-wrapper" role="listitem">
+          <div class="sfx-product-tile-wrapper" role="listitem">
             <sfx-product .product="${product}"></sfx-product>
           </div>
         `;

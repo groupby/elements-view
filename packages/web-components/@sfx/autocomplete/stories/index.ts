@@ -2,35 +2,46 @@ import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import '../src/index';
 
-const tbd = {};
-
 const results = [
-  {
-    title: 'Brands',
-    items: [
-      {
-        ...tbd,
-        label: 'New Balance'
-      },
-      {
-        ...tbd,
-        label: 'Bauer'
-      }
-    ]
-  },
   {
     title: '',
     items: [
       {
-        ...tbd,
         label: 'Golf Ball'
       },
       {
-        ...tbd,
         label: 'Basketball'
-      }
+      },
+      {
+        label: 'Baseball'
+      },
     ]
-  }
+  },
+  {
+    title: 'Brands',
+    items: [
+      {
+        label: 'New Balance'
+      },
+      {
+        label: 'Bauer'
+      },
+      {
+        label: 'CCM'
+      },
+    ]
+  },
+  {
+    title: 'Categories',
+    items: [
+      {
+        label: 'Sport Equipment'
+      },
+      {
+        label: 'Sport Apparel'
+      },
+    ]
+  },
 ];
 
 const optionalTitle = 'Autocomplete Results';
@@ -49,6 +60,9 @@ storiesOf('Components|Autocomplete', module)
     'Default',
     () => `
       <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}"></sfx-autocomplete>
+      <button @click=${this.dispatchAutocompleteResults}>
+        Click to dispatch event
+      </button>
     `
   )
   .add(
@@ -56,6 +70,9 @@ storiesOf('Components|Autocomplete', module)
     () => `
       <sfx-autocomplete>
       </sfx-autocomplete>
+      <button @click=${this.dispatchAutocompleteResults}>
+        Click to dispatch event
+      </button>
     `
   )
   .add(
@@ -64,14 +81,20 @@ storiesOf('Components|Autocomplete', module)
       <sfx-autocomplete results="${text('Autocomplete Results', JSON.stringify(results))}">
         <div>Content appears after main content</div>
       </sfx-autocomplete>
+      <button @click=${this.dispatchAutocompleteResults}>
+        Click to dispatch event
+      </button>
     `
   )
   .add(
     'With title customization',
     () => `
-    <sfx-autocomplete 
-      caption="${text('Optional Title', optionalTitle)}" 
-      results="${text('Autocomplete', JSON.stringify(results))}">
-    </sfx-autocomplete>
+      <sfx-autocomplete
+        caption="${text('Optional Title', optionalTitle)}"
+        results="${text('Autocomplete', JSON.stringify(results))}">
+      </sfx-autocomplete>
+      <button @click=${this.dispatchAutocompleteResults}>
+        Click to dispatch event
+      </button>
     `
   );

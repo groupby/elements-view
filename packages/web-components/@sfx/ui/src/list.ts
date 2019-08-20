@@ -20,6 +20,11 @@ export default class List extends Base {
 
   render() {
     return html`
+      <style>
+        sfx-list > ul {
+          list-style: none;
+        }
+      </style>
       ${this.caption
         ? html`
             <h4 id="sfx-list-title-${this.randomStringId}">${this.caption}</h4>

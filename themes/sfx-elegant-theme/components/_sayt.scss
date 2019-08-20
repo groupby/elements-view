@@ -1,0 +1,35 @@
+sfx-sayt {
+  position: absolute;
+
+  .sfx-sayt-container {
+    border: 1px solid var(--sfx-color-border);
+    font-family: var(--sfx-font-default);
+  }
+
+  > button {
+    background: none;
+    border: none;
+    line-height: 1;
+    padding: var(--sfx-spacing-default);
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    &:focus,
+    &:hover {
+      color: var(--sfx-color-primary);
+      transition: all 0.10s ease;
+    }
+  }
+
+  sfx-autocomplete {
+    border-right: 1px solid var(--sfx-color-border);
+    flex: 33%;
+    margin-right: -1px;
+    margin-top: -1px;
+  }
+
+  sfx-products {
+    flex: 66%;
+  }
+}

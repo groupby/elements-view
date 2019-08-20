@@ -12,10 +12,11 @@
   "scripts": {
     "bundle": "webpack",
     "start": "webpack-dev-server",
-    "storybook": "start-storybook -p 9000",
+    "storybook": "start-storybook -s ./dist -p 9000",
     "docs": "typedoc --options ./typedoc.js packages",
     "test": "yarn workspaces run test",
-    "coverage": "cat coverage/lcov.info | codecov"
+    "coverage": "cat coverage/lcov.info | codecov",
+    "dev:themes": "nodemon -e scss -x webpack"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@storybook/addon-a11y": "^5.1.9",
     "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-cssresources": "^5.1.9",
     "@storybook/addon-knobs": "^5.1.9",
     "@storybook/addon-notes": "^5.1.9",
     "@storybook/addon-viewport": "^5.1.9",
@@ -46,7 +48,9 @@
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "chai": "^4.2.0",
     "codecov": "^3.5.0",
-    "css-loader": "^3.0.0",
+    "css-loader": "^3.1.0",
+    "extract-loader": "^3.1.0",
+    "file-loader": "^4.1.0",
     "istanbul-instrumenter-loader": "^3.0.1",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.2.0",
