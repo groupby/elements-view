@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import '../src';
-import { getDisplayCode, dispatchProvideProductsEvent } from '../../../../../.storybook/common';
+import { getDisplayCode, dispatchProvideProductsEvent, getProducts } from '../../../../../.storybook/common';
 
 // @TODO allow for sending event with searchbox ID. This should allow for one
 // story's events to not affect another story.
@@ -12,6 +12,13 @@ const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_receive
   ],
   bubbles: true
 });
+
+
+const saytNotesMarkdownIntro = ` # SF-X SAYT Component
+
+[SF-X SAYT README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/sayt "SF-X SAYT README").
+
+## Demonstrated in this story:`;
 
 function getSayt(searchbox = '', showSayt = true): string {
   const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
@@ -32,6 +39,44 @@ function getSayt(searchbox = '', showSayt = true): string {
   );
 }
 
+const autocompleteReceivedResultsEvent =
+  {
+    name: 'sfx::autocomplete_received_results',
+    payload: [
+      {
+        title: '',
+        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+      },
+      {
+        title: 'Brands',
+        items: [{ label: 'Kashi' }, { label: 'Excel' }]
+      },
+      {
+        title: 'Colors',
+        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+      }
+    ]
+  }
+
+
+const productsResultsEvent =
+  {
+    name: 'sfx::provide_products',
+    payload: {
+      products: getProducts(5)
+    }
+  }
+
+const saytHide = {
+  name: 'sfx::sayt_hide',
+  payload: ''
+}
+
+const saytShow = {
+  name: 'sfx::sayt_show',
+  payload: ''
+}
+
 function emitEventInFuture(event, timeout = 100) {
   setTimeout(() => {
     window.dispatchEvent(event);
@@ -41,57 +86,69 @@ function emitEventInFuture(event, timeout = 100) {
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-    emitEventInFuture(autocompleteDataReceivedEvent, 100);
-    setTimeout(() => {
-      dispatchProvideProductsEvent(3);
-    }, 100);
-
     const sayt = getSayt();
-    console.log(sayt, 'sayt')
     return `
       ${ sayt }
 
       ${ getDisplayCode(sayt) }`;
     },
     {
+      customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
       notes: {
         markdown: `
-        # Search As You Type (SAYT)
-        Hardcoded
+        ${saytNotesMarkdownIntro}
 
-        Here is the documentation for the SAYT component.
+          * Rendering of 'autocomplete' and 'products' in response to events
+            * Component should render the payload of the 'sfx::autocomplete_received_results' in response to the event, as a list of autocomplete items
+              * To emit the event, navigate to the 'Custom Events' tab
+              * Click the 'sfx::autocomplete_received_results' button on the left hand side
+              * Click the 'Emit' button
+                * View the SAYT component popualte with autocomplete data
+            * Component should render the payload of the 'sfx::provide_products' in response to the event, as a number of product tiles
+              * To emit the event, navigate to the 'Custom Events' tab
+              * Click the 'sfx::provide_products' button on the left hand side
+              * Click the 'Emit' button
+                * View the SAYT component populate with produts
+            * Component should display the autocomplete and products in response to the 'sfx::sayt_show' event
+              * To emit the 'sfx::sayt_show' event, navigate to the 'Custom Events' tab
+              * To demonstrate functionality, the sayt component should have rendered SAYT and have hidden it... <-- fix
+              * Click the 'sfx::sayt_show' button on the left hand side
+              * Click the 'Emit' button
+                * View the display of SAYT
+
+                ${getDisplayCode(getSayt())}
       `
       }
     }
   )
   // @TODO Remove these setTimeouts when opening a new story
-  .add('Responding to Events - sayt_hide & sayt_show ', () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 100);
-      setTimeout(() => {
-        dispatchProvideProductsEvent(3);
-      }, 100);
-      emitEventInFuture(new Event('sfx::sayt_hide'), 2000);
-      emitEventInFuture(new Event('sfx::sayt_show'), 4000);
+  // .add('Responding to Events - sayt_hide & sayt_show ', () => {
+  //     emitEventInFuture(autocompleteDataReceivedEvent, 100);
+  //     setTimeout(() => {
+  //       dispatchProvideProductsEvent(3);
+  //     }, 100);
+  //     emitEventInFuture(new Event('sfx::sayt_hide'), 2000);
+  //     emitEventInFuture(new Event('sfx::sayt_show'), 4000);
 
-      const sayt = getSayt('', false);
+  //     const sayt = getSayt('', false);
 
-      return `
-      ${ sayt }
-      ${ getDisplayCode(sayt) }
-    `;
-    },
-    {
-      notes: {
-        markdown: `
-        # Search As You Type (SAYT)
-        - Show automatically once sub-component Autocomplete receives results.
-        - Show automatically once sub-component Products receives results.
-        - Receiving sayt_hide event after 2 seconds.
-        - Receiving sayt_show event after 4 seconds.
-      `
-      }
-    }
-  )
+  //     return `
+  //     ${ sayt }
+  //     ${ getDisplayCode(sayt) }
+  //   `;
+  //   },
+  //   {
+  //     notes: {
+  //       markdown: `
+  //       # Search As You Type (SAYT)
+  //       - Show automatically once sub-component Autocomplete receives results.
+  //       - Show automatically once sub-component Products receives results.
+  //       - Receiving sayt_hide event after 2 seconds.
+  //       - Receiving sayt_show event after 4 seconds.
+  //     `
+  //     }
+  //   }
+  // )
   .add('SAYT with simple search input', () => {
       emitEventInFuture(autocompleteDataReceivedEvent, 100);
       setTimeout(() => {
