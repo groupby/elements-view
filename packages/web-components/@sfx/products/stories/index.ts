@@ -1,11 +1,6 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import { dispatchProvideProductsEvent, getDisplayCode } from '../../../../../.storybook/common';
-import { ProductModel } from '@sfx/product'
-
-function dispatchRandomProducts() {
-  return dispatchProvideProductsEvent(Math.ceil(Math.random() * 6));
-}
+import { getDisplayCode, getProducts } from '../../../../../.storybook/common';
 
 function getProductsComponent(productsArray=[]) {
   const products = text('Products', JSON.stringify(productsArray));
@@ -22,43 +17,23 @@ const productsNotesMarkdownIntro =
 
 ## Demonstrated in this story:`;
 
-const sampleProducts: ProductModel[] = [
-  {
-    title: 'Best Shoe',
-    price: 39.99,
-    label: 'New Product',
-    promo: '25% off',
-    imageSrc:
-      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-    imageAlt: 'A spicy red shoe',
-  },
-  {
-    title: 'Greatest Shoe',
-    price: 49.99,
-    label: 'Classic Product',
-    promo: '25% off',
-    imageSrc:
-      'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-    imageAlt: 'A classic blue shoe',
-  }
-];
-
 const productsResultsEvent = [
   {
     name: 'sfx::provide_products',
     payload: {
-      products: sampleProducts
+      products: getProducts(5),
   },
 }
 ];
 
+// removed display code for now since it's massive
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-    const productsComponent = getProductsComponent(sampleProducts);
+    const products = getProducts(10);
+    const productsComponent = getProductsComponent(products);
     return `
     ${productsComponent}
-    ${getDisplayCode(productsComponent)}
     `;
   },
   {

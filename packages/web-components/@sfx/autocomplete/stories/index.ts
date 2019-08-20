@@ -1,5 +1,4 @@
 import { storiesOf } from '@storybook/html';
-import addons from '@storybook/addons';
 import { getDisplayCode } from '../../../../../.storybook/common';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import '../src/index';
