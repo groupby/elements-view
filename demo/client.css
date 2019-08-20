@@ -61,6 +61,10 @@ ul {
   list-style: none;
 }
 
+img {
+  width: 100%;
+}
+
 .wrapper {
   margin: 0 auto;
   max-width: 1200px;
@@ -173,4 +177,35 @@ header .clear:hover, header .submit:hover {
   align-items: flex-end;
 }
 /* HERO SECTION STYLES END HERE! */
+
+/* NEW ARRIVALS SECTION STYLES START HERE! */
+.new-arrivals {
+  padding-top: 150px;
+}
+
+.new-arrivals h2 {
+  color: var(--font-color-tertiary);
+  text-align: center;
+  font-size: 3.5rem;
+  margin-bottom: 50px;
+}
+
+.new-arrivals-sections {
+  display: flex;
+  justify-content: space-between;
+}
+
+.new-arrivals-section {
+  width: calc(33.3333% - 20px);
+  height: 500px;
+  /* border: 2px solid var(--accent-color-primary); */
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.5);
+}
+
+.new-arrivals-sections img {
+  height: 100%;
+}
+
+
+/* NEW ARRIVALS SECTION STYLES END HERE! */
 /* CUSTOM STYLES END HERE! */
