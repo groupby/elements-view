@@ -14,13 +14,19 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
   #BA3B46 - Deep Chestnut
 */
 :root {
+  /* Fonts */
+  --font-family-header: 'Montserrat', sans-serif;
+  --font-family-text: 'Crimson Text', serif;
+
   /* Background Color Variables */
   --background-color-primary: #BA3B46;
   --background-color-secondary: #25283D;
+
   /* Font Color Variables */
   --font-color-primary: #ffffff;
   --font-color-secondary: #e6af2a;
   --font-color-tertiary: #353531;
+
   /* Accent Color Variables */
   --accent-color-primary: #353531;
   --accent-color-secondary: #BA3B46;
@@ -32,12 +38,17 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 /* BASE STYLES START HERE! */
 html {
   font-size: 62.5%;
+  font-family: var(--font-family-text);
 }
 
 h1, h2, h3, h4, p, ul, li, button {
   margin: 0;
   padding: 0;
   border: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-family-header);
 }
 
 a {
@@ -94,12 +105,6 @@ header .logo {
 header sfx-search-box {
   font-size: 1.6rem;
 }
-
-sfx-search-box button {
-  /* border: 0;
-  padding: 0; */
-}
-
 /* HEADER STYLES END HERE! */
 
 /* HERO SECTION STYLES START HERE! */
@@ -121,7 +126,7 @@ sfx-search-box button {
   display: block;
   width: 200px;
   height: 80px;
-  padding: 30px 0;
+  padding: 25px 0;
   border: solid 1px var(--font-color-primary);
   color: var(--font-color-primary);
   font-size: 2rem;
