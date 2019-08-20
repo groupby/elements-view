@@ -26,22 +26,20 @@ import '../src';
 // end of event dispatch testing
 
 function getSearchBoxComponent(): string {
-  // const placeholder = text('Placeholder Text', 'Search Here');
-  // const searchButton = boolean('Search button visible', true) ? 'searchbutton' : '';
-  // const clearButton = boolean('Clear button visible', true) ? 'clearbutton' : '';
-  return '<sfx-search-box></sfx-search-box>'
-  // return '<sfx-search-box\n'
-  //   + ` placeholder="${placeholder}"\n`
-  //   + (searchButton ? ` ${searchButton}\n` : '')
-  //   + (clearButton ? ` ${clearButton}\n` : '')
-  //   + '><sfx-search-box>'
+  const placeholder = text('Placeholder Text', 'Search Here');
+  const showSearchButton = boolean('Show search button', true) ? 'searchbutton' : '';
+  const showClearButton = boolean('Show clear button', true) ? 'clearbutton' : '';
+  return '<sfx-search-box\n'
+  + ` placeholder="${placeholder}"\n`
+  + (showSearchButton ? ` ${showSearchButton}\n` : '')
+  + (showClearButton ? ` ${showClearButton}\n` : '')
+  + '></sfx-search-box>'
 }
 
 storiesOf('Components|Searchbox', module)
   .addDecorator(withKnobs)
     .add('Default', () => {
       const searchBoxComponent = getSearchBoxComponent();
-      console.log('searchboxcomponent', searchBoxComponent)
       return `
       ${searchBoxComponent}
       `;
