@@ -2,16 +2,13 @@ import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { getDisplayCode, getProducts } from '../../../../../.storybook/common';
 
-function getProductsComponent(productsArray=[]) {
+function getProductsComponent(productsArray = []) {
   const products = text('Products', JSON.stringify(productsArray));
 
-  return '<sfx-products\n'
-  + ` products="${products}"\n`
-  + '></sfx-products>'
+  return '<sfx-products\n' + ` products="${products}"\n` + '></sfx-products>';
 }
 
-const productsNotesMarkdownIntro =
-` # SF-X Products Component
+const productsNotesMarkdownIntro = ` # SF-X Products Component
 
 [SF-X Products README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
 
@@ -21,25 +18,27 @@ const productsResultsEvent = [
   {
     name: 'sfx::provide_products',
     payload: {
-      products: getProducts(5),
-  },
-}
+      products: getProducts(5)
+    }
+  }
 ];
 
 // removed display code for now since it's massive
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
-  .add('Default', () => {
-    const products = getProducts(10);
-    const productsComponent = getProductsComponent(products);
-    return `
+  .add(
+    'Default',
+    () => {
+      const products = getProducts(10);
+      const productsComponent = getProductsComponent(products);
+      return `
     ${productsComponent}
     `;
-  },
-  {
-    customEvents: productsResultsEvent,
-    notes: {
-      markdown: `
+    },
+    {
+      customEvents: productsResultsEvent,
+      notes: {
+        markdown: `
       ${productsNotesMarkdownIntro}
 
         * Rendering a collection of products with data passed directly via the  \`products\` attribute on the DOM element.
@@ -71,22 +70,23 @@ storiesOf('Components|Products', module)
         ]></sfx-products>
         \`\`\`
       `
-    }
-  },
-  {
-
-  })
-  .add('Rendering event payload', () => {
-    const productsComponent = getProductsComponent();
+      }
+    },
+    {}
+  )
+  .add(
+    'Rendering event payload',
+    () => {
+      const productsComponent = getProductsComponent();
       return `
       ${productsComponent}
       ${getDisplayCode(productsComponent)}
     `;
-  },
-  {
-    customEvents: productsResultsEvent,
-    notes: {
-      markdown: `
+    },
+    {
+      customEvents: productsResultsEvent,
+      notes: {
+        markdown: `
       ${productsNotesMarkdownIntro}
 
         * Rendering the payload of the 'sfx::provide_products' event
@@ -98,6 +98,6 @@ storiesOf('Components|Products', module)
           <sfx-products></sfx-products>
           \`\`\`
       `
+      }
     }
-  }
   );

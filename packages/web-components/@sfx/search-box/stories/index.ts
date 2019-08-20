@@ -25,43 +25,68 @@ import '../src';
 // });
 // end of event dispatch testing
 
+const updateTextEvent = [
+  {
+    name: 'sfx::update_search_term',
+    payload: 'hot chocolate'
+  }
+];
+
+const searchboxNotesMarkdownIntro = ` # SF-X Search Box Component
+
+[SF-X Search Box README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/search-box "SF-X Search Box README").
+
+## Demonstrated in this story:`;
+
 function getSearchBoxComponent(): string {
   const placeholder = text('Placeholder Text', 'Search Here');
   const showSearchButton = boolean('Show search button', true) ? 'searchbutton' : '';
   const showClearButton = boolean('Show clear button', true) ? 'clearbutton' : '';
-  return '<sfx-search-box\n'
-  + ` placeholder="${placeholder}"\n`
-  + (showSearchButton ? ` ${showSearchButton}\n` : '')
-  + (showClearButton ? ` ${showClearButton}\n` : '')
-  + '></sfx-search-box>'
+  return (
+    '<sfx-search-box\n' +
+    ` placeholder="${placeholder}"\n` +
+    (showSearchButton ? ` ${showSearchButton}\n` : '') +
+    (showClearButton ? ` ${showClearButton}\n` : '') +
+    '></sfx-search-box>'
+  );
 }
 
 storiesOf('Components|Searchbox', module)
   .addDecorator(withKnobs)
-    .add('Default', () => {
+  .add(
+    'Default',
+    () => {
       const searchBoxComponent = getSearchBoxComponent();
       return `
       ${searchBoxComponent}
       `;
-    })
-  //   .add(
-  //     'Without any SFX provided buttons',
-  //     () => `
-  //   <sfx-search-box></sfx-search-box>
-  // `
-  //   )
-  //   .add(
-  //     'With a clear button, without a search button',
-  //     () => `
-  //   <sfx-search-box clearbutton></sfx-search-box>
-  // `
-  //   )
-  //   .add(
-  //     'With custom placeholder text',
-  //     () => `
-  //   <sfx-search-box placeholder="${text(
-  //     'Placeholder Title',
-  //     'Placeholder here...'
-  //   )}"></sfx-search-box>
-  // `
-  //   );
+    },
+    {
+      customEvents: updateTextEvent,
+      notes: {
+        markdown: `
+        ${searchboxNotesMarkdownIntro}`
+      }
+    }
+  );
+//   .add(
+//     'Without any SFX provided buttons',
+//     () => `
+//   <sfx-search-box></sfx-search-box>
+// `
+//   )
+//   .add(
+//     'With a clear button, without a search button',
+//     () => `
+//   <sfx-search-box clearbutton></sfx-search-box>
+// `
+//   )
+//   .add(
+//     'With custom placeholder text',
+//     () => `
+//   <sfx-search-box placeholder="${text(
+//     'Placeholder Title',
+//     'Placeholder here...'
+//   )}"></sfx-search-box>
+// `
+//   );

@@ -12,25 +12,26 @@ function loadStories() {
   addDecorator(withCssResources);
   addParameters({
     options: {
-      theme: GroupByTheme,
+      theme: GroupByTheme
     },
     cssresources: [
       {
         id: `Elegant Theme`,
         code: `<link rel="stylesheet" type="text/css" href="/sfx-elegant-theme.css"></link>`,
-        picked: true,
+        picked: true
       },
       {
         id: `Bold Theme`,
         code: `<link rel="stylesheet" type="text/css" href="/sfx-bold-theme.css"></link>`,
-        picked: false,
-      },
-    ],
+        picked: false
+      }
+    ]
   });
   req.keys().forEach(req);
 }
 
 addons.getChannel().on('customEvents/emitEvent', event => {
+  console.log('event', event);
   window.dispatchEvent(
     new CustomEvent(event.name, {
       detail: event.payload
