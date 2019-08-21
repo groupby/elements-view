@@ -78,7 +78,6 @@ describe('Sayt Component', () => {
     });
   });
 
-
   describe('disconnectedCallback()', () => {
     it('should remove event listeners on the window', () => {
       const removeEventListener = stub(window, 'removeEventListener');
