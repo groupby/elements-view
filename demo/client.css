@@ -187,7 +187,7 @@ main h2 {
 
 /* NEW ARRIVALS SECTION STYLES START HERE! */
 .new-arrivals {
-  margin-top: 150px;
+  margin: 125px 0;
 }
 
 .new-arrivals h2 {
@@ -214,8 +214,29 @@ main h2 {
 
 /* CATALOGUE SECTION STYLES START HERE! */
 .catalogue {
-  margin-top: 150px;
+  padding: 125px 0;
   background-color: var(--background-color-primary);
+  color: var(--font-color-primary);
+  font-size: 1.8rem;
+}
+
+.catalogue .sfx-catalogue-search-controls {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+#catalogue-searchbox {
+  width: 50%;
+}
+
+#catalogue-searchbox input {
+  padding: 5px;
+}
+
+.sfx-catalogue-search-controls button {
+  width: 40px;
+  background-color: var(--background-color-secondary);
   color: var(--font-color-primary);
 }
 /* CATALOGUE SECTION STYLES END HERE! */
