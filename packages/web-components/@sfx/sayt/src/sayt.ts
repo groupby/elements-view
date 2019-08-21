@@ -3,6 +3,7 @@ import { PRODUCTS_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
 import { SEARCHBOX_EVENT } from '../../search-box/src/events';
+
 /**
  * The `sfx-sayt` component is responsible for displaying and hiding the
  * `sfx-autocomplete` and `sfx-products` components.
@@ -54,7 +55,7 @@ export default class Sayt extends LitElement {
     this.requestSayt = this.requestSayt.bind(this);
     this.processSearchboxInput = this.processSearchboxInput.bind(this);
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
-    this.toggleSearchboxListener = this.toggleSearchboxListener.bind(this);
+    this.setSearchboxListener = this.setSearchboxListener.bind(this);
   }
 
   /**
@@ -70,9 +71,9 @@ export default class Sayt extends LitElement {
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
     if (this.searchbox) {
-      this.toggleSearchboxListener('add', 'input', this.processSearchboxInput, this.searchbox);
+      this.setSearchboxListener('add', 'input', this.processSearchboxInput, this.searchbox);
     } else {
-      this.toggleSearchboxListener('add', 'sfx::searchbox_change', this.processSfxSearchboxChange);
+      this.setSearchboxListener('add', 'sfx::searchbox_change', this.processSfxSearchboxChange);
     }
   }
 
@@ -90,9 +91,9 @@ export default class Sayt extends LitElement {
     window.removeEventListener('keydown', this.processKeyEvent);
 
     if (this.searchbox) {
-      this.toggleSearchboxListener('remove', 'input', this.processSearchboxInput, this.searchbox);
+      this.setSearchboxListener('remove', 'input', this.processSearchboxInput, this.searchbox);
     } else {
-      this.toggleSearchboxListener('remove', 'sfx::searchbox_change', this.processSfxSearchboxChange);
+      this.setSearchboxListener('remove', 'sfx::searchbox_change', this.processSfxSearchboxChange);
     }
   }
 
@@ -112,14 +113,14 @@ export default class Sayt extends LitElement {
     if (changedProps.has('searchbox')) {
       const oldSearchbox = changedProps.get('searchbox') as string;
       if (oldSearchbox) {
-        this.toggleSearchboxListener('remove', 'input', this.processSearchboxInput, oldSearchbox);
+        this.setSearchboxListener('remove', 'input', this.processSearchboxInput, oldSearchbox);
       } else {
-        this.toggleSearchboxListener('remove', 'sfx::searchbox_change', this.processSfxSearchboxChange);
+        this.setSearchboxListener('remove', 'sfx::searchbox_change', this.processSfxSearchboxChange);
       }
       if (this.searchbox) {
-        this.toggleSearchboxListener('add', 'input', this.processSearchboxInput, this.searchbox);
+        this.setSearchboxListener('add', 'input', this.processSearchboxInput, this.searchbox);
       } else {
-        this.toggleSearchboxListener('add', 'sfx::searchbox_change', this.processSfxSearchboxChange);
+        this.setSearchboxListener('add', 'sfx::searchbox_change', this.processSfxSearchboxChange);
       }
     }
   }
@@ -132,7 +133,7 @@ export default class Sayt extends LitElement {
    * @param eventCallback The name of the callback function triggered by the eventListener.
    * @param searchboxType The `oldSearchbox` or `this.searchbox`.
    */
-  toggleSearchboxListener(toggle: string, eventName: string, eventCallback: any, searchboxType?: string) :void {
+  setSearchboxListener(toggle: string, eventName: string, eventCallback: any, searchboxType?: string) :void {
     if (searchboxType) {
       const searchbox :any = document.getElementById(searchboxType);
       if (searchbox) searchbox[`${toggle}EventListener`](eventName, eventCallback);

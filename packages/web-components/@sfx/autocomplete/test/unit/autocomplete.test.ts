@@ -80,7 +80,6 @@ describe('Autcomplete Component', () => {
 
   describe('receivedResults', () => {
     it('should update the results property in response to data received', () => {
-
       const results = [
         { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
         { title: 'default', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
