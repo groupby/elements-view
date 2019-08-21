@@ -73,17 +73,31 @@ const autocompleteReceivedResultsEvent = [
   }
 ];
 
-function getAutocomplete(title ='', results =[]): string {
+function getAutocomplete(title ='', results =[], display = false): string {
   const optionalTitle = text('Optional Caption', title);
   const autocompleteResults = text('Results', JSON.stringify(results));
 
-  return (
+  return display === false ? (
     '<sfx-autocomplete\n'
     + ` caption="${optionalTitle}"\n`
     + ` results="${autocompleteResults}"\n`
     + '></sfx-autocomplete>'
-  );
+  ) : (
+  '<sfx-autocomplete\n'
+  + ` caption="${optionalTitle}"\n`
+  + '></sfx-autocomplete>'
+);
 }
+
+// function getAutocompleteDisplay(title =''): string {
+//   const optionalTitle = text('Optional Caption', title);
+
+//   return (
+//     '<sfx-autocomplete\n'
+//     + ` caption="${optionalTitle}"\n`
+//     + '></sfx-autocomplete>'
+//   );
+// }
 
 storiesOf('Components|Autocomplete', module)
   .addDecorator(withKnobs)
@@ -91,9 +105,10 @@ storiesOf('Components|Autocomplete', module)
     'Default',
     () => {
       const autocomplete = getAutocomplete('Autocomplete Results', results);
+      const autocompleteDisplay = getAutocomplete('Autocomplete Results', [], true)
       return `
       ${autocomplete}
-      ${getDisplayCode(autocomplete)}`;
+      ${getDisplayCode(autocompleteDisplay)}`;
     },
     {
       customEvents: autocompleteReceivedResultsEvent,
@@ -142,7 +157,7 @@ storiesOf('Components|Autocomplete', module)
       const autocomplete = getAutocomplete();
       return `
       ${autocomplete}
-      ${getDisplayCode(autocomplete)}`
+      ${getDisplayCode(getAutocomplete(null, null,true))}`
     },
     {
       customEvents: autocompleteReceivedResultsEvent,
