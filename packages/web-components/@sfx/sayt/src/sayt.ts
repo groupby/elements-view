@@ -134,10 +134,11 @@ export default class Sayt extends LitElement {
    */
   toggleSearchboxListener(toggle: string, eventName: string, eventCallback: any, searchboxType?: string) :void {
     if (searchboxType) {
-      const searchbox = document.getElementById(searchboxType);
+      const searchbox :any = document.getElementById(searchboxType);
       if (searchbox) searchbox[`${toggle}EventListener`](eventName, eventCallback);
     } else {
-      window[`${toggle}EventListener`](eventName, eventCallback);
+      const globalWindow :any = window;
+      globalWindow[`${toggle}EventListener`](eventName, eventCallback);
     }
   }
 
