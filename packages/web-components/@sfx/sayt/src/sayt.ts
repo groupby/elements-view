@@ -70,11 +70,11 @@ export default class Sayt extends LitElement {
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
-    if (this.searchbox) {
-      this.setSearchboxListener('add', 'input', this.processSearchboxInput, this.searchbox);
-    } else {
-      this.setSearchboxListener('add', 'sfx::searchbox_change', this.processSfxSearchboxChange);
-    }
+    // if (this.searchbox) {
+    this.setSearchboxListener('add', this.searchbox);
+    // } else {
+    //   this.setSearchboxListener('add');
+    // }
   }
 
   /**
@@ -90,11 +90,11 @@ export default class Sayt extends LitElement {
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
 
-    if (this.searchbox) {
-      this.setSearchboxListener('remove', 'input', this.processSearchboxInput, this.searchbox);
-    } else {
-      this.setSearchboxListener('remove', 'sfx::searchbox_change', this.processSfxSearchboxChange);
-    }
+    // if (this.searchbox) {
+    this.setSearchboxListener('remove', this.searchbox);
+    // } else {
+    //   this.setSearchboxListener('remove');
+    // }
   }
 
   createRenderRoot() {
@@ -112,16 +112,16 @@ export default class Sayt extends LitElement {
     }
     if (changedProps.has('searchbox')) {
       const oldSearchbox = changedProps.get('searchbox') as string;
-      if (oldSearchbox) {
-        this.setSearchboxListener('remove', 'input', this.processSearchboxInput, oldSearchbox);
-      } else {
-        this.setSearchboxListener('remove', 'sfx::searchbox_change', this.processSfxSearchboxChange);
-      }
-      if (this.searchbox) {
-        this.setSearchboxListener('add', 'input', this.processSearchboxInput, this.searchbox);
-      } else {
-        this.setSearchboxListener('add', 'sfx::searchbox_change', this.processSfxSearchboxChange);
-      }
+      // if (oldSearchbox) {
+        this.setSearchboxListener('remove', oldSearchbox);
+      // } else {
+      //   this.setSearchboxListener('remove');
+      // }
+      // if (this.searchbox) {
+        this.setSearchboxListener('add', this.searchbox);
+      // } else {
+      //   this.setSearchboxListener('add');
+      // }
     }
   }
 
@@ -133,14 +133,20 @@ export default class Sayt extends LitElement {
    * @param eventCallback The name of the callback function triggered by the eventListener.
    * @param searchboxType The `oldSearchbox` or `this.searchbox`.
    */
-  setSearchboxListener(toggle: string, eventName: string, eventCallback: any, searchboxType?: string) :void {
-    if (searchboxType) {
-      const searchbox :any = document.getElementById(searchboxType);
-      if (searchbox) searchbox[`${toggle}EventListener`](eventName, eventCallback);
+  // setSearchboxListener(toggle: string, eventName: string, eventCallback: any,
+  setSearchboxListener(toggle: 'add' | 'remove', searchboxId?: string) :void {
+  console.log('>>> searchboxId', searchboxId)
+    if (searchboxId) {
+      const searchbox: any = document.getElementById(searchboxId);
+      if (searchbox) searchbox[`${toggle}EventListener`]('input', this.processSearchboxInput);
     } else {
-      (window as any)[`${toggle}EventListener`](eventName, eventCallback);
+      (window as any)[`${toggle}EventListener`]('sfx::searchbox_change', this.processSfxSearchboxChange);
     }
   }
+
+//   I think a better factoring is to simply pass down the searchbox ID (type string) and whether to add or remove (type 'add' | 'remove'). You already know which event callback to use and under which event name based on the searchbox ID: if it's on the searchbox itself, it's input and this.processSearchboxInput, and if it's on window, it's sfx::searchbox_change and this.processSfxSearchboxChange. If you do it this way, you can replace all the if statements in the calling code with a simple call to this function.
+//
+// I also wouldn't call it "toggle" because you aren't really toggling anything in this function. Maybe setSearchboxListener.
 
   /**
    * Changes the `visible` property to `true`.
