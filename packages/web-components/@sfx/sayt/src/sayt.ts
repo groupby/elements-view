@@ -54,7 +54,7 @@ export default class Sayt extends LitElement {
     this.requestSayt = this.requestSayt.bind(this);
     this.processSearchboxInput = this.processSearchboxInput.bind(this);
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
-
+    this.toggleSearchboxListener = this.toggleSearchboxListener.bind(this);
   }
 
   /**
@@ -70,10 +70,9 @@ export default class Sayt extends LitElement {
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
     if (this.searchbox) {
-      const searchbox = document.getElementById(this.searchbox);
-      if (searchbox) searchbox.addEventListener('input', this.processSearchboxInput);
+      this.toggleSearchboxListener('add', 'input', this.processSearchboxInput, this.searchbox);
     } else {
-      window.addEventListener('sfx::searchbox_change', this.processSfxSearchboxChange);
+      this.toggleSearchboxListener('add', 'sfx::searchbox_change', this.processSfxSearchboxChange);
     }
   }
 
@@ -91,10 +90,9 @@ export default class Sayt extends LitElement {
     window.removeEventListener('keydown', this.processKeyEvent);
 
     if (this.searchbox) {
-      const searchbox = document.getElementById(this.searchbox);
-      if (searchbox) searchbox.removeEventListener('input', this.processSearchboxInput);
+      this.toggleSearchboxListener('remove', 'input', this.processSearchboxInput, this.searchbox);
     } else {
-      window.removeEventListener('sfx::searchbox_change', this.processSfxSearchboxChange);
+      this.toggleSearchboxListener('remove', 'sfx::searchbox_change', this.processSfxSearchboxChange);
     }
   }
 
@@ -114,17 +112,32 @@ export default class Sayt extends LitElement {
     if (changedProps.has('searchbox')) {
       const oldSearchbox = changedProps.get('searchbox') as string;
       if (oldSearchbox) {
-        const searchbox = document.getElementById(oldSearchbox);
-        if (searchbox) searchbox.removeEventListener('input', this.processSearchboxInput);
+        this.toggleSearchboxListener('remove', 'input', this.processSearchboxInput, oldSearchbox);
       } else {
-        window.removeEventListener('sfx::searchbox_change', this.processSfxSearchboxChange);
+        this.toggleSearchboxListener('remove', 'sfx::searchbox_change', this.processSfxSearchboxChange);
       }
       if (this.searchbox) {
-        const searchbox = document.getElementById(this.searchbox);
-        if (searchbox) searchbox.addEventListener('input', this.processSearchboxInput);
+        this.toggleSearchboxListener('add', 'input', this.processSearchboxInput, this.searchbox);
       } else {
-        window.addEventListener('sfx::searchbox_change', this.processSfxSearchboxChange);
+        this.toggleSearchboxListener('add', 'sfx::searchbox_change', this.processSfxSearchboxChange);
       }
+    }
+  }
+
+  /**
+   * Toggle the events being registered and unregisterd when the `searchbox` property changes.
+   *
+   * @param toggle A string to indicate the type of eventListener(add or remove).
+   * @param eventName The name of the eventListener to register or unregister.
+   * @param eventCallback The name of the callback function triggered by the eventListener.
+   * @param searchboxType The `oldSearchbox` or `this.searchbox`.
+   */
+  toggleSearchboxListener(toggle: string, eventName: string, eventCallback: any, searchboxType?: string) :void {
+    if (searchboxType) {
+      const searchbox = document.getElementById(searchboxType);
+      if (searchbox) searchbox[`${toggle}EventListener`](eventName, eventCallback);
+    } else {
+      window[`${toggle}EventListener`](eventName, eventCallback);
     }
   }
 
@@ -180,7 +193,6 @@ export default class Sayt extends LitElement {
     });
     window.dispatchEvent(requestSaytResults);
   }
-
 
   /**
    * Handles the searchbox input in the case where no searchbox ID is given, and
