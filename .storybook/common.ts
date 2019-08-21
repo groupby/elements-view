@@ -8,7 +8,7 @@ export function getDisplayCode(code: string): string {
   return `
       <style>
         #the-code {
-          position: fixed;
+          position: block;
           bottom: 0;
         }
         pre.code-output {
