@@ -97,7 +97,6 @@ export function dispatchProvideProductsEvent(count: number = 10) {
   sendSampleProducts(products);
 }
 
-
 export const autocompleteReceivedResultsEvent =
   {
     name: 'sfx::autocomplete_received_results',
@@ -116,7 +115,6 @@ export const autocompleteReceivedResultsEvent =
       }
     ]
   }
-
 
 export const productsResultsEvent =
   {

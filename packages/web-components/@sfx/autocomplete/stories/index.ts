@@ -53,11 +53,11 @@ const results = [
   },
 ];
 
-function getAutocomplete(title ='', results =[], display = false): string {
+function getAutocomplete(title ='Autocomplete Results', results =[], codeSnippet = false): string {
   const optionalTitle = text('Optional Caption', title);
   const autocompleteResults = text('Results', JSON.stringify(results));
 
-  return display === false ? (
+  return codeSnippet === false ? (
     '<sfx-autocomplete\n'
     + ` caption="${optionalTitle}"\n`
     + ` results="${autocompleteResults}"\n`
@@ -73,56 +73,6 @@ storiesOf('Components|Autocomplete', module)
   .addDecorator(withKnobs)
   .add(
     'Default',
-    () => {
-      const autocomplete = getAutocomplete('Autocomplete Results', results);
-      const autocompleteDisplay = getAutocomplete('Autocomplete Results', [], true)
-      return `
-      ${autocomplete}
-      ${getDisplayCode(autocompleteDisplay)}`;
-    },
-    {
-      customEvents: [autocompleteReceivedResultsEvent],
-      notes: {
-        markdown: `
-        ${autocompleteNotesMarkdownIntro}
-
-          * Rendering of hardcoded autocomplete data
-            * Hardcoding includes the optional title (contained in the caption attribute)
-
-          \`\`\`html
-          <sfx-autocomplete
-          caption="Autocomplete Results"
-          results="[
-            {
-              title: 'Brands',
-              items: [
-                {
-                  label: 'New Balance'
-                },
-                {
-                  label: 'Bauer'
-                }
-              ]
-            },
-            {
-              title: '',
-              items: [
-                {
-                  label: 'Golf Ball'
-                },
-                {
-                  label: 'Basketball'
-                }
-              ]
-            }
-          ]"></sfx-autocomplete>
-          \`\`\`
-          `
-      }
-    }
-  )
-  .add(
-    'No initial data - emit event to populate with data',
     () => {
       const autocomplete = getAutocomplete();
       return `
@@ -140,12 +90,14 @@ storiesOf('Components|Autocomplete', module)
             \`\`\`
 
             ## Demonstrated in this story:
-
-            Demonstrating autocomplete populating with autocomplete data in response to the autocomplete received results event.
-
-            * To emit the event, visit the Custom Events tab and view the sfx::autocomplete\_received\_results event.
-            * Clicking 'emit' will fire the event, which sfx-autocomplete listens on.
-              * The payload of the event (event detail) should populate on the page.
+            * Autocomplete populating with autocomplete data in response to the autocomplete received results event.
+              * To emit the event, visit the Custom Events tab and view the sfx::autocomplete\_received\_results event.
+              * Clicking 'emit' will fire the event, which sfx-autocomplete listens on.
+                * The payload of the event (event detail) should populate on the page.
+            * The autocomplete component can include an optional title
+              * This is populated by the caption attribute
+                * To update this attribute, visit the Knobs tab and modify the text in the 'Optional Caption' knob and emit the event
+                  * View the DOM and component update with the updated text
             `
       }
     }
