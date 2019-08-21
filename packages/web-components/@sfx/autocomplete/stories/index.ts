@@ -42,9 +42,9 @@ storiesOf('Components|Autocomplete', module)
             * The SF-X Autocomplete component populating with an optional title.
               * This is populated via the caption attribute.
                 * To update the text within the 'caption' attribute:
-                  1. Visit the **Knobs** tab and modify the text in the 'Optional Caption' field
-                  2. Navigate to the **Custom Events** tab and emit the event
-                    * View the DOM and component update with the updated text
+                  1. Visit the **Knobs** tab and modify the text contained within the 'Optional Caption' field.
+                  2. Navigate to the **Custom Events** tab and emit the event.
+                    * View the DOM and component update with the updated text.
             `
       }
     }
