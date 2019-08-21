@@ -14,15 +14,42 @@ const productsNotesMarkdownIntro = ` # SF-X Products Component
 
 ## Demonstrated in this story:`;
 
-// removed display code for now since it's massive
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add(
-    'Default',
+    'Default - Rendering event payload',
+    () => {
+      const productsComponent = getProductsComponent();
+      return `
+      ${productsComponent}
+      ${getDisplayCode(productsComponent)}
+    `;
+    },
+    {
+      customEvents: [productsResultsEvent],
+      notes: {
+        markdown: `
+      ${productsNotesMarkdownIntro}
+
+        * Rendering the payload of the 'sfx::provide_products' event
+          * To emit an event, navigate to the 'Custom Events' tab
+          * To emit the provided event on the left, click the 'emit' button
+          * To create another event, add an event name and event detail in the provided area on the right
+
+          \`\`\`html
+          <sfx-products></sfx-products>
+          \`\`\`
+      `
+      }
+    }
+  )
+  .add(
+    'Products data populated via products attribute',
     () => {
       const products = getProducts(10);
       const productsComponent = getProductsComponent(products);
       return `
+      <h1>Note: Not recommended method</h1>
     ${productsComponent}
     `;
     },
@@ -60,33 +87,6 @@ storiesOf('Components|Products', module)
           }
         ]></sfx-products>
         \`\`\`
-      `
-      }
-    }
-  )
-  .add(
-    'Rendering event payload',
-    () => {
-      const productsComponent = getProductsComponent();
-      return `
-      ${productsComponent}
-      ${getDisplayCode(productsComponent)}
-    `;
-    },
-    {
-      customEvents: [productsResultsEvent],
-      notes: {
-        markdown: `
-      ${productsNotesMarkdownIntro}
-
-        * Rendering the payload of the 'sfx::provide_products' event
-          * To emit an event, navigate to the 'Custom Events' tab
-          * To emit the provided event on the left, click the 'emit' button
-          * To create another event, add an event name and event detail in the provided area on the right
-
-          \`\`\`html
-          <sfx-products></sfx-products>
-          \`\`\`
       `
       }
     }

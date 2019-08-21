@@ -36,7 +36,7 @@ storiesOf('Components|Autocomplete', module)
 
             * The SF-X Autocomplete component populating with autocomplete data in response to the \`sfx::autocomplete_received_results\` event.
               * To emit the event:
-                1. Visit the **Custom Events** tab and view the \`sfx::autocomplete_received_results\` event.
+                1. Visit the **Custom Events** tab and locate the \`sfx::autocomplete_received_results\` event.
                 2. Click 'emit'.
                   * The payload of the event will populate on the page.
             * The SF-X Autocomplete component populating with an optional title.
