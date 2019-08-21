@@ -96,3 +96,32 @@ export function dispatchProvideProductsEvent(count: number = 10) {
   const products = getProducts(count);
   sendSampleProducts(products);
 }
+
+
+export const autocompleteReceivedResultsEvent =
+  {
+    name: 'sfx::autocomplete_received_results',
+    payload: [
+      {
+        title: '',
+        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+      },
+      {
+        title: 'Brands',
+        items: [{ label: 'Kashi' }, { label: 'Excel' }]
+      },
+      {
+        title: 'Colors',
+        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+      }
+    ]
+  }
+
+
+export const productsResultsEvent =
+  {
+    name: 'sfx::provide_products',
+    payload: {
+      products: getProducts(5)
+    }
+  }

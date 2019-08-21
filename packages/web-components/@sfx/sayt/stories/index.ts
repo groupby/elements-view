@@ -1,18 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import '../src';
-import { getDisplayCode, dispatchProvideProductsEvent, getProducts } from '../../../../../.storybook/common';
-
-// @TODO allow for sending event with searchbox ID. This should allow for one
-// story's events to not affect another story.
-const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
-  detail: [
-    { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] },
-    { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-  ],
-  bubbles: true
-});
-
+import { getDisplayCode, productsResultsEvent, autocompleteReceivedResultsEvent } from '../../../../../.storybook/common';
 
 const saytNotesMarkdownIntro = ` # SF-X SAYT Component
 
@@ -38,34 +27,6 @@ function getSayt(searchbox = '', showSayt = true): string {
     '></sfx-sayt>'
   );
 }
-
-const autocompleteReceivedResultsEvent =
-  {
-    name: 'sfx::autocomplete_received_results',
-    payload: [
-      {
-        title: '',
-        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-      },
-      {
-        title: 'Brands',
-        items: [{ label: 'Kashi' }, { label: 'Excel' }]
-      },
-      {
-        title: 'Colors',
-        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-      }
-    ]
-  }
-
-
-const productsResultsEvent =
-  {
-    name: 'sfx::provide_products',
-    payload: {
-      products: getProducts(5)
-    }
-  }
 
 const saytHide = {
   name: 'sfx::sayt_hide',
@@ -115,46 +76,16 @@ storiesOf('Components|SAYT', module)
               * Click the 'sfx::sayt_show' button on the left hand side
               * Click the 'Emit' button
                 * View the display of SAYT
+            * Component should hide when there is a click anywhere outside of the input box or SAYT itself
+              * Open SAYT, click the area below SAYT
+                * View SAYT close
 
                 ${getDisplayCode(getSayt())}
       `
       }
     }
   )
-  // @TODO Remove these setTimeouts when opening a new story
-  // .add('Responding to Events - sayt_hide & sayt_show ', () => {
-  //     emitEventInFuture(autocompleteDataReceivedEvent, 100);
-  //     setTimeout(() => {
-  //       dispatchProvideProductsEvent(3);
-  //     }, 100);
-  //     emitEventInFuture(new Event('sfx::sayt_hide'), 2000);
-  //     emitEventInFuture(new Event('sfx::sayt_show'), 4000);
-
-  //     const sayt = getSayt('', false);
-
-  //     return `
-  //     ${ sayt }
-  //     ${ getDisplayCode(sayt) }
-  //   `;
-  //   },
-  //   {
-  //     notes: {
-  //       markdown: `
-  //       # Search As You Type (SAYT)
-  //       - Show automatically once sub-component Autocomplete receives results.
-  //       - Show automatically once sub-component Products receives results.
-  //       - Receiving sayt_hide event after 2 seconds.
-  //       - Receiving sayt_show event after 4 seconds.
-  //     `
-  //     }
-  //   }
-  // )
   .add('SAYT with simple search input', () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 100);
-      setTimeout(() => {
-        dispatchProvideProductsEvent(3);
-      }, 100);
-
       const input = `<input type="text" id="search-box" placeholder="Search here" />`;
       const sayt = getSayt('search-box');
 
@@ -177,20 +108,20 @@ storiesOf('Components|SAYT', module)
     `;
     },
     {
+      customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
       notes: {
         markdown: `
-        #Search As You Type (SAYT)
-        Demonstrating SAYT working with a standard input element,
-        rather than our Seach component.
+        ${saytNotesMarkdownIntro}
+
+          * SAYT working with a standard input element, rather than our Seach component
+            * SAYT should not close when clicking within the input element or anywhere within the autocomplete or products data
+            * Open SAYT, click the input element
+            * View SAYT remaining open
       `
       }
     }
   )
   .add('SAYT with multiple search inputs', () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 100);
-      setTimeout(() => {
-        dispatchProvideProductsEvent(2);
-      }, 100);
 
       const input1 = `<input type="text" id="search-box1" placeholder="Search here" />`;
       const input2 = `<input type="text" id="search-box2" placeholder="Or search here" />`;
@@ -219,73 +150,22 @@ storiesOf('Components|SAYT', module)
       ${ getDisplayCode(`${ input1 }${ sayt1 }${ input2 }${ sayt2 }`) }`;
     },
     {
+      customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
       notes: {
         markdown: `
-          #Search As You Type (SAYT)
-          Demonstrating multiple SAYT components.This proves that each Search/SAYT
-          pair acts independently.
+          ${saytNotesMarkdownIntro}
 
-          Note that it is virtually impossible to open two SAYT windows simultaneously.
-          Nevertheless, this proves two open SAYT components are acting independently.
-
-          * Clicking anywhere but either of the SAYT components should result in both
-          being closed due to lost focus.
-          * Clicking on a given SAYT component should leave that component
-          open, and any other SAYT component would be closed.
-          * Clicking \`Close\` on a given SAYT will close both SAYTs because:
-
-            * You have closed the SAYT for which you have clicked Close.
-            * The other SAYT has closed due to lost focus.
+            * Each Search/SAYT pair acts independently
+              * NOTE - it is virtually impossible to open two SAYT windows simultaneously.
+              Nevertheless, this proves two open SAYT components are acting independently.
+              * A click on one SAYT component should result in the other SAYT closing
+                * Open both SAYTs
+                * Click anywhere within one SAYT component
+                  * View the other SAYT closing
+            * A click on \`Close\` on a given SAYT will close both SAYTs because:
+              * You have closed the SAYT for which you have clicked Close.
+              * The other SAYT has closed due to lost focus.
       `
       }
     }
   )
-  .add(
-    'SAYT with events received at different points',
-    () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 3000);
-      setTimeout(() => {
-        dispatchProvideProductsEvent(3);
-      }, 1000);
-
-      const sayt = getSayt();
-
-      return `
-      ${ sayt }
-
-      ${getDisplayCode(sayt)}
-    `;
-    },
-    {
-      notes: {
-        markdown: `
-        #Search As You Type (SAYT)
-        Demonstrating functionality of SAYT when products and autocomplete events are received at different points.
-        Each portion of SAYT (autocomplete, products) should display when its respective data is received.
-        Autocomplete should appear at 1 second, and products should appear at 3 seconds.
-      `
-      }
-    }
-  )
-  .add('SAYT with only autocomplete event received', () => {
-      emitEventInFuture(autocompleteDataReceivedEvent, 100);
-
-      const sayt = getSayt();
-
-      return `
-      ${ sayt }
-
-      ${getDisplayCode(sayt)}
-    `;
-    },
-    {
-      notes: {
-        markdown: `
-        #Search As You Type (SAYT)
-        Demonstrating functionality of SAYT when only receiving one of autocomplete and products events.
-        Autocomplete data should appear if products data is not received, and vice versa.
-        Only autocomplete should appear in this specific story.
-        `
-      }
-    }
-  );

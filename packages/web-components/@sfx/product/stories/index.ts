@@ -40,23 +40,26 @@ const productMarkdownIntro =
 
 ## Demonstrated in this story:`;
 
-function getProduct(product): string {
+function getProductComponent(product ={}, display = false): string {
   const productInfo = text('Product Info', JSON.stringify(product));
 
-  return (
+  return display === false ? (
     '<sfx-product\n'
     + ` product="${productInfo}"\n`
     + '></sfx-product>'
+  ) : (
+    '<sfx-product>\n'
+    + '</sfx-product>'
   );
 }
 
 storiesOf('Components|Product', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-    const product = getProduct(productWithVariant)
+    const product = getProductComponent(productWithVariant)
     return `
     ${product}
-    ${getDisplayCode(product)}
+    ${getDisplayCode(getProductComponent(null, true))}
     `
     } , {
     notes: {
@@ -99,48 +102,3 @@ storiesOf('Components|Product', module)
       \`\`\`
     `}
 })
-// .add('Two Tiles', () => {
-//   const product = getProduct(productWithVariant);
-//   return `
-//   <style>
-//   sfx-product {
-//     width: 40%;
-//     display: inline-block;
-//     box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
-//     padding: 12px;
-//     margin: 12px;
-//   }
-//   sfx-product img {
-//     width: 100%;
-//   }
-//   </style>
-//   ${product}
-//   ${product}
-
-//   ${getDisplayCode(product)}
-
-//   `
-// }, {
-//     notes: {
-//       markdown:
-//       `${productMarkdownIntro}`
-//     }
-// })
-// .add('Slotted Price', () => `
-//   <sfx-product
-//     class="full"
-//     product="${text('Product Info', JSON.stringify(product))}"
-//   >
-//     <h1 slot="title">Slotted Title</h1>
-//     <p slot="price"><span style="text-decoration: line-through">29.99</span> <span style="color: #C00">19.99</span></p>
-//   </sfx-product>
-// `, {
-//   notes: {
-//     markdown:
-//     `
-//     ${productMarkdownIntro}
-
-//     * This does not work... did it ever?
-//     `
-//   }
-// });

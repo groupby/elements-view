@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/html';
-import { getDisplayCode } from '../../../../../.storybook/common';
+import { getDisplayCode, autocompleteReceivedResultsEvent } from '../../../../../.storybook/common';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import '../src/index';
 
@@ -53,26 +53,6 @@ const results = [
   },
 ];
 
-const autocompleteReceivedResultsEvent = [
-  {
-    name: 'sfx::autocomplete_received_results',
-    payload: [
-      {
-        title: '',
-        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-      },
-      {
-        title: 'Brands',
-        items: [{ label: 'Kashi' }, { label: 'Excel' }]
-      },
-      {
-        title: 'Colors',
-        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-      }
-    ]
-  }
-];
-
 function getAutocomplete(title ='', results =[], display = false): string {
   const optionalTitle = text('Optional Caption', title);
   const autocompleteResults = text('Results', JSON.stringify(results));
@@ -89,16 +69,6 @@ function getAutocomplete(title ='', results =[], display = false): string {
 );
 }
 
-// function getAutocompleteDisplay(title =''): string {
-//   const optionalTitle = text('Optional Caption', title);
-
-//   return (
-//     '<sfx-autocomplete\n'
-//     + ` caption="${optionalTitle}"\n`
-//     + '></sfx-autocomplete>'
-//   );
-// }
-
 storiesOf('Components|Autocomplete', module)
   .addDecorator(withKnobs)
   .add(
@@ -111,7 +81,7 @@ storiesOf('Components|Autocomplete', module)
       ${getDisplayCode(autocompleteDisplay)}`;
     },
     {
-      customEvents: autocompleteReceivedResultsEvent,
+      customEvents: [autocompleteReceivedResultsEvent],
       notes: {
         markdown: `
         ${autocompleteNotesMarkdownIntro}
@@ -157,10 +127,10 @@ storiesOf('Components|Autocomplete', module)
       const autocomplete = getAutocomplete();
       return `
       ${autocomplete}
-      ${getDisplayCode(getAutocomplete(null, null,true))}`
+      ${getDisplayCode(getAutocomplete(null, null, true))}`
     },
     {
-      customEvents: autocompleteReceivedResultsEvent,
+      customEvents: [autocompleteReceivedResultsEvent],
       notes: {
         markdown: `
           ${autocompleteNotesMarkdownIntro}

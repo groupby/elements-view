@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import { getDisplayCode, getProducts } from '../../../../../.storybook/common';
+import { getDisplayCode, getProducts, productsResultsEvent } from '../../../../../.storybook/common';
 
 function getProductsComponent(productsArray = []) {
   const products = text('Products', JSON.stringify(productsArray));
@@ -13,15 +13,6 @@ const productsNotesMarkdownIntro = ` # SF-X Products Component
 [SF-X Products README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
 
 ## Demonstrated in this story:`;
-
-const productsResultsEvent = [
-  {
-    name: 'sfx::provide_products',
-    payload: {
-      products: getProducts(5)
-    }
-  }
-];
 
 // removed display code for now since it's massive
 storiesOf('Components|Products', module)
@@ -36,7 +27,7 @@ storiesOf('Components|Products', module)
     `;
     },
     {
-      customEvents: productsResultsEvent,
+      customEvents: [productsResultsEvent],
       notes: {
         markdown: `
       ${productsNotesMarkdownIntro}
@@ -71,8 +62,7 @@ storiesOf('Components|Products', module)
         \`\`\`
       `
       }
-    },
-    {}
+    }
   )
   .add(
     'Rendering event payload',
@@ -84,7 +74,7 @@ storiesOf('Components|Products', module)
     `;
     },
     {
-      customEvents: productsResultsEvent,
+      customEvents: [productsResultsEvent],
       notes: {
         markdown: `
       ${productsNotesMarkdownIntro}

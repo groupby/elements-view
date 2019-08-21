@@ -913,6 +913,7 @@
     core-js "^3.0.1"
     global "^4.3.2"
     react "^16.8.3"
+
 "@storybook/addon-events@^5.1.11":
   version "5.1.11"
   resolved "https://registry.yarnpkg.com/@storybook/addon-events/-/addon-events-5.1.11.tgz#04cea5db02a6ee5ac57eef44d7cdb8ea00958bb4"
@@ -1151,7 +1152,7 @@
     recompose "^0.30.0"
     simplebar-react "^1.0.0-alpha.6"
 
-"@storybook/core-events@5.1.11":
+"@storybook/core-events@5.1.11", "@storybook/core-events@^5.1.9":
   version "5.1.11"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-5.1.11.tgz#9d00503a936d30398f7a64336eb956303d053765"
   integrity sha512-m+yIFRdB47+IPBFBGS2OUXrSLkoz5iAXvb3c0lGAePf5wSR+o/Ni/9VD5l6xBf+InxHLSc9gcDEJehrT0fJAaQ==
@@ -8412,6 +8413,15 @@ react@^16.8.3:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
+react@^16.8.6:
+  version "16.9.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.9.0.tgz#40ba2f9af13bc1a38d75dbf2f4359a5185c4f7aa"
+  integrity sha512-+7LQnFBwkiw+BobzOF6N//BdoNw0ouwmSJTEm9cglOOmsg/TMiFHZLe2sEoN5M7LgJTj9oHH0gxklfnQe66S1w==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+
 reactcss@^1.2.0:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/reactcss/-/reactcss-1.2.3.tgz#c00013875e557b1cf0dfd9a368a1c3dab3b548dd"
@@ -9406,6 +9416,14 @@ store2@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.7.1.tgz#22070b7dc04748a792fc6912a58ab99d3a21d788"
   integrity sha512-zzzP5ZY6QWumnAFV6kBRbS44pUMcpZBNER5DWUe1HETlaKXqLcCQxbNu6IHaKr1pUsjuhUGBdOy8sWKmMkL6pQ==
+
+storybook-custom-events@groupby/storybook-custom-events#2d8cba8de3ccc59f8b414a2550161088c6577921:
+  version "1.0.0"
+  resolved "https://codeload.github.com/groupby/storybook-custom-events/tar.gz/2d8cba8de3ccc59f8b414a2550161088c6577921"
+  dependencies:
+    "@storybook/addons" "^5.1.9"
+    "@storybook/core-events" "^5.1.9"
+    react "^16.8.6"
 
 stream-browserify@^2.0.1:
   version "2.0.2"
