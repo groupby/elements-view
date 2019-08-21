@@ -137,14 +137,17 @@ describe('Sayt Component', () => {
       });
     });
 
-    // describe('searchbox', () => {
-    //   it('should unregister sfx::searchbox_change event listener if the old searchbox ID was empty', () => {
-    //     const removeEventListener = stub(window, 'removeEventListener');
-    //
-    //     sayt.updated(new Map([['searchbox', '']]));
-    //
-    //     expect(removeEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
-    //   });
+    describe('searchbox', () => {
+      it('should unregister old event listener', () => {
+
+        const setSearchboxListener = stub(sayt, 'setSearchboxListener');
+
+        sayt.searchbox = 'searchbox1';
+        sayt.updated(new Map([['searchbox', '']]));
+
+        expect(setSearchboxListener.firstCall).to.be.calledWith('remove', '');
+        expect(setSearchboxListener.secondCall).to.be.calledWith('add', sayt.searchbox);
+      });
     //
     //   it('should unregister seachbox input event listener if the old searchbox ID was valid', () => {
     //     const searchboxRemoveEventListener = spy();
@@ -197,7 +200,7 @@ describe('Sayt Component', () => {
     //     // It is implicitly tested that input is not being listened for because there is no element to attach it to
     //     expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
     //   });
-    // });
+    });
   });
 
   describe('showSayt()', () => {
