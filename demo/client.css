@@ -187,7 +187,7 @@ main h2 {
 
 /* NEW ARRIVALS SECTION STYLES START HERE! */
 .new-arrivals {
-  margin: 125px 0;
+  padding: 125px 0;
 }
 
 .new-arrivals h2 {
@@ -238,6 +238,12 @@ main h2 {
   width: 40px;
   background-color: var(--background-color-secondary);
   color: var(--font-color-primary);
+  transition: all 0.3s;
+}
+
+.sfx-catalogue-search-controls button:hover {
+  background-color: var(--background-color-tertiary);
+  color: var(--font-color-tertiary);
 }
 /* CATALOGUE SECTION STYLES END HERE! */
 
