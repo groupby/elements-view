@@ -65,7 +65,7 @@ storiesOf('Components|Products', module)
       ${productsNotesMarkdownIntro}
 
         * The SF-X Products component rendering a collection of products with the data passed directly via the  \`products\` attribute.
-          * Disclaimer - although possible, it is not recommended to pass large arrrays of data via an attribute.
+          * Disclaimer - although possible, it is not recommended to pass large arrays of data via an attribute.
             * The products attribute is populated with hardcoded data initially.
               * To modify the data within the 'products' attribute:
                 1. Visit the **Knobs** tab and update the data contained within the 'Products' field.
