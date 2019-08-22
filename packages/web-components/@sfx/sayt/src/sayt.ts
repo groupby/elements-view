@@ -115,7 +115,7 @@ export default class Sayt extends LitElement {
    * @param toggle A string to indicate the type of eventListener(add or remove).
    * @param searchboxId A searchbox ID given to the searchbox.
    */
-  setSearchboxListener(searchboxId: string, toggle: 'add' | 'remove',) {
+  setSearchboxListener(searchboxId: string, toggle: 'add' | 'remove') {
     const setEventListener = `${toggle}EventListener` as 'addEventListener' | 'removeEventListener';
     if (searchboxId) {
       const searchbox = document.getElementById(searchboxId) as any;
