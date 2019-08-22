@@ -6,23 +6,20 @@
     <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script>
   </head>
   <body>
-    <sfx-search-box id="searchbox1" placeholder="search" clearbutton searchbutton></sfx-search-box>
-    <sfx-sayt searchbox="searchbox1"></sfx-sayt>
-    <sfx-search-box id="searchbox2" placeholder="search" clearbutton searchbutton></sfx-search-box>
-    <sfx-sayt searchbox="searchbox2" minsearchlength="5"></sfx-sayt>
+    <sfx-search-box placeholder="search" clearbutton searchbutton></sfx-search-box>
+    <sfx-sayt visible></sfx-sayt>
     <sfx-list class="product-grid"></sfx-list>
 
     <script>
       // init core and plugins
       const core = new sfxCore.Core();
       const domEventsPlugin = new sfxPlugins.DomEventsPlugin()
-      const saytPlugin = new sfxPlugins.SaytPlugin({ subdomain: 'apparel', collection: 'products' });
+      const saytPlugin = new sfxPlugins.SaytPlugin({subdomain: 'apparel', collection: 'products'});
       const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin();
-      const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel', collection: 'products', area: 'Storefront' });
+      const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel', collection: 'products', area: 'Storefront'});
       const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin();
       // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
-
       // search integration/functionality test
       window.addEventListener('sfx::search_response', (e) => {
         const testListResults = e.detail.records.map(item => {

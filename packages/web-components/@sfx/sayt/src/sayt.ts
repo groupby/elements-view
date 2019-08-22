@@ -127,10 +127,6 @@ export default class Sayt extends LitElement {
     }
   }
 
-//   I think a better factoring is to simply pass down the searchbox ID (type string) and whether to add or remove (type 'add' | 'remove'). You already know which event callback to use and under which event name based on the searchbox ID: if it's on the searchbox itself, it's input and this.processSearchboxInput, and if it's on window, it's sfx::searchbox_change and this.processSfxSearchboxChange. If you do it this way, you can replace all the if statements in the calling code with a simple call to this function.
-//
-// I also wouldn't call it "toggle" because you aren't really toggling anything in this function. Maybe setSearchboxListener.
-
   /**
    * Changes the `visible` property to `true`.
    */
