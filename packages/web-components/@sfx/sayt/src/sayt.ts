@@ -116,11 +116,12 @@ export default class Sayt extends LitElement {
    * @param searchboxId An optional ID given to the searchbox.
    */
   setSearchboxListener(toggle: 'add' | 'remove', searchboxId?: string) :void {
+    const setEventListener = `${toggle}EventListener` as 'addEventListener' | 'removeEventListener';
     if (searchboxId) {
       const searchbox = document.getElementById(searchboxId) as any;
-      if (searchbox) searchbox[`${toggle}EventListener`]('input', this.processSearchboxInput);
+      if (searchbox) searchbox[setEventListener]('input', this.processSearchboxInput);
     } else {
-      (window as any)[`${toggle}EventListener`]('sfx::searchbox_change', this.processSfxSearchboxChange);
+      (window as any)[setEventListener]('sfx::searchbox_change', this.processSfxSearchboxChange);
     }
   }
 
@@ -167,7 +168,7 @@ export default class Sayt extends LitElement {
    *
    * @param event The searchbox change event dispatched from the searchbox.
    */
-  requestSayt(query: string, searchbox: string) {
+  requestSayt(query: string, searchbox: string) :void {
     if (query.length < this.minSearchLength) return;
 
     const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
@@ -183,7 +184,7 @@ export default class Sayt extends LitElement {
    *
    * @param event The searchbox input event dispatched from the searchbox.
    */
-  processSearchboxInput(event: Event) {
+  processSearchboxInput(event: Event) :void {
     this.requestSayt((event.target as HTMLInputElement).value, this.searchbox);
   }
 
@@ -193,7 +194,7 @@ export default class Sayt extends LitElement {
    *
    * @param event The searchbox change event dispatched from the searchbox.
    */
-  processSfxSearchboxChange(event: CustomEvent) {
+  processSfxSearchboxChange(event: CustomEvent) :void {
     this.requestSayt(event.detail.value, event.detail.searchbox);
   }
 
