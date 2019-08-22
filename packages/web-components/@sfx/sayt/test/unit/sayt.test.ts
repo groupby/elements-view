@@ -34,8 +34,7 @@ describe('Sayt Component', () => {
     it('should register event listeners to the window', () => {
       const addEventListener = stub(window, 'addEventListener');
       const setSearchboxListener = stub(sayt, 'setSearchboxListener');
-
-      sayt.searchbox = '';
+      const searchbox = sayt.searchbox = '';
 
       sayt.connectedCallback();
 
@@ -45,7 +44,7 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
       expect(addEventListener).to.be.calledWith(PRODUCTS_EVENT, sayt.showCorrectSayt);
-      expect(setSearchboxListener).to.be.calledWith(sayt.searchbox, 'add');
+      expect(setSearchboxListener).to.be.calledWith(searchbox, 'add');
     });
   });
 
@@ -53,8 +52,7 @@ describe('Sayt Component', () => {
     it('should remove event listeners on the window', () => {
       const removeEventListener = stub(window, 'removeEventListener');
       const setSearchboxListener = stub(sayt, 'setSearchboxListener');
-
-      sayt.searchbox = '';
+      const searchbox = sayt.searchbox = '';
 
       sayt.disconnectedCallback();
 
@@ -64,7 +62,7 @@ describe('Sayt Component', () => {
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
-      expect(setSearchboxListener).to.be.calledWith(sayt.searchbox, 'remove');
+      expect(setSearchboxListener).to.be.calledWith(searchbox, 'remove');
     });
   });
 
@@ -81,14 +79,15 @@ describe('Sayt Component', () => {
     });
 
     describe('searchbox', () => {
-      it('should unregister old event listener', () => {
+      it('should replace event listener', () => {
         const setSearchboxListener = stub(sayt, 'setSearchboxListener');
+        const newSearchbox = sayt.searchbox = 'searchbox1';
+        const oldSearchbox = '';
 
-        sayt.searchbox = 'searchbox1';
-        sayt.updated(new Map([['searchbox', '']]));
+        sayt.updated(new Map([['searchbox', oldSearchbox]]));
 
-        expect(setSearchboxListener).to.be.calledWith('', 'remove');
-        expect(setSearchboxListener).to.be.calledWith(sayt.searchbox, 'add');
+        expect(setSearchboxListener).to.be.calledWith(oldSearchbox, 'remove');
+        expect(setSearchboxListener).to.be.calledWith(newSearchbox, 'add');
       });
     });
   });
