@@ -1,18 +1,27 @@
 defaults:
-  image: &image
+  image_default: &image_default
+    docker:
+      - image: circleci/node:11.6.0
+  image_browsers: &image_browsers
     docker:
       - image: circleci/node:11.6.0-browsers
+  image_minimal: &image_minimal
+    docker:
+      - image: alpine
+  install_image_minimal_dependencies: &install_image_minimal_dependencies
+    name: Install Alpine dependencies
+    command: apk add ca-certificates
   yarn_cache: &yarn_cache
     key: yarn_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
   build_final_cache_partial: &build_final_cache_partial
     key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-all-
   archive_build: &archive_build
     name: Archive build
-    command: tar cvf ../build.tar packages/*/@sfx/*/{dist,esnext}
+    command: tar cvf ../build.tar packages/*/@sfx/*/dist packages/*/@sfx/*/esnext
   extract_build_archive: &extract_build_archive
     name: Extract archive
     command: |
-      [[ ! -r ../build.tar ]] || tar xvf ../build.tar
+      [ ! -r ../build.tar ] || tar xvf ../build.tar
 
   git_submodule_install: &git_submodule_install
     name: Install git submodules
@@ -37,10 +46,11 @@ jobs:
   ### Stores the current build number in a file to use in unique cache keys and branch names for this workflow.
   ### The build number is guaranteed to be unique per build per project and is suitable for use as an identifier.
   generate_cache_key_file:
-    <<: *image
+    <<: *image_minimal
     working_directory: ~/
     steps:
       - run: echo "$CIRCLE_BUILD_NUM" > workflow-start
+      - run: *install_image_minimal_dependencies
       - persist_to_workspace:
           root: ~/
           paths:
@@ -51,7 +61,7 @@ jobs:
   ### build: build_{package}
   ### Builds {package} and stores them in a cache.
   build:
-    <<: *image
+    <<: *image_default
     steps:
       - checkout
       - attach_workspace:
@@ -81,16 +91,18 @@ jobs:
       - save_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-{{ .Environment.CIRCLE_JOB }}-{{ epoch }}
           paths:
-            - ~/build.tar
+            - ../build.tar
 
   ### collect_builds
   ### Generates a cache that includes all built packages.
   collect_builds:
-    <<: *image
+    <<: *image_minimal
+    working_directory: /home/circleci/project
     steps:
       - checkout
+      - run: *install_image_minimal_dependencies
       - attach_workspace:
-          at: ~/
+          at: /home/circleci
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_autocomplete-
       - run: *extract_build_archive
@@ -116,14 +128,14 @@ jobs:
       - save_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-all-{{ epoch }}
           paths:
-            - ~/build.tar
+            - ../build.tar
 
   ## Unit test jobs
 
   ### unit_test: unit_test_{package}
   ### Runs the tests for {package}.
   unit_test:
-    <<: *image
+    <<: *image_browsers
     steps:
       - checkout
       - attach_workspace:
@@ -144,7 +156,7 @@ jobs:
   ### interaction_test: interaction_test_{package}
   ### Runs the interaction tests for {package}.
   interaction_test:
-    <<: *image
+    <<: *image_browsers
     steps:
       - checkout
       - attach_workspace:
@@ -165,7 +177,7 @@ jobs:
   ### test_final
   ### No-op. This job exists to fan in all the unit test jobs.
   test_final:
-    <<: *image
+    <<: *image_minimal
     steps:
       - run: exit 0
 
