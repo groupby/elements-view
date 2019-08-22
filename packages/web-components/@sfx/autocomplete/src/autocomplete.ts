@@ -1,7 +1,9 @@
 import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 import { Base } from '@sfx/base';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from './events';
+
+// TODO: replace with @sfx/events import - added temporarily for import in storybook
+export const AUTOCOMPLETE_RECEIVED_RESULTS_EVENT = 'sfx::autocomplete_received_results';
 
 /**
  * Listens for the `sfx::autocomplete_received_results` event and
@@ -52,27 +54,6 @@ export default class Autocomplete extends Base {
     this.results = e.detail.results;
   }
 
-  // FIXME Move this to the Storybook tab once functionality has been merged into sfx-view.
-  /*
-   * --- TEMPORARY: setup for testing event listeners ---
-   * Because Storybook is contained in an iframe, for testing purposes,
-   * we are unable to dispatch events directly from the console.
-   *
-   * As an alternative - temporarily, we have a button to click to dispatch event.
-   * Should be updated when/if functionality is avaiable via Storybook tab.
-   *
-   */
-  dispatchAutocompleteResults() {
-    const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
-      detail: [
-        { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] },
-        { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-      ],
-      bubbles: true
-    });
-    window.dispatchEvent(autocompleteDataReceivedEvent);
-  }
-
   /**
    * Renders results data in a list format using the `sfx-list` custom
    * element.
@@ -88,7 +69,9 @@ export default class Autocomplete extends Base {
         }
       </style>
       ${this.caption && this.results.length > 0
-        ? html`<h3 class="sfx-header">${this.caption}</h3>`
+        ? html`
+            <h3 class="sfx-header">${this.caption}</h3>
+          `
         : ''}
       ${this.results.map(
         list =>

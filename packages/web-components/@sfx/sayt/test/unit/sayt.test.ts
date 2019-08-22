@@ -1,9 +1,9 @@
 import { expect, sinon, spy, stub } from '../utils';
 import { TemplateResult, LitElement } from 'lit-element';
 import { PRODUCTS_EVENT } from '@sfx/products';
+import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '@sfx/autocomplete';
 import Sayt from '../../src/sayt';
 import { SAYT_EVENT } from '../../src/events';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../../autocomplete/src/events';
 
 describe('Sayt Component', () => {
   let sayt;
@@ -224,7 +224,7 @@ describe('Sayt Component', () => {
 
   describe('isCorrectSayt()', () => {
     it('should return true if event provides the correct searchbox ID', () => {
-      const searchbox = sayt.searchbox = 'some-searchbox-id';
+      const searchbox = (sayt.searchbox = 'some-searchbox-id');
       const event = { detail: { searchbox } };
 
       const result = sayt.isCorrectSayt(event);
@@ -394,7 +394,7 @@ describe('Sayt Component', () => {
   describe('nodeInSearchbox()', () => {
     it('should return true if given node is contained in the search box', () => {
       const searchbox = {
-        contains: spy(() => true),
+        contains: spy(() => true)
       };
       const getElementById = stub(document, 'getElementById').returns(searchbox);
       sayt.searchbox = 'searchbox-id';
@@ -408,7 +408,7 @@ describe('Sayt Component', () => {
 
     it('should return false if given node is not contained in the search box', () => {
       const searchbox = {
-        contains: stub().returns(false),
+        contains: stub().returns(false)
       };
       const getElementById = stub(document, 'getElementById').returns(searchbox);
       sayt.searchbox = 'searchbox-id';
@@ -441,7 +441,7 @@ describe('Sayt Component', () => {
 
   describe('processKeyEvent()', () => {
     it('should hide SAYT when pressing escape', () => {
-      const event: any = { key: "Escape" };
+      const event: any = { key: 'Escape' };
       const hideSayt = stub(sayt, 'hideSayt');
 
       sayt.processKeyEvent(event);
@@ -450,9 +450,9 @@ describe('Sayt Component', () => {
     });
 
     it('should not hide SAYT when pressing any character other than escape', () => {
-      const event: any = { key: "j" };
-      const event2: any = { key: "Enter" };
-      const event3: any = { key: "Space" };
+      const event: any = { key: 'j' };
+      const event2: any = { key: 'Enter' };
+      const event3: any = { key: 'Space' };
       const hideSayt = stub(sayt, 'hideSayt');
 
       sayt.processKeyEvent(event);

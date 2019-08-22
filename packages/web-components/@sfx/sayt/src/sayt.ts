@@ -1,8 +1,7 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
 import { PRODUCTS_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
-import { SEARCHBOX_EVENT } from '../../search-box/src/events';
+import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '@sfx/autocomplete';
 
 /**
  * The `sfx-sayt` component is responsible for displaying and hiding the
@@ -279,20 +278,22 @@ export default class Sayt extends LitElement {
       </style>
       ${this.showCloseButton
         ? html`
-          <button
-            class="sfx-close"
-            aria-label="Close"
-            @click=${this.clickCloseSayt}>
-            ${this.closeText}
-          </button>`
+            <button class="sfx-close" aria-label="Close" @click=${this.clickCloseSayt}>
+              ${this.closeText}
+            </button>
+          `
         : ''}
       <div class="sfx-sayt-container">
         ${this.hideAutocomplete
           ? ''
-          : html`<sfx-autocomplete></sfx-autocomplete>`}
+          : html`
+              <sfx-autocomplete></sfx-autocomplete>
+            `}
         ${this.hideProducts
           ? ''
-          : html`<sfx-products></sfx-products>`}
+          : html`
+              <sfx-products></sfx-products>
+            `}
       </div>
     `;
   }

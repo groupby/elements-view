@@ -53,7 +53,7 @@ export default class SearchBox extends Base {
    */
   emitSearchEvent() {
     const searchboxRequestEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-      value: this.value,
+      value: this.value
     });
     this.dispatchEvent(searchboxRequestEvent);
   }
@@ -89,9 +89,7 @@ export default class SearchBox extends Base {
   handleInput(e: KeyboardEvent) {
     const value = (e.target as HTMLInputElement).value;
     this.updateSearchTermValue(value);
-    this.dispatchEvent(
-      this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, { value })
-    );
+    this.dispatchEvent(this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, { value }));
   }
 
   /**
@@ -144,28 +142,10 @@ export default class SearchBox extends Base {
     return new CustomEvent(type, {
       detail: {
         ...detail,
-        searchbox: this.id,
+        searchbox: this.id
       },
-      bubbles: true,
-    });
-  }
-
-  // TODO Move this to the Storybook tab once functionality has been merged into sfx-view.
-  /*
-   * --- TEMPORARY: setup for testing event listeners ---
-   * Because Storybook is contained in an iframe, for testing purposes,
-   * we are unable to dispatch events directly from the console.
-   *
-   * As an alternative - temporarily, we have a button to click to dispatch event.
-   * Should be updated when/if functionality is avaiable via Storybook tab.
-   * This event would be dispatched when a user hovers on autocomplete.
-   */
-  updateTextEvent() {
-    const updateSearchTerm = new CustomEvent(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, {
-      detail: 'catfood',
       bubbles: true
     });
-    window.dispatchEvent(updateSearchTerm);
   }
 
   render() {
@@ -193,18 +173,12 @@ export default class SearchBox extends Base {
       />
       ${this.clearButton
         ? html`
-            <button
-              class="sfx-clear"
-              @click="${this.clearSearch}"
-            >Clear</button>
+            <button class="sfx-clear" @click="${this.clearSearch}">Clear</button>
           `
         : ''}
       ${this.searchButton
         ? html`
-            <button
-              class="sfx-submit"
-              @click="${this.emitSearchEvent}"
-            >Search</button>
+            <button class="sfx-submit" @click="${this.emitSearchEvent}">Search</button>
           `
         : ''}
     `;

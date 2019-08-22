@@ -1,1 +1,1 @@
-export { default as Autocomplete } from './autocomplete';
+export { default as Autocomplete, AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from './autocomplete';
