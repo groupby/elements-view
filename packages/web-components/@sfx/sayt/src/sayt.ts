@@ -2,6 +2,7 @@ import { LitElement, customElement, html, property, PropertyValues } from 'lit-e
 import { PRODUCTS_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
+import { SEARCHBOX_EVENT } from '../../search-box/src/events';
 
 /**
  * The `sfx-sayt` component is responsible for displaying and hiding the
@@ -33,7 +34,10 @@ export default class Sayt extends LitElement {
    * Shows a button to allow for closing SAYT manually.
    */
   @property({ type: Boolean, reflect: true }) showCloseButton = false;
-
+  /**
+   * The minimum length of the search term required before a SAYT request will be made with it.
+   */
+  @property({ type: Number, reflect: true }) minSearchLength = 3;
   /**
    * Calls superclass constructor and bind methods.
    */
@@ -48,6 +52,10 @@ export default class Sayt extends LitElement {
     this.hideCorrectSayt = this.hideCorrectSayt.bind(this);
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
     this.isCorrectSayt = this.isCorrectSayt.bind(this);
+    this.requestSayt = this.requestSayt.bind(this);
+    this.processSearchboxInput = this.processSearchboxInput.bind(this);
+    this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
+    this.setSearchboxListener = this.setSearchboxListener.bind(this);
   }
 
   /**
@@ -62,6 +70,7 @@ export default class Sayt extends LitElement {
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
+    this.setSearchboxListener(this.searchbox, 'add');
   }
 
   /**
@@ -76,6 +85,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
+    this.setSearchboxListener(this.searchbox, 'remove');
   }
 
   createRenderRoot() {
@@ -83,13 +93,35 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Update component `hidden` property when the `visible` property changes.
+   * Update a component property when the property changes.
    *
-   * @param changedProps A map of the all the change properties.
+   * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues) {
     if (changedProps.has('visible')) {
       this.hidden = !this.visible;
+    }
+    if (changedProps.has('searchbox')) {
+      const oldSearchbox = changedProps.get('searchbox') as string;
+
+      this.setSearchboxListener(oldSearchbox, 'remove');
+      this.setSearchboxListener(this.searchbox, 'add');
+    }
+  }
+
+  /**
+   * Toggle the events being registered and unregisterd when the `searchbox` property changes.
+   *
+   * @param searchboxId A searchbox ID given to the searchbox.
+   * @param action A string to indicate the type of eventListener(add or remove).
+   */
+  setSearchboxListener(searchboxId: string, action: 'add' | 'remove') {
+    const setEventListener = `${action}EventListener` as 'addEventListener' | 'removeEventListener';
+    if (searchboxId) {
+      const searchbox = document.getElementById(searchboxId) as HTMLElement;
+      if (searchbox) searchbox[setEventListener]('input', this.processSearchboxInput);
+    } else {
+      window[setEventListener]('sfx::searchbox_change', this.processSfxSearchboxChange);
     }
   }
 
@@ -131,6 +163,43 @@ export default class Sayt extends LitElement {
   }
 
   /**
+   * Dispatches an `sfx::autocomplete_fetch_data` event with the provided data.
+   * The event will be dispatched if the term is at least [[minSearchLength]] long.
+   *
+   * @param query The search term to use.
+   * @param searchbox The searchbox ID associated with this search.
+   */
+  requestSayt(query: string, searchbox?: string) {
+    if (query.length < this.minSearchLength) return;
+
+    const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
+      detail: { query, searchbox },
+      bubbles: true,
+    });
+    window.dispatchEvent(requestSaytResults);
+  }
+
+  /**
+   * Handles the searchbox input in the case where no searchbox ID is given, and
+   * triggers the `requestSayt` function with the query and searchbox data.
+   *
+   * @param event The searchbox input event dispatched from the searchbox.
+   */
+  processSearchboxInput(event: Event) {
+    this.requestSayt((event.target as HTMLInputElement).value, this.searchbox);
+  }
+
+  /**
+   * Handles the SF-X searchbox changes in the case where a searchbox ID is given, and
+   * triggers the `requestSayt` function with the query and specific searchbox ID.
+   *
+   * @param event The searchbox change event dispatched from the searchbox.
+   */
+  processSfxSearchboxChange(event: CustomEvent) {
+    this.requestSayt(event.detail.value, event.detail.searchbox);
+  }
+
+  /**
    * Determines whether an event refers to the correct SAYT. This is true if
    * a matching `searchbox` ID is specified, if the event has no `searchbox`
    * ID specified, or if SAYT has no `searchbox` ID specified.
@@ -150,7 +219,6 @@ export default class Sayt extends LitElement {
   processClick(event: MouseEvent) {
     const target = event.target as Node;
     if (this.contains(target) || this.nodeInSearchbox(target)) return;
-
     this.hideSayt();
   }
 

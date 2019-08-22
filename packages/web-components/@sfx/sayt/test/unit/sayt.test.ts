@@ -33,6 +33,8 @@ describe('Sayt Component', () => {
   describe('connectedCallback()', () => {
     it('should register event listeners to the window', () => {
       const addEventListener = stub(window, 'addEventListener');
+      const setSearchboxListener = stub(sayt, 'setSearchboxListener');
+      const searchbox = sayt.searchbox = '';
 
       sayt.connectedCallback();
 
@@ -42,12 +44,15 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
       expect(addEventListener).to.be.calledWith(PRODUCTS_EVENT, sayt.showCorrectSayt);
+      expect(setSearchboxListener).to.be.calledWith(searchbox, 'add');
     });
   });
 
   describe('disconnectedCallback()', () => {
     it('should remove event listeners on the window', () => {
       const removeEventListener = stub(window, 'removeEventListener');
+      const setSearchboxListener = stub(sayt, 'setSearchboxListener');
+      const searchbox = sayt.searchbox = '';
 
       sayt.disconnectedCallback();
 
@@ -57,17 +62,94 @@ describe('Sayt Component', () => {
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
+      expect(setSearchboxListener).to.be.calledWith(searchbox, 'remove');
     });
   });
 
   describe('updated()', () => {
-    it('should change the hidden property if the visible property has changed', () => {
-      sayt.hidden = true;
-      sayt.visible = true;
+    describe('visible', () => {
+      it('should change the hidden property if the visible property has changed', () => {
+        sayt.hidden = true;
+        sayt.visible = true;
 
-      sayt.updated(new Map([['visible', true]]));
+        sayt.updated(new Map([['visible', true]]));
 
-      expect(sayt.hidden).to.be.false;
+        expect(sayt.hidden).to.be.false;
+      });
+    });
+
+    describe('searchbox', () => {
+      it('should replace event listener', () => {
+        const setSearchboxListener = stub(sayt, 'setSearchboxListener');
+        const newSearchbox = sayt.searchbox = 'searchbox1';
+        const oldSearchbox = '';
+
+        sayt.updated(new Map([['searchbox', oldSearchbox]]));
+
+        expect(setSearchboxListener).to.be.calledWith(oldSearchbox, 'remove');
+        expect(setSearchboxListener).to.be.calledWith(newSearchbox, 'add');
+      });
+    });
+  });
+
+  describe('setSearchboxListener()', () => {
+    it('should add an event listener if provided an `add` paramater and an input ID and it exists on the page', () => {
+      const searchboxAddEventListener = spy();
+      const windowAddEventListener = stub(window, 'addEventListener');
+      const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
+      const searchboxId = sayt.searchbox = 'searchbox1';
+
+      sayt.setSearchboxListener(searchboxId, 'add');
+
+      expect(getElementById).to.be.calledWith(searchboxId);
+      expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
+      expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
+    });
+
+    it('should remove an event listener if provided a `remove` paramater and an input ID and it exists on the page', () => {
+      const searchboxRemoveEventListener = spy();
+      const windowRemoveEventListener = stub(window, 'removeEventListener');
+      const getElementById = stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener });
+      const searchboxId = sayt.searchbox = 'searchbox1';
+
+      sayt.setSearchboxListener(searchboxId, 'remove');
+
+      expect(getElementById).to.be.calledWith(searchboxId);
+      expect(searchboxRemoveEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
+      expect(windowRemoveEventListener).to.not.be.calledWith('sfx::searchbox_change');
+    });
+
+    it('should not register listeners if the searchbox does not exist', () => {
+      const windowAddEventListener = stub(window, 'addEventListener');
+      const getElementById = stub(document, 'getElementById').returns(null);
+      const searchboxId = sayt.searchbox = 'searchbox1';
+
+      sayt.setSearchboxListener(searchboxId, 'add');
+
+      // It is implicitly tested that input is not being listened for because there is no element to attach it to
+      expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
+    });
+
+    it('should add event listener to window if element exists and searchbox ID is empty', () => {
+      const searchboxAddEventListener = spy();
+      const windowAddEventListener = stub(window, 'addEventListener');
+      const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
+
+      sayt.setSearchboxListener('', 'add');
+
+      expect(windowAddEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
+      expect(searchboxAddEventListener).to.not.be.calledWith('input');
+    });
+
+    it('should remove event listener to window if element exists and searchbox ID is empty', () => {
+      const searchboxRemoveEventListener = spy();
+      const windowRemoveEventListener = stub(window, 'removeEventListener');
+      const getElementById = stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener });
+
+      sayt.setSearchboxListener('', 'remove');
+
+      expect(windowRemoveEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
+      expect(searchboxRemoveEventListener).to.not.be.calledWith('input');
     });
   });
 
