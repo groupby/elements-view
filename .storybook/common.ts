@@ -104,20 +104,22 @@ export function dispatchProvideProductsEvent(count: number = 10) {
 
 export const autocompleteReceivedResultsEvent = {
   name: AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
-  payload: [
-    {
-      title: '',
-      items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-    },
-    {
-      title: 'Brands',
-      items: [{ label: 'Kashi' }, { label: 'Excel' }]
-    },
-    {
-      title: 'Colors',
-      items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-    }
-  ]
+  payload: {
+    results: [
+      {
+        title: '',
+        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+      },
+      {
+        title: 'Brands',
+        items: [{ label: 'Kashi' }, { label: 'Excel' }]
+      },
+      {
+        title: 'Colors',
+        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+      }
+    ]
+  }
 };
 
 export const productsResultsEvent = {
