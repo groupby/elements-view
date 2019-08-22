@@ -1,11 +1,12 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { getDisplayCode } from '../../../../../.storybook/common';
+import { SEARCHBOX_EVENT } from '../src/events';
 import '../src';
 
 const updateTextEvent = [
   {
-    name: 'sfx::update_search_term',
+    name: SEARCHBOX_EVENT.UPDATE_SEARCH_TERM,
     payload: 'hot chocolate'
   }
 ];
@@ -40,7 +41,7 @@ function getSearchBoxComponent(): string {
 storiesOf('Components|Searchbox', module)
   .addDecorator(withKnobs)
   .add(
-    'Default',
+    'Rendering based on events and attributes',
     () => {
       const searchBoxComponent = getSearchBoxComponent();
       return `

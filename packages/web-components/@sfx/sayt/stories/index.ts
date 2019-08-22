@@ -1,11 +1,12 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
-import '../src';
 import {
   getDisplayCode,
   productsResultsEvent,
   autocompleteReceivedResultsEvent
 } from '../../../../../.storybook/common';
+import { SAYT_EVENT } from '../src/events';
+import '../src';
 
 const saytNotesMarkdownIntro = ` # SF-X SAYT Component
 
@@ -39,12 +40,12 @@ function getSayt(searchbox = ''): string {
 }
 
 const saytHide = {
-  name: 'sfx::sayt_hide',
+  name: SAYT_EVENT.SAYT_HIDE,
   payload: ''
 };
 
 const saytShow = {
-  name: 'sfx::sayt_show',
+  name: SAYT_EVENT.SAYT_SHOW,
   payload: ''
 };
 
@@ -73,13 +74,13 @@ storiesOf('Components|SAYT', module)
         markdown: `
         ${saytNotesMarkdownIntro}
 
-          * The SF-X SAYT component rendering the SF-X Autocomplete and the SF-X Products component in response to events.
-            * The component will render the SF-X Autocomplete component with the payload of the \`sfx::autocomplete_received_results\` in response to the event.
+          * The SF-X SAYT component rendering the SF-X Autocomplete and the SF-X Products components in response to events.
+            * The component will render the SF-X Autocomplete component with the payload of the \`sfx::autocomplete_received_results\`, in response to the event.
               * To emit the event:
                 1. Visit the **Custom Events** tab and locate the \`sfx::autocomplete_received_results\` event.
                 2. Click 'emit'.
                   * View the SF-X SAYT component populate with autocomplete data.
-            * The component will render the SF-X Products component with the payload of the \`sfx::provide_products\` in response to the event.
+            * The component will render the SF-X Products component with the payload of the \`sfx::provide_products\`, in response to the event.
               * To emit the event
                 1. Visit the **Custom Events** tab and locate the \`sfx::provide_products\` event.
                 2. Click 'emit'.
@@ -104,7 +105,7 @@ storiesOf('Components|SAYT', module)
               * hideProducts
               * closeText
             * To modify these attributes:
-              1. Visit the **Knobs** tab and modify toggle the 'Hide Autocomplete', 'Hide Products', and 'Show Close button', and/or update the text contained within the 'Close link text' field.
+              1. Visit the **Knobs** tab and click any of the 'Hide Autocomplete', 'Hide Products', and 'Show Close button', and/or update the text contained within the 'Close link text' field.
               2. Emit the appropriate events
                 * View the component render based on attributes.
       `
@@ -205,7 +206,7 @@ storiesOf('Components|SAYT', module)
         markdown: `
           ${saytNotesMarkdownIntro}
 
-            * Two SF-X SAYT components acting independently when mulitple SAYT components are  included on a page.
+            * Two SF-X SAYT components acting independently when mulitple SAYT components are included on a page.
               * A click on one SAYT component will result in the other SAYT closing.
                 * To demonstrate:
                   1. Open both SAYTs.

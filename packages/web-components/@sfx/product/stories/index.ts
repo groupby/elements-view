@@ -18,9 +18,8 @@ storiesOf('Components|Product', module)
   .add(
     'Rendering data populated via attribute',
     () => {
-      const productComponent = getProductComponent(getProducts(1)[0]);
       return `
-    ${productComponent}
+    ${getProductComponent(getProducts(1)[0])}
     ${getDisplayCode(getProductComponent(null, true))}
     `;
     },

@@ -53,7 +53,7 @@ storiesOf('Components|Products', module)
     () => {
       const productsComponent = getProductsComponent(getProducts(10));
       return `
-      <h1>Note: Not recommended method</h1>
+      <h1>Disclaimer: Not recommended method</h1>
       <h2>See notes for further details</h2>
     ${productsComponent}
     `;
@@ -64,8 +64,8 @@ storiesOf('Components|Products', module)
         markdown: `
       ${productsNotesMarkdownIntro}
 
-        * The SF-X Products component rendering a collection of products with the data passed directly via the  \`products\` attribute.
-          * Disclaimer - although possible, it is not recommended to pass large arrays of data via an attribute.
+        * The SF-X Products component rendering a collection of products, with the data passed directly via the  \`products\` attribute.
+          * DISCLAIMER - although possible, it is not recommended to pass large arrays of data via an attribute.
             * The products attribute is populated with hardcoded data initially.
               * To modify the data within the 'products' attribute:
                 1. Visit the **Knobs** tab and update the data inside the 'Products' field.
