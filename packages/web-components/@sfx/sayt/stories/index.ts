@@ -22,7 +22,6 @@ const saytNotesMarkdownIntro = ` # SF-X SAYT Component
 ## Demonstrated in this story:`;
 
 function getSayt(searchbox = '', showSayt = true): string {
-  const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
   const closeText = text('Close link text', '×');
   const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
   const hideAutocomplete = boolean('Hide Autocomplete', false) ? 'hideAutocomplete' : '';
@@ -33,7 +32,6 @@ function getSayt(searchbox = '', showSayt = true): string {
     (searchbox ? `  searchbox="${searchbox}"\n` : '') +
     `  closetext="${closeText}"\n` +
     (showCloseButton ? `  ${showCloseButton}\n` : '') +
-    (showAttribute ? `  ${showAttribute}\n` : '') +
     (hideAutocomplete ? `  ${hideAutocomplete}\n` : '') +
     (hideProducts ? `  ${hideProducts}\n` : '') +
     '></sfx-sayt>'
@@ -57,7 +55,9 @@ storiesOf('Components|SAYT', module)
     () => {
       const sayt = getSayt();
       return `
+      <div style="display:relative">
       ${sayt}
+      </div>
 
       ${getDisplayCode(sayt)}`;
     },
@@ -175,14 +175,19 @@ storiesOf('Components|SAYT', module)
         #search-box1, #search-box2 {
           width: 100%;
         }
+        .sayt-container {
+          display: relative;
+        }
       </style>
-      <div class="search-container">
-        ${input1}
-        ${sayt1}
-      </div>
-      <div class="search-container">
-        ${input2}
-        ${sayt2}
+      <div class="sayt-container">
+        <div class="search-container">
+          ${input1}
+          ${sayt1}
+        </div>
+        <div class="search-container">
+          ${input2}
+          ${sayt2}
+        </div>
       </div>
       ${getDisplayCode(`${input1}${sayt1}${input2}${sayt2}`)}`;
     },
