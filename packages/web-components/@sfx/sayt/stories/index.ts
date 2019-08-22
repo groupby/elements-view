@@ -176,7 +176,9 @@ storiesOf('Components|SAYT', module)
           width: 100%;
         }
         .sayt-container {
-          display: relative;
+          position: relative;
+          display: block;
+          height: 600px;
         }
       </style>
       <div class="sayt-container">
