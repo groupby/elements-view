@@ -112,11 +112,11 @@ export default class Sayt extends LitElement {
   /**
    * Toggle the events being registered and unregisterd when the `searchbox` property changes.
    *
-   * @param toggle A string to indicate the type of eventListener(add or remove).
    * @param searchboxId A searchbox ID given to the searchbox.
+   * @param action A string to indicate the type of eventListener(add or remove).
    */
-  setSearchboxListener(searchboxId: string, toggle: 'add' | 'remove') {
-    const setEventListener = `${toggle}EventListener` as 'addEventListener' | 'removeEventListener';
+  setSearchboxListener(searchboxId: string, action: 'add' | 'remove') {
+    const setEventListener = `${action}EventListener` as 'addEventListener' | 'removeEventListener';
     if (searchboxId) {
       const searchbox = document.getElementById(searchboxId) as HTMLElement;
       if (searchbox) searchbox[setEventListener]('input', this.processSearchboxInput);
