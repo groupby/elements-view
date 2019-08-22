@@ -118,10 +118,10 @@ export default class Sayt extends LitElement {
   setSearchboxListener(searchboxId: string, toggle: 'add' | 'remove') {
     const setEventListener = `${toggle}EventListener` as 'addEventListener' | 'removeEventListener';
     if (searchboxId) {
-      const searchbox = document.getElementById(searchboxId) as any;
+      const searchbox = document.getElementById(searchboxId) as HTMLElement;
       if (searchbox) searchbox[setEventListener]('input', this.processSearchboxInput);
     } else {
-      (window as any)[setEventListener]('sfx::searchbox_change', this.processSfxSearchboxChange);
+      window[setEventListener]('sfx::searchbox_change', this.processSfxSearchboxChange);
     }
   }
 
