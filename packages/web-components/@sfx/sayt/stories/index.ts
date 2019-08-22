@@ -55,7 +55,13 @@ storiesOf('Components|SAYT', module)
     () => {
       const sayt = getSayt();
       return `
-      <div style="position:relative">
+      <style>
+        .sayt-container {
+          height: 800px;
+        }
+      </style>
+
+      <div class="sayt-container">
       ${sayt}
       </div>
 
@@ -99,7 +105,8 @@ storiesOf('Components|SAYT', module)
               * closeText
             * To modify these attributes:
               1. Visit the **Knobs** tab and modify toggle the 'Hide Autocomplete', 'Hide Products', and 'Show Close button', and/or update the text contained within the 'Close link text' field.
-                * View the component update (dependent on intial state)
+              2. Emit the appropriate events
+                * View the component render based on attributes.
       `
       }
     }
@@ -116,6 +123,7 @@ storiesOf('Components|SAYT', module)
           float: left;
           position: relative;
           width: 100%;
+          height: 900px;
         }
         #search-box {
           width: 100%;
@@ -176,9 +184,7 @@ storiesOf('Components|SAYT', module)
           width: 100%;
         }
         .sayt-container {
-          position: relative;
-          display: block;
-          height: 600px;
+          height: 700px;
         }
       </style>
       <div class="sayt-container">
