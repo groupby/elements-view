@@ -87,8 +87,8 @@ describe('Sayt Component', () => {
         sayt.searchbox = 'searchbox1';
         sayt.updated(new Map([['searchbox', '']]));
 
-        expect(setSearchboxListener.firstCall).to.be.calledWith('', 'remove');
-        expect(setSearchboxListener.secondCall).to.be.calledWith(sayt.searchbox, 'add');
+        expect(setSearchboxListener).to.be.calledWith('', 'remove');
+        expect(setSearchboxListener).to.be.calledWith(sayt.searchbox, 'add');
       });
     });
   });
