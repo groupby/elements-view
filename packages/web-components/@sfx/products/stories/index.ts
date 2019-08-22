@@ -3,14 +3,21 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import { getDisplayCode, getProducts, productsResultsEvent } from '../../../../../.storybook/common';
 
 function getProductsComponent(productsArray = []) {
-  const products = text('Products', JSON.stringify(productsArray));
-
-  return '<sfx-products\n' + ` products="${products}"\n` + '></sfx-products>';
+  if (productsArray.length > 0) {
+    const products = text('Products', JSON.stringify(productsArray));
+    return '<sfx-products\n' + ` products="${products}"\n` + '></sfx-products>';
+  } else {
+    return '<sfx-products>\n' + '</sfx-products>';
+  }
 }
 
 const productsNotesMarkdownIntro = ` # SF-X Products Component
 
 [SF-X Products README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
+
+\`\`\`html
+<sfx-products></sfx-products>
+\`\`\`
 
 ## Demonstrated in this story:`;
 
@@ -22,7 +29,7 @@ storiesOf('Components|Products', module)
       const productsComponent = getProductsComponent();
       return `
       ${productsComponent}
-      ${getDisplayCode(productsComponent)}
+      ${getDisplayCode(getProductsComponent())}
     `;
     },
     {
@@ -31,14 +38,12 @@ storiesOf('Components|Products', module)
         markdown: `
       ${productsNotesMarkdownIntro}
 
-        * Rendering the payload of the 'sfx::provide_products' event
-          * To emit an event, navigate to the 'Custom Events' tab
-          * To emit the provided event on the left, click the 'emit' button
-          * To create another event, add an event name and event detail in the provided area on the right
-
-          \`\`\`html
-          <sfx-products></sfx-products>
-          \`\`\`
+        * The SF-X Products component rendering a product grid in response to the \`sfx::provide_products\` event.
+          * To emit the event:
+            1. Visit the **Custom Events** tab and locate the \`sfx::provide_products\` event.
+            2. Click 'emit'.
+              * The payload of the event contains an array of products.
+              * View the product grid populate with the product data contained in the array.
       `
       }
     }
@@ -46,10 +51,10 @@ storiesOf('Components|Products', module)
   .add(
     'Products data populated via products attribute',
     () => {
-      const products = getProducts(10);
-      const productsComponent = getProductsComponent(products);
+      const productsComponent = getProductsComponent(getProducts(10));
       return `
       <h1>Note: Not recommended method</h1>
+      <h2>See notes for further details</h2>
     ${productsComponent}
     `;
     },
@@ -59,10 +64,14 @@ storiesOf('Components|Products', module)
         markdown: `
       ${productsNotesMarkdownIntro}
 
-        * Rendering a collection of products with data passed directly via the  \`products\` attribute on the DOM element.
-            * In this story, the products attribute is populated with hardcoded data initially
-              * To modify the hardcoded data, navigate to the 'Knobs' tab
-                * Either change some of the existing data contained in the products knob or populate with an array of product data that adheres to the product interfaces.
+        * The SF-X Products component rendering a collection of products with the data passed directly via the  \`products\` attribute.
+          * Disclaimer - although possible, it is not recommended to pass large arrrays of data via an attribute.
+            * The products attribute is populated with hardcoded data initially.
+              * To modify the data within the 'products' attribute:
+                1. Visit the **Knobs** tab and update the data contained within the 'Products' field.
+                  * View the DOM and component update with the updated data.
+
+        ### Example of the SF-X Products component's \`products\` attribute populated with a small array of product data:
 
         \`\`\`html
         <sfx-products
@@ -87,7 +96,7 @@ storiesOf('Components|Products', module)
           }
         ]></sfx-products>
         \`\`\`
-      `
+        `
       }
     }
   );
