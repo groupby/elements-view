@@ -45,7 +45,7 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
       expect(addEventListener).to.be.calledWith(PRODUCTS_EVENT, sayt.showCorrectSayt);
-      expect(setSearchboxListener).to.be.calledWith('add', sayt.searchbox);
+      expect(setSearchboxListener).to.be.calledWith(sayt.searchbox, 'add');
     });
   });
 
@@ -64,7 +64,7 @@ describe('Sayt Component', () => {
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
-      expect(setSearchboxListener).to.be.calledWith('remove', sayt.searchbox);
+      expect(setSearchboxListener).to.be.calledWith(sayt.searchbox, 'remove');
     });
   });
 
@@ -87,8 +87,8 @@ describe('Sayt Component', () => {
         sayt.searchbox = 'searchbox1';
         sayt.updated(new Map([['searchbox', '']]));
 
-        expect(setSearchboxListener.firstCall).to.be.calledWith('remove', '');
-        expect(setSearchboxListener.secondCall).to.be.calledWith('add', sayt.searchbox);
+        expect(setSearchboxListener.firstCall).to.be.calledWith('', 'remove');
+        expect(setSearchboxListener.secondCall).to.be.calledWith(sayt.searchbox, 'add');
       });
     });
   });
@@ -100,7 +100,7 @@ describe('Sayt Component', () => {
       const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
       const searchboxId = sayt.searchbox = 'searchbox1';
 
-      sayt.setSearchboxListener('add', searchboxId);
+      sayt.setSearchboxListener(searchboxId, 'add');
 
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
@@ -113,7 +113,7 @@ describe('Sayt Component', () => {
       const getElementById = stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener });
       const searchboxId = sayt.searchbox = 'searchbox1';
 
-      sayt.setSearchboxListener('remove', searchboxId);
+      sayt.setSearchboxListener(searchboxId, 'remove');
 
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxRemoveEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
@@ -125,7 +125,7 @@ describe('Sayt Component', () => {
       const getElementById = stub(document, 'getElementById').returns(null);
       const searchboxId = sayt.searchbox = 'searchbox1';
 
-      sayt.setSearchboxListener('add', searchboxId);
+      sayt.setSearchboxListener(searchboxId, 'add');
 
       // It is implicitly tested that input is not being listened for because there is no element to attach it to
       expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
@@ -136,7 +136,7 @@ describe('Sayt Component', () => {
       const windowAddEventListener = stub(window, 'addEventListener');
       const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
 
-      sayt.setSearchboxListener('add');
+      sayt.setSearchboxListener('', 'add');
 
       expect(windowAddEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
       expect(searchboxAddEventListener).to.not.be.calledWith('input');
@@ -147,7 +147,7 @@ describe('Sayt Component', () => {
       const windowRemoveEventListener = stub(window, 'removeEventListener');
       const getElementById = stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener });
 
-      sayt.setSearchboxListener('remove');
+      sayt.setSearchboxListener('', 'remove');
 
       expect(windowRemoveEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
       expect(searchboxRemoveEventListener).to.not.be.calledWith('input');

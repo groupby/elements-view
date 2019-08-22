@@ -70,7 +70,7 @@ export default class Sayt extends LitElement {
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
-    this.setSearchboxListener('add', this.searchbox);
+    this.setSearchboxListener(this.searchbox, 'add');
   }
 
   /**
@@ -85,7 +85,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
-    this.setSearchboxListener('remove', this.searchbox);
+    this.setSearchboxListener(this.searchbox, 'remove');
   }
 
   createRenderRoot() {
@@ -104,8 +104,8 @@ export default class Sayt extends LitElement {
     if (changedProps.has('searchbox')) {
       const oldSearchbox = changedProps.get('searchbox') as string;
 
-      this.setSearchboxListener('remove', oldSearchbox);
-      this.setSearchboxListener('add', this.searchbox);
+      this.setSearchboxListener(oldSearchbox, 'remove');
+      this.setSearchboxListener(this.searchbox, 'add');
     }
   }
 
@@ -113,9 +113,9 @@ export default class Sayt extends LitElement {
    * Toggle the events being registered and unregisterd when the `searchbox` property changes.
    *
    * @param toggle A string to indicate the type of eventListener(add or remove).
-   * @param searchboxId An optional ID given to the searchbox.
+   * @param searchboxId A searchbox ID given to the searchbox.
    */
-  setSearchboxListener(toggle: 'add' | 'remove', searchboxId?: string) :void {
+  setSearchboxListener(searchboxId: string, toggle: 'add' | 'remove',) :void {
     const setEventListener = `${toggle}EventListener` as 'addEventListener' | 'removeEventListener';
     if (searchboxId) {
       const searchbox = document.getElementById(searchboxId) as any;
