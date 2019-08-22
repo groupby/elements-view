@@ -166,9 +166,10 @@ export default class Sayt extends LitElement {
    * Dispatches an `sfx::autocomplete_fetch_data` event with the provided data.
    * The event will be dispatched if the term is at least [[minSearchLength]] long.
    *
-   * @param event The searchbox change event dispatched from the searchbox.
+   * @param query The search term to use.
+   * @param searchbox The searchbox ID associated with this search.
    */
-  requestSayt(query: string, searchbox: string) :void {
+  requestSayt(query: string, searchbox?: string) :void {
     if (query.length < this.minSearchLength) return;
 
     const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
