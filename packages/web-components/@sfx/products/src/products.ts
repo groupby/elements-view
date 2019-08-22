@@ -35,6 +35,7 @@ export default class Products extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
+
     if (!this.getAttribute('role')) {
       this.setAttribute('role', 'list');
     }

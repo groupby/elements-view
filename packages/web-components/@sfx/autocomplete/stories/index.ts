@@ -11,7 +11,7 @@ function getAutocomplete(): string {
 storiesOf('Components|Autocomplete', module)
   .addDecorator(withKnobs)
   .add(
-    'Default',
+    'Rendering with event payload',
     () => {
       const autocomplete = getAutocomplete();
       return `
@@ -38,11 +38,11 @@ storiesOf('Components|Autocomplete', module)
               * To emit the event:
                 1. Visit the **Custom Events** tab and locate the \`sfx::autocomplete_received_results\` event.
                 2. Click 'emit'.
-                  * The payload of the event will populate on the page.
+                  * The payload of the event will populate on the page as a list of autocomplete items.
             * The SF-X Autocomplete component populating with an optional title.
-              * This is populated via the caption attribute.
-                * To update the text within the 'caption' attribute:
-                  1. Visit the **Knobs** tab and modify the text contained within the 'Optional Caption' field.
+              * The optional title is populated via the 'caption' attribute.
+                * To update the 'caption' attribute text:
+                  1. Visit the **Knobs** tab and modify the text inside the 'Optional Caption' field.
                   2. Navigate to the **Custom Events** tab and emit the event.
                     * View the DOM and component update with the updated text.
             `

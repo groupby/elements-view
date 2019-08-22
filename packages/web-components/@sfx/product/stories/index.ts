@@ -4,15 +4,6 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import '../src/index';
 import { getDisplayCode, getProducts } from '../../../../../.storybook/common';
 
-const productMarkdownIntro = ` # SF-X Product Component
-
-[SF-X Product README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/product "SF-X Product README").
-
-\`\`\`html
-<sfx-product></sfx-product>
-\`\`\`
-
-## Demonstrated in this story:`;
 
 function getProductComponent(product = {}, codeSnippet = false): string {
   const productInfo = text('Product Info', JSON.stringify(product));
@@ -25,7 +16,7 @@ function getProductComponent(product = {}, codeSnippet = false): string {
 storiesOf('Components|Product', module)
   .addDecorator(withKnobs)
   .add(
-    'Default',
+    'Rendering data populated via attribute',
     () => {
       const productComponent = getProductComponent(getProducts(1)[0]);
       return `
@@ -36,15 +27,28 @@ storiesOf('Components|Product', module)
     {
       notes: {
         markdown: `
-        ${productMarkdownIntro}
+        # SF-X Product Component
 
-          * The SF-X Product component rendering with hardcoded product data (randomized).
-            * The product data is being populated via the 'product' attribute (refer to the \`ProductModel\` and \`ProductVariantsModel\` instance for the data format).
+        [SF-X Product README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/product "SF-X Product README").
+
+        \`\`\`html
+        <sfx-product></sfx-product>
+        \`\`\`
+
+        ## Demonstrated in this story:
+
+          * The SF-X Product component rendering with product data populated via the 'product' attribute.
+            * Refer to the \`ProductModel\` and \`ProductVariantsModel\` instance for the accepted data format.
               * To modify the data within the 'product' attribute:
-                1. Visit the **Knobs** tab and modify the data in the 'Product Data' field.
+                1. Visit the **Knobs** tab and modify the data inside the 'Product Data' field.
                   * View the component update with the updated data.
           * The SF-X Product component updating with variant product data when toggling between variants.
-            * To view toggling in story, click on the various coloured squares and see the product image change.
+            * To view toggling in story:
+            1. Navigate to the **Canvas** tab
+            2. View product tile
+              * If the product tile has multiple colored squares below the product image, click on the various squares
+              * If the product tile does not have multiple colored squares below the product image, refresh the page until a product with variants appears, then click on the various squares
+                * View the component update with different product images.
         `
       }
     }

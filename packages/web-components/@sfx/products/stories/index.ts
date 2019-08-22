@@ -24,12 +24,12 @@ const productsNotesMarkdownIntro = ` # SF-X Products Component
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add(
-    'Default - Rendering event payload',
+    'Rendering with event payload',
     () => {
       const productsComponent = getProductsComponent();
       return `
       ${productsComponent}
-      ${getDisplayCode(getProductsComponent())}
+      ${getDisplayCode(productsComponent)}
     `;
     },
     {
@@ -68,7 +68,7 @@ storiesOf('Components|Products', module)
           * Disclaimer - although possible, it is not recommended to pass large arrays of data via an attribute.
             * The products attribute is populated with hardcoded data initially.
               * To modify the data within the 'products' attribute:
-                1. Visit the **Knobs** tab and update the data contained within the 'Products' field.
+                1. Visit the **Knobs** tab and update the data inside the 'Products' field.
                   * View the DOM and component update with the updated data.
 
         ### Example of the SF-X Products component's \`products\` attribute populated with a small array of product data:

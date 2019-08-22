@@ -2,7 +2,7 @@ import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 import { Base } from '@sfx/base';
 
-// TODO: replace with @sfx/events import - added temporarily for import in storybook
+// TODO: replace with @sfx/events import - added temporarily for import in storybook/common
 export const AUTOCOMPLETE_RECEIVED_RESULTS_EVENT = 'sfx::autocomplete_received_results';
 
 /**
@@ -75,9 +75,7 @@ export default class Autocomplete extends Base {
         : ''}
       ${this.results.map(
         list =>
-          html`
-            <sfx-list caption="${list.title}" .items="${list.items}"></sfx-list>
-          `
+          html`<sfx-list caption="${list.title}" .items="${list.items}"></sfx-list>`
       )}
     `;
   }

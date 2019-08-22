@@ -51,11 +51,11 @@ const saytShow = {
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
   .add(
-    'Default',
+    'Rendering based on events and attributes',
     () => {
       const sayt = getSayt();
       return `
-      <div style="display:relative">
+      <div style="position:relative">
       ${sayt}
       </div>
 
