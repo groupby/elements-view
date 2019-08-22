@@ -93,9 +93,9 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Update component `hidden` property when the `visible` property changes.
+   * Update a component property when the property changes.
    *
-   * @param changedProps A map of the all the change properties.
+   * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues) {
     if (changedProps.has('visible')) {
@@ -113,11 +113,8 @@ export default class Sayt extends LitElement {
    * Toggle the events being registered and unregisterd when the `searchbox` property changes.
    *
    * @param toggle A string to indicate the type of eventListener(add or remove).
-   * @param eventName The name of the eventListener to register or unregister.
-   * @param eventCallback The name of the callback function triggered by the eventListener.
-   * @param searchboxType The `oldSearchbox` or `this.searchbox`.
+   * @param searchboxId An optional ID given to the searchbox.
    */
-  // setSearchboxListener(toggle: string, eventName: string, eventCallback: any,
   setSearchboxListener(toggle: 'add' | 'remove', searchboxId?: string) :void {
     if (searchboxId) {
       const searchbox = document.getElementById(searchboxId) as any;
