@@ -28,6 +28,7 @@ particular customizations:
 - `hideProducts`: Prevents the `sfx-products` component from rendering.
 - `showCloseButton`: Displays the close button.
 - `closeText`: Allows for the modification of the text used on the close button.
+- `visible`: Boolean that controls the visibility of SAYT.
 
 ## Testing
 
