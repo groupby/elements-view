@@ -266,6 +266,9 @@ describe('Sayt Component', () => {
     });
   });
 
+  // @TODO Add tests for processSearchboxInput()
+  // @TODO Add tests for processSfxSearchboxChange()
+
   describe('isCorrectSayt()', () => {
     it('should return true if event provides the correct searchbox ID', () => {
       const searchbox = sayt.searchbox = 'some-searchbox-id';
