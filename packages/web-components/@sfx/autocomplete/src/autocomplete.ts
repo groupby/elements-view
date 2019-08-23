@@ -75,7 +75,9 @@ export default class Autocomplete extends Base {
         : ''}
       ${this.results.map(
         list =>
-          html`<sfx-list caption="${list.title}" .items="${list.items}"></sfx-list>`
+          html`
+            <sfx-list caption="${list.title}" .items="${list.items}"></sfx-list>
+          `
       )}
     `;
   }

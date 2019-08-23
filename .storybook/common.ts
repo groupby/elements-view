@@ -83,25 +83,6 @@ export function getProducts(quantity: number): ProductModel[] {
   return products;
 }
 
-export function getProductsReceivedEvent(products: ProductModel[]): CustomEvent {
-  return new CustomEvent(PRODUCTS_EVENT, {
-    detail: {
-      products
-    },
-    bubbles: true
-  });
-}
-
-export function sendSampleProducts(products: ProductModel[]) {
-  const productsEvent = getProductsReceivedEvent(products);
-  window.dispatchEvent(productsEvent);
-}
-
-export function dispatchProvideProductsEvent(count: number = 10) {
-  const products = getProducts(count);
-  sendSampleProducts(products);
-}
-
 export const autocompleteReceivedResultsEvent = {
   name: AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
   payload: {
