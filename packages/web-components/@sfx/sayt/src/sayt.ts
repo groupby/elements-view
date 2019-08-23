@@ -174,6 +174,7 @@ export default class Sayt extends LitElement {
     if (query.length < this.minSearchLength) return;
 
     this.requestSaytAutocompleteTerms(query, searchbox);
+    this.requestSaytProducts(query, searchbox);
   }
 
   requestSaytAutocompleteTerms(query: string, searchbox?: string) {

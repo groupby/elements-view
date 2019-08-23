@@ -239,12 +239,14 @@ describe('Sayt Component', () => {
       expect(dispatchEvent).to.not.be.called;
     });
 
-    it('should request sayt autocomplete terms', () => {
+    it('should request sayt autocomplete terms and products', () => {
       const requestSaytAutocompleteTerms = stub(sayt, 'requestSaytAutocompleteTerms');
+      const requestSaytProducts = stub(sayt, 'requestSaytProducts');
 
       sayt.requestSayt(query, searchbox);
 
       expect(requestSaytAutocompleteTerms).to.be.calledWith(query, searchbox);
+      expect(requestSaytProducts).to.be.calledWith(query, searchbox);
     });
   });
 
