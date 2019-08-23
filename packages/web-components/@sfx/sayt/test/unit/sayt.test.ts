@@ -266,6 +266,12 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe('requestProducts', () => {
+    it('should exist', () => {
+      sayt.requestProducts();
+    });
+  });
+
   // @TODO Add tests for processSearchboxInput()
   // @TODO Add tests for processSfxSearchboxChange()
 

@@ -179,6 +179,10 @@ export default class Sayt extends LitElement {
     window.dispatchEvent(requestSaytResults);
   }
 
+  requestProducts() {
+
+  }
+
   /**
    * Handles the searchbox input in the case where no searchbox ID is given, and
    * triggers the `requestSayt` function with the query and searchbox data.
