@@ -184,7 +184,7 @@ export default class Sayt extends LitElement {
     window.dispatchEvent(requestSaytResults);
   }
 
-  requestProducts() {
+  requestSaytProducts() {
 
   }
 

@@ -284,7 +284,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('requestProducts', () => {
+  describe('requestSaytProducts', () => {
     // let dispatchEvent, query, searchbox;
     // beforeEach(() => {
     //   query = 'some-query';
@@ -294,7 +294,7 @@ describe('Sayt Component', () => {
     // });
 
     it('should exist', () => {
-      sayt.requestProducts();
+      sayt.requestSaytProducts();
     });
   });
 
