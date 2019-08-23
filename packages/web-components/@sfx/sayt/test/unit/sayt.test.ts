@@ -246,6 +246,16 @@ describe('Sayt Component', () => {
 
       expect(requestSaytAutocompleteTerms).to.be.calledWith(query, searchbox);
     });
+  });
+
+  describe('requestSaytAutocompleteTerms', () => {
+    let dispatchEvent, query, searchbox;
+    beforeEach(() => {
+      query = 'some-query';
+      searchbox = 'some-searchbox-id';
+      sayt.minSearchLength = 3;
+      dispatchEvent = stub(window, 'dispatchEvent');
+    });
 
     it('should dispatch an event with a payload that includes the query and searchbox', () => {
       const eventObj = {};
