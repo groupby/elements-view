@@ -184,8 +184,12 @@ export default class Sayt extends LitElement {
     window.dispatchEvent(requestSaytResults);
   }
 
-  requestSaytProducts() {
-
+  requestSaytProducts(query: string, searchbox?: string) {
+    const requestProductResults = new CustomEvent('sfx::sayt_products_request', {
+      detail: { query, searchbox },
+      bubbles: true,
+    });
+    window.dispatchEvent(requestProductResults);
   }
 
   /**

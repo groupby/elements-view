@@ -285,16 +285,38 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSaytProducts', () => {
-    // let dispatchEvent, query, searchbox;
-    // beforeEach(() => {
-    //   query = 'some-query';
-    //   searchbox = 'some-searchbox-id';
-    //   sayt.minSearchLength = 3;
-    //   dispatchEvent = stub(window, 'dispatchEvent');
-    // });
+    let dispatchEvent, query, searchbox;
+    beforeEach(() => {
+      query = 'some-query';
+      searchbox = 'some-searchbox-id';
+      sayt.minSearchLength = 3;
+      dispatchEvent = stub(window, 'dispatchEvent');
+    });
 
-    it('should exist', () => {
-      sayt.requestSaytProducts();
+    it('should dispatch an event with a payload that includes the query and searchbox', () => {
+      const eventObj = {};
+      const CustomEvent = stub(window, 'CustomEvent').returns(eventObj);
+
+      sayt.requestSaytProducts(query, searchbox);
+
+      expect(CustomEvent).to.be.calledWith('sfx::sayt_products_request', {
+        detail: { query, searchbox },
+        bubbles: true,
+      });
+      expect(dispatchEvent).to.be.calledWith(eventObj);
+    });
+
+    it('should dispatch an event with an undefined value of searchbox if not passed', () => {
+      const eventObj = {};
+      const CustomEvent = stub(window, 'CustomEvent').returns(eventObj);
+
+      sayt.requestSaytProducts(query);
+
+      expect(CustomEvent).to.be.calledWith('sfx::sayt_products_request', {
+        detail: { query, searchbox: undefined },
+        bubbles: true,
+      });
+      expect(dispatchEvent).to.be.calledWith(eventObj);
     });
   });
 
