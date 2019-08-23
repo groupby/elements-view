@@ -223,20 +223,35 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSayt()', () => {
+    let dispatchEvent, query, searchbox;
     beforeEach(() => {
+      query = 'some-query';
+      searchbox = 'some-searchbox-id';
       sayt.minSearchLength = 3;
+      dispatchEvent = stub(window, 'dispatchEvent');
     });
 
     it('should not dispatch an event if query length is sufficiently short', () => {
-      const dispatchEvent = stub(window, 'dispatchEvent');
-      const query = 'ab';
+      query = 'ab';
 
       sayt.requestSayt(query, 'some-searchbox-id');
 
       expect(dispatchEvent).to.not.be.called;
     });
 
-    it('should dispatch an event with a payload that includes the query and searchbox');
+    it('should dispatch an event with a payload that includes the query and searchbox', () => {
+      const eventObj = {};
+      const CustomEvent = stub(window, 'CustomEvent').returns(eventObj);
+
+      sayt.requestSayt(query, searchbox);
+
+      expect(CustomEvent).to.be.calledWith('sfx::autocomplete_fetch_data', {
+        detail: { query, searchbox },
+        bubbles: true,
+      });
+      expect(dispatchEvent).to.be.calledWith(eventObj);
+    });
+
     it('should dispatch an event with an undefined value of searchbox if not passed');
   });
 
