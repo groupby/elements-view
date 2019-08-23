@@ -25,6 +25,7 @@ export default class Autocomplete extends Base {
   constructor() {
     super();
     this.receivedResults = this.receivedResults.bind(this);
+    this.handleHoverTerm = this.handleHoverTerm.bind(this);
   }
 
   /**
@@ -33,6 +34,7 @@ export default class Autocomplete extends Base {
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
+    window.addEventListener('mouseover', this.handleHoverTerm);
   }
 
   /**
@@ -41,6 +43,7 @@ export default class Autocomplete extends Base {
   disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
+    window.removeEventListener('mouseover', this.handleHoverTerm);
   }
 
   /**
@@ -49,7 +52,7 @@ export default class Autocomplete extends Base {
    * @param e The event object.
    */
   receivedResults(e: CustomEvent) {
-    this.results = e.detail.results;
+    this.results = e.detail.results || [];
   }
 
   // FIXME Move this to the Storybook tab once functionality has been merged into sfx-view.
@@ -71,6 +74,10 @@ export default class Autocomplete extends Base {
       bubbles: true
     });
     window.dispatchEvent(autocompleteDataReceivedEvent);
+  }
+
+  handleHoverTerm() {
+
   }
 
   /**
