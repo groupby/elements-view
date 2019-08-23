@@ -252,7 +252,18 @@ describe('Sayt Component', () => {
       expect(dispatchEvent).to.be.calledWith(eventObj);
     });
 
-    it('should dispatch an event with an undefined value of searchbox if not passed');
+    it('should dispatch an event with an undefined value of searchbox if not passed', () => {
+      const eventObj = {};
+      const CustomEvent = stub(window, 'CustomEvent').returns(eventObj);
+
+      sayt.requestSayt(query);
+
+      expect(CustomEvent).to.be.calledWith('sfx::autocomplete_fetch_data', {
+        detail: { query, searchbox: undefined },
+        bubbles: true,
+      });
+      expect(dispatchEvent).to.be.calledWith(eventObj);
+    });
   });
 
   describe('isCorrectSayt()', () => {
