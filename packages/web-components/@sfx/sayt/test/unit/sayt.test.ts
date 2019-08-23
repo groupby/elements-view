@@ -223,7 +223,19 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSayt()', () => {
-    it('should not dispatch an event if query length is sufficiently short');
+    beforeEach(() => {
+      sayt.minSearchLength = 3;
+    });
+
+    it('should not dispatch an event if query length is sufficiently short', () => {
+      const dispatchEvent = stub(window, 'dispatchEvent');
+      const query = 'ab';
+
+      sayt.requestSayt(query, 'some-searchbox-id');
+
+      expect(dispatchEvent).to.not.be.called;
+    });
+
     it('should dispatch an event with a payload that includes the query and searchbox');
     it('should dispatch an event with an undefined value of searchbox if not passed');
   });
