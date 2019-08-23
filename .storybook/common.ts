@@ -1,7 +1,7 @@
 import { XmlEntities } from 'html-entities';
 import { ProductModel } from '@sfx/product';
-import { PRODUCTS_EVENT } from '@sfx/products';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '@sfx/autocomplete';
+import { PRODUCTS_RESPONSE_EVENT } from '@sfx/products';
 
 const entities = new XmlEntities();
 
@@ -106,17 +106,20 @@ export const autocompleteReceivedResultsEvent = {
 };
 
 export const productsResultsEvent = {
-  name: PRODUCTS_EVENT,
+  name: PRODUCTS_RESPONSE_EVENT,
   payload: {
-    products: getProducts(5)
+    results: {
+      products: getProducts(5),
+    }
   }
 };
 
-
 export function getProductsReceivedEvent(): CustomEvent {
-  return new CustomEvent(PRODUCTS_EVENT, {
+  return new CustomEvent(PRODUCTS_RESPONSE_EVENT, {
     detail: {
-      products: getProducts(5)
+      results: {
+        products: getProducts(5),
+      }
     },
     bubbles: true
   });

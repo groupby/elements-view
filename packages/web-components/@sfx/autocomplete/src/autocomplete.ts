@@ -1,8 +1,11 @@
 import { customElement, html, property, LitElement } from 'lit-element';
 import '@sfx/ui';
+import { Base } from '@sfx/base';
 
 // TODO: replace with @sfx/events import - added temporarily for import in storybook/common
 export const AUTOCOMPLETE_RECEIVED_RESULTS_EVENT = 'sfx::autocomplete_received_results';
+export const HOVER_AUTOCOMPLETE_TERM_EVENT = 'sfx::sayt_hover_autocomplete_term';
+export const AUTOCOMPLETE_REQUEST_RESULTS = 'sfx::autocomplete_fetch_data';
 
 /**
  * Listens for the `sfx::autocomplete_received_results` event and
@@ -26,6 +29,7 @@ export default class Autocomplete extends LitElement {
   constructor() {
     super();
     this.receivedResults = this.receivedResults.bind(this);
+    this.handleHoverTerm = this.handleHoverTerm.bind(this);
   }
 
   /**
@@ -34,6 +38,7 @@ export default class Autocomplete extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
+    window.addEventListener('mouseover', this.handleHoverTerm);
   }
 
   /**
@@ -42,6 +47,7 @@ export default class Autocomplete extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
+    window.removeEventListener('mouseover', this.handleHoverTerm);
   }
 
   /**
@@ -50,7 +56,24 @@ export default class Autocomplete extends LitElement {
    * @param e The event object.
    */
   receivedResults(e: CustomEvent) {
-    this.results = e.detail.results;
+    this.results = e.detail.results || [];
+  }
+
+  /**
+   * Dispatches an `sfx::sayt_hover_autocomplete_term` event with the Sayt autocomplete term.
+   *
+   * @param event A MouseEvent that contains a Sayt autocomplete term.
+   */
+  handleHoverTerm(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (target.tagName !== 'LI') return;
+    const term = target.innerText;
+    const sentEvent = new CustomEvent(HOVER_AUTOCOMPLETE_TERM_EVENT, {
+      detail: {
+        query: term,
+      }
+    });
+    window.dispatchEvent(sentEvent);
   }
 
   /**

@@ -25,6 +25,14 @@ export default class SearchBox extends Base {
    * Determines whether or not the clear button is present.
    */
   @property({ type: Boolean, reflect: true }) clearButton: boolean = false;
+  /**
+   * Determines the area used for search.
+   */
+  @property({ type: String, reflect: true }) area: string = '';
+  /**
+   * Determines the collection used for search.
+   */
+  @property({ type: String, reflect: true }) collection: string = '';
 
   constructor() {
     super();
@@ -53,7 +61,11 @@ export default class SearchBox extends Base {
    */
   emitSearchEvent() {
     const searchboxRequestEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-      value: this.value
+      value: this.value,
+      config: {
+        area: this.area,
+        collection: this.collection,
+      }
     });
     this.dispatchEvent(searchboxRequestEvent);
   }
@@ -183,4 +195,31 @@ export default class SearchBox extends Base {
         : ''}
     `;
   }
+}
+
+// createCustomEvent<T>(type: string, detail?: T): CustomEvent<T> {
+//   return new CustomEvent(type, {
+//     detail: {
+//       ...detail,
+//       searchbox: this.id,
+//     },
+//     bubbles: true,
+//   });
+// }
+
+// const searchboxRequestEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+//   value: this.value,
+//   config: {
+//     area: this.area ? this.area : undefined,
+//     collection: this.collection ? this.collection : undefined,
+//   }
+// });
+
+// export interface EventDetail extends CustomEvent {
+
+// }
+
+export interface SearchConfig {
+  area: string | undefined,
+  collection: string | undefined,
 }

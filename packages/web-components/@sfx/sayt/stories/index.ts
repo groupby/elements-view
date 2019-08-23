@@ -1,17 +1,17 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
-import { PRODUCTS_EVENT } from '@sfx/products';
+import { PRODUCTS_RESPONSE_EVENT } from '@sfx/products';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '@sfx/autocomplete';
+import { SAYT_EVENT } from '../src/events';
+import '../src';
 import {
   getDisplayCode,
   productsResultsEvent,
   autocompleteReceivedResultsEvent,
   autocompleteResults,
   getProductsReceivedEvent,
-  hidePrompt
+  hidePrompt,
 } from '../../../../../.storybook/common';
-import { SAYT_EVENT } from '../src/events';
-import '../src';
 
 const saytNotesMarkdownIntro = ` # SF-X SAYT Component
 
@@ -56,8 +56,9 @@ const saytShow = {
 
 const autocompleteDataReceivedEvent = new CustomEvent(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, {
   detail: {
-    results: autocompleteResults
-  }
+    results: autocompleteResults,
+  },
+  bubbles: true,
 });
 
 function generateBaseData() {
@@ -134,9 +135,9 @@ storiesOf('Components|SAYT', module)
               3. See the SF-X SAYT component update with the autocomplete data.
 
 
-          ### The component will render the SF-X Products component with the payload of the \`${PRODUCTS_EVENT}\`, in response to the event.
+          ### The component will render the SF-X Products component with the payload of the \`${PRODUCTS_RESPONSE_EVENT}\`, in response to the event.
             * To emit the event in this story:
-              1. Visit the **Custom Events** tab and locate the \`${PRODUCTS_EVENT}\` event.
+              1. Visit the **Custom Events** tab and locate the \`${PRODUCTS_RESPONSE_EVENT}\` event.
               2. Click "emit".
               3. See the SF-X SAYT component update with the products data.
 

@@ -36,14 +36,18 @@ describe('Autcomplete Component', () => {
       expect(superConnectedCallbackStub).to.have.been.called;
     });
 
-    it('should add an eventListener to the window', () => {
+    it('should add eventListeners to the window', () => {
       const windowAddEventListener = spy(window, 'addEventListener');
 
       autocomplete.connectedCallback();
 
       expect(windowAddEventListener).to.have.been.calledWith(
         'sfx::autocomplete_received_results',
-        autocomplete.receivedResults
+        autocomplete.receivedResults,
+      );
+      expect(windowAddEventListener).to.have.been.calledWith(
+        'mouseover',
+        autocomplete.handleHoverTerm,
       );
     });
   });
@@ -57,14 +61,18 @@ describe('Autcomplete Component', () => {
       expect(superDisconnectedCallbackStub).to.have.been.called;
     });
 
-    it('should remove eventListener from the window', () => {
+    it('should remove eventListeners from the window', () => {
       const windowRemoveEventListener = spy(window, 'removeEventListener');
 
       autocomplete.disconnectedCallback();
 
       expect(windowRemoveEventListener).to.have.been.calledWith(
         'sfx::autocomplete_received_results',
-        autocomplete.receivedResults
+        autocomplete.receivedResults,
+      );
+      expect(windowRemoveEventListener).to.have.been.calledWith(
+        'mouseover',
+        autocomplete.handleHoverTerm,
       );
     });
   });
@@ -87,6 +95,54 @@ describe('Autcomplete Component', () => {
       autocomplete.receivedResults({ detail: { results } });
 
       expect(autocomplete.results).to.deep.equal(results);
+    });
+
+    it('should set this.results to empty array if undefined', () => {
+      autocomplete.receivedResults({ detail: {} });
+
+      expect(autocomplete.results).to.deep.equal([]);
+    });
+  });
+
+  describe('handleHoverTerm', () => {
+    let dispatchEvent,
+        CustomEvent,
+        sentEvent;
+    beforeEach(() => {
+      sentEvent = {};
+      dispatchEvent = stub(window, 'dispatchEvent');
+      CustomEvent = stub(window, 'CustomEvent').returns(sentEvent);
+    });
+
+    it('should not emit an event if not hovering an autocomplete term', () => {
+      const mouseEvent = {
+        target: {
+          tagName: 'H4',
+          innerText: 'some-term',
+        }
+      };
+
+      autocomplete.handleHoverTerm(mouseEvent);
+
+      expect(dispatchEvent).to.not.be.called;
+    });
+
+    it('should emit an event when hovering an autocomplete term', () => {
+      const mouseEvent = {
+        target: {
+          tagName: 'LI',
+          innerText: 'some-term',
+        }
+      };
+
+      autocomplete.handleHoverTerm(mouseEvent);
+
+      expect(CustomEvent).to.be.calledWith('sfx::sayt_hover_autocomplete_term', {
+        detail: {
+          query: mouseEvent.target.innerText,
+        }
+      });
+      expect(dispatchEvent).to.be.calledWith(sentEvent);
     });
   });
 });
