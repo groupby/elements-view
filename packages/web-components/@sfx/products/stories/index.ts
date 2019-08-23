@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import { getDisplayCode, getProducts, productsResultsEvent } from '../../../../../.storybook/common';
 import { ProductModel } from '@sfx/product';
+import { getDisplayCode, getProducts, productsResultsEvent } from '../../../../../.storybook/common';
 
 function getProductsComponent(productsArray: ProductModel[] = []) {
   if (productsArray.length > 0) {
