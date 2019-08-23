@@ -56,6 +56,7 @@ export default class Sayt extends LitElement {
     this.processSearchboxInput = this.processSearchboxInput.bind(this);
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
+    this.requestSaytAutocompleteTerms = this.requestSaytAutocompleteTerms.bind(this);
   }
 
   /**
@@ -172,6 +173,10 @@ export default class Sayt extends LitElement {
   requestSayt(query: string, searchbox?: string) {
     if (query.length < this.minSearchLength) return;
 
+    this.requestSaytAutocompleteTerms(query, searchbox);
+  }
+
+  requestSaytAutocompleteTerms(query: string, searchbox?: string) {
     const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
       detail: { query, searchbox },
       bubbles: true,

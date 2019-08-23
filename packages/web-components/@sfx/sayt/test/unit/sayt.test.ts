@@ -234,9 +234,17 @@ describe('Sayt Component', () => {
     it('should not dispatch an event if query length is sufficiently short', () => {
       query = 'ab';
 
-      sayt.requestSayt(query, 'some-searchbox-id');
+      sayt.requestSayt(query, searchbox);
 
       expect(dispatchEvent).to.not.be.called;
+    });
+
+    it('should request sayt autocomplete terms', () => {
+      const requestSaytAutocompleteTerms = stub(sayt, 'requestSaytAutocompleteTerms');
+
+      sayt.requestSayt(query, searchbox);
+
+      expect(requestSaytAutocompleteTerms).to.be.calledWith(query, searchbox);
     });
 
     it('should dispatch an event with a payload that includes the query and searchbox', () => {
@@ -267,6 +275,14 @@ describe('Sayt Component', () => {
   });
 
   describe('requestProducts', () => {
+    // let dispatchEvent, query, searchbox;
+    // beforeEach(() => {
+    //   query = 'some-query';
+    //   searchbox = 'some-searchbox-id';
+    //   sayt.minSearchLength = 3;
+    //   dispatchEvent = stub(window, 'dispatchEvent');
+    // });
+
     it('should exist', () => {
       sayt.requestProducts();
     });
