@@ -261,7 +261,7 @@ describe('Sayt Component', () => {
       const eventObj = {};
       const CustomEvent = stub(window, 'CustomEvent').returns(eventObj);
 
-      sayt.requestSayt(query, searchbox);
+      sayt.requestSaytAutocompleteTerms(query, searchbox);
 
       expect(CustomEvent).to.be.calledWith('sfx::autocomplete_fetch_data', {
         detail: { query, searchbox },
@@ -274,7 +274,7 @@ describe('Sayt Component', () => {
       const eventObj = {};
       const CustomEvent = stub(window, 'CustomEvent').returns(eventObj);
 
-      sayt.requestSayt(query);
+      sayt.requestSaytAutocompleteTerms(query);
 
       expect(CustomEvent).to.be.calledWith('sfx::autocomplete_fetch_data', {
         detail: { query, searchbox: undefined },
