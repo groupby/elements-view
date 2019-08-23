@@ -222,6 +222,12 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe('requestSayt()', () => {
+    it('should not dispatch an event if query length is sufficiently short');
+    it('should dispatch an event with a payload that includes the query and searchbox');
+    it('should dispatch an event with an undefined value of searchbox if not passed');
+  });
+
   describe('isCorrectSayt()', () => {
     it('should return true if event provides the correct searchbox ID', () => {
       const searchbox = sayt.searchbox = 'some-searchbox-id';
