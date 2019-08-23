@@ -1,17 +1,16 @@
 import { expect } from '../utils';
 import List from '../../src/list';
-import { Base } from '@sfx/base';
-import { TemplateResult } from 'lit-element';
+import { TemplateResult, LitElement } from 'lit-element';
 
 describe('List component', () => {
   let list;
-  
+
   beforeEach(() => {
     list = new List();
   });
 
   it('should extend Base', () => {
-    expect(list).to.be.an.instanceof(Base);
+    expect(list).to.be.an.instanceof(LitElement);
   });
 
   describe('caption property', () => {
