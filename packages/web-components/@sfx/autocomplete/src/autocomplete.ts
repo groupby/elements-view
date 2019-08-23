@@ -1,6 +1,5 @@
-import { customElement, html, property } from 'lit-element';
+import { customElement, html, property, LitElement } from 'lit-element';
 import '@sfx/ui';
-import { Base } from '@sfx/base';
 
 // TODO: replace with @sfx/events import - added temporarily for import in storybook/common
 export const AUTOCOMPLETE_RECEIVED_RESULTS_EVENT = 'sfx::autocomplete_received_results';
@@ -10,7 +9,7 @@ export const AUTOCOMPLETE_RECEIVED_RESULTS_EVENT = 'sfx::autocomplete_received_r
  * populates a list with the data received.
  */
 @customElement('sfx-autocomplete')
-export default class Autocomplete extends Base {
+export default class Autocomplete extends LitElement {
   /**
    * Autocomplete request results.
    */
@@ -52,6 +51,7 @@ export default class Autocomplete extends Base {
    */
   receivedResults(e: CustomEvent) {
     this.results = e.detail.results;
+    console.log('this.results', this.results);
   }
 
   /**
