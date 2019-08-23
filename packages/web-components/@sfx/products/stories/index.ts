@@ -1,8 +1,9 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { getDisplayCode, getProducts, productsResultsEvent } from '../../../../../.storybook/common';
+import { ProductModel } from '@sfx/product';
 
-function getProductsComponent(productsArray = []) {
+function getProductsComponent(productsArray: ProductModel[] = []) {
   if (productsArray.length > 0) {
     const products = text('Products', JSON.stringify(productsArray));
     return '<sfx-products\n' + ` products="${products}"\n` + '></sfx-products>';

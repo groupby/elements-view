@@ -22,7 +22,7 @@ const saytNotesMarkdownIntro = ` # SF-X SAYT Component
 
 ## Demonstrated in this story:`;
 
-function getSayt(searchbox = ''): string {
+function getSayt(searchbox: string = ''): string {
   const closeText = text('Close link text', '×');
   const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
   const hideAutocomplete = boolean('Hide Autocomplete', false) ? 'hideAutocomplete' : '';

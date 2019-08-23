@@ -18,7 +18,7 @@ const items = [
   }
 ];
 
-function getListComponent(codeSnippet = false) {
+function getListComponent(codeSnippet: boolean = false): string {
   const title = text('SF-X List Title', 'Items');
   const list = text('List Items', JSON.stringify(items));
 
