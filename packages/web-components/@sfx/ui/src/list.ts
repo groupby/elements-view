@@ -48,4 +48,8 @@ export default class List extends LitElement {
           `}
     `;
   }
+
+  createRenderRoot() {
+    return this;
+  }
 }

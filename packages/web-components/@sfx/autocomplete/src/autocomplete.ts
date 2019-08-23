@@ -51,7 +51,6 @@ export default class Autocomplete extends LitElement {
    */
   receivedResults(e: CustomEvent) {
     this.results = e.detail.results;
-    console.log('this.results', this.results);
   }
 
   /**
@@ -80,5 +79,9 @@ export default class Autocomplete extends LitElement {
           `
       )}
     `;
+  }
+
+  createRenderRoot() {
+    return this;
   }
 }

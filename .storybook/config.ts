@@ -31,7 +31,6 @@ function loadStories() {
 }
 
 addons.getChannel().on('customEvents/emitEvent', event => {
-  console.log('event.payload', event.payload);
   window.dispatchEvent(
     new CustomEvent(event.name, {
       detail: event.payload
