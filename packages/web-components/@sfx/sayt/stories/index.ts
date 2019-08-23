@@ -87,7 +87,7 @@ storiesOf('Components|SAYT', module)
                   * View the SF-X SAYT component populate with a product grid.
             * The component will display the SF-X SAYT component in response to the \`sfx::sayt_show\` event, and hide the SF-X SAYT component in response to the \`sfx::sayt_hide\` event.
               * To emit the events:
-                1. Visit the **Custom Events** tab
+                1. Visit the **Custom Events** tab.
                   - If SAYT is currently visible, locate the \`sfx::sayt_hide\` event.
                   - Click 'emit'.
                     * View the SF-X SAYT component close.
@@ -98,7 +98,7 @@ storiesOf('Components|SAYT', module)
               * To demonstrate:
                 1. Open SAYT with one of the methods outlined above.
                 2. Click the area below SAYT.
-                  * View SAYT close
+                  * View SAYT close.
           * The SF-X SAYT component rendering based on the attributes defined on the element.
             * The component allows for customization via the inclusion of the following attributes:
               * hideAutocomplete

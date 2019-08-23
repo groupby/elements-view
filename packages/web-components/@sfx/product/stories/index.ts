@@ -43,11 +43,11 @@ storiesOf('Components|Product', module)
                   * View the component update with the updated data.
           * The SF-X Product component updating with variant product data when toggling between variants.
             * To view toggling in story:
-            1. Navigate to the **Canvas** tab
-            2. View product tile
-              * If the product tile has multiple colored squares below the product image, click on the various squares
-              * If the product tile does not have multiple colored squares below the product image, refresh the page until a product with variants appears, then click on the various squares
-                * View the component update with different product images.
+              1. Navigate to the **Canvas** tab.
+              2. View product tile.
+                * If the product tile has multiple colored squares below the product image, click on the various squares.
+                * If the product tile does not have multiple colored squares below the product image, refresh the page until a product with variants appears, then click on the various squares.
+                  * View the component update with different product images.
         `
       }
     }
