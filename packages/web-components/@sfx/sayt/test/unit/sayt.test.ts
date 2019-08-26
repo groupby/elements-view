@@ -267,7 +267,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe.only('requestSayt()', () => {
+  describe('requestSayt()', () => {
     const query = 'test';
     let dispatchEvent,
         hideSayt;
