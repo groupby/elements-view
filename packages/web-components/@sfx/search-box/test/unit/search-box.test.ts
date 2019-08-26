@@ -67,14 +67,39 @@ describe('SearchBox Component', () => {
   });
 
   describe('emitSearchEvent', () => {
-    it('should dispatch a search request event', () => {
+    it('should dispatch a search request event with undefined area and collection', () => {
       const value = searchbox.value = 'a';
       const id = searchbox.id = 'some-id';
       const createCustomEvent = stub(searchbox, 'createCustomEvent').returns('some-event');
 
       searchbox.emitSearchEvent();
 
-      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCH_REQUEST, { value });
+      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+        value,
+        config: {
+          area: undefined,
+          collection: undefined,
+        }
+      });
+      expect(searchboxDispatchEvent).to.be.calledWith('some-event');
+    });
+
+    it('should dispatch a search request event with undefined area and collection', () => {
+      const value = searchbox.value = 'a';
+      const area = searchbox.area = 'some-area';
+      const collection = searchbox.collection = 'some-collection';
+      const id = searchbox.id = 'some-id';
+      const createCustomEvent = stub(searchbox, 'createCustomEvent').returns('some-event');
+
+      searchbox.emitSearchEvent();
+
+      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+        value,
+        config: {
+          area: area,
+          collection: collection,
+        }
+      });
       expect(searchboxDispatchEvent).to.be.calledWith('some-event');
     });
   });
