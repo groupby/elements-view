@@ -65,9 +65,12 @@ img {
   width: 100%;
 }
 
+.hero .wrapper {
+  max-width: 1200px;
+}
 .wrapper {
   margin: 0 auto;
-  max-width: 1200px;
+  /* max-width: 1200px; */
 }
 /* BASE STYLES END HERE! */
 
@@ -77,14 +80,30 @@ header {
 }
 
 header .wrapper {
-  display: flex;
+  /* display: flex; */
   height: var(--header-height);
-  padding: 15px 0;
-  justify-content: space-between;
+  padding:0;
+  /* justify-content: space-between; */
+}
+.logo {
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  line-height: 2.7rem;
+  float: left;
 }
 
 .logo i {
   font-size: 2.7rem;
+  margin: 0 auto;
+  display: block;
+  height: 100%;
+  line-height: 60px;
+}
+
+nav {
+  float: left;
+  /* width: 300px; */
 }
 
 .header-nav ul {
@@ -100,32 +119,47 @@ header .wrapper {
   padding: 2px;
   border-bottom: 1px solid transparent;
   transition: all 0.3s;
+  height: 60px;
+  line-height: 60px;
 }
 
 .header-nav li:hover {
   color: var(--accent-color-secondary);
-  border-bottom: 1px solid var(--accent-color-secondary);
 }
 
 header .sfx-header-search-controls {
-  display: flex;
-  width: 300px;
+  float: right;
+  /* display: inline-block; */
+  /* width: 300px; */
   font-size: 1.8rem;
 }
 
+/* header .sfx-header-search-controls div{
+  display: flex;
+} */
+
 header .sfx-input {
+  display: block;
+  float: right;
   padding: 0 12px;
-  border: 1px solid var(--accent-color-primary);
+  border: none;
+  border-left: 1px solid #ccc;
+  outline: none;
 }
 
+
 header .clear, header .submit {
+  display: block;
+  float: right;
   background-color: var(--background-color-tertiary);
   color: var(--font-color-primary);
-  width: 100%;
+  width: 60px;
   text-align: center;
-  border: 1px solid var(--accent-color-primary);
-  border-left: none;
+  border: none;
+  border-left: 1px solid #c59601;
   transition: all 0.3s;
+  height: 60px;
+  width: 60px;
 }
 
 header .submit {
@@ -134,8 +168,65 @@ header .submit {
 
 header .clear:hover, header .submit:hover {
   background-color: var(--accent-color-secondary);
-  color: var(--accent-color-primary);
 }
+
+#header-searchbox input {
+  height: 60px;
+  width: calc(50vw - 119px);
+}
+
+sfx-sayt {
+  background: transparent;
+  padding: 0;
+  margin-left: 1px;
+  z-index: 0;
+  border-top: 1px solid #ccc;
+  position: absolute;
+  width: calc(50vw - 118px);
+  height: 400px;
+  right: 119px;
+  border-bottom-left-radius: 2.5px;
+  border-bottom-right-radius: 2.5px;
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+  border-left: 1px solid rgba(0,0,0,0.3);
+  border-right: 1px solid rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+sfx-list li {
+  text-transform: capitalize;
+  padding: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+sfx-list li:focus, sfx-list li:hover {
+  color: #fff;
+  background: var(--font-color-secondary);
+  outline: none;
+  cursor: pointer;
+}
+sfx-list ul {
+  width: 175px;
+}
+.sfx-sayt-container {
+  height: 100%;
+  /* order: 2; */
+}
+
+.sfx-sayt-container sfx-autocomplete {
+  /* flex-grow: 1; */
+  background: #fff;
+  /* order: 1; */
+}
+
+.sfx-sayt-container sfx-products {
+  flex-grow: 6;
+  /* background: #e4dbc6; */
+  background: rgba(255,255,255, 0.8);
+  /* height: 100%; */
+}
+
 /* HEADER STYLES END HERE! */
 
 /* HERO SECTION STYLES START HERE! */
@@ -163,12 +254,12 @@ header .clear:hover, header .submit:hover {
   font-size: 2rem;
   text-align: center;
   text-transform: uppercase;
-  transition: all 0.3s;
+  transition: all 0.1s;
 }
 
 .hero a:hover {
   background-color: var(--font-color-primary);
-  color: var(--font-color-secondary);
+  color: var(--font-color-primary);
 }
 
 .hero .wrapper {

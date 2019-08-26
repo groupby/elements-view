@@ -5,7 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat:400,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b47cfcd035.js"></script>
     <script src="../dist/components.js"></script>
-    <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script>
+    <script src="./temp/sfx-all-plugins-bundle.js"></script>
     <link rel="stylesheet" href="client.css">
   </head>
   <body>
@@ -24,10 +24,10 @@
           </ul>
         </nav>
         <div class="sfx-header-search-controls">
-          <sfx-search-box id="header-searchbox" placeholder="Search"></sfx-search-box>
-          <button class="clear"><i class="fas fa-times"></i></button>
-          <button class="submit"><i class="fas fa-search"></i></button>
-          <sfx-sayt searchbox="header-searchbox"></sfx-sayt>
+            <sfx-search-box id="header-searchbox" placeholder="Search"></sfx-search-box>
+            <button class="clear"><i class="fas fa-times"></i></button>
+            <button class="submit"><i class="fas fa-search"></i></button>
+          <sfx-sayt searchbox="header-searchbox" tabindex="1"></sfx-sayt>
         </div>
       </div>
     </header>
@@ -66,7 +66,7 @@
             <button class="submit"><i class="fas fa-search"></i></button>
             <sfx-sayt searchbox="catalogue-searchbox"></sfx-sayt>
           </div>
-
+          <sfx-list class="product-grid"></sfx-list>
         </div>
       </section>
 
@@ -97,11 +97,20 @@
         .setAttribute('items', JSON.stringify(testListResults));
       });
 
+      // hide searchbox if input is less than min chars
+      window.addEventListener('sfx::searchbox_change', (e) => {
+        if (e.detail.value.length < 3) {
+          const hideSayt = new CustomEvent('sfx::sayt_hide');
+          window.dispatchEvent(hideSayt);
+        }
+        // console.log('>>> inside sfx::autocomplete_fetch_data',  this, e.detail.query.length)
+      })
+
       // autocomplate integration/functionality test hardcoded for now
-      const autocompleteDataFetchEvent = new CustomEvent('sfx::autocomplete_fetch_data', {
-        detail: { query: 'pants'},
-        bubbles: true
-      });
+      // const autocompleteDataFetchEvent = new CustomEvent('sfx::autocomplete_fetch_data', {
+      //   detail: { query: 'pants'},
+      //   bubbles: true
+      // });
       // setTimeout(() => { window.dispatchEvent(autocompleteDataFetchEvent); }, 3000);
     </script>
     <!-- Smooth Scroll Code is Below -->

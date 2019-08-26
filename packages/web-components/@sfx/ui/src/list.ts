@@ -29,12 +29,12 @@ export default class List extends Base {
         ? html`
             <h4 id="sfx-list-title-${this.randomStringId}">${this.caption}</h4>
             <ul aria-labelledby="sfx-list-title-${this.randomStringId}">
-              ${this.items.map(item => html`<li>${item.label}</li>`)}
+              ${this.items.map(item => html`<li tabindex="0">${item.label}</li>`)}
             </ul>
           `
         : html`
             <ul>
-              ${this.items.map(item => html`<li>${item.label}</li>`)}
+              ${this.items.map(item => html`<li tabindex="0">${item.label}</li>`)}
             </ul>
           `}
     `;

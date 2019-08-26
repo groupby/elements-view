@@ -19491,7 +19491,8 @@ var SaytDriverPlugin = /** @class */ (function () {
         this.core[this.eventsPluginName].unregisterListener(this.saytDataEvent, this.fetchSaytData);
     };
     /**
-     * Dispatches an event with the response from the sayt data plugin and the associated searchbox ID.
+     * Dispatches an event with the response from the sayt data
+     * plugin and the associated searchbox ID.
      * Callback for the Sayt data request event listener.
      *
      * @param event Event that contains the Sayt API request payload.
@@ -19510,7 +19511,8 @@ var SaytDriverPlugin = /** @class */ (function () {
     /**
      * Sends a request to the SAYT API with the given query and config object.
      *
-     * @param saytDataQuery Request object received from the event listener.
+     * @param query The search term to send.
+     * @param config Extra query-time configuration to customize the SAYT request.
      * @returns A promise from the Sayt API that has been reformatted
      * with the passed callback.
      */
@@ -19732,7 +19734,7 @@ var SearchDriverPlugin = /** @class */ (function () {
      */
     SearchDriverPlugin.prototype.fetchSearchData = function (event) {
         var _this = this;
-        var searchTerm = event.detail;
+        var searchTerm = event.detail.value;
         this.sendSearchApiRequest(searchTerm)
             .then(function (results) {
             _this.core[_this.eventsPluginName].dispatchEvent(events_1.SEARCH_RESPONSE_EVENT, results);
