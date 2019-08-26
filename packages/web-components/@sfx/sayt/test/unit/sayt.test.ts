@@ -255,7 +255,6 @@ describe('Sayt Component', () => {
     beforeEach(() => {
       query = 'some-query';
       searchbox = 'some-searchbox-id';
-      sayt.minSearchLength = 3;
       dispatchEvent = stub(window, 'dispatchEvent');
     });
 
@@ -291,7 +290,6 @@ describe('Sayt Component', () => {
     beforeEach(() => {
       query = 'some-query';
       searchbox = 'some-searchbox-id';
-      sayt.minSearchLength = 3;
       dispatchEvent = stub(window, 'dispatchEvent');
     });
 
