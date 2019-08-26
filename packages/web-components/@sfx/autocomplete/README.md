@@ -7,7 +7,7 @@ The component then populates a list with the received data.
 
 ## Customizations
 
-Autocomplete allows for an optional title, which populates inside an `<h3>` tag. View the fourth Storybook story for a demonstration of its functionality.
+Autocomplete allows for an optional title, which populates inside an `<h3>` tag. The title text is populated via the `caption` attribute.
 
 ## Testing
 

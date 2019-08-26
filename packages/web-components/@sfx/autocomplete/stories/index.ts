@@ -42,7 +42,7 @@ storiesOf('Components|Autocomplete', module)
                 1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.
                 2. Click "emit".
                   * The payload of the event will appear on the page as a list of autocomplete items.
-            * The SF-X Autocomplete component comes with the option of including a title to title the autocomplete terms.
+            * The SF-X Autocomplete component allows for an optional title which populates inside an \`<h3>\` tag, above the autocomplete terms.
               * The optional title is populated via the \`caption\` attribute.
                   * In this story, the 'Optional Title' knob maps to the \`caption\` attribute.
                   * To update the optional title within this story:
