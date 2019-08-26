@@ -38,16 +38,15 @@ storiesOf('Components|Product', module)
 
           * The SF-X Product component renders with product data populated via the 'product' attribute.
             * Refer to the \`ProductModel\` and \`ProductVariantsModel\` instance for the accepted data format.
-              * To modify the data within the 'product' attribute:
-                1. Visit the **Knobs** tab and modify the data inside the 'Product Data' field.
-                  * View the component update with the updated data.
+            * To modify the data within the 'product' attribute:
+              1. Visit the **Knobs** tab and modify the data inside the 'Product Data' field.
+              2. Observe that the component is updated with the new data.
           * The SF-X Product component updates with variant product data when toggling between variants.
-            * To view toggling in story:
+            * To toggle between product variants in this story:
               1. Navigate to the **Canvas** tab.
-              2. View product tile.
                 * If the product tile has multiple colored squares below the product image, click on the various squares.
                 * If the product tile does not have multiple colored squares below the product image, refresh the page until a product with variants appears, then click on the various squares.
-                  * View the component update with different product images.
+                  * Observe that the component is updated with different product images.
         `
       }
     }
