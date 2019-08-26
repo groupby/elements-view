@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { ProductModel } from '@sfx/product';
+import { PRODUCTS_EVENT } from '@sfx/products';
 import { getDisplayCode, getProducts, productsResultsEvent } from '../../../../../.storybook/common';
 
 function getProductsComponent(productsArray: ProductModel[] = []) {
@@ -14,48 +15,21 @@ function getProductsComponent(productsArray: ProductModel[] = []) {
 
 const productsNotesMarkdownIntro = ` # SF-X Products Component
 
-[SF-X Products README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
+[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
 
 \`\`\`html
 <sfx-products></sfx-products>
 \`\`\`
 
-## Demonstrated in this story:`;
+## Demonstrated in this story`;
 
 storiesOf('Components|Products', module)
   .addDecorator(withKnobs)
   .add(
-    'Rendering with event payload',
-    () => {
-      const productsComponent = getProductsComponent();
-      return `
-      ${productsComponent}
-      ${getDisplayCode(productsComponent)}
-    `;
-    },
-    {
-      customEvents: [productsResultsEvent],
-      notes: {
-        markdown: `
-      ${productsNotesMarkdownIntro}
-
-        * The SF-X Products component rendering a product grid in response to the \`sfx::provide_products\` event.
-          * To emit the event:
-            1. Visit the **Custom Events** tab and locate the \`sfx::provide_products\` event.
-            2. Click 'emit'.
-              * The payload of the event contains an array of products.
-              * View the product grid populate with the product data contained in the array.
-      `
-      }
-    }
-  )
-  .add(
-    'Products data populated via products attribute',
+    'Default',
     () => {
       const productsComponent = getProductsComponent(getProducts(10));
       return `
-      <h1>Disclaimer: Not recommended method</h1>
-      <h2>See notes for further details</h2>
     ${productsComponent}
     `;
     },
@@ -65,8 +39,10 @@ storiesOf('Components|Products', module)
         markdown: `
       ${productsNotesMarkdownIntro}
 
+        #### The SF-X Products component populated with hardcoded products data for display purposes.
+
         * The SF-X Products component rendering a collection of products, with the data passed directly via the  \`products\` attribute.
-          * DISCLAIMER - although possible, it is not recommended to pass large arrays of data via an attribute.
+          * ***Disclaimer***: although possible, it is not recommended to pass large arrays of data via an attribute.
             * The products attribute is populated with hardcoded data initially.
               * To modify the data within the 'products' attribute:
                 1. Visit the **Knobs** tab and update the data inside the 'Products' field.
@@ -98,6 +74,30 @@ storiesOf('Components|Products', module)
         ]></sfx-products>
         \`\`\`
         `
+      }
+    }
+  ).add(
+    'Rendering with event payload',
+    () => {
+      const productsComponent = getProductsComponent();
+      return `
+      ${productsComponent}
+      ${getDisplayCode(productsComponent)}
+    `;
+    },
+    {
+      customEvents: [productsResultsEvent],
+      notes: {
+        markdown: `
+      ${productsNotesMarkdownIntro}
+
+        * The SF-X Products component rendering a product grid in response to the \`${PRODUCTS_EVENT}\` event.
+          * To emit the event:
+            1. Visit the **Custom Events** tab and locate the \`${PRODUCTS_EVENT}\` event.
+            2. Click 'emit'.
+              * The payload of the event contains an array of products.
+              * View the product grid populate with the product data contained in the array.
+      `
       }
     }
   );

@@ -3,7 +3,9 @@ import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import {
   getDisplayCode,
   productsResultsEvent,
-  autocompleteReceivedResultsEvent
+  autocompleteReceivedResultsEvent,
+  autocompleteResults,
+  getProductsReceivedEvent
 } from '../../../../../.storybook/common';
 import { SAYT_EVENT } from '../src/events';
 import '../src';
@@ -20,7 +22,7 @@ const saytNotesMarkdownIntro = ` # SF-X SAYT Component
 ></sfx-sayt>
 \`\`\`
 
-## Demonstrated in this story:`;
+## Demonstrated in this story`;
 
 function getSayt(searchbox: string = ''): string {
   const closeText = text('Close link text', '×');
@@ -49,12 +51,58 @@ const saytShow = {
   payload: ''
 };
 
+const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
+  detail: {
+    results: autocompleteResults}
+});
+
+// function generateBaseData() {
+//     window.dispatchEvent(autocompleteDataReceivedEvent)
+//     window.dispatchEvent(getProductsReceivedEvent())
+// }
+function generateBaseData() {
+  setTimeout(() => {
+    window.dispatchEvent(autocompleteDataReceivedEvent)}, 0)
+  setTimeout(() => {
+    window.dispatchEvent(getProductsReceivedEvent())}, 0)
+}
+
 storiesOf('Components|SAYT', module)
   .addDecorator(withKnobs)
+  .add('Default', () => {
+    generateBaseData();
+    const sayt = getSayt();
+
+    return `
+    <style>
+      .sayt-container {
+        height: 800px;
+      }
+    </style>
+
+    <div class="sayt-container">
+    ${sayt}
+    </div>
+
+    ${getDisplayCode(sayt)}`;
+  }, {
+    notes: {
+      markdown: `
+        ${saytNotesMarkdownIntro}
+
+          #### The SF-X SAYT component populated with autocomplete and products data for display purposes.
+          * The SF-X SAYT component is designed to render in response to events.
+            * This story begins with the events required to display SAYT to have been fired.
+            * This is done in order to see the visual component immediately.
+          * For stories that demonstrate the component's functionality, visit three stories listed below this one.
+      `
+    }
+  })
   .add(
     'Rendering based on events and attributes',
     () => {
       const sayt = getSayt();
+
       return `
       <style>
         .sayt-container {

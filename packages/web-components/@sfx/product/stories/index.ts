@@ -16,7 +16,7 @@ function getProductComponent(product: ProductModel = {}, codeSnippet: boolean = 
 storiesOf('Components|Product', module)
   .addDecorator(withKnobs)
   .add(
-    'Rendering data populated via attribute',
+    'Default',
     () => {
       return `
     ${getProductComponent(getProducts(1)[0])}
@@ -36,12 +36,54 @@ storiesOf('Components|Product', module)
 
         ## Demonstrated in this story
 
-          * The SF-X Product component renders with product data populated via the 'product' attribute.
+        #### The SF-X Product component populated with hardcoded product data for display purposes.
+
+        \`\`\`html
+        <sfx-product
+          product="
+          title: 'Best Shoe',
+          price: 39.99,
+          label: 'New Product',
+          promo: '25% off',
+          imageSrc:
+            'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+          imageAlt: 'A spicy red shoe',
+          info: 'Info 1',
+          info2: 'Info 2',
+          variants: {
+            type: 'color',
+            items: [
+              {
+                color: '#c00',
+                text: 'Red',
+                product: {
+                  imageSrc:
+                    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+                  imageAlt: 'A spicy red shoe'
+                }
+              },
+              {
+                color: '#28e',
+                text: 'Blue',
+                product: {
+                  imageSrc:
+                    'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+                  imageAlt: 'Sonic blue, gotta go fast'
+                }
+              }
+            ]
+          }
+        }"
+        ></sfx-product>
+        \`\`\`
+
+        * The SF-X Product component renders with product data populated via the 'product' property.
             * Refer to the \`ProductModel\` and \`ProductVariantsModel\` instance for the accepted data format.
-            * To modify the data within the 'product' attribute:
+            * In this story, the 'Product Info' knob maps to the \`product\` property.
+            * to modify the data within the 'product' property:
               1. Visit the **Knobs** tab and modify the data inside the 'Product Data' field.
               2. Observe that the component is updated with the new data.
-          * The SF-X Product component updates with variant product data when toggling between variants.
+        * The SF-X Product component updates with variant product data when toggling between variants.
             * To toggle between product variants in this story:
               1. Navigate to the **Canvas** tab.
                 * If the product tile has multiple colored squares below the product image, click on the various squares.

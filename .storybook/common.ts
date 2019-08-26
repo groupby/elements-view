@@ -83,23 +83,25 @@ export function getProducts(quantity: number): ProductModel[] {
   return products;
 }
 
+export const autocompleteResults = [
+  {
+    title: '',
+    items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+  },
+  {
+    title: 'Brands',
+    items: [{ label: 'Kashi' }, { label: 'Excel' }]
+  },
+  {
+    title: 'Colors',
+    items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+  }
+]
+
 export const autocompleteReceivedResultsEvent = {
   name: AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
   payload: {
-    results: [
-      {
-        title: '',
-        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-      },
-      {
-        title: 'Brands',
-        items: [{ label: 'Kashi' }, { label: 'Excel' }]
-      },
-      {
-        title: 'Colors',
-        items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-      }
-    ]
+    results: autocompleteResults,
   }
 };
 
@@ -109,3 +111,13 @@ export const productsResultsEvent = {
     products: getProducts(5)
   }
 };
+
+
+export function getProductsReceivedEvent(): CustomEvent {
+  return new CustomEvent(PRODUCTS_EVENT, {
+    detail: {
+      products: getProducts(5)
+    },
+    bubbles: true
+  });
+}
