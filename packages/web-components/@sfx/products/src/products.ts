@@ -8,7 +8,7 @@ import {
 import { ProductModel } from '@sfx/product';
 
 /** The name of the event that contains product data. */
-export const PRODUCTS_EVENT: string = 'sfx::provide_products'
+export const PRODUCTS_EVENT: string = 'sfx::sayt_products_response';
 
 /**
  * The `sfx-products` web component wraps and renders a number of
