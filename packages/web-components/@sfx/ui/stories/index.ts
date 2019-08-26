@@ -46,7 +46,7 @@ storiesOf('UI|List', module)
         \`\`\`html
         <sfx-ui
           caption="Items"
-          list=[]
+          list="[]"
         ></sfx-ui>
         \`\`\`
 

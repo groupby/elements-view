@@ -69,11 +69,11 @@ storiesOf('Components|Searchbox', module)
               2. See the component update with the updated text.
 
           #### **The SF-X Search Box component populates with an updated search term in response to the \`${SEARCHBOX_EVENT.UPDATE_SEARCH_TERM}\` event.**
-              * To emit the event:
-                1. Navigate to the **Custom Events** tab and locate the \`${SEARCHBOX_EVENT.UPDATE_SEARCH_TERM}\` event.
-                2. Click "emit".
-                3. See the component update with the new search term.
-                `
+            * To emit the event:
+              1. Navigate to the **Custom Events** tab and locate the \`${SEARCHBOX_EVENT.UPDATE_SEARCH_TERM}\` event.
+              2. Click "emit".
+              3. See the component update with the new search term.
+              `
       }
     }
   );
