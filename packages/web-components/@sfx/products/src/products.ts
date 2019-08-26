@@ -103,4 +103,6 @@ export default class Products extends LitElement {
 export interface ProductsEventPayload {
   /** The products. */
   products: ProductModel[];
+  searchbox?: string;
+  query: string;
 }
