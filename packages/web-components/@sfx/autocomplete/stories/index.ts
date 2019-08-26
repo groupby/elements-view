@@ -97,7 +97,7 @@ storiesOf('Components|Autocomplete', module)
                   * To update the optional title within this story:
                     1. Visit the **Knobs** tab and modify the text inside the 'Optional Title' field.
                     2. Navigate to the **Custom Events** tab and emit the event.
-                      * See the component update with the optional title.
+                    3. See the component update with the optional title.
             `
       }
     }

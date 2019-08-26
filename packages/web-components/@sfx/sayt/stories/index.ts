@@ -1,5 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { PRODUCTS_EVENT } from '@sfx/products';
+import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '@sfx/autocomplete';
 import {
   getDisplayCode,
   productsResultsEvent,
@@ -12,11 +14,11 @@ import '../src';
 
 const saytNotesMarkdownIntro = ` # SF-X SAYT Component
 
-[SF-X SAYT README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/sayt "SF-X SAYT README").
+[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/sayt "SF-X SAYT README").
 
 \`\`\`html
 <sfx-sayt
-  closetext='x'
+  closetext="×"
   showclosebutton
   visible
 ></sfx-sayt>
@@ -51,7 +53,7 @@ const saytShow = {
   payload: ''
 };
 
-const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
+const autocompleteDataReceivedEvent = new CustomEvent('${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}', {
   detail: {
     results: autocompleteResults}
 });
@@ -90,8 +92,8 @@ storiesOf('Components|SAYT', module)
       markdown: `
         ${saytNotesMarkdownIntro}
 
-          #### The SF-X SAYT component populated with autocomplete and products data for display purposes.
-          * The SF-X SAYT component is designed to render in response to events.
+          #### The SF-X SAYT component initially populated with autocomplete and products data for display purposes.
+          * The SF-X SAYT component is designed to render different data in response to events.
             * This story begins with the events required to display SAYT to have been fired.
             * This is done in order to see the visual component immediately.
           * For stories that demonstrate the component's functionality, visit three stories listed below this one.
@@ -122,24 +124,24 @@ storiesOf('Components|SAYT', module)
         markdown: `
         ${saytNotesMarkdownIntro}
 
-          * The SF-X SAYT component rendering the SF-X Autocomplete and the SF-X Products components in response to events.
-            * The component will render the SF-X Autocomplete component with the payload of the \`sfx::autocomplete_received_results\`, in response to the event.
-              * To emit the event:
-                1. Visit the **Custom Events** tab and locate the \`sfx::autocomplete_received_results\` event.
-                2. Click 'emit'.
-                  * View the SF-X SAYT component populate with autocomplete data.
-            * The component will render the SF-X Products component with the payload of the \`sfx::provide_products\`, in response to the event.
+          #### The SF-X SAYT component renders the SF-X Autocomplete and the SF-X Products components in response to events.
+            * The component will render the SF-X Autocomplete component with the payload of the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\`, in response to the event.
+            * To emit the event:
+              1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.
+              2. Click "emit".
+              3. See the SF-X SAYT component update with the autocomplete data.
+            * The component will render the SF-X Products component with the payload of the \`${PRODUCTS_EVENT}\`, in response to the event.
               * To emit the event
-                1. Visit the **Custom Events** tab and locate the \`sfx::provide_products\` event.
+                1. Visit the **Custom Events** tab and locate the \`${PRODUCTS_EVENT}\` event.
                 2. Click 'emit'.
-                  * View the SF-X SAYT component populate with a product grid.
-            * The component will display the SF-X SAYT component in response to the \`sfx::sayt_show\` event, and hide the SF-X SAYT component in response to the \`sfx::sayt_hide\` event.
+                3. See the SF-X SAYT component update with the products data.
+            * The component will display the SF-X SAYT component in response to the \`${SAYT_EVENT.SAYT_SHOW}\` event, and hide the SF-X SAYT component in response to the \`${SAYT_EVENT.SAYT_HIDE}\` event.
               * To emit the events:
                 1. Visit the **Custom Events** tab.
-                  - If SAYT is currently visible, locate the \`sfx::sayt_hide\` event.
+                  - If SAYT is currently visible, locate the \`${SAYT_EVENT.SAYT_HIDE}\` event.
                   - Click 'emit'.
                     * View the SF-X SAYT component close.
-                  - If SAYT is currently hidden, locate the \`sfx::sayt_show\` event.
+                  - If SAYT is currently hidden, locate the \`${SAYT_EVENT.SAYT_SHOW}\` event.
                   - Click 'emit'.
                     * View the SF-X SAYT component open.
             * The component will close when there is a click anywhere outside of the input box or SAYT itself.
@@ -191,8 +193,8 @@ storiesOf('Components|SAYT', module)
         markdown: `
         ${saytNotesMarkdownIntro}
 
-          * The SF-X SAYT component working with a standard input element, rather than the SF-X Search Box component.
-            * The component should not close when clicking within the input element or anywhere within the SAYT component.
+          * The SF-X SAYT component can work with a standard input element, instead of an SF-X Search Box component.
+            * The component will not close when clicking within the input element or anywhere within the SAYT component.
               * To demonstrate this functionality:
                 1. Open SAYT, click the input element.
                   * View SAYT remaining open.
@@ -205,7 +207,7 @@ storiesOf('Components|SAYT', module)
       <input type="text" id="search-box" placeholder="Search here" />
       <sfx-sayt
         searchbox="search-box"
-        closetext="x"
+        closetext="×"
         showclosebutton
         visible
       ></sfx-sayt>
@@ -254,7 +256,7 @@ storiesOf('Components|SAYT', module)
         markdown: `
           ${saytNotesMarkdownIntro}
 
-            * Two SF-X SAYT components acting independently when mulitple SAYT components are included on a page.
+            * Two SF-X SAYT components act independently when mulitple SAYT components are included on a page.
               * A click on one SAYT component will result in the other SAYT closing.
                 * To demonstrate:
                   1. Open both SAYTs.
@@ -268,20 +270,20 @@ storiesOf('Components|SAYT', module)
                   2. Click on one of the close buttons.
                     * View both SAYT components closing.
 
-      ### Example of the multple SAYT components:
+      ### Example of the multple SAYT components
 
       \`\`\`html
       <input type="text" id="search-box1" placeholder="Search here" />
       <sfx-sayt
         searchbox="search-box1"
-        closetext="x"
+        closetext="×"
         showclosebutton
         visible
       ></sfx-sayt>
       <input type="text" id="search-box2" placeholder="Search here" />
       <sfx-sayt
         searchbox="search-box2"
-        closetext="x"
+        closetext="×"
         showclosebutton
         visible
       ></sfx-sayt>
