@@ -42,8 +42,14 @@ describe('Autcomplete Component', () => {
 
       autocomplete.connectedCallback();
 
-      expect(windowAddEventListener).to.have.been.calledWith('sfx::autocomplete_received_results', autocomplete.receivedResults);
-      expect(windowAddEventListener).to.have.been.calledWith('mouseover', autocomplete.handleHoverTerm);
+      expect(windowAddEventListener).to.have.been.calledWith(
+        'sfx::autocomplete_received_results',
+        autocomplete.receivedResults,
+      );
+      expect(windowAddEventListener).to.have.been.calledWith(
+        'mouseover',
+        autocomplete.handleHoverTerm,
+      );
     });
   });
 
@@ -56,18 +62,18 @@ describe('Autcomplete Component', () => {
       expect(baseDisconnectedCallbackStub).to.have.been.called;
     });
 
-    it('should remove eventListener from the window', () => {
+    it('should remove eventListeners from the window', () => {
       const windowRemoveEventListener = spy(window, 'removeEventListener');
 
       autocomplete.disconnectedCallback();
 
       expect(windowRemoveEventListener).to.have.been.calledWith(
         'sfx::autocomplete_received_results',
-        autocomplete.receivedResults
+        autocomplete.receivedResults,
       );
       expect(windowRemoveEventListener).to.have.been.calledWith(
         'mouseover',
-        autocomplete.handleHoverTerm
+        autocomplete.handleHoverTerm,
       );
     });
   });
