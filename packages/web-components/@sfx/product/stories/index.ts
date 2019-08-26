@@ -9,8 +9,8 @@ function getProductComponent(product: ProductModel = {}, codeSnippet: boolean = 
   const productInfo = text('Product Info', JSON.stringify(product));
 
   return codeSnippet === false
-    ? '<sfx-product\n' + ` product="${productInfo}"\n` + '></sfx-product>'
-    : '<sfx-product>\n' + '</sfx-product>';
+    ? `<sfx-product product="${productInfo}"></sfx-product>`
+    : '<sfx-product>\n</sfx-product>';
 }
 
 storiesOf('Components|Product', module)
@@ -28,20 +28,20 @@ storiesOf('Components|Product', module)
         markdown: `
         # SF-X Product Component
 
-        [SF-X Product README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/product "SF-X Product README").
+        [Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/product "SF-X Product README").
 
         \`\`\`html
         <sfx-product></sfx-product>
         \`\`\`
 
-        ## Demonstrated in this story:
+        ## Demonstrated in this story
 
-          * The SF-X Product component rendering with product data populated via the 'product' attribute.
+          * The SF-X Product component renders with product data populated via the 'product' attribute.
             * Refer to the \`ProductModel\` and \`ProductVariantsModel\` instance for the accepted data format.
               * To modify the data within the 'product' attribute:
                 1. Visit the **Knobs** tab and modify the data inside the 'Product Data' field.
                   * View the component update with the updated data.
-          * The SF-X Product component updating with variant product data when toggling between variants.
+          * The SF-X Product component updates with variant product data when toggling between variants.
             * To view toggling in story:
               1. Navigate to the **Canvas** tab.
               2. View product tile.
