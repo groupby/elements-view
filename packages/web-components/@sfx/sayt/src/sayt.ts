@@ -170,7 +170,10 @@ export default class Sayt extends LitElement {
    * @param searchbox The searchbox ID associated with this search.
    */
   requestSayt(query: string, searchbox?: string) {
-    if (query.length < this.minSearchLength) return;
+    if (query.length < this.minSearchLength) {
+      if (this.visible) this.hideSayt();
+      return;
+    }
 
     const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
       detail: { query, searchbox },

@@ -267,6 +267,64 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe.only('requestSayt()', () => {
+    const query = 'test';
+    let dispatchEvent,
+        hideSayt;
+
+    beforeEach(() => {
+      dispatchEvent = stub(window, 'dispatchEvent');
+      hideSayt = stub(sayt, 'hideSayt');
+    });
+
+    it('should hide the sayt container if it is currently visible and there are not enough characters in a searchbox query', () => {
+      sayt.minSearchLength = 6;
+      sayt.visible = true;
+
+      sayt.requestSayt(query);
+
+      expect(hideSayt).to.be.called;
+      expect(dispatchEvent).to.not.be.called;
+    });
+
+    it('should not do anything if the sayt container is not currently visible and there are not enough characters in a searchbox query', () => {
+      sayt.minSearchLength = 6;
+      sayt.visible = false;
+
+      sayt.requestSayt(query);
+
+      expect(hideSayt).to.not.be.called;
+      expect(dispatchEvent).to.not.be.called;
+    });
+
+    it('should send an event to request sayt results if the query string is long enough', () => {
+      const event = new CustomEvent('sfx::autocomplete_fetch_data',{
+        detail: { query },
+        bubbles: true,
+      });
+      sayt.minSearchLength = 3;
+
+      sayt.requestSayt(query);
+
+      expect(hideSayt).to.not.be.called;
+      expect(dispatchEvent).to.be.calledWith(event);
+    });
+
+    it('should include a searchbox in the dispatched event if it is provided', () => {
+      const searchbox = 'testBox'
+      const event = new CustomEvent('sfx::autocomplete_fetch_data',{
+        detail: { query, searchbox },
+        bubbles: true,
+      });
+      sayt.minSearchLength = 3;
+
+      sayt.requestSayt(query);
+
+      expect(hideSayt).to.not.be.called;
+      expect(dispatchEvent).to.be.calledWith(event);
+    });
+  });
+
   describe('processClick()', () => {
     let node: any;
     let event: any;
