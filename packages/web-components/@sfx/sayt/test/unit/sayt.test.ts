@@ -222,6 +222,107 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe('requestSayt()', () => {
+    let dispatchEvent, query, searchbox;
+    beforeEach(() => {
+      query = 'some-query';
+      searchbox = 'some-searchbox-id';
+      sayt.minSearchLength = 3;
+      dispatchEvent = stub(window, 'dispatchEvent');
+    });
+
+    it('should not dispatch an event if query length is sufficiently short', () => {
+      query = 'ab';
+
+      sayt.requestSayt(query, searchbox);
+
+      expect(dispatchEvent).to.not.be.called;
+    });
+
+    it('should request sayt autocomplete terms and products', () => {
+      const requestSaytAutocompleteTerms = stub(sayt, 'requestSaytAutocompleteTerms');
+      const requestSaytProducts = stub(sayt, 'requestSaytProducts');
+
+      sayt.requestSayt(query, searchbox);
+
+      expect(requestSaytAutocompleteTerms).to.be.calledWith(query, searchbox);
+      expect(requestSaytProducts).to.be.calledWith(query, searchbox);
+    });
+  });
+
+  describe('requestSaytAutocompleteTerms', () => {
+    let dispatchEvent, query, searchbox;
+    beforeEach(() => {
+      query = 'some-query';
+      searchbox = 'some-searchbox-id';
+      dispatchEvent = stub(window, 'dispatchEvent');
+    });
+
+    it('should dispatch an event with a payload that includes the query and searchbox', () => {
+      const eventObj = {};
+      const CustomEvent = stub(window, 'CustomEvent').returns(eventObj);
+
+      sayt.requestSaytAutocompleteTerms(query, searchbox);
+
+      expect(CustomEvent).to.be.calledWith('sfx::autocomplete_fetch_data', {
+        detail: { query, searchbox },
+        bubbles: true,
+      });
+      expect(dispatchEvent).to.be.calledWith(eventObj);
+    });
+
+    it('should dispatch an event with an undefined value of searchbox if not passed', () => {
+      const eventObj = {};
+      const CustomEvent = stub(window, 'CustomEvent').returns(eventObj);
+
+      sayt.requestSaytAutocompleteTerms(query);
+
+      expect(CustomEvent).to.be.calledWith('sfx::autocomplete_fetch_data', {
+        detail: { query, searchbox: undefined },
+        bubbles: true,
+      });
+      expect(dispatchEvent).to.be.calledWith(eventObj);
+    });
+  });
+
+  describe('requestSaytProducts', () => {
+    let dispatchEvent, query, searchbox;
+    beforeEach(() => {
+      query = 'some-query';
+      searchbox = 'some-searchbox-id';
+      dispatchEvent = stub(window, 'dispatchEvent');
+    });
+
+    it('should dispatch an event with a payload that includes the query and searchbox', () => {
+      const eventObj = {};
+      const CustomEvent = stub(window, 'CustomEvent').returns(eventObj);
+
+      sayt.requestSaytProducts(query, searchbox);
+
+      expect(CustomEvent).to.be.calledWith('sfx::sayt_products_request', {
+        detail: { query, searchbox },
+        bubbles: true,
+      });
+      expect(dispatchEvent).to.be.calledWith(eventObj);
+    });
+
+    it('should dispatch an event with an undefined value of searchbox if not passed', () => {
+      const eventObj = {};
+      const CustomEvent = stub(window, 'CustomEvent').returns(eventObj);
+
+      sayt.requestSaytProducts(query);
+
+      expect(CustomEvent).to.be.calledWith('sfx::sayt_products_request', {
+        detail: { query, searchbox: undefined },
+        bubbles: true,
+      });
+      expect(dispatchEvent).to.be.calledWith(eventObj);
+    });
+  });
+
+  // @TODO Add tests for processSearchboxInput()
+  // @TODO Add tests for processSfxSearchboxChange()
+
   describe('isCorrectSayt()', () => {
     it('should return true if event provides the correct searchbox ID', () => {
       const searchbox = sayt.searchbox = 'some-searchbox-id';

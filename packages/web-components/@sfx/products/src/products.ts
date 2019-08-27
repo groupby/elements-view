@@ -8,7 +8,7 @@ import {
 import { ProductModel } from '@sfx/product';
 
 /** The name of the event that contains product data. */
-export const PRODUCTS_EVENT: string = 'sfx::provide_products'
+export const PRODUCTS_EVENT: string = 'sfx::sayt_products_response';
 
 /**
  * The `sfx-products` web component wraps and renders a number of
@@ -58,7 +58,7 @@ export default class Products extends LitElement {
    * @param event A custom event containing information about products.
    */
   setProductsFromEvent(event: CustomEvent<ProductsEventPayload>) {
-    this.products = event.detail.products;
+    this.products = event.detail.results.products || [];
   }
 
   render(): TemplateResult {
@@ -102,5 +102,9 @@ export default class Products extends LitElement {
  */
 export interface ProductsEventPayload {
   /** The products. */
-  products: ProductModel[];
+  results: {
+    products: ProductModel[];
+    query: string;
+  }
+  searchbox?: string;
 }

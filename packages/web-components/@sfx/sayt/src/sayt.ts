@@ -53,6 +53,8 @@ export default class Sayt extends LitElement {
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
     this.isCorrectSayt = this.isCorrectSayt.bind(this);
     this.requestSayt = this.requestSayt.bind(this);
+    this.requestSaytAutocompleteTerms = this.requestSaytAutocompleteTerms.bind(this);
+    this.requestSaytProducts = this.requestSaytProducts.bind(this);
     this.processSearchboxInput = this.processSearchboxInput.bind(this);
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
@@ -175,11 +177,24 @@ export default class Sayt extends LitElement {
       return;
     }
 
+    this.requestSaytAutocompleteTerms(query, searchbox);
+    this.requestSaytProducts(query, searchbox);
+  }
+
+  requestSaytAutocompleteTerms(query: string, searchbox?: string) {
     const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
       detail: { query, searchbox },
       bubbles: true,
     });
     window.dispatchEvent(requestSaytResults);
+  }
+
+  requestSaytProducts(query: string, searchbox?: string) {
+    const requestProductResults = new CustomEvent('sfx::sayt_products_request', {
+      detail: { query, searchbox },
+      bubbles: true,
+    });
+    window.dispatchEvent(requestProductResults);
   }
 
   /**

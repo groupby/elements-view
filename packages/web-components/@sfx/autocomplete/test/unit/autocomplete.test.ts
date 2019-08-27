@@ -37,14 +37,18 @@ describe('Autcomplete Component', () => {
       expect(baseConnectedCallbackStub).to.have.been.called;
     });
 
-    it('should add an eventListener to the window', () => {
+    it('should add eventListeners to the window', () => {
       const windowAddEventListener = spy(window, 'addEventListener');
 
       autocomplete.connectedCallback();
 
       expect(windowAddEventListener).to.have.been.calledWith(
         'sfx::autocomplete_received_results',
-        autocomplete.receivedResults
+        autocomplete.receivedResults,
+      );
+      expect(windowAddEventListener).to.have.been.calledWith(
+        'mouseover',
+        autocomplete.handleHoverTerm,
       );
     });
   });
@@ -58,14 +62,18 @@ describe('Autcomplete Component', () => {
       expect(baseDisconnectedCallbackStub).to.have.been.called;
     });
 
-    it('should remove eventListener from the window', () => {
+    it('should remove eventListeners from the window', () => {
       const windowRemoveEventListener = spy(window, 'removeEventListener');
 
       autocomplete.disconnectedCallback();
 
       expect(windowRemoveEventListener).to.have.been.calledWith(
         'sfx::autocomplete_received_results',
-        autocomplete.receivedResults
+        autocomplete.receivedResults,
+      );
+      expect(windowRemoveEventListener).to.have.been.calledWith(
+        'mouseover',
+        autocomplete.handleHoverTerm,
       );
     });
   });
@@ -88,6 +96,28 @@ describe('Autcomplete Component', () => {
       autocomplete.receivedResults({ detail: { results } });
 
       expect(autocomplete.results).to.deep.equal(results);
+    });
+
+    it('should set this.results to empty array if undefined', () => {
+      autocomplete.receivedResults({ detail: {} });
+
+      expect(autocomplete.results).to.deep.equal([]);
+    });
+  });
+
+  describe('handleHoverTerm', () => {
+    let dispatchEvent,
+        Event;
+    beforeEach(() => {
+      dispatchEvent = stub(window, 'dispatchEvent');
+      Event = stub(window, 'Event').returns({});
+    });
+
+    it('should emit an event when handling hover of a term', () => {
+      autocomplete.handleHoverTerm();
+
+      expect(Event).to.be.calledWith('sfx::sayt_hover_autocomplete_term');
+      expect(dispatchEvent).to.be.called;
     });
   });
 });
