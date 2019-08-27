@@ -65,12 +65,13 @@ img {
   width: 100%;
 }
 
-.hero .wrapper {
-  max-width: 1200px;
-}
 .wrapper {
   margin: 0 auto;
   /* max-width: 1200px; */
+}
+
+.hero .wrapper {
+  max-width: 1200px;
 }
 /* BASE STYLES END HERE! */
 
@@ -82,7 +83,7 @@ header {
 header .wrapper {
   /* display: flex; */
   height: var(--header-height);
-  padding:0;
+  padding: 0;
   /* justify-content: space-between; */
 }
 .logo {
@@ -259,7 +260,7 @@ sfx-list ul {
 
 .hero a:hover {
   background-color: var(--font-color-primary);
-  color: var(--font-color-primary);
+  color: var(--font-color-secondary);
 }
 
 .hero .wrapper {
@@ -278,7 +279,7 @@ main h2 {
 
 /* NEW ARRIVALS SECTION STYLES START HERE! */
 .new-arrivals {
-  padding: 125px 0;
+  padding: 125px 15vw;
 }
 
 .new-arrivals h2 {
