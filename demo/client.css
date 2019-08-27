@@ -95,6 +95,7 @@ header .wrapper {
   text-align: center;
   line-height: 2.7rem;
   float: left;
+  color: var(--accent-color-secondary);
 }
 
 .logo i {
@@ -155,12 +156,12 @@ header .sfx-input {
 header .clear, header .submit {
   display: block;
   float: right;
-  background-color: var(--background-color-tertiary);
+  background-color: var(--background-color-primary);
   color: var(--font-color-primary);
   width: 60px;
   text-align: center;
   border: none;
-  border-left: 1px solid #c59601;
+  border-left: 1px solid rgba(255,255,255, 0.1);
   transition: all var(--transition-speed);
   height: 60px;
   width: 60px;
@@ -171,7 +172,7 @@ header .submit {
 }
 
 header .clear:hover, header .submit:hover {
-  background-color: var(--accent-color-secondary);
+  background-color: var(--background-color-tertiary);
 }
 
 #header-searchbox input {
@@ -195,6 +196,7 @@ sfx-sayt {
   border-left: 1px solid rgba(0,0,0,0.3);
   border-right: 1px solid rgba(0,0,0,0.3);
   overflow: hidden;
+  color: var(--accent-color-secondary);
 }
 
 sfx-list li {
@@ -310,6 +312,7 @@ main h2 {
 /* CATALOGUE SECTION STYLES START HERE! */
 .catalogue {
   padding: 125px 0;
+  height: 100vh;
   background-color: var(--background-color-primary);
   color: var(--font-color-primary);
   font-size: 1.8rem;
