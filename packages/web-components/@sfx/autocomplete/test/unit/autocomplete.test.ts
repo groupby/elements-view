@@ -145,7 +145,5 @@ describe('Autcomplete Component', () => {
       });
       expect(dispatchEvent).to.be.calledWith(sentEvent);
     });
-
-    // @TODO Test if no tag name present?
   });
 });
