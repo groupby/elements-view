@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SF-X</title>
+	<title>ProductVariantsModel | SF-X</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">SF-X</a>
+					<a href="../index.html" class="title">SF-X</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -53,33 +53,81 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="index.html">Globals</a>
+					<a href="../index.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_sfx_product.html">@sfx/product</a>
+				</li>
+				<li>
+					<a href="_sfx_product.productvariantsmodel.html">ProductVariantsModel</a>
 				</li>
 			</ul>
-			<h1> SF-X</h1>
+			<h1>Interface ProductVariantsModel</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The type that contains the collection of variants.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">ProductVariantsModel</span>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>External modules</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-external-module tsd-is-external"><a href="modules/__storybook_common_.html" class="tsd-kind-icon">".storybook/common"</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_sfx_autocomplete.html" class="tsd-kind-icon">@sfx/autocomplete</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_sfx_base.html" class="tsd-kind-icon">@sfx/base</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_sfx_product.html" class="tsd-kind-icon">@sfx/product</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_sfx_products.html" class="tsd-kind-icon">@sfx/products</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_sfx_sayt.html" class="tsd-kind-icon">@sfx/sayt</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_sfx_search_box.html" class="tsd-kind-icon">@sfx/search-<wbr>box</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_sfx_ui.html" class="tsd-kind-icon">@sfx/ui</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_sfx_product.productvariantsmodel.html#items" class="tsd-kind-icon">items</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_sfx_product.productvariantsmodel.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="items" class="tsd-anchor"></a>
+					<h3>items</h3>
+					<div class="tsd-signature tsd-kind-icon">items<span class="tsd-signature-symbol">:</span> <a href="_sfx_product.productvariantmodel.html" class="tsd-signature-type">ProductVariantModel</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/3a698f1/packages/web-components/@sfx/product/src/product.ts#L145">packages/web-components/@sfx/product/src/product.ts:145</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The list of variants.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"color"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"image"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"text"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/3a698f1/packages/web-components/@sfx/product/src/product.ts#L143">packages/web-components/@sfx/product/src/product.ts:143</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The type of variant rendered.</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -87,66 +135,104 @@
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals current ">
-						<a href="index.html"><em>Globals</em></a>
+					<li class="globals  ">
+						<a href="../index.html"><em>Globals</em></a>
 					</li>
 					<li class="label tsd-is-external">
 						<span>Internals</span>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_autocomplete.html">@sfx/autocomplete</a>
+						<a href="../modules/_sfx_autocomplete.html">@sfx/autocomplete</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_base.html">@sfx/base</a>
+						<a href="../modules/_sfx_base.html">@sfx/base</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_sfx_product.html">@sfx/product</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_product.html">@sfx/product</a>
+						<a href="../modules/_sfx_products.html">@sfx/products</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_products.html">@sfx/products</a>
+						<a href="../modules/_sfx_sayt.html">@sfx/sayt</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_sayt.html">@sfx/sayt</a>
+						<a href="../modules/_sfx_search_box.html">@sfx/search-<wbr>box</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_search_box.html">@sfx/search-<wbr>box</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_ui.html">@sfx/ui</a>
+						<a href="../modules/_sfx_ui.html">@sfx/ui</a>
 					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/__storybook_common_.html">".storybook/common"</a>
+						<a href="../modules/__storybook_common_.html">".storybook/common"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/__storybook_common_.html" class="tsd-kind-icon">".storybook/common"</a>
+						<a href="../modules/__storybook_common_.html" class="tsd-kind-icon">".storybook/common"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_autocomplete.html" class="tsd-kind-icon">@sfx/autocomplete</a>
+						<a href="../modules/_sfx_autocomplete.html" class="tsd-kind-icon">@sfx/autocomplete</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_base.html" class="tsd-kind-icon">@sfx/base</a>
+						<a href="../modules/_sfx_base.html" class="tsd-kind-icon">@sfx/base</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_sfx_product.html" class="tsd-kind-icon">@sfx/product</a>
+						<ul>
+							<li class=" tsd-kind-class tsd-parent-kind-external-module">
+								<a href="../classes/_sfx_product.product.html" class="tsd-kind-icon">Product</a>
+							</li>
+							<li class=" tsd-kind-class tsd-parent-kind-external-module">
+								<a href="../classes/_sfx_product.variant.html" class="tsd-kind-icon">Variant</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+								<a href="_sfx_product.productmodel.html" class="tsd-kind-icon">Product<wbr>Model</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+								<a href="_sfx_product.productvariantmodel.html" class="tsd-kind-icon">Product<wbr>Variant<wbr>Model</a>
+							</li>
+							<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+								<a href="_sfx_product.productvariantsmodel.html" class="tsd-kind-icon">Product<wbr>Variants<wbr>Model</a>
+								<ul>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_sfx_product.productvariantsmodel.html#items" class="tsd-kind-icon">items</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_sfx_product.productvariantsmodel.html#type" class="tsd-kind-icon">type</a>
+									</li>
+								</ul>
+							</li>
+							<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+								<a href="../modules/_sfx_product.html#markdown" class="tsd-kind-icon">markdown</a>
+							</li>
+							<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+								<a href="../modules/_sfx_product.html#product-1" class="tsd-kind-icon">product</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+								<a href="../modules/_sfx_product.html#tolowercasekebab" class="tsd-kind-icon">to<wbr>Lower<wbr>Case<wbr>Kebab</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_sfx_products.html" class="tsd-kind-icon">@sfx/products</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_product.html" class="tsd-kind-icon">@sfx/product</a>
+						<a href="../modules/_sfx_sayt.html" class="tsd-kind-icon">@sfx/sayt</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_products.html" class="tsd-kind-icon">@sfx/products</a>
+						<a href="../modules/_sfx_search_box.html" class="tsd-kind-icon">@sfx/search-<wbr>box</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_sayt.html" class="tsd-kind-icon">@sfx/sayt</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_search_box.html" class="tsd-kind-icon">@sfx/search-<wbr>box</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_sfx_ui.html" class="tsd-kind-icon">@sfx/ui</a>
+						<a href="../modules/_sfx_ui.html" class="tsd-kind-icon">@sfx/ui</a>
 					</li>
 				</ul>
 			</nav>
@@ -216,7 +302,7 @@
 	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
