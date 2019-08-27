@@ -301,11 +301,12 @@ describe('Sayt Component', () => {
         detail,
         type,
       };
-      stub(window, 'CustomEvent').returns(event);
+      const customEvent = stub(window, 'CustomEvent').returns(event);
       sayt.minSearchLength = 3;
 
       sayt.requestSayt(query);
 
+      expect(customEvent.calledWithNew()).to.be.true;
       expect(dispatchEvent).to.be.calledWith(event);
     });
 
@@ -316,11 +317,12 @@ describe('Sayt Component', () => {
         detail,
         type,
       };
-      stub(window, 'CustomEvent').returns(event);
+      const customEvent = stub(window, 'CustomEvent').returns(event);
       sayt.minSearchLength = 3;
 
       sayt.requestSayt(query);
 
+      expect(customEvent.calledWithNew()).to.be.true;
       expect(dispatchEvent).to.be.calledWith(event);
     });
   });
