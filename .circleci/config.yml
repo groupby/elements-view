@@ -309,7 +309,7 @@ workflows:
       - docs:
           requires:
             - test_final
-          # filters:
-          #   branches:
-          #     only:
-          #       - master
+          filters:
+            branches:
+              only:
+                - master
