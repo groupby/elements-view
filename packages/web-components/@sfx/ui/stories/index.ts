@@ -52,7 +52,7 @@ storiesOf('UI|List', module)
 
         ## Demonstrated in this story
 
-        **NOTE**: The SF-X List component is intended to be used as an UI component in conjunction with other components (e.g. the SF-X Autocomplete component utilizes the SF-X List component).
+        **NOTE**: NOTE: The SF-X List component is intended to be used as a "building block" UI component inside other components (e.g. the SF-X Autocomplete component uses the SF-X List component as part of its template).
 
         #### **The \`items\` attribute defines the list items.**
           * The \`items\` attribute data has been hardcoded for display purposes. ***Disclaimer***: although possible, it is not recommended to pass arrays of data via an attribute.

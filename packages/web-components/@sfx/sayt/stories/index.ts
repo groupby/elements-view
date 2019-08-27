@@ -53,9 +53,10 @@ const saytShow = {
   payload: ''
 };
 
-const autocompleteDataReceivedEvent = new CustomEvent('${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}', {
+const autocompleteDataReceivedEvent = new CustomEvent(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, {
   detail: {
-    results: autocompleteResults}
+    results: autocompleteResults
+  }
 });
 
 function generateBaseData() {
