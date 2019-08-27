@@ -268,7 +268,7 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSayt()', () => {
-    let query = 'test';
+    const query = 'test';
     let dispatchEvent;
     let hideSayt;
 
@@ -277,23 +277,12 @@ describe('Sayt Component', () => {
       hideSayt = stub(sayt, 'hideSayt');
     });
 
-    it('should hide the sayt container if it is currently visible and there are not enough characters in a searchbox query', () => {
+    it('should hide the sayt container if there are not enough characters in a searchbox query', () => {
       sayt.minSearchLength = 6;
-      sayt.visible = true;
 
       sayt.requestSayt(query);
 
       expect(hideSayt).to.be.called;
-      expect(dispatchEvent).to.not.be.called;
-    });
-
-    it('should not do anything if the sayt container is not currently visible and there are not enough characters in a searchbox query', () => {
-      sayt.minSearchLength = 6;
-      sayt.visible = false;
-
-      sayt.requestSayt(query);
-
-      expect(hideSayt).to.not.be.called;
       expect(dispatchEvent).to.not.be.called;
     });
 

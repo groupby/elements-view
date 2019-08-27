@@ -171,7 +171,7 @@ export default class Sayt extends LitElement {
    */
   requestSayt(query: string, searchbox?: string) {
     if (query.length < this.minSearchLength) {
-      if (this.visible) this.hideSayt();
+      this.hideSayt();
       return;
     }
 
