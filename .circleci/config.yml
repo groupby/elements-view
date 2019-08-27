@@ -161,7 +161,6 @@ jobs:
 
             cd packages/*/"@sfx/${package}"
             yarn test
-
   ### interaction_test: interaction_test_{package}
   ### Runs the interaction tests for {package}.
   interaction_test:
