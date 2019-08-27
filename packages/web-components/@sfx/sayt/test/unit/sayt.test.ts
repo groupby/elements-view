@@ -269,6 +269,7 @@ describe('Sayt Component', () => {
 
   describe('requestSayt()', () => {
     const query = 'test';
+    const type = 'event name';
     let dispatchEvent;
     let hideSayt;
 
@@ -295,10 +296,12 @@ describe('Sayt Component', () => {
     });
 
     it('should send an event to request sayt results if the query string is long enough', () => {
-      const event = new CustomEvent('sfx::autocomplete_fetch_data', {
-        detail: { query },
-        bubbles: true,
-      });
+      const detail = { query };
+      const event = {
+        detail,
+        type,
+      };
+      stub(window, 'CustomEvent').returns(event);
       sayt.minSearchLength = 3;
 
       sayt.requestSayt(query);
@@ -307,11 +310,13 @@ describe('Sayt Component', () => {
     });
 
     it('should include a searchbox in the dispatched event if it is provided', () => {
-      const searchbox = 'testBox'
-      const event = new CustomEvent('sfx::autocomplete_fetch_data',{
-        detail: { query, searchbox },
-        bubbles: true,
-      });
+      const searchbox = 'testBox';
+      const detail = { query, searchbox };
+      const event = {
+        detail,
+        type,
+      };
+      stub(window, 'CustomEvent').returns(event);
       sayt.minSearchLength = 3;
 
       sayt.requestSayt(query);
