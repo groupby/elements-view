@@ -115,7 +115,18 @@ describe('Autcomplete Component', () => {
       CustomEvent = stub(window, 'CustomEvent').returns(sentEvent);
     });
 
-    it('should not emit an event if not hovering an autocomplete term');
+    it('should not emit an event if not hovering an autocomplete term', () => {
+      const mouseEvent = {
+        target: {
+          tagName: 'H4',
+          innerText: 'some-term',
+        }
+      };
+
+      autocomplete.handleHoverTerm(mouseEvent);
+
+      expect(dispatchEvent).to.not.be.called;
+    });
 
     it('should emit an event when hovering an autocomplete term', () => {
       const mouseEvent = {
@@ -134,5 +145,7 @@ describe('Autcomplete Component', () => {
       });
       expect(dispatchEvent).to.be.calledWith(sentEvent);
     });
+
+    // @TODO Test if no tag name present?
   });
 });
