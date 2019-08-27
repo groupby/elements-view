@@ -58,7 +58,7 @@ export default class Products extends LitElement {
    * @param event A custom event containing information about products.
    */
   setProductsFromEvent(event: CustomEvent<ProductsEventPayload>) {
-    this.products = event.detail.results.products;
+    this.products = event.detail.results.products || [];
   }
 
   render(): TemplateResult {

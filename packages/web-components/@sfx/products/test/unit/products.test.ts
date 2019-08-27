@@ -77,5 +77,15 @@ describe('Products Component', () => {
 
       expect(component.products).to.equal(products);
     });
+
+    it('should set this.products to empty array if undefined', () => {
+      const products = [1, 2, 3];
+      const event = { detail: { results: {} }};
+      component.products = [];
+
+      component.setProductsFromEvent(event);
+
+      expect(component.products).to.deep.equal([]);
+    });
   });
 });
