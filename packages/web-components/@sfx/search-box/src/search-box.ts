@@ -63,8 +63,8 @@ export default class SearchBox extends Base {
     const searchboxRequestEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
       value: this.value,
       config: {
-        area: this.area ? this.area : undefined,
-        collection: this.collection ? this.collection : undefined,
+        area: this.area,
+        collection: this.collection,
       }
     });
     this.dispatchEvent(searchboxRequestEvent);
