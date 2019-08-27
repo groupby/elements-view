@@ -89,29 +89,10 @@
       // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
       // search integration/functionality test
-      window.addEventListener('sfx::search_response', (e) => {
-        const testListResults = e.detail.records.map(item => {
-          return { label : item.title };
-        });
-        document.getElementsByClassName('product-grid')[0]
-        .setAttribute('items', JSON.stringify(testListResults));
+
+      window.addEventListener('sfx::sayt_products_response', (e) => {
+        console.log('logging out products event', e);
       });
-
-      // hide searchbox if input is less than min chars
-      window.addEventListener('sfx::searchbox_change', (e) => {
-        if (e.detail.value.length < 3) {
-          const hideSayt = new CustomEvent('sfx::sayt_hide');
-          window.dispatchEvent(hideSayt);
-        }
-        // console.log('>>> inside sfx::autocomplete_fetch_data',  this, e.detail.query.length)
-      })
-
-      // autocomplate integration/functionality test hardcoded for now
-      // const autocompleteDataFetchEvent = new CustomEvent('sfx::autocomplete_fetch_data', {
-      //   detail: { query: 'pants'},
-      //   bubbles: true
-      // });
-      // setTimeout(() => { window.dispatchEvent(autocompleteDataFetchEvent); }, 3000);
     </script>
     <!-- Smooth Scroll Code is Below -->
     <script>
