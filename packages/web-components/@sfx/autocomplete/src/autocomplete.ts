@@ -1,7 +1,7 @@
 import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 import { Base } from '@sfx/base';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from './events';
+import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from './events';
 
 /**
  * Listens for the `sfx::autocomplete_received_results` event and
@@ -80,7 +80,7 @@ export default class Autocomplete extends Base {
     const target = event.target as HTMLElement;
     if (target.tagName !== 'LI') return;
     const term = target.innerText;
-    const sentEvent = new CustomEvent('sfx::sayt_hover_autocomplete_term', {
+    const sentEvent = new CustomEvent(HOVER_AUTOCOMPLETE_TERM_EVENT, {
       detail: {
         query: term,
       }
