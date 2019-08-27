@@ -76,9 +76,17 @@ export default class Autocomplete extends Base {
     window.dispatchEvent(autocompleteDataReceivedEvent);
   }
 
-  handleHoverTerm() {
-    const event = new Event('sfx::sayt_hover_autocomplete_term');
-    window.dispatchEvent(event);
+  handleHoverTerm(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (target.tagName === 'LI') {
+      const term = target.innerText;
+      const sentEvent = new CustomEvent('sfx::sayt_hover_autocomplete_term', {
+        detail: {
+          query: term,
+        }
+      });
+      window.dispatchEvent(sentEvent);
+    }
   }
 
   /**

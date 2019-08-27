@@ -107,17 +107,32 @@ describe('Autcomplete Component', () => {
 
   describe('handleHoverTerm', () => {
     let dispatchEvent,
-        Event;
+        CustomEvent,
+        sentEvent;
     beforeEach(() => {
+      sentEvent = {};
       dispatchEvent = stub(window, 'dispatchEvent');
-      Event = stub(window, 'Event').returns({});
+      CustomEvent = stub(window, 'CustomEvent').returns(sentEvent);
     });
 
-    it('should emit an event when handling hover of a term', () => {
-      autocomplete.handleHoverTerm();
+    it('should not emit an event if not hovering an autocomplete term');
 
-      expect(Event).to.be.calledWith('sfx::sayt_hover_autocomplete_term');
-      expect(dispatchEvent).to.be.called;
+    it('should emit an event when hovering an autocomplete term', () => {
+      const mouseEvent = {
+        target: {
+          tagName: 'LI',
+          innerText: 'some-term',
+        }
+      };
+
+      autocomplete.handleHoverTerm(mouseEvent);
+
+      expect(CustomEvent).to.be.calledWith('sfx::sayt_hover_autocomplete_term', {
+        detail: {
+          query: mouseEvent.target.innerText,
+        }
+      });
+      expect(dispatchEvent).to.be.calledWith(sentEvent);
     });
   });
 });
