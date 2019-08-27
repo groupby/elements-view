@@ -300,7 +300,9 @@ main h2 {
 
 /* NEW ARRIVALS SECTION STYLES START HERE! */
 .new-arrivals {
-  padding: 125px 15vw;
+  padding: 125px 0;
+  width: 1224px;
+  margin: 0 auto;
 }
 
 .new-arrivals h2 {
