@@ -70,7 +70,7 @@ describe('Products Component', () => {
   describe('setProductsFromEvent', () => {
     it('should set the event products payload into the component', () => {
       const products = [1, 2, 3];
-      const event = { detail: { products }};
+      const event = { detail: { results: { products } }};
       component.products = [];
 
       component.setProductsFromEvent(event);
