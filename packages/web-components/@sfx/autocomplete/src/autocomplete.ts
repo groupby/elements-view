@@ -77,7 +77,8 @@ export default class Autocomplete extends Base {
   }
 
   handleHoverTerm() {
-
+    const event = new Event('sfx::sayt_hover_autocomplete_term');
+    window.dispatchEvent(event);
   }
 
   /**

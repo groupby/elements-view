@@ -104,4 +104,20 @@ describe('Autcomplete Component', () => {
       expect(autocomplete.results).to.deep.equal([]);
     });
   });
+
+  describe('handleHoverTerm', () => {
+    let dispatchEvent,
+        Event;
+    beforeEach(() => {
+      dispatchEvent = stub(window, 'dispatchEvent');
+      Event = stub(window, 'Event').returns({});
+    });
+
+    it('should emit an event when handling hover of a term', () => {
+      autocomplete.handleHoverTerm();
+
+      expect(Event).to.be.calledWith('sfx::sayt_hover_autocomplete_term');
+      expect(dispatchEvent).to.be.called;
+    });
+  });
 });
