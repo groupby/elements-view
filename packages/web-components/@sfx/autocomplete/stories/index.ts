@@ -15,7 +15,7 @@ const autocompleteNotesIntro = `
 
 ## Demonstrated in this story`
 
-// TODO: add results type when to function when imported from @sfx/events repo
+// TODO: add results type to function when imported from @sfx/events repo
 function getAutocompleteComponent(results = []): string {
   const optionalTitle = text('Optional Title', 'Autocomplete Results');
 
@@ -68,7 +68,7 @@ storiesOf('Components|Autocomplete', module)
         ></sfx-autocomplete>
         \`\`\`
 
-        * To see the story that demonstrates the component's functionality, visit the second story "Rendering with event payload".
+        * To see the story that demonstrates the component's functionality, visit the second story under "Autocomplete": "Rendering with event payload".
       `
     }
   }
@@ -88,7 +88,7 @@ storiesOf('Components|Autocomplete', module)
         markdown: `
           ${autocompleteNotesIntro}
 
-            #### **The SF-X Autocomplete component populates with autocomplete data in response to the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.**
+            #### **The SF-X Autocomplete component updates with autocomplete data in response to the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.**
             * To emit the event in this story:
               1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.
               2. Click "emit".
@@ -96,11 +96,10 @@ storiesOf('Components|Autocomplete', module)
 
             #### **The SF-X Autocomplete component allows for an optional title which populates inside an \`<h3>\` tag, above the autocomplete terms.**
             * The optional title is populated via the \`caption\` attribute.
-                * In this story, the "Optional Title" knob maps to the \`caption\` attribute.
-                * To update the optional title within this story:
-                  1. Visit the **Knobs** tab and modify the text inside the "Optional Title" field.
-                  2. Navigate to the **Custom Events** tab and emit the event.
-                  3. See the component update with the payload of the event and the optional title.
+            * To update the optional title within this story:
+              1. Visit the **Knobs** tab and modify the text inside the "Optional Title" field.
+              2. Navigate to the **Custom Events** tab and emit the event.
+              3. See the component update with the payload of the event and the optional title.
             `
       }
     }

@@ -23,8 +23,8 @@ function getListComponent(codeSnippet: boolean = false): string {
   const list = text('List Items', JSON.stringify(items));
 
   return codeSnippet === false
-    ? '<sfx-list\n' + ` caption="${title}"\n` + ` items="${list}"\n` + '></sfx-list>'
-    : '<sfx-list\n' + ` caption="${title}"\n` + '></sfx-list>';
+    ? `<sfx-list caption="${title}" items="${list}"></sfx-list>`
+    : `<sfx-list caption="${title}"></sfx-list>`;
 }
 
 storiesOf('UI|List', module)
@@ -52,11 +52,12 @@ storiesOf('UI|List', module)
 
         ## Demonstrated in this story
 
-        **NOTE**: NOTE: The SF-X List component is intended to be used as a "building block" UI component inside other components (e.g. the SF-X Autocomplete component uses the SF-X List component as part of its template).
+        **NOTE**: The SF-X List component is intended to be used as a "building block" UI component inside other components (e.g. the SF-X Autocomplete component uses the SF-X List component as part of its template).
 
         #### **The \`items\` attribute defines the list items.**
-          * The \`items\` attribute data has been hardcoded for display purposes. ***Disclaimer***: although possible, it is not recommended to pass arrays of data via an attribute.
-          * To modify the \`items\` attribute data (the list items):
+          * The \`items\` attribute data has been hardcoded for display purposes.
+          * ***Disclaimer***: although possible, it is not recommended to pass arrays of data via an attribute.
+          * To modify the \`items\` attribute data (the list items) in this story:
             1. Visit the **Knobs** tab.
             2. Modify the data inside the "List Items'" field.
             3. See the component update with the new data.
@@ -84,7 +85,6 @@ storiesOf('UI|List', module)
               }]"
             ></sfx-list>
             \`\`\`
-
         `
       }
     }

@@ -27,7 +27,7 @@ particular customizations:
 - `hideAutocomplete`: Prevents the `sfx-autocomplete` component from rendering.
 - `hideProducts`: Prevents the `sfx-products` component from rendering.
 - `showCloseButton`: Shows a button to allow for closing SAYT manually.
-- `closeText`: Allows for the modification of the text used on the close button.
+- `closeText`: Customizes the text in the close button.
 - `visible`: Determines the visibility of the `sayt` component.
 
 ## Testing
