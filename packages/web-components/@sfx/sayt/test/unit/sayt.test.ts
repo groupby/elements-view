@@ -268,9 +268,9 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSayt()', () => {
-    const query = 'test';
-    let dispatchEvent,
-        hideSayt;
+    let query = 'test';
+    let dispatchEvent;
+    let hideSayt;
 
     beforeEach(() => {
       dispatchEvent = stub(window, 'dispatchEvent');
@@ -297,6 +297,14 @@ describe('Sayt Component', () => {
       expect(dispatchEvent).to.not.be.called;
     });
 
+    it('should not hide the sayt if the query meets the minimum search length', () => {
+      sayt.minSearchLength = 4;
+
+      sayt.requestSayt(query);
+
+      expect(hideSayt).to.not.be.called;
+    });
+
     it('should send an event to request sayt results if the query string is long enough', () => {
       const event = new CustomEvent('sfx::autocomplete_fetch_data',{
         detail: { query },
@@ -306,7 +314,6 @@ describe('Sayt Component', () => {
 
       sayt.requestSayt(query);
 
-      expect(hideSayt).to.not.be.called;
       expect(dispatchEvent).to.be.calledWith(event);
     });
 
@@ -320,7 +327,6 @@ describe('Sayt Component', () => {
 
       sayt.requestSayt(query);
 
-      expect(hideSayt).to.not.be.called;
       expect(dispatchEvent).to.be.calledWith(event);
     });
   });
