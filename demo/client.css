@@ -336,10 +336,15 @@ main h2 {
   font-size: 1.8rem;
 }
 
+.catalogue .wrapper {
+  width: 1224px;
+}
+
 .catalogue .sfx-catalogue-search-controls {
   margin-top: 50px;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 #catalogue-searchbox {
@@ -360,6 +365,26 @@ main h2 {
 .sfx-catalogue-search-controls button:hover {
   background-color: var(--background-color-tertiary);
   color: var(--font-color-tertiary);
+}
+
+.catalogue sfx-sayt {
+  top: 36px;
+  left: 264px;
+  width: 614px;
+  height: auto;
+  color: var(--font-color-tertiary);
+}
+
+.catalogue sfx-autocomplete {
+  width: 100%;
+}
+
+.catalogue sfx-list li:focus, .catalogue sfx-list li:hover {
+  background: var(--background-color-secondary);
+}
+
+.catalogue sfx-list ul {
+  width: 100%;
 }
 /* CATALOGUE SECTION STYLES END HERE! */
 
