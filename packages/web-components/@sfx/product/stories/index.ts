@@ -10,7 +10,7 @@ function getProductComponent(product: ProductModel = {}, codeSnippet: boolean = 
 
   return codeSnippet === false
     ? `<sfx-product product="${productInfo}"></sfx-product>`
-    : '<sfx-product>\n</sfx-product>';
+    : '<sfx-product></sfx-product>';
 }
 
 storiesOf('Components|Product', module)
@@ -36,7 +36,7 @@ storiesOf('Components|Product', module)
 
         ## Demonstrated in this story
 
-        #### **The SF-X Product component populated with hardcoded product data for display purposes.**
+        #### **The SF-X Product component populated with hardcoded product data.**
 
         \`\`\`html
         <sfx-product
@@ -77,11 +77,11 @@ storiesOf('Components|Product', module)
         ></sfx-product>
         \`\`\`
 
-        #### **The SF-X Product component renders with product data populated via the 'product' property.**
+        #### **The SF-X Product component renders with product data populated via the \`product\` attribute.**
+        ***Disclaimer***: although possible, it is not recommended to pass data objects via an attribute
           * Refer to the \`ProductModel\` and \`ProductVariantsModel\` interfaces for the accepted data format.
-          * In this story, the 'Product Info' knob maps to the \`product\` property.
-          * To modify the data within the 'product' property:
-            1. Visit the **Knobs** tab and modify the data inside the 'Product Data' field.
+          * To modify the data within the \`product\` attribute in this story:
+            1. Visit the **Knobs** tab and modify the data inside the "Product Data" field.
             2. Observe that the component is updated with the new data.
 
         #### **The SF-X Product component visually updates when clicking on variant tile icons.**
@@ -90,7 +90,7 @@ storiesOf('Components|Product', module)
             1. Navigate to the **Canvas** tab.
               * If the product tile has multiple colored squares below the product image, click on the various squares.
               * If the product tile does not have multiple colored squares below the product image, refresh the page until a product with variants appears, then click on the various squares.
-                * Observe that the component is updated with different product images.
+            2. Observe that the component is updated with different product images.
         `
       }
     }

@@ -13,13 +13,14 @@ const autocompleteNotesIntro = `
 <sfx-autocomplete></sfx-autocomplete>
 \`\`\`
 
-
 ## Demonstrated in this story`
 
-function getAutocomplete(results = []): string {
+// TODO: add results type when to function when imported from @sfx/events repo
+function getAutocompleteComponent(results = []): string {
   const optionalTitle = text('Optional Title', 'Autocomplete Results');
-  const autocompleteResults = text('Autocomplete Results', JSON.stringify(results))
+
   if (results.length > 0) {
+    const autocompleteResults = text('Autocomplete Results', JSON.stringify(results))
     return '<sfx-autocomplete\n'
     + ` results="${autocompleteResults}"\n`
     + ` caption="${optionalTitle}"\n`
@@ -37,8 +38,8 @@ storiesOf('Components|Autocomplete', module)
     'Default',
     () => {
      return `
-     ${getAutocomplete(autocompleteResults)}
-     ${getDisplayCode(getAutocomplete())}`
+     ${getAutocompleteComponent(autocompleteResults)}
+     ${getDisplayCode(getAutocompleteComponent())}`
     },
     {
     notes: {
@@ -67,14 +68,15 @@ storiesOf('Components|Autocomplete', module)
         ></sfx-autocomplete>
         \`\`\`
 
-        * To see story that demonstrates the component's functionality, visit the second story 'Rendering with event payload'.`
+        * To see the story that demonstrates the component's functionality, visit the second story "Rendering with event payload".
+      `
     }
   }
   )
   .add(
     'Rendering with event payload',
     () => {
-      const autocomplete = getAutocomplete();
+      const autocomplete = getAutocompleteComponent();
       return `
       ${autocomplete}
       ${getDisplayCode(autocomplete)}
@@ -87,18 +89,18 @@ storiesOf('Components|Autocomplete', module)
           ${autocompleteNotesIntro}
 
             #### **The SF-X Autocomplete component populates with autocomplete data in response to the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.**
-            * To emit the event:
+            * To emit the event in this story:
               1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.
               2. Click "emit".
               3. Observe that the component is updated with the payload of the event.
 
             #### **The SF-X Autocomplete component allows for an optional title which populates inside an \`<h3>\` tag, above the autocomplete terms.**
             * The optional title is populated via the \`caption\` attribute.
-                * In this story, the "Optional Title"  knob maps to the \`caption\` attribute.
+                * In this story, the "Optional Title" knob maps to the \`caption\` attribute.
                 * To update the optional title within this story:
-                  1. Visit the **Knobs** tab and modify the text inside the 'Optional Title' field.
+                  1. Visit the **Knobs** tab and modify the text inside the "Optional Title" field.
                   2. Navigate to the **Custom Events** tab and emit the event.
-                  3. See the component update with the optional title.
+                  3. See the component update with the payload of the event and the optional title.
             `
       }
     }

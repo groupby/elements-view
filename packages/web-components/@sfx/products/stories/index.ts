@@ -7,9 +7,9 @@ import { getDisplayCode, getProducts, productsResultsEvent } from '../../../../.
 function getProductsComponent(productsArray: ProductModel[] = []) {
   if (productsArray.length > 0) {
     const products = text('Products', JSON.stringify(productsArray));
-    return '<sfx-products\n' + ` products="${products}"\n` + '></sfx-products>';
+    return `<sfx-products products="${products}"></sfx-products>`
   } else {
-    return '<sfx-products>\n' + '</sfx-products>';
+    return '<sfx-products></sfx-products>';
   }
 }
 
@@ -39,14 +39,14 @@ storiesOf('Components|Products', module)
         markdown: `
         ${productsNotesMarkdownIntro}
 
-          #### **The SF-X Products component populated with hardcoded products data for display purposes.**
+          #### **The SF-X Products component populated with hardcoded products data.**
 
           * The SF-X Products component renders a collection of products, with the data passed directly via the  \`products\` attribute.
           * ***Disclaimer***: although possible, it is not recommended to pass arrays of data via an attribute.
           * The products attribute is populated with hardcoded data initially.
-            * To modify the data within the \`products\` attribute:
-              1. Visit the **Knobs** tab and update the data inside the 'Products' field.
-              2. Observe that the component is updated with new data.
+          * To modify the data within the \`products\` attribute in this story:
+            1. Visit the **Knobs** tab and update the data inside the "Products" field.
+            2. Observe that the component is updated with new data.
 
 
           \`\`\`html
@@ -92,10 +92,10 @@ storiesOf('Components|Products', module)
 
           #### **The SF-X Products component renders a product grid in response to the \`${PRODUCTS_EVENT}\` event.**
             * The payload of the event contains an array of products.
-            * To emit the event:
+            * To emit the event in this story:
               1. Visit the **Custom Events** tab and locate the \`${PRODUCTS_EVENT}\` event.
-              2. Click 'emit'.
-              3. See the product grid populate with the product data contained in the array.
+              2. Click "emit".
+              3. See the component update with the product data contained in the array.
         `
       }
     }
