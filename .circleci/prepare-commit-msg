@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Add `[ci skip]` to the beginning of the subject
+
+tmp_message_file="$(mktemp)"
+
+sed '1s/^/[ci skip] /' "$1" >"$tmp_message_file"
+mv "$tmp_message_file" "$1"
