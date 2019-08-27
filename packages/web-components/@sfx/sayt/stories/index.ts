@@ -270,13 +270,14 @@ storiesOf('Components|SAYT', module)
                 1. Open both SAYTs.
                 2. Click anywhere within one SAYT component.
                 3. Observe that the other SAYT component is closed.
-            * A click on the close button on a given SAYT will close both SAYTs because:
-              * You have closed the SAYT for which you have clicked close.
-              * The other SAYT has closed due to lost focus.
-              * To demonstrate in this story:
-                1. Open both SAYTs.
-                2. Click on one of the close buttons.
-                3. Observe that both SAYT components are closed.
+
+              * A click on the close button on a given SAYT will close both SAYTs because:
+                * You have closed the SAYT for which you have clicked close.
+                * The other SAYT has closed due to lost focus.
+                * To demonstrate in this story:
+                  1. Open both SAYTs.
+                  2. Click on one of the close buttons.
+                  3. Observe that both SAYT components are closed.
 
       ### Example of the multple SAYT components
 

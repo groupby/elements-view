@@ -36,7 +36,7 @@ storiesOf('Components|Product', module)
 
         ## Demonstrated in this story
 
-        #### **The SF-X Product component populated with hardcoded product data.**
+        #### **The SF-X Product component populated with hardcoded product data**
 
         \`\`\`html
         <sfx-product
@@ -78,7 +78,7 @@ storiesOf('Components|Product', module)
         \`\`\`
 
         #### **The SF-X Product component renders with product data populated via the \`product\` attribute.**
-        ***Disclaimer***: although possible, it is not recommended to pass data objects via an attribute
+        * ***Disclaimer***: although possible, it is not recommended to pass data objects via an attribute.
           * Refer to the \`ProductModel\` and \`ProductVariantsModel\` interfaces for the accepted data format.
           * To modify the data within the \`product\` attribute in this story:
             1. Visit the **Knobs** tab and modify the data inside the "Product Data" field.
