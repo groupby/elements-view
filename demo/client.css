@@ -74,7 +74,7 @@ img {
 }
 
 .hero .wrapper {
-  max-width: 1200px;
+  max-width: 1224px;
 }
 /* BASE STYLES END HERE! */
 
@@ -248,6 +248,22 @@ sfx-list ul {
   color: var(--font-color-primary);
   font-size: 15rem;
   text-align: right;
+  text-transform: uppercase;
+}
+
+.hero span {
+  display: block;
+  font-weight: 100;
+  font-size: 127.5px;
+}
+
+.hero span:before {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 527px;
+  margin: 0 auto;
+  background-color: rgba(255,255,255, 0.5);
 }
 
 .hero a {
