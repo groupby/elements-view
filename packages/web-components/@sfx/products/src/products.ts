@@ -58,7 +58,7 @@ export default class Products extends LitElement {
    * @param event A custom event containing information about products.
    */
   setProductsFromEvent(event: CustomEvent<ProductsEventPayload>) {
-    this.products = event.detail.products;
+    this.products = event.detail.results.products;
   }
 
   render(): TemplateResult {
@@ -102,7 +102,9 @@ export default class Products extends LitElement {
  */
 export interface ProductsEventPayload {
   /** The products. */
-  products: ProductModel[];
+  results: {
+    products: ProductModel[];
+    query: string;
+  }
   searchbox?: string;
-  query: string;
 }
