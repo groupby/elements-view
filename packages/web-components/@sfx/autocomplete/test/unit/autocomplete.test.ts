@@ -97,5 +97,11 @@ describe('Autcomplete Component', () => {
 
       expect(autocomplete.results).to.deep.equal(results);
     });
+
+    it('should set this.results to empty array if undefined', () => {
+      autocomplete.receivedResults({ detail: {} });
+
+      expect(autocomplete.results).to.deep.equal([]);
+    });
   });
 });
