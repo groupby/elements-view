@@ -70,7 +70,6 @@ img {
 
 .wrapper {
   margin: 0 auto;
-  /* max-width: 1200px; */
 }
 
 .hero .wrapper {
@@ -84,10 +83,8 @@ header {
 }
 
 header .wrapper {
-  /* display: flex; */
   height: var(--header-height);
   padding: 0;
-  /* justify-content: space-between; */
 }
 .logo {
   height: 60px;
@@ -134,8 +131,8 @@ nav {
 
 header .sfx-header-search-controls {
   float: right;
-  /* display: inline-block; */
-  /* width: 300px; */
+  display: flex;
+  position: relative;
   font-size: 1.8rem;
 }
 
@@ -155,7 +152,6 @@ header .sfx-input {
 
 header .clear, header .submit {
   display: block;
-  float: right;
   background-color: var(--background-color-primary);
   color: var(--font-color-primary);
   width: 60px;
@@ -189,6 +185,7 @@ sfx-sayt {
   position: absolute;
   width: calc(50vw - 118px);
   height: 400px;
+  top: 60px;
   right: 119px;
   border-bottom-left-radius: 2.5px;
   border-bottom-right-radius: 2.5px;
@@ -228,9 +225,7 @@ sfx-list ul {
 
 .sfx-sayt-container sfx-products {
   flex-grow: 6;
-  /* background: #e4dbc6; */
   background: rgba(255,255,255, 0.8);
-  /* height: 100%; */
 }
 
 /* HEADER STYLES END HERE! */
