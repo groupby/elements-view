@@ -295,7 +295,7 @@ describe('Sayt Component', () => {
     });
 
     it('should send an event to request sayt results if the query string is long enough', () => {
-      const event = new CustomEvent('sfx::autocomplete_fetch_data',{
+      const event = new CustomEvent('sfx::autocomplete_fetch_data', {
         detail: { query },
         bubbles: true,
       });
