@@ -34,6 +34,9 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
   /* Header Height Variable */
   --header-height: 60px;
+
+  /* Speed Variable */
+  --transition-speed: 0.1s;
 }
 /* CSS VARIABLES END HERE! */
 /* BASE STYLES START HERE! */
@@ -119,7 +122,7 @@ nav {
   text-transform: uppercase;
   padding: 2px;
   border-bottom: 1px solid transparent;
-  transition: all 0.3s;
+  transition: all var(--transition-speed);
   height: 60px;
   line-height: 60px;
 }
@@ -158,7 +161,7 @@ header .clear, header .submit {
   text-align: center;
   border: none;
   border-left: 1px solid #c59601;
-  transition: all 0.3s;
+  transition: all var(--transition-speed);
   height: 60px;
   width: 60px;
 }
@@ -255,7 +258,7 @@ sfx-list ul {
   font-size: 2rem;
   text-align: center;
   text-transform: uppercase;
-  transition: all 0.1s;
+  transition: all var(--transition-speed);
 }
 
 .hero a:hover {
@@ -330,7 +333,7 @@ main h2 {
   width: 40px;
   background-color: var(--background-color-secondary);
   color: var(--font-color-primary);
-  transition: all 0.3s;
+  transition: all var(--transition-speed);
 }
 
 .sfx-catalogue-search-controls button:hover {
