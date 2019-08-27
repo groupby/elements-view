@@ -46,8 +46,8 @@ storiesOf('Components|Autocomplete', module)
       markdown: `
         ${autocompleteNotesIntro}
 
-        #### **The SF-X Autocomplete component populated with hardcoded autocomplete data.
-        ***Disclaimer***: although possible, it is not recommended to pass arrays of data via an attribute.
+        ### The SF-X Autocomplete component populated with hardcoded autocomplete data.
+        * ***Disclaimer***: although possible, it is not recommended to pass arrays of data via an attribute.
         * To see the story that demonstrates the component's functionality, visit the second story under "Autocomplete": "Rendering with event payload".
 
         \`\`\`html
@@ -88,14 +88,14 @@ storiesOf('Components|Autocomplete', module)
         markdown: `
           ${autocompleteNotesIntro}
 
-            #### **The SF-X Autocomplete component updates with autocomplete data in response to the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.**
+            ### The SF-X Autocomplete component updates with autocomplete data in response to the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.**
             * To emit the event in this story:
               1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.
               2. Click "emit".
               3. Observe that the component is updated with the payload of the event.
 
 
-            #### **The SF-X Autocomplete component allows for an optional title which populates inside an \`<h3>\` tag, above the autocomplete terms.**
+            ### The SF-X Autocomplete component allows for an optional title which populates inside an \`<h3>\` tag, above the autocomplete terms.**
             * The optional title is populated via the \`caption\` attribute.
             * To update the optional title within this story:
               1. Visit the **Knobs** tab and modify the text inside the "Optional Title" field.
