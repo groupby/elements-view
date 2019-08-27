@@ -78,15 +78,14 @@ export default class Autocomplete extends Base {
 
   handleHoverTerm(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    if (target.tagName === 'LI') {
-      const term = target.innerText;
-      const sentEvent = new CustomEvent('sfx::sayt_hover_autocomplete_term', {
-        detail: {
-          query: term,
-        }
-      });
-      window.dispatchEvent(sentEvent);
-    }
+    if (target.tagName !== 'LI') return;
+    const term = target.innerText;
+    const sentEvent = new CustomEvent('sfx::sayt_hover_autocomplete_term', {
+      detail: {
+        query: term,
+      }
+    });
+    window.dispatchEvent(sentEvent);
   }
 
   /**
