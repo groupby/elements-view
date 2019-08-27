@@ -3,7 +3,10 @@ import { TemplateResult, LitElement } from 'lit-element';
 import { PRODUCTS_EVENT } from '@sfx/products';
 import Sayt from '../../src/sayt';
 import { SAYT_EVENT } from '../../src/events';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../../autocomplete/src/events';
+import {
+  AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
+  HOVER_AUTOCOMPLETE_TERM_EVENT
+} from '../../../autocomplete/src/events';
 
 describe('Sayt Component', () => {
   let sayt;
@@ -45,6 +48,7 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
       expect(addEventListener).to.be.calledWith(PRODUCTS_EVENT, sayt.showCorrectSayt);
       expect(setSearchboxListener).to.be.calledWith(searchbox, 'add');
+      expect(addEventListener).to.be.calledWith(HOVER_AUTOCOMPLETE_TERM_EVENT, sayt.handleAutocompleteTermHover);
     });
   });
 
@@ -63,6 +67,7 @@ describe('Sayt Component', () => {
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(setSearchboxListener).to.be.calledWith(searchbox, 'remove');
+      expect(removeEventListener).to.be.calledWith(HOVER_AUTOCOMPLETE_TERM_EVENT, sayt.handleAutocompleteTermHover);
     });
   });
 
@@ -247,6 +252,17 @@ describe('Sayt Component', () => {
 
       expect(requestSaytAutocompleteTerms).to.be.calledWith(query, searchbox);
       expect(requestSaytProducts).to.be.calledWith(query, searchbox);
+    });
+  });
+
+  describe('handleAutocompleteTermHover', () => {
+    let document,
+        searchboxElement;
+    beforeEach(() => {
+      searchboxElement = {};
+      document = stub(window, 'document').returns({
+        getElementById: stub().returns(searchboxElement),
+      });
     });
   });
 

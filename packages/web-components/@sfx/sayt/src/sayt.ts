@@ -1,7 +1,10 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
 import { PRODUCTS_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../../autocomplete/src/events';
+import {
+  AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
+  HOVER_AUTOCOMPLETE_TERM_EVENT,
+} from '../../autocomplete/src/events';
 import { SEARCHBOX_EVENT } from '../../search-box/src/events';
 
 /**
@@ -58,6 +61,7 @@ export default class Sayt extends LitElement {
     this.processSearchboxInput = this.processSearchboxInput.bind(this);
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
+    this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
   }
 
   /**
@@ -73,6 +77,7 @@ export default class Sayt extends LitElement {
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
     this.setSearchboxListener(this.searchbox, 'add');
+    window.addEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
   }
 
   /**
@@ -88,6 +93,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
     this.setSearchboxListener(this.searchbox, 'remove');
+    window.removeEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
   }
 
   createRenderRoot() {
@@ -176,6 +182,11 @@ export default class Sayt extends LitElement {
 
     this.requestSaytAutocompleteTerms(query, searchbox);
     this.requestSaytProducts(query, searchbox);
+  }
+
+  handleAutocompleteTermHover() {
+    // const searchbox = document.getElementById(this.searchbox) as HTMLInputElement;
+    // this.requestSaytProducts(searchbox.value);
   }
 
   requestSaytAutocompleteTerms(query: string, searchbox?: string) {
