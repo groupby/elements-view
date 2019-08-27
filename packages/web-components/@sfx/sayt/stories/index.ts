@@ -101,15 +101,18 @@ storiesOf('Components|SAYT', module)
 
       return `
       <style>
-        .display {
+        .display-code {
           position: absolute;
           top: 600px;
+        }
+        sfx-sayt {
+          background-color: white;
         }
       </style>
 
       ${sayt}
       <p>Explore <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
-      <div class="display">
+      <div class="display-code">
       ${getDisplayCode(sayt)}
       </div>`
       ;
