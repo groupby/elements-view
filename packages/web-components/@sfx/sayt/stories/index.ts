@@ -58,10 +58,6 @@ const autocompleteDataReceivedEvent = new CustomEvent('${AUTOCOMPLETE_RECEIVED_R
     results: autocompleteResults}
 });
 
-// function generateBaseData() {
-//     window.dispatchEvent(autocompleteDataReceivedEvent)
-//     window.dispatchEvent(getProductsReceivedEvent())
-// }
 function generateBaseData() {
   setTimeout(() => {
     window.dispatchEvent(autocompleteDataReceivedEvent)}, 0)
@@ -92,7 +88,7 @@ storiesOf('Components|SAYT', module)
       markdown: `
         ${saytNotesMarkdownIntro}
 
-          #### The SF-X SAYT component initially populated with autocomplete and products data for display purposes.
+          #### **The SF-X SAYT component initially populated with autocomplete and products data for display purposes.**
           * The SF-X SAYT component is designed to render different data in response to events.
             * This story begins with the events required to display SAYT to have been fired.
             * This is done in order to see the visual component immediately.
@@ -207,7 +203,7 @@ storiesOf('Components|SAYT', module)
         markdown: `
         ${saytNotesMarkdownIntro}
 
-          * The SF-X SAYT component can work with a standard input element, instead of an SF-X Search Box component.
+          #### **The SF-X SAYT component can work with a standard input element, instead of an SF-X Search Box component.**
             * The component will not close when clicking within the input element or anywhere within the SAYT component.
               * To demonstrate this functionality:
                 1. Open SAYT, click the input element.
@@ -270,19 +266,19 @@ storiesOf('Components|SAYT', module)
         markdown: `
           ${saytNotesMarkdownIntro}
 
-            * Two SF-X SAYT components act independently when mulitple SAYT components are included on a page if the \`searchbox\` attribute is set.
+            #### **Two SF-X SAYT components act independently when mulitple SAYT components are included on a page, if the \`searchbox\` attribute is set.**
               * A click on one SAYT component will result in the other SAYT closing.
                 * To demonstrate:
                   1. Open both SAYTs.
                   2. Click anywhere within one SAYT component.
-                    * View the other SAYT component closing.
+                  3. Observe that the other SAYT component is closed.
               * A click on the close button on a given SAYT will close both SAYTs because:
                 * You have closed the SAYT for which you have clicked close.
                 * The other SAYT has closed due to lost focus.
                 * To demonstrate:
                   1. Open both SAYTs.
                   2. Click on one of the close buttons.
-                    * View both SAYT components closing.
+                  3. Observe that both SAYT components are closed.
 
       ### Example of the multple SAYT components
 
