@@ -1,5 +1,5 @@
 import { expect, sinon, stub } from '../utils';
-import Products, { PRODUCTS_EVENT } from '../../src/products';
+import { Products, PRODUCTS_RESPONSE_EVENT } from '@sfx/products';
 
 describe('Products Component', () => {
   let component;
@@ -45,7 +45,7 @@ describe('Products Component', () => {
 
       component.connectedCallback();
 
-      expect(addEventListener).to.be.calledWith(PRODUCTS_EVENT, component.setProductsFromEvent);
+      expect(addEventListener).to.be.calledWith(PRODUCTS_RESPONSE_EVENT, component.setProductsFromEvent);
     });
   });
 
@@ -63,7 +63,7 @@ describe('Products Component', () => {
 
       component.disconnectedCallback();
 
-      expect(removeEventListener).to.be.calledWith(PRODUCTS_EVENT, component.setProductsFromEvent);
+      expect(removeEventListener).to.be.calledWith(PRODUCTS_RESPONSE_EVENT, component.setProductsFromEvent);
     });
   });
 

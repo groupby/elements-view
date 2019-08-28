@@ -8,7 +8,9 @@ import {
 import { ProductModel } from '@sfx/product';
 
 /** The name of the event that contains product data. */
-export const PRODUCTS_EVENT: string = 'sfx::sayt_products_response';
+export const PRODUCTS_RESPONSE_EVENT: string = 'sfx::sayt_products_response';
+/** The name of the event that contains product request. */
+export const PRODUCTS_REQUEST_EVENT: string = 'sfx::sayt_products_request';
 
 /**
  * The `sfx-products` web component wraps and renders a number of
@@ -40,7 +42,7 @@ export default class Products extends LitElement {
       this.setAttribute('role', 'list');
     }
 
-    window.addEventListener(PRODUCTS_EVENT, this.setProductsFromEvent);
+    window.addEventListener(PRODUCTS_RESPONSE_EVENT, this.setProductsFromEvent);
   }
 
   /**
@@ -49,7 +51,7 @@ export default class Products extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    window.removeEventListener(PRODUCTS_EVENT, this.setProductsFromEvent);
+    window.removeEventListener(PRODUCTS_RESPONSE_EVENT, this.setProductsFromEvent);
   }
 
   /**
@@ -98,7 +100,7 @@ export default class Products extends LitElement {
 }
 
 /**
- * The type of the payload of the [[PRODUCTS_EVENT]] event.
+ * The type of the payload of the [[PRODUCTS_RESPONSE_EVENT]] event.
  */
 export interface ProductsEventPayload {
   /** The products. */

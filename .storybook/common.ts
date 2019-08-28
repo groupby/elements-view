@@ -1,6 +1,6 @@
 import { XmlEntities } from 'html-entities';
 import { ProductModel } from '@sfx/product';
-import { PRODUCTS_EVENT } from '@sfx/products';
+import { PRODUCTS_RESPONSE_EVENT } from '@sfx/products';
 
 const entities = new XmlEntities();
 
@@ -79,7 +79,7 @@ export function getProducts(quantity: number): ProductModel[] {
 }
 
 export function getProductsReceivedEvent(products: ProductModel[]): CustomEvent {
-  return new CustomEvent(PRODUCTS_EVENT, {
+  return new CustomEvent(PRODUCTS_RESPONSE_EVENT, {
     detail: {
       results: {
         products,

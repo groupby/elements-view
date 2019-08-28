@@ -1,7 +1,7 @@
 import { expect, sinon, spy, stub } from '../utils';
 import { TemplateResult, LitElement } from 'lit-element';
 import Sayt from '../../src/sayt';
-import { PRODUCTS_EVENT } from '@sfx/products';
+import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from '../../src/events';
 import { SEARCHBOX_EVENT } from '../../../search-box/src/events';
 import {
@@ -47,7 +47,7 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith('click', sayt.processClick);
       expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
-      expect(addEventListener).to.be.calledWith(PRODUCTS_EVENT, sayt.showCorrectSayt);
+      expect(addEventListener).to.be.calledWith(PRODUCTS_RESPONSE_EVENT, sayt.showCorrectSayt);
       expect(setSearchboxListener).to.be.calledWith(searchbox, 'add');
       expect(addEventListener).to.be.calledWith(HOVER_AUTOCOMPLETE_TERM_EVENT, sayt.handleAutocompleteTermHover);
     });
@@ -63,7 +63,7 @@ describe('Sayt Component', () => {
 
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showCorrectSayt);
       expect(removeEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
-      expect(removeEventListener).to.be.calledWith(PRODUCTS_EVENT, sayt.showCorrectSayt);
+      expect(removeEventListener).to.be.calledWith(PRODUCTS_RESPONSE_EVENT, sayt.showCorrectSayt);
       expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
