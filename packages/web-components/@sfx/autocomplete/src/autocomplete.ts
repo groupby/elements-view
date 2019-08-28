@@ -1,7 +1,10 @@
 import { customElement, html, property } from 'lit-element';
 import '@sfx/ui';
 import { Base } from '@sfx/base';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from './events';
+import {
+  AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
+  HOVER_AUTOCOMPLETE_TERM_EVENT,
+} from './events';
 
 /**
  * Listens for the `sfx::autocomplete_received_results` event and
@@ -76,6 +79,11 @@ export default class Autocomplete extends Base {
     window.dispatchEvent(autocompleteDataReceivedEvent);
   }
 
+  /**
+   * Dispatches an `sfx::sayt_hover_autocomplete_term` event with the sayt autocomplete term.
+   *
+   * @param event A MouseEvent that contains a sayt autocomplete <li> elements text term.
+   */
   handleHoverTerm(event: MouseEvent) {
     const target = event.target as HTMLElement;
     if (target.tagName !== 'LI') return;
