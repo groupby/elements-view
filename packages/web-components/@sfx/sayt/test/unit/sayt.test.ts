@@ -256,13 +256,15 @@ describe('Sayt Component', () => {
   });
 
   describe('handleAutocompleteTermHover', () => {
-    let document,
-        searchboxElement;
-    beforeEach(() => {
-      searchboxElement = {};
-      document = stub(window, 'document').returns({
-        getElementById: stub().returns(searchboxElement),
-      });
+    it('should call requestSaytProducts() with the event query and the searchbox', () => {
+      const requestSaytProducts = stub(sayt, 'requestSaytProducts');
+      const query = 'some-query';
+      const event = { detail: { query } };
+      const searchbox = sayt.searchbox = 'some-searchbox-id';
+
+      sayt.handleAutocompleteTermHover(event);
+
+      expect(requestSaytProducts).to.be.calledWith(query, searchbox);
     });
   });
 

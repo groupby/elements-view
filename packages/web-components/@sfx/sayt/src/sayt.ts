@@ -184,9 +184,9 @@ export default class Sayt extends LitElement {
     this.requestSaytProducts(query, searchbox);
   }
 
-  handleAutocompleteTermHover() {
-    // const searchbox = document.getElementById(this.searchbox) as HTMLInputElement;
-    // this.requestSaytProducts(searchbox.value);
+  handleAutocompleteTermHover(event: CustomEvent) {
+    const query = event.detail.query;
+    this.requestSaytProducts(query, this.searchbox);
   }
 
   requestSaytAutocompleteTerms(query: string, searchbox?: string) {
