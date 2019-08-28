@@ -6,10 +6,12 @@ import { getDisplayCode, dispatchProvideProductsEvent } from '../../../../../.st
 // @TODO allow for sending event with searchbox ID. This should allow for one
 // story's events to not affect another story.
 const autocompleteDataReceivedEvent = new CustomEvent('sfx::autocomplete_received_results', {
-  detail: [
-    { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] },
-    { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-  ],
+  detail: {
+    results: [
+      { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] },
+      { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
+    ],
+  },
   bubbles: true
 });
 

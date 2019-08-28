@@ -81,7 +81,9 @@ export function getProducts(quantity: number): ProductModel[] {
 export function getProductsReceivedEvent(products: ProductModel[]): CustomEvent {
   return new CustomEvent(PRODUCTS_EVENT, {
     detail: {
-      products
+      results: {
+        products,
+      }
     },
     bubbles: true
   });
