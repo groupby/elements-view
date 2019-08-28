@@ -172,8 +172,8 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Triggers the `requestSaytAutocompleteTerms`function and `requestSaytProducts` function
-   * simultaneously with a query and searchboxId.
+   * Triggers requests for Sayt autocomplete terms and Sayt products
+   * simultaneously using a query and searchbox ID.
    * They will only be called if the term is at least [[minSearchLength]] long.
    *
    * @param query The search term to use.
@@ -193,7 +193,7 @@ export default class Sayt extends LitElement {
    * @param searchbox The optional searchbox ID associated with this search.
    */
   requestSaytAutocompleteTerms(query: string, searchbox?: string) {
-    const requestSaytResults = new CustomEvent('AUTOCOMPLETE_REQUEST_RESULTS', {
+    const requestSaytResults = new CustomEvent(AUTOCOMPLETE_REQUEST_RESULTS, {
       detail: { query, searchbox },
       bubbles: true,
     });
@@ -215,8 +215,8 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Handles how the hover on sayt autocomplete terms updates the sayt products.
-   * Triggers the `requestSaytProducts` function with the query and searchbox data.
+   * Handles how the hover on Sayt autocomplete terms updates the sayt products.
+   * Triggers a request of Sayt products using the query and searchbox data.
    *
    * @param event The hover event dispatched from autocomplete.
    */
