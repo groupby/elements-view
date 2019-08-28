@@ -79,7 +79,6 @@ describe('Products Component', () => {
     });
 
     it('should set this.products to empty array if undefined', () => {
-      const products = [1, 2, 3];
       const event = { detail: { results: {} }};
       component.products = [];
 

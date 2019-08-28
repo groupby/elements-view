@@ -82,7 +82,7 @@ export default class Autocomplete extends Base {
   /**
    * Dispatches an `sfx::sayt_hover_autocomplete_term` event with the sayt autocomplete term.
    *
-   * @param event A MouseEvent that contains a sayt autocomplete <li> elements text term.
+   * @param event A MouseEvent that contains a sayt autocomplete text term.
    */
   handleHoverTerm(event: MouseEvent) {
     const target = event.target as HTMLElement;
