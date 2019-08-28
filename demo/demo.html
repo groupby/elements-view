@@ -25,8 +25,8 @@
         </nav>
         <div class="sfx-header-search-controls">
           <sfx-search-box id="header-searchbox" placeholder="Search"></sfx-search-box>
-          <button class="clear"><i class="fas fa-times"></i></button>
-          <button class="submit"><i class="fas fa-search"></i></button>
+          <button id="header-clear-button" class="clear"><i class="fas fa-times"></i></button>
+          <button id="header-submit-button" class="submit"><i class="fas fa-search"></i></button>
           <sfx-sayt searchbox="header-searchbox" tabindex="1"></sfx-sayt>
         </div>
       </div>
@@ -62,8 +62,8 @@
           <h2>Our Catalogue</h2>
           <div class="sfx-catalogue-search-controls">
             <sfx-search-box id="catalogue-searchbox" placeholder="Search"></sfx-search-box>
-            <button class="clear"><i class="fas fa-times"></i></button>
-            <button class="submit"><i class="fas fa-search"></i></button>
+            <button id="catalogue-clear-button" class="clear"><i class="fas fa-times"></i></button>
+            <button id="catalogue-submit-button" class="submit"><i class="fas fa-search"></i></button>
             <sfx-sayt searchbox="catalogue-searchbox" hideproducts></sfx-sayt>
           </div>
           <sfx-list class="product-grid"></sfx-list>
@@ -82,6 +82,20 @@
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
       // search integration/functionality test
 
+      // Clear button functionality
+      const headerClearButtonNode = document.getElementById('header-clear-button');
+      headerClearButtonNode.addEventListener('click', (e) => {
+        const headerSearchBoxNode = document.getElementById('header-searchbox');
+
+        headerSearchBoxNode.clearSearch();
+      });
+
+      const catalogueClearButtonNode = document.getElementById('catalogue-clear-button');
+      catalogueClearButtonNode.addEventListener('click', (e) => {
+        const catalogueSearchBoxNode = document.getElementById('catalogue-searchbox');
+
+        catalogueSearchBoxNode.clearSearch();
+      });
 
     </script>
     <!-- Smooth Scroll Code is Below -->
