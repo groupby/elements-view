@@ -234,7 +234,6 @@ sfx-list li:focus, sfx-list li:hover {
   background-color: #fff;
   border: 1px solid rgba(0,0,0,0.2);
   overflow: hidden;
-  /* box-shadow: 0px 3px 15px rgba(0,0,0,0.5); */
 }
 
 .sfx-sayt-container .sfx-product-tile-wrapper:nth-child(2) {
@@ -291,7 +290,6 @@ sfx-list li:focus, sfx-list li:hover {
   background-color: var(--background-color-primary);
   color: var(--font-color-primary);
   padding: 10px;
-  pointer-events: auto;
 }
 
 .sfx-sayt-container slot[name="price"]:after:hover {
@@ -455,7 +453,55 @@ main h2 {
 .catalogue sfx-list ul {
   width: 100%;
 }
+
+.catalogue-product-grid {
+  margin-top: 150px;
+  width: 1224px;
+  color: var(--font-color-tertiary);
+}
+
+.catalogue-product-grid sfx-products {
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+
+.catalogue-product-grid .sfx-product-tile-wrapper {
+  width: calc(25% - 10px);
+  height: 500px;
+  margin: 0 10px;
+  background-color: #fff;
+}
+
+.catalogue-product-grid .sfx-product-tile-wrapper:nth-child(n + 6) {
+  display: none;
+  height: 100%;
+}
+
+.catalogue-product-grid sfx-product {
+  position: relative;
+  height: 100%;
+}
+
+.catalogue-product-grid img {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  height: 250px;
+}
+
+.catalogue-product-grid slot[name="price"] {
+  display: block;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.catalogue-product-grid slot[name="price"]:after {
+  content: 'Add to Cart';
+  display: inline-block;
+  background-color: var(--background-color-secondary);
+  color: var(--font-color-primary);
+  padding: 10px;
+}
 /* CATALOGUE SECTION STYLES END HERE! */
-
-
 /* CUSTOM STYLES END HERE! */

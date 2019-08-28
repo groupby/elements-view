@@ -66,7 +66,9 @@
             <button id="catalogue-submit-button" class="submit"><i class="fas fa-search"></i></button>
             <sfx-sayt searchbox="catalogue-searchbox" hideproducts></sfx-sayt>
           </div>
-          <sfx-list class="product-grid"></sfx-list>
+          <div class="catalogue-product-grid">
+            <sfx-products></sfx-products>
+          </div>
         </div>
       </section>
     </main>
@@ -95,6 +97,11 @@
         const catalogueSearchBoxNode = document.getElementById('catalogue-searchbox');
 
         catalogueSearchBoxNode.clearSearch();
+      });
+
+      // Catalogue submit button functionality
+      const catalogueSubmitButtonNode = document.getElementById('catalogue-submit-button');
+      catalogueSubmitButtonNode.addEventListener('click', (e) => {
       });
 
     </script>
