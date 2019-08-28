@@ -7,7 +7,8 @@ import {
   productsResultsEvent,
   autocompleteReceivedResultsEvent,
   autocompleteResults,
-  getProductsReceivedEvent
+  getProductsReceivedEvent,
+  hidePrompt
 } from '../../../../../.storybook/common';
 import { SAYT_EVENT } from '../src/events';
 import '../src';
@@ -73,16 +74,17 @@ storiesOf('Components|SAYT', module)
     const sayt = getSayt();
     return `
     <style>
-      .sayt-container {
-        height: 800px;
+      .display-code {
+        position: absolute;
+        top: 800px;
+        z-index: -1;
       }
     </style>
 
-    <div class="sayt-container">
     ${sayt}
-    </div>
-
-    ${getDisplayCode(sayt)}`;
+    <div class="display-code">
+    ${getDisplayCode(sayt)}
+    </div>`;
   }, {
     notes: {
       markdown: `
@@ -97,13 +99,14 @@ storiesOf('Components|SAYT', module)
   .add(
     'Rendering based on events and attributes',
     () => {
+      hidePrompt(SAYT_EVENT.SAYT_HIDE);
       const sayt = getSayt();
-
       return `
       <style>
         .display-code {
           position: absolute;
-          top: 600px;
+          top: 800px;
+          z-index: -1;
         }
         sfx-sayt {
           background-color: white;
@@ -111,7 +114,7 @@ storiesOf('Components|SAYT', module)
       </style>
 
       ${sayt}
-      <p>Explore the <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
+      <p class="prompt">Explore the <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
       <div class="display-code">
       ${getDisplayCode(sayt)}
       </div>`
@@ -183,6 +186,7 @@ storiesOf('Components|SAYT', module)
   .add(
     'SAYT with simple search input',
     () => {
+      hidePrompt(SAYT_EVENT.SAYT_HIDE);
       const input = `<input type="text" id="search-box" placeholder="Search here" />`;
       const sayt = getSayt('search-box');
 
@@ -192,17 +196,27 @@ storiesOf('Components|SAYT', module)
           float: left;
           position: relative;
           width: 100%;
-          height: 900px;
         }
         #search-box {
           width: 100%;
+        }
+        .display-code {
+          position: absolute;
+          top: 800px;
+          z-index: -1;
+        }
+        sfx-sayt {
+          background-color: white;
         }
       </style>
       <div class="search-container">
         ${input}
         ${sayt}
       </div>
+      <p class="prompt">Explore the <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
+      <div class="display-code">
       ${getDisplayCode(`${input}\n${sayt}`)}
+      </div>
     `;
     },
     {
@@ -237,6 +251,7 @@ storiesOf('Components|SAYT', module)
   .add(
     'SAYT with multiple search inputs',
     () => {
+      hidePrompt(SAYT_EVENT.SAYT_HIDE);
       const input1 = `<input type="text" id="search-box1" placeholder="Search here" />`;
       const input2 = `<input type="text" id="search-box2" placeholder="Or search here" />`;
       const sayt1 = getSayt('search-box1');
@@ -252,10 +267,16 @@ storiesOf('Components|SAYT', module)
         #search-box1, #search-box2 {
           width: 100%;
         }
-        .sayt-container {
-          height: 700px;
+        .display-code {
+          position: absolute;
+          top: 800px;
+          z-index: -1;
+        }
+        sfx-sayt {
+          background-color: white;
         }
       </style>
+
       <div class="sayt-container">
         <div class="search-container">
           ${input1}
@@ -265,8 +286,12 @@ storiesOf('Components|SAYT', module)
           ${input2}
           ${sayt2}
         </div>
+        <p class="prompt">Explore the <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
       </div>
-      ${getDisplayCode(`${input1}${sayt1}${input2}${sayt2}`)}`;
+      <div class="display-code">
+      ${getDisplayCode(`${input1}${sayt1}${input2}${sayt2}`)}
+      </div>`;
+
     },
     {
       customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],

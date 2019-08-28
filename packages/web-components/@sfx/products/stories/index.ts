@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { ProductModel } from '@sfx/product';
 import { PRODUCTS_EVENT } from '@sfx/products';
-import { getDisplayCode, getProducts, productsResultsEvent } from '../../../../../.storybook/common';
+import { getDisplayCode, getProducts, productsResultsEvent, hidePrompt } from '../../../../../.storybook/common';
 
 function getProductsComponent(productsArray: ProductModel[] = []) {
   if (productsArray.length > 0) {
@@ -77,10 +77,7 @@ storiesOf('Components|Products', module)
   ).add(
     'Rendering with event payload',
     () => {
-      window.addEventListener(PRODUCTS_EVENT, e => {
-        let prompt: HTMLElement = document.querySelector('.prompt');
-        prompt.style.display = 'none';
-      })
+      hidePrompt(PRODUCTS_EVENT);
       const productsComponent = getProductsComponent();
       return `
       ${productsComponent}

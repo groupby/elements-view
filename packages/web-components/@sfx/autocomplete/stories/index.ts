@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import { getDisplayCode, autocompleteReceivedResultsEvent, autocompleteResults } from '../../../../../.storybook/common';
+import { getDisplayCode, autocompleteReceivedResultsEvent, autocompleteResults, hidePrompt } from '../../../../../.storybook/common';
 import '../src/index';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../src/index';
 
@@ -76,10 +76,7 @@ storiesOf('Components|Autocomplete', module)
   .add(
     'Rendering with event payload',
     () => {
-      window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, e => {
-        let prompt: HTMLElement = document.querySelector('.prompt');
-        prompt.style.display = 'none';
-      })
+      hidePrompt(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT);
       const autocomplete = getAutocompleteComponent();
 
       return `

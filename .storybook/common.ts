@@ -121,3 +121,10 @@ export function getProductsReceivedEvent(): CustomEvent {
     bubbles: true
   });
 }
+
+export function hidePrompt(event) {
+  window.addEventListener(event, e => {
+    let prompt: HTMLElement = document.querySelector('.prompt');
+    prompt.style.display = 'none';
+  });
+}
