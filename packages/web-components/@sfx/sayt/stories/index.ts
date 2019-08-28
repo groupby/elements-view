@@ -209,6 +209,7 @@ storiesOf('Components|SAYT', module)
           background-color: white;
         }
       </style>
+
       <div class="search-container">
         ${input}
         ${sayt}
