@@ -76,9 +76,15 @@ storiesOf('Components|Autocomplete', module)
   .add(
     'Rendering with event payload',
     () => {
+      window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, e => {
+        let prompt: HTMLElement = document.querySelector('.prompt');
+        prompt.style.display = 'none';
+      })
       const autocomplete = getAutocompleteComponent();
+
       return `
       ${autocomplete}
+      <p class="prompt">Explore the <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
       ${getDisplayCode(autocomplete)}
      `;
     },

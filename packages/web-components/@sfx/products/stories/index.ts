@@ -77,9 +77,14 @@ storiesOf('Components|Products', module)
   ).add(
     'Rendering with event payload',
     () => {
+      window.addEventListener(PRODUCTS_EVENT, e => {
+        let prompt: HTMLElement = document.querySelector('.prompt');
+        prompt.style.display = 'none';
+      })
       const productsComponent = getProductsComponent();
       return `
       ${productsComponent}
+      <p class="prompt">Explore the <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
       ${getDisplayCode(productsComponent)}
     `;
     },

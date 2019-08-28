@@ -111,7 +111,7 @@ storiesOf('Components|SAYT', module)
       </style>
 
       ${sayt}
-      <p>Explore <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
+      <p>Explore the <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
       <div class="display-code">
       ${getDisplayCode(sayt)}
       </div>`
