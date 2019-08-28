@@ -136,10 +136,6 @@ header .sfx-header-search-controls {
   font-size: 1.8rem;
 }
 
-/* header .sfx-header-search-controls div{
-  display: flex;
-} */
-
 header .sfx-input {
   display: block;
   float: right;
@@ -214,18 +210,33 @@ sfx-list ul {
 }
 .sfx-sayt-container {
   height: 100%;
-  /* order: 2; */
+  justify-content: space-around;
 }
 
 .sfx-sayt-container sfx-autocomplete {
-  /* flex-grow: 1; */
   background: #fff;
-  /* order: 1; */
 }
 
 .sfx-sayt-container sfx-products {
-  flex-grow: 6;
   background: rgba(255,255,255, 0.8);
+  padding: 15px;
+}
+
+.sfx-sayt-container .sfx-product-tile-wrapper {
+  width: calc(100% / 3);
+  font-size: 16px;
+  background-color: #fff;
+  /* box-shadow: 0px 3px 15px rgba(0,0,0,0.5); */
+}
+
+.sfx-sayt-container a {
+  display: block;
+  padding: 15px 10px;
+  text-align: center;
+}
+
+.sfx-sayt-container .sfx-product-tile-wrapper:nth-child(n + 5) {
+  display: none;
 }
 
 /* HEADER STYLES END HERE! */
@@ -319,7 +330,6 @@ main h2 {
 .new-arrivals-sections img {
   height: 100%;
 }
-
 /* NEW ARRIVALS SECTION STYLES END HERE! */
 
 /* CATALOGUE SECTION STYLES START HERE! */
