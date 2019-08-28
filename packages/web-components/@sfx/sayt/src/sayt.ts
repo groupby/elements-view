@@ -129,7 +129,7 @@ export default class Sayt extends LitElement {
       const searchbox = document.getElementById(searchboxId) as HTMLElement;
       if (searchbox) searchbox[setEventListener]('input', this.processSearchboxInput);
     } else {
-      window[setEventListener]('sfx::searchbox_change', this.processSfxSearchboxChange);
+      window[setEventListener](SEARCHBOX_EVENT.SEARCHBOX_CHANGE, this.processSfxSearchboxChange);
     }
   }
 

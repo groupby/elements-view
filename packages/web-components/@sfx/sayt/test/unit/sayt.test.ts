@@ -1,8 +1,9 @@
 import { expect, sinon, spy, stub } from '../utils';
 import { TemplateResult, LitElement } from 'lit-element';
-import { PRODUCTS_EVENT } from '@sfx/products';
 import Sayt from '../../src/sayt';
+import { PRODUCTS_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from '../../src/events';
+import { SEARCHBOX_EVENT } from '../../../search-box/src/events';
 import {
   AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
   HOVER_AUTOCOMPLETE_TERM_EVENT
@@ -108,7 +109,7 @@ describe('Sayt Component', () => {
 
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
-      expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
+      expect(windowAddEventListener).to.not.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CHANGE);
     });
 
     it('should remove an event listener if provided a `remove` paramater and an input ID and it exists on the page', () => {
@@ -121,7 +122,7 @@ describe('Sayt Component', () => {
 
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxRemoveEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
-      expect(windowRemoveEventListener).to.not.be.calledWith('sfx::searchbox_change');
+      expect(windowRemoveEventListener).to.not.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CHANGE);
     });
 
     it('should not register listeners if the searchbox does not exist', () => {
@@ -132,7 +133,7 @@ describe('Sayt Component', () => {
       sayt.setSearchboxListener(searchboxId, 'add');
 
       // It is implicitly tested that input is not being listened for because there is no element to attach it to
-      expect(windowAddEventListener).to.not.be.calledWith('sfx::searchbox_change');
+      expect(windowAddEventListener).to.not.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CHANGE);
     });
 
     it('should add event listener to window if element exists and searchbox ID is empty', () => {
@@ -142,7 +143,7 @@ describe('Sayt Component', () => {
 
       sayt.setSearchboxListener('', 'add');
 
-      expect(windowAddEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
+      expect(windowAddEventListener).to.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, sayt.processSfxSearchboxChange);
       expect(searchboxAddEventListener).to.not.be.calledWith('input');
     });
 
@@ -153,7 +154,7 @@ describe('Sayt Component', () => {
 
       sayt.setSearchboxListener('', 'remove');
 
-      expect(windowRemoveEventListener).to.be.calledWith('sfx::searchbox_change', sayt.processSfxSearchboxChange);
+      expect(windowRemoveEventListener).to.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, sayt.processSfxSearchboxChange);
       expect(searchboxRemoveEventListener).to.not.be.calledWith('input');
     });
   });
