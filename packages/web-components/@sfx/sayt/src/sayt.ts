@@ -4,6 +4,7 @@ import { SAYT_EVENT } from './events';
 import {
   AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
   HOVER_AUTOCOMPLETE_TERM_EVENT,
+  AUTOCOMPLETE_REQUEST_RESULTS,
 } from '../../autocomplete/src/events';
 import { SEARCHBOX_EVENT } from '../../search-box/src/events';
 
@@ -186,13 +187,13 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Dispatches an `sfx::autocomplete_fetch_data` event with the provided data.
+   * Dispatches an `AUTOCOMPLETE_REQUEST_RESULTS` event with the provided data.
    *
    * @param query The search term to use.
    * @param searchbox The optional searchbox ID associated with this search.
    */
   requestSaytAutocompleteTerms(query: string, searchbox?: string) {
-    const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
+    const requestSaytResults = new CustomEvent('AUTOCOMPLETE_REQUEST_RESULTS', {
       detail: { query, searchbox },
       bubbles: true,
     });
@@ -206,7 +207,7 @@ export default class Sayt extends LitElement {
    * @param searchbox The optional searchbox ID associated with this search.
    */
   requestSaytProducts(query: string, searchbox?: string) {
-    const requestProductResults = new CustomEvent('sfx::sayt_products_request', {
+    const requestProductResults = new CustomEvent(PRODUCTS_REQUEST_EVENT, {
       detail: { query, searchbox },
       bubbles: true,
     });
