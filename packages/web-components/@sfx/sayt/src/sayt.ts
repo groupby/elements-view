@@ -171,8 +171,9 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Dispatches an `sfx::autocomplete_fetch_data` event with the provided data.
-   * The event will be dispatched if the term is at least [[minSearchLength]] long.
+   * Triggers the `requestSaytAutocompleteTerms`function and `requestSaytProducts` function
+   * simultaneously with a query and searchboxId.
+   * They will only be called if the term is at least [[minSearchLength]] long.
    *
    * @param query The search term to use.
    * @param searchbox The searchbox ID associated with this search.
@@ -184,11 +185,12 @@ export default class Sayt extends LitElement {
     this.requestSaytProducts(query, searchbox);
   }
 
-  handleAutocompleteTermHover(event: CustomEvent) {
-    const query = event.detail.query;
-    this.requestSaytProducts(query, this.searchbox);
-  }
-
+  /**
+   * Dispatches an `sfx::autocomplete_fetch_data` event with the provided data.
+   *
+   * @param query The search term to use.
+   * @param searchbox The optional searchbox ID associated with this search.
+   */
   requestSaytAutocompleteTerms(query: string, searchbox?: string) {
     const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
       detail: { query, searchbox },
@@ -197,12 +199,29 @@ export default class Sayt extends LitElement {
     window.dispatchEvent(requestSaytResults);
   }
 
+  /**
+   * Dispatches an `sfx::sayt_products_request` event with the provided data.
+   *
+   * @param query The search term to use.
+   * @param searchbox The optional searchbox ID associated with this search.
+   */
   requestSaytProducts(query: string, searchbox?: string) {
     const requestProductResults = new CustomEvent('sfx::sayt_products_request', {
       detail: { query, searchbox },
       bubbles: true,
     });
     window.dispatchEvent(requestProductResults);
+  }
+
+  /**
+   * Handles how the hover on sayt autocomplete terms updates the sayt products.
+   * Triggers the `requestSaytProducts` function with the query and searchbox data.
+   *
+   * @param event The hover event dispatched from autocomplete.
+   */
+  handleAutocompleteTermHover(event: CustomEvent) {
+    const query = event.detail.query;
+    this.requestSaytProducts(query, this.searchbox);
   }
 
   /**
