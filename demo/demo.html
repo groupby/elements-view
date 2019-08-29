@@ -102,6 +102,9 @@
       // Catalogue submit button functionality
       const catalogueSubmitButtonNode = document.getElementById('catalogue-submit-button');
       catalogueSubmitButtonNode.addEventListener('click', (e) => {
+        const catalogueProductGridNode = document.getElementsByClassName('catalogue-product-grid')[0];
+
+        catalogueProductGridNode.classList.add('catalogue-product-grid-visible');
       });
 
     </script>

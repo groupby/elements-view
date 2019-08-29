@@ -455,6 +455,7 @@ main h2 {
 }
 
 .catalogue-product-grid {
+  display: none;
   margin-top: 110px;
   width: 1224px;
   color: var(--font-color-tertiary);
@@ -526,6 +527,10 @@ main h2 {
 .catalogue-product-grid slot[name="price"]:hover::after {
   background-color: var(--background-color-secondary);
   cursor: pointer;
+}
+
+.catalogue-product-grid-visible {
+  display: block;
 }
 /* CATALOGUE SECTION STYLES END HERE! */
 /* CUSTOM STYLES END HERE! */
