@@ -87,6 +87,9 @@
 					<ul>
 						<li><code>hideAutocomplete</code>: Prevents the <code>sfx-autocomplete</code> component from rendering.</li>
 						<li><code>hideProducts</code>: Prevents the <code>sfx-products</code> component from rendering.</li>
+						<li><code>showCloseButton</code>: Shows a button to allow for closing SAYT manually.</li>
+						<li><code>closeText</code>: Customizes the text in the close button.</li>
+						<li><code>visible</code>: Determines the visibility of the <code>sayt</code> component.</li>
 					</ul>
 					<h2 id="testing">Testing</h2>
 					<p>The test suite for this component is contained in <code>/packages/web-components/@sfx/sayt/test</code>.
@@ -111,12 +114,13 @@
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_sfx_sayt.html#autocompletedatareceivedevent" class="tsd-kind-icon">autocomplete<wbr>Data<wbr>Received<wbr>Event</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_sfx_sayt.html#saytnotesmarkdownintro" class="tsd-kind-icon">sayt<wbr>Notes<wbr>Markdown<wbr>Intro</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_sfx_sayt.html#emiteventinfuture" class="tsd-kind-icon">emit<wbr>Event<wbr>InFuture</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_sfx_sayt.html#generatebasedata" class="tsd-kind-icon">generate<wbr>Base<wbr>Data</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_sfx_sayt.html#getsayt" class="tsd-kind-icon">get<wbr>Sayt</a></li>
 							</ul>
 						</section>
@@ -124,6 +128,8 @@
 							<h3>Object literals</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-object-literal tsd-parent-kind-external-module"><a href="_sfx_sayt.html#sayt_event" class="tsd-kind-icon">SAYT_<wbr>EVENT</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported"><a href="_sfx_sayt.html#saythide" class="tsd-kind-icon">sayt<wbr>Hide</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported"><a href="_sfx_sayt.html#saytshow" class="tsd-kind-icon">sayt<wbr>Show</a></li>
 							</ul>
 						</section>
 					</div>
@@ -134,10 +140,20 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 					<a name="autocompletedatareceivedevent" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> autocomplete<wbr>Data<wbr>Received<wbr>Event</h3>
-					<div class="tsd-signature tsd-kind-icon">autocomplete<wbr>Data<wbr>Received<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new CustomEvent(&#x27;sfx::autocomplete_received_results&#x27;, {detail: [{ title: &#x27;&#x27;, items: [{ label: &#x27;Cars&#x27; }, { label: &#x27;Bikes&#x27; }] },{ title: &#x27;Brands&#x27;, items: [{ label: &#x27;Cats&#x27; }, { label: &#x27;Dogs&#x27; }] },],bubbles: true})</span></div>
+					<div class="tsd-signature tsd-kind-icon">autocomplete<wbr>Data<wbr>Received<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new CustomEvent(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, {detail: {results: autocompleteResults}})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/3a698f1/packages/web-components/@sfx/sayt/stories/index.ts#L8">packages/web-components/@sfx/sayt/stories/index.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/stories/index.ts#L57">packages/web-components/@sfx/sayt/stories/index.ts:57</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="saytnotesmarkdownintro" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> sayt<wbr>Notes<wbr>Markdown<wbr>Intro</h3>
+					<div class="tsd-signature tsd-kind-icon">sayt<wbr>Notes<wbr>Markdown<wbr>Intro<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">" # SF-X SAYT Component[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/sayt &quot;SF-X SAYT README&quot;).&#x60;&#x60;&#x60;html&lt;sfx-saytclosetext&#x3D;&quot;×&quot;showclosebuttonvisible&gt;&lt;/sfx-sayt&gt;&#x60;&#x60;&#x60;## Demonstrated in this story"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60; # SF-X SAYT Component[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/sayt &quot;SF-X SAYT README&quot;).\&#x60;\&#x60;\&#x60;html&lt;sfx-saytclosetext&#x3D;&quot;×&quot;showclosebuttonvisible&gt;&lt;/sfx-sayt&gt;\&#x60;\&#x60;\&#x60;## Demonstrated in this story&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/stories/index.ts#L16">packages/web-components/@sfx/sayt/stories/index.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -145,27 +161,18 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-					<a name="emiteventinfuture" class="tsd-anchor"></a>
-					<h3>emit<wbr>Event<wbr>InFuture</h3>
+					<a name="generatebasedata" class="tsd-anchor"></a>
+					<h3>generate<wbr>Base<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">emit<wbr>Event<wbr>InFuture<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">generate<wbr>Base<wbr>Data<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/3a698f1/packages/web-components/@sfx/sayt/stories/index.ts#L35">packages/web-components/@sfx/sayt/stories/index.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/stories/index.ts#L63">packages/web-components/@sfx/sayt/stories/index.ts:63</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>event: <span class="tsd-signature-type">any</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;100</span></h5>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -174,22 +181,19 @@
 					<a name="getsayt" class="tsd-anchor"></a>
 					<h3>get<wbr>Sayt</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Sayt<span class="tsd-signature-symbol">(</span>searchbox<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, showSayt<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Sayt<span class="tsd-signature-symbol">(</span>searchbox<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/3a698f1/packages/web-components/@sfx/sayt/stories/index.ts#L16">packages/web-components/@sfx/sayt/stories/index.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/stories/index.ts#L30">packages/web-components/@sfx/sayt/stories/index.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> searchbox: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> showSayt: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -205,7 +209,7 @@
 					<div class="tsd-signature tsd-kind-icon">SAYT_<wbr>EVENT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/3a698f1/packages/web-components/@sfx/sayt/src/events.ts#L1">packages/web-components/@sfx/sayt/src/events.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/src/events.ts#L1">packages/web-components/@sfx/sayt/src/events.ts:1</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -214,7 +218,7 @@
 						<div class="tsd-signature tsd-kind-icon">SAYT_<wbr>HIDE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;sfx::sayt_hide&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/3a698f1/packages/web-components/@sfx/sayt/src/events.ts#L2">packages/web-components/@sfx/sayt/src/events.ts:2</a></li>
+								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/src/events.ts#L2">packages/web-components/@sfx/sayt/src/events.ts:2</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -224,7 +228,67 @@
 						<div class="tsd-signature tsd-kind-icon">SAYT_<wbr>SHOW<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;sfx::sayt_show&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/3a698f1/packages/web-components/@sfx/sayt/src/events.ts#L3">packages/web-components/@sfx/sayt/src/events.ts:3</a></li>
+								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/src/events.ts#L3">packages/web-components/@sfx/sayt/src/events.ts:3</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="saythide" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> sayt<wbr>Hide</h3>
+					<div class="tsd-signature tsd-kind-icon">sayt<wbr>Hide<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/stories/index.ts#L47">packages/web-components/@sfx/sayt/stories/index.ts:47</a></li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="saythide.name" class="tsd-anchor"></a>
+						<h3>name</h3>
+						<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;SAYT_EVENT.SAYT_HIDE</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/stories/index.ts#L48">packages/web-components/@sfx/sayt/stories/index.ts:48</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="saythide.payload" class="tsd-anchor"></a>
+						<h3>payload</h3>
+						<div class="tsd-signature tsd-kind-icon">payload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/stories/index.ts#L49">packages/web-components/@sfx/sayt/stories/index.ts:49</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="saytshow" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> sayt<wbr>Show</h3>
+					<div class="tsd-signature tsd-kind-icon">sayt<wbr>Show<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/stories/index.ts#L52">packages/web-components/@sfx/sayt/stories/index.ts:52</a></li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="saytshow.name-1" class="tsd-anchor"></a>
+						<h3>name</h3>
+						<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;SAYT_EVENT.SAYT_SHOW</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/stories/index.ts#L53">packages/web-components/@sfx/sayt/stories/index.ts:53</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="saytshow.payload-1" class="tsd-anchor"></a>
+						<h3>payload</h3>
+						<div class="tsd-signature tsd-kind-icon">payload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/c1075fb/packages/web-components/@sfx/sayt/stories/index.ts#L54">packages/web-components/@sfx/sayt/stories/index.ts:54</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -297,14 +361,23 @@
 							<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 								<a href="_sfx_sayt.html#autocompletedatareceivedevent" class="tsd-kind-icon">autocomplete<wbr>Data<wbr>Received<wbr>Event</a>
 							</li>
+							<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+								<a href="_sfx_sayt.html#saytnotesmarkdownintro" class="tsd-kind-icon">sayt<wbr>Notes<wbr>Markdown<wbr>Intro</a>
+							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="_sfx_sayt.html#emiteventinfuture" class="tsd-kind-icon">emit<wbr>Event<wbr>InFuture</a>
+								<a href="_sfx_sayt.html#generatebasedata" class="tsd-kind-icon">generate<wbr>Base<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
 								<a href="_sfx_sayt.html#getsayt" class="tsd-kind-icon">get<wbr>Sayt</a>
 							</li>
 							<li class=" tsd-kind-object-literal tsd-parent-kind-external-module">
 								<a href="_sfx_sayt.html#sayt_event" class="tsd-kind-icon">SAYT_<wbr>EVENT</a>
+							</li>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
+								<a href="_sfx_sayt.html#saythide" class="tsd-kind-icon">sayt<wbr>Hide</a>
+							</li>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
+								<a href="_sfx_sayt.html#saytshow" class="tsd-kind-icon">sayt<wbr>Show</a>
 							</li>
 						</ul>
 					</li>
