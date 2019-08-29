@@ -251,17 +251,23 @@ sfx-list li:focus, sfx-list li:hover {
   border-bottom-right-radius: 2.5px;
 }
 
+.sfx-sayt-container slot[name="image"] {
+  display: block;
+  height: 175px;
+}
+
 .sfx-sayt-container img {
   display: block;
   margin: 0 auto;
   width: auto;
-  height: 175px;
+  height: 100%;
 }
 
 .sfx-sayt-container a {
   display: block;
   font-size: 1.2rem;
   padding: 20px;
+  padding-bottom: 0;
   border-top: 1px solid rgba(0,0,0,0.1);
   max-height: 57px;
   overflow: hidden;
@@ -386,7 +392,9 @@ main h2 {
 .new-arrivals-section {
   width: calc(33.3333% - 20px);
   height: 500px;
-  box-shadow: 0px 3px 15px rgba(0,0,0,0.5);
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 2.5px;
+  overflow: hidden;
 }
 
 .new-arrivals-sections img {
@@ -438,7 +446,7 @@ main h2 {
   top: 36px;
   left: 264px;
   width: 614px;
-  height: auto;
+  height: 95px;
   color: var(--font-color-tertiary);
 }
 
@@ -458,24 +466,32 @@ main h2 {
   display: none;
   margin-top: 110px;
   width: 1224px;
+  min-height: 1002px;
   color: var(--font-color-tertiary);
-}
-
-.catalogue-product-grid sfx-products {
-  justify-content: space-around;
-  flex-wrap: nowrap;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 2.5px;
+  overflow: hidden;
 }
 
 .catalogue-product-grid .sfx-product-tile-wrapper {
-  width: calc(25% - 10px);
+  width: 25%;
   height: 500px;
-  margin: 0 10px;
   background-color: #fff;
+  padding-top: 20px;
+  border-right: 1px solid rgba(0,0,0,0.2);
 }
 
-.catalogue-product-grid .sfx-product-tile-wrapper:nth-child(n + 6) {
+.catalogue-product-grid .sfx-product-tile-wrapper:nth-child(4n + 1) {
+  border-right: none;
+}
+
+.catalogue-product-grid .sfx-product-tile-wrapper:nth-child(n + 5) {
+  border-top: 1px solid rgba(0,0,0,0.2);
+}
+
+.catalogue-product-grid .sfx-product-tile-wrapper:nth-child(n + 10) {
   display: none;
-  height: 100%;
 }
 
 .catalogue-product-grid sfx-product {
@@ -483,20 +499,23 @@ main h2 {
   height: 100%;
 }
 
+.catalogue-product-grid slot[name="image"] {
+  display: block;
+  height: 250px;
+}
+
 .catalogue-product-grid img {
   display: block;
   margin: 0 auto;
   width: auto;
-  height: 250px;
+  height: 100%;
 }
 
 .catalogue-product-grid a {
   display: block;
   font-size: 1.8rem;
   padding: 20px;
-  border-top: 1px solid rgba(0,0,0,0.1);
-  /* max-height: 57px; */
-  /* overflow: hidden; */
+  padding-bottom: 0;
 }
 
 .catalogue-product-grid slot[name="title"]::after{
