@@ -1,5 +1,6 @@
 import { configure, addDecorator, addParameters } from '@storybook/html';
 import { withCssResources } from '@storybook/addon-cssresources';
+import addons from '@storybook/addons';
 import { withA11y } from '@storybook/addon-a11y';
 import GroupByTheme from './theme';
 
@@ -11,22 +12,30 @@ function loadStories() {
   addDecorator(withCssResources);
   addParameters({
     options: {
-      theme: GroupByTheme,
+      theme: GroupByTheme
     },
     cssresources: [
       {
         id: `Elegant Theme`,
         code: `<link rel="stylesheet" type="text/css" href="/sfx-elegant-theme.css"></link>`,
-        picked: true,
+        picked: true
       },
       {
         id: `Bold Theme`,
         code: `<link rel="stylesheet" type="text/css" href="/sfx-bold-theme.css"></link>`,
-        picked: false,
-      },
-    ],
+        picked: false
+      }
+    ]
   });
   req.keys().forEach(req);
 }
+
+addons.getChannel().on('customEvents/emitEvent', event => {
+  window.dispatchEvent(
+    new CustomEvent(event.name, {
+      detail: event.payload
+    })
+  );
+});
 
 configure(loadStories, module);

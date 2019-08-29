@@ -1,68 +1,75 @@
 import { storiesOf } from '@storybook/html';
-import { withKnobs, text } from '@storybook/addon-knobs';
-import '../src/search-box';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { getDisplayCode } from '../../../../../.storybook/common';
 import { SEARCHBOX_EVENT } from '../src/events';
+import '../src';
 
-// start of event dispatch testing
-window.addEventListener(SEARCHBOX_EVENT.SEARCH_REQUEST, e => {
-  console.log('search request received');
-  console.log('event', e);
-});
+const updateTextEvent = [
+  {
+    name: SEARCHBOX_EVENT.UPDATE_SEARCH_TERM,
+    payload: 'hot chocolate'
+  }
+];
 
-window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK, e => {
-  console.log('search box cleared event received');
-  console.log('event', e);
-});
+const searchboxNotesMarkdownIntro = `# SF-X Search Box Component
 
-window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_CLICK, e => {
-  console.log('search box clicked event received');
-  console.log('event', e);
-});
+[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/search-box "SF-X Search Box README").
 
-window.addEventListener(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, e => {
-  console.log('search box change event received');
-  console.log('event', e);
-});
-// end of event dispatch testing
+  \`\`\`html
+  <sfx-search-box placeholder="Search Here" searchbutton clearbutton></sfx-search-box>
+  \`\`\`
+
+## Demonstrated in this story`;
+
+function getSearchBoxComponent(): string {
+  const placeholder = text('Placeholder Text', 'Type your search');
+  const showSearchButton = boolean('Show search button', true) ? 'searchbutton' : '';
+  const showClearButton = boolean('Show clear button', true) ? 'clearbutton' : '';
+  return (
+    '<sfx-search-box\n' +
+    (placeholder ? ` placeholder="${placeholder}"\n` : '') +
+    (showSearchButton ? ` ${showSearchButton}\n` : '') +
+    (showClearButton ? ` ${showClearButton}\n` : '') +
+    '></sfx-search-box>'
+  );
+}
 
 storiesOf('Components|Searchbox', module)
   .addDecorator(withKnobs)
-    .add(
-      'Default - with search and clear button',
-      () => `
-    <sfx-search-box searchbutton clearbutton></sfx-search-box>
-    <button @click="${this.updateTextEvent}">
-      Click to dispatch update search term event
-    </button>
-  `
-    )
-    .add(
-      'Without any SFX provided buttons',
-      () => `
-    <sfx-search-box></sfx-search-box>
-    <button @click="${this.updateTextEvent}">
-      Click to dispatch update search term event
-    </button>
-  `
-    )
-    .add(
-      'With a clear button, without a search button',
-      () => `
-    <sfx-search-box clearbutton></sfx-search-box>
-    <button @click="${this.updateTextEvent}">
-      Click to dispatch update search term event
-    </button>
-  `
-    )
-    .add(
-      'With custom placeholder text',
-      () => `
-    <sfx-search-box placeholder="${text(
-      'Placeholder Title',
-      'Placeholder here...'
-    )}"></sfx-search-box>
-    <button @click="${this.updateTextEvent}">
-      Click to dispatch update search term event
-    </button>
-  `
-    );
+  .add(
+    'Rendering based on events and attributes',
+    () => {
+      const searchBoxComponent = getSearchBoxComponent();
+      return `
+      ${searchBoxComponent}
+      ${getDisplayCode(searchBoxComponent)}
+      `;
+    },
+    {
+      customEvents: updateTextEvent,
+      notes: {
+        markdown: `
+          ${searchboxNotesMarkdownIntro}
+
+          ### The SF-X Search Box component can render "clear" and "search" buttons.
+            * If the \`clearbutton\` attribute is present, a clear button will display.
+            * If the \`searchbutton\` attribute is present, a search button will display.
+            * To add and remove these attributes in this story:
+              1. Visit the **Knobs** tab and toggle the "Show search button" and "Show clear button".
+              2. See the component update with the buttons added or removed.
+
+          ### The placeholder text can be customized.
+          * The \`placeholder\` attribute defines the placeholder text of the search box. It defaults to "Type your search" if not present.
+            * To modify the \`placeholder\` attribute in this story:
+              1. Visit the **Knobs** tab and modify the text contained within the "Placeholder Text" field.
+              2. See the component update with the updated text.
+
+          ### The SF-X Search Box component populates with an updated search term in response to the \`${SEARCHBOX_EVENT.UPDATE_SEARCH_TERM}\` event.
+            * To emit the event in this story:
+              1. Navigate to the **Custom Events** tab and locate the \`${SEARCHBOX_EVENT.UPDATE_SEARCH_TERM}\` event.
+              2. Click "emit".
+              3. See the component update with the new search term.
+              `
+      }
+    }
+  );

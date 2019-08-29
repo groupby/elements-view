@@ -1,6 +1,5 @@
 import { expect, spy, stub } from '../utils';
-import { Base } from '@sfx/base';
-import { TemplateResult } from 'lit-element';
+import { TemplateResult, LitElement } from 'lit-element';
 import Autocomplete from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
@@ -11,8 +10,8 @@ describe('Autcomplete Component', () => {
   });
 
   describe('Constructor', () => {
-    it('should extend the Base class', () => {
-      expect(autocomplete).to.be.an.instanceof(Base);
+    it('should extend the LitElement class', () => {
+      expect(autocomplete).to.be.an.instanceof(LitElement);
     });
 
     describe('Results property', () => {
@@ -30,11 +29,11 @@ describe('Autcomplete Component', () => {
 
   describe('connectedCallback', () => {
     it('should call its super connectedCallback', () => {
-      const baseConnectedCallbackStub = stub(Base.prototype, 'connectedCallback');
+      const superConnectedCallbackStub = stub(LitElement.prototype, 'connectedCallback');
 
       autocomplete.connectedCallback();
 
-      expect(baseConnectedCallbackStub).to.have.been.called;
+      expect(superConnectedCallbackStub).to.have.been.called;
     });
 
     it('should add an eventListener to the window', () => {
@@ -51,11 +50,11 @@ describe('Autcomplete Component', () => {
 
   describe('disconnectedCallback', () => {
     it('should call its super disconnectedCallback', () => {
-      const baseDisconnectedCallbackStub = stub(Base.prototype, 'disconnectedCallback');
+      const superDisconnectedCallbackStub = stub(LitElement.prototype, 'disconnectedCallback');
 
       autocomplete.disconnectedCallback();
 
-      expect(baseDisconnectedCallbackStub).to.have.been.called;
+      expect(superDisconnectedCallbackStub).to.have.been.called;
     });
 
     it('should remove eventListener from the window', () => {

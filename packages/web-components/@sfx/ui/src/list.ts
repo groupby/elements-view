@@ -1,12 +1,11 @@
-import { customElement, html, property } from 'lit-element';
-import { Base } from '@sfx/base';
+import { customElement, html, property, LitElement } from 'lit-element';
 import * as shortid from 'shortid';
 
 /**
  * Receives data to populate into a list.
  */
 @customElement('sfx-list')
-export default class List extends Base {
+export default class List extends LitElement {
   /**
    * The text used in the header.
    */
@@ -29,14 +28,28 @@ export default class List extends Base {
         ? html`
             <h4 id="sfx-list-title-${this.randomStringId}">${this.caption}</h4>
             <ul aria-labelledby="sfx-list-title-${this.randomStringId}">
-              ${this.items.map(item => html`<li>${item.label}</li>`)}
+              ${this.items.map(
+                item =>
+                  html`
+                    <li>${item.label}</li>
+                  `
+              )}
             </ul>
           `
         : html`
             <ul>
-              ${this.items.map(item => html`<li>${item.label}</li>`)}
+              ${this.items.map(
+                item =>
+                  html`
+                    <li>${item.label}</li>
+                  `
+              )}
             </ul>
           `}
     `;
+  }
+
+  createRenderRoot() {
+    return this;
   }
 }
