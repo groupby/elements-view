@@ -176,7 +176,7 @@ sfx-sayt {
   background: transparent;
   padding: 0;
   margin-left: 1px;
-  z-index: 0;
+  z-index: 1;
   border-top: 1px solid #ccc;
   position: absolute;
   width: calc(50vw - 118px);
@@ -267,7 +267,7 @@ sfx-list li:focus, sfx-list li:hover {
   overflow: hidden;
 }
 
-.sfx-sayt-container slot[name="title"]:after{
+.sfx-sayt-container slot[name="title"]::after{
   content: '$10.00';
   display: block;
   margin-top: 5px;
@@ -284,7 +284,7 @@ sfx-list li:focus, sfx-list li:hover {
   left: 20px;
 }
 
-.sfx-sayt-container slot[name="price"]:after {
+.sfx-sayt-container slot[name="price"]::after {
   content: 'Add to Cart';
   display: inline-block;
   background-color: var(--background-color-primary);
@@ -292,7 +292,7 @@ sfx-list li:focus, sfx-list li:hover {
   padding: 10px;
 }
 
-.sfx-sayt-container slot[name="price"]:after:hover {
+.sfx-sayt-container slot[name="price"]:hover::after {
   background-color: var(--background-color-secondary);
   cursor: pointer;
 }
@@ -397,7 +397,7 @@ main h2 {
 /* CATALOGUE SECTION STYLES START HERE! */
 .catalogue {
   padding: 125px 0;
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--background-color-primary);
   color: var(--font-color-primary);
   font-size: 1.8rem;
@@ -455,7 +455,7 @@ main h2 {
 }
 
 .catalogue-product-grid {
-  margin-top: 150px;
+  margin-top: 110px;
   width: 1224px;
   color: var(--font-color-tertiary);
 }
@@ -489,6 +489,25 @@ main h2 {
   height: 250px;
 }
 
+.catalogue-product-grid a {
+  display: block;
+  font-size: 1.8rem;
+  padding: 20px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  /* max-height: 57px; */
+  /* overflow: hidden; */
+}
+
+.catalogue-product-grid slot[name="title"]::after{
+  content: '$25.00';
+  display: block;
+  margin-top: 5px;
+  padding-left: 20px;
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: var(--accent-color-secondary);
+}
+
 .catalogue-product-grid slot[name="price"] {
   display: block;
   position: absolute;
@@ -496,12 +515,17 @@ main h2 {
   left: 20px;
 }
 
-.catalogue-product-grid slot[name="price"]:after {
+.catalogue-product-grid slot[name="price"]::after {
   content: 'Add to Cart';
   display: inline-block;
-  background-color: var(--background-color-secondary);
+  background-color: var(--background-color-tertiary);
   color: var(--font-color-primary);
   padding: 10px;
+}
+
+.catalogue-product-grid slot[name="price"]:hover::after {
+  background-color: var(--background-color-secondary);
+  cursor: pointer;
 }
 /* CATALOGUE SECTION STYLES END HERE! */
 /* CUSTOM STYLES END HERE! */
