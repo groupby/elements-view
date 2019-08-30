@@ -9,6 +9,7 @@ import {
   HOVER_AUTOCOMPLETE_TERM_EVENT,
 } from '@sfx/autocomplete';
 
+
 describe('Sayt Component', () => {
   let sayt;
 
