@@ -1,15 +1,16 @@
 import { customElement, html, property, LitElement } from 'lit-element';
 import '@sfx/ui';
-import { Base } from '@sfx/base';
 
 // TODO: replace with @sfx/events import - added temporarily for import in storybook/common
+// event descriptions to be contained in events repo
 export const AUTOCOMPLETE_RECEIVED_RESULTS_EVENT = 'sfx::autocomplete_received_results';
 export const HOVER_AUTOCOMPLETE_TERM_EVENT = 'sfx::sayt_hover_autocomplete_term';
 export const AUTOCOMPLETE_REQUEST_RESULTS = 'sfx::autocomplete_fetch_data';
 
 /**
- * Listens for the `sfx::autocomplete_received_results` event and
- * populates a list with the data received.
+ * The `sfx-autocomplete` component is responsible for displaying a list
+ * of autocomplete terms upon receipt of the `sfx::autocomplete_received_results` event.
+ * The component is also responsible for emitting events based on user input.
  */
 @customElement('sfx-autocomplete')
 export default class Autocomplete extends LitElement {
@@ -64,26 +65,11 @@ export default class Autocomplete extends LitElement {
    *
    * @param event A MouseEvent that contains a Sayt autocomplete term.
    */
-  dispatchAutocompleteResults() {
-    const autocompleteDataReceivedEvent = new CustomEvent(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, {
-      detail: [
-        { title: '', items: [{ label: 'Cars' }, { label: 'Bikes' }] },
-        { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-      ],
-      bubbles: true
-    });
-    window.dispatchEvent(autocompleteDataReceivedEvent);
-  }
-
-  /**
-   * Dispatches an `sfx::sayt_hover_autocomplete_term` event with the Sayt autocomplete term.
-   *
-   * @param event A MouseEvent that contains a Sayt autocomplete term.
-   */
   handleHoverTerm(event: MouseEvent) {
     const target = event.target as HTMLElement;
     if (target.tagName !== 'LI') return;
     const term = target.innerText;
+    console.log('in hover', term)
     const sentEvent = new CustomEvent(HOVER_AUTOCOMPLETE_TERM_EVENT, {
       detail: {
         query: term,

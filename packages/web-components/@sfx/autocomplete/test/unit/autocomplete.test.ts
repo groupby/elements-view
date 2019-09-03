@@ -1,6 +1,6 @@
 import { expect, spy, stub } from '../utils';
 import { TemplateResult, LitElement } from 'lit-element';
-import Autocomplete from '../../src/autocomplete';
+import Autocomplete, { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
@@ -42,7 +42,7 @@ describe('Autcomplete Component', () => {
       autocomplete.connectedCallback();
 
       expect(windowAddEventListener).to.have.been.calledWith(
-        'sfx::autocomplete_received_results',
+        AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
         autocomplete.receivedResults,
       );
       expect(windowAddEventListener).to.have.been.calledWith(
@@ -67,7 +67,7 @@ describe('Autcomplete Component', () => {
       autocomplete.disconnectedCallback();
 
       expect(windowRemoveEventListener).to.have.been.calledWith(
-        'sfx::autocomplete_received_results',
+        AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
         autocomplete.receivedResults,
       );
       expect(windowRemoveEventListener).to.have.been.calledWith(
@@ -106,8 +106,8 @@ describe('Autcomplete Component', () => {
 
   describe('handleHoverTerm', () => {
     let dispatchEvent,
-        CustomEvent,
-        sentEvent;
+      CustomEvent,
+      sentEvent;
     beforeEach(() => {
       sentEvent = {};
       dispatchEvent = stub(window, 'dispatchEvent');
@@ -137,7 +137,7 @@ describe('Autcomplete Component', () => {
 
       autocomplete.handleHoverTerm(mouseEvent);
 
-      expect(CustomEvent).to.be.calledWith('sfx::sayt_hover_autocomplete_term', {
+      expect(CustomEvent).to.be.calledWith(HOVER_AUTOCOMPLETE_TERM_EVENT, {
         detail: {
           query: mouseEvent.target.innerText,
         }
