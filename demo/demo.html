@@ -86,14 +86,14 @@
 
       // Clear button functionality
       const headerClearButtonNode = document.getElementById('header-clear-button');
-      headerClearButtonNode.addEventListener('click', (e) => {
+      headerClearButtonNode.addEventListener('click', () => {
         const headerSearchBoxNode = document.getElementById('header-searchbox');
 
         headerSearchBoxNode.clearSearch();
       });
 
       const catalogueClearButtonNode = document.getElementById('catalogue-clear-button');
-      catalogueClearButtonNode.addEventListener('click', (e) => {
+      catalogueClearButtonNode.addEventListener('click', () => {
         const catalogueSearchBoxNode = document.getElementById('catalogue-searchbox');
 
         catalogueSearchBoxNode.clearSearch();
@@ -101,12 +101,22 @@
 
       // Catalogue submit button functionality
       const catalogueSubmitButtonNode = document.getElementById('catalogue-submit-button');
-      catalogueSubmitButtonNode.addEventListener('click', (e) => {
+      catalogueSubmitButtonNode.addEventListener('click', () => {
         const catalogueProductGridNode = document.getElementsByClassName('catalogue-product-grid')[0];
 
         catalogueProductGridNode.classList.add('catalogue-product-grid-visible');
       });
 
+      // Catalogue searchbox enter key functionality
+      const catalogueSearchboxNode = document.getElementById('catalogue-searchbox');
+
+      catalogueSearchboxNode.addEventListener('keydown', (e) => {
+        if(e.keyCode === 13) {
+          const catalogueProductGridNode = document.getElementsByClassName('catalogue-product-grid')[0];
+
+          catalogueProductGridNode.classList.add('catalogue-product-grid-visible');
+        }
+      });
     </script>
     <!-- Smooth Scroll Code is Below -->
     <script>
