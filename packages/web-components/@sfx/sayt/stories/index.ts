@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/html';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { PRODUCTS_RESPONSE_EVENT } from '@sfx/products';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '@sfx/autocomplete';
 import { SAYT_EVENT } from '../src/events';
@@ -12,6 +12,11 @@ import {
   getProductsReceivedEvent,
   hidePrompt,
 } from '../../../../../.storybook/common';
+
+
+window.addEventListener('sfx::autocomplete_fetch_data', (e) => {
+  console.log('request autocopmlete', e)
+})
 
 const saytNotesMarkdownIntro = ` # SF-X SAYT Component
 
@@ -32,6 +37,7 @@ function getSayt(searchbox: string = ''): string {
   const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
   const hideAutocomplete = boolean('Hide Autocomplete', false) ? 'hideAutocomplete' : '';
   const hideProducts = boolean('Hide Products', false) ? 'hideProducts' : '';
+  const minSearchLength = number('Min search length', 5);
 
   return (
     '<sfx-sayt\n' +
@@ -40,6 +46,7 @@ function getSayt(searchbox: string = ''): string {
     (showCloseButton ? `  ${showCloseButton}\n` : '') +
     (hideAutocomplete ? `  ${hideAutocomplete}\n` : '') +
     (hideProducts ? `  ${hideProducts}\n` : '') +
+    `  minsearchlength="${minSearchLength}" \n` +
     '></sfx-sayt>'
   );
 }
@@ -63,9 +70,11 @@ const autocompleteDataReceivedEvent = new CustomEvent(AUTOCOMPLETE_RECEIVED_RESU
 
 function generateBaseData() {
   setTimeout(() => {
-    window.dispatchEvent(autocompleteDataReceivedEvent)}, 0)
+    window.dispatchEvent(autocompleteDataReceivedEvent)
+  }, 0)
   setTimeout(() => {
-    window.dispatchEvent(getProductsReceivedEvent())}, 0)
+    window.dispatchEvent(getProductsReceivedEvent())
+  }, 0)
 }
 
 storiesOf('Components|SAYT', module)
@@ -87,16 +96,16 @@ storiesOf('Components|SAYT', module)
     ${getDisplayCode(sayt)}
     </div>`;
   }, {
-    notes: {
-      markdown: `
+      notes: {
+        markdown: `
         ${saytNotesMarkdownIntro}
 
           ### The SF-X SAYT component populated with autocomplete and products data.
           * The SF-X SAYT component is designed to render different data in response to events, however, this story generates the data on page load. This is done in order to see the visual component immediately.
           * For stories that demonstrate the component's functionality, visit three stories listed below this one, under "SAYT".
       `
-    }
-  })
+      }
+    })
   .add(
     'Rendering based on events and attributes',
     () => {
@@ -119,7 +128,7 @@ storiesOf('Components|SAYT', module)
       <div class="display-code">
       ${getDisplayCode(sayt)}
       </div>`
-      ;
+        ;
     },
     {
       customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
@@ -171,6 +180,7 @@ storiesOf('Components|SAYT', module)
               * \`hideAutocomplete\`
               * \`hideProducts\`
               * \`closeText\`
+              * \`minSearchLength\`
             * To modify these attributes:
               1. Visit the **Knobs** tab and click any of the "Hide Autocomplete", "Hide Products", and "Show Close button'", and/or update the text contained within the "Close link text" field.
               2. Emit the appropriate events
