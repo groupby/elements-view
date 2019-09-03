@@ -332,13 +332,13 @@ export default class Sayt extends LitElement {
         : ''}
       <div class="sfx-sayt-container">
         ${this.hideAutocomplete
-          ? ''
-          : html`
+        ? ''
+        : html`
               <sfx-autocomplete></sfx-autocomplete>
             `}
         ${this.hideProducts
-          ? ''
-          : html`
+        ? ''
+        : html`
               <sfx-products></sfx-products>
             `}
       </div>

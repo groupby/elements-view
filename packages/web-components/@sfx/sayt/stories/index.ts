@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-import { PRODUCTS_RESPONSE_EVENT } from '@sfx/products';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '@sfx/autocomplete';
+import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
+import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, AUTOCOMPLETE_REQUEST_RESULTS } from '@sfx/autocomplete';
 import { SAYT_EVENT } from '../src/events';
 import '../src';
 import {
@@ -12,11 +12,6 @@ import {
   getProductsReceivedEvent,
   hidePrompt,
 } from '../../../../../.storybook/common';
-
-
-window.addEventListener('sfx::autocomplete_fetch_data', (e) => {
-  console.log('request autocopmlete', e)
-})
 
 const saytNotesMarkdownIntro = ` # SF-X SAYT Component
 
@@ -180,7 +175,7 @@ storiesOf('Components|SAYT', module)
               * \`hideAutocomplete\`
               * \`hideProducts\`
               * \`closeText\`
-              * \`minSearchLength\`
+              * \`minSearchLength\` - *Note*: to observe the impact of modifying this attribute, it is necessary to add an event listener to listen for either the \`${AUTOCOMPLETE_REQUEST_RESULTS} \`or \`${PRODUCTS_REQUEST_EVENT}\` events. These events will trigger when the number of characters typed into the input box is equal to or greater than the number defined in the attribute.
             * To modify these attributes:
               1. Visit the **Knobs** tab and click any of the "Hide Autocomplete", "Hide Products", and "Show Close button'", and/or update the text contained within the "Close link text" field.
               2. Emit the appropriate events
