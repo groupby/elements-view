@@ -105,13 +105,9 @@ describe('Autcomplete Component', () => {
   });
 
   describe('handleHoverTerm', () => {
-    let dispatchEvent,
-      CustomEvent,
-      sentEvent;
+    let dispatchEvent;
     beforeEach(() => {
-      sentEvent = {};
       dispatchEvent = stub(window, 'dispatchEvent');
-      CustomEvent = stub(window, 'CustomEvent').returns(sentEvent);
     });
 
     it('should not emit an event if not hovering an autocomplete term', () => {
@@ -128,6 +124,7 @@ describe('Autcomplete Component', () => {
     });
 
     it('should emit an event when hovering an autocomplete term', () => {
+      CustomEvent = stub(window, 'CustomEvent').returns({});
       const mouseEvent = {
         target: {
           tagName: 'LI',
@@ -142,7 +139,7 @@ describe('Autcomplete Component', () => {
           query: mouseEvent.target.innerText,
         }
       });
-      expect(dispatchEvent).to.be.calledWith(sentEvent);
+      expect(dispatchEvent).to.be.calledWith({});
     });
   });
 });

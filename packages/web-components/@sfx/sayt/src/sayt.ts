@@ -1,7 +1,7 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
 import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
-import { SEARCHBOX_EVENT } from '../../search-box/src/events';
+import { SEARCHBOX_EVENT } from '@sfx/search-box';
 import {
   AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
   HOVER_AUTOCOMPLETE_TERM_EVENT,
