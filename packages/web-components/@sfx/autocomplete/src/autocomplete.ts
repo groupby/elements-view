@@ -39,7 +39,7 @@ export default class Autocomplete extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
-    window.addEventListener('mouseover', this.handleHoverTerm);
+    this.addEventListener('mouseover', this.handleHoverTerm);
   }
 
   /**
@@ -48,7 +48,7 @@ export default class Autocomplete extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
-    window.removeEventListener('mouseover', this.handleHoverTerm);
+    this.removeEventListener('mouseover', this.handleHoverTerm);
   }
 
   /**

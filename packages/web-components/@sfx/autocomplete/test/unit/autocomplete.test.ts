@@ -38,6 +38,7 @@ describe('Autcomplete Component', () => {
 
     it('should add eventListeners to the window', () => {
       const windowAddEventListener = spy(window, 'addEventListener');
+      const autocompleteAddEventListener = spy(autocomplete, 'addEventListener');
 
       autocomplete.connectedCallback();
 
@@ -45,7 +46,7 @@ describe('Autcomplete Component', () => {
         AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
         autocomplete.receivedResults,
       );
-      expect(windowAddEventListener).to.have.been.calledWith(
+      expect(autocompleteAddEventListener).to.have.been.calledWith(
         'mouseover',
         autocomplete.handleHoverTerm,
       );
@@ -63,6 +64,7 @@ describe('Autcomplete Component', () => {
 
     it('should remove eventListeners from the window', () => {
       const windowRemoveEventListener = spy(window, 'removeEventListener');
+      const autocompleteRemoveEventListener = spy(autocomplete, 'removeEventListener');
 
       autocomplete.disconnectedCallback();
 
@@ -70,7 +72,7 @@ describe('Autcomplete Component', () => {
         AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
         autocomplete.receivedResults,
       );
-      expect(windowRemoveEventListener).to.have.been.calledWith(
+      expect(autocompleteRemoveEventListener).to.have.been.calledWith(
         'mouseover',
         autocomplete.handleHoverTerm,
       );
