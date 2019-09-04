@@ -1,6 +1,6 @@
 import { expect, spy, stub } from '../utils';
 import { TemplateResult, LitElement } from 'lit-element';
-import Autocomplete, { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from '../../src/autocomplete';
+import { Autocomplete, AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from '@sfx/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
@@ -97,7 +97,7 @@ describe('Autcomplete Component', () => {
       expect(autocomplete.results).to.deep.equal(results);
     });
 
-    it('should set this.results to empty array if undefined', () => {
+    it('should set the results property to an empty array if the response data is undefined', () => {
       autocomplete.receivedResults({ detail: {} });
 
       expect(autocomplete.results).to.deep.equal([]);
@@ -105,13 +105,9 @@ describe('Autcomplete Component', () => {
   });
 
   describe('handleHoverTerm', () => {
-    let dispatchEvent,
-      CustomEvent,
-      sentEvent;
+    let dispatchEvent;
     beforeEach(() => {
-      sentEvent = {};
       dispatchEvent = stub(window, 'dispatchEvent');
-      CustomEvent = stub(window, 'CustomEvent').returns(sentEvent);
     });
 
     it('should not emit an event if not hovering an autocomplete term', () => {
@@ -128,6 +124,7 @@ describe('Autcomplete Component', () => {
     });
 
     it('should emit an event when hovering an autocomplete term', () => {
+      const CustomEvent = stub(window, 'CustomEvent').returns({});
       const mouseEvent = {
         target: {
           tagName: 'LI',
@@ -142,7 +139,7 @@ describe('Autcomplete Component', () => {
           query: mouseEvent.target.innerText,
         }
       });
-      expect(dispatchEvent).to.be.calledWith(sentEvent);
+      expect(dispatchEvent).to.be.calledWith({});
     });
   });
 });

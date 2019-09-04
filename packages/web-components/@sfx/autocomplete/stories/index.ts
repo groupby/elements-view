@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { getDisplayCode, autocompleteReceivedResultsEvent, autocompleteResults, hidePrompt } from '../../../../../.storybook/common';
 import '../src/index';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from '../src/index';
+import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../src/index';
 
 const autocompleteNotesIntro = `
 # SF-X Autocomplete Component
