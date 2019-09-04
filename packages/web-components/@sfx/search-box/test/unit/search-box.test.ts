@@ -96,8 +96,8 @@ describe('SearchBox Component', () => {
       expect(createCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCH_REQUEST, {
         value,
         config: {
-          area: area,
-          collection: collection,
+          area,
+          collection,
         }
       });
       expect(searchboxDispatchEvent).to.be.calledWith('some-event');
