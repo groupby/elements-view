@@ -196,29 +196,6 @@ export default class SearchBox extends Base {
     `;
   }
 }
-
-// createCustomEvent<T>(type: string, detail?: T): CustomEvent<T> {
-//   return new CustomEvent(type, {
-//     detail: {
-//       ...detail,
-//       searchbox: this.id,
-//     },
-//     bubbles: true,
-//   });
-// }
-
-// const searchboxRequestEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-//   value: this.value,
-//   config: {
-//     area: this.area ? this.area : undefined,
-//     collection: this.collection ? this.collection : undefined,
-//   }
-// });
-
-// export interface EventDetail extends CustomEvent {
-
-// }
-
 export interface SearchConfig {
   area: string | undefined,
   collection: string | undefined,

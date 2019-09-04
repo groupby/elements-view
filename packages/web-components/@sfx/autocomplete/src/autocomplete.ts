@@ -69,7 +69,6 @@ export default class Autocomplete extends LitElement {
     const target = event.target as HTMLElement;
     if (target.tagName !== 'LI') return;
     const term = target.innerText;
-    console.log('in hover', term)
     const sentEvent = new CustomEvent(HOVER_AUTOCOMPLETE_TERM_EVENT, {
       detail: {
         query: term,

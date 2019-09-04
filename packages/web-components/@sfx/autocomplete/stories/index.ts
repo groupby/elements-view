@@ -4,10 +4,6 @@ import { getDisplayCode, autocompleteReceivedResultsEvent, autocompleteResults, 
 import '../src/index';
 import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from '../src/index';
 
-window.addEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, (e) => {
-  console.log('hover event received', e)
-});
-
 const autocompleteNotesIntro = `
 # SF-X Autocomplete Component
 
