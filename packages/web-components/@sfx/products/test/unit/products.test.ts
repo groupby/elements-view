@@ -77,7 +77,7 @@ describe('Products Component', () => {
       expect(component.products).to.equal(products);
     });
 
-    it('should set this.products to an empty array if undefined', () => {
+    it('should set the products property to an empty array if payload of the event is undefined', () => {
       const event = { detail: { results: {} } };
 
       component.setProductsFromEvent(event);

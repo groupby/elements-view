@@ -1,6 +1,6 @@
 import { expect, spy, stub } from '../utils';
 import { TemplateResult, LitElement } from 'lit-element';
-import Autocomplete, { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from '../../src/autocomplete';
+import { Autocomplete, AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from '@sfx/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
@@ -97,7 +97,7 @@ describe('Autcomplete Component', () => {
       expect(autocomplete.results).to.deep.equal(results);
     });
 
-    it('should set this.results to empty array if undefined', () => {
+    it('should set the results property to an empty array if the response data is undefined', () => {
       autocomplete.receivedResults({ detail: {} });
 
       expect(autocomplete.results).to.deep.equal([]);
