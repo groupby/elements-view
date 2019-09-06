@@ -356,6 +356,23 @@ describe('Sayt Component', () => {
   });
 
   // @TODO Add tests for processSfxSearchboxChange()
+  describe('processSfxSearchboxChange', () => {
+    it('should trigger a Sayt request', () => {
+      const searchbox = 'some-searchbox-id';
+      const value = 'some-value';
+      const event = {
+        detail: {
+          value,
+          searchbox,
+        }
+      };
+      const requestSayt = stub(sayt, 'requestSayt');
+
+      sayt.processSfxSearchboxChange(event);
+
+      expect(requestSayt).to.be.calledWith(value, searchbox);
+    });
+  });
 
   describe('isCorrectSayt()', () => {
     it('should return true if event provides the correct searchbox ID', () => {
