@@ -75,8 +75,8 @@ export default class Sayt extends LitElement {
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
-    this.setSearchboxListener(this.searchbox, 'add');
     window.addEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
+    this.setSearchboxListener(this.searchbox, 'add');
   }
 
   /**
@@ -91,8 +91,8 @@ export default class Sayt extends LitElement {
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
-    this.setSearchboxListener(this.searchbox, 'remove');
     window.removeEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
+    this.setSearchboxListener(this.searchbox, 'remove');
   }
 
   createRenderRoot() {
@@ -175,7 +175,7 @@ export default class Sayt extends LitElement {
    * They will only be called if the term is at least [[minSearchLength]] long.
    *
    * @param query The search term to use.
-   * @param searchbox The searchbox ID associated with this search.
+   * @param searchbox The optional searchbox ID associated with this search.
    */
   requestSayt(query: string, searchbox?: string) {
     if (query.length < this.minSearchLength) {
@@ -188,7 +188,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Dispatches an `AUTOCOMPLETE_REQUEST_RESULTS` event with the provided data.
+   * Dispatches an [[AUTOCOMPLETE_REQUEST_RESULTS]] event with the provided data.
    *
    * @param query The search term to use.
    * @param searchbox The optional searchbox ID associated with this search.
@@ -198,7 +198,7 @@ export default class Sayt extends LitElement {
       detail: { query, searchbox },
       bubbles: true
     });
-    window.dispatchEvent(requestSaytResults);
+    this.dispatchEvent(requestSaytResults);
   }
 
   /**
@@ -212,7 +212,7 @@ export default class Sayt extends LitElement {
       detail: { query, searchbox },
       bubbles: true,
     });
-    window.dispatchEvent(requestProductResults);
+    this.dispatchEvent(requestProductResults);
   }
 
   /**
