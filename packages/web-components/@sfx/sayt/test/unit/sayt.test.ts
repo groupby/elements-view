@@ -2,6 +2,7 @@ import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
 import { SEARCHBOX_EVENT } from '@sfx/search-box';
 import {
   AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
+  AUTOCOMPLETE_REQUEST_RESULTS,
   HOVER_AUTOCOMPLETE_TERM_EVENT,
 } from '@sfx/autocomplete';
 import { expect, sinon, spy, stub } from '../utils';
@@ -315,7 +316,7 @@ describe('Sayt Component', () => {
       sayt.requestSaytAutocompleteTerms(query, searchbox);
 
       expect(dispatchRequestEvent).to.be.calledWith(
-        'sfx::autocomplete_fetch_data', query, searchbox);
+        AUTOCOMPLETE_REQUEST_RESULTS, query, searchbox);
     });
   });
 
@@ -328,7 +329,7 @@ describe('Sayt Component', () => {
       sayt.requestSaytProducts(query, searchbox);
 
       expect(dispatchRequestEvent).to.be.calledWith(
-        'sfx::sayt_products_request', query, searchbox);
+        PRODUCTS_REQUEST_EVENT, query, searchbox);
     });
   });
 
