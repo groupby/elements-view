@@ -394,7 +394,7 @@ describe('Sayt Component', () => {
     let hideSayt;
 
     beforeEach(() => {
-      dispatchEvent = stub(window, 'dispatchEvent');
+      dispatchEvent = stub(sayt, 'dispatchEvent');
       hideSayt = stub(sayt, 'hideSayt');
     });
 
