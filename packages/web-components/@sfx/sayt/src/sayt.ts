@@ -187,6 +187,14 @@ export default class Sayt extends LitElement {
     this.requestSaytProducts(query, searchbox);
   }
 
+  /**
+   * Dispatches an event to request data. Intended for requesting
+   * products or autocomplete terms.
+   *
+   * @param eventType The type of the event to be dispatched.
+   * @param query The query term.
+   * @param searchbox The id of the associated searchbox if relevant.
+   */
   dispatchRequestEvent(eventType: string, query: string, searchbox?: string) {
     const requestEvent = new CustomEvent(eventType, {
       detail: { query, searchbox },
@@ -202,13 +210,7 @@ export default class Sayt extends LitElement {
    * @param searchbox The optional searchbox ID associated with this search.
    */
   requestSaytAutocompleteTerms(query: string, searchbox?: string) {
-    // this.dispatchRequestEvent(AUTOCOMPLETE_REQUEST_RESULTS, query, searchbox);
-    const requestSaytResults = new CustomEvent(AUTOCOMPLETE_REQUEST_RESULTS, {
-      detail: { query, searchbox },
-      bubbles: true
-    });
-
-    this.dispatchEvent(requestSaytResults);
+    this.dispatchRequestEvent(AUTOCOMPLETE_REQUEST_RESULTS, query, searchbox);
   }
 
   /**
@@ -218,11 +220,7 @@ export default class Sayt extends LitElement {
    * @param searchbox The optional searchbox ID associated with this search.
    */
   requestSaytProducts(query: string, searchbox?: string) {
-    const requestProductResults = new CustomEvent(PRODUCTS_REQUEST_EVENT, {
-      detail: { query, searchbox },
-      bubbles: true,
-    });
-    this.dispatchEvent(requestProductResults);
+    this.dispatchRequestEvent(PRODUCTS_REQUEST_EVENT, query, searchbox);
   }
 
   /**
