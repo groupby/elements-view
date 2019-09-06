@@ -230,13 +230,12 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSayt()', () => {
+    const searchbox = 'some-searchbox-id';
     let dispatchEvent;
     let query;
-    let searchbox;
 
     beforeEach(() => {
       query = 'some-query';
-      searchbox = 'some-searchbox-id';
       sayt.minSearchLength = 3;
       dispatchEvent = stub(window, 'dispatchEvent');
     });
@@ -274,18 +273,14 @@ describe('Sayt Component', () => {
   });
 
   describe('dispatchRequestEvent()', () => {
+    const query = 'some-query';
+    const searchbox = 'some-searchbox-id';
+    const eventName = 'some-event-name';
+    const eventObj = {};
     let dispatchEvent;
-    let query;
-    let searchbox;
-    let eventObj;
     let customEvent;
-    let eventName;
 
     beforeEach(() => {
-      eventObj = {};
-      eventName = 'some-event-name';
-      query = 'some-query';
-      searchbox = 'some-searchbox-id';
       dispatchEvent = stub(sayt, 'dispatchEvent');
       customEvent = stub(window, 'CustomEvent').returns(eventObj);
     });
@@ -312,17 +307,11 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSaytAutocompleteTerms()', () => {
-    let query;
-    let searchbox;
-    let dispatchRequestEvent;
-
-    beforeEach(() => {
-      query = 'some-query';
-      searchbox = 'some-searchbox-id';
-      dispatchRequestEvent = stub(sayt, 'dispatchRequestEvent');
-    });
-
     it('should dispatch an autocomplete request event with query and searchbox', () => {
+      const dispatchRequestEvent = stub(sayt, 'dispatchRequestEvent');
+      const query = 'some-query';
+      const searchbox = 'some-searchbox-id';
+
       sayt.requestSaytAutocompleteTerms(query, searchbox);
 
       expect(dispatchRequestEvent).to.be.calledWith(
@@ -331,17 +320,11 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSaytProducts()', () => {
-    let query;
-    let searchbox;
-    let dispatchRequestEvent;
-
-    beforeEach(() => {
-      query = 'some-query';
-      searchbox = 'some-searchbox-id';
-      dispatchRequestEvent = stub(sayt, 'dispatchRequestEvent');
-    });
-
     it('should dispatch a products request event with query and searchbox', () => {
+      const searchbox = 'some-searchbox-id';
+      const query = 'some-query';
+      const dispatchRequestEvent = stub(sayt, 'dispatchRequestEvent');
+
       sayt.requestSaytProducts(query, searchbox);
 
       expect(dispatchRequestEvent).to.be.calledWith(
