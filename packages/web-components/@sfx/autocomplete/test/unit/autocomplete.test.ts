@@ -28,6 +28,14 @@ describe('Autcomplete Component', () => {
   });
 
   describe('connectedCallback', () => {
+    let windowAddEventListener,
+        autocompleteAddEventListener;
+
+    beforeEach(() => {
+      windowAddEventListener = stub(window, 'addEventListener');
+      autocompleteAddEventListener = stub(autocomplete, 'addEventListener');
+    });
+
     it('should call its super connectedCallback', () => {
       const superConnectedCallbackStub = stub(LitElement.prototype, 'connectedCallback');
 
@@ -37,9 +45,6 @@ describe('Autcomplete Component', () => {
     });
 
     it('should add event listeners to the component and window', () => {
-      const windowAddEventListener = stub(window, 'addEventListener');
-      const autocompleteAddEventListener = stub(autocomplete, 'addEventListener');
-
       autocomplete.connectedCallback();
 
       expect(windowAddEventListener).to.have.been.calledWith(
