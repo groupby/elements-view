@@ -67,7 +67,7 @@ describe('Autcomplete Component', () => {
       expect(superDisconnectedCallbackStub).to.have.been.called;
     });
 
-    it('should remove eventListeners from the component and window', () => {
+    it('should remove event listeners from the component and window', () => {
       const windowRemoveEventListener = spy(window, 'removeEventListener');
       const autocompleteRemoveEventListener = spy(autocomplete, 'removeEventListener');
 
