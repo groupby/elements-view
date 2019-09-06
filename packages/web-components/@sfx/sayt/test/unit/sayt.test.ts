@@ -258,7 +258,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('handleAutocompleteTermHover', () => {
+  describe('handleAutocompleteTermHover()', () => {
     it('should call requestSaytProducts() with the event query and the searchbox', () => {
       const requestSaytProducts = stub(sayt, 'requestSaytProducts');
       const query = 'some-query';
@@ -271,7 +271,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('dispatchRequestEvent', () => {
+  describe('dispatchRequestEvent()', () => {
     let dispatchEvent, query, searchbox, eventObj, customEvent, eventName;
 
     beforeEach(() => {
@@ -304,7 +304,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('requestSaytAutocompleteTerms', () => {
+  describe('requestSaytAutocompleteTerms()', () => {
     let query, searchbox, dispatchRequestEvent;
 
     beforeEach(() => {
@@ -321,7 +321,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('requestSaytProducts', () => {
+  describe('requestSaytProducts()', () => {
     let query, searchbox, dispatchRequestEvent;
 
     beforeEach(() => {
@@ -338,7 +338,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('processSearchboxInput', () => {
+  describe('processSearchboxInput()', () => {
     it('should trigger a Sayt request', () => {
       const searchbox = sayt.searchbox = 'some-searchbox-id';
       const value = 'some-value';
@@ -355,7 +355,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('processSfxSearchboxChange', () => {
+  describe('processSfxSearchboxChange()', () => {
     it('should trigger a Sayt request', () => {
       const searchbox = 'some-searchbox-id';
       const value = 'some-value';
