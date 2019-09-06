@@ -338,7 +338,23 @@ describe('Sayt Component', () => {
     });
   });
 
-  // @TODO Add tests for processSearchboxInput()
+  describe('processSearchboxInput', () => {
+    it('should trigger a Sayt request', () => {
+      const searchbox = sayt.searchbox = 'some-searchbox-id';
+      const value = 'some-value';
+      const event = {
+        target: {
+          value,
+        }
+      };
+      const requestSayt = stub(sayt, 'requestSayt');
+
+      sayt.processSearchboxInput(event);
+
+      expect(requestSayt).to.be.calledWith(value, searchbox);
+    });
+  });
+
   // @TODO Add tests for processSfxSearchboxChange()
 
   describe('isCorrectSayt()', () => {
