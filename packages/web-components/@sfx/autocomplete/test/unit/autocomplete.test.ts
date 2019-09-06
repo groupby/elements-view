@@ -36,9 +36,9 @@ describe('Autcomplete Component', () => {
       expect(superConnectedCallbackStub).to.have.been.called;
     });
 
-    it('should add eventListeners to the window', () => {
-      const windowAddEventListener = spy(window, 'addEventListener');
-      const autocompleteAddEventListener = spy(autocomplete, 'addEventListener');
+    it('should add event listeners to the component and window', () => {
+      const windowAddEventListener = stub(window, 'addEventListener');
+      const autocompleteAddEventListener = stub(autocomplete, 'addEventListener');
 
       autocomplete.connectedCallback();
 
@@ -62,7 +62,7 @@ describe('Autcomplete Component', () => {
       expect(superDisconnectedCallbackStub).to.have.been.called;
     });
 
-    it('should remove eventListeners from the window', () => {
+    it('should remove eventListeners from the component and window', () => {
       const windowRemoveEventListener = spy(window, 'removeEventListener');
       const autocompleteRemoveEventListener = spy(autocomplete, 'removeEventListener');
 
