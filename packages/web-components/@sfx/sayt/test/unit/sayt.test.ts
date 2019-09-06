@@ -331,7 +331,7 @@ describe('Sayt Component', () => {
     });
 
     it('should dispatch a products request event with query and searchbox', () => {
-      sayt.requestSaytAutocompleteTerms(query, searchbox);
+      sayt.requestSaytProducts(query, searchbox);
 
       expect(dispatchRequestEvent).to.be.calledWith(
         'sfx::sayt_products_request', query, searchbox);
