@@ -285,11 +285,11 @@ describe('Sayt Component', () => {
     it('should dispatch an event with a payload that includes the query and searchbox', () => {
       sayt.requestSaytAutocompleteTerms(query, searchbox);
 
-      // expect(customEvent).to.be.calledWith('sfx::autocomplete_fetch_data', {
-      //   detail: { query, searchbox },
-      //   bubbles: true,
-      // });
-      // expect(dispatchEvent).to.be.calledWith(eventObj);
+      expect(customEvent).to.be.calledWith('sfx::autocomplete_fetch_data', {
+        detail: { query, searchbox },
+        bubbles: true,
+      });
+      expect(dispatchEvent).to.be.calledWith(eventObj);
     });
 
     it('should dispatch an event with an undefined value of searchbox if not passed', () => {
