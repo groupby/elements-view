@@ -231,6 +231,7 @@ describe('Sayt Component', () => {
 
   describe('requestSayt()', () => {
     let dispatchEvent, query, searchbox;
+
     beforeEach(() => {
       query = 'some-query';
       searchbox = 'some-searchbox-id';
@@ -272,6 +273,7 @@ describe('Sayt Component', () => {
 
   describe('requestSaytAutocompleteTerms', () => {
     let dispatchEvent, query, searchbox;
+
     beforeEach(() => {
       query = 'some-query';
       searchbox = 'some-searchbox-id';
@@ -307,6 +309,7 @@ describe('Sayt Component', () => {
 
   describe('requestSaytProducts', () => {
     let dispatchEvent, query, searchbox;
+
     beforeEach(() => {
       query = 'some-query';
       searchbox = 'some-searchbox-id';
