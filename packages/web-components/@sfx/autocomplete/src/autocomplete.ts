@@ -63,11 +63,11 @@ export default class Autocomplete extends LitElement {
   /**
    * Dispatches an `sfx::sayt_hover_autocomplete_term` event with the Sayt autocomplete term.
    *
-   * @param event A MouseEvent that contains a Sayt autocomplete term.
+   * @param event An event that contains a Sayt autocomplete term.
    */
   handleHoverTerm(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    if (target.tagName !== 'LI') return;
+    if (target.tagName.toLowerCase() !== 'li') return;
     const term = target.innerText;
     const sentEvent = new CustomEvent(HOVER_AUTOCOMPLETE_TERM_EVENT, {
       detail: {
