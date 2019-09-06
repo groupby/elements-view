@@ -230,7 +230,9 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSayt()', () => {
-    let dispatchEvent, query, searchbox;
+    let dispatchEvent;
+    let query;
+    let searchbox;
 
     beforeEach(() => {
       query = 'some-query';
@@ -272,7 +274,12 @@ describe('Sayt Component', () => {
   });
 
   describe('dispatchRequestEvent()', () => {
-    let dispatchEvent, query, searchbox, eventObj, customEvent, eventName;
+    let dispatchEvent;
+    let query;
+    let searchbox;
+    let eventObj;
+    let customEvent;
+    let eventName;
 
     beforeEach(() => {
       eventObj = {};
@@ -305,7 +312,9 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSaytAutocompleteTerms()', () => {
-    let query, searchbox, dispatchRequestEvent;
+    let query;
+    let searchbox;
+    let dispatchRequestEvent;
 
     beforeEach(() => {
       query = 'some-query';
@@ -322,7 +331,9 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSaytProducts()', () => {
-    let query, searchbox, dispatchRequestEvent;
+    let query;
+    let searchbox;
+    let dispatchRequestEvent;
 
     beforeEach(() => {
       query = 'some-query';
