@@ -72,9 +72,10 @@ export default class Autocomplete extends LitElement {
     const sentEvent = new CustomEvent(HOVER_AUTOCOMPLETE_TERM_EVENT, {
       detail: {
         query: term,
-      }
+      },
+      bubbles: true,
     });
-    window.dispatchEvent(sentEvent);
+    this.dispatchEvent(sentEvent);
   }
 
   /**
