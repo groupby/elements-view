@@ -41,7 +41,7 @@ function getSayt(searchbox: string = ''): string {
     (showCloseButton ? `  ${showCloseButton}\n` : '') +
     (hideAutocomplete ? `  ${hideAutocomplete}\n` : '') +
     (hideProducts ? `  ${hideProducts}\n` : '') +
-    `  minsearchlength="${minSearchLength}" \n` +
+    `  minsearchlength="${minSearchLength}"\n` +
     '></sfx-sayt>'
   );
 }
