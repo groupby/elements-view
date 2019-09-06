@@ -207,6 +207,7 @@ export default class Sayt extends LitElement {
       detail: { query, searchbox },
       bubbles: true
     });
+
     this.dispatchEvent(requestSaytResults);
   }
 
