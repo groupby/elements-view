@@ -59,6 +59,14 @@ describe('Autcomplete Component', () => {
   });
 
   describe('disconnectedCallback', () => {
+    let windowRemoveEventListener,
+        autocompleteRemoveEventListener;
+
+    beforeEach(() => {
+      windowRemoveEventListener = stub(window, 'removeEventListener');
+      autocompleteRemoveEventListener = stub(autocomplete, 'removeEventListener');
+    });
+
     it('should call its super disconnectedCallback', () => {
       const superDisconnectedCallbackStub = stub(LitElement.prototype, 'disconnectedCallback');
 
@@ -68,9 +76,6 @@ describe('Autcomplete Component', () => {
     });
 
     it('should remove event listeners from the component and window', () => {
-      const windowRemoveEventListener = spy(window, 'removeEventListener');
-      const autocompleteRemoveEventListener = spy(autocomplete, 'removeEventListener');
-
       autocomplete.disconnectedCallback();
 
       expect(windowRemoveEventListener).to.have.been.calledWith(
