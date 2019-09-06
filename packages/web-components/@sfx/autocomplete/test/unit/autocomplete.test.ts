@@ -118,6 +118,7 @@ describe('Autcomplete Component', () => {
 
   describe('handleHoverTerm', () => {
     let dispatchEvent;
+
     beforeEach(() => {
       dispatchEvent = stub(autocomplete, 'dispatchEvent');
     });

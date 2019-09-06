@@ -57,7 +57,7 @@ export default class Products extends LitElement {
   /**
    * Sets the `products` property from the products in an event.
    *
-   * @param event A custom event containing information about products, the query, and an optional searchboxId.
+   * @param event An event containing a search result with product data.
    */
   setProductsFromEvent(event: CustomEvent<ProductsEventPayload>) {
     this.products = event.detail.results.products || [];

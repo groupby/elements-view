@@ -57,8 +57,6 @@ export default class Sayt extends LitElement {
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
     this.isCorrectSayt = this.isCorrectSayt.bind(this);
     this.requestSayt = this.requestSayt.bind(this);
-    this.requestSaytAutocompleteTerms = this.requestSaytAutocompleteTerms.bind(this);
-    this.requestSaytProducts = this.requestSaytProducts.bind(this);
     this.processSearchboxInput = this.processSearchboxInput.bind(this);
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
