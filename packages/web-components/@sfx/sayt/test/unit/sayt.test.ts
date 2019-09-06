@@ -355,7 +355,6 @@ describe('Sayt Component', () => {
     });
   });
 
-  // @TODO Add tests for processSfxSearchboxChange()
   describe('processSfxSearchboxChange', () => {
     it('should trigger a Sayt request', () => {
       const searchbox = 'some-searchbox-id';
