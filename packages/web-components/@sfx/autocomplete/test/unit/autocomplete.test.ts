@@ -114,7 +114,7 @@ describe('Autcomplete Component', () => {
   describe('handleHoverTerm', () => {
     let dispatchEvent;
     beforeEach(() => {
-      dispatchEvent = stub(window, 'dispatchEvent');
+      dispatchEvent = stub(autocomplete, 'dispatchEvent');
     });
 
     it('should not emit an event if not hovering an autocomplete term', () => {
@@ -144,7 +144,8 @@ describe('Autcomplete Component', () => {
       expect(CustomEvent).to.be.calledWith(HOVER_AUTOCOMPLETE_TERM_EVENT, {
         detail: {
           query: mouseEvent.target.innerText,
-        }
+        },
+        bubbles: true,
       });
       expect(dispatchEvent).to.be.calledWith({});
     });
