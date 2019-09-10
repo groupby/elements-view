@@ -62,10 +62,10 @@ export default class SearchBox extends Base {
   emitSearchEvent() {
     const searchboxRequestEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
       value: this.value,
-      config: {
+      config: <SearchConfig> {
         area: this.area,
         collection: this.collection,
-      }
+      },
     });
     this.dispatchEvent(searchboxRequestEvent);
   }
@@ -197,6 +197,6 @@ export default class SearchBox extends Base {
   }
 }
 export interface SearchConfig {
-  area: string | undefined,
-  collection: string | undefined,
+  area?: string | undefined,
+  collection?: string | undefined,
 }
