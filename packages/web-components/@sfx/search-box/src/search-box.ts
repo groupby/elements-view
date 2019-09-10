@@ -60,9 +60,9 @@ export default class SearchBox extends Base {
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
   emitSearchEvent() {
-    const searchboxRequestEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+    const searchboxRequestEvent = this.createCustomEvent<SearchRequestPayload>(SEARCHBOX_EVENT.SEARCH_REQUEST, {
       value: this.value,
-      config: <SearchConfig> {
+      config: {
         area: this.area,
         collection: this.collection,
       },
@@ -196,7 +196,16 @@ export default class SearchBox extends Base {
     `;
   }
 }
-export interface SearchConfig {
-  area?: string | undefined,
-  collection?: string | undefined,
+
+/**
+ * The type of the search request event payload. The payload is the
+ * search term.
+ *
+ * NOTE: type `any` is being used here in place of SearchRequest,
+ * which comes from api-javascript (or @sfx/search-plugin).
+ */
+export interface SearchRequestPayload {
+  value: string;
+  searchbox?: string;
+  config?: Partial<any>;
 }
