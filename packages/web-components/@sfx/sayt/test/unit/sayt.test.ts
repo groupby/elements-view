@@ -172,10 +172,16 @@ describe('Sayt Component', () => {
   });
 
   describe('showCorrectSayt()', () => {
+    let showSayt;
+    let event;
+
+    beforeEach(() => {
+      showSayt = stub(sayt, 'showSayt');
+      event = { a: 'a' };
+    });
+
     it('should call showSayt() when event specifies correct searchbox ID ', () => {
-      const showSayt = stub(sayt, 'showSayt');
       const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(true);
-      const event = {};
 
       sayt.showCorrectSayt(event);
 
@@ -184,9 +190,7 @@ describe('Sayt Component', () => {
     });
 
     it('should not call showSayt() when event specifies wrong searchbox ID', () => {
-      const showSayt = stub(sayt, 'showSayt');
       const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(false);
-      const event = {};
 
       sayt.showCorrectSayt(event);
 
@@ -207,10 +211,16 @@ describe('Sayt Component', () => {
   });
 
   describe('hideCorrectSayt()', () => {
+    let hideSayt;
+    let event;
+
+    beforeEach(() => {
+      hideSayt = stub(sayt, 'hideSayt');
+      event = { a: 'a' };
+    });
+
     it('should call hideSayt() when event specifies correct searchbox ID ', () => {
-      const hideSayt = stub(sayt, 'hideSayt');
       const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(true);
-      const event = {};
 
       sayt.hideCorrectSayt(event);
 
@@ -219,9 +229,7 @@ describe('Sayt Component', () => {
     });
 
     it('should not call hideSayt() when event specifies wrong searchbox ID', () => {
-      const hideSayt = stub(sayt, 'hideSayt');
       const isCorrectSayt = stub(sayt, 'isCorrectSayt').returns(false);
-      const event = {};
 
       sayt.hideCorrectSayt(event);
 
@@ -407,7 +415,7 @@ describe('Sayt Component', () => {
     });
 
     it('should not error if passed an event without a detail attribute', () => {
-      const event = {};
+      const event = { a: 'a' };
       const callback = () => sayt.isCorrectSayt(event);
 
       expect(callback).to.not.throw();
