@@ -277,12 +277,13 @@ describe('Sayt Component', () => {
     const query = 'some-query';
     const searchbox = 'some-searchbox-id';
     const eventName = 'some-event-name';
-    const eventObj = {};
+    let eventObj;
     let dispatchEvent;
     let customEvent;
 
     beforeEach(() => {
-      dispatchEvent = stub(sayt, 'dispatchEvent');
+    eventObj = { a: 'a' };
+    dispatchEvent = stub(sayt, 'dispatchEvent');
       customEvent = stub(window, 'CustomEvent').returns(eventObj);
     });
 
