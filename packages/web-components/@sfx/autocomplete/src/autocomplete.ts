@@ -39,7 +39,6 @@ export default class Autocomplete extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
-    this.addEventListener('mouseover', this.handleHoverTerm);
   }
 
   /**
@@ -48,7 +47,6 @@ export default class Autocomplete extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
-    this.removeEventListener('mouseover', this.handleHoverTerm);
   }
 
   /**
@@ -100,7 +98,7 @@ export default class Autocomplete extends LitElement {
       ${this.results.map(
         list =>
           html`
-            <sfx-list caption="${list.title}" .items="${list.items}"></sfx-list>
+            <sfx-list .onmouseover=${this.handleHoverTerm} caption="${list.title}" .items="${list.items}"></sfx-list>
           `
       )}
     `;

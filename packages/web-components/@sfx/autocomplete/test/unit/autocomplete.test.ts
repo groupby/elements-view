@@ -52,10 +52,6 @@ describe('Autcomplete Component', () => {
         AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
         autocomplete.receivedResults,
       );
-      expect(autocompleteAddEventListener).to.have.been.calledWith(
-        'mouseover',
-        autocomplete.handleHoverTerm,
-      );
     });
   });
 
@@ -82,10 +78,6 @@ describe('Autcomplete Component', () => {
       expect(windowRemoveEventListener).to.have.been.calledWith(
         AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
         autocomplete.receivedResults,
-      );
-      expect(autocompleteRemoveEventListener).to.have.been.calledWith(
-        'mouseover',
-        autocomplete.handleHoverTerm,
       );
     });
   });
