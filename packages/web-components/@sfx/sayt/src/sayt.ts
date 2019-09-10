@@ -73,9 +73,9 @@ export default class Sayt extends LitElement {
     window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.addEventListener(PRODUCTS_RESPONSE_EVENT, this.showCorrectSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
+    window.addEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
-    window.addEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
     this.setSearchboxListener(this.searchbox, 'add');
   }
 
@@ -89,9 +89,9 @@ export default class Sayt extends LitElement {
     window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
     window.removeEventListener(PRODUCTS_RESPONSE_EVENT, this.showCorrectSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
+    window.removeEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
-    window.removeEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
     this.setSearchboxListener(this.searchbox, 'remove');
   }
 
