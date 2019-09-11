@@ -29,8 +29,8 @@ describe('Autcomplete Component', () => {
   });
 
   describe('connectedCallback', () => {
-    let windowAddEventListener,
-        autocompleteAddEventListener;
+    let windowAddEventListener;
+    let autocompleteAddEventListener;
 
     beforeEach(() => {
       windowAddEventListener = stub(window, 'addEventListener');
