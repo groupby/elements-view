@@ -1,7 +1,6 @@
 import { expect, spy, stub } from '../utils';
 import { TemplateResult, LitElement } from 'lit-element';
-import Autocomplete from '../../src/autocomplete';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from '@sfx/autocomplete';
+import Autocomplete, { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;

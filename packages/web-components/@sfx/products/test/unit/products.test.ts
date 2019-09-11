@@ -1,5 +1,5 @@
 import { expect, sinon, stub } from '../utils';
-import { Products, PRODUCTS_RESPONSE_EVENT } from '@sfx/products';
+import Products, { PRODUCTS_RESPONSE_EVENT } from '../../src/products';
 
 describe('Products Component', () => {
   let component;
