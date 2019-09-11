@@ -1,4 +1,5 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
+import * as debounce from 'lodash.debounce';
 import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
 import { SEARCHBOX_EVENT } from '@sfx/search-box';
@@ -43,6 +44,12 @@ export default class Sayt extends LitElement {
    */
   @property({ type: Number, reflect: true }) minSearchLength = 3;
   /**
+   * The minimum time required before a SAYT request will be made.
+   */
+  @property({ type: Number, reflect: true }) debounceTime = 400;
+
+
+  /**
    * Calls superclass constructor and bind methods.
    */
   constructor() {
@@ -57,12 +64,24 @@ export default class Sayt extends LitElement {
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
     this.isCorrectSayt = this.isCorrectSayt.bind(this);
     this.requestSayt = this.requestSayt.bind(this);
-    this.requestSaytAutocompleteTerms = this.requestSaytAutocompleteTerms.bind(this);
-    this.requestSaytProducts = this.requestSaytProducts.bind(this);
     this.processSearchboxInput = this.processSearchboxInput.bind(this);
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
+    this.requestSaytAutocompleteTerms = debounce(
+      this.requestSaytAutocompleteTerms.bind(this),
+      this.debounceTime, {
+        'leading': true,
+        'trailing': true
+      }
+    );
+    this.requestSaytProducts = debounce(
+      this.requestSaytProducts.bind(this),
+      this.debounceTime, {
+        'leading': true,
+        'trailing': true
+      }
+    );
   }
 
   /**
@@ -196,6 +215,7 @@ export default class Sayt extends LitElement {
    * @param searchbox The optional searchbox ID associated with this search.
    */
   requestSaytAutocompleteTerms(query: string, searchbox?: string) {
+    console.log('>> yo req')
     const requestSaytResults = new CustomEvent(AUTOCOMPLETE_REQUEST_RESULTS, {
       detail: { query, searchbox },
       bubbles: true
@@ -235,6 +255,7 @@ export default class Sayt extends LitElement {
    * @param event The searchbox input event dispatched from the searchbox.
    */
   processSearchboxInput(event: Event) {
+     // this.debounceSaytRequests(this.requestSaytAutocompleteTerms, 3000, debounceArgs);
     this.requestSayt((event.target as HTMLInputElement).value, this.searchbox);
   }
 
@@ -344,4 +365,11 @@ export default class Sayt extends LitElement {
       </div>
     `;
   }
+}
+
+// export interface test {
+//   args: (query: string, searchbox?: string);
+// }
+export interface SearchFunc {
+ (): void;
 }
