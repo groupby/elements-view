@@ -245,7 +245,7 @@ describe('Sayt Component', () => {
     beforeEach(() => {
       query = 'some-query';
       sayt.minSearchLength = 3;
-      dispatchEvent = stub(window, 'dispatchEvent');
+      dispatchEvent = stub(sayt, 'dispatchEvent');
     });
 
     it('should not dispatch an event if query length is sufficiently short', () => {
