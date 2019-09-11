@@ -30,7 +30,6 @@ export default class Autocomplete extends LitElement {
   constructor() {
     super();
     this.receivedResults = this.receivedResults.bind(this);
-    this.handleHoverTerm = this.handleHoverTerm.bind(this);
   }
 
   /**
