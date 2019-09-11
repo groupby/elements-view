@@ -50,7 +50,7 @@ describe('Autcomplete Component', () => {
 
       expect(windowAddEventListener).to.have.been.calledWith(
         AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
-        autocomplete.receivedResults,
+        autocomplete.receivedResults
       );
     });
   });
@@ -77,7 +77,7 @@ describe('Autcomplete Component', () => {
 
       expect(windowRemoveEventListener).to.have.been.calledWith(
         AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
-        autocomplete.receivedResults,
+        autocomplete.receivedResults
       );
     });
   });
