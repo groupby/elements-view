@@ -65,10 +65,10 @@ const autocompleteDataReceivedEvent = new CustomEvent(AUTOCOMPLETE_RECEIVED_RESU
 
 function generateBaseData() {
   setTimeout(() => {
-    window.dispatchEvent(autocompleteDataReceivedEvent)
+    window.dispatchEvent(autocompleteDataReceivedEvent);
   }, 0)
   setTimeout(() => {
-    window.dispatchEvent(getProductsReceivedEvent())
+    window.dispatchEvent(getProductsReceivedEvent());
   }, 0)
 }
 
