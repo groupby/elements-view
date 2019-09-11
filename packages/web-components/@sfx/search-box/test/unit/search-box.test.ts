@@ -67,7 +67,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('emitSearchEvent', () => {
-    it('should dispatch a search request event with undefined area and collection', () => {
+    it('should dispatch a search request event with empty area and collection', () => {
       const value = searchbox.value = 'a';
       const id = searchbox.id = 'some-id';
       const createCustomEvent = stub(searchbox, 'createCustomEvent').returns({ some: 'event' });
@@ -84,7 +84,7 @@ describe('SearchBox Component', () => {
       expect(searchboxDispatchEvent).to.be.calledWith({ some: 'event' });
     });
 
-    it('should dispatch a search request event with undefined area and collection', () => {
+    it('should dispatch a search request event with area and collection', () => {
       const value = searchbox.value = 'a';
       const area = searchbox.area = 'some-area';
       const collection = searchbox.collection = 'some-collection';
