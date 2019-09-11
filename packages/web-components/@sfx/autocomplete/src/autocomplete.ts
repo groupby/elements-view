@@ -98,7 +98,7 @@ export default class Autocomplete extends LitElement {
       ${this.results.map(
         list =>
           html`
-            <sfx-list .onmouseover=${this.handleHoverTerm} caption="${list.title}" .items="${list.items}"></sfx-list>
+            <sfx-list caption="${list.title}" .items="${list.items}" @mouseover="${this.handleHoverTerm}"></sfx-list>
           `
       )}
     `;
