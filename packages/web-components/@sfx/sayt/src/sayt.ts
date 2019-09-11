@@ -175,7 +175,7 @@ export default class Sayt extends LitElement {
    * They will only be called if the term is at least [[minSearchLength]] long.
    *
    * @param query The search term to use.
-   * @param searchbox The optional searchbox ID associated with this search.
+   * @param searchbox The searchbox ID associated with this search.
    */
   requestSayt(query: string, searchbox?: string) {
     if (query.length < this.minSearchLength) {
