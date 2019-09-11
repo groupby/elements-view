@@ -1,5 +1,5 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
-import * as debounce from 'lodash.debounce';
+import debounce from 'lodash.debounce';
 import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
 import { SEARCHBOX_EVENT } from '@sfx/search-box';

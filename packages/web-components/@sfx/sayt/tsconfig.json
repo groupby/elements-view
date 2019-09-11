@@ -11,6 +11,7 @@
       "mocha",
       "sinon"
     ],
+    "esModuleInterop": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es2015",

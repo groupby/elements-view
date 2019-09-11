@@ -20,7 +20,9 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "html-entities": "^1.2.1",
-    "lodash.debounce": "^4.0.8"
+    "html-entities": "^1.2.1"
+  },
+  "dependencies": {
+    "@types/lodash.debounce": "^4.0.6"
   }
 }
