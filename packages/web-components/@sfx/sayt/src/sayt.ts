@@ -214,7 +214,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Dispatches an `sfx::sayt_products_request` event with the provided data.
+   * Dispatches a [[sfx::sayt_products_request]] event with the provided data.
    *
    * @param query The search term to use.
    * @param searchbox The optional searchbox ID associated with this search.
