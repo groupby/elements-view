@@ -33,7 +33,6 @@ describe('Autcomplete Component', () => {
 
     beforeEach(() => {
       windowAddEventListener = stub(window, 'addEventListener');
-      autocompleteAddEventListener = stub(autocomplete, 'addEventListener');
     });
 
     it('should call its super connectedCallback', () => {
@@ -60,7 +59,6 @@ describe('Autcomplete Component', () => {
 
     beforeEach(() => {
       windowRemoveEventListener = stub(window, 'removeEventListener');
-      autocompleteRemoveEventListener = stub(autocomplete, 'removeEventListener');
     });
 
     it('should call its super disconnectedCallback', () => {
