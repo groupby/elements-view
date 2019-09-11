@@ -2,8 +2,8 @@ import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { ProductModel } from '@sfx/product';
 
-import '../src/index';
 import { getDisplayCode, getProducts } from '../../../../../.storybook/common';
+import '../src/index';
 
 function getProductComponent(product: ProductModel = {}, codeSnippet: boolean = false): string {
   const productInfo = text('Product Info', JSON.stringify(product));
