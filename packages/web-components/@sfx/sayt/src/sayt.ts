@@ -230,8 +230,7 @@ export default class Sayt extends LitElement {
    * @param event The hover event dispatched from autocomplete.
    */
   handleAutocompleteTermHover(event: CustomEvent) {
-    const query = event.detail.query;
-    this.requestSaytProducts(query, this.searchbox);
+    this.requestSaytProducts(event.detail.query, this.searchbox);
   }
 
   /**
