@@ -1,3 +1,4 @@
+import { TemplateResult, LitElement } from 'lit-element';
 import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
 import { SEARCHBOX_EVENT } from '@sfx/search-box';
 import {
@@ -6,10 +7,8 @@ import {
   HOVER_AUTOCOMPLETE_TERM_EVENT,
 } from '@sfx/autocomplete';
 import { expect, sinon, spy, stub } from '../utils';
-import { TemplateResult, LitElement } from 'lit-element';
 import Sayt from '../../src/sayt';
 import { SAYT_EVENT } from '../../src/events';
-
 
 describe('Sayt Component', () => {
   let sayt;
