@@ -193,7 +193,7 @@ export default class Sayt extends LitElement {
    *
    * @param eventType The type of the event to be dispatched.
    * @param query The query term.
-   * @param searchbox The id of the associated searchbox if relevant.
+   * @param searchbox The ID of the associated searchbox.
    */
   dispatchRequestEvent(eventType: string, query: string, searchbox?: string) {
     const requestEvent = new CustomEvent(eventType, {
