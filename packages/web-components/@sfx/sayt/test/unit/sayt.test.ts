@@ -419,66 +419,6 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('requestSayt()', () => {
-    const query = 'test';
-    const type = 'event name';
-    let dispatchEvent;
-    let hideSayt;
-
-    beforeEach(() => {
-      dispatchEvent = stub(sayt, 'dispatchEvent');
-      hideSayt = stub(sayt, 'hideSayt');
-    });
-
-    it('should hide the sayt container if there are not enough characters in a searchbox query', () => {
-      sayt.minSearchLength = 6;
-
-      sayt.requestSayt(query);
-
-      expect(hideSayt).to.be.called;
-      expect(dispatchEvent).to.not.be.called;
-    });
-
-    it('should not hide the sayt if the query meets the minimum search length', () => {
-      sayt.minSearchLength = 4;
-
-      sayt.requestSayt(query);
-
-      expect(hideSayt).to.not.be.called;
-    });
-
-    it('should send an event to request sayt results if the query string is long enough', () => {
-      const detail = { query };
-      const event = {
-        detail,
-        type,
-      };
-      const customEvent = stub(window, 'CustomEvent').returns(event);
-      sayt.minSearchLength = 3;
-
-      sayt.requestSayt(query);
-
-      expect(customEvent.calledWithNew()).to.be.true;
-      expect(dispatchEvent).to.be.calledWith(event);
-    });
-
-    it('should include a searchbox in the dispatched event if it is provided', () => {
-      const searchbox = 'testBox';
-      const detail = { query, searchbox };
-      const event = {
-        detail,
-        type,
-      };
-      const customEvent = stub(window, 'CustomEvent').returns(event);
-      sayt.minSearchLength = 3;
-
-      sayt.requestSayt(query);
-
-      expect(customEvent.calledWithNew()).to.be.true;
-      expect(dispatchEvent).to.be.calledWith(event);
-    });
-  });
-
   describe('processClick()', () => {
     let node: any;
     let event: any;
