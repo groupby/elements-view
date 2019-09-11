@@ -200,12 +200,11 @@ export default class SearchBox extends Base {
 /**
  * The type of the search request event payload. The payload is the
  * search term.
- *
- * NOTE: type `any` is being used here in place of SearchRequest,
- * which comes from api-javascript (or @sfx/search-plugin).
  */
 export interface SearchRequestPayload {
   value: string;
+  // NOTE: type `any` is being used here in place of SearchRequest, which
+  // comes from api-javascript (or @sfx/search-plugin).
   searchbox?: string;
   config?: Partial<any>;
 }

@@ -289,8 +289,8 @@ describe('Sayt Component', () => {
     let customEvent;
 
     beforeEach(() => {
-    eventObj = { a: 'a' };
-    dispatchEvent = stub(sayt, 'dispatchEvent');
+      eventObj = { a: 'a' };
+      dispatchEvent = stub(sayt, 'dispatchEvent');
       customEvent = stub(window, 'CustomEvent').returns(eventObj);
     });
 
@@ -323,8 +323,7 @@ describe('Sayt Component', () => {
 
       sayt.requestSaytAutocompleteTerms(query, searchbox);
 
-      expect(dispatchRequestEvent).to.be.calledWith(
-        AUTOCOMPLETE_REQUEST_RESULTS, query, searchbox);
+      expect(dispatchRequestEvent).to.be.calledWith(AUTOCOMPLETE_REQUEST_RESULTS, query, searchbox);
     });
   });
 
@@ -336,8 +335,7 @@ describe('Sayt Component', () => {
 
       sayt.requestSaytProducts(query, searchbox);
 
-      expect(dispatchRequestEvent).to.be.calledWith(
-        PRODUCTS_REQUEST_EVENT, query, searchbox);
+      expect(dispatchRequestEvent).to.be.calledWith(PRODUCTS_REQUEST_EVENT, query, searchbox);
     });
   });
 
