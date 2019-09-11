@@ -56,8 +56,8 @@ describe('Autcomplete Component', () => {
   });
 
   describe('disconnectedCallback', () => {
-    let windowRemoveEventListener,
-        autocompleteRemoveEventListener;
+    let windowRemoveEventListener;
+    let autocompleteRemoveEventListener;
 
     beforeEach(() => {
       windowRemoveEventListener = stub(window, 'removeEventListener');
