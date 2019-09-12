@@ -72,7 +72,7 @@ describe('Sayt Component', () => {
     it('should debounce the requestSaytAutocompleteTerms and requestSaytProducts methods', () => {
       const fn1 = () => null;
       const fn2 = () => null;
-      const delay = 400;
+      const delay = sayt.debounceTime;
       const debounceSettings = { 'leading': true, 'trailing': true };
       const debounceStub = stub(Lodash, 'debounce');
       sayt.requestSaytAutocompleteTerms = fn1;
