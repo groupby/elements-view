@@ -70,19 +70,17 @@ describe('Sayt Component', () => {
     });
 
     it('should debounce the requestSaytAutocompleteTerms and requestSaytProducts methods', () => {
-      const fn1 = () => null;
-      const fn2 = () => null;
       const delay = sayt.debounceTime;
       const debounceSettings = { 'leading': true, 'trailing': true };
       const debounceStub = stub(Lodash, 'debounce');
-      sayt.requestSaytAutocompleteTerms = fn1;
-      sayt.requestSaytProducts = fn2;
+      const requestSaytAutocompleteTerms = sayt.requestSaytAutocompleteTerms;
+      const requestSaytProducts = sayt.requestSaytProducts;
 
       sayt.connectedCallback();
 
       expect(debounceStub).to.be.calledTwice;
-      expect(debounceStub).to.be.calledWithExactly(fn1, delay, debounceSettings);
-      expect(debounceStub).to.be.calledWithExactly(fn2, delay, debounceSettings);
+      expect(debounceStub).to.be.calledWithExactly(requestSaytAutocompleteTerms, delay, debounceSettings);
+      expect(debounceStub).to.be.calledWithExactly(requestSaytProducts, delay, debounceSettings);
     });
   });
 
