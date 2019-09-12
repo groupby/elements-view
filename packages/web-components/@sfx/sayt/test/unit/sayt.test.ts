@@ -11,6 +11,7 @@ import {
 } from '@sfx/events';
 import { expect, sinon, spy, stub } from '../utils';
 import Sayt from '../../src/sayt';
+import * as Lodash from 'lodash';
 
 describe('Sayt Component', () => {
   let sayt;
@@ -66,6 +67,22 @@ describe('Sayt Component', () => {
       sayt.connectedCallback();
 
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
+    });
+
+    it('should debounce the requestSaytAutocompleteTerms and requestSaytProducts methods', () => {
+      const fn1 = () => null;
+      const fn2 = () => null;
+      const delay = 400;
+      const debounceSettings = { 'leading': true, 'trailing': true };
+      const debounceStub = stub(Lodash, 'debounce');
+      sayt.requestSaytAutocompleteTerms = fn1;
+      sayt.requestSaytProducts = fn2;
+
+      sayt.connectedCallback();
+
+      expect(debounceStub).to.be.calledTwice;
+      expect(debounceStub).to.be.calledWithExactly(fn1, delay, debounceSettings);
+      expect(debounceStub).to.be.calledWithExactly(fn2, delay, debounceSettings);
     });
   });
 

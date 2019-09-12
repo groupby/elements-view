@@ -1,5 +1,6 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
+import { debounce } from 'lodash';
 import {
   AUTOCOMPLETE_ACTIVE_TERM,
   AUTOCOMPLETE_REQUEST,
@@ -55,6 +56,10 @@ export default class Sayt extends LitElement {
    */
   @property({ type: Number, reflect: true }) minSearchLength = 3;
   /**
+   * The minimum time required before a SAYT request will be made.
+   */
+  @property({ type: Number, reflect: true }) debounceTime = 400;
+  /**
    * Calls superclass constructor and bind methods.
    */
   constructor() {
@@ -90,6 +95,21 @@ export default class Sayt extends LitElement {
     window.addEventListener('keydown', this.processKeyEvent);
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.setSearchboxListener(this.searchbox, 'add');
+    this.requestSaytAutocompleteTerms = debounce(
+      this.requestSaytAutocompleteTerms,
+      this.debounceTime, {
+        'leading': true,
+        'trailing': true
+      }
+    );
+
+    this.requestSaytProducts = debounce(
+      this.requestSaytProducts,
+      this.debounceTime, {
+        'leading': true,
+        'trailing': true
+      }
+    );
   }
 
   /**
