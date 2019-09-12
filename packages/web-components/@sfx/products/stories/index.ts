@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { ProductModel } from '@sfx/product';
-import { PRODUCTS_EVENT } from '@sfx/products';
+import { PRODUCTS_RESPONSE_EVENT } from '@sfx/products';
 import { getDisplayCode, getProducts, productsResultsEvent, hidePrompt } from '../../../../../.storybook/common';
 
 function getProductsComponent(productsArray: ProductModel[] = []) {
@@ -77,7 +77,7 @@ storiesOf('Components|Products', module)
   ).add(
     'Rendering with event payload',
     () => {
-      hidePrompt(PRODUCTS_EVENT);
+      hidePrompt(PRODUCTS_RESPONSE_EVENT);
       const productsComponent = getProductsComponent();
       return `
       ${productsComponent}
@@ -91,10 +91,10 @@ storiesOf('Components|Products', module)
         markdown: `
         ${productsNotesMarkdownIntro}
 
-          ### The SF-X Products component renders a product grid in response to the \`${PRODUCTS_EVENT}\` event.
+          ### The SF-X Products component renders a product grid in response to the \`${PRODUCTS_RESPONSE_EVENT}\` event.
             * The payload of the event contains an array of products.
             * To emit the event in this story:
-              1. Visit the **Custom Events** tab and locate the \`${PRODUCTS_EVENT}\` event.
+              1. Visit the **Custom Events** tab and locate the \`${PRODUCTS_RESPONSE_EVENT}\` event.
               2. Click "emit".
               3. See the component update with the product data contained in the array.
         `

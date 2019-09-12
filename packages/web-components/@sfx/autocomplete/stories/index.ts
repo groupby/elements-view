@@ -22,13 +22,13 @@ function getAutocompleteComponent(results = []): string {
   if (results.length > 0) {
     const autocompleteResults = text('Autocomplete Results', JSON.stringify(results))
     return '<sfx-autocomplete\n'
-    + ` results="${autocompleteResults}"\n`
-    + ` caption="${optionalTitle}"\n`
-    + '></sfx-autocomplete>';
+      + ` results="${autocompleteResults}"\n`
+      + ` caption="${optionalTitle}"\n`
+      + '></sfx-autocomplete>';
   } else {
     return '<sfx-autocomplete\n'
-    + ` caption="${optionalTitle}"\n`
-    + '></sfx-autocomplete>';
+      + ` caption="${optionalTitle}"\n`
+      + '></sfx-autocomplete>';
   }
 }
 
@@ -37,13 +37,13 @@ storiesOf('Components|Autocomplete', module)
   .add(
     'Default',
     () => {
-     return `
+      return `
      ${getAutocompleteComponent(autocompleteResults)}
      ${getDisplayCode(getAutocompleteComponent())}`
     },
     {
-    notes: {
-      markdown: `
+      notes: {
+        markdown: `
         ${autocompleteNotesIntro}
 
         ### The SF-X Autocomplete component populated with hardcoded autocomplete data.
@@ -70,8 +70,8 @@ storiesOf('Components|Autocomplete', module)
         ></sfx-autocomplete>
         \`\`\`
       `
+      }
     }
-  }
   )
   .add(
     'Rendering with event payload',

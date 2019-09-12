@@ -1,7 +1,12 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
-import { PRODUCTS_EVENT } from '@sfx/products';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '@sfx/autocomplete';
+import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
+import { SEARCHBOX_EVENT } from '@sfx/search-box';
+import {
+  AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
+  HOVER_AUTOCOMPLETE_TERM_EVENT,
+  AUTOCOMPLETE_REQUEST_RESULTS,
+} from '@sfx/autocomplete';
 
 /**
  * The `sfx-sayt` component is responsible for displaying and hiding the
@@ -55,6 +60,7 @@ export default class Sayt extends LitElement {
     this.processSearchboxInput = this.processSearchboxInput.bind(this);
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
+    this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
   }
 
   /**
@@ -65,8 +71,9 @@ export default class Sayt extends LitElement {
 
     window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
     window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
-    window.addEventListener(PRODUCTS_EVENT, this.showCorrectSayt);
+    window.addEventListener(PRODUCTS_RESPONSE_EVENT, this.showCorrectSayt);
     window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
+    window.addEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
     this.setSearchboxListener(this.searchbox, 'add');
@@ -80,8 +87,9 @@ export default class Sayt extends LitElement {
 
     window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
     window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
-    window.removeEventListener(PRODUCTS_EVENT, this.showCorrectSayt);
+    window.removeEventListener(PRODUCTS_RESPONSE_EVENT, this.showCorrectSayt);
     window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
+    window.removeEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
     this.setSearchboxListener(this.searchbox, 'remove');
@@ -120,7 +128,7 @@ export default class Sayt extends LitElement {
       const searchbox = document.getElementById(searchboxId) as HTMLElement;
       if (searchbox) searchbox[setEventListener]('input', this.processSearchboxInput);
     } else {
-      window[setEventListener]('sfx::searchbox_change', this.processSfxSearchboxChange);
+      window[setEventListener](SEARCHBOX_EVENT.SEARCHBOX_CHANGE, this.processSfxSearchboxChange);
     }
   }
 
@@ -162,8 +170,9 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Dispatches an `sfx::autocomplete_fetch_data` event with the provided data.
-   * The event will be dispatched if the term is at least [[minSearchLength]] long.
+   * Triggers requests for Sayt autocomplete terms and Sayt products
+   * simultaneously using a query and searchbox ID.
+   * They will only be called if the term is at least [[minSearchLength]] long.
    *
    * @param query The search term to use.
    * @param searchbox The searchbox ID associated with this search.
@@ -174,11 +183,54 @@ export default class Sayt extends LitElement {
       return;
     }
 
-    const requestSaytResults = new CustomEvent('sfx::autocomplete_fetch_data', {
+    this.requestSaytAutocompleteTerms(query, searchbox);
+    this.requestSaytProducts(query, searchbox);
+  }
+
+  /**
+   * Dispatches an event to request data. Intended for requesting
+   * products or autocomplete terms.
+   *
+   * @param eventType The type of the event to be dispatched.
+   * @param query The query term.
+   * @param searchbox The ID of the associated searchbox.
+   */
+  dispatchRequestEvent(eventType: string, query: string, searchbox?: string) {
+    const requestEvent = new CustomEvent(eventType, {
       detail: { query, searchbox },
       bubbles: true
     });
-    window.dispatchEvent(requestSaytResults);
+    this.dispatchEvent(requestEvent);
+  }
+
+  /**
+   * Dispatches an [[AUTOCOMPLETE_REQUEST_RESULTS]] event with the provided data.
+   *
+   * @param query The search term to use.
+   * @param searchbox The optional searchbox ID associated with this search.
+   */
+  requestSaytAutocompleteTerms(query: string, searchbox?: string) {
+    this.dispatchRequestEvent(AUTOCOMPLETE_REQUEST_RESULTS, query, searchbox);
+  }
+
+  /**
+   * Dispatches a [[PRODUCTS_REQUEST_EVENT]] event with the provided data.
+   *
+   * @param query The search term to use.
+   * @param searchbox The optional searchbox ID associated with this search.
+   */
+  requestSaytProducts(query: string, searchbox?: string) {
+    this.dispatchRequestEvent(PRODUCTS_REQUEST_EVENT, query, searchbox);
+  }
+
+  /**
+   * Handles how the hover on Sayt autocomplete terms updates the sayt products.
+   * Triggers a request of Sayt products using the query and searchbox data.
+   *
+   * @param event The hover event dispatched from autocomplete.
+   */
+  handleAutocompleteTermHover(event: CustomEvent) {
+    this.requestSaytProducts(event.detail.query, this.searchbox);
   }
 
   /**
@@ -285,13 +337,13 @@ export default class Sayt extends LitElement {
         : ''}
       <div class="sfx-sayt-container">
         ${this.hideAutocomplete
-          ? ''
-          : html`
+        ? ''
+        : html`
               <sfx-autocomplete></sfx-autocomplete>
             `}
         ${this.hideProducts
-          ? ''
-          : html`
+        ? ''
+        : html`
               <sfx-products></sfx-products>
             `}
       </div>

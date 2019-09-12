@@ -29,6 +29,7 @@ particular customizations:
 - `showCloseButton`: Shows a button to allow for closing SAYT manually.
 - `closeText`: Customizes the text in the close button.
 - `visible`: Determines the visibility of the `sayt` component.
+- `minSearchLength`: The minimum length of the search term required before a SAYT request will be made with it.
 
 ## Testing
 

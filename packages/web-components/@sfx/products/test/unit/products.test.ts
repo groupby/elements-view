@@ -1,5 +1,5 @@
 import { expect, sinon, stub } from '../utils';
-import Products, { PRODUCTS_EVENT } from '../../src/products';
+import Products, { PRODUCTS_RESPONSE_EVENT } from '../../src/products';
 
 describe('Products Component', () => {
   let component;
@@ -45,7 +45,7 @@ describe('Products Component', () => {
 
       component.connectedCallback();
 
-      expect(addEventListener).to.be.calledWith(PRODUCTS_EVENT, component.setProductsFromEvent);
+      expect(addEventListener).to.be.calledWith(PRODUCTS_RESPONSE_EVENT, component.setProductsFromEvent);
     });
   });
 
@@ -63,19 +63,26 @@ describe('Products Component', () => {
 
       component.disconnectedCallback();
 
-      expect(removeEventListener).to.be.calledWith(PRODUCTS_EVENT, component.setProductsFromEvent);
+      expect(removeEventListener).to.be.calledWith(PRODUCTS_RESPONSE_EVENT, component.setProductsFromEvent);
     });
   });
 
   describe('setProductsFromEvent', () => {
     it('should set the event products payload into the component', () => {
       const products = [1, 2, 3];
-      const event = { detail: { products }};
-      component.products = [];
+      const event = { detail: { results: { products } } };
 
       component.setProductsFromEvent(event);
 
       expect(component.products).to.equal(products);
+    });
+
+    it('should set the products property to an empty array if payload of the event is undefined', () => {
+      const event = { detail: { results: {} } };
+
+      component.setProductsFromEvent(event);
+
+      expect(component.products).to.deep.equal([]);
     });
   });
 });

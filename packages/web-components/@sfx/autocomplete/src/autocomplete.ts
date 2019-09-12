@@ -2,11 +2,15 @@ import { customElement, html, property, LitElement } from 'lit-element';
 import '@sfx/ui';
 
 // TODO: replace with @sfx/events import - added temporarily for import in storybook/common
+// event descriptions to be contained in events repo
 export const AUTOCOMPLETE_RECEIVED_RESULTS_EVENT = 'sfx::autocomplete_received_results';
+export const HOVER_AUTOCOMPLETE_TERM_EVENT = 'sfx::sayt_hover_autocomplete_term';
+export const AUTOCOMPLETE_REQUEST_RESULTS = 'sfx::autocomplete_fetch_data';
 
 /**
- * Listens for the `sfx::autocomplete_received_results` event and
- * populates a list with the data received.
+ * The `sfx-autocomplete` component is responsible for displaying a list
+ * of autocomplete terms upon receipt of the `sfx::autocomplete_received_results` event.
+ * The component is also responsible for emitting events based on user input.
  */
 @customElement('sfx-autocomplete')
 export default class Autocomplete extends LitElement {
@@ -50,7 +54,25 @@ export default class Autocomplete extends LitElement {
    * @param e The event object.
    */
   receivedResults(e: CustomEvent) {
-    this.results = e.detail.results;
+    this.results = e.detail.results || [];
+  }
+
+  /**
+   * Dispatches an `sfx::sayt_hover_autocomplete_term` event with the Sayt autocomplete term.
+   *
+   * @param event An event that contains a Sayt autocomplete term.
+   */
+  handleHoverTerm(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (target.tagName.toLowerCase() !== 'li') return;
+    const term = target.innerText;
+    const sentEvent = new CustomEvent(HOVER_AUTOCOMPLETE_TERM_EVENT, {
+      detail: {
+        query: term,
+      },
+      bubbles: true,
+    });
+    this.dispatchEvent(sentEvent);
   }
 
   /**
@@ -75,7 +97,7 @@ export default class Autocomplete extends LitElement {
       ${this.results.map(
         list =>
           html`
-            <sfx-list caption="${list.title}" .items="${list.items}"></sfx-list>
+            <sfx-list caption="${list.title}" .items="${list.items}" @mouseover="${this.handleHoverTerm}"></sfx-list>
           `
       )}
     `;

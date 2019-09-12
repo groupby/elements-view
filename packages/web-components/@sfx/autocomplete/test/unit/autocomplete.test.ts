@@ -1,6 +1,6 @@
-import { expect, spy, stub } from '../utils';
 import { TemplateResult, LitElement } from 'lit-element';
-import Autocomplete from '../../src/autocomplete';
+import { expect, spy, stub } from '../utils';
+import Autocomplete, { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
@@ -28,6 +28,13 @@ describe('Autcomplete Component', () => {
   });
 
   describe('connectedCallback', () => {
+    let windowAddEventListener;
+    let autocompleteAddEventListener;
+
+    beforeEach(() => {
+      windowAddEventListener = stub(window, 'addEventListener');
+    });
+
     it('should call its super connectedCallback', () => {
       const superConnectedCallbackStub = stub(LitElement.prototype, 'connectedCallback');
 
@@ -36,19 +43,24 @@ describe('Autcomplete Component', () => {
       expect(superConnectedCallbackStub).to.have.been.called;
     });
 
-    it('should add an eventListener to the window', () => {
-      const windowAddEventListener = spy(window, 'addEventListener');
-
+    it('should add event listeners to the component and window', () => {
       autocomplete.connectedCallback();
 
       expect(windowAddEventListener).to.have.been.calledWith(
-        'sfx::autocomplete_received_results',
+        AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
         autocomplete.receivedResults
       );
     });
   });
 
   describe('disconnectedCallback', () => {
+    let windowRemoveEventListener;
+    let autocompleteRemoveEventListener;
+
+    beforeEach(() => {
+      windowRemoveEventListener = stub(window, 'removeEventListener');
+    });
+
     it('should call its super disconnectedCallback', () => {
       const superDisconnectedCallbackStub = stub(LitElement.prototype, 'disconnectedCallback');
 
@@ -57,13 +69,11 @@ describe('Autcomplete Component', () => {
       expect(superDisconnectedCallbackStub).to.have.been.called;
     });
 
-    it('should remove eventListener from the window', () => {
-      const windowRemoveEventListener = spy(window, 'removeEventListener');
-
+    it('should remove event listeners from the component and window', () => {
       autocomplete.disconnectedCallback();
 
       expect(windowRemoveEventListener).to.have.been.calledWith(
-        'sfx::autocomplete_received_results',
+        AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
         autocomplete.receivedResults
       );
     });
@@ -87,6 +97,53 @@ describe('Autcomplete Component', () => {
       autocomplete.receivedResults({ detail: { results } });
 
       expect(autocomplete.results).to.deep.equal(results);
+    });
+
+    it('should set the results property to an empty array if the response data is undefined', () => {
+      autocomplete.receivedResults({ detail: {} });
+
+      expect(autocomplete.results).to.deep.equal([]);
+    });
+  });
+
+  describe('handleHoverTerm', () => {
+    let dispatchEvent;
+
+    beforeEach(() => {
+      dispatchEvent = stub(autocomplete, 'dispatchEvent');
+    });
+
+    it('should not emit an event if not hovering an autocomplete term', () => {
+      const mouseEvent = {
+        target: {
+          tagName: 'H4',
+          innerText: 'some-term',
+        }
+      };
+
+      autocomplete.handleHoverTerm(mouseEvent);
+
+      expect(dispatchEvent).to.not.be.called;
+    });
+
+    it('should emit an event when hovering an autocomplete term', () => {
+      CustomEvent = stub(window, 'CustomEvent').returns({});
+      const mouseEvent = {
+        target: {
+          tagName: 'LI',
+          innerText: 'some-term',
+        }
+      };
+
+      autocomplete.handleHoverTerm(mouseEvent);
+
+      expect(CustomEvent).to.be.calledWith(HOVER_AUTOCOMPLETE_TERM_EVENT, {
+        detail: {
+          query: mouseEvent.target.innerText,
+        },
+        bubbles: true,
+      });
+      expect(dispatchEvent).to.be.calledWith({});
     });
   });
 });

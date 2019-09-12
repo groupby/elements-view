@@ -8,3 +8,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - SFX-152: Added the autocomplete component.
   - This component renders a list of autocomplete terms.
+  - SFX-333: The component emits an event when an autocomplete term is hovered.

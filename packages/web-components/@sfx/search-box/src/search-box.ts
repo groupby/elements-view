@@ -25,6 +25,14 @@ export default class SearchBox extends Base {
    * Determines whether or not the clear button is present.
    */
   @property({ type: Boolean, reflect: true }) clearButton: boolean = false;
+  /**
+   * Determines the area used for search.
+   */
+  @property({ type: String, reflect: true }) area: string = '';
+  /**
+   * Determines the collection used for search.
+   */
+  @property({ type: String, reflect: true }) collection: string = '';
 
   constructor() {
     super();
@@ -52,8 +60,12 @@ export default class SearchBox extends Base {
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
   emitSearchEvent() {
-    const searchboxRequestEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-      value: this.value
+    const searchboxRequestEvent = this.createCustomEvent<SearchRequestPayload>(SEARCHBOX_EVENT.SEARCH_REQUEST, {
+      value: this.value,
+      config: {
+        area: this.area,
+        collection: this.collection,
+      },
     });
     this.dispatchEvent(searchboxRequestEvent);
   }
@@ -183,4 +195,16 @@ export default class SearchBox extends Base {
         : ''}
     `;
   }
+}
+
+/**
+ * The type of the search request event payload. The payload is the
+ * search term.
+ */
+export interface SearchRequestPayload {
+  value: string;
+  // NOTE: type `any` is being used here in place of SearchRequest, which
+  // comes from api-javascript (or @sfx/search-plugin).
+  searchbox?: string;
+  config?: Partial<any>;
 }
