@@ -1,5 +1,5 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
-import debounce from 'lodash.debounce';
+import { debounce } from 'lodash';
 import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from './events';
 import { SEARCHBOX_EVENT } from '@sfx/search-box';
@@ -68,20 +68,8 @@ export default class Sayt extends LitElement {
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
-    this.requestSaytAutocompleteTerms = debounce(
-      this.requestSaytAutocompleteTerms.bind(this),
-      this.debounceTime, {
-        'leading': true,
-        'trailing': true
-      }
-    );
-    this.requestSaytProducts = debounce(
-      this.requestSaytProducts.bind(this),
-      this.debounceTime, {
-        'leading': true,
-        'trailing': true
-      }
-    );
+    this.requestSaytAutocompleteTerms = this.requestSaytAutocompleteTerms.bind(this);
+    this.requestSaytProducts = this.requestSaytProducts.bind(this);
   }
 
   /**
@@ -98,6 +86,21 @@ export default class Sayt extends LitElement {
     window.addEventListener('keydown', this.processKeyEvent);
     this.setSearchboxListener(this.searchbox, 'add');
     window.addEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
+    this.requestSaytAutocompleteTerms = debounce(
+      this.requestSaytAutocompleteTerms,
+      this.debounceTime, {
+        'leading': true,
+        'trailing': true
+      }
+    );
+
+    this.requestSaytProducts = debounce(
+      this.requestSaytProducts,
+      this.debounceTime, {
+        'leading': true,
+        'trailing': true
+      }
+    );
   }
 
   /**
@@ -215,7 +218,6 @@ export default class Sayt extends LitElement {
    * @param searchbox The optional searchbox ID associated with this search.
    */
   requestSaytAutocompleteTerms(query: string, searchbox?: string) {
-    console.log('>> yo req')
     const requestSaytResults = new CustomEvent(AUTOCOMPLETE_REQUEST_RESULTS, {
       detail: { query, searchbox },
       bubbles: true

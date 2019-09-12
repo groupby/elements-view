@@ -1,5 +1,6 @@
 import { expect, sinon, spy, stub } from '../utils';
 import { TemplateResult, LitElement } from 'lit-element';
+import * as Lodash from 'lodash';
 import Sayt from '../../src/sayt';
 import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
 import { SAYT_EVENT } from '../../src/events';
@@ -51,6 +52,22 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith(PRODUCTS_RESPONSE_EVENT, sayt.showCorrectSayt);
       expect(setSearchboxListener).to.be.calledWith(searchbox, 'add');
       expect(addEventListener).to.be.calledWith(HOVER_AUTOCOMPLETE_TERM_EVENT, sayt.handleAutocompleteTermHover);
+    });
+
+    it('should debounce the requestSaytAutocompleteTerms and requestSaytProducts methods', () => {
+      const fn1 = () => null;
+      const fn2 = () => null;
+      const delay = 400;
+      const debounceSettings = { 'leading': true, 'trailing': true };
+      const debounceStub = stub(Lodash, 'debounce');
+      sayt.requestSaytAutocompleteTerms = fn1;
+      sayt.requestSaytProducts = fn2;
+
+      sayt.connectedCallback();
+
+      expect(debounceStub).to.be.calledTwice;
+      expect(debounceStub).to.be.calledWithExactly(fn1, delay, debounceSettings);
+      expect(debounceStub).to.be.calledWithExactly(fn2, delay, debounceSettings);
     });
   });
 
