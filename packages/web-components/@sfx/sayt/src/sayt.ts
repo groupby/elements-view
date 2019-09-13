@@ -59,6 +59,7 @@ export default class Sayt extends LitElement {
    * The minimum time required before a SAYT request will be made.
    */
   @property({ type: Number, reflect: true }) debounceTime = 400;
+
   /**
    * Calls superclass constructor and bind methods.
    */
@@ -78,6 +79,7 @@ export default class Sayt extends LitElement {
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
+    this.debounceSaytRequests = this.debounceSaytRequests.bind(this);
   }
 
   /**
@@ -95,21 +97,9 @@ export default class Sayt extends LitElement {
     window.addEventListener('keydown', this.processKeyEvent);
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.setSearchboxListener(this.searchbox, 'add');
-    this.requestSaytAutocompleteTerms = debounce(
-      this.requestSaytAutocompleteTerms,
-      this.debounceTime, {
-        'leading': true,
-        'trailing': true
-      }
-    );
 
-    this.requestSaytProducts = debounce(
-      this.requestSaytProducts,
-      this.debounceTime, {
-        'leading': true,
-        'trailing': true
-      }
-    );
+    this.requestSaytAutocompleteTerms  = this.debounceSaytRequests(this.requestSaytAutocompleteTerms);
+    this.requestSaytProducts  = this.debounceSaytRequests(this.requestSaytProducts);
   }
 
   /**
@@ -218,6 +208,20 @@ export default class Sayt extends LitElement {
 
     this.requestSaytAutocompleteTerms(query);
     this.requestSaytProducts(query);
+  }
+
+  /**
+   * Debounces the function that is passed in the callback paramater.
+   * Customizable delay based on debounceTime attribute on Sayt element.
+   *
+   * @param callback The function to debounce.
+   */
+  debounceSaytRequests(callback: (query: string, searchbox?: string) => void) {
+    return debounce(
+      callback,
+      this.debounceTime,
+      { 'leading': true, 'trailing': true }
+    );
   }
 
   /**
