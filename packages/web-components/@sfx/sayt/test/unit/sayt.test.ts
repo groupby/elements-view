@@ -69,21 +69,17 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
     });
 
-    // it('should debounce the requestSaytAutocompleteTerms and requestSaytProducts methods', () => {
-    //   const delay = sayt.debounceTime;
-    //   const debounceSettings = { 'leading': true, 'trailing': true };
-    //   const debounceStub = stub(Lodash, 'debounce');
-    //   const requestSaytAutocompleteTerms = sayt.requestSaytAutocompleteTerms;
-    //   const requestSaytProducts = sayt.requestSaytProducts;
-    //
-    //   sayt.connectedCallback();
-    //
-    //   expect(debounceStub).to.be.calledTwice;
-    //   expect(debounceStub).to.be.calledWithExactly(requestSaytAutocompleteTerms, delay, debounceSettings);
-    //   expect(debounceStub).to.be.calledWithExactly(requestSaytProducts, delay, debounceSettings);
-    //   console.log('>>> requestSaytAutocompleteTerms', requestSaytAutocompleteTerms, debounceStub)
-    //   expect(requestSaytAutocompleteTerms).to.equal({});
-    // });
+    it('should call `debounceSaytRequests` for each of the two debounced methods', () => {
+      const debounceSaytRequestsStub = stub(sayt, 'debounceSaytRequests');
+      const requestSaytAutocompleteTerms = sayt.requestSaytAutocompleteTerms;
+      const requestSaytProducts = sayt.requestSaytProducts;
+
+      sayt.connectedCallback();
+
+      expect(debounceSaytRequestsStub).to.be.calledTwice;
+      expect(debounceSaytRequestsStub).to.be.calledWithExactly(requestSaytAutocompleteTerms);
+      expect(debounceSaytRequestsStub).to.be.calledWithExactly(requestSaytProducts);
+    });
   });
 
   describe('disconnectedCallback()', () => {
