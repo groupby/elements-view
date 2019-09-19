@@ -303,11 +303,10 @@ describe('Sayt Component', () => {
 
   describe('debounceSaytRequests', () => {
     it('should debounce the requestSaytAutocompleteTerms and requestSaytProducts methods', () => {
-      // const test = (fn) => debounceStub(fn);
       const delay = sayt.debounceTime;
       const debounceSettings = { 'leading': true, 'trailing': true };
       const debounceStub = stub(Lodash, 'debounce');
-      // const test = (fn) => debounceStub(fn);
+
       const requestSaytAutocompleteTerms = debounceStub(sayt.requestSaytAutocompleteTerms(), delay, debounceSettings);
       const requestSaytProducts = debounceStub(sayt.requestSaytProducts(), delay, debounceSettings);
 
@@ -317,8 +316,6 @@ describe('Sayt Component', () => {
       expect(debounceStub).to.be.calledTwice;
       expect(debounceStub).to.be.calledWithExactly(requestSaytAutocompleteTerms, delay, debounceSettings);
       expect(debounceStub).to.be.calledWithExactly(requestSaytProducts, delay, debounceSettings);
-      // console.log('>>> requestSaytAutocompleteTerms', test)
-      // expect(requestSaytAutocompleteTerms).to.equal({});
     });
   });
 
