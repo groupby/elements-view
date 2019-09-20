@@ -216,7 +216,7 @@ export default class Sayt extends LitElement {
    *
    * @param callback The function to debounce.
    */
-  getDebounce(callback) {
+  getDebounce(callback: any) {
     return debounce(
       callback,
       this.debounceTime,
