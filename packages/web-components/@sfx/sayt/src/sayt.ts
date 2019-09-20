@@ -80,6 +80,9 @@ export default class Sayt extends LitElement {
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
     this.debounceSaytRequests = this.debounceSaytRequests.bind(this);
+
+    this.requestSaytAutocompleteTerms  = this.debounceSaytRequests(this.requestSaytAutocompleteTerms);
+    this.requestSaytProducts  = this.debounceSaytRequests(this.requestSaytProducts);
   }
 
   /**
@@ -97,9 +100,6 @@ export default class Sayt extends LitElement {
     window.addEventListener('keydown', this.processKeyEvent);
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.setSearchboxListener(this.searchbox, 'add');
-
-    this.requestSaytAutocompleteTerms  = this.debounceSaytRequests(this.requestSaytAutocompleteTerms);
-    this.requestSaytProducts  = this.debounceSaytRequests(this.requestSaytProducts);
   }
 
   /**
