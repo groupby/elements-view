@@ -312,9 +312,7 @@ describe('Sayt Component', () => {
       const requestSaytProducts = debounceStub(sayt.requestSaytProducts(), delay, debounceSettings);
       const autocompleteTermsReturn = debounceSaytRequests.returns(requestSaytAutocompleteTerms);
       const productsReturn = debounceSaytRequests.returns(requestSaytProducts);
-      // const debounceSaytRequests = stub(sayt, 'debounceSaytRequests');
-      // const expectedReturn = debounceSaytRequests.returns(requestSaytAutocompleteTerms)
-      // sayt.requestSaytAutocompleteTerms();
+
       sayt.debounceSaytRequests(sayt.requestSaytAutocompleteTerms);
       sayt.debounceSaytRequests(sayt.requestSaytProducts);
 
@@ -324,10 +322,6 @@ describe('Sayt Component', () => {
       expect(debounceStub).to.be.calledWithExactly(requestSaytProducts, delay, debounceSettings);
       expect(debounceSaytRequests).to.equal(autocompleteTermsReturn);
       expect(debounceSaytRequests).to.equal(productsReturn);
-      // return expect(sayt.debounceSaytRequests).to.eventually.equal(requestSaytAutocompleteTerms)
-      // return requestSaytAutocompleteTerms.then(function(actualTitle) {
-      //   expect(sayt.debounceSaytRequests).to.equal(requestSaytAutocompleteTerms);
-      // });
     });
   });
 
