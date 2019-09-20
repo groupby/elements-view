@@ -25,16 +25,16 @@ describe('Sayt Component', () => {
       expect(sayt).to.be.an.instanceof(LitElement);
     });
 
-    it('should call debounceSaytRequests() for each of the two debounced methods', () => {
-      const debounceSaytRequestsStub = stub(Sayt.prototype, 'debounceSaytRequests');
+    it('should call getDebounce() for each of the two debounced methods', () => {
+      const getDebounceStub = stub(Sayt.prototype, 'getDebounce');
       const requestSaytAutocompleteTerms = stub(Sayt.prototype, 'requestSaytAutocompleteTerms');
       const requestSaytProducts = stub(Sayt.prototype, 'requestSaytProducts');
 
       sayt = new Sayt();
 
-      expect(debounceSaytRequestsStub).to.be.calledTwice;
-      expect(debounceSaytRequestsStub).to.be.calledWithExactly(requestSaytAutocompleteTerms);
-      expect(debounceSaytRequestsStub).to.be.calledWithExactly(requestSaytProducts);
+      expect(getDebounceStub).to.be.calledTwice;
+      expect(getDebounceStub).to.be.calledWithExactly(requestSaytAutocompleteTerms);
+      expect(getDebounceStub).to.be.calledWithExactly(requestSaytProducts);
     });
 
     describe('hideAutocomplete property', () => {
@@ -301,27 +301,27 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('debounceSaytRequests', () => {
+  describe('getDebounce', () => {
     it('should debounce the requestSaytAutocompleteTerms and requestSaytProducts methods', () => {
       const delay = sayt.debounceTime;
       const debounceSettings = { 'leading': true, 'trailing': true };
       const debounceStub = stub(Lodash, 'debounce');
-      const debounceSaytRequests = stub(sayt, 'debounceSaytRequests');
+      const getDebounce = stub(sayt, 'getDebounce');
 
       const requestSaytAutocompleteTerms = debounceStub(sayt.requestSaytAutocompleteTerms(), delay, debounceSettings);
       const requestSaytProducts = debounceStub(sayt.requestSaytProducts(), delay, debounceSettings);
-      const autocompleteTermsReturn = debounceSaytRequests.returns(requestSaytAutocompleteTerms);
-      const productsReturn = debounceSaytRequests.returns(requestSaytProducts);
+      const autocompleteTermsReturn = getDebounce.returns(requestSaytAutocompleteTerms);
+      const productsReturn = getDebounce.returns(requestSaytProducts);
 
-      sayt.debounceSaytRequests(sayt.requestSaytAutocompleteTerms);
-      sayt.debounceSaytRequests(sayt.requestSaytProducts);
+      sayt.getDebounce(sayt.requestSaytAutocompleteTerms);
+      sayt.getDebounce(sayt.requestSaytProducts);
 
       expect(debounceStub).to.be.calledTwice;
-      expect(debounceSaytRequests).to.be.calledTwice;
+      expect(getDebounce).to.be.calledTwice;
       expect(debounceStub).to.be.calledWithExactly(requestSaytAutocompleteTerms, delay, debounceSettings);
       expect(debounceStub).to.be.calledWithExactly(requestSaytProducts, delay, debounceSettings);
-      expect(debounceSaytRequests).to.equal(autocompleteTermsReturn);
-      expect(debounceSaytRequests).to.equal(productsReturn);
+      expect(getDebounce).to.equal(autocompleteTermsReturn);
+      expect(getDebounce).to.equal(productsReturn);
     });
   });
 

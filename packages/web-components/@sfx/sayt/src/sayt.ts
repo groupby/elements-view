@@ -79,10 +79,10 @@ export default class Sayt extends LitElement {
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
-    this.debounceSaytRequests = this.debounceSaytRequests.bind(this);
+    this.getDebounce = this.getDebounce.bind(this);
 
-    this.requestSaytAutocompleteTerms  = this.debounceSaytRequests(this.requestSaytAutocompleteTerms);
-    this.requestSaytProducts  = this.debounceSaytRequests(this.requestSaytProducts);
+    this.requestSaytAutocompleteTerms  = this.getDebounce(this.requestSaytAutocompleteTerms);
+    this.requestSaytProducts  = this.getDebounce(this.requestSaytProducts);
   }
 
   /**
@@ -216,7 +216,7 @@ export default class Sayt extends LitElement {
    *
    * @param callback The function to debounce.
    */
-  debounceSaytRequests(callback: (query: string, searchbox?: string) => void) {
+  getDebounce(callback) {
     return debounce(
       callback,
       this.debounceTime,
