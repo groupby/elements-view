@@ -317,7 +317,7 @@ describe('Sayt Component', () => {
       const test2 = sayt.getDebounce(sayt.requestSaytProducts);
 
       // expect(debounceStub).to.be.called;
-      // expect(getDebounce).to.be.called;
+      // expect(getDebounce).to.be.called; requestSaytProducts, and requestSaytAutocompleteTerms
       expect(debounceStub).to.be.calledWithExactly(requestSaytAutocompleteTerms, delay, debounceSettings);
       expect(debounceStub).to.be.calledWithExactly(requestSaytProducts, delay, debounceSettings);
       expect(getDebounce).to.be.calledWithExactly(sayt.requestSaytAutocompleteTerms);
