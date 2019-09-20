@@ -50,7 +50,7 @@
       const core = new sfxCore.Core();
       const domEventsPlugin = new sfxPlugins.DomEventsPlugin()
       const saytPlugin = new sfxPlugins.SaytPlugin({subdomain: 'apparel', collection: 'products'});
-      const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin(productTransformer);
+      const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin({ productTransformer });
       const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel', collection: 'products', area: 'Storefront'});
       const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin();
       // register all plugins with core
