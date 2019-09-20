@@ -306,16 +306,28 @@ describe('Sayt Component', () => {
       const delay = sayt.debounceTime;
       const debounceSettings = { 'leading': true, 'trailing': true };
       const debounceStub = stub(Lodash, 'debounce');
+      const debounceSaytRequests = stub(sayt, 'debounceSaytRequests');
 
       const requestSaytAutocompleteTerms = debounceStub(sayt.requestSaytAutocompleteTerms(), delay, debounceSettings);
       const requestSaytProducts = debounceStub(sayt.requestSaytProducts(), delay, debounceSettings);
-
+      const autocompleteTermsReturn = debounceSaytRequests.returns(requestSaytAutocompleteTerms);
+      const productsReturn = debounceSaytRequests.returns(requestSaytProducts);
+      // const debounceSaytRequests = stub(sayt, 'debounceSaytRequests');
+      // const expectedReturn = debounceSaytRequests.returns(requestSaytAutocompleteTerms)
       // sayt.requestSaytAutocompleteTerms();
-      // sayt.requestSaytProducts();
+      sayt.debounceSaytRequests(sayt.requestSaytAutocompleteTerms);
+      sayt.debounceSaytRequests(sayt.requestSaytProducts);
 
       expect(debounceStub).to.be.calledTwice;
+      expect(debounceSaytRequests).to.be.calledTwice;
       expect(debounceStub).to.be.calledWithExactly(requestSaytAutocompleteTerms, delay, debounceSettings);
       expect(debounceStub).to.be.calledWithExactly(requestSaytProducts, delay, debounceSettings);
+      expect(debounceSaytRequests).to.equal(autocompleteTermsReturn);
+      expect(debounceSaytRequests).to.equal(productsReturn);
+      // return expect(sayt.debounceSaytRequests).to.eventually.equal(requestSaytAutocompleteTerms)
+      // return requestSaytAutocompleteTerms.then(function(actualTitle) {
+      //   expect(sayt.debounceSaytRequests).to.equal(requestSaytAutocompleteTerms);
+      // });
     });
   });
 
