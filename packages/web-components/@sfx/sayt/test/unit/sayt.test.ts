@@ -313,8 +313,8 @@ describe('Sayt Component', () => {
       // const autocompleteTermsReturn = getDebounce.returns(requestSaytAutocompleteTerms);
       // const productsReturn = getDebounce.returns(requestSaytProducts);
 
-      sayt.getDebounce(sayt.requestSaytAutocompleteTerms);
-      sayt.getDebounce(sayt.requestSaytProducts);
+      const test1 = sayt.getDebounce(sayt.requestSaytAutocompleteTerms);
+      const test2 = sayt.getDebounce(sayt.requestSaytProducts);
 
       // expect(debounceStub).to.be.called;
       // expect(getDebounce).to.be.called;
@@ -322,6 +322,8 @@ describe('Sayt Component', () => {
       expect(debounceStub).to.be.calledWithExactly(requestSaytProducts, delay, debounceSettings);
       expect(getDebounce).to.be.calledWithExactly(sayt.requestSaytAutocompleteTerms);
       expect(getDebounce).to.be.calledWithExactly(sayt.requestSaytProducts);
+      expect(test1).to.equal(requestSaytAutocompleteTerms)
+      expect(test2).to.equal(requestSaytProducts)
     });
   });
 
