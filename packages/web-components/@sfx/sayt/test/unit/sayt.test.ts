@@ -302,28 +302,19 @@ describe('Sayt Component', () => {
   });
 
   describe('getDebounce()', () => {
-    it('should debounce the requestSaytAutocompleteTerms and requestSaytProducts methods', () => {
+    it('should return a debounced callback method', () => {
       const delay = sayt.debounceTime;
       const debounceSettings = { 'leading': true, 'trailing': true };
+      const termsCallback = stub(sayt, 'requestSaytAutocompleteTerms');
       const debounceStub = stub(Lodash, 'debounce');
-      const getDebounce = stub(sayt, 'getDebounce');
+      const expectedDebouncedFunction = () => 123;
 
-      const requestSaytAutocompleteTerms = debounceStub(sayt.requestSaytAutocompleteTerms(), delay, debounceSettings);
-      const requestSaytProducts = debounceStub(sayt.requestSaytProducts(), delay, debounceSettings);
-      // const autocompleteTermsReturn = getDebounce.returns(requestSaytAutocompleteTerms);
-      // const productsReturn = getDebounce.returns(requestSaytProducts);
+      debounceStub.returns(expectedDebouncedFunction);
+      const actualDebouncedFunction = sayt.getDebounce(termsCallback);
 
-      const test1 = sayt.getDebounce(sayt.requestSaytAutocompleteTerms);
-      const test2 = sayt.getDebounce(sayt.requestSaytProducts);
-
-      // expect(debounceStub).to.be.called;
-      // expect(getDebounce).to.be.called; requestSaytProducts, and requestSaytAutocompleteTerms
-      // expect(debounceStub).to.be.calledWithExactly(requestSaytAutocompleteTerms, delay, debounceSettings);
-      // expect(debounceStub).to.be.calledWithExactly(requestSaytProducts, delay, debounceSettings);
-      expect(getDebounce).to.be.calledWithExactly(sayt.requestSaytAutocompleteTerms);
-      expect(getDebounce).to.be.calledWithExactly(sayt.requestSaytProducts);
-      expect(test1).to.equal(requestSaytAutocompleteTerms)
-      expect(test2).to.equal(requestSaytProducts)
+      expect(debounceStub).to.be.called;
+      expect(debounceStub).to.be.calledWithExactly(termsCallback, delay, debounceSettings);
+      expect(actualDebouncedFunction).to.equal(expectedDebouncedFunction);
     });
   });
 
