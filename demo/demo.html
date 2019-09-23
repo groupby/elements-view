@@ -45,6 +45,9 @@
         }
       }
 
+      function searchProductTransformer(record) {
+        return { title: 'product 1' };
+      }
 
       // init core and plugins
       const core = new sfxCore.Core();
@@ -52,16 +55,15 @@
       const saytPlugin = new sfxPlugins.SaytPlugin({subdomain: 'apparel', collection: 'products'});
       const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin({ productTransformer });
       const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel', collection: 'products', area: 'Storefront'});
-      const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin();
+      const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin({ productTransformer: searchProductTransformer });
       // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
       // search integration/functionality test
       window.addEventListener('sfx::search_response', (e) => {
-        const testListResults = e.detail.results.records.map(item => {
-          return { label : item.title };
-        });
-        document.getElementsByClassName('product-grid')[0]
-        .setAttribute('items', JSON.stringify(testListResults));
+        const productsGrid = document.querySelector('sfx-products');
+        if (productsGrid) {
+          productsGrid.products = e.detail.products;
+        }
       });
 
       window.addEventListener('sfx::sayt_products_response', (event) => {
