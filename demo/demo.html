@@ -7,8 +7,8 @@
     <script src="./temp/sfx-all-plugins-bundle.js"></script>
   </head>
   <body>
-    <sfx-search-box placeholder="search" clearbutton searchbutton></sfx-search-box>
-    <sfx-sayt visible></sfx-sayt>
+    <sfx-search-box id="main-search" placeholder="search" clearbutton searchbutton></sfx-search-box>
+    <sfx-sayt searchbox="main-search" visible></sfx-sayt>
     <sfx-list class="product-grid"></sfx-list>
 
     <script>
@@ -67,6 +67,10 @@
       });
 
       window.addEventListener('sfx::sayt_products_response', (event) => {
+        console.log(event.type, event.detail);
+      });
+
+      window.addEventListener('sfx::sayt_products_error', (event) => {
         console.log(event.type, event.detail);
       });
     </script>
