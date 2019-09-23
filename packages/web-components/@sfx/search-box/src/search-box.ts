@@ -1,6 +1,7 @@
 import {
   customElement,
   html,
+  LitElement,
   property,
   TemplateResult,
 } from 'lit-element';
@@ -25,7 +26,7 @@ import {
  * The entity also listens for events, and updates data accordingly.
  */
 @customElement('sfx-search-box')
-export default class SearchBox extends Base {
+export default class SearchBox extends LitElement {
   /**
    * Text used as placeholder in search box.
    */
@@ -231,5 +232,9 @@ export default class SearchBox extends Base {
           `
     : ''}
     `;
+  }
+
+  createRenderRoot() {
+    return this;
   }
 }

@@ -25,10 +25,6 @@ describe('SearchBox Component', () => {
   });
 
   describe('Constructor', () => {
-    it('should extend Base', () => {
-      expect(searchbox).to.be.an.instanceof(Base);
-    });
-
     describe('placeholder property', () => {
       it('should have default value `Type your search`', () => {
         expect(searchbox.placeholder).to.equal('Type your search');
