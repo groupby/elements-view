@@ -46,7 +46,7 @@
       }
 
       function searchProductTransformer(record) {
-        return { title: record.title };
+        return { label: record.title };
       }
 
       // init core and plugins
@@ -58,11 +58,12 @@
       const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin({ productTransformer: searchProductTransformer });
       // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
+
       // search integration/functionality test
       window.addEventListener('sfx::search_response', (e) => {
         const productsGrid = document.querySelector('sfx-products');
         if (productsGrid) {
-          productsGrid.products = e.detail.products;
+          productsGrid.items = e.detail.products;
         }
       });
 
