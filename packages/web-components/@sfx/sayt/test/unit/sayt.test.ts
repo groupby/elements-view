@@ -25,7 +25,7 @@ describe('Sayt Component', () => {
       expect(sayt).to.be.an.instanceof(LitElement);
     });
 
-    it('should call getDebounce() for each of the two debounced methods', () => {
+    it('should debounce certain methods', () => {
       const getDebounceStub = stub(Sayt.prototype, 'getDebounce');
       const requestSaytAutocompleteTerms = stub(Sayt.prototype, 'requestSaytAutocompleteTerms');
       const requestSaytProducts = stub(Sayt.prototype, 'requestSaytProducts');
@@ -303,10 +303,10 @@ describe('Sayt Component', () => {
 
   describe('getDebounce()', () => {
     it('should return a debounced callback method', () => {
-      const delay = sayt.debounceTime;
-      const debounceSettings = { 'leading': true, 'trailing': true };
+      const delay = sayt.debounce;
+      const debounceSettings = false;
       const termsCallback = stub(sayt, 'requestSaytAutocompleteTerms');
-      const debounceStub = stub(Lodash, 'debounce');
+      const debounceStub = stub(debounce, 'debounce');
       const expectedDebouncedFunction = () => 123;
 
       debounceStub.returns(expectedDebouncedFunction);

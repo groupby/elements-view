@@ -56,9 +56,9 @@ export default class Sayt extends LitElement {
    */
   @property({ type: Number, reflect: true }) minSearchLength = 3;
   /**
-   * The minimum time required before a SAYT request will be made.
+   * The debounce delay in millilseconds. The default delay is 300 milliseconds if not supplied.
    */
-  @property({ type: Number, reflect: true }) debounceTime = 400;
+  @property({ type: Number, reflect: true }) debounce = 300;
 
   /**
    * Calls superclass constructor and bind methods.
@@ -80,7 +80,9 @@ export default class Sayt extends LitElement {
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
     this.getDebounce = this.getDebounce.bind(this);
+    this.setDebounce = this.setDebounce.bind(this);
 
+    // this.setDebounce();
     this.requestSaytAutocompleteTerms  = this.getDebounce(this.requestSaytAutocompleteTerms);
     this.requestSaytProducts  = this.getDebounce(this.requestSaytProducts);
   }
@@ -137,6 +139,9 @@ export default class Sayt extends LitElement {
 
       this.setSearchboxListener(oldSearchbox, 'remove');
       this.setSearchboxListener(this.searchbox, 'add');
+    }
+    if (changedProps.has('debounce')) {
+      this.setDebounce();
     }
   }
 
@@ -217,11 +222,21 @@ export default class Sayt extends LitElement {
    * @param callback The function to debounce.
    */
   getDebounce(callback: any) {
-    return Lodash.debounce(
+    return debounce.debounce(
       callback,
-      this.debounceTime,
-      { 'leading': true, 'trailing': true }
+      this.debounce,
+      false
     );
+  }
+
+  /**
+   * Dispatches getDebounce for each of the methods to be debounced.
+   * Is triggered once on initial load of component and when the debounce attribute is changed.
+   */
+  setDebounce() {
+    console.log('>requestSaytAutocompleteTerms called')
+    // this.requestSaytAutocompleteTerms  = this.getDebounce(this.requestSaytAutocompleteTerms);
+    // this.requestSaytProducts  = this.getDebounce(this.requestSaytProducts);
   }
 
   /**
