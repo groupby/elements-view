@@ -5,7 +5,12 @@ import {
   AutocompleteResultGroup,
   AutocompleteSearchTermItem,
 } from '@sfx/events';
-import { getDisplayCode, autocompleteResponseEvent, autocompleteResults, hidePrompt } from '../../../../../.storybook/common';
+import {
+  getDisplayCode,
+  autocompleteResponseEvent,
+  autocompleteResults,
+  hidePrompt,
+} from '../../../../../.storybook/common';
 import '../src/index';
 
 const autocompleteNotesIntro = `
