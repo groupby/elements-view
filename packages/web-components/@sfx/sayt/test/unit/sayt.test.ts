@@ -33,7 +33,6 @@ describe('Sayt Component', () => {
 
       sayt = new Sayt();
 
-      expect(getDebounceStub).to.be.calledTwice;
       expect(getDebounceStub).to.be.calledWithExactly(requestSaytAutocompleteTerms);
       expect(getDebounceStub).to.be.calledWithExactly(requestSaytProducts);
     });
