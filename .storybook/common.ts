@@ -100,30 +100,26 @@ export const autocompleteResults: AutocompleteResultGroup<AutocompleteSearchTerm
     title: 'Colors',
     items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
   }
-]
+];
 
-export const autocompleteReceivedResultsEvent = {
+export const autocompleteResponseEvent = {
   name: AUTOCOMPLETE_RESPONSE,
   payload: {
     results: autocompleteResults,
   }
 };
 
-export const productsResultsEvent = {
+export const saytProductsResponseEvent = {
   name: SAYT_PRODUCTS_RESPONSE,
   payload: {
-    results: {
-      products: getProducts(5),
-    }
+    products: getProducts(5),
   }
 };
 
-export function getProductsReceivedEvent(): CustomEvent {
+export function getSaytProductsResponseEvent(): CustomEvent {
   return new CustomEvent(SAYT_PRODUCTS_RESPONSE, {
     detail: {
-      results: {
-        products: getProducts(5),
-      }
+      products: getProducts(5),
     },
     bubbles: true
   });

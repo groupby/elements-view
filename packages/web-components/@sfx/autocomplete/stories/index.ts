@@ -1,7 +1,11 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import { AUTOCOMPLETE_RESPONSE } from '@sfx/events';
-import { getDisplayCode, autocompleteReceivedResultsEvent, autocompleteResults, hidePrompt } from '../../../../../.storybook/common';
+import {
+  AUTOCOMPLETE_RESPONSE,
+  AutocompleteResultGroup,
+  AutocompleteSearchTermItem,
+} from '@sfx/events';
+import { getDisplayCode, autocompleteResponseEvent, autocompleteResults, hidePrompt } from '../../../../../.storybook/common';
 import '../src/index';
 
 const autocompleteNotesIntro = `
@@ -16,7 +20,7 @@ const autocompleteNotesIntro = `
 ## Demonstrated in this story`
 
 // TODO: add results type to function when imported from @sfx/events repo
-function getAutocompleteComponent(results = []): string {
+function getAutocompleteComponent(results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = []): string {
   const optionalTitle = text('Optional Title', 'Autocomplete Results');
 
   if (results.length > 0) {
@@ -86,7 +90,7 @@ storiesOf('Components|Autocomplete', module)
      `;
     },
     {
-      customEvents: [autocompleteReceivedResultsEvent],
+      customEvents: [autocompleteResponseEvent],
       notes: {
         markdown: `
           ${autocompleteNotesIntro}

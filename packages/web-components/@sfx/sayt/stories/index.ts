@@ -11,10 +11,10 @@ import {
 import '../src';
 import {
   getDisplayCode,
-  productsResultsEvent,
-  autocompleteReceivedResultsEvent,
+  getSaytProductsResponseEvent,
+  saytProductsResponseEvent,
+  autocompleteResponseEvent,
   autocompleteResults,
-  getProductsReceivedEvent,
   hidePrompt,
 } from '../../../../../.storybook/common';
 
@@ -73,7 +73,7 @@ function generateBaseData() {
     window.dispatchEvent(autocompleteDataReceivedEvent);
   }, 0)
   setTimeout(() => {
-    window.dispatchEvent(getProductsReceivedEvent());
+    window.dispatchEvent(getSaytProductsResponseEvent());
   }, 0)
 }
 
@@ -131,7 +131,7 @@ storiesOf('Components|SAYT', module)
         ;
     },
     {
-      customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
+      customEvents: [saytProductsResponseEvent, autocompleteResponseEvent, saytHide, saytShow],
       notes: {
         markdown: `
         ${saytNotesMarkdownIntro}
@@ -233,7 +233,7 @@ storiesOf('Components|SAYT', module)
     `;
     },
     {
-      customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
+      customEvents: [saytProductsResponseEvent, autocompleteResponseEvent, saytHide, saytShow],
       notes: {
         markdown: `
         ${saytNotesMarkdownIntro}
@@ -307,7 +307,7 @@ storiesOf('Components|SAYT', module)
 
     },
     {
-      customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
+      customEvents: [saytProductsResponseEvent, autocompleteResponseEvent, saytHide, saytShow],
       notes: {
         markdown: `
           ${saytNotesMarkdownIntro}

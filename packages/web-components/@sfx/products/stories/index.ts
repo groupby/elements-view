@@ -4,7 +4,12 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   Product,
 } from '@sfx/events';
-import { getDisplayCode, getProducts, productsResultsEvent, hidePrompt } from '../../../../../.storybook/common';
+import {
+  getDisplayCode,
+  getProducts,
+  saytProductsResponseEvent,
+  hidePrompt,
+} from '../../../../../.storybook/common';
 
 function getProductsComponent(productsArray: Product[] = []) {
   if (productsArray.length > 0) {
@@ -31,12 +36,13 @@ storiesOf('Components|Products', module)
     'Default',
     () => {
       const productsComponent = getProductsComponent(getProducts(10));
+      console.error('DEBUG', productsComponent);
       return `
     ${productsComponent}
     `;
     },
     {
-      customEvents: [productsResultsEvent],
+      customEvents: [saytProductsResponseEvent],
       notes: {
         markdown: `
         ${productsNotesMarkdownIntro}
@@ -88,7 +94,7 @@ storiesOf('Components|Products', module)
     `;
     },
     {
-      customEvents: [productsResultsEvent],
+      customEvents: [saytProductsResponseEvent],
       notes: {
         markdown: `
         ${productsNotesMarkdownIntro}
