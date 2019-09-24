@@ -229,7 +229,7 @@ export default class Sayt extends LitElement {
 
   /**
    * Dispatches getDebounce for each of the methods to be debounced.
-   * Is triggered once on initial load of component and when the debounce attribute is changed.
+   * Is triggered once in constructor and when the debounce attribute is changed.
    */
   setDebounce() {
     this.requestSaytAutocompleteTerms  = this.getDebounce(this.requestSaytAutocompleteTerms);
