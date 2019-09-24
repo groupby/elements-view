@@ -1,11 +1,10 @@
 import { customElement, html, property, LitElement } from 'lit-element';
 import '@sfx/ui';
-
-// TODO: replace with @sfx/events import - added temporarily for import in storybook/common
-// event descriptions to be contained in events repo
-export const AUTOCOMPLETE_RECEIVED_RESULTS_EVENT = 'sfx::autocomplete_received_results';
-export const HOVER_AUTOCOMPLETE_TERM_EVENT = 'sfx::sayt_hover_autocomplete_term';
-export const AUTOCOMPLETE_REQUEST_RESULTS = 'sfx::autocomplete_fetch_data';
+import {
+  AUTOCOMPLETE_RESPONSE,
+  AUTOCOMPLETE_ACTIVE_TERM,
+  AutocompleteResponsePayload,
+} from '@sfx/events';
 
 /**
  * The `sfx-autocomplete` component is responsible for displaying a list
@@ -37,7 +36,7 @@ export default class Autocomplete extends LitElement {
    */
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
+    window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
   }
 
   /**
@@ -45,7 +44,7 @@ export default class Autocomplete extends LitElement {
    */
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.receivedResults);
+    window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
   }
 
   /**
@@ -53,7 +52,7 @@ export default class Autocomplete extends LitElement {
    *
    * @param e The event object.
    */
-  receivedResults(e: CustomEvent) {
+  receivedResults(e: CustomEvent<AutocompleteResponsePayload>) {
     this.results = e.detail.results || [];
   }
 
@@ -66,7 +65,7 @@ export default class Autocomplete extends LitElement {
     const target = event.target as HTMLElement;
     if (target.tagName.toLowerCase() !== 'li') return;
     const term = target.innerText;
-    const sentEvent = new CustomEvent(HOVER_AUTOCOMPLETE_TERM_EVENT, {
+    const sentEvent = new CustomEvent(AUTOCOMPLETE_ACTIVE_TERM, {
       detail: {
         query: term,
       },

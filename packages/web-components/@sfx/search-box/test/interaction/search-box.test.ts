@@ -1,5 +1,5 @@
 import { expect, waitForUpdateComplete } from '../utils';
-import { SEARCHBOX_EVENT } from '../../src/events';
+import { SEARCH_REQUEST } from '@sfx/events';
 import SearchBox from '../../src/search-box';
 
 describe('SearchBox Component Interaction Tests', () => {
@@ -91,7 +91,7 @@ describe('SearchBox Component Interaction Tests', () => {
 
     container.appendChild(searchbox);
 
-    searchbox.addEventListener(SEARCHBOX_EVENT.SEARCH_REQUEST, (e) => {
+    searchbox.addEventListener(SEARCH_REQUEST, (e) => {
       eventListenerResolve(e);
     });
 
@@ -111,7 +111,7 @@ describe('SearchBox Component Interaction Tests', () => {
     }).then(() => {
       return eventListenerPromise;
     }).then((e) => {
-      expect(e.detail.value).to.equal(searchTerm);
+      expect(e.detail.query).to.equal(searchTerm);
     });
   });
 });

@@ -6,7 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- SFX-152: Added the autocomplete component.
-  - This component renders a list of autocomplete terms.
-  - SFX-333: The component emits an event when an autocomplete term is hovered.
+- SFX-201: Created `sfx-product` and `sfx-product-variant` components.
+  - These components render product tiles with or without variant options.
   - SFX-248: The `@sfx/events` package is used for event names and payload interfaces.

@@ -1,6 +1,1 @@
-export {
-  default as Autocomplete,
-  AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
-  HOVER_AUTOCOMPLETE_TERM_EVENT,
-  AUTOCOMPLETE_REQUEST_RESULTS
-} from './autocomplete';
+export { default as Autocomplete } from './autocomplete';

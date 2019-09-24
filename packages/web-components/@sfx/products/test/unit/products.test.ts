@@ -1,5 +1,6 @@
 import { expect, sinon, stub } from '../utils';
-import Products, { PRODUCTS_RESPONSE_EVENT } from '../../src/products';
+import Products from '../../src/products';
+import { SAYT_PRODUCTS_RESPONSE } from '@sfx/events';
 
 describe('Products Component', () => {
   let component;
@@ -45,7 +46,7 @@ describe('Products Component', () => {
 
       component.connectedCallback();
 
-      expect(addEventListener).to.be.calledWith(PRODUCTS_RESPONSE_EVENT, component.setProductsFromEvent);
+      expect(addEventListener).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, component.setProductsFromEvent);
     });
   });
 
@@ -63,14 +64,14 @@ describe('Products Component', () => {
 
       component.disconnectedCallback();
 
-      expect(removeEventListener).to.be.calledWith(PRODUCTS_RESPONSE_EVENT, component.setProductsFromEvent);
+      expect(removeEventListener).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, component.setProductsFromEvent);
     });
   });
 
   describe('setProductsFromEvent', () => {
     it('should set the event products payload into the component', () => {
       const products = [1, 2, 3];
-      const event = { detail: { results: { products } } };
+      const event = { detail: { products } };
 
       component.setProductsFromEvent(event);
 

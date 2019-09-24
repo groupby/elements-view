@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
-  "module": "src/index.ts",
   "types": "dist/index.d.ts",
   "esnext": "esnext/index.js",
   "scripts": {
@@ -18,5 +17,8 @@
     "directory": "packages/web-components/@sfx/product"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@sfx/events": "groupby/sfx-events#17b270513313fed9985afa60cae96729be216be6"
+  }
 }

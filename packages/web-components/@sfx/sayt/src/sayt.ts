@@ -1,12 +1,14 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
-import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
-import { SAYT_EVENT } from './events';
-import { SEARCHBOX_EVENT } from '@sfx/search-box';
 import {
-  AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
-  HOVER_AUTOCOMPLETE_TERM_EVENT,
-  AUTOCOMPLETE_REQUEST_RESULTS,
-} from '@sfx/autocomplete';
+  AUTOCOMPLETE_ACTIVE_TERM,
+  AUTOCOMPLETE_REQUEST,
+  AUTOCOMPLETE_RESPONSE,
+  SAYT_HIDE,
+  SAYT_SHOW,
+  SAYT_PRODUCTS_REQUEST,
+  SAYT_PRODUCTS_RESPONSE,
+  SEARCHBOX_INPUT,
+} from '@sfx/events';
 
 /**
  * The `sfx-sayt` component is responsible for displaying and hiding the
@@ -69,11 +71,11 @@ export default class Sayt extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
-    window.addEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
-    window.addEventListener(PRODUCTS_RESPONSE_EVENT, this.showCorrectSayt);
-    window.addEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
-    window.addEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
+    window.addEventListener(SAYT_SHOW, this.showCorrectSayt);
+    window.addEventListener(AUTOCOMPLETE_RESPONSE, this.showCorrectSayt);
+    window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.showCorrectSayt);
+    window.addEventListener(SAYT_HIDE, this.hideCorrectSayt);
+    window.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
     this.setSearchboxListener(this.searchbox, 'add');
@@ -85,11 +87,11 @@ export default class Sayt extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    window.removeEventListener(SAYT_EVENT.SAYT_SHOW, this.showCorrectSayt);
-    window.removeEventListener(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, this.showCorrectSayt);
-    window.removeEventListener(PRODUCTS_RESPONSE_EVENT, this.showCorrectSayt);
-    window.removeEventListener(SAYT_EVENT.SAYT_HIDE, this.hideCorrectSayt);
-    window.removeEventListener(HOVER_AUTOCOMPLETE_TERM_EVENT, this.handleAutocompleteTermHover);
+    window.removeEventListener(SAYT_SHOW, this.showCorrectSayt);
+    window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.showCorrectSayt);
+    window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.showCorrectSayt);
+    window.removeEventListener(SAYT_HIDE, this.hideCorrectSayt);
+    window.removeEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
     this.setSearchboxListener(this.searchbox, 'remove');
@@ -128,7 +130,7 @@ export default class Sayt extends LitElement {
       const searchbox = document.getElementById(searchboxId) as HTMLElement;
       if (searchbox) searchbox[setEventListener]('input', this.processSearchboxInput);
     } else {
-      window[setEventListener](SEARCHBOX_EVENT.SEARCHBOX_CHANGE, this.processSfxSearchboxChange);
+      window[setEventListener](SEARCHBOX_INPUT, this.processSfxSearchboxChange);
     }
   }
 
@@ -204,23 +206,23 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Dispatches an [[AUTOCOMPLETE_REQUEST_RESULTS]] event with the provided data.
+   * Dispatches an [[AUTOCOMPLETE_RESPONSE]] event with the provided data.
    *
    * @param query The search term to use.
    * @param searchbox The optional searchbox ID associated with this search.
    */
   requestSaytAutocompleteTerms(query: string, searchbox?: string) {
-    this.dispatchRequestEvent(AUTOCOMPLETE_REQUEST_RESULTS, query, searchbox);
+    this.dispatchRequestEvent(AUTOCOMPLETE_RESPONSE, query, searchbox);
   }
 
   /**
-   * Dispatches a [[PRODUCTS_REQUEST_EVENT]] event with the provided data.
+   * Dispatches a [[SAYT_PRODUCTS_REQUEST]] event with the provided data.
    *
    * @param query The search term to use.
    * @param searchbox The optional searchbox ID associated with this search.
    */
   requestSaytProducts(query: string, searchbox?: string) {
-    this.dispatchRequestEvent(PRODUCTS_REQUEST_EVENT, query, searchbox);
+    this.dispatchRequestEvent(SAYT_PRODUCTS_REQUEST, query, searchbox);
   }
 
   /**

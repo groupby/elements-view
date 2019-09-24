@@ -1,34 +1,22 @@
 import { storiesOf } from '@storybook/html';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, AUTOCOMPLETE_REQUEST_RESULTS } from '@sfx/autocomplete';
-import { SAYT_EVENT } from '../src/events';
-import '../src';
-import {
-  getDisplayCode,
-  productsResultsEvent,
-  autocompleteReceivedResultsEvent,
-  autocompleteResults,
-  getProductsReceivedEvent,
-  hidePrompt,
-} from '../../../../../.storybook/common';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { getDisplayCode } from '../test/utils';
+import { AUTOCOMPLETE_RESPONSE, SAYT_HIDE, SAYT_SHOW } from '@sfx/events';
+import '../src/index';
 
-const saytNotesMarkdownIntro = ` # SF-X SAYT Component
+// @TODO allow for sending event with searchbox ID. This should allow for one
+// story's events to not affect another story.
+const autocompleteDataReceivedEvent = new CustomEvent(AUTOCOMPLETE_RESPONSE,
+  { detail: [
+      { "title": "Brands", "items": [{ "label": "Cats" }, { "label": "Dogs" }] },
+      { "title": "", "items": [{ "label": "Cars" }, { "label": "Bikes" }] }
+    ],
+    bubbles: true }
+);
 
-[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/sayt "SF-X SAYT README").
-
-\`\`\`html
-<sfx-sayt
-  closetext="×"
-  showclosebutton
-  visible
-></sfx-sayt>
-\`\`\`
-
-## Demonstrated in this story`;
-
-function getSayt(searchbox: string = ''): string {
-  const closeText = text('Close link text', '×');
+function getSayt(searchbox = '', showSayt = true): string {
+  const showAttribute = boolean('visible', showSayt) ? 'visible' : '';
+  const closeText = text('Close link text', 'Close');
   const showCloseButton = boolean('Show Close button', true) ? 'showclosebutton' : '';
   const hideAutocomplete = boolean('Hide Autocomplete', false) ? 'hideAutocomplete' : '';
   const hideProducts = boolean('Hide Products', false) ? 'hideProducts' : '';
@@ -91,101 +79,33 @@ storiesOf('Components|SAYT', module)
     ${getDisplayCode(sayt)}
     </div>`;
   }, {
-      notes: {
-        markdown: `
-        ${saytNotesMarkdownIntro}
+    notes: {
+      markdown: `
+        # Search As You Type (SAYT)
+        Hardcoded
 
-          ### The SF-X SAYT component populated with autocomplete and products data.
-          * The SF-X SAYT component is designed to render different data in response to events, however, this story generates the data on page load. This is done in order to see the visual component immediately.
-          * For stories that demonstrate the component's functionality, visit three stories listed below this one, under "SAYT".
+        Here is the documentation for the SAYT component.
       `
-      }
-    })
-  .add(
-    'Rendering based on events and attributes',
-    () => {
-      hidePrompt(SAYT_EVENT.SAYT_HIDE);
-      const sayt = getSayt();
-      return `
-      <style>
-        .display-code {
-          position: absolute;
-          top: 800px;
-          z-index: -1;
-        }
-        sfx-sayt {
-          background-color: white;
-        }
-      </style>
+    }
+  })
+  // @TODO Remove these setTimeouts when opening a new story
+  .add('Responding to Events - sayt_hide & sayt_show ', () => {
+    emitEventInFuture(autocompleteDataReceivedEvent, 100);
+    emitEventInFuture(new Event(SAYT_HIDE), 2000);
+    emitEventInFuture(new Event(SAYT_SHOW), 4000);
 
-      ${sayt}
-      <p class="prompt">Explore the <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
-      <div class="display-code">
-      ${getDisplayCode(sayt)}
-      </div>`
-        ;
-    },
-    {
-      customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
-      notes: {
-        markdown: `
-        ${saytNotesMarkdownIntro}
-
-          ### The SF-X SAYT component will render the SF-X Autocomplete component with the payload of the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\`, in response to the event.
-
-            * To emit the event in this story:
-              1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.
-              2. Click "emit".
-              3. See the SF-X SAYT component update with the autocomplete data.
-
-
-          ### The component will render the SF-X Products component with the payload of the \`${PRODUCTS_RESPONSE_EVENT}\`, in response to the event.
-            * To emit the event in this story:
-              1. Visit the **Custom Events** tab and locate the \`${PRODUCTS_RESPONSE_EVENT}\` event.
-              2. Click "emit".
-              3. See the SF-X SAYT component update with the products data.
-
-
-          ### The component will display the SF-X SAYT component in response to the \`${SAYT_EVENT.SAYT_SHOW}\` event, and hide the SF-X SAYT component in response to the \`${SAYT_EVENT.SAYT_HIDE}\` event.
-            * To emit the events in this story:
-              1. Visit the **Custom Events** tab.
-
-                If SAYT is currently visible, locate the \`${SAYT_EVENT.SAYT_HIDE}\` event.
-
-              2-a. Click "emit".
-
-              3-a. Observe the SF-X SAYT component close.
-
-                If SAYT is currently hidden, locate the \`${SAYT_EVENT.SAYT_SHOW}\` event.
-
-              2-b. Click "emit".
-
-              3-b. Observe the SF-X SAYT component open.
-
-
-          ### The component will close when there is a click anywhere outside of the input box or SAYT itself.
-            * To demonstrate in this story:
-                1. Open SAYT with one of the methods outlined above.
-                2. Click the area below SAYT.
-                3. Observe SF-X SAYT component close.
-
-
-          ### The SF-X SAYT component rendered based on the attributes defined on the element.
-            * The component allows for customization via the inclusion of the following attributes:
-              * \`hideAutocomplete\`
-              * \`hideProducts\`
-              * \`closeText\`
-              * \`minSearchLength\`
-                * **Note**: to observe the impact of modifying this attribute, it is necessary to add an event listener to listen for either the \`${AUTOCOMPLETE_REQUEST_RESULTS} \`or \`${PRODUCTS_REQUEST_EVENT}\` events. These events will trigger when the number of characters typed into the input box is equal to or greater than the number defined in the attribute.
-            * To modify these attributes:
-              1. Visit the **Knobs** tab and click any of the "Hide Autocomplete", "Hide Products", and "Show Close button'", and/or update the text contained within the "Close link text" field.
-              2. Emit the appropriate events
-              3. Observe the component render based on the attributes defined.
-
-          ### The SF-X SAYT component will overlap any html behind it.
-            * To demonstrate in this story:
-              1. Open SAYT with one of the methods outlined above.
-              2. Observe the message on the page
+    const sayt = getSayt('', false);
+    return `
+      ${ sayt }
+      ${ getDisplayCode(sayt) }
+    `;
+  }, {
+    notes: {
+      markdown:`
+        # Search As You Type (SAYT)
+        - Show automatically once sub-component Autocomplete receives results.
+        - Receiving sayt_hide event after 2 seconds.
+        - Receiving sayt_show event after 4 seconds.
       `
       }
     }
@@ -197,61 +117,20 @@ storiesOf('Components|SAYT', module)
       const input = `<input type="text" id="search-box" placeholder="Search here" />`;
       const sayt = getSayt('search-box');
 
-      return `
-      <style>
-        .search-container {
-          float: left;
-          position: relative;
-          width: 100%;
-        }
-        #search-box {
-          width: 100%;
-        }
-        .display-code {
-          position: absolute;
-          top: 800px;
-          z-index: -1;
-        }
-        sfx-sayt {
-          background-color: white;
-        }
-      </style>
-
-      <div class="search-container">
-        ${input}
-        ${sayt}
-      </div>
-      <p class="prompt">Explore the <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
-      <div class="display-code">
-      ${getDisplayCode(`${input}\n${sayt}`)}
-      </div>
-    `;
-    },
-    {
-      customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
-      notes: {
-        markdown: `
-        ${saytNotesMarkdownIntro}
-
-          ### The SF-X SAYT component can work with a standard input element, instead of an SF-X Search Box component.
-            * The component will not close when clicking within the input element or anywhere within the SAYT component.
-            * To demonstrate in this story:
-              1. Open SAYT, click the input element.
-              2. Observe that the SAYT component remains open.
-
-
-          ### Example of the SF-X SAYT component with a standard input element
-
-
-      \`\`\`html
-      <input type="text" id="search-box" placeholder="Search here" />
-      <sfx-sayt
-        searchbox="search-box"
-        closetext="×"
-        showclosebutton
-        visible
-      ></sfx-sayt>
-      \`\`\`
+    const input = `<input type="text" id="search-box" placeholder="Search here" />`;
+    const sayt = getSayt('search-box');
+    return `
+      ${ input }
+      <br />
+      ${ sayt }
+      ${ getDisplayCode(`${ input }\n${ sayt }`) }
+    `
+  }, {
+    notes: {
+      markdown:`
+        #Search As You Type (SAYT)
+        Demonstrating SAYT working with a standard input element,
+        rather than our Search component.
       `
       }
     }

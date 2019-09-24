@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import { ProductModel } from '@sfx/product';
-import { PRODUCTS_RESPONSE_EVENT } from '@sfx/products';
+import { SAYT_PRODUCTS_RESPONSE, Product } from '@sfx/events';
 import { getDisplayCode, getProducts, productsResultsEvent, hidePrompt } from '../../../../../.storybook/common';
+import '../src';
 
-function getProductsComponent(productsArray: ProductModel[] = []) {
+function getProductsComponent(productsArray: Product[] = []) {
   if (productsArray.length > 0) {
     const products = text('Products', JSON.stringify(productsArray));
     return `<sfx-products products="${products}"></sfx-products>`
@@ -77,7 +77,7 @@ storiesOf('Components|Products', module)
   ).add(
     'Rendering with event payload',
     () => {
-      hidePrompt(PRODUCTS_RESPONSE_EVENT);
+      hidePrompt(SAYT_PRODUCTS_RESPONSE);
       const productsComponent = getProductsComponent();
       return `
       ${productsComponent}
@@ -91,10 +91,10 @@ storiesOf('Components|Products', module)
         markdown: `
         ${productsNotesMarkdownIntro}
 
-          ### The SF-X Products component renders a product grid in response to the \`${PRODUCTS_RESPONSE_EVENT}\` event.
+          ### The SF-X Products component renders a product grid in response to the \`${SAYT_PRODUCTS_RESPONSE}\` event.
             * The payload of the event contains an array of products.
             * To emit the event in this story:
-              1. Visit the **Custom Events** tab and locate the \`${PRODUCTS_RESPONSE_EVENT}\` event.
+              1. Visit the **Custom Events** tab and locate the \`${SAYT_PRODUCTS_RESPONSE}\` event.
               2. Click "emit".
               3. See the component update with the product data contained in the array.
         `

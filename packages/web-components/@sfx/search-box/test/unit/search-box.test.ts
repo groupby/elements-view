@@ -1,8 +1,14 @@
-import { SEARCHBOX_EVENT } from '../../src/events';
-import { expect, stub } from '../utils';
-import SearchBox from '../../src/search-box';
 import { TemplateResult, html } from 'lit-element';
 import { Base } from '@sfx/base';
+import {
+  SEARCHBOX_CLEARED,
+  SEARCHBOX_CLICK,
+  SEARCHBOX_INPUT,
+  SEARCH_REQUEST,
+  UPDATE_SEARCH_TERM,
+} from '@sfx/events';
+import { expect, stub } from '../utils';
+import SearchBox from '../../src/search-box';
 
 describe('SearchBox Component', () => {
   let searchbox;
@@ -53,7 +59,7 @@ describe('SearchBox Component', () => {
 
       searchbox.connectedCallback();
 
-      expect(windowAddEventListener).to.have.been.calledWith(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, searchbox.updateText);
+      expect(windowAddEventListener).to.have.been.calledWith(UPDATE_SEARCH_TERM, searchbox.updateText);
     });
   });
 
@@ -64,7 +70,7 @@ describe('SearchBox Component', () => {
       searchbox.disconnectedCallback();
 
       expect(windowRemoveEventListener).to.have.been.calledWith(
-        SEARCHBOX_EVENT.UPDATE_SEARCH_TERM,
+        UPDATE_SEARCH_TERM,
         searchbox.updateText
       );
     });
@@ -72,13 +78,13 @@ describe('SearchBox Component', () => {
 
   describe('emitSearchEvent', () => {
     it('should dispatch a search request event with empty area and collection', () => {
-      const value = searchbox.value = 'a';
+      const query = searchbox.value = 'a';
       const id = searchbox.id = 'some-id';
 
       searchbox.emitSearchEvent();
 
-      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-        value,
+      expect(createCustomEvent).to.be.calledWith(SEARCH_REQUEST, {
+        query,
         config: {
           area: '',
           collection: '',
@@ -88,15 +94,15 @@ describe('SearchBox Component', () => {
     });
 
     it('should dispatch a search request event with area and collection', () => {
-      const value = searchbox.value = 'a';
+      const query = searchbox.value = 'a';
       const area = searchbox.area = 'some-area';
       const collection = searchbox.collection = 'some-collection';
       const id = searchbox.id = 'some-id';
 
       searchbox.emitSearchEvent();
 
-      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-        value,
+      expect(createCustomEvent).to.be.calledWith(SEARCH_REQUEST, {
+        query,
         config: {
           area,
           collection,
@@ -110,20 +116,20 @@ describe('SearchBox Component', () => {
     it('should dispatch an emitSearchBoxClearClick', () => {
       searchbox.emitSearchBoxClearClick();
 
-      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK);
+      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_CLEARED);
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });
   });
 
   describe('updateText', () => {
     it('should update the value property with data from the event', () => {
-      const detail = 'inputText';
-      const inputEvent = new CustomEvent('some-test-type', { detail });
+      const term = 'inputText';
+      const inputEvent = new CustomEvent('some-test-type', { detail: { term } });
       const updateSearchTermValue = stub(searchbox, 'updateSearchTermValue');
-  
+
       searchbox.updateText(inputEvent);
 
-      expect(updateSearchTermValue).to.be.calledWith(detail);
+      expect(updateSearchTermValue).to.be.calledWith(term);
     });
   });
 
@@ -148,14 +154,14 @@ describe('SearchBox Component', () => {
       expect(updateSearchTermValueStub).to.have.been.calledWith(searchTerm);
     });
 
-    it('should dispatch a search box change event with a value from the event', () => {
+    it('should dispatch a search box input event with a value from the event', () => {
       const searchTerm = 'dee';
 
       searchbox.handleInput({ target: { value: searchTerm } });
 
       expect(createCustomEvent).to.be.calledWith(
-        SEARCHBOX_EVENT.SEARCHBOX_CHANGE,
-        { value: searchTerm },
+        SEARCHBOX_INPUT,
+        { term: searchTerm },
       );
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });
@@ -193,7 +199,7 @@ describe('SearchBox Component', () => {
     it('should dispatch a search box clicked event', () => {
       searchbox.clickExposed();
 
-      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
+      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_CLICK);
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });
   });
