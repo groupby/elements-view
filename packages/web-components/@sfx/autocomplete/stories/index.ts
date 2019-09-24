@@ -24,7 +24,6 @@ const autocompleteNotesIntro = `
 
 ## Demonstrated in this story`
 
-// TODO: add results type to function when imported from @sfx/events repo
 function getAutocompleteComponent(results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = []): string {
   const optionalTitle = text('Optional Title', 'Autocomplete Results');
 
