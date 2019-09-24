@@ -36,7 +36,6 @@ storiesOf('Components|Products', module)
     'Default',
     () => {
       const productsComponent = getProductsComponent(getProducts(10));
-      console.error('DEBUG', productsComponent);
       return `
     ${productsComponent}
     `;
