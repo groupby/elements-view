@@ -222,10 +222,10 @@ export default class Sayt extends LitElement {
    * @param callback The function to debounce.
    */
   getDebounce(callback: any) {
-    return debounce.debounce(
+    return Lodash.debounce(
       callback,
       this.debounce,
-      false
+      { trailing: true, leading: true }
     );
   }
 

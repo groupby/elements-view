@@ -304,9 +304,9 @@ describe('Sayt Component', () => {
   describe('getDebounce()', () => {
     it('should return a debounced callback method', () => {
       const delay = sayt.debounce;
-      const debounceSettings = false;
+      const debounceSettings = { trailing: true, leading: true };
       const termsCallback = stub(sayt, 'requestSaytAutocompleteTerms');
-      const debounceStub = stub(debounce, 'debounce');
+      const debounceStub = stub(Lodash, 'debounce');
       const expectedDebouncedFunction = () => 123;
 
       debounceStub.returns(expectedDebouncedFunction);
