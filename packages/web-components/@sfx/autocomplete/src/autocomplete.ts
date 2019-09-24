@@ -8,7 +8,7 @@ import {
 
 /**
  * The `sfx-autocomplete` component is responsible for displaying a list
- * of autocomplete terms upon receipt of the `sfx::autocomplete_received_results` event.
+ * of autocomplete terms upon receipt of the [[AUTOCOMPLETE_RESPONSE]] event.
  * The component is also responsible for emitting events based on user input.
  */
 @customElement('sfx-autocomplete')
@@ -57,7 +57,7 @@ export default class Autocomplete extends LitElement {
   }
 
   /**
-   * Dispatches an `sfx::sayt_hover_autocomplete_term` event with the Sayt autocomplete term.
+   * Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the Sayt autocomplete term.
    *
    * @param event An event that contains a Sayt autocomplete term.
    */
