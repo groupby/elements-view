@@ -1,5 +1,4 @@
 import { customElement, html, property, LitElement } from 'lit-element';
-import '@sfx/ui';
 import {
   AUTOCOMPLETE_RESPONSE,
   AUTOCOMPLETE_ACTIVE_TERM,
