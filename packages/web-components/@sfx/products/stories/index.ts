@@ -1,8 +1,10 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import { SAYT_PRODUCTS_RESPONSE, Product } from '@sfx/events';
+import {
+  SAYT_PRODUCTS_RESPONSE,
+  Product,
+} from '@sfx/events';
 import { getDisplayCode, getProducts, productsResultsEvent, hidePrompt } from '../../../../../.storybook/common';
-import '../src';
 
 function getProductsComponent(productsArray: Product[] = []) {
   if (productsArray.length > 0) {

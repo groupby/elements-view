@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
+import { AUTOCOMPLETE_RESPONSE } from '@sfx/events';
 import { getDisplayCode, autocompleteReceivedResultsEvent, autocompleteResults, hidePrompt } from '../../../../../.storybook/common';
 import '../src/index';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '../src/index';
 
 const autocompleteNotesIntro = `
 # SF-X Autocomplete Component
@@ -76,7 +76,7 @@ storiesOf('Components|Autocomplete', module)
   .add(
     'Rendering with event payload',
     () => {
-      hidePrompt(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT);
+      hidePrompt(AUTOCOMPLETE_RESPONSE);
       const autocomplete = getAutocompleteComponent();
 
       return `
@@ -91,9 +91,9 @@ storiesOf('Components|Autocomplete', module)
         markdown: `
           ${autocompleteNotesIntro}
 
-            ### The SF-X Autocomplete component updates with autocomplete data in response to the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.**
+            ### The SF-X Autocomplete component updates with autocomplete data in response to the \`${AUTOCOMPLETE_RESPONSE}\` event.**
             * To emit the event in this story:
-              1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.
+              1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RESPONSE}\` event.
               2. Click "emit".
               3. Observe that the component is updated with the payload of the event.
 

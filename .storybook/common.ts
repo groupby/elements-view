@@ -1,7 +1,11 @@
 import { XmlEntities } from 'html-entities';
-import { ProductModel } from '@sfx/product';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT } from '@sfx/autocomplete';
-import { PRODUCTS_RESPONSE_EVENT } from '@sfx/products';
+import {
+  AUTOCOMPLETE_RESPONSE,
+  SAYT_PRODUCTS_RESPONSE,
+  AutocompleteResultGroup,
+  AutocompleteSearchTermItem,
+  Product,
+} from '@sfx/events';
 
 const entities = new XmlEntities();
 
@@ -25,7 +29,7 @@ export function getDisplayCode(code: string): string {
     `;
 }
 
-export function getSampleProducts(): ProductModel[] {
+export function getSampleProducts(): Product[] {
   return [
     {
       title: 'Best Shoe',
@@ -73,7 +77,7 @@ export function getSampleProducts(): ProductModel[] {
   ];
 }
 
-export function getProducts(quantity: number): ProductModel[] {
+export function getProducts(quantity: number): Product[] {
   const products = [];
   const sampleProducts = getSampleProducts();
   for (let i = 0; i < quantity; i++) {
@@ -83,7 +87,7 @@ export function getProducts(quantity: number): ProductModel[] {
   return products;
 }
 
-export const autocompleteResults = [
+export const autocompleteResults: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = [
   {
     title: '',
     items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
@@ -99,14 +103,14 @@ export const autocompleteResults = [
 ]
 
 export const autocompleteReceivedResultsEvent = {
-  name: AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
+  name: AUTOCOMPLETE_RESPONSE,
   payload: {
     results: autocompleteResults,
   }
 };
 
 export const productsResultsEvent = {
-  name: PRODUCTS_RESPONSE_EVENT,
+  name: SAYT_PRODUCTS_RESPONSE,
   payload: {
     results: {
       products: getProducts(5),
@@ -115,7 +119,7 @@ export const productsResultsEvent = {
 };
 
 export function getProductsReceivedEvent(): CustomEvent {
-  return new CustomEvent(PRODUCTS_RESPONSE_EVENT, {
+  return new CustomEvent(SAYT_PRODUCTS_RESPONSE, {
     detail: {
       results: {
         products: getProducts(5),

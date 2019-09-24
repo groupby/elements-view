@@ -1,7 +1,6 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { Product } from '@sfx/events';
-
 import { getDisplayCode, getProducts } from '../../../../../.storybook/common';
 import '../src/index';
 
@@ -79,7 +78,7 @@ storiesOf('Components|Product', module)
 
         ### The SF-X Product component renders with product data populated via the \`product\` attribute.
         * ***Disclaimer***: although possible, it is not recommended to pass data objects via an attribute.
-          * Refer to the \`Product\` and \`ProductVariants\` interfaces for the accepted data format.
+          * Refer to the \`ProductModel\` and \`ProductVariantsModel\` interfaces for the accepted data format.
           * To modify the data within the \`product\` attribute in this story:
             1. Visit the **Knobs** tab and modify the data inside the "Product Data" field.
             2. Observe that the component is updated with the new data.

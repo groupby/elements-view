@@ -1,14 +1,8 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { UPDATE_SEARCH_TERM } from '@sfx/events';
 import { getDisplayCode } from '../../../../../.storybook/common';
-import {
-  UPDATE_SEARCH_TERM,
-  SEARCHBOX_CLEARED,
-  SEARCHBOX_CLICK,
-  SEARCHBOX_INPUT,
-  SEARCH_REQUEST,
-} from '@sfx/events';
-import '../src/search-box';
+import '../src';
 
 const updateTextEvent = [
   {
