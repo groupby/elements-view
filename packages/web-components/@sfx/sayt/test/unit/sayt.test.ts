@@ -1,4 +1,5 @@
 import { TemplateResult, LitElement } from 'lit-element';
+import * as Debounce from 'debounce';
 import {
   AUTOCOMPLETE_ACTIVE_TERM,
   AUTOCOMPLETE_REQUEST,
@@ -306,13 +307,12 @@ describe('Sayt Component', () => {
       const delay = sayt.debounce;
       const debounceSettings = false;
       const termsCallback = stub(sayt, 'requestSaytAutocompleteTerms');
-      const debounceStub = stub(debounce, 'debounce');
+      const debounceStub = stub(Debounce, 'debounce');
       const expectedDebouncedFunction = () => 123;
 
       debounceStub.returns(expectedDebouncedFunction);
       const actualDebouncedFunction = sayt.getDebounce(termsCallback);
 
-      expect(debounceStub).to.be.called;
       expect(debounceStub).to.be.calledWithExactly(termsCallback, delay, debounceSettings);
       expect(actualDebouncedFunction).to.equal(expectedDebouncedFunction);
     });
@@ -375,6 +375,8 @@ describe('Sayt Component', () => {
       const query = 'some-query';
 
       sayt.requestSaytAutocompleteTerms(query);
+      // invoke debounced function immediately
+      sayt.requestSaytAutocompleteTerms.flush();
 
       expect(dispatchRequestEvent).to.be.calledWith(AUTOCOMPLETE_REQUEST, query);
     });
@@ -386,6 +388,8 @@ describe('Sayt Component', () => {
       const dispatchRequestEvent = stub(sayt, 'dispatchRequestEvent');
 
       sayt.requestSaytProducts(query);
+      // invoke debounced function immediately
+      sayt.requestSaytProducts.flush();
 
       expect(dispatchRequestEvent).to.be.calledWith(SAYT_PRODUCTS_REQUEST, query);
     });

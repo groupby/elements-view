@@ -80,11 +80,9 @@ export default class Sayt extends LitElement {
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
     this.getDebounce = this.getDebounce.bind(this);
-    // this.setDebounce = this.setDebounce.bind(this);
+    this.setDebounce = this.setDebounce.bind(this);
 
-    // this.setDebounce();
-    this.requestSaytAutocompleteTerms  = this.getDebounce(this.requestSaytAutocompleteTerms);
-    this.requestSaytProducts  = this.getDebounce(this.requestSaytProducts);
+    this.setDebounce();
   }
 
   /**
@@ -141,7 +139,7 @@ export default class Sayt extends LitElement {
       this.setSearchboxListener(this.searchbox, 'add');
     }
     if (changedProps.has('debounce')) {
-      // this.setDebounce();
+      this.setDebounce();
     }
   }
 
@@ -233,11 +231,10 @@ export default class Sayt extends LitElement {
    * Dispatches getDebounce for each of the methods to be debounced.
    * Is triggered once on initial load of component and when the debounce attribute is changed.
    */
-  // setDebounce() {
-  //   console.log('>requestSaytAutocompleteTerms called')
-  //   this.requestSaytAutocompleteTerms  = this.getDebounce(this.requestSaytAutocompleteTerms);
-  //   this.requestSaytProducts  = this.getDebounce(this.requestSaytProducts);
-  // }
+  setDebounce() {
+    this.requestSaytAutocompleteTerms  = this.getDebounce(this.requestSaytAutocompleteTerms);
+    this.requestSaytProducts  = this.getDebounce(this.requestSaytProducts);
+  }
 
   /**
    * Dispatches an event to request data. Intended for requesting
