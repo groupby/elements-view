@@ -377,16 +377,16 @@ describe('Sayt Component', () => {
   });
 
   describe('isCorrectSayt()', () => {
-    it('should return true if event provides the correct searchbox ID', () => {
+    it('should return true if event provides the correct group name', () => {
       const searchbox = (sayt.searchbox = 'some-searchbox-id');
-      const event = { detail: { searchbox } };
+      const event = { detail: { group: searchbox } };
 
       const result = sayt.isCorrectSayt(event);
 
       expect(result).to.be.true;
     });
 
-    it('should return true if event does not provide a searchbox ID', () => {
+    it('should return true if event does not provide a group name', () => {
       const event = { detail: {} };
       sayt.searchbox = 'some-searchbox-id';
 
@@ -395,9 +395,9 @@ describe('Sayt Component', () => {
       expect(result).to.be.true;
     });
 
-    it('should return false if event provides the wrong searchbox ID', () => {
+    it('should return false if event provides the wrong group name', () => {
       sayt.searchbox = 'correct-searchbox-id';
-      const event = { detail: { searchbox: 'wrong-searchbox-id' } };
+      const event = { detail: { group: 'wrong-searchbox-id' } };
 
       const result = sayt.isCorrectSayt(event);
 
@@ -406,7 +406,7 @@ describe('Sayt Component', () => {
 
     it('should return true if event specifies a searchbox but SAYT has none specified', () => {
       sayt.searchbox = undefined;
-      const event = { detail: { searchbox: 'some-searchbox-id' } };
+      const event = { detail: { group: 'some-searchbox-id' } };
 
       const result = sayt.isCorrectSayt(event);
 
