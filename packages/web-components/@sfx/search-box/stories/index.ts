@@ -7,7 +7,7 @@ import '../src';
 const updateTextEvent = [
   {
     name: UPDATE_SEARCH_TERM,
-    payload: 'hot chocolate'
+    payload: { term: 'hot chocolate' },
   }
 ];
 
