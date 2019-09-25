@@ -128,7 +128,7 @@ describe('Autcomplete Component', () => {
     });
 
     it('should emit an event when hovering an autocomplete term', () => {
-      CustomEvent = stub(window, 'CustomEvent').returns({});
+      const CustomEvent = stub(window, 'CustomEvent').returns({});
       const mouseEvent = {
         target: {
           tagName: 'LI',
