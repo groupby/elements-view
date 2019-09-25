@@ -56,7 +56,7 @@ export default class Sayt extends LitElement {
    */
   @property({ type: Number, reflect: true }) minSearchLength = 3;
   /**
-   * The debounce delay in millilseconds. The default delay is 300 milliseconds if not supplied.
+   * The debounce delay in millilseconds.
    */
   @property({ type: Number, reflect: true }) debounce = 300;
 
@@ -219,7 +219,7 @@ export default class Sayt extends LitElement {
    *
    * @param callback The function to debounce.
    */
-  getDebounce(callback: any) {
+  getDebounce<A extends Function>(callback: A): ReturnType<debounce> {
     return debounce(
       callback,
       this.debounce,
@@ -403,4 +403,18 @@ export default class Sayt extends LitElement {
       </div>
     `;
   }
+}
+
+/**
+ * The type of the callback expected to be passed to getDebounce.
+ */
+export interface A extends debounce{
+  (query: string, searchbox? : string) : void;
+}
+
+/**
+ * The type of the debounce returned by getDebounce.
+ */
+export interface debounce {
+  (...args: any) : any;
 }

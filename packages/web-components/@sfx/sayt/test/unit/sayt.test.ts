@@ -26,15 +26,12 @@ describe('Sayt Component', () => {
       expect(sayt).to.be.an.instanceof(LitElement);
     });
 
-    it('should debounce certain methods', () => {
-      const getDebounceStub = stub(Sayt.prototype, 'getDebounce');
-      const requestSaytAutocompleteTerms = stub(Sayt.prototype, 'requestSaytAutocompleteTerms');
-      const requestSaytProducts = stub(Sayt.prototype, 'requestSaytProducts');
+    it('should call setDebounce()', () => {
+      const setDebounceStub = stub(Sayt.prototype, 'setDebounce');
 
       sayt = new Sayt();
 
-      expect(getDebounceStub).to.be.calledWithExactly(requestSaytAutocompleteTerms);
-      expect(getDebounceStub).to.be.calledWithExactly(requestSaytProducts);
+      expect(setDebounceStub).to.be.called;
     });
 
     describe('hideAutocomplete property', () => {
@@ -130,6 +127,17 @@ describe('Sayt Component', () => {
 
         expect(setSearchboxListener).to.be.calledWith(oldSearchbox, 'remove');
         expect(setSearchboxListener).to.be.calledWith(newSearchbox, 'add');
+      });
+    });
+
+    describe('debounce', () => {
+      it('should call setDebounce()', () => {
+        const setDebounceStub = stub(sayt, 'setDebounce');
+        const oldDebounceTime = '';
+
+        sayt.updated(new Map([['debounce', oldDebounceTime]]))
+
+        expect(setDebounceStub).to.be.called;
       });
     });
   });
@@ -308,13 +316,26 @@ describe('Sayt Component', () => {
       const termsCallback = stub(sayt, 'requestSaytAutocompleteTerms');
       const debounceStub = stub(Debounce, 'debounce');
       const expectedDebouncedFunction = () => 123;
-
       debounceStub.returns(expectedDebouncedFunction);
+
       const actualDebouncedFunction = sayt.getDebounce(termsCallback);
 
       expect(debounceStub).to.be.calledWithExactly(termsCallback, delay, debounceSettings);
       expect(actualDebouncedFunction).to.equal(expectedDebouncedFunction);
     });
+  });
+
+  describe('setDebounce()', () => {
+    it('should wrap requestSaytAutocompleteTerms and requestSaytProducts in the getDebounce method', () => {
+      const getDebounceStub = stub(sayt, 'getDebounce');
+      const requestSaytAutocompleteTerms = stub(sayt, 'requestSaytAutocompleteTerms');
+      const requestSaytProducts = stub(sayt, 'requestSaytProducts');
+
+      sayt.setDebounce();
+
+      expect(getDebounceStub).to.be.calledWithExactly(requestSaytAutocompleteTerms);
+      expect(getDebounceStub).to.be.calledWithExactly(requestSaytProducts);
+    })
   });
 
   describe('handleAutocompleteTermHover()', () => {
