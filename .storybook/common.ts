@@ -5,6 +5,7 @@ import {
   AutocompleteResultGroup,
   AutocompleteSearchTermItem,
   Product,
+  SaytProductsResponsePayload,
 } from '@sfx/events';
 
 const entities = new XmlEntities();
@@ -116,7 +117,7 @@ export const saytProductsResponseEvent = {
   }
 };
 
-export function getSaytProductsResponseEvent(): CustomEvent {
+export function getSaytProductsResponseEvent(): CustomEvent<SaytProductsResponsePayload> {
   return new CustomEvent(SAYT_PRODUCTS_RESPONSE, {
     detail: {
       products: getProducts(5),
