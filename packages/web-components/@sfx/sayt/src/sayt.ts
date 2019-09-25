@@ -8,6 +8,7 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SEARCHBOX_INPUT,
+  AutocompleteActiveTermPayload,
   SearchboxInputPayload,
 } from '@sfx/events';
 
@@ -232,7 +233,7 @@ export default class Sayt extends LitElement {
    *
    * @param event The hover event dispatched from autocomplete.
    */
-  handleAutocompleteTermHover(event: CustomEvent) {
+  handleAutocompleteTermHover(event: CustomEvent<AutocompleteActiveTermPayload>) {
     this.requestSaytProducts(event.detail.query, this.searchbox);
   }
 
