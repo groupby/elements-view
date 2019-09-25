@@ -7,6 +7,7 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SAYT_HIDE,
   SAYT_SHOW,
+  AutocompleteResponsePayload,
 } from '@sfx/events';
 import '../src';
 import {
@@ -61,7 +62,7 @@ const saytShow = {
   payload: ''
 };
 
-const autocompleteDataReceivedEvent = new CustomEvent(AUTOCOMPLETE_RESPONSE, {
+const autocompleteDataReceivedEvent = new CustomEvent<AutocompleteResponsePayload>(AUTOCOMPLETE_RESPONSE, {
   detail: {
     results: autocompleteResults,
   },
