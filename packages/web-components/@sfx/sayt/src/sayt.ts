@@ -8,6 +8,7 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SEARCHBOX_INPUT,
+  SearchboxInputPayload,
 } from '@sfx/events';
 
 /**
@@ -195,11 +196,11 @@ export default class Sayt extends LitElement {
    *
    * @param eventType The type of the event to be dispatched.
    * @param query The query term.
-   * @param searchbox The ID of the associated searchbox.
+   * @param group The name of the associated group
    */
-  dispatchRequestEvent(eventType: string, query: string, searchbox?: string) {
+  dispatchRequestEvent(eventType: string, query: string, group?: string) {
     const requestEvent = new CustomEvent(eventType, {
-      detail: { query, searchbox },
+      detail: { query, group },
       bubbles: true
     });
     this.dispatchEvent(requestEvent);
@@ -212,7 +213,7 @@ export default class Sayt extends LitElement {
    * @param searchbox The optional searchbox ID associated with this search.
    */
   requestSaytAutocompleteTerms(query: string, searchbox?: string) {
-    this.dispatchRequestEvent(AUTOCOMPLETE_RESPONSE, query, searchbox);
+    this.dispatchRequestEvent(AUTOCOMPLETE_REQUEST, query, searchbox);
   }
 
   /**
@@ -251,8 +252,8 @@ export default class Sayt extends LitElement {
    *
    * @param event The searchbox change event dispatched from the searchbox.
    */
-  processSfxSearchboxChange(event: CustomEvent) {
-    this.requestSayt(event.detail.value, event.detail.searchbox);
+  processSfxSearchboxChange(event: CustomEvent<SearchboxInputPayload>) {
+    this.requestSayt(event.detail.term, event.detail.group);
   }
 
   /**

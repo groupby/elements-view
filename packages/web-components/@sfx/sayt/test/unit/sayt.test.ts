@@ -284,7 +284,7 @@ describe('Sayt Component', () => {
 
   describe('dispatchRequestEvent()', () => {
     const query = 'some-query';
-    const searchbox = 'some-searchbox-id';
+    const group = 'some-group-name';
     const eventName = 'some-event-name';
     let eventObj;
     let dispatchEvent;
@@ -296,21 +296,21 @@ describe('Sayt Component', () => {
       customEvent = stub(window, 'CustomEvent').returns(eventObj);
     });
 
-    it('should dispatch an event with a payload that includes the query and searchbox', () => {
-      sayt.dispatchRequestEvent(eventName, query, searchbox);
+    it('should dispatch an event with a payload that includes the query and group', () => {
+      const s = sayt.dispatchRequestEvent(eventName, query, group);
 
       expect(customEvent).to.be.calledWith(eventName, {
-        detail: { query, searchbox },
+        detail: { query, group },
         bubbles: true,
       });
       expect(dispatchEvent).to.be.calledWith(eventObj);
     });
 
-    it('should dispatch an event with an undefined value of searchbox if not passed', () => {
+    it('should dispatch an event with an undefined value of group if not passed', () => {
       sayt.dispatchRequestEvent(eventName, query);
 
       expect(customEvent).to.be.calledWith(eventName, {
-        detail: { query, searchbox: undefined },
+        detail: { query, group: undefined },
         bubbles: true,
       });
       expect(dispatchEvent).to.be.calledWith(eventObj);
@@ -325,7 +325,7 @@ describe('Sayt Component', () => {
 
       sayt.requestSaytAutocompleteTerms(query, searchbox);
 
-      expect(dispatchRequestEvent).to.be.calledWith(AUTOCOMPLETE_RESPONSE, query, searchbox);
+      expect(dispatchRequestEvent).to.be.calledWith(AUTOCOMPLETE_REQUEST, query, searchbox);
     });
   });
 
@@ -360,19 +360,19 @@ describe('Sayt Component', () => {
 
   describe('processSfxSearchboxChange()', () => {
     it('should trigger a Sayt request', () => {
-      const searchbox = 'some-searchbox-id';
-      const value = 'some-value';
+      const group = 'some-group-name';
+      const term = 'some-value';
       const event = {
         detail: {
-          value,
-          searchbox,
+          term,
+          group,
         }
       };
       const requestSayt = stub(sayt, 'requestSayt');
 
       sayt.processSfxSearchboxChange(event);
 
-      expect(requestSayt).to.be.calledWith(value, searchbox);
+      expect(requestSayt).to.be.calledWith(term, group);
     });
   });
 
