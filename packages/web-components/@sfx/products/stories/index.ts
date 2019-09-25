@@ -10,6 +10,7 @@ import {
   saytProductsResponseEvent,
   hidePrompt,
 } from '../../../../../.storybook/common';
+import '..';
 
 function getProductsComponent(productsArray: Product[] = []) {
   if (productsArray.length > 0) {
