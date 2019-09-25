@@ -166,7 +166,7 @@ export default class SearchBox extends Base {
    * @param detail A payload to be sent with the event.
    */
   createCustomEvent<T>(type: string, detail?: T): CustomEvent<T> {
-    return new CustomEvent(type, {
+    return new CustomEvent<T>(type, {
       detail: {
         ...detail,
         searchbox: this.id
@@ -210,16 +210,4 @@ export default class SearchBox extends Base {
         : ''}
     `;
   }
-}
-
-/**
- * The type of the search request event payload. The payload is the
- * search term.
- */
-export interface SearchRequestPayload {
-  value: string;
-  // NOTE: type `any` is being used here in place of SearchRequest, which
-  // comes from api-javascript (or @sfx/search-plugin).
-  searchbox?: string;
-  config?: Partial<any>;
 }
