@@ -3,6 +3,7 @@ import {
   AUTOCOMPLETE_RESPONSE,
   AUTOCOMPLETE_ACTIVE_TERM,
   AutocompleteResponsePayload,
+  AutocompleteActiveTermPayload,
 } from '@sfx/events';
 
 /**
@@ -64,7 +65,7 @@ export default class Autocomplete extends LitElement {
     const target = event.target as HTMLElement;
     if (target.tagName.toLowerCase() !== 'li') return;
     const term = target.innerText;
-    const sentEvent = new CustomEvent(AUTOCOMPLETE_ACTIVE_TERM, {
+    const sentEvent = new CustomEvent<AutocompleteActiveTermPayload>(AUTOCOMPLETE_ACTIVE_TERM, {
       detail: {
         query: term,
       },
