@@ -10,6 +10,7 @@ import {
   SEARCHBOX_INPUT,
   AutocompleteActiveTermPayload,
   SearchboxInputPayload,
+  WithGroup,
 } from '@sfx/events';
 
 /**
@@ -149,7 +150,7 @@ export default class Sayt extends LitElement {
    *
    * @param event An event that can contain a searchbox ID.
    */
-  showCorrectSayt(event: CustomEvent) {
+  showCorrectSayt(event: CustomEvent<WithGroup>) {
     if (this.isCorrectSayt(event)) {
       this.showSayt();
     }
@@ -167,7 +168,7 @@ export default class Sayt extends LitElement {
    *
    * @param event An event that can contain a searchbox ID.
    */
-  hideCorrectSayt(event: CustomEvent) {
+  hideCorrectSayt(event: CustomEvent<WithGroup>) {
     if (this.isCorrectSayt(event)) {
       this.hideSayt();
     }
@@ -264,9 +265,9 @@ export default class Sayt extends LitElement {
    *
    * @param event An event that can contain a searchbox ID for comparison.
    */
-  isCorrectSayt(event: CustomEvent): boolean {
-    const searchbox = event.detail && event.detail.searchbox;
-    return !searchbox || !this.searchbox || searchbox === this.searchbox;
+  isCorrectSayt(event: CustomEvent<WithGroup>): boolean {
+    const group = event.detail && event.detail.group;
+    return !group || !this.searchbox || group === this.searchbox;
   }
 
   /**
