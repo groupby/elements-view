@@ -135,7 +135,7 @@ describe('Sayt Component', () => {
         const setDebounceStub = stub(sayt, 'setDebounce');
         const oldDebounceTime = '';
 
-        sayt.updated(new Map([['debounce', oldDebounceTime]]))
+        sayt.updated(new Map([['debounce', oldDebounceTime]]));
 
         expect(setDebounceStub).to.be.called;
       });
@@ -299,8 +299,8 @@ describe('Sayt Component', () => {
     });
 
     it('should request sayt autocomplete terms and products', () => {
-      const requestSaytAutocompleteTerms = stub(sayt, 'requestSaytAutocompleteTerms');
-      const requestSaytProducts = stub(sayt, 'requestSaytProducts');
+      const requestSaytAutocompleteTerms = stub(sayt, 'debouncedRequestSaytAutocompleteTerms');
+      const requestSaytProducts = stub(sayt, 'debouncedRequestSaytProducts');
 
       sayt.requestSayt(query);
 
@@ -396,7 +396,7 @@ describe('Sayt Component', () => {
 
       sayt.requestSaytAutocompleteTerms(query);
       // invoke debounced function immediately
-      sayt.requestSaytAutocompleteTerms.flush();
+      sayt.debouncedRequestSaytAutocompleteTerms.flush();
 
       expect(dispatchRequestEvent).to.be.calledWith(AUTOCOMPLETE_REQUEST, query);
     });
@@ -409,7 +409,7 @@ describe('Sayt Component', () => {
 
       sayt.requestSaytProducts(query);
       // invoke debounced function immediately
-      sayt.requestSaytProducts.flush();
+      sayt.debouncedRequestSaytProducts.flush();
 
       expect(dispatchRequestEvent).to.be.calledWith(SAYT_PRODUCTS_REQUEST, query);
     });

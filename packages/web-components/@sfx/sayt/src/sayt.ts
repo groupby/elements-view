@@ -59,11 +59,20 @@ export default class Sayt extends LitElement {
    * The debounce delay in millilseconds.
    */
   @property({ type: Number, reflect: true }) debounce = 300;
+  /**
+   * The debouncedRequestSaytProducts method that will wrap the requestSaytProducts method in a debounce.
+   */
+  debouncedRequestSaytProducts: requestSaytType;
+  /**
+   * The debouncedRequestSaytAutocompleteTerms method that will wrap the requestSaytAutocompleteTerms method in a debounce.
+   */
+  debouncedRequestSaytAutocompleteTerms: requestSaytType;
 
   /**
    * Calls superclass constructor and bind methods.
    */
   constructor() {
+
     super();
 
     this.showSayt = this.showSayt.bind(this);
@@ -219,7 +228,7 @@ export default class Sayt extends LitElement {
    *
    * @param callback The function to debounce.
    */
-  getDebounce<A extends Function>(callback: A): ReturnType<debounce> {
+  getDebounce<requestSaytType extends Function>(callback: requestSaytType): ReturnType<debounce> {
     return debounce(
       callback,
       this.debounce,
@@ -232,8 +241,8 @@ export default class Sayt extends LitElement {
    * Is triggered once in constructor and when the debounce attribute is changed.
    */
   setDebounce() {
-    this.requestSaytAutocompleteTerms  = this.getDebounce(this.requestSaytAutocompleteTerms);
-    this.requestSaytProducts  = this.getDebounce(this.requestSaytProducts);
+    this.debouncedRequestSaytAutocompleteTerms  = this.getDebounce(this.requestSaytAutocompleteTerms);
+    this.debouncedRequestSaytProducts  = this.getDebounce(this.requestSaytProducts);
   }
 
   /**
@@ -408,13 +417,13 @@ export default class Sayt extends LitElement {
 /**
  * The type of the callback expected to be passed to getDebounce.
  */
-export interface A extends debounce{
+export interface requestSaytType extends debounce {
   (query: string, searchbox? : string) : void;
-}
+};
 
 /**
  * The type of the debounce returned by getDebounce.
  */
 export interface debounce {
   (...args: any) : any;
-}
+};
