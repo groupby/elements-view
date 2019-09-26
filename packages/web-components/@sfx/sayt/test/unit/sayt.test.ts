@@ -328,13 +328,11 @@ describe('Sayt Component', () => {
   describe('setDebounce()', () => {
     it('should wrap requestSaytAutocompleteTerms and requestSaytProducts in the getDebounce method', () => {
       const getDebounce = stub(sayt, 'getDebounce');
-      const requestSaytAutocompleteTerms = stub(sayt, 'requestSaytAutocompleteTerms');
-      const requestSaytProducts = stub(sayt, 'requestSaytProducts');
 
       sayt.setDebounce();
 
-      expect(getDebounce).to.be.calledWithExactly(requestSaytAutocompleteTerms);
-      expect(getDebounce).to.be.calledWithExactly(requestSaytProducts);
+      expect(getDebounce).to.be.calledWithExactly(sayt.requestSaytAutocompleteTerms);
+      expect(getDebounce).to.be.calledWithExactly(sayt.requestSaytProducts);
     })
   });
 
