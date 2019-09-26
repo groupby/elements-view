@@ -297,7 +297,7 @@ describe('Sayt Component', () => {
     });
 
     it('should dispatch an event with a payload that includes the query and group', () => {
-      const s = sayt.dispatchRequestEvent(eventName, query, group);
+      sayt.dispatchRequestEvent(eventName, query, group);
 
       expect(customEvent).to.be.calledWith(eventName, {
         detail: { query, group },
