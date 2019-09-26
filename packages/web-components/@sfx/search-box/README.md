@@ -6,7 +6,7 @@ The component accepts text input and dispatches events based on input.
 
 ### Events
 
-#### `sfx::searchbox_cleared`
+#### `sfx::searchbox_clear`
 
 Dispatched when a user clicks on the clear button.
 

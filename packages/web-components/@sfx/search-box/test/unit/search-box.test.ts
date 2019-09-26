@@ -1,7 +1,7 @@
 import { TemplateResult, html } from 'lit-element';
 import { Base } from '@sfx/base';
 import {
-  SEARCHBOX_CLEARED,
+  SEARCHBOX_CLEAR,
   SEARCHBOX_CLICK,
   SEARCHBOX_INPUT,
   SEARCH_REQUEST,
@@ -116,7 +116,7 @@ describe('SearchBox Component', () => {
     it('should dispatch an emitSearchBoxClearClick', () => {
       searchbox.emitSearchBoxClearClick();
 
-      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_CLEARED);
+      expect(createCustomEvent).to.be.calledWith(SEARCHBOX_CLEAR);
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });
   });

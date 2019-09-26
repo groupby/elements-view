@@ -1,13 +1,13 @@
 import { customElement, html, property, PropertyValues } from 'lit-element';
 import { Base } from '@sfx/base';
 import {
-  SEARCHBOX_CLEARED,
+  SEARCHBOX_CLEAR,
   SEARCHBOX_CLICK,
   SEARCHBOX_INPUT,
   SEARCH_REQUEST,
   UPDATE_SEARCH_TERM,
   SearchRequestPayload,
-  SearchboxClearedPayload,
+  SearchboxClearPayload,
   SearchboxClickPayload,
   SearchboxInputPayload,
   UpdateSearchTermPayload,
@@ -82,11 +82,11 @@ export default class SearchBox extends Base {
   }
 
   /**
-   * Dispatches a [[SEARCHBOX_CLEARED]] event notifying that the input box has
+   * Dispatches a [[SEARCHBOX_CLEAR]] event notifying that the input box has
    * been cleared. Invoked in response to a click on the clear button.
    */
   emitSearchBoxClearClick() {
-    const searchboxClearedEvent = this.createCustomEvent<SearchboxClearedPayload>(SEARCHBOX_CLEARED);
+    const searchboxClearedEvent = this.createCustomEvent<SearchboxClearPayload>(SEARCHBOX_CLEAR);
     this.dispatchEvent(searchboxClearedEvent);
   }
 
