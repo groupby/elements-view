@@ -72,7 +72,6 @@ export default class Sayt extends LitElement {
    * Calls superclass constructor and bind methods.
    */
   constructor() {
-
     super();
 
     this.showSayt = this.showSayt.bind(this);
