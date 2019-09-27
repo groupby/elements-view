@@ -1,6 +1,5 @@
 # SF-X Products Component
 
-## Functionality
 The Products component acts as a wrapper around a series of individual
 `sfx-product` components. It uses a list of information about products
 and passes each item to a single product for rendering.
@@ -10,28 +9,18 @@ There are three versions of the Products component:
 - `sfx-products-sayt`
 - `sfx-products`
 
-### sfx-products-base
-The base component can be used to display product data directly through attributes; however, it does not listen to any events for product data. It can be extended for event listening by adding an event listener for a desired event with the `setProductsFromEvent()` callback in the component's `connnectedCallback()`.
+## sfx-products-base
 
-Ex.
-```js
-connectedCallback() {
-  super.connectedCallback();
+### Functionality
 
-  window.addEventListener(EVENT_NAME, this.setProductsFromEvent);
-}
-```
+The base component can be used to display product data directly through attributes; however, it does not listen to any events for product data.
 
 *NOTE: This component is not meant to be used directly, but is provided as an option to extend and create a custom Products component.*
 
-### sfx-products-sayt
-The Sayt version of the Products component is used inside of a Sayt component. It listens for the `sfx::provide-products` event and will update its product grid with the event's payload.
+### Customization
 
-### sfx-products
-The Search version of the Products component is used to display search results. It listens for the `sfx::search_response` event and will update its product grid with the event's payload.
+#### Group
 
-## Customization
-### Group
 This optional attribute will add a Products component to a grouping of related components that communicate with each other. It can be used on any of the Products components.
 
 Ex.
@@ -41,8 +30,37 @@ Ex.
 
 *NOTE: This attribute is unnecessary if there is only one group and sayt pairing and one product search results grid on the webpage.*
 
+## sfx-products-sayt
+
+### Functionality
+
+The Sayt version of the Products component is used inside of a Sayt component. It is extended from the `sfx-products-base` component.
+
+This component listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
+
+### Received Events
+
+#### `SAYT_PRODUCTS_RESPONSE`
+
+Upon receiving this event, the `sfx-products-sayt` component will populate the `products` property and render the data.
+
+## sfx-products
+
+### Functionality
+
+The Search version of the Products component is used to display search results.
+
+This component listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
+
+### Received Events
+
+#### `SEARCH_RESPONSE`
+
+Upon receiving this event, the `sfx-products` component will populate the `products` property and render the data.
+
 ## Testing
-The test suite for this component is contained in `/packages/web-components/@sfx/products/test`.
+
+The test suite for this package is contained in `/packages/web-components/@sfx/products/test`.
 To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:
 
 - To run the tests once:
@@ -56,3 +74,5 @@ yarn test
 ```sh
 yarn tdd
 ```
+
+[sfx-events]: https://github.com/groupby/sfx-events
