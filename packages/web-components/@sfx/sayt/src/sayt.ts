@@ -214,7 +214,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Dispatches an [[AUTOCOMPLETE_RESPONSE]] event with the provided data.
+   * Dispatches an [[AUTOCOMPLETE_REQUEST]] event with the provided data.
    *
    * @param query The search term to use.
    */
