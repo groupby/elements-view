@@ -2,8 +2,21 @@
 
 ## Functionality
 
-The component listens for an event, which is fired when the autocomplete data is received.
-The component then populates a list with the received data.
+The Autocomplete component displays search terms related to a query term. It is also able to dispatch Sayt product search requests.
+
+This component listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
+
+### Recieved Events
+
+#### `AUTOCOMPLETE_RESPONSE`
+
+Upon receiving this event, the `sfx-autocomplete` component will populate its `results` property with search terms.
+
+### Dispatched Events
+
+#### `AUTOCOMPLETE_ACTIVE_TERM`
+
+This event is dispatched when one of the search terms inside of the `sfx-autocomplete` component is put in the active state or hovered on.
 
 ## Customizations
 
@@ -26,3 +39,5 @@ yarn test
 ```sh
 yarn tdd
 ```
+
+[sfx-events]: https://github.com/groupby/sfx-events
