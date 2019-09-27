@@ -37,7 +37,7 @@ Users of the component can add the following attributes to the custom element:
 - `clearbutton`: adds clear button
 - `searchbutton`: adds search button
 - `placeholder`: if populated with a string, will replace the default placeholder text in the search box.
-- `group`: Optional attribute to add this component to a grouping of related search components.
+- `group`: Optional attribute to add this component to a grouping of related search components. The component will only act on events if they contain the same group name as the component.
 
 ## Testing
 

@@ -21,7 +21,7 @@ This event is dispatched when one of the search terms inside of the `sfx-autocom
 ## Customizations
 
 - `caption`: Optional attribute to create and populate an `<h3>` tag at the top of the Autocomplete component.
-- `group`: Optional attribute to add the `sayt` component to a grouping of related search components.
+- `group`: Optional attribute to add the `sayt` component to a grouping of related search components. The component will only act on events if they contain the same group name as the component.
 
 ## Testing
 

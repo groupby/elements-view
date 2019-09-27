@@ -21,7 +21,7 @@ The base component can be used to display product data directly through attribut
 
 #### Group
 
-This optional attribute will add a Products component to a grouping of related components that communicate with each other. It can be used on any of the Products components.
+This optional attribute will add a Products component to a grouping of related components that communicate with each other. The component will only act on events if they contain the same group name as the component. It can be used in any of the Products components.
 
 Ex.
 ```html
