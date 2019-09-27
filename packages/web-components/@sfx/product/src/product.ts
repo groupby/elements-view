@@ -1,6 +1,10 @@
 import { customElement, property, html, TemplateResult } from 'lit-element';
 
 import { Base } from '@sfx/base';
+import {
+  Product as ProductModel,
+  ProductVariant,
+} from '@sfx/events';
 
 /**
  * A product component that consumes product data to display.
@@ -21,7 +25,7 @@ export default class Product extends Base {
    *  @param variant The variant that is selected.
    *  @returns A function that updates the product data with the given variant.
    */
-  updateVariant(variant: ProductVariantModel): () => void {
+  updateVariant(variant: ProductVariant): () => void {
     return () => {
       this.product = {
         ...this.product,
@@ -115,46 +119,4 @@ export default class Product extends Base {
  */
 function toLowerCaseKebab(str: string): string {
   return str.toLowerCase().replace(/\s/g, '-');
-}
-
-/**
- *  The type of product that is expected by the product component.
- */
-export interface ProductModel extends Record<string, any>{
-  /** The name of the product. */
-  title?: string;
-  /** The display price of the product. */
-  price?: number;
-  /** The url of the product image. */
-  imageSrc?: string;
-  /** The alternative text for the product image. */
-  imageAlt?: string;
-  /** The url for product details page. */
-  productUrl?: string;
-  /** The variants of this product. */
-  variants?: ProductVariantsModel;
-}
-
-/**
- * The type that contains the collection of variants.
- */
-export interface ProductVariantsModel {
-  /** The type of variant rendered. */
-  type: 'color' | 'image' | 'text';
-  /** The list of variants. */
-  items: ProductVariantModel[];
-}
-
-/**
- * The type of variant that is expected by the product variant component.
- */
-export interface ProductVariantModel {
-  /** The background color for the variant. Must be a valid css color. */
-  color?: string;
-  /** The url for the variant thumbnail. */
-  image?: string;
-  /** The label for the variant. */
-  text: string;
-  /** The product data specific to this variant. */
-  product: ProductModel;
 }

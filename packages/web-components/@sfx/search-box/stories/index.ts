@@ -1,13 +1,13 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { UPDATE_SEARCH_TERM } from '@sfx/events';
 import { getDisplayCode } from '../../../../../.storybook/common';
-import { SEARCHBOX_EVENT } from '../src/events';
 import '../src';
 
 const updateTextEvent = [
   {
-    name: SEARCHBOX_EVENT.UPDATE_SEARCH_TERM,
-    payload: 'hot chocolate'
+    name: UPDATE_SEARCH_TERM,
+    payload: { term: 'hot chocolate' },
   }
 ];
 
@@ -64,9 +64,9 @@ storiesOf('Components|Searchbox', module)
               1. Visit the **Knobs** tab and modify the text contained within the "Placeholder Text" field.
               2. See the component update with the updated text.
 
-          ### The SF-X Search Box component populates with an updated search term in response to the \`${SEARCHBOX_EVENT.UPDATE_SEARCH_TERM}\` event.
+          ### The SF-X Search Box component populates with an updated search term in response to the \`${UPDATE_SEARCH_TERM}\` event.
             * To emit the event in this story:
-              1. Navigate to the **Custom Events** tab and locate the \`${SEARCHBOX_EVENT.UPDATE_SEARCH_TERM}\` event.
+              1. Navigate to the **Custom Events** tab and locate the \`${UPDATE_SEARCH_TERM}\` event.
               2. Click "emit".
               3. See the component update with the new search term.
               `

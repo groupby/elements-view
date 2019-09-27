@@ -1,15 +1,21 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
-import { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, AUTOCOMPLETE_REQUEST_RESULTS } from '@sfx/autocomplete';
-import { SAYT_EVENT } from '../src/events';
+import {
+  AUTOCOMPLETE_REQUEST,
+  AUTOCOMPLETE_RESPONSE,
+  SAYT_PRODUCTS_REQUEST,
+  SAYT_PRODUCTS_RESPONSE,
+  SAYT_HIDE,
+  SAYT_SHOW,
+  AutocompleteResponsePayload,
+} from '@sfx/events';
 import '../src';
 import {
   getDisplayCode,
-  productsResultsEvent,
-  autocompleteReceivedResultsEvent,
+  getSaytProductsResponseEvent,
+  saytProductsResponseEvent,
+  autocompleteResponseEvent,
   autocompleteResults,
-  getProductsReceivedEvent,
   hidePrompt,
 } from '../../../../../.storybook/common';
 
@@ -47,16 +53,16 @@ function getSayt(searchbox: string = ''): string {
 }
 
 const saytHide = {
-  name: SAYT_EVENT.SAYT_HIDE,
+  name: SAYT_HIDE,
   payload: ''
 };
 
 const saytShow = {
-  name: SAYT_EVENT.SAYT_SHOW,
+  name: SAYT_SHOW,
   payload: ''
 };
 
-const autocompleteDataReceivedEvent = new CustomEvent(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, {
+const autocompleteDataReceivedEvent = new CustomEvent<AutocompleteResponsePayload>(AUTOCOMPLETE_RESPONSE, {
   detail: {
     results: autocompleteResults,
   },
@@ -68,7 +74,7 @@ function generateBaseData() {
     window.dispatchEvent(autocompleteDataReceivedEvent);
   }, 0)
   setTimeout(() => {
-    window.dispatchEvent(getProductsReceivedEvent());
+    window.dispatchEvent(getSaytProductsResponseEvent());
   }, 0)
 }
 
@@ -104,7 +110,7 @@ storiesOf('Components|SAYT', module)
   .add(
     'Rendering based on events and attributes',
     () => {
-      hidePrompt(SAYT_EVENT.SAYT_HIDE);
+      hidePrompt(SAYT_HIDE);
       const sayt = getSayt();
       return `
       <style>
@@ -126,37 +132,37 @@ storiesOf('Components|SAYT', module)
         ;
     },
     {
-      customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
+      customEvents: [saytProductsResponseEvent, autocompleteResponseEvent, saytHide, saytShow],
       notes: {
         markdown: `
         ${saytNotesMarkdownIntro}
 
-          ### The SF-X SAYT component will render the SF-X Autocomplete component with the payload of the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\`, in response to the event.
+          ### The SF-X SAYT component will render the SF-X Autocomplete component with the payload of the \`${AUTOCOMPLETE_RESPONSE}\`, in response to the event.
 
             * To emit the event in this story:
-              1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RECEIVED_RESULTS_EVENT}\` event.
+              1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RESPONSE}\` event.
               2. Click "emit".
               3. See the SF-X SAYT component update with the autocomplete data.
 
 
-          ### The component will render the SF-X Products component with the payload of the \`${PRODUCTS_RESPONSE_EVENT}\`, in response to the event.
+          ### The component will render the SF-X Products component with the payload of the \`${SAYT_PRODUCTS_RESPONSE}\`, in response to the event.
             * To emit the event in this story:
-              1. Visit the **Custom Events** tab and locate the \`${PRODUCTS_RESPONSE_EVENT}\` event.
+              1. Visit the **Custom Events** tab and locate the \`${SAYT_PRODUCTS_RESPONSE}\` event.
               2. Click "emit".
               3. See the SF-X SAYT component update with the products data.
 
 
-          ### The component will display the SF-X SAYT component in response to the \`${SAYT_EVENT.SAYT_SHOW}\` event, and hide the SF-X SAYT component in response to the \`${SAYT_EVENT.SAYT_HIDE}\` event.
+          ### The component will display the SF-X SAYT component in response to the \`${SAYT_SHOW}\` event, and hide the SF-X SAYT component in response to the \`${SAYT_HIDE}\` event.
             * To emit the events in this story:
               1. Visit the **Custom Events** tab.
 
-                If SAYT is currently visible, locate the \`${SAYT_EVENT.SAYT_HIDE}\` event.
+                If SAYT is currently visible, locate the \`${SAYT_HIDE}\` event.
 
               2-a. Click "emit".
 
               3-a. Observe the SF-X SAYT component close.
 
-                If SAYT is currently hidden, locate the \`${SAYT_EVENT.SAYT_SHOW}\` event.
+                If SAYT is currently hidden, locate the \`${SAYT_SHOW}\` event.
 
               2-b. Click "emit".
 
@@ -176,7 +182,7 @@ storiesOf('Components|SAYT', module)
               * \`hideProducts\`
               * \`closeText\`
               * \`minSearchLength\`
-                * **Note**: to observe the impact of modifying this attribute, it is necessary to add an event listener to listen for either the \`${AUTOCOMPLETE_REQUEST_RESULTS} \`or \`${PRODUCTS_REQUEST_EVENT}\` events. These events will trigger when the number of characters typed into the input box is equal to or greater than the number defined in the attribute.
+                * **Note**: to observe the impact of modifying this attribute, it is necessary to add an event listener to listen for either the \`${AUTOCOMPLETE_RESPONSE} \`or \`${SAYT_PRODUCTS_REQUEST}\` events. These events will trigger when the number of characters typed into the input box is equal to or greater than the number defined in the attribute.
             * To modify these attributes:
               1. Visit the **Knobs** tab and click any of the "Hide Autocomplete", "Hide Products", and "Show Close button'", and/or update the text contained within the "Close link text" field.
               2. Emit the appropriate events
@@ -193,7 +199,7 @@ storiesOf('Components|SAYT', module)
   .add(
     'SAYT with simple search input',
     () => {
-      hidePrompt(SAYT_EVENT.SAYT_HIDE);
+      hidePrompt(SAYT_HIDE);
       const input = `<input type="text" id="search-box" placeholder="Search here" />`;
       const sayt = getSayt('search-box');
 
@@ -228,7 +234,7 @@ storiesOf('Components|SAYT', module)
     `;
     },
     {
-      customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
+      customEvents: [saytProductsResponseEvent, autocompleteResponseEvent, saytHide, saytShow],
       notes: {
         markdown: `
         ${saytNotesMarkdownIntro}
@@ -259,7 +265,7 @@ storiesOf('Components|SAYT', module)
   .add(
     'SAYT with multiple search inputs',
     () => {
-      hidePrompt(SAYT_EVENT.SAYT_HIDE);
+      hidePrompt(SAYT_HIDE);
       const input1 = `<input type="text" id="search-box1" placeholder="Search here" />`;
       const input2 = `<input type="text" id="search-box2" placeholder="Or search here" />`;
       const sayt1 = getSayt('search-box1');
@@ -302,7 +308,7 @@ storiesOf('Components|SAYT', module)
 
     },
     {
-      customEvents: [productsResultsEvent, autocompleteReceivedResultsEvent, saytHide, saytShow],
+      customEvents: [saytProductsResponseEvent, autocompleteResponseEvent, saytHide, saytShow],
       notes: {
         markdown: `
           ${saytNotesMarkdownIntro}

@@ -5,12 +5,11 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { ProductModel } from '@sfx/product';
-
-/** The name of the event that contains product data. */
-export const PRODUCTS_RESPONSE_EVENT: string = 'sfx::sayt_products_response';
-/** The name of the event that contains product request. */
-export const PRODUCTS_REQUEST_EVENT: string = 'sfx::sayt_products_request';
+import {
+  SAYT_PRODUCTS_RESPONSE,
+  Product,
+  SaytProductsResponsePayload,
+} from '@sfx/events';
 
 /**
  * The `sfx-products` web component wraps and renders a number of
@@ -19,7 +18,7 @@ export const PRODUCTS_REQUEST_EVENT: string = 'sfx::sayt_products_request';
  */
 @customElement('sfx-products')
 export default class Products extends LitElement {
-  @property({ type: Array }) products: ProductModel[] = [];
+  @property({ type: Array }) products: Product[] = [];
 
   /**
    * Binds relevant methods.
@@ -42,7 +41,7 @@ export default class Products extends LitElement {
       this.setAttribute('role', 'list');
     }
 
-    window.addEventListener(PRODUCTS_RESPONSE_EVENT, this.setProductsFromEvent);
+    window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
   }
 
   /**
@@ -51,7 +50,7 @@ export default class Products extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    window.removeEventListener(PRODUCTS_RESPONSE_EVENT, this.setProductsFromEvent);
+    window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
   }
 
   /**
@@ -59,8 +58,8 @@ export default class Products extends LitElement {
    *
    * @param event An event containing a search result with product data.
    */
-  setProductsFromEvent(event: CustomEvent<ProductsEventPayload>) {
-    this.products = event.detail.results.products || [];
+  setProductsFromEvent(event: CustomEvent<SaytProductsResponsePayload>) {
+    this.products = event.detail.products || [];
   }
 
   render(): TemplateResult {
@@ -97,16 +96,4 @@ export default class Products extends LitElement {
   createRenderRoot() {
     return this;
   }
-}
-
-/**
- * The type of the payload of the [[PRODUCTS_RESPONSE_EVENT]] event.
- */
-export interface ProductsEventPayload {
-  /** The products. */
-  results: {
-    products: ProductModel[];
-    query: string;
-  }
-  searchbox?: string;
 }

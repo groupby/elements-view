@@ -1,6 +1,7 @@
 import { TemplateResult, LitElement } from 'lit-element';
+import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM } from '@sfx/events';
 import { expect, spy, stub } from '../utils';
-import Autocomplete, { AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, HOVER_AUTOCOMPLETE_TERM_EVENT } from '../../src/autocomplete';
+import Autocomplete from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
@@ -47,7 +48,7 @@ describe('Autcomplete Component', () => {
       autocomplete.connectedCallback();
 
       expect(windowAddEventListener).to.have.been.calledWith(
-        AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
+        AUTOCOMPLETE_RESPONSE,
         autocomplete.receivedResults
       );
     });
@@ -73,7 +74,7 @@ describe('Autcomplete Component', () => {
       autocomplete.disconnectedCallback();
 
       expect(windowRemoveEventListener).to.have.been.calledWith(
-        AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
+        AUTOCOMPLETE_RESPONSE,
         autocomplete.receivedResults
       );
     });
@@ -127,7 +128,7 @@ describe('Autcomplete Component', () => {
     });
 
     it('should emit an event when hovering an autocomplete term', () => {
-      CustomEvent = stub(window, 'CustomEvent').returns({});
+      const CustomEvent = stub(window, 'CustomEvent').returns({});
       const mouseEvent = {
         target: {
           tagName: 'LI',
@@ -137,7 +138,7 @@ describe('Autcomplete Component', () => {
 
       autocomplete.handleHoverTerm(mouseEvent);
 
-      expect(CustomEvent).to.be.calledWith(HOVER_AUTOCOMPLETE_TERM_EVENT, {
+      expect(CustomEvent).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, {
         detail: {
           query: mouseEvent.target.innerText,
         },

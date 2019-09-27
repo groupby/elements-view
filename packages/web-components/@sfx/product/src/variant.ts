@@ -1,8 +1,6 @@
 import { customElement, property, html } from 'lit-element';
-
 import { Base } from '@sfx/base';
-
-import { ProductVariantModel } from './product';
+import { ProductVariant } from '@sfx/events';
 
 /**
  * A product variant component that displays a thumbnail of a product variant.
@@ -12,7 +10,7 @@ export default class Variant extends Base {
   /** The type of variant to render. One of `text`, `color` or `image`. Default is `text`. */
   @property({ type: String, reflect: true }) type: string = 'text';
   /** The variant data. */
-  @property({ type: Object }) variant: ProductVariantModel = { text: '', product: {} };
+  @property({ type: Object }) variant: ProductVariant = { text: '', product: {} };
 
   /**
    * Sets various display properties based on the type of variant to be rendered.

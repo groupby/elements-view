@@ -7,7 +7,7 @@ and passes each item to a single product for rendering.
 
 ### Received Events
 
-#### `sfx::provide-products`
+#### `sfx::sayt_products_response`
 Upon receiving this event, the `sfx-products` component will accept
 the passed products data and update/add/remove any child product tiles.
 

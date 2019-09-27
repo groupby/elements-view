@@ -1,6 +1,17 @@
 import { customElement, html, property, PropertyValues } from 'lit-element';
 import { Base } from '@sfx/base';
-import { SEARCHBOX_EVENT } from './events';
+import {
+  SEARCHBOX_CLEAR,
+  SEARCHBOX_CLICK,
+  SEARCHBOX_INPUT,
+  SEARCH_REQUEST,
+  UPDATE_SEARCH_TERM,
+  SearchRequestPayload,
+  SearchboxClearPayload,
+  SearchboxClickPayload,
+  SearchboxInputPayload,
+  UpdateSearchTermPayload,
+} from '@sfx/events';
 
 /**
  * This entity is responsible for receiving user input and dispatching events
@@ -44,7 +55,7 @@ export default class SearchBox extends Base {
    */
   connectedCallback() {
     super.connectedCallback();
-    window.addEventListener(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, this.updateText);
+    window.addEventListener(UPDATE_SEARCH_TERM, this.updateText);
   }
 
   /**
@@ -52,7 +63,7 @@ export default class SearchBox extends Base {
    */
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener(SEARCHBOX_EVENT.UPDATE_SEARCH_TERM, this.updateText);
+    window.removeEventListener(UPDATE_SEARCH_TERM, this.updateText);
   }
 
   /**
@@ -60,8 +71,8 @@ export default class SearchBox extends Base {
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
   emitSearchEvent() {
-    const searchboxRequestEvent = this.createCustomEvent<SearchRequestPayload>(SEARCHBOX_EVENT.SEARCH_REQUEST, {
-      value: this.value,
+    const searchboxRequestEvent = this.createCustomEvent<SearchRequestPayload>(SEARCH_REQUEST, {
+      query: this.value,
       config: {
         area: this.area,
         collection: this.collection,
@@ -71,11 +82,11 @@ export default class SearchBox extends Base {
   }
 
   /**
-   * Dispatches an event notifying that the input box has been cleared.
-   * Invoked in response to a click on the clear button.
+   * Dispatches a [[SEARCHBOX_CLEAR]] event notifying that the input box has
+   * been cleared. Invoked in response to a click on the clear button.
    */
   emitSearchBoxClearClick() {
-    const searchboxClearedEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLEAR_CLICK);
+    const searchboxClearedEvent = this.createCustomEvent<SearchboxClearPayload>(SEARCHBOX_CLEAR);
     this.dispatchEvent(searchboxClearedEvent);
   }
 
@@ -86,12 +97,12 @@ export default class SearchBox extends Base {
    *
    * @param e The event object.
    */
-  updateText(e: CustomEvent) {
-    this.updateSearchTermValue(e.detail);
+  updateText(e: CustomEvent<UpdateSearchTermPayload>) {
+    this.updateSearchTermValue(e.detail.term);
   }
 
   /**
-   * Dispatches an `sfx::on_search_box_change` event, and updates the value
+   * Dispatches [[SEARCHBOX_INPUT]] event, and updates the value
    * property with the payload of the given event.
    *
    * Invoked in response to a change to the contents of the searchbox.
@@ -100,8 +111,11 @@ export default class SearchBox extends Base {
    */
   handleInput(e: KeyboardEvent) {
     const value = (e.target as HTMLInputElement).value;
+    const searchboxInputEvent = this.createCustomEvent<SearchboxInputPayload>(SEARCHBOX_INPUT, {
+      term: (e.target as HTMLInputElement).value,
+    });
     this.updateSearchTermValue(value);
-    this.dispatchEvent(this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, { value }));
+    this.dispatchEvent(searchboxInputEvent);
   }
 
   /**
@@ -136,11 +150,12 @@ export default class SearchBox extends Base {
   }
 
   /**
-   * Dispatches an event notifying that the search box input bar has been clicked.
-   * Invoked in response to a user clicking inside of the searchbox input.
+   * Dispatches a [[SEARCHBOX_CLICK]] event notifying that the search box input
+   * bar has been clicked. Invoked in response to a user clicking inside of the
+   * searchbox input.
    */
   clickExposed() {
-    const searchBoxClickedEvent = this.createCustomEvent(SEARCHBOX_EVENT.SEARCHBOX_CLICK);
+    const searchBoxClickedEvent = this.createCustomEvent<SearchboxClickPayload>(SEARCHBOX_CLICK);
     this.dispatchEvent(searchBoxClickedEvent);
   }
 
@@ -151,12 +166,12 @@ export default class SearchBox extends Base {
    * @param detail A payload to be sent with the event.
    */
   createCustomEvent<T>(type: string, detail?: T): CustomEvent<T> {
-    return new CustomEvent(type, {
+    return new CustomEvent<T>(type, {
       detail: {
         ...detail,
         searchbox: this.id
       },
-      bubbles: true
+      bubbles: true,
     });
   }
 
@@ -195,16 +210,4 @@ export default class SearchBox extends Base {
         : ''}
     `;
   }
-}
-
-/**
- * The type of the search request event payload. The payload is the
- * search term.
- */
-export interface SearchRequestPayload {
-  value: string;
-  // NOTE: type `any` is being used here in place of SearchRequest, which
-  // comes from api-javascript (or @sfx/search-plugin).
-  searchbox?: string;
-  config?: Partial<any>;
 }

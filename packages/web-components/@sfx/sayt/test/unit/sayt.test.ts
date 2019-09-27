@@ -1,14 +1,16 @@
 import { TemplateResult, LitElement } from 'lit-element';
-import { PRODUCTS_RESPONSE_EVENT, PRODUCTS_REQUEST_EVENT } from '@sfx/products';
-import { SEARCHBOX_EVENT } from '@sfx/search-box';
 import {
-  AUTOCOMPLETE_RECEIVED_RESULTS_EVENT,
-  AUTOCOMPLETE_REQUEST_RESULTS,
-  HOVER_AUTOCOMPLETE_TERM_EVENT,
-} from '@sfx/autocomplete';
+  AUTOCOMPLETE_ACTIVE_TERM,
+  AUTOCOMPLETE_REQUEST,
+  AUTOCOMPLETE_RESPONSE,
+  SAYT_HIDE,
+  SAYT_SHOW,
+  SAYT_PRODUCTS_REQUEST,
+  SAYT_PRODUCTS_RESPONSE,
+  SEARCHBOX_INPUT,
+} from '@sfx/events';
 import { expect, sinon, spy, stub } from '../utils';
 import Sayt from '../../src/sayt';
-import { SAYT_EVENT } from '../../src/events';
 
 describe('Sayt Component', () => {
   let sayt;
@@ -43,14 +45,14 @@ describe('Sayt Component', () => {
 
       sayt.connectedCallback();
 
-      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showCorrectSayt);
-      expect(addEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
+      expect(addEventListener).to.be.calledWith(SAYT_SHOW, sayt.showCorrectSayt);
+      expect(addEventListener).to.be.calledWith(SAYT_HIDE, sayt.hideCorrectSayt);
       expect(addEventListener).to.be.calledWith('click', sayt.processClick);
       expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
-      expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
-      expect(addEventListener).to.be.calledWith(PRODUCTS_RESPONSE_EVENT, sayt.showCorrectSayt);
+      expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RESPONSE, sayt.showCorrectSayt);
+      expect(addEventListener).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, sayt.showCorrectSayt);
       expect(setSearchboxListener).to.be.calledWith(searchbox, 'add');
-      expect(addEventListener).to.be.calledWith(HOVER_AUTOCOMPLETE_TERM_EVENT, sayt.handleAutocompleteTermHover);
+      expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
     });
   });
 
@@ -62,14 +64,14 @@ describe('Sayt Component', () => {
 
       sayt.disconnectedCallback();
 
-      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_SHOW, sayt.showCorrectSayt);
-      expect(removeEventListener).to.be.calledWith(AUTOCOMPLETE_RECEIVED_RESULTS_EVENT, sayt.showCorrectSayt);
-      expect(removeEventListener).to.be.calledWith(PRODUCTS_RESPONSE_EVENT, sayt.showCorrectSayt);
-      expect(removeEventListener).to.be.calledWith(SAYT_EVENT.SAYT_HIDE, sayt.hideCorrectSayt);
+      expect(removeEventListener).to.be.calledWith(SAYT_SHOW, sayt.showCorrectSayt);
+      expect(removeEventListener).to.be.calledWith(AUTOCOMPLETE_RESPONSE, sayt.showCorrectSayt);
+      expect(removeEventListener).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, sayt.showCorrectSayt);
+      expect(removeEventListener).to.be.calledWith(SAYT_HIDE, sayt.hideCorrectSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(setSearchboxListener).to.be.calledWith(searchbox, 'remove');
-      expect(removeEventListener).to.be.calledWith(HOVER_AUTOCOMPLETE_TERM_EVENT, sayt.handleAutocompleteTermHover);
+      expect(removeEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
     });
   });
 
@@ -110,7 +112,7 @@ describe('Sayt Component', () => {
 
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
-      expect(windowAddEventListener).to.not.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CHANGE);
+      expect(windowAddEventListener).to.not.be.calledWith(SEARCHBOX_INPUT);
     });
 
     it('should remove an event listener if provided a `remove` paramater and an input ID and it exists on the page', () => {
@@ -123,7 +125,7 @@ describe('Sayt Component', () => {
 
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxRemoveEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
-      expect(windowRemoveEventListener).to.not.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CHANGE);
+      expect(windowRemoveEventListener).to.not.be.calledWith(SEARCHBOX_INPUT);
     });
 
     it('should not register listeners if the searchbox does not exist', () => {
@@ -134,7 +136,7 @@ describe('Sayt Component', () => {
       sayt.setSearchboxListener(searchboxId, 'add');
 
       // It is implicitly tested that input is not being listened for because there is no element to attach it to
-      expect(windowAddEventListener).to.not.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CHANGE);
+      expect(windowAddEventListener).to.not.be.calledWith(SEARCHBOX_INPUT);
     });
 
     it('should add event listener to window if element exists and searchbox ID is empty', () => {
@@ -144,7 +146,7 @@ describe('Sayt Component', () => {
 
       sayt.setSearchboxListener('', 'add');
 
-      expect(windowAddEventListener).to.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, sayt.processSfxSearchboxChange);
+      expect(windowAddEventListener).to.be.calledWith(SEARCHBOX_INPUT, sayt.processSfxSearchboxChange);
       expect(searchboxAddEventListener).to.not.be.calledWith('input');
     });
 
@@ -155,7 +157,7 @@ describe('Sayt Component', () => {
 
       sayt.setSearchboxListener('', 'remove');
 
-      expect(windowRemoveEventListener).to.be.calledWith(SEARCHBOX_EVENT.SEARCHBOX_CHANGE, sayt.processSfxSearchboxChange);
+      expect(windowRemoveEventListener).to.be.calledWith(SEARCHBOX_INPUT, sayt.processSfxSearchboxChange);
       expect(searchboxRemoveEventListener).to.not.be.calledWith('input');
     });
   });
@@ -282,7 +284,7 @@ describe('Sayt Component', () => {
 
   describe('dispatchRequestEvent()', () => {
     const query = 'some-query';
-    const searchbox = 'some-searchbox-id';
+    const group = 'some-group-name';
     const eventName = 'some-event-name';
     let eventObj;
     let dispatchEvent;
@@ -294,21 +296,21 @@ describe('Sayt Component', () => {
       customEvent = stub(window, 'CustomEvent').returns(eventObj);
     });
 
-    it('should dispatch an event with a payload that includes the query and searchbox', () => {
-      sayt.dispatchRequestEvent(eventName, query, searchbox);
+    it('should dispatch an event with a payload that includes the query and group', () => {
+      sayt.dispatchRequestEvent(eventName, query, group);
 
       expect(customEvent).to.be.calledWith(eventName, {
-        detail: { query, searchbox },
+        detail: { query, group },
         bubbles: true,
       });
       expect(dispatchEvent).to.be.calledWith(eventObj);
     });
 
-    it('should dispatch an event with an undefined value of searchbox if not passed', () => {
+    it('should dispatch an event with an undefined value of group if not passed', () => {
       sayt.dispatchRequestEvent(eventName, query);
 
       expect(customEvent).to.be.calledWith(eventName, {
-        detail: { query, searchbox: undefined },
+        detail: { query, group: undefined },
         bubbles: true,
       });
       expect(dispatchEvent).to.be.calledWith(eventObj);
@@ -323,7 +325,7 @@ describe('Sayt Component', () => {
 
       sayt.requestSaytAutocompleteTerms(query, searchbox);
 
-      expect(dispatchRequestEvent).to.be.calledWith(AUTOCOMPLETE_REQUEST_RESULTS, query, searchbox);
+      expect(dispatchRequestEvent).to.be.calledWith(AUTOCOMPLETE_REQUEST, query, searchbox);
     });
   });
 
@@ -335,7 +337,7 @@ describe('Sayt Component', () => {
 
       sayt.requestSaytProducts(query, searchbox);
 
-      expect(dispatchRequestEvent).to.be.calledWith(PRODUCTS_REQUEST_EVENT, query, searchbox);
+      expect(dispatchRequestEvent).to.be.calledWith(SAYT_PRODUCTS_REQUEST, query, searchbox);
     });
   });
 
@@ -358,33 +360,33 @@ describe('Sayt Component', () => {
 
   describe('processSfxSearchboxChange()', () => {
     it('should trigger a Sayt request', () => {
-      const searchbox = 'some-searchbox-id';
-      const value = 'some-value';
+      const group = 'some-group-name';
+      const term = 'some-value';
       const event = {
         detail: {
-          value,
-          searchbox,
+          term,
+          group,
         }
       };
       const requestSayt = stub(sayt, 'requestSayt');
 
       sayt.processSfxSearchboxChange(event);
 
-      expect(requestSayt).to.be.calledWith(value, searchbox);
+      expect(requestSayt).to.be.calledWith(term, group);
     });
   });
 
   describe('isCorrectSayt()', () => {
-    it('should return true if event provides the correct searchbox ID', () => {
+    it('should return true if event provides the correct group name', () => {
       const searchbox = (sayt.searchbox = 'some-searchbox-id');
-      const event = { detail: { searchbox } };
+      const event = { detail: { group: searchbox } };
 
       const result = sayt.isCorrectSayt(event);
 
       expect(result).to.be.true;
     });
 
-    it('should return true if event does not provide a searchbox ID', () => {
+    it('should return true if event does not provide a group name', () => {
       const event = { detail: {} };
       sayt.searchbox = 'some-searchbox-id';
 
@@ -393,9 +395,9 @@ describe('Sayt Component', () => {
       expect(result).to.be.true;
     });
 
-    it('should return false if event provides the wrong searchbox ID', () => {
+    it('should return false if event provides the wrong group name', () => {
       sayt.searchbox = 'correct-searchbox-id';
-      const event = { detail: { searchbox: 'wrong-searchbox-id' } };
+      const event = { detail: { group: 'wrong-searchbox-id' } };
 
       const result = sayt.isCorrectSayt(event);
 
@@ -404,7 +406,7 @@ describe('Sayt Component', () => {
 
     it('should return true if event specifies a searchbox but SAYT has none specified', () => {
       sayt.searchbox = undefined;
-      const event = { detail: { searchbox: 'some-searchbox-id' } };
+      const event = { detail: { group: 'some-searchbox-id' } };
 
       const result = sayt.isCorrectSayt(event);
 

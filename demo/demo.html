@@ -22,7 +22,7 @@
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
       // search integration/functionality test
       window.addEventListener('sfx::search_response', (e) => {
-        const testListResults = e.detail.records.map(item => {
+        const testListResults = e.detail.results.records.map(item => {
           return { label : item.title };
         });
         document.getElementsByClassName('product-grid')[0]
