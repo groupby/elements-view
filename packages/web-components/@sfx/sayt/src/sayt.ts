@@ -259,7 +259,7 @@ export default class Sayt extends LitElement {
    * @param event The [[SEARCHBOX_INPUT]] event dispatched from the searchbox.
    */
   processSfxSearchboxChange(event: CustomEvent<SearchboxInputPayload>) {
-    if (event.detail.group === this.group) {
+    if (this.isCorrectSayt(event)) {
       this.requestSayt(event.detail.term);
     }
   }

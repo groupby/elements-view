@@ -356,13 +356,20 @@ describe('Sayt Component', () => {
   });
 
   describe('processSfxSearchboxChange()', () => {
+    let term;
+    let event;
+    let isCorrectSayt;
+    let requestSayt;
+
+    beforeEach(() => {
+      term = 'some-term'
+      event = { detail: { term } };
+      isCorrectSayt = stub(sayt, 'isCorrectSayt');
+      requestSayt = stub(sayt, 'requestSayt');
+    });
+
     it('should trigger a Sayt request if the event and component groups match', () => {
-      const term = 'some-value';
-      const group = sayt.group = 'group'
-      const event = {
-        detail: { term, group },
-      };
-      const requestSayt = stub(sayt, 'requestSayt');
+      isCorrectSayt.returns(true);
 
       sayt.processSfxSearchboxChange(event);
 
@@ -370,12 +377,7 @@ describe('Sayt Component', () => {
     });
 
     it('should not trigger a Sayt request if the event and component groups do not match', () => {
-      const term = 'some-term';
-      const event = {
-        detail: { term, group: 'different-group' },
-      };
-      const requestSayt = stub(sayt, 'requestSayt');
-      sayt.group = 'group'
+      isCorrectSayt.returns(false);
 
       sayt.processSfxSearchboxChange(event);
 
