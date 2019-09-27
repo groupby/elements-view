@@ -73,7 +73,7 @@
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>The <code>sfx-autocomplete</code> component is responsible for displaying a list
-							of autocomplete terms upon receipt of the <code>sfx::autocomplete_received_results</code> event.
+							of autocomplete terms upon receipt of the [[AUTOCOMPLETE_RESPONSE]] event.
 						The component is also responsible for emitting events based on user input.</p>
 					</div>
 				</div>
@@ -393,7 +393,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides UpdatingElement.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L24">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L23">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -685,7 +685,7 @@
 					<div class="tsd-signature tsd-kind-icon">caption<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L24">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L23">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2783,7 +2783,7 @@
 					<div class="tsd-signature tsd-kind-icon">results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L20">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L19">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -3619,7 +3619,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides LitElement.connectedCallback</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L38">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L37">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:37</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3671,7 +3671,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides LitElement.createRenderRoot</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L106">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L105">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:105</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -3689,7 +3689,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides UpdatingElement.disconnectedCallback</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L46">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L45">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:45</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4195,12 +4195,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L65">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L64">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Dispatches an <code>sfx::sayt_hover_autocomplete_term</code> event with the Sayt autocomplete term.</p>
+									<p>Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the Sayt autocomplete term.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -4930,13 +4930,13 @@
 					<a name="receivedresults" class="tsd-anchor"></a>
 					<h3>received<wbr>Results</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">received<wbr>Results<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">received<wbr>Results<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AutocompleteResponsePayload</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L56">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L55">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4947,7 +4947,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>e: <span class="tsd-signature-type">CustomEvent</span></h5>
+									<h5>e: <span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AutocompleteResponsePayload</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The event object.</p>
 									</div>
@@ -5211,7 +5211,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides LitElement.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L82">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/autocomplete/src/autocomplete.ts#L81">packages/web-components/@sfx/autocomplete/src/autocomplete.ts:81</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6735,15 +6735,6 @@
 										<a href="_sfx_autocomplete.autocomplete.html#finalize" class="tsd-kind-icon">finalize</a>
 									</li>
 								</ul>
-							</li>
-							<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-								<a href="../modules/_sfx_autocomplete.html#autocomplete_received_results_event" class="tsd-kind-icon">AUTOCOMPLETE_<wbr>RECEIVED_<wbr>RESULTS_<wbr>EVENT</a>
-							</li>
-							<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-								<a href="../modules/_sfx_autocomplete.html#autocomplete_request_results" class="tsd-kind-icon">AUTOCOMPLETE_<wbr>REQUEST_<wbr>RESULTS</a>
-							</li>
-							<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-								<a href="../modules/_sfx_autocomplete.html#hover_autocomplete_term_event" class="tsd-kind-icon">HOVER_<wbr>AUTOCOMPLETE_<wbr>TERM_<wbr>EVENT</a>
 							</li>
 							<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 								<a href="../modules/_sfx_autocomplete.html#autocompletenotesintro" class="tsd-kind-icon">autocomplete<wbr>Notes<wbr>Intro</a>

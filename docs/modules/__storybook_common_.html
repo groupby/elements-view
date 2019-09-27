@@ -82,16 +82,16 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="__storybook_common_.html#getdisplaycode" class="tsd-kind-icon">get<wbr>Display<wbr>Code</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="__storybook_common_.html#getproducts" class="tsd-kind-icon">get<wbr>Products</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="__storybook_common_.html#getproductsreceivedevent" class="tsd-kind-icon">get<wbr>Products<wbr>Received<wbr>Event</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="__storybook_common_.html#getsampleproducts" class="tsd-kind-icon">get<wbr>Sample<wbr>Products</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="__storybook_common_.html#getsaytproductsresponseevent" class="tsd-kind-icon">get<wbr>Sayt<wbr>Products<wbr>Response<wbr>Event</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="__storybook_common_.html#hideprompt" class="tsd-kind-icon">hide<wbr>Prompt</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Object literals</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external"><a href="__storybook_common_.html#autocompletereceivedresultsevent" class="tsd-kind-icon">autocomplete<wbr>Received<wbr>Results<wbr>Event</a></li>
-								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external"><a href="__storybook_common_.html#productsresultsevent" class="tsd-kind-icon">products<wbr>Results<wbr>Event</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external"><a href="__storybook_common_.html#autocompleteresponseevent" class="tsd-kind-icon">autocomplete<wbr>Response<wbr>Event</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external"><a href="__storybook_common_.html#saytproductsresponseevent" class="tsd-kind-icon">sayt<wbr>Products<wbr>Response<wbr>Event</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,10 +102,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-external">
 					<a name="autocompleteresults" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> autocomplete<wbr>Results</h3>
-					<div class="tsd-signature tsd-kind-icon">autocomplete<wbr>Results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{title: &#x27;&#x27;,items: [{ label: &#x27;Teal&#x27; }, { label: &#x27;Orange&#x27; }, { label: &#x27;Fuschia&#x27; }]},{title: &#x27;Brands&#x27;,items: [{ label: &#x27;Kashi&#x27; }, { label: &#x27;Excel&#x27; }]},{title: &#x27;Colors&#x27;,items: [{ label: &#x27;Teal&#x27; }, { label: &#x27;Orange&#x27; }, { label: &#x27;Fuschia&#x27; }]}]</span></div>
+					<div class="tsd-signature tsd-kind-icon">autocomplete<wbr>Results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AutocompleteResultGroup</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AutocompleteSearchTermItem</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{title: &#x27;&#x27;,items: [{ label: &#x27;Teal&#x27; }, { label: &#x27;Orange&#x27; }, { label: &#x27;Fuschia&#x27; }]},{title: &#x27;Brands&#x27;,items: [{ label: &#x27;Kashi&#x27; }, { label: &#x27;Excel&#x27; }]},{title: &#x27;Colors&#x27;,items: [{ label: &#x27;Teal&#x27; }, { label: &#x27;Orange&#x27; }, { label: &#x27;Fuschia&#x27; }]}]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L86">.storybook/common.ts:86</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L91">.storybook/common.ts:91</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -115,7 +115,7 @@
 					<div class="tsd-signature tsd-kind-icon">entities<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;new XmlEntities()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L6">.storybook/common.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L11">.storybook/common.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -132,7 +132,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L8">.storybook/common.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L13">.storybook/common.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -149,13 +149,13 @@
 					<a name="getproducts" class="tsd-anchor"></a>
 					<h3>get<wbr>Products</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Products<span class="tsd-signature-symbol">(</span>quantity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ProductModel</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Products<span class="tsd-signature-symbol">(</span>quantity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Product</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L76">.storybook/common.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L81">.storybook/common.ts:81</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -164,24 +164,7 @@
 									<h5>quantity: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ProductModel</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-					<a name="getproductsreceivedevent" class="tsd-anchor"></a>
-					<h3>get<wbr>Products<wbr>Received<wbr>Event</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Products<wbr>Received<wbr>Event<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CustomEvent</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L117">.storybook/common.ts:117</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">CustomEvent</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Product</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -189,16 +172,33 @@
 					<a name="getsampleproducts" class="tsd-anchor"></a>
 					<h3>get<wbr>Sample<wbr>Products</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Sample<wbr>Products<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ProductModel</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Sample<wbr>Products<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Product</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L28">.storybook/common.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L33">.storybook/common.ts:33</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ProductModel</span><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Product</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="getsaytproductsresponseevent" class="tsd-anchor"></a>
+					<h3>get<wbr>Sayt<wbr>Products<wbr>Response<wbr>Event</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Sayt<wbr>Products<wbr>Response<wbr>Event<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SaytProductsResponsePayload</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L120">.storybook/common.ts:120</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SaytProductsResponsePayload</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -212,7 +212,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L128">.storybook/common.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L129">.storybook/common.ts:129</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -229,92 +229,82 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Object literals</h2>
 				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external">
-					<a name="autocompletereceivedresultsevent" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> autocomplete<wbr>Received<wbr>Results<wbr>Event</h3>
-					<div class="tsd-signature tsd-kind-icon">autocomplete<wbr>Received<wbr>Results<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="autocompleteresponseevent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> autocomplete<wbr>Response<wbr>Event</h3>
+					<div class="tsd-signature tsd-kind-icon">autocomplete<wbr>Response<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L101">.storybook/common.ts:101</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L106">.storybook/common.ts:106</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
-						<a name="autocompletereceivedresultsevent.name" class="tsd-anchor"></a>
+						<a name="autocompleteresponseevent.name" class="tsd-anchor"></a>
 						<h3>name</h3>
-						<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;AUTOCOMPLETE_RECEIVED_RESULTS_EVENT</span></div>
+						<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;AUTOCOMPLETE_RESPONSE</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L102">.storybook/common.ts:102</a></li>
+								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L107">.storybook/common.ts:107</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal tsd-is-external">
-						<a name="autocompletereceivedresultsevent.payload" class="tsd-anchor"></a>
+						<a name="autocompleteresponseevent.payload" class="tsd-anchor"></a>
 						<h3>payload</h3>
 						<div class="tsd-signature tsd-kind-icon">payload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L103">.storybook/common.ts:103</a></li>
+								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L108">.storybook/common.ts:108</a></li>
 							</ul>
 						</aside>
 						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
-							<a name="autocompletereceivedresultsevent.payload.results" class="tsd-anchor"></a>
+							<a name="autocompleteresponseevent.payload.results" class="tsd-anchor"></a>
 							<h3>results</h3>
-							<div class="tsd-signature tsd-kind-icon">results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;autocompleteResults</span></div>
+							<div class="tsd-signature tsd-kind-icon">results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AutocompleteResultGroup</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AutocompleteSearchTermItem</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;autocompleteResults</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L104">.storybook/common.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L109">.storybook/common.ts:109</a></li>
 								</ul>
 							</aside>
 						</section>
 					</section>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external">
-					<a name="productsresultsevent" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> products<wbr>Results<wbr>Event</h3>
-					<div class="tsd-signature tsd-kind-icon">products<wbr>Results<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="saytproductsresponseevent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> sayt<wbr>Products<wbr>Response<wbr>Event</h3>
+					<div class="tsd-signature tsd-kind-icon">sayt<wbr>Products<wbr>Response<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L108">.storybook/common.ts:108</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L113">.storybook/common.ts:113</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
-						<a name="productsresultsevent.name-1" class="tsd-anchor"></a>
+						<a name="saytproductsresponseevent.name-1" class="tsd-anchor"></a>
 						<h3>name</h3>
-						<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;PRODUCTS_RESPONSE_EVENT</span></div>
+						<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;SAYT_PRODUCTS_RESPONSE</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L109">.storybook/common.ts:109</a></li>
+								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L114">.storybook/common.ts:114</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal tsd-is-external">
-						<a name="productsresultsevent.payload-1" class="tsd-anchor"></a>
+						<a name="saytproductsresponseevent.payload-1" class="tsd-anchor"></a>
 						<h3>payload</h3>
 						<div class="tsd-signature tsd-kind-icon">payload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L110">.storybook/common.ts:110</a></li>
+								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L115">.storybook/common.ts:115</a></li>
 							</ul>
 						</aside>
-						<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal tsd-is-external">
-							<a name="productsresultsevent.payload-1.results-1" class="tsd-anchor"></a>
-							<h3>results</h3>
-							<div class="tsd-signature tsd-kind-icon">results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+							<a name="saytproductsresponseevent.payload-1.products" class="tsd-anchor"></a>
+							<h3>products</h3>
+							<div class="tsd-signature tsd-kind-icon">products<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Product</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;getProducts(5)</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L111">.storybook/common.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/.storybook/common.ts#L116">.storybook/common.ts:116</a></li>
 								</ul>
 							</aside>
-							<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
-								<a name="productsresultsevent.payload-1.results-1.products" class="tsd-anchor"></a>
-								<h3>products</h3>
-								<div class="tsd-signature tsd-kind-icon">products<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ProductModel</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;getProducts(5)</span></div>
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/bbf674a/.storybook/common.ts#L112">.storybook/common.ts:112</a></li>
-									</ul>
-								</aside>
-							</section>
 						</section>
 					</section>
 				</section>
@@ -378,19 +368,19 @@
 								<a href="__storybook_common_.html#getproducts" class="tsd-kind-icon">get<wbr>Products</a>
 							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-								<a href="__storybook_common_.html#getproductsreceivedevent" class="tsd-kind-icon">get<wbr>Products<wbr>Received<wbr>Event</a>
+								<a href="__storybook_common_.html#getsampleproducts" class="tsd-kind-icon">get<wbr>Sample<wbr>Products</a>
 							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-								<a href="__storybook_common_.html#getsampleproducts" class="tsd-kind-icon">get<wbr>Sample<wbr>Products</a>
+								<a href="__storybook_common_.html#getsaytproductsresponseevent" class="tsd-kind-icon">get<wbr>Sayt<wbr>Products<wbr>Response<wbr>Event</a>
 							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 								<a href="__storybook_common_.html#hideprompt" class="tsd-kind-icon">hide<wbr>Prompt</a>
 							</li>
 							<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external">
-								<a href="__storybook_common_.html#autocompletereceivedresultsevent" class="tsd-kind-icon">autocomplete<wbr>Received<wbr>Results<wbr>Event</a>
+								<a href="__storybook_common_.html#autocompleteresponseevent" class="tsd-kind-icon">autocomplete<wbr>Response<wbr>Event</a>
 							</li>
 							<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external">
-								<a href="__storybook_common_.html#productsresultsevent" class="tsd-kind-icon">products<wbr>Results<wbr>Event</a>
+								<a href="__storybook_common_.html#saytproductsresponseevent" class="tsd-kind-icon">sayt<wbr>Products<wbr>Response<wbr>Event</a>
 							</li>
 						</ul>
 					</li>
