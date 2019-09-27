@@ -45,7 +45,7 @@ export default class SearchBox extends Base {
    */
   @property({ type: String, reflect: true }) collection: string = '';
   /**
-   * Determines the group that the component belongs to.
+   * The optional group name this will check in events.
    */
   @property({ type: String, reflect: true }) group: string = '';
 

@@ -117,7 +117,7 @@ describe('Autcomplete Component', () => {
       expect(autocomplete.results).to.equal(results);
     });
 
-    it('should not set the results when the group component and the event do not match', () => {
+    it('should not set the results when the group in the component and the event do not match', () => {
       event.detail = { results, group };
       autocomplete.group = 'different group';
 

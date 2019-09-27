@@ -13,6 +13,7 @@ import '../src';
 import {
   generateAutocompleteResultsEvent,
   generateProductsResultsEvent,
+  getSaytProductsResponseEvent,
   getDisplayCode,
   autocompleteResults,
   hidePrompt,
@@ -195,7 +196,7 @@ storiesOf('Components|SAYT', module)
               * \`hideProducts\`
               * \`closeText\`
               * \`minSearchLength\`
-                * **Note**: to observe the impact of modifying this attribute, it is necessary to add an event listener to listen for either the \`${AUTOCOMPLETE_RESPONSE} \`or \`${SAYT_PRODUCTS_REQUEST}\` events. These events will trigger when the number of characters typed into the input box is equal to or greater than the number defined in the attribute.
+                * **Note**: to observe the impact of modifying this attribute, it is necessary to add an event listener to listen for either the \`${AUTOCOMPLETE_REQUEST} \`or \`${SAYT_PRODUCTS_REQUEST}\` events. These events will trigger when the number of characters typed into the input box is equal to or greater than the number defined in the attribute.
             * To modify these attributes:
               1. Visit the **Knobs** tab and click any of the "Hide Autocomplete", "Hide Products", and "Show Close button'", and/or update the text contained within the "Close link text" field.
               2. Emit the appropriate events

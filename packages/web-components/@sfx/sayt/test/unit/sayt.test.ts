@@ -303,7 +303,7 @@ describe('Sayt Component', () => {
   describe('dispatchRequestEvent()', () => {
     it('should dispatch an event with a payload that includes the query and the group property', () => {
       const eventName = 'some-event-name';
-      const group = sayt.group = 'some-group-id';
+      const group = sayt.group = 'some-group-name';
       const query = 'some-query';
       const eventObj = { a: 'a' };
       const customEvent = stub(window, 'CustomEvent').returns(eventObj);
@@ -387,7 +387,7 @@ describe('Sayt Component', () => {
 
   describe('isCorrectSayt()', () => {
     it('should return true if the event provides the correct group name', () => {
-      const group = sayt.group = 'some-group-id';
+      const group = sayt.group = 'some-group-name';
       const event = { detail: { group } };
 
       const result = sayt.isCorrectSayt(event);
@@ -404,8 +404,8 @@ describe('Sayt Component', () => {
       expect(result).to.be.false;
     });
 
-    it('should use an empty string for comparison if the event group name is falsey', () => {
-      const event = { detail: { group: undefined } };
+    it('should use an empty string for comparison if the event group name is undefined', () => {
+      const event = { detail: {} };
       sayt.group = '';
 
       const result = sayt.isCorrectSayt(event);

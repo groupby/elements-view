@@ -20,7 +20,7 @@ import {
 export default class ProductsBase extends LitElement {
   @property({ type: Array }) products: Product[] = [];
   /**
-   * The optional search box ID this will check in events.
+   * The optional group name this will check in events.
    */
   @property({ type: String, reflect: true }) group: string = '';
 

@@ -37,7 +37,7 @@ export default class Sayt extends LitElement {
    */
   @property({ type: String, reflect: true }) searchbox = '';
   /**
-   * Stores the group ID this component belongs to.
+   * The optional group name this will check in events.
    */
   @property({ type: String, reflect: true }) group = '';
   /**
@@ -183,7 +183,7 @@ export default class Sayt extends LitElement {
 
   /**
    * Triggers requests for Sayt autocomplete terms and Sayt products
-   * simultaneously using a query and group ID.
+   * simultaneously using a query and group name.
    * They will only be called if the term is at least [[minSearchLength]] long.
    *
    * @param query The search term to use.
@@ -253,7 +253,8 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Handles SF-X searchbox changes by passing the event's value to `requestSayt()`.
+   * Handles SF-X searchbox changes by passing the event's value to `requestSayt()`
+   * if [[isCorrectSayt]] returns `true`.
    * Used when a `searchbox` ID is not passed to the Sayt component.
    *
    * @param event The [[SEARCHBOX_INPUT]] event dispatched from the searchbox.
@@ -266,10 +267,10 @@ export default class Sayt extends LitElement {
 
   /**
    * Determines whether an event refers to the correct SAYT. This is true if
-   * a matching `group` ID is specified in the event. If a `group` ID does not
-   * exist in the event then it will default to an empty string.
+   * the `group` in the event matches this component's group. If `group` is not defined
+   * in the event, it will default to an empty string.
    *
-   * @param event An event that contains a group ID for comparison.
+   * @param event An event that contains a group name for comparison.
    */
   isCorrectSayt(event: CustomEvent<WithGroup>): boolean {
     const group = event.detail && event.detail.group || '';

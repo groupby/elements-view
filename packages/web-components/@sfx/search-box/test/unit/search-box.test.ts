@@ -225,8 +225,8 @@ describe('SearchBox Component', () => {
       expect(result.detail).to.include(detail);
     });
 
-    it('should return a CustomEvent that bubbles and has a group attribute', () => {
-      const group = searchbox.group = 'some-id';
+    it('should return a CustomEvent that bubbles and has a group property', () => {
+      const group = searchbox.group = 'group';
 
       const result = searchbox.createCustomEvent('some-type');
 
