@@ -7,7 +7,7 @@ import {
 } from '@sfx/events';
 import {
   getDisplayCode,
-  autocompleteResponseEvent,
+  generateAutocompleteResultsEvent,
   autocompleteResults,
   hidePrompt,
 } from '../../../../../.storybook/common';
@@ -94,7 +94,7 @@ storiesOf('Components|Autocomplete', module)
      `;
     },
     {
-      customEvents: [autocompleteResponseEvent],
+      customEvents: [generateAutocompleteResultsEvent()],
       notes: {
         markdown: `
           ${autocompleteNotesIntro}
@@ -112,6 +112,16 @@ storiesOf('Components|Autocomplete', module)
               1. Visit the **Knobs** tab and modify the text inside the "Optional Title" field.
               2. Navigate to the **Custom Events** tab and emit the event.
               3. See the component update with the payload of the event and the optional title.
+
+            ### If using the SF-X Autocomplete component outside of the SF-X Sayt component, a \`group\` attribute can be used to distinguish what events it should listen to.
+            * This is only needed if multiple Autocomplete components are on the same page and the desire is for them to listen to different events.
+            * The SF-X Sayt component will take care of this.
+            * Ex.
+
+            \`\`\`html
+            <sfx-autocomplete group="group1"></sfx-autocomplete>
+            <sfx-autocomplete group="group2"></sfx-autocomplete>
+            \`\`\`
             `
       }
     }

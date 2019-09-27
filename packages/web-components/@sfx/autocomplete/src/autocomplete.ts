@@ -21,6 +21,10 @@ export default class Autocomplete extends LitElement {
    * The text to use in the header.
    */
   @property({ type: String, reflect: true }) caption: string = '';
+  /**
+   * The optional search box ID this will check in events.
+   */
+  @property({ type: String, reflect: true }) group: string = '';
 
   /**
    * Constructs an instance of Autocomplete.
@@ -53,7 +57,10 @@ export default class Autocomplete extends LitElement {
    * @param e The event object.
    */
   receivedResults(e: CustomEvent<AutocompleteResponsePayload>) {
-    this.results = e.detail.results || [];
+    const eventGroup = e.detail.group || '';
+    if (eventGroup === this.group) {
+      this.results = e.detail.results || [];
+    }
   }
 
   /**

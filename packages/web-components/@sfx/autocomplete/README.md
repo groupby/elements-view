@@ -7,7 +7,8 @@ The component then populates a list with the received data.
 
 ## Customizations
 
-Autocomplete allows for an optional title, which populates inside an `<h3>` tag. The title text is populated via the `caption` attribute.
+- `caption`: Optional attribute to create and populate an `<h3>` tag at the top of the Autocomplete component.
+- `group`: Optional attribute to add the `sayt` component to a grouping of related search components.
 
 ## Testing
 

@@ -44,6 +44,10 @@ export default class SearchBox extends Base {
    * Determines the collection used for search.
    */
   @property({ type: String, reflect: true }) collection: string = '';
+  /**
+   * Determines the group that the component belongs to.
+   */
+  @property({ type: String, reflect: true }) group: string = '';
 
   constructor() {
     super();
@@ -169,7 +173,7 @@ export default class SearchBox extends Base {
     return new CustomEvent<T>(type, {
       detail: {
         ...detail,
-        searchbox: this.id
+        group: this.group,
       },
       bubbles: true,
     });

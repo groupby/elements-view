@@ -51,6 +51,12 @@ describe('SearchBox Component', () => {
         expect(searchbox.clearButton).to.be.false;
       });
     });
+
+    describe('group property', () => {
+      it('should have default value of an empty string', () => {
+        expect(searchbox.group).to.equal('');
+      });
+    });
   });
 
   describe('connectCallback', () => {
@@ -219,13 +225,13 @@ describe('SearchBox Component', () => {
       expect(result.detail).to.include(detail);
     });
 
-    it('should return a CustomEvent that bubbles and has a searchbox attribute', () => {
-      const id = searchbox.id = 'some-id';
+    it('should return a CustomEvent that bubbles and has a group attribute', () => {
+      const group = searchbox.group = 'some-id';
 
       const result = searchbox.createCustomEvent('some-type');
 
       expect(result.bubbles).to.be.true;
-      expect(result.detail.searchbox).to.equal(id);
+      expect(result.detail.group).to.equal(group);
     });
   });
 

@@ -3,7 +3,7 @@
 ## Functionality
 
 The `sayt` component acts as a wrapper around the `sfx-autocomplete` and
-`sfx-products` components and acts to show and hide all of these components
+`sfx-products-sayt` components and acts to show and hide all of these components
 in response to interactions with the `sfx-search-box` component.
 
 ### Received Events
@@ -30,6 +30,8 @@ particular customizations:
 - `closeText`: Customizes the text in the close button.
 - `visible`: Determines the visibility of the `sayt` component.
 - `minSearchLength`: The minimum length of the search term required before a SAYT request will be made with it.
+- `searchbox`: Optional ID of the searchbox paired with this component.
+- `group`: Optional attribute to add the `sayt` component to a grouping of related search components.
 
 ## Testing
 

@@ -103,19 +103,27 @@ export const autocompleteResults: AutocompleteResultGroup<AutocompleteSearchTerm
   }
 ];
 
-export const autocompleteResponseEvent = {
-  name: AUTOCOMPLETE_RESPONSE,
-  payload: {
-    results: autocompleteResults,
+export function generateAutocompleteResultsEvent(group?: string) {
+  return {
+    name: AUTOCOMPLETE_RESPONSE,
+    payload: {
+      results: autocompleteResults,
+      group,
+    }
   }
-};
+}
 
-export const saytProductsResponseEvent = {
-  name: SAYT_PRODUCTS_RESPONSE,
-  payload: {
-    products: getProducts(5),
+export function generateProductsResultsEvent(eventName: string, productCount: number, group?: string) {
+  return {
+    name: eventName,
+    payload: {
+      results: {
+        products: getProducts(productCount)
+      },
+      group,
+    }
   }
-};
+}
 
 export function getSaytProductsResponseEvent(): CustomEvent<SaytProductsResponsePayload> {
   return new CustomEvent(SAYT_PRODUCTS_RESPONSE, {

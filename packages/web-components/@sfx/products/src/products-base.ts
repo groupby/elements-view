@@ -12,65 +12,40 @@ import {
 } from '@sfx/events';
 
 /**
- * The `sfx-products` web component wraps and renders a number of
+ * The `sfx-products-base` web component wraps and renders a number of
  * `sfx-product` components. It wraps each `sfx-product` component in an
  * additional wrapper for flexibility.
  */
-@customElement('sfx-products')
-export default class Products extends LitElement {
+@customElement('sfx-products-base')
+export default class ProductsBase extends LitElement {
   @property({ type: Array }) products: Product[] = [];
-
   /**
-   * Binds relevant methods.
+   * The optional search box ID this will check in events.
    */
-  constructor() {
-    super();
-
-    this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
-  }
+  @property({ type: String, reflect: true }) group: string = '';
 
   /**
-   * Registers event listeners and sets the ARIA role. The ARIA role is
-   * set to `list` if one is not already specified.
+   * Sets the ARIA role to `list` if one is not already specified.
    */
   connectedCallback() {
     super.connectedCallback();
 
-
     if (!this.getAttribute('role')) {
       this.setAttribute('role', 'list');
     }
-
-    window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
-  }
-
-  /**
-   * Removes event listeners.
-   */
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
-  }
-
-  /**
-   * Sets the `products` property from the products in an event.
-   *
-   * @param event An event containing a search result with product data.
-   */
-  setProductsFromEvent(event: CustomEvent<SaytProductsResponsePayload>) {
-    this.products = event.detail.products || [];
   }
 
   render(): TemplateResult {
     return html`
       <style>
-        sfx-products {
+        sfx-products,
+        sfx-products-base,
+        sfx-products-sayt {
           display: flex;
           flex-wrap: wrap;
         }
 
-        sfx-products[hidden] {
+        sfx-products-base[hidden] {
           display: none;
         }
 

@@ -1,6 +1,6 @@
 import { TemplateResult, LitElement } from 'lit-element';
 import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM } from '@sfx/events';
-import { expect, spy, stub } from '../utils';
+import { expect, stub } from '../utils';
 import Autocomplete from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
@@ -26,11 +26,16 @@ describe('Autcomplete Component', () => {
         expect(autocomplete.title).to.equal('');
       });
     });
+
+    describe('group property', () => {
+      it('should have default value of an empty string', () => {
+        expect(autocomplete.group).to.equal('');
+      });
+    });
   });
 
   describe('connectedCallback', () => {
     let windowAddEventListener;
-    let autocompleteAddEventListener;
 
     beforeEach(() => {
       windowAddEventListener = stub(window, 'addEventListener');
@@ -56,7 +61,6 @@ describe('Autcomplete Component', () => {
 
   describe('disconnectedCallback', () => {
     let windowRemoveEventListener;
-    let autocompleteRemoveEventListener;
 
     beforeEach(() => {
       windowRemoveEventListener = stub(window, 'removeEventListener');
@@ -89,21 +93,45 @@ describe('Autcomplete Component', () => {
   });
 
   describe('receivedResults', () => {
-    it('should update the results property in response to data received', () => {
-      const results = [
-        { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-        { title: 'default', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
-      ];
-
-      autocomplete.receivedResults({ detail: { results } });
-
-      expect(autocomplete.results).to.deep.equal(results);
-    });
+    const results = [
+      { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
+      { title: 'default', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
+    ];
+    const group = 'group';
+    let event = {
+      detail: {},
+    };
 
     it('should set the results property to an empty array if the response data is undefined', () => {
-      autocomplete.receivedResults({ detail: {} });
+      autocomplete.receivedResults(event);
 
       expect(autocomplete.results).to.deep.equal([]);
+    });
+
+    it('should set the results when the event group matches the component group', () => {
+      event.detail = { results, group };
+      autocomplete.group = group;
+
+      autocomplete.receivedResults(event);
+
+      expect(autocomplete.results).to.equal(results);
+    });
+
+    it('should not set the results when the group component and the event do not match', () => {
+      event.detail = { results, group };
+      autocomplete.group = 'different group';
+
+      autocomplete.receivedResults(event);
+
+      expect(autocomplete.results).to.deep.equal([]);
+    });
+
+    it('should default the group in the event to an empty string if it is falsey', () => {
+      event.detail = { results, group: undefined };
+
+      autocomplete.receivedResults(event);
+
+      expect(autocomplete.results).to.equal(results);
     });
   });
 

@@ -35,6 +35,12 @@ describe('Sayt Component', () => {
         expect(sayt.hideProducts).to.be.false;
       });
     });
+
+    describe('group property', () => {
+      it('should have default value of an empty string', () => {
+        expect(sayt.group).to.equal('');
+      });
+    });
   });
 
   describe('connectedCallback()', () => {
@@ -52,6 +58,13 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RESPONSE, sayt.showCorrectSayt);
       expect(addEventListener).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, sayt.showCorrectSayt);
       expect(setSearchboxListener).to.be.calledWith(searchbox, 'add');
+    });
+
+    it('should register event listeners to the component', () => {
+      const addEventListener = stub(sayt, 'addEventListener');
+
+      sayt.connectedCallback();
+
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
     });
   });
@@ -71,6 +84,13 @@ describe('Sayt Component', () => {
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(setSearchboxListener).to.be.calledWith(searchbox, 'remove');
+    });
+
+    it('should remove event listeners to the component', () => {
+      const removeEventListener = stub(sayt, 'removeEventListener');
+
+      sayt.disconnectedCallback();
+
       expect(removeEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
     });
   });
@@ -240,7 +260,6 @@ describe('Sayt Component', () => {
   });
 
   describe('requestSayt()', () => {
-    const searchbox = 'some-searchbox-id';
     let dispatchEvent;
     let query;
 
@@ -253,7 +272,7 @@ describe('Sayt Component', () => {
     it('should not dispatch an event if query length is sufficiently short', () => {
       query = 'ab';
 
-      sayt.requestSayt(query, searchbox);
+      sayt.requestSayt(query);
 
       expect(dispatchEvent).to.not.be.called;
     });
@@ -262,42 +281,35 @@ describe('Sayt Component', () => {
       const requestSaytAutocompleteTerms = stub(sayt, 'requestSaytAutocompleteTerms');
       const requestSaytProducts = stub(sayt, 'requestSaytProducts');
 
-      sayt.requestSayt(query, searchbox);
+      sayt.requestSayt(query);
 
-      expect(requestSaytAutocompleteTerms).to.be.calledWith(query, searchbox);
-      expect(requestSaytProducts).to.be.calledWith(query, searchbox);
+      expect(requestSaytAutocompleteTerms).to.be.calledWith(query);
+      expect(requestSaytProducts).to.be.calledWith(query);
     });
   });
 
   describe('handleAutocompleteTermHover()', () => {
-    it('should call requestSaytProducts() with the event query and the searchbox', () => {
+    it('should call requestSaytProducts() with the event query', () => {
       const requestSaytProducts = stub(sayt, 'requestSaytProducts');
       const query = 'some-query';
       const event = { detail: { query } };
-      const searchbox = sayt.searchbox = 'some-searchbox-id';
 
       sayt.handleAutocompleteTermHover(event);
 
-      expect(requestSaytProducts).to.be.calledWith(query, searchbox);
+      expect(requestSaytProducts).to.be.calledWith(query);
     });
   });
 
   describe('dispatchRequestEvent()', () => {
-    const query = 'some-query';
-    const group = 'some-group-name';
-    const eventName = 'some-event-name';
-    let eventObj;
-    let dispatchEvent;
-    let customEvent;
+    it('should dispatch an event with a payload that includes the query and the group property', () => {
+      const eventName = 'some-event-name';
+      const group = sayt.group = 'some-group-id';
+      const query = 'some-query';
+      const eventObj = { a: 'a' };
+      const customEvent = stub(window, 'CustomEvent').returns(eventObj);
+      const dispatchEvent = stub(sayt, 'dispatchEvent');
 
-    beforeEach(() => {
-      eventObj = { a: 'a' };
-      dispatchEvent = stub(sayt, 'dispatchEvent');
-      customEvent = stub(window, 'CustomEvent').returns(eventObj);
-    });
-
-    it('should dispatch an event with a payload that includes the query and group', () => {
-      sayt.dispatchRequestEvent(eventName, query, group);
+      sayt.dispatchRequestEvent(eventName, query);
 
       expect(customEvent).to.be.calledWith(eventName, {
         detail: { query, group },
@@ -305,119 +317,98 @@ describe('Sayt Component', () => {
       });
       expect(dispatchEvent).to.be.calledWith(eventObj);
     });
-
-    it('should dispatch an event with an undefined value of group if not passed', () => {
-      sayt.dispatchRequestEvent(eventName, query);
-
-      expect(customEvent).to.be.calledWith(eventName, {
-        detail: { query, group: undefined },
-        bubbles: true,
-      });
-      expect(dispatchEvent).to.be.calledWith(eventObj);
-    });
   });
 
   describe('requestSaytAutocompleteTerms()', () => {
-    it('should dispatch an autocomplete request event with query and searchbox', () => {
+    it('should dispatch an autocomplete request event with the query', () => {
       const dispatchRequestEvent = stub(sayt, 'dispatchRequestEvent');
       const query = 'some-query';
-      const searchbox = 'some-searchbox-id';
 
-      sayt.requestSaytAutocompleteTerms(query, searchbox);
+      sayt.requestSaytAutocompleteTerms(query);
 
-      expect(dispatchRequestEvent).to.be.calledWith(AUTOCOMPLETE_REQUEST, query, searchbox);
+      expect(dispatchRequestEvent).to.be.calledWith(AUTOCOMPLETE_REQUEST, query);
     });
   });
 
   describe('requestSaytProducts()', () => {
-    it('should dispatch a products request event with query and searchbox', () => {
-      const searchbox = 'some-searchbox-id';
+    it('should dispatch a products request event with the query', () => {
       const query = 'some-query';
       const dispatchRequestEvent = stub(sayt, 'dispatchRequestEvent');
 
-      sayt.requestSaytProducts(query, searchbox);
+      sayt.requestSaytProducts(query);
 
-      expect(dispatchRequestEvent).to.be.calledWith(SAYT_PRODUCTS_REQUEST, query, searchbox);
+      expect(dispatchRequestEvent).to.be.calledWith(SAYT_PRODUCTS_REQUEST, query);
     });
   });
 
   describe('processSearchboxInput()', () => {
     it('should trigger a Sayt request', () => {
-      const searchbox = sayt.searchbox = 'some-searchbox-id';
       const value = 'some-value';
       const event = {
-        target: {
-          value,
-        }
+        target: { value },
       };
       const requestSayt = stub(sayt, 'requestSayt');
 
       sayt.processSearchboxInput(event);
 
-      expect(requestSayt).to.be.calledWith(value, searchbox);
+      expect(requestSayt).to.be.calledWith(value);
     });
   });
 
   describe('processSfxSearchboxChange()', () => {
-    it('should trigger a Sayt request', () => {
-      const group = 'some-group-name';
+    it('should trigger a Sayt request if the event and component groups match', () => {
       const term = 'some-value';
+      const group = sayt.group = 'group'
       const event = {
-        detail: {
-          term,
-          group,
-        }
+        detail: { term, group },
       };
       const requestSayt = stub(sayt, 'requestSayt');
 
       sayt.processSfxSearchboxChange(event);
 
-      expect(requestSayt).to.be.calledWith(term, group);
+      expect(requestSayt).to.be.calledWith(term);
+    });
+
+    it('should not trigger a Sayt request if the event and component groups do not match', () => {
+      const term = 'some-term';
+      const event = {
+        detail: { term, group: 'different-group' },
+      };
+      const requestSayt = stub(sayt, 'requestSayt');
+      sayt.group = 'group'
+
+      sayt.processSfxSearchboxChange(event);
+
+      expect(requestSayt).to.not.be.called;
     });
   });
 
   describe('isCorrectSayt()', () => {
-    it('should return true if event provides the correct group name', () => {
-      const searchbox = (sayt.searchbox = 'some-searchbox-id');
-      const event = { detail: { group: searchbox } };
+    it('should return true if the event provides the correct group name', () => {
+      const group = sayt.group = 'some-group-id';
+      const event = { detail: { group } };
 
       const result = sayt.isCorrectSayt(event);
 
       expect(result).to.be.true;
     });
 
-    it('should return true if event does not provide a group name', () => {
-      const event = { detail: {} };
-      sayt.searchbox = 'some-searchbox-id';
-
-      const result = sayt.isCorrectSayt(event);
-
-      expect(result).to.be.true;
-    });
-
-    it('should return false if event provides the wrong group name', () => {
-      sayt.searchbox = 'correct-searchbox-id';
-      const event = { detail: { group: 'wrong-searchbox-id' } };
+    it('should return false if the event provides the wrong group name', () => {
+      const event = { detail: { group: 'wrong-group-name' } };
+      sayt.group = 'correct-group-name';
 
       const result = sayt.isCorrectSayt(event);
 
       expect(result).to.be.false;
     });
 
-    it('should return true if event specifies a searchbox but SAYT has none specified', () => {
-      sayt.searchbox = undefined;
-      const event = { detail: { group: 'some-searchbox-id' } };
+    it('should use an empty string for comparison if the event group name is falsey', () => {
+      const event = { detail: { group: undefined } };
+      sayt.group = '';
 
       const result = sayt.isCorrectSayt(event);
 
       expect(result).to.be.true;
-    });
-
-    it('should not error if passed an event without a detail attribute', () => {
-      const event = { a: 'a' };
-      const callback = () => sayt.isCorrectSayt(event);
-
-      expect(callback).to.not.throw();
     });
   });
 

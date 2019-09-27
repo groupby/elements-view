@@ -69,6 +69,26 @@ storiesOf('Components|Searchbox', module)
               1. Navigate to the **Custom Events** tab and locate the \`${UPDATE_SEARCH_TERM}\` event.
               2. Click "emit".
               3. See the component update with the new search term.
+
+          ### Multiple Search Box components can behave independently
+            * If multiple Search Box, Sayt, and Products components are on the page, the \`group\` attribute can be used to send events to specific groups.
+              * Ex.
+
+                \`\`\`html
+                <!-- Two searchboxes -->
+                <sfx-search-box
+                  placeholder="Search Here"
+                  group="group1"
+                  searchbutton
+                  clearbutton
+                ></sfx-search-box>
+                <sfx-search-box
+                  placeholder="Search Here"
+                  group="group2"
+                  searchbutton
+                  clearbutton
+                ></sfx-search-box>
+                \`\`\`
               `
       }
     }
