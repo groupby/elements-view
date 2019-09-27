@@ -198,7 +198,7 @@ export default class Sayt extends LitElement {
    *
    * @param eventType The type of the event to be dispatched.
    * @param query The query term.
-   * @param group The name of the associated group
+   * @param group The name of the associated group.
    */
   dispatchRequestEvent(eventType: string, query: string, group?: string) {
     const requestEvent = new CustomEvent(eventType, {
