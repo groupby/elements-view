@@ -326,14 +326,21 @@ describe('Sayt Component', () => {
   // });
 
   describe('setDebouncedMethods()', () => {
-    it('should wrap requestSaytAutocompleteTerms and requestSaytProducts in the getDebounce method', () => {
-      // const getDebounce = stub(sayt, 'getDebounce');
-      //
-      // sayt.setDebounce();
-      //
-      // expect(getDebounce).to.be.calledWithExactly(sayt.requestSaytAutocompleteTerms);
-      // expect(getDebounce).to.be.calledWithExactly(sayt.requestSaytProducts);
-    })
+    it('should return a debounced callback method with the configured delay', () => {
+       const delay = 200;
+       const debounceSettings = false;
+       const termsCallback = stub(sayt, 'requestSaytAutocompleteTerms');
+       const debounce = stub(Debounce, 'debounce');
+       const expectedDebouncedFunction = () => 123;
+       debounce.returns(expectedDebouncedFunction);
+
+       const actualDebouncedFunction = debounce(termsCallback, delay, debounceSettings);
+
+       sayt.setDebouncedMethods();
+
+       expect(debounce).to.be.calledWith(termsCallback, delay, debounceSettings);
+       expect(actualDebouncedFunction).to.equal(expectedDebouncedFunction);
+     });
   });
 
   describe('handleAutocompleteTermHover()', () => {
