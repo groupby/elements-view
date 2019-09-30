@@ -78,6 +78,7 @@ export default class Autocomplete extends LitElement {
     const sentEvent = new CustomEvent<AutocompleteActiveTermPayload>(AUTOCOMPLETE_ACTIVE_TERM, {
       detail: {
         query: term,
+        group: this.group,
       },
       bubbles: true,
     });

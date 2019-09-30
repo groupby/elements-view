@@ -165,6 +165,7 @@ describe('Autcomplete Component', () => {
     });
 
     it('should emit an event when hovering an autocomplete term', () => {
+      const group = autocomplete.group = 'some-group';
       const CustomEvent = stub(window, 'CustomEvent').returns({});
       const mouseEvent = {
         target: {
@@ -177,6 +178,7 @@ describe('Autcomplete Component', () => {
 
       expect(CustomEvent).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, {
         detail: {
+          group,
           query: mouseEvent.target.innerText,
         },
         bubbles: true,
