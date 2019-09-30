@@ -131,13 +131,13 @@ describe('Sayt Component', () => {
     });
 
     describe('debounce', () => {
-      it('should call setDebounce()', () => {
-        // const setDebounce = stub(sayt, 'setDebounce');
-        // const oldDebounceTime = 0;
-        //
-        // sayt.updated(new Map([['debounce', oldDebounceTime]]));
-        //
-        // expect(setDebounce).to.be.called;
+      it('should call setDebouncedMethods()', () => {
+        const setDebounce = stub(sayt, 'setDebouncedMethods');
+        const oldDebounceTime = 0;
+
+        sayt.updated(new Map([['debounce', oldDebounceTime]]));
+
+        expect(setDebounce).to.be.called;
       });
     });
   });
