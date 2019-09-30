@@ -1,4 +1,6 @@
 import {
+  css,
+  CSSResult,
   customElement,
   html,
   LitElement,
@@ -37,19 +39,23 @@ export default class ProductsBase extends LitElement {
     }
   }
 
+  protected renderStyles(): CSSResult {
+    return css`
+      sfx-products-base {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      sfx-products-base[hidden] {
+        display: none;
+      }
+    `;
+  }
+
   render(): TemplateResult {
     return html`
       <style>
-        sfx-products,
-        sfx-products-base,
-        sfx-products-sayt {
-          display: flex;
-          flex-wrap: wrap;
-        }
-
-        sfx-products-base[hidden] {
-          display: none;
-        }
+        ${this.renderStyles()}
 
         sfx-product {
           display: block;

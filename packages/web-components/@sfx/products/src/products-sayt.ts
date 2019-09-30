@@ -1,4 +1,4 @@
-import { customElement } from 'lit-element';
+import { css, CSSResult, customElement } from 'lit-element';
 import {
   SAYT_PRODUCTS_RESPONSE,
   SaytProductsResponsePayload,
@@ -49,5 +49,18 @@ export default class ProductsSayt extends ProductsBase {
     if (eventGroup === this.group) {
       this.products = event.detail.products || [];
     }
+  }
+
+  protected renderStyles(): CSSResult {
+    return css`
+      sfx-products-sayt {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      sfx-products-sayt[hidden] {
+        display: none;
+      }
+    `;
   }
 }

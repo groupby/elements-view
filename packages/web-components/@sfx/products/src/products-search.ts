@@ -1,4 +1,4 @@
-import { customElement } from 'lit-element';
+import { css, CSSResult, customElement } from 'lit-element';
 import {
   SEARCH_RESPONSE,
   SearchResponsePayload,
@@ -49,5 +49,18 @@ export default class ProductsSearch extends ProductsBase {
     if (eventGroup === this.group) {
       this.products = event.detail.results.records || [];
     }
+  }
+
+  protected renderStyles(): CSSResult {
+    return css`
+      sfx-products {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      sfx-products[hidden] {
+        display: none;
+      }
+    `;
   }
 }
