@@ -128,10 +128,43 @@ describe('SearchBox Component', () => {
   });
 
   describe('updateText', () => {
-    it('should update the value property with data from the event', () => {
-      const term = 'inputText';
+    const term = 'inputText';
+    const group = 'some-group';
+    let updateSearchTermValue;
+
+    beforeEach(() => {
+      updateSearchTermValue = stub(searchbox, 'updateSearchTermValue');
+    });
+
+    it('should update the value property with data from the event when the event group matches the component group', () => {
+      const inputEvent = new CustomEvent('some-test-type', { detail: { term, group } });
+      searchbox.group = group;
+
+      searchbox.updateText(inputEvent);
+
+      expect(updateSearchTermValue).to.be.calledWith(term);
+    });
+
+    it('should not update the value property with data from the event when the group in the component and the event do not match', () => {
+      const inputEvent = new CustomEvent('some-test-type', { detail: { term, group } });
+      searchbox.group = 'different group';
+
+      searchbox.updateText(inputEvent);
+
+      expect(updateSearchTermValue).to.not.be.called;
+    });
+
+    it('should default the group in the event to an empty string if it is falsey', () => {
       const inputEvent = new CustomEvent('some-test-type', { detail: { term } });
-      const updateSearchTermValue = stub(searchbox, 'updateSearchTermValue');
+
+      searchbox.updateText(inputEvent);
+
+      expect(updateSearchTermValue).to.be.calledWith(term);
+    });
+
+    it('should default the group in the component to an empty string if it is falsey', () => {
+      const inputEvent = new CustomEvent('some-test-type', { detail: { term, group: '' } });
+      searchbox.group = undefined;
 
       searchbox.updateText(inputEvent);
 
