@@ -14,7 +14,7 @@ import {
 } from '../../../../../.storybook/common';
 import '..';
 
-function getProductsComponent(productsArray: Product[] = [], componentSuffix: String) {
+function getProductsComponent(productsArray: Product[] = [], componentSuffix: string) {
   if (productsArray.length > 0) {
     const products = text('Products', JSON.stringify(productsArray));
     return `<sfx-products${componentSuffix} products="${products}"></sfx-products${componentSuffix}>`
