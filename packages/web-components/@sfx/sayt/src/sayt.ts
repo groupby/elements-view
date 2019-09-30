@@ -87,10 +87,10 @@ export default class Sayt extends LitElement {
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
-    this.getDebounce = this.getDebounce.bind(this);
-    this.setDebounce = this.setDebounce.bind(this);
+    // this.getDebounce = this.getDebounce.bind(this);
+    this.setDebouncedMethods = this.setDebouncedMethods.bind(this);
 
-    this.setDebounce();
+    this.setDebouncedMethods();
   }
 
   /**
@@ -147,7 +147,7 @@ export default class Sayt extends LitElement {
       this.setSearchboxListener(this.searchbox, 'add');
     }
     if (changedProps.has('debounce')) {
-      this.setDebounce();
+      this.setDebouncedMethods();
     }
   }
 
@@ -227,21 +227,21 @@ export default class Sayt extends LitElement {
    *
    * @param callback The function to debounce.
    */
-  getDebounce<RequestSaytType extends Function>(callback: RequestSaytType): RequestSaytType & ReturnType<typeof debounce> {
-    return debounce(
-      callback,
-      this.debounce,
-      false
-    );
-  }
+  // getDebounce<RequestSaytType extends Function>(callback: RequestSaytType): RequestSaytType & ReturnType<typeof debounce> {
+  //   return debounce(
+  //     callback,
+  //     this.debounce,
+  //     false
+  //   );
+  // }
 
   /**
    * Dispatches getDebounce for each of the methods to be debounced.
    * Is triggered once in constructor and when the debounce attribute is changed.
    */
-  setDebounce() {
-    this.debouncedRequestSaytAutocompleteTerms  = this.getDebounce(this.requestSaytAutocompleteTerms);
-    this.debouncedRequestSaytProducts  = this.getDebounce(this.requestSaytProducts);
+  setDebouncedMethods() {
+    this.debouncedRequestSaytAutocompleteTerms  = debounce(this.requestSaytAutocompleteTerms, this.debounce, false);
+    this.debouncedRequestSaytProducts  = debounce(this.requestSaytProducts, this.debounce, false);
   }
 
   /**
