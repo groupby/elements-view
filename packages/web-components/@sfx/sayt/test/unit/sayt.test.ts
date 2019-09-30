@@ -26,12 +26,12 @@ describe('Sayt Component', () => {
       expect(sayt).to.be.an.instanceof(LitElement);
     });
 
-    it('should call setDebounce()', () => {
-      // const setDebounce = stub(Sayt.prototype, 'setDebounce');
-      //
-      // sayt = new Sayt();
-      //
-      // expect(setDebounce).to.be.called;
+    it('should call setDebouncedMethods()', () => {
+      const setDebounce = stub(Sayt.prototype, 'setDebouncedMethods');
+
+      sayt = new Sayt();
+
+      expect(setDebounce).to.be.called;
     });
 
     describe('hideAutocomplete property', () => {
