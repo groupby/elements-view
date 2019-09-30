@@ -8,7 +8,8 @@ import {
 import {
   getDisplayCode,
   getProducts,
-  generateProductsResultsEvent,
+  generateSaytProductsResponseEvent,
+  generateSearchResponseEvent,
   hidePrompt,
 } from '../../../../../.storybook/common';
 import '..';
@@ -94,7 +95,7 @@ storiesOf('Components|Products', module)
       `;
     },
     {
-      customEvents: [generateProductsResultsEvent(SAYT_PRODUCTS_RESPONSE, 3)],
+      customEvents: [generateSaytProductsResponseEvent(3)],
       notes: {
         markdown: `
           # SF-X Products Sayt Component
@@ -138,7 +139,7 @@ storiesOf('Components|Products', module)
       `;
     },
     {
-      customEvents: [generateProductsResultsEvent(SEARCH_RESPONSE, 15)],
+      customEvents: [generateSearchResponseEvent(15)],
       notes: {
         markdown: `
           # SF-X Products Sayt Component

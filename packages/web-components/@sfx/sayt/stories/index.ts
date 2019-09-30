@@ -12,7 +12,7 @@ import {
 import '../src';
 import {
   generateAutocompleteResultsEvent,
-  generateProductsResultsEvent,
+  generateSaytProductsResponseEvent,
   getSaytProductsResponseEvent,
   getDisplayCode,
   autocompleteResults,
@@ -142,7 +142,7 @@ storiesOf('Components|SAYT', module)
     },
     {
       customEvents: [
-        generateProductsResultsEvent(SAYT_PRODUCTS_RESPONSE, 3),
+        generateSaytProductsResponseEvent(3),
         generateAutocompleteResultsEvent(),
         generateSaytHideEvent(),
         generateSaytShowEvent(),
@@ -249,7 +249,7 @@ storiesOf('Components|SAYT', module)
     },
     {
       customEvents: [
-        generateProductsResultsEvent(SAYT_PRODUCTS_RESPONSE, 3),
+        generateSaytProductsResponseEvent(3),
         generateAutocompleteResultsEvent(),
         generateSaytHideEvent(),
         generateSaytShowEvent(),
@@ -328,9 +328,9 @@ storiesOf('Components|SAYT', module)
     },
     {
       customEvents: [
-        generateProductsResultsEvent(SAYT_PRODUCTS_RESPONSE, 3, 'group1'),
+        generateSaytProductsResponseEvent(3, 'group1'),
         generateAutocompleteResultsEvent('group1'),
-        generateProductsResultsEvent(SAYT_PRODUCTS_RESPONSE, 3, 'group2'),
+        generateSaytProductsResponseEvent(3, 'group2'),
         generateAutocompleteResultsEvent('group2'),
         generateSaytHideEvent('group1'),
         generateSaytShowEvent('group1'),
