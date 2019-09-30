@@ -60,7 +60,8 @@ export default class Autocomplete extends LitElement {
    */
   receivedResults(e: CustomEvent<AutocompleteResponsePayload>) {
     const eventGroup = e.detail.group || '';
-    if (eventGroup === this.group) {
+    const componentGroup = this.group || '';
+    if (eventGroup === componentGroup) {
       this.results = e.detail.results || [];
     }
   }

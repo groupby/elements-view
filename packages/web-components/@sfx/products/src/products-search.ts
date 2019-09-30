@@ -48,7 +48,8 @@ export default class ProductsSearch extends ProductsBase {
    */
   setProductsFromEvent(event: CustomEvent<SearchResponsePayload>) {
     const eventGroup = event.detail.group || '';
-    if (eventGroup === this.group) {
+    const componentGroup = this.group || '';
+    if (eventGroup === componentGroup) {
       this.products = event.detail.results.records || [];
     }
   }

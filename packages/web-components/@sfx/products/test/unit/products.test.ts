@@ -137,6 +137,15 @@ describe('Products Sayt Component', () => {
 
       expect(component.products).to.equal(products);
     });
+
+    it('should default the group in the component to an empty string if it is falsey', () => {
+      component.group = undefined;
+      const event = { detail: { products } };
+
+      component.setProductsFromEvent(event);
+
+      expect(component.products).to.equal(products);
+    });
   });
 });
 
@@ -217,6 +226,15 @@ describe('Products Search Component', () => {
     });
 
     it('should default the group in the event to an empty string if it is falsey', () => {
+      const event = { detail: { results: { records } } };
+
+      component.setProductsFromEvent(event);
+
+      expect(component.products).to.equal(records);
+    });
+
+    it('should default the group in the component to an empty string if it is falsey', () => {
+      component.group = undefined;
       const event = { detail: { results: { records } } };
 
       component.setProductsFromEvent(event);

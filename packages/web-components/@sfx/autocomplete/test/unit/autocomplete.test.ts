@@ -133,6 +133,15 @@ describe('Autcomplete Component', () => {
 
       expect(autocomplete.results).to.equal(results);
     });
+
+    it('should default the group in the component to an empty string if it is falsey', () => {
+      autocomplete.group = undefined;
+      event.detail = { results, group: '' };
+
+      autocomplete.receivedResults(event);
+
+      expect(autocomplete.results).to.equal(results);
+    });
   });
 
   describe('handleHoverTerm', () => {

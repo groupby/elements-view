@@ -48,7 +48,8 @@ export default class ProductsSayt extends ProductsBase {
    */
   setProductsFromEvent(event: CustomEvent<SaytProductsResponsePayload>) {
     const eventGroup = event.detail.group || '';
-    if (eventGroup === this.group) {
+    const componentGroup = this.group || '';
+    if (eventGroup === componentGroup) {
       this.products = event.detail.products || [];
     }
   }
