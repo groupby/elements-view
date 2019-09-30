@@ -1,0 +1,56 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.13.0
+
+Node version: 
+  8.10.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/shawna/Work/sfx/sfx-view/packages/web-components/@sfx/sayt/package.json: Unexpected token } in JSON at position 650
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:304:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:315:13
+      at <anonymous>
+
+npm manifest: 
+  {
+    "name": "@sfx/sayt",
+    "version": "0.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "module": "src/index.ts",
+    "types": "dist/index.d.ts",
+    "esnext": "esnext/index.js",
+    "scripts": {
+      "build": "../../../../scripts/build.sh",
+      "dev": "nodemon --config ../../../../nodemon.json --exec npm run build",
+      "tdd": "karma start --no-single-run --auto-watch",
+      "test": "karma start"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/groupby/sfx-view.git",
+      "directory": "packages/web-components/@sfx/sayt"
+    },
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+      "html-entities": "^1.2.1"
+    },
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

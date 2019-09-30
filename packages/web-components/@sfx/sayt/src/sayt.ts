@@ -227,7 +227,7 @@ export default class Sayt extends LitElement {
    *
    * @param callback The function to debounce.
    */
-  getDebounce<requestSaytType extends Function>(callback: requestSaytType): ReturnType<debounce> {
+  getDebounce<requestSaytType extends Function>(callback: requestSaytType): requestSaytType & ReturnType<typeof debounce> {
     return debounce(
       callback,
       this.debounce,
@@ -416,13 +416,13 @@ export default class Sayt extends LitElement {
 /**
  * The type of the callback expected to be passed to getDebounce.
  */
-export interface requestSaytType extends debounce {
+export interface requestSaytType {
   (query: string, searchbox? : string) : void;
 };
 
 /**
  * The type of the debounce returned by getDebounce.
  */
-export interface debounce {
-  (...args: any) : any;
-};
+// export interface debounce {
+//   (...args: any) : any;
+// };

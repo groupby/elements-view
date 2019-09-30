@@ -25,5 +25,8 @@
   "devDependencies": {
     "@types/debounce": "^1.2.0",
     "html-entities": "^1.2.1"
+  },
+  "dependencies": {
+    "debounce": "^1.2.0"
   }
 }
