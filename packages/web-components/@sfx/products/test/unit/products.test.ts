@@ -6,6 +6,7 @@ import ProductsSearch from '../../src/products-search';
 
 describe('Products Base Component', () => {
   let component;
+
   beforeEach(() => {
     component = new ProductsBase();
   });
@@ -55,6 +56,7 @@ describe('Products Base Component', () => {
 
 describe('Products Sayt Component', () => {
   let component;
+
   beforeEach(() => {
     component = new ProductsSayt();
   });
@@ -98,6 +100,7 @@ describe('Products Sayt Component', () => {
   describe('setProductsFromEvent', () => {
     let products;
     let group;
+
     beforeEach(() => {
       products = [1, 2, 3];
       group = 'group';
@@ -139,6 +142,7 @@ describe('Products Sayt Component', () => {
 
 describe('Products Search Component', () => {
   let component;
+
   beforeEach(() => {
     component = new ProductsSearch();
   });
@@ -182,6 +186,7 @@ describe('Products Search Component', () => {
   describe('setProductsFromEvent', () => {
     let records;
     let group;
+
     beforeEach(() => {
       records = [1, 2, 3];
       group = 'group';
