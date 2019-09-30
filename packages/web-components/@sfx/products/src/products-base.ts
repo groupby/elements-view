@@ -39,6 +39,11 @@ export default class ProductsBase extends LitElement {
     }
   }
 
+  /**
+   * Returns styles to be included with the component. When the
+   * [[render]] function is not being overridden, override this function
+   * to include additional styles for this component.
+   */
   protected renderStyles(): CSSResult {
     return css`
       sfx-products-base {
@@ -55,8 +60,6 @@ export default class ProductsBase extends LitElement {
   render(): TemplateResult {
     return html`
       <style>
-        ${this.renderStyles()}
-
         sfx-product {
           display: block;
         }
@@ -64,6 +67,8 @@ export default class ProductsBase extends LitElement {
         sfx-product[hidden] {
           display: none;
         }
+
+        ${this.renderStyles()}
       </style>
 
       ${this.products.map(product => {
