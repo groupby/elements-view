@@ -15,7 +15,7 @@ There are three versions of the Products component:
 
 The base component can be used to display product data directly through attributes; however, it does not listen to any events for product data.
 
-*NOTE: This component is not meant to be used directly, but is provided as an option to extend and create a custom Products component.*
+**NOTE:** This component is not meant to be used directly, but is provided as an option to extend and create a custom Products component.
 
 ### Customization
 
@@ -28,7 +28,7 @@ Ex.
 <sfx-products group="search-group-1"></sfx-products>
 ```
 
-*NOTE: This attribute is unnecessary if there is only one group and sayt pairing and one product search results grid on the webpage.*
+**NOTE:** This attribute is unnecessary if there is only one group and sayt pairing and one product search results grid on the webpage.
 
 ## sfx-products-sayt
 
