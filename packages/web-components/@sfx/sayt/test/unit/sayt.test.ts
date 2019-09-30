@@ -289,14 +289,34 @@ describe('Sayt Component', () => {
   });
 
   describe('handleAutocompleteTermHover()', () => {
-    it('should call requestSaytProducts() with the event query', () => {
+    let isCorrectSayt;
+
+    beforeEach(() => {
+      isCorrectSayt = stub(sayt, 'isCorrectSayt');
+    });
+
+    it('should call requestSaytProducts() with the event query if the event and component groups match', () => {
+      const group = sayt.group = 'group';
       const requestSaytProducts = stub(sayt, 'requestSaytProducts');
       const query = 'some-query';
-      const event = { detail: { query } };
+      const event = { detail: { query, group } };
+      isCorrectSayt.returns(true);
 
       sayt.handleAutocompleteTermHover(event);
 
       expect(requestSaytProducts).to.be.calledWith(query);
+    });
+
+    it('should not call requestSaytProducts() with the event query if the event and component groups do not match', () => {
+      const requestSaytProducts = stub(sayt, 'requestSaytProducts');
+      const query = 'some-query';
+      const event = { detail: { query, group: 'other-group' } };
+      sayt.group = 'group';
+      isCorrectSayt.returns(false);
+
+      sayt.handleAutocompleteTermHover(event);
+
+      expect(requestSaytProducts).to.not.be.called;
     });
   });
 
