@@ -9,6 +9,8 @@ import { ProductsBase } from './';
  * The `sfx-products-sayt` web component wraps and renders a number of
  * `sfx-product` components. It wraps each `sfx-product` component in an
  * additional wrapper for flexibility.
+ *
+ * This component updates upon receiving a [[SAYT_PRODUCTS_RESPONSE]] event.
  */
 @customElement('sfx-products-sayt')
 export default class ProductsSayt extends ProductsBase {

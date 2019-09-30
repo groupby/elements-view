@@ -9,6 +9,8 @@ import { ProductsBase } from '.';
  * The `sfx-products` web component wraps and renders a number of
  * `sfx-product` components. It wraps each `sfx-product` component in an
  * additional wrapper for flexibility.
+ *
+ * This component updates upon receiving a [[SEARCH_RESPONSE]] event.
  */
 @customElement('sfx-products')
 export default class ProductsSearch extends ProductsBase {
