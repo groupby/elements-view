@@ -37,7 +37,9 @@ export default class Sayt extends LitElement {
    */
   @property({ type: String, reflect: true }) searchbox = '';
   /**
-   * The optional group name this will check in events.
+   * The name of the event group that this component belongs to.
+   * This component will dispatch events with this group in their
+   * payloads and will only react to events that contain this group.
    */
   @property({ type: String, reflect: true }) group = '';
   /**
