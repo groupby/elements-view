@@ -9,3 +9,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SFX-200: Created the products wrapper.
   - This component renders a series of sfx-product components.
   - SFX-248: The `@sfx/events` package is used for event names and payload interfaces.
+  - SFX-354: `sfx-products` and `sfx-products-sayt` extend from `sfx-products-base`
+    and listen on Search and SAYT-related events respectively.
