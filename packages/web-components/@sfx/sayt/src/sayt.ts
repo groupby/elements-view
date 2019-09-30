@@ -1,5 +1,5 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
-import { ifDefined } from 'lit-html/directives/if-defined.js';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import {
   AUTOCOMPLETE_ACTIVE_TERM,
   AUTOCOMPLETE_REQUEST,
