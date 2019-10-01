@@ -130,7 +130,7 @@ describe('Sayt Component', () => {
     });
 
     describe('debounce', () => {
-      it('should call setDebouncedMethods()', () => {
+      it('should update debounce property', () => {
         const setDebounce = stub(sayt, 'setDebouncedMethods');
         const oldDebounceTime = 0;
 
