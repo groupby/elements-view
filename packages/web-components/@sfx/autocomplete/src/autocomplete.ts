@@ -21,6 +21,12 @@ export default class Autocomplete extends LitElement {
    * The text to use in the header.
    */
   @property({ type: String, reflect: true }) caption: string = '';
+  /**
+   * The name of the event group that this component belongs to.
+   * This component will dispatch events with this group in their
+   * payloads and will only react to events that contain this group.
+   */
+  @property({ type: String, reflect: true }) group: string = '';
 
   /**
    * Constructs an instance of Autocomplete.
@@ -53,7 +59,11 @@ export default class Autocomplete extends LitElement {
    * @param e The event object.
    */
   receivedResults(e: CustomEvent<AutocompleteResponsePayload>) {
-    this.results = e.detail.results || [];
+    const eventGroup = e.detail.group || '';
+    const componentGroup = this.group || '';
+    if (eventGroup === componentGroup) {
+      this.results = e.detail.results || [];
+    }
   }
 
   /**
@@ -68,6 +78,7 @@ export default class Autocomplete extends LitElement {
     const sentEvent = new CustomEvent<AutocompleteActiveTermPayload>(AUTOCOMPLETE_ACTIVE_TERM, {
       detail: {
         query: term,
+        group: this.group,
       },
       bubbles: true,
     });

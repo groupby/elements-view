@@ -2,12 +2,26 @@
 
 ## Functionality
 
-The component listens for an event, which is fired when the autocomplete data is received.
-The component then populates a list with the received data.
+The Autocomplete component displays search terms related to a query term. It also dispatches events whenever these search terms are interacted with.
+
+This component listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
+
+### Recieved Events
+
+#### `AUTOCOMPLETE_RESPONSE`
+
+Upon receiving this event, the `sfx-autocomplete` component will populate its `results` property with search terms.
+
+### Dispatched Events
+
+#### `AUTOCOMPLETE_ACTIVE_TERM`
+
+This event is dispatched when one of the search terms inside of the `sfx-autocomplete` component is put in the active state or hovered on.
 
 ## Customizations
 
-Autocomplete allows for an optional title, which populates inside an `<h3>` tag. The title text is populated via the `caption` attribute.
+- `caption`: Optional attribute to create and populate an `<h3>` tag at the top of the Autocomplete component.
+- `group`: Optional attribute to add the `sayt` component to a grouping of related search components. The component will only act on events if they contain the same group name as the component.
 
 ## Testing
 
@@ -25,3 +39,5 @@ yarn test
 ```sh
 yarn tdd
 ```
+
+[sfx-events]: https://github.com/groupby/sfx-events

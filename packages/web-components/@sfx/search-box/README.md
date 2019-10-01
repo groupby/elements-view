@@ -4,27 +4,31 @@
 
 The component accepts text input and dispatches events based on input.
 
-### Events
+This component listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
 
-#### `sfx::searchbox_clear`
+### Received Events
+
+#### `UPDATE_SEARCH_TERM`
+
+This component listens for this event, whose payload is the search term, and updates the value property and input box value with the event's payload.
+
+### Dispatched Events
+
+#### `SEARCHBOX_CLEAR`
 
 Dispatched when a user clicks on the clear button.
 
-#### `sfx::searchbox_click`
+#### `SEARCHBOX_CLICK`
 
 Dispatched when a user clicks anywhere within the search box input area.
 
-#### `sfx::search_request`
-
-Dispatched when a user clicks on the search button or hits `enter` within the search box. This event sends the search term value entered into the search box.
-
-#### `sfx::searchbox_input`
+#### `SEARCHBOX_INPUT`
 
 Dispatched when the value changes inside the search box input.
 
-#### `sfx::update_search_term`
+#### `SEARCH_REQUEST`
 
-This component listens for this event, whose payload is the search term, and updates the value property and input box value with the event's payload.
+Dispatched when a user clicks on the search button or hits `enter` within the search box. This event sends the search term value entered into the search box.
 
 ## Customizations
 
@@ -33,6 +37,7 @@ Users of the component can add the following attributes to the custom element:
 - `clearbutton`: adds clear button
 - `searchbutton`: adds search button
 - `placeholder`: if populated with a string, will replace the default placeholder text in the search box.
+- `group`: Optional attribute to add this component to a grouping of related search components. The component will only act on events if they contain the same group name as the component.
 
 ## Testing
 
@@ -60,3 +65,5 @@ yarn tdd:interaction
 ```sh
 yarn test:all
 ```
+
+[sfx-events]: https://github.com/groupby/sfx-events

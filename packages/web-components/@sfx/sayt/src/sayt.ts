@@ -1,4 +1,5 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import {
   AUTOCOMPLETE_ACTIVE_TERM,
   AUTOCOMPLETE_REQUEST,
@@ -35,6 +36,12 @@ export default class Sayt extends LitElement {
    * Stores the ID of the relevant search element.
    */
   @property({ type: String, reflect: true }) searchbox = '';
+  /**
+   * The name of the event group that this component belongs to.
+   * This component will dispatch events with this group in their
+   * payloads and will only react to events that contain this group.
+   */
+  @property({ type: String, reflect: true }) group = '';
   /**
    * Customizes the text in the close button.
    */
@@ -81,6 +88,7 @@ export default class Sayt extends LitElement {
     window.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
+    this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.setSearchboxListener(this.searchbox, 'add');
   }
 
@@ -97,6 +105,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
+    this.removeEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.setSearchboxListener(this.searchbox, 'remove');
   }
 
@@ -176,20 +185,19 @@ export default class Sayt extends LitElement {
 
   /**
    * Triggers requests for Sayt autocomplete terms and Sayt products
-   * simultaneously using a query and searchbox ID.
+   * simultaneously using a query and group name.
    * They will only be called if the term is at least [[minSearchLength]] long.
    *
    * @param query The search term to use.
-   * @param searchbox The searchbox ID associated with this search.
    */
-  requestSayt(query: string, searchbox?: string) {
+  requestSayt(query: string) {
     if (query.length < this.minSearchLength) {
       this.hideSayt();
       return;
     }
 
-    this.requestSaytAutocompleteTerms(query, searchbox);
-    this.requestSaytProducts(query, searchbox);
+    this.requestSaytAutocompleteTerms(query);
+    this.requestSaytProducts(query);
   }
 
   /**
@@ -198,76 +206,79 @@ export default class Sayt extends LitElement {
    *
    * @param eventType The type of the event to be dispatched.
    * @param query The query term.
-   * @param group The name of the associated group.
    */
-  dispatchRequestEvent(eventType: string, query: string, group?: string) {
+  dispatchRequestEvent(eventType: string, query: string) {
     const requestEvent = new CustomEvent(eventType, {
-      detail: { query, group },
+      detail: { query, group: this.group },
       bubbles: true
     });
     this.dispatchEvent(requestEvent);
   }
 
   /**
-   * Dispatches an [[AUTOCOMPLETE_RESPONSE]] event with the provided data.
+   * Dispatches an [[AUTOCOMPLETE_REQUEST]] event with the provided data.
    *
    * @param query The search term to use.
-   * @param searchbox The optional searchbox ID associated with this search.
    */
-  requestSaytAutocompleteTerms(query: string, searchbox?: string) {
-    this.dispatchRequestEvent(AUTOCOMPLETE_REQUEST, query, searchbox);
+  requestSaytAutocompleteTerms(query: string) {
+    this.dispatchRequestEvent(AUTOCOMPLETE_REQUEST, query);
   }
 
   /**
    * Dispatches a [[SAYT_PRODUCTS_REQUEST]] event with the provided data.
    *
    * @param query The search term to use.
-   * @param searchbox The optional searchbox ID associated with this search.
    */
-  requestSaytProducts(query: string, searchbox?: string) {
-    this.dispatchRequestEvent(SAYT_PRODUCTS_REQUEST, query, searchbox);
+  requestSaytProducts(query: string) {
+    this.dispatchRequestEvent(SAYT_PRODUCTS_REQUEST, query);
   }
 
   /**
    * Handles how the hover on Sayt autocomplete terms updates the sayt products.
-   * Triggers a request of Sayt products using the query and searchbox data.
+   * Triggers a request of Sayt products using the query.
    *
    * @param event The hover event dispatched from autocomplete.
    */
   handleAutocompleteTermHover(event: CustomEvent<AutocompleteActiveTermPayload>) {
-    this.requestSaytProducts(event.detail.query, this.searchbox);
+    if (this.isCorrectSayt(event)) {
+      this.requestSaytProducts(event.detail.query);
+    }
   }
 
   /**
-   * Handles the searchbox input in the case where no searchbox ID is given, and
-   * triggers the `requestSayt` function with the query and searchbox data.
+   * Handles searchbox input events by passing the event's value to `requestSayt()`
+   * in the case where a `searchbox` ID is passed to the Sayt component.
+   * Can be used to not require listening for a specific SF-X event.
    *
    * @param event The searchbox input event dispatched from the searchbox.
    */
   processSearchboxInput(event: Event) {
-    this.requestSayt((event.target as HTMLInputElement).value, this.searchbox);
+    this.requestSayt((event.target as HTMLInputElement).value);
   }
 
   /**
-   * Handles the SF-X searchbox changes in the case where a searchbox ID is given, and
-   * triggers the `requestSayt` function with the query and specific searchbox ID.
+   * Handles SF-X searchbox changes by passing the event's value to `requestSayt()`
+   * if [[isCorrectSayt]] returns `true`.
+   * Used when a `searchbox` ID is not passed to the Sayt component.
    *
-   * @param event The searchbox change event dispatched from the searchbox.
+   * @param event The [[SEARCHBOX_INPUT]] event dispatched from the searchbox.
    */
   processSfxSearchboxChange(event: CustomEvent<SearchboxInputPayload>) {
-    this.requestSayt(event.detail.term, event.detail.group);
+    if (this.isCorrectSayt(event)) {
+      this.requestSayt(event.detail.term);
+    }
   }
 
   /**
    * Determines whether an event refers to the correct SAYT. This is true if
-   * a matching `searchbox` ID is specified, if the event has no `searchbox`
-   * ID specified, or if SAYT has no `searchbox` ID specified.
+   * the `group` in the event matches this component's group. If `group` is not defined
+   * in the event, it will default to an empty string.
    *
-   * @param event An event that can contain a searchbox ID for comparison.
+   * @param event An event that contains a group name for comparison.
    */
   isCorrectSayt(event: CustomEvent<WithGroup>): boolean {
-    const group = event.detail && event.detail.group;
-    return !group || !this.searchbox || group === this.searchbox;
+    const group = event.detail && event.detail.group || '';
+    return group === this.group;
   }
 
   /**
@@ -342,15 +353,17 @@ export default class Sayt extends LitElement {
         : ''}
       <div class="sfx-sayt-container">
         ${this.hideAutocomplete
-        ? ''
-        : html`
-              <sfx-autocomplete></sfx-autocomplete>
-            `}
+          ? ''
+          : html`
+            <sfx-autocomplete group="${ifDefined(this.group)}">
+            </sfx-autocomplete>`
+        }
         ${this.hideProducts
-        ? ''
-        : html`
-              <sfx-products></sfx-products>
-            `}
+          ? ''
+          : html`
+            <sfx-products-sayt group="${ifDefined(this.group)}">
+            </sfx-products-sayt>`
+        }
       </div>
     `;
   }

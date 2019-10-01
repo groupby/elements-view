@@ -44,6 +44,12 @@ export default class SearchBox extends Base {
    * Determines the collection used for search.
    */
   @property({ type: String, reflect: true }) collection: string = '';
+  /**
+   * The name of the event group that this component belongs to.
+   * This component will dispatch events with this group in their
+   * payloads and will only react to events that contain this group.
+   */
+  @property({ type: String, reflect: true }) group: string = '';
 
   constructor() {
     super();
@@ -98,7 +104,11 @@ export default class SearchBox extends Base {
    * @param e The event object.
    */
   updateText(e: CustomEvent<UpdateSearchTermPayload>) {
-    this.updateSearchTermValue(e.detail.term);
+    const eventGroup = e.detail.group || '';
+    const componentGroup = this.group || '';
+    if (eventGroup === componentGroup) {
+      this.updateSearchTermValue(e.detail.term);
+    }
   }
 
   /**
@@ -169,7 +179,7 @@ export default class SearchBox extends Base {
     return new CustomEvent<T>(type, {
       detail: {
         ...detail,
-        searchbox: this.id
+        group: this.group,
       },
       bubbles: true,
     });

@@ -2,6 +2,7 @@ import { XmlEntities } from 'html-entities';
 import {
   AUTOCOMPLETE_RESPONSE,
   SAYT_PRODUCTS_RESPONSE,
+  SEARCH_RESPONSE,
   AutocompleteResultGroup,
   AutocompleteSearchTermItem,
   Product,
@@ -103,19 +104,37 @@ export const autocompleteResults: AutocompleteResultGroup<AutocompleteSearchTerm
   }
 ];
 
-export const autocompleteResponseEvent = {
-  name: AUTOCOMPLETE_RESPONSE,
-  payload: {
-    results: autocompleteResults,
+export const generateAutocompleteResultsEvent = (group?: string) => {
+  return {
+    name: AUTOCOMPLETE_RESPONSE,
+    payload: {
+      results: autocompleteResults,
+      group,
+    }
   }
-};
+}
 
-export const saytProductsResponseEvent = {
-  name: SAYT_PRODUCTS_RESPONSE,
-  payload: {
-    products: getProducts(5),
+export const generateSaytProductsResponseEvent = (productCount: number, group?: string) => {
+  return {
+    name: SAYT_PRODUCTS_RESPONSE,
+    payload: {
+      products: getProducts(productCount),
+      group,
+    }
   }
-};
+}
+
+export const generateSearchResponseEvent = (productCount: number, group?: string) => {
+  return {
+    name: SEARCH_RESPONSE,
+    payload: {
+      results: {
+        records: getProducts(productCount)
+      },
+      group,
+    }
+  }
+}
 
 export function getSaytProductsResponseEvent(): CustomEvent<SaytProductsResponsePayload> {
   return new CustomEvent(SAYT_PRODUCTS_RESPONSE, {

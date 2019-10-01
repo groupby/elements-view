@@ -51,6 +51,12 @@ describe('SearchBox Component', () => {
         expect(searchbox.clearButton).to.be.false;
       });
     });
+
+    describe('group property', () => {
+      it('should have default value of an empty string', () => {
+        expect(searchbox.group).to.equal('');
+      });
+    });
   });
 
   describe('connectCallback', () => {
@@ -122,10 +128,43 @@ describe('SearchBox Component', () => {
   });
 
   describe('updateText', () => {
-    it('should update the value property with data from the event', () => {
-      const term = 'inputText';
+    const term = 'inputText';
+    const group = 'some-group';
+    let updateSearchTermValue;
+
+    beforeEach(() => {
+      updateSearchTermValue = stub(searchbox, 'updateSearchTermValue');
+    });
+
+    it('should update the value property with data from the event when the event group matches the component group', () => {
+      const inputEvent = new CustomEvent('some-test-type', { detail: { term, group } });
+      searchbox.group = group;
+
+      searchbox.updateText(inputEvent);
+
+      expect(updateSearchTermValue).to.be.calledWith(term);
+    });
+
+    it('should not update the value property with data from the event when the group in the component and the event do not match', () => {
+      const inputEvent = new CustomEvent('some-test-type', { detail: { term, group } });
+      searchbox.group = 'different group';
+
+      searchbox.updateText(inputEvent);
+
+      expect(updateSearchTermValue).to.not.be.called;
+    });
+
+    it('should default the group in the event to an empty string if it is falsey', () => {
       const inputEvent = new CustomEvent('some-test-type', { detail: { term } });
-      const updateSearchTermValue = stub(searchbox, 'updateSearchTermValue');
+
+      searchbox.updateText(inputEvent);
+
+      expect(updateSearchTermValue).to.be.calledWith(term);
+    });
+
+    it('should default the group in the component to an empty string if it is falsey', () => {
+      const inputEvent = new CustomEvent('some-test-type', { detail: { term, group: '' } });
+      searchbox.group = undefined;
 
       searchbox.updateText(inputEvent);
 
@@ -219,13 +258,13 @@ describe('SearchBox Component', () => {
       expect(result.detail).to.include(detail);
     });
 
-    it('should return a CustomEvent that bubbles and has a searchbox attribute', () => {
-      const id = searchbox.id = 'some-id';
+    it('should return a CustomEvent that bubbles and has a group property', () => {
+      const group = searchbox.group = 'group';
 
       const result = searchbox.createCustomEvent('some-type');
 
       expect(result.bubbles).to.be.true;
-      expect(result.detail.searchbox).to.equal(id);
+      expect(result.detail.group).to.equal(group);
     });
   });
 
