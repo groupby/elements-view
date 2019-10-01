@@ -228,7 +228,7 @@ export default class Sayt extends LitElement {
    */
   setDebouncedMethods() {
     this.debouncedRequestSaytAutocompleteTerms = debounce(this.requestSaytAutocompleteTerms, this.debounce, false);
-    this.debouncedRequestSaytProducts  = debounce(this.requestSaytProducts, this.debounce, false);
+    this.debouncedRequestSaytProducts = debounce(this.requestSaytProducts, this.debounce, false);
   }
 
   /**
