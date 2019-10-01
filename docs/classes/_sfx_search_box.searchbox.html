@@ -146,6 +146,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_sfx_search_box.searchbox.html#draggable" class="tsd-kind-icon">draggable</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_sfx_search_box.searchbox.html#firstchild" class="tsd-kind-icon">first<wbr>Child</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_sfx_search_box.searchbox.html#firstelementchild" class="tsd-kind-icon">first<wbr>Element<wbr>Child</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_sfx_search_box.searchbox.html#group" class="tsd-kind-icon">group</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_sfx_search_box.searchbox.html#hasupdated" class="tsd-kind-icon">has<wbr>Updated</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_sfx_search_box.searchbox.html#hidden" class="tsd-kind-icon">hidden</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_sfx_search_box.searchbox.html#id" class="tsd-kind-icon">id</a></li>
@@ -407,7 +408,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Base.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L46">packages/web-components/@sfx/search-box/src/search-box.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L52">packages/web-components/@sfx/search-box/src/search-box.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_sfx_search_box.searchbox.html" class="tsd-signature-type">SearchBox</a></h4>
@@ -643,7 +644,7 @@
 					<div class="tsd-signature tsd-kind-icon">area<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L42">packages/web-components/@sfx/search-box/src/search-box.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L42">packages/web-components/@sfx/search-box/src/search-box.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -785,7 +786,7 @@
 					<div class="tsd-signature tsd-kind-icon">clear<wbr>Button<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L38">packages/web-components/@sfx/search-box/src/search-box.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L38">packages/web-components/@sfx/search-box/src/search-box.ts:38</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -844,7 +845,7 @@
 					<div class="tsd-signature tsd-kind-icon">collection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L46">packages/web-components/@sfx/search-box/src/search-box.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L46">packages/web-components/@sfx/search-box/src/search-box.ts:46</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -926,6 +927,23 @@
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Returns the first child that is an element, and null otherwise.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="group" class="tsd-anchor"></a>
+					<h3>group</h3>
+					<div class="tsd-signature tsd-kind-icon">group<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L52">packages/web-components/@sfx/search-box/src/search-box.ts:52</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of the event group that this component belongs to.
+								This component will dispatch events with this group in their
+							payloads and will only react to events that contain this group.</p>
 						</div>
 					</div>
 				</section>
@@ -2774,7 +2792,7 @@
 					<div class="tsd-signature tsd-kind-icon">placeholder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Type your search&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L26">packages/web-components/@sfx/search-box/src/search-box.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L26">packages/web-components/@sfx/search-box/src/search-box.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2899,7 +2917,7 @@
 					<div class="tsd-signature tsd-kind-icon">search<wbr>Button<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L34">packages/web-components/@sfx/search-box/src/search-box.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L34">packages/web-components/@sfx/search-box/src/search-box.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -3058,7 +3076,7 @@
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L30">packages/web-components/@sfx/search-box/src/search-box.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L30">packages/web-components/@sfx/search-box/src/search-box.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -3578,7 +3596,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L147">packages/web-components/@sfx/search-box/src/search-box.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L157">packages/web-components/@sfx/search-box/src/search-box.ts:157</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3620,7 +3638,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L157">packages/web-components/@sfx/search-box/src/search-box.ts:157</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L167">packages/web-components/@sfx/search-box/src/search-box.ts:167</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3780,7 +3798,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Base.connectedCallback</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L56">packages/web-components/@sfx/search-box/src/search-box.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L62">packages/web-components/@sfx/search-box/src/search-box.ts:62</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3831,7 +3849,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L168">packages/web-components/@sfx/search-box/src/search-box.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L178">packages/web-components/@sfx/search-box/src/search-box.ts:178</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3901,7 +3919,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides UpdatingElement.disconnectedCallback</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L64">packages/web-components/@sfx/search-box/src/search-box.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L70">packages/web-components/@sfx/search-box/src/search-box.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3953,7 +3971,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L88">packages/web-components/@sfx/search-box/src/search-box.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L94">packages/web-components/@sfx/search-box/src/search-box.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3976,7 +3994,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L73">packages/web-components/@sfx/search-box/src/search-box.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L79">packages/web-components/@sfx/search-box/src/search-box.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4476,7 +4494,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L112">packages/web-components/@sfx/search-box/src/search-box.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L122">packages/web-components/@sfx/search-box/src/search-box.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4509,7 +4527,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L127">packages/web-components/@sfx/search-box/src/search-box.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L137">packages/web-components/@sfx/search-box/src/search-box.ts:137</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -5495,7 +5513,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Base.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L178">packages/web-components/@sfx/search-box/src/search-box.ts:178</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L188">packages/web-components/@sfx/search-box/src/search-box.ts:188</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TemplateResult</span></h4>
@@ -6045,7 +6063,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L138">packages/web-components/@sfx/search-box/src/search-box.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L148">packages/web-components/@sfx/search-box/src/search-box.ts:148</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6076,7 +6094,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/search-box/src/search-box.ts#L100">packages/web-components/@sfx/search-box/src/search-box.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/search-box/src/search-box.ts#L106">packages/web-components/@sfx/search-box/src/search-box.ts:106</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6418,6 +6436,9 @@
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 										<a href="_sfx_search_box.searchbox.html#firstelementchild" class="tsd-kind-icon">first<wbr>Element<wbr>Child</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-class">
+										<a href="_sfx_search_box.searchbox.html#group" class="tsd-kind-icon">group</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 										<a href="_sfx_search_box.searchbox.html#hasupdated" class="tsd-kind-icon">has<wbr>Updated</a>

@@ -70,10 +70,19 @@
 				<div class="tsd-comment tsd-typography">
 					<h1 id="sf-x-autocomplete-component">SF-X Autocomplete Component</h1>
 					<h2 id="functionality">Functionality</h2>
-					<p>The component listens for an event, which is fired when the autocomplete data is received.
-					The component then populates a list with the received data.</p>
+					<p>The Autocomplete component displays search terms related to a query term. It also dispatches events whenever these search terms are interacted with.</p>
+					<p>This component listens for and dispatches a number of events. These events are defined in the <a href="https://github.com/groupby/sfx-events"><code>@sfx/events</code></a> package.</p>
+					<h3 id="recieved-events">Recieved Events</h3>
+					<h4 id="autocomplete_response"><code>AUTOCOMPLETE_RESPONSE</code></h4>
+					<p>Upon receiving this event, the <code>sfx-autocomplete</code> component will populate its <code>results</code> property with search terms.</p>
+					<h3 id="dispatched-events">Dispatched Events</h3>
+					<h4 id="autocomplete_active_term"><code>AUTOCOMPLETE_ACTIVE_TERM</code></h4>
+					<p>This event is dispatched when one of the search terms inside of the <code>sfx-autocomplete</code> component is put in the active state or hovered on.</p>
 					<h2 id="customizations">Customizations</h2>
-					<p>Autocomplete allows for an optional title, which populates inside an <code>&lt;h3&gt;</code> tag. The title text is populated via the <code>caption</code> attribute.</p>
+					<ul>
+						<li><code>caption</code>: Optional attribute to create and populate an <code>&lt;h3&gt;</code> tag at the top of the Autocomplete component.</li>
+						<li><code>group</code>: Optional attribute to add the <code>sayt</code> component to a grouping of related search components. The component will only act on events if they contain the same group name as the component.</li>
+					</ul>
 					<h2 id="testing">Testing</h2>
 					<p>The test suite for this component is contained in the <code>test</code> directory.
 					To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:</p>
@@ -120,7 +129,7 @@
 					<div class="tsd-signature tsd-kind-icon">autocomplete<wbr>Notes<wbr>Intro<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"# SF-X Autocomplete Component[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/autocomplete &quot;SF-X Autocomplete README&quot;).&#x60;&#x60;&#x60;html&lt;sfx-autocomplete&gt;&lt;/sfx-autocomplete&gt;&#x60;&#x60;&#x60;## Demonstrated in this story"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;# SF-X Autocomplete Component[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/autocomplete &quot;SF-X Autocomplete README&quot;).\&#x60;\&#x60;\&#x60;html&lt;sfx-autocomplete&gt;&lt;/sfx-autocomplete&gt;\&#x60;\&#x60;\&#x60;## Demonstrated in this story&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/autocomplete/stories/index.ts#L16">packages/web-components/@sfx/autocomplete/stories/index.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/autocomplete/stories/index.ts#L16">packages/web-components/@sfx/autocomplete/stories/index.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -137,7 +146,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/d143053/packages/web-components/@sfx/autocomplete/stories/index.ts#L27">packages/web-components/@sfx/autocomplete/stories/index.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/0397114/packages/web-components/@sfx/autocomplete/stories/index.ts#L27">packages/web-components/@sfx/autocomplete/stories/index.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
