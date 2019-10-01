@@ -12,7 +12,6 @@ import {
 } from '@sfx/events';
 import { expect, sinon, spy, stub } from '../utils';
 import Sayt from '../../src/sayt';
-import * as Lodash from 'lodash';
 
 describe('Sayt Component', () => {
   let sayt;
