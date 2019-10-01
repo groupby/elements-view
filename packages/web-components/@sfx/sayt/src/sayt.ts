@@ -62,11 +62,11 @@ export default class Sayt extends LitElement {
   /**
    * The debouncedRequestSaytProducts method that will wrap the requestSaytProducts method in a debounce.
    */
-  debouncedRequestSaytProducts: RequestSaytType;
+  debouncedRequestSaytProducts: RequestSayt;
   /**
    * The debouncedRequestSaytAutocompleteTerms method that will wrap the requestSaytAutocompleteTerms method in a debounce.
    */
-  debouncedRequestSaytAutocompleteTerms: RequestSaytType;
+  debouncedRequestSaytAutocompleteTerms: RequestSayt;
 
   /**
    * Calls superclass constructor and bind methods.
@@ -401,6 +401,6 @@ export default class Sayt extends LitElement {
 /**
  * The type of the callback expected to be passed to getDebounce.
  */
-export interface RequestSaytType {
+export interface RequestSayt {
   (query: string, searchbox? : string) : void;
 };
