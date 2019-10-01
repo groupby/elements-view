@@ -11,7 +11,7 @@ module.exports = {
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "airbnb-base",
-        "../scripts/config/.eslintrc.js"
+        "../scripts/config/eslint/.eslintrc.js"
     ],
     parserOptions: {
         ecmaVersion: 2018,
