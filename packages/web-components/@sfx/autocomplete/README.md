@@ -2,7 +2,7 @@
 
 ## Functionality
 
-The Autocomplete component displays search terms related to a query term. It is also able to dispatch Sayt product search requests.
+The Autocomplete component displays search terms related to a query term. It also dispatches events whenever these search terms are interacted with.
 
 This component listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
 
