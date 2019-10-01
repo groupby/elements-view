@@ -70,7 +70,7 @@ describe('Products Sayt Component', () => {
       expect(superConnected).to.be.calledOnce;
     });
 
-    it('should set up event listener for a provide-products event to set products', () => {
+    it('should set up an event listener for a sayt products event to set products', () => {
       const addEventListener = sinon.stub(window, 'addEventListener');
 
       component.connectedCallback();
@@ -88,7 +88,7 @@ describe('Products Sayt Component', () => {
       expect(superDisconnected).to.be.calledOnce;
     });
 
-    it('should remove provide-products event listener', () => {
+    it('should remove an event listener for sayt products', () => {
       const removeEventListener = sinon.stub(window, 'removeEventListener');
 
       component.disconnectedCallback();
@@ -165,7 +165,7 @@ describe('Products Search Component', () => {
       expect(superConnected).to.be.calledOnce;
     });
 
-    it('should set up event listener for a provide-products event to set products', () => {
+    it('should set up an event listener for a search response to set products', () => {
       const addEventListener = sinon.stub(window, 'addEventListener');
 
       component.connectedCallback();
@@ -183,7 +183,7 @@ describe('Products Search Component', () => {
       expect(superDisconnected).to.be.calledOnce;
     });
 
-    it('should remove provide-products event listener', () => {
+    it('should remove an event listener for search responses', () => {
       const removeEventListener = sinon.stub(window, 'removeEventListener');
 
       component.disconnectedCallback();

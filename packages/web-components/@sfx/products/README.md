@@ -48,7 +48,7 @@ Upon receiving this event, the `sfx-products-sayt` component will populate the `
 
 ### Functionality
 
-The Search version of the Products component is used to display search results.
+The Search version of the Products component is used to display search results. It is extended from the `sfx-products-base` component.
 
 This component listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
 

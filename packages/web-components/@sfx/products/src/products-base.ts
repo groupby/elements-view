@@ -7,11 +7,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import {
-  SAYT_PRODUCTS_RESPONSE,
-  Product,
-  SaytProductsResponsePayload,
-} from '@sfx/events';
+import { Product } from '@sfx/events';
 
 /**
  * The `sfx-products-base` web component wraps and renders a number of
@@ -20,6 +16,9 @@ import {
  */
 @customElement('sfx-products-base')
 export default class ProductsBase extends LitElement {
+  /**
+   * The product data to be rendered.
+   */
   @property({ type: Array }) products: Product[] = [];
   /**
    * The name of the event group that this component belongs to.
