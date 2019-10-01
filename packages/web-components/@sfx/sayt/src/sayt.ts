@@ -218,8 +218,8 @@ export default class Sayt extends LitElement {
       return;
     }
 
-    this.requestSaytAutocompleteTerms(query);
-    this.requestSaytProducts(query);
+    this.debouncedRequestSaytAutocompleteTerms(query);
+    this.debouncedRequestSaytProducts(query);
   }
 
   /**
