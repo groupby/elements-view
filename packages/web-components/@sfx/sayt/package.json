@@ -18,15 +18,12 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "@sfx/events": "groupby/sfx-events#9602f9429f7a198bec0336e629043a91f89d762c",
-    "debounce": "^1.2.0"
-  },
   "devDependencies": {
     "@types/debounce": "^1.2.0",
     "html-entities": "^1.2.1"
   },
   "dependencies": {
+    "@sfx/events": "groupby/sfx-events#9602f9429f7a198bec0336e629043a91f89d762c",
     "debounce": "^1.2.0"
   }
 }
