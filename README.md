@@ -93,7 +93,72 @@ yarn dev:themes
 
 These will run Storybook and watch the `./themes` directory for all changes to `.scss` files. Themes can be toggled in the `CSS Resources` addon tab.
 
-##Documentation
+## Linting
+This project ships with [ESLint](https://eslint.org/) configuration to enforce a consistent code style across `*.ts` files.
+
+### Package-specific linting
+
+The following commands are run in the context of an individual package contained within the SFX-View monorepo. The individual web component packages can be found within the [`packages/web-components/@sfx`](packages/web-components/@sfx) directory.
+
+To lint files for an individual package, navigate to its directory and use one of the following commands.
+
+- To lint the files under the `src` directory for an individual package:
+```sh
+yarn lint:scripts
+```
+
+- To lint the files under the `stories` directory for an individual package:
+```sh
+yarn lint:stories
+```
+
+- To lint the files under the `test` directory for an individual package:
+```sh
+yarn lint:tests
+```
+
+To run the automated lint fixes for an individual package, navigate to its directory and use one of the following commands.
+
+- To run automated lint fixes on the files under the `src` directory for an individual package:
+```sh
+yarn lint:scripts:fix
+```
+
+- To run automated lint fixes on the files under the `stories` directory for an individual package:
+```sh
+yarn lint:stories:fix
+```
+
+- To run automated lint fixes on the files under the `test` directory for an individual package:
+```sh
+yarn lint:tests:fix
+```
+
+### Project-wide linting
+
+To lint all the SFX-View packages at once, run the following commands at the root of the monorepo:
+
+- To lint all files within each package's `src` and `stories` directories:
+```sh
+yarn lint:scripts
+```
+
+- To lint all files within each package's `test` directory:
+```sh
+yarn lint:tests
+```
+
+- To run automated lint fixes on all files within each package's `src` and `stories` directories:
+```sh
+yarn lint:script:fix
+```
+
+- To run automated lint fixes on all files within each package's `test` directory:
+```sh
+yarn lint:tests:fix
+```
+
+## Documentation
 The following command will generate documentation for each module in the `packages` directory. It uses [TypeDoc](https://typedoc.org/) and outputs to the `docs` directory.
 ```sh
 yarn docs

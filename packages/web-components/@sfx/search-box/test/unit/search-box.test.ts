@@ -1,4 +1,5 @@
-import { TemplateResult, html } from 'lit-element';
+import { TemplateResult } from 'lit-element';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@sfx/base';
 import {
   SEARCHBOX_CLEAR,
@@ -85,7 +86,7 @@ describe('SearchBox Component', () => {
   describe('emitSearchEvent', () => {
     it('should dispatch a search request event with empty area and collection', () => {
       const query = searchbox.value = 'a';
-      const id = searchbox.id = 'some-id';
+      searchbox.id = 'some-id';
 
       searchbox.emitSearchEvent();
 
@@ -94,7 +95,7 @@ describe('SearchBox Component', () => {
         config: {
           area: '',
           collection: '',
-        }
+        },
       });
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });
@@ -103,7 +104,7 @@ describe('SearchBox Component', () => {
       const query = searchbox.value = 'a';
       const area = searchbox.area = 'some-area';
       const collection = searchbox.collection = 'some-collection';
-      const id = searchbox.id = 'some-id';
+      searchbox.id = 'some-id';
 
       searchbox.emitSearchEvent();
 
@@ -112,7 +113,7 @@ describe('SearchBox Component', () => {
         config: {
           area,
           collection,
-        }
+        },
       });
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });
@@ -200,7 +201,7 @@ describe('SearchBox Component', () => {
 
       expect(createCustomEvent).to.be.calledWith(
         SEARCHBOX_INPUT,
-        { term: searchTerm },
+        { term: searchTerm }
       );
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });

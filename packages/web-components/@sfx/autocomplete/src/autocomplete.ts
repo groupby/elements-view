@@ -1,10 +1,14 @@
-import { customElement, html, property, LitElement } from 'lit-element';
+import {
+  customElement, html, property, LitElement, TemplateResult,
+} from 'lit-element';
 import {
   AUTOCOMPLETE_RESPONSE,
   AUTOCOMPLETE_ACTIVE_TERM,
   AutocompleteResponsePayload,
   AutocompleteActiveTermPayload,
 } from '@sfx/events';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import '@sfx/ui';
 
 /**
  * The `sfx-autocomplete` component is responsible for displaying a list
@@ -16,7 +20,9 @@ export default class Autocomplete extends LitElement {
   /**
    * Autocomplete request results.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @property({ type: Array }) results: any[] = [];
+
   /**
    * The text to use in the header.
    */
@@ -40,7 +46,7 @@ export default class Autocomplete extends LitElement {
   /**
    * Sets up event listeners.
    */
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
   }
@@ -48,7 +54,7 @@ export default class Autocomplete extends LitElement {
   /**
    * Removes event listeners.
    */
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
   }
@@ -58,7 +64,7 @@ export default class Autocomplete extends LitElement {
    *
    * @param e The event object.
    */
-  receivedResults(e: CustomEvent<AutocompleteResponsePayload>) {
+  receivedResults(e: CustomEvent<AutocompleteResponsePayload>): void {
     const eventGroup = e.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
@@ -71,7 +77,7 @@ export default class Autocomplete extends LitElement {
    *
    * @param event An event that contains a Sayt autocomplete term.
    */
-  handleHoverTerm(event: MouseEvent) {
+  handleHoverTerm(event: MouseEvent): void {
     const target = event.target as HTMLElement;
     if (target.tagName.toLowerCase() !== 'li') return;
     const term = target.innerText;
@@ -89,7 +95,7 @@ export default class Autocomplete extends LitElement {
    * Renders results data in a list format using the `sfx-list` custom
    * element.
    */
-  render() {
+  render(): TemplateResult {
     return html`
       <style>
         sfx-autocomplete {
@@ -100,20 +106,19 @@ export default class Autocomplete extends LitElement {
         }
       </style>
       ${this.caption && this.results.length > 0
-        ? html`
+    ? html`
             <h3 class="sfx-header">${this.caption}</h3>
           `
-        : ''}
+    : ''}
       ${this.results.map(
-        list =>
-          html`
+    (list) => html`
             <sfx-list caption="${list.title}" .items="${list.items}" @mouseover="${this.handleHoverTerm}"></sfx-list>
           `
-      )}
+  )}
     `;
   }
 
-  createRenderRoot() {
+  createRenderRoot(): Element|ShadowRoot {
     return this;
   }
 }

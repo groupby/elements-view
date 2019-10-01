@@ -1,7 +1,6 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import {
-  AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_RESPONSE,
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
@@ -78,13 +77,13 @@ const autocompleteDataReceivedEvent = new CustomEvent<AutocompleteResponsePayloa
   bubbles: true,
 });
 
-function generateBaseData() {
+function generateBaseData(): void {
   setTimeout(() => {
     window.dispatchEvent(autocompleteDataReceivedEvent);
-  }, 0)
+  }, 0);
   setTimeout(() => {
     window.dispatchEvent(getSaytProductsResponseEvent());
-  }, 0)
+  }, 0);
 }
 
 storiesOf('Components|SAYT', module)
@@ -106,16 +105,16 @@ storiesOf('Components|SAYT', module)
     ${getDisplayCode(sayt)}
     </div>`;
   }, {
-      notes: {
-        markdown: `
+    notes: {
+      markdown: `
         ${saytNotesMarkdownIntro}
 
           ### The SF-X SAYT component populated with autocomplete and products data.
           * The SF-X SAYT component is designed to render different data in response to events, however, this story generates the data on page load. This is done in order to see the visual component immediately.
           * For stories that demonstrate the component's functionality, visit three stories listed below this one, under "SAYT".
-      `
-      }
-    })
+      `,
+    },
+  })
   .add(
     'Rendering based on events and attributes',
     () => {
@@ -137,8 +136,7 @@ storiesOf('Components|SAYT', module)
       <p class="prompt">Explore the <b>Custom Events</b> and <b>Knobs</b> tabs to render the component.</p>
       <div class="display-code">
       ${getDisplayCode(sayt)}
-      </div>`
-        ;
+      </div>`;
     },
     {
       customEvents: [
@@ -206,15 +204,15 @@ storiesOf('Components|SAYT', module)
             * To demonstrate in this story:
               1. Open SAYT with one of the methods outlined above.
               2. Observe the message on the page
-      `
-      }
+      `,
+      },
     }
   )
   .add(
     'SAYT with simple search input',
     () => {
       hidePrompt(SAYT_HIDE);
-      const input = `<input type="text" id="search-box" placeholder="Search here" />`;
+      const input = '<input type="text" id="search-box" placeholder="Search here" />';
       const sayt = getSayt('search-box');
 
       return `
@@ -277,8 +275,8 @@ storiesOf('Components|SAYT', module)
         visible
       ></sfx-sayt>
       \`\`\`
-      `
-      }
+      `,
+      },
     }
   )
   .add(
@@ -324,7 +322,6 @@ storiesOf('Components|SAYT', module)
       <div class="display-code">
       ${getDisplayCode(`${input1}${sayt1}${input2}${sayt2}`)}
       </div>`;
-
     },
     {
       customEvents: [
@@ -376,7 +373,7 @@ storiesOf('Components|SAYT', module)
         visible
       ></sfx-sayt>
       \`\`\`
-        `
-      }
+        `,
+      },
     }
   );

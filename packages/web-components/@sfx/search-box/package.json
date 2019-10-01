@@ -12,7 +12,13 @@
     "test": "karma start",
     "tdd:interaction": "karma start interaction.karma.conf.js --no-single-run --auto-watch",
     "test:interaction": "karma start interaction.karma.conf.js",
-    "test:all": "ec=0; npm run test || ec=1; npm run test:interaction || ec=1; exit $ec"
+    "test:all": "ec=0; npm run test || ec=1; npm run test:interaction || ec=1; exit $ec",
+    "lint:scripts": "eslint ./src/ --ext .ts --plugin only-warn",
+    "lint:scripts:fix": "eslint ./src/ --fix --ext .ts --plugin only-warn",
+    "lint:stories": "eslint ./stories/ --no-eslintrc -c ../../../../.storybook/.eslintrc.js --ext .ts --plugin only-warn",
+    "lint:stories:fix": "eslint --fix ./stories/ --no-eslintrc -c ../../../../.storybook/.eslintrc.js --ext .ts --plugin only-warn",
+    "lint:tests": "eslint ./test/ --ext .ts --no-eslintrc -c ../../../../scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:fix": "eslint ./test/ --fix --ext .ts --no-eslintrc -c ../../../../scripts/config/eslint/test/.eslintrc.js --plugin only-warn"
   },
   "repository": {
     "type": "git",
@@ -22,6 +28,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@sfx/events": "groupby/sfx-events#9602f9429f7a198bec0336e629043a91f89d762c"
+    "@sfx/events": "groupby/sfx-events#9602f9429f7a198bec0336e629043a91f89d762c",
+    "lit-element": "^2.2.0"
   }
 }

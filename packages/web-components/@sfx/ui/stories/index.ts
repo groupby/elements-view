@@ -5,17 +5,17 @@ import '../src/index';
 
 const items = [
   {
-    label: 'Pen'
+    label: 'Pen',
   },
   {
-    label: 'Headphones'
+    label: 'Headphones',
   },
   {
-    label: 'Duck'
+    label: 'Duck',
   },
   {
-    label: 'Chocolate'
-  }
+    label: 'Chocolate',
+  },
 ];
 
 function getListComponent(codeSnippet: boolean = false): string {
@@ -31,12 +31,10 @@ storiesOf('UI|List', module)
   .addDecorator(withKnobs)
   .add(
     'Default',
-    () => {
-      return `
+    () => `
       ${getListComponent()}
       ${getDisplayCode(getListComponent(true))}
-    `;
-    },
+    `,
     {
       notes: {
         markdown: `# SF-X List Component
@@ -85,7 +83,7 @@ storiesOf('UI|List', module)
               }]"
             ></sfx-list>
             \`\`\`
-        `
-      }
+        `,
+      },
     }
   );

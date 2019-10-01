@@ -1,4 +1,7 @@
-import { customElement, html, property, PropertyValues } from 'lit-element';
+import {
+  customElement, html, property, TemplateResult,
+} from 'lit-element';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@sfx/base';
 import {
   SEARCHBOX_CLEAR,
@@ -24,22 +27,27 @@ export default class SearchBox extends Base {
    * Text used as placeholder in search box.
    */
   @property({ type: String }) placeholder: string = 'Type your search';
+
   /**
    * Search term generated via user input.
    */
   @property({ type: String }) value: string = '';
+
   /**
    * Determines whether or not the search button is present.
    */
   @property({ type: Boolean, reflect: true }) searchButton: boolean = false;
+
   /**
    * Determines whether or not the clear button is present.
    */
   @property({ type: Boolean, reflect: true }) clearButton: boolean = false;
+
   /**
    * Determines the area used for search.
    */
   @property({ type: String, reflect: true }) area: string = '';
+
   /**
    * Determines the collection used for search.
    */
@@ -59,7 +67,7 @@ export default class SearchBox extends Base {
   /**
    * Adds event listeners.
    */
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
     window.addEventListener(UPDATE_SEARCH_TERM, this.updateText);
   }
@@ -67,7 +75,7 @@ export default class SearchBox extends Base {
   /**
    * Removes event listeners.
    */
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     super.disconnectedCallback();
     window.removeEventListener(UPDATE_SEARCH_TERM, this.updateText);
   }
@@ -76,7 +84,7 @@ export default class SearchBox extends Base {
    * Dispatches a search request event with the `value` property.
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
-  emitSearchEvent() {
+  emitSearchEvent(): void {
     const searchboxRequestEvent = this.createCustomEvent<SearchRequestPayload>(SEARCH_REQUEST, {
       query: this.value,
       config: {
@@ -91,7 +99,7 @@ export default class SearchBox extends Base {
    * Dispatches a [[SEARCHBOX_CLEAR]] event notifying that the input box has
    * been cleared. Invoked in response to a click on the clear button.
    */
-  emitSearchBoxClearClick() {
+  emitSearchBoxClearClick(): void {
     const searchboxClearedEvent = this.createCustomEvent<SearchboxClearPayload>(SEARCHBOX_CLEAR);
     this.dispatchEvent(searchboxClearedEvent);
   }
@@ -103,7 +111,7 @@ export default class SearchBox extends Base {
    *
    * @param e The event object.
    */
-  updateText(e: CustomEvent<UpdateSearchTermPayload>) {
+  updateText(e: CustomEvent<UpdateSearchTermPayload>): void {
     const eventGroup = e.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
@@ -119,8 +127,8 @@ export default class SearchBox extends Base {
    *
    * @param e The KeyboardEvent object.
    */
-  handleInput(e: KeyboardEvent) {
-    const value = (e.target as HTMLInputElement).value;
+  handleInput(e: KeyboardEvent): void {
+    const { value } = e.target as HTMLInputElement;
     const searchboxInputEvent = this.createCustomEvent<SearchboxInputPayload>(SEARCHBOX_INPUT, {
       term: (e.target as HTMLInputElement).value,
     });
@@ -134,7 +142,7 @@ export default class SearchBox extends Base {
    *
    * @param e The KeyboardEvent object.
    */
-  handleKeydown(e: KeyboardEvent) {
+  handleKeydown(e: KeyboardEvent): void {
     if (e.key === 'Enter' && this.value.length > 0) {
       this.emitSearchEvent();
     }
@@ -145,7 +153,7 @@ export default class SearchBox extends Base {
    *
    * @param term The value pulled directly from the input box.
    */
-  updateSearchTermValue(term: string) {
+  updateSearchTermValue(term: string): void {
     this.value = term;
   }
 
@@ -154,7 +162,7 @@ export default class SearchBox extends Base {
    * invokes the emitSearchBoxClearedEvent function.
    * Invoked in response to click on `clear` button.
    */
-  clearSearch() {
+  clearSearch(): void {
     this.value = '';
     this.emitSearchBoxClearClick();
   }
@@ -164,7 +172,7 @@ export default class SearchBox extends Base {
    * bar has been clicked. Invoked in response to a user clicking inside of the
    * searchbox input.
    */
-  clickExposed() {
+  clickExposed(): void {
     const searchBoxClickedEvent = this.createCustomEvent<SearchboxClickPayload>(SEARCHBOX_CLICK);
     this.dispatchEvent(searchBoxClickedEvent);
   }
@@ -185,7 +193,7 @@ export default class SearchBox extends Base {
     });
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
       <style>
         sfx-search-box {
@@ -209,15 +217,15 @@ export default class SearchBox extends Base {
         @keydown="${this.handleKeydown}"
       />
       ${this.clearButton
-        ? html`
+    ? html`
             <button class="sfx-clear" @click="${this.clearSearch}">Clear</button>
           `
-        : ''}
+    : ''}
       ${this.searchButton
-        ? html`
+    ? html`
             <button class="sfx-submit" @click="${this.emitSearchEvent}">Search</button>
           `
-        : ''}
+    : ''}
     `;
   }
 }

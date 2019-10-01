@@ -12,9 +12,9 @@ import {
   generateSearchResponseEvent,
   hidePrompt,
 } from '../../../../../.storybook/common';
-import '..';
+import '../src';
 
-function getProductsComponent(productsArray: Product[] = [], componentSuffix: string) {
+function getProductsComponent(productsArray: Product[] = [], componentSuffix: string): string {
   if (productsArray.length > 0) {
     const products = text('Products', JSON.stringify(productsArray));
     return `<sfx-products${componentSuffix} products="${products}"></sfx-products${componentSuffix}>`
@@ -80,8 +80,8 @@ storiesOf('Components|Products', module)
               }
           ]"></sfx-products-base>
           \`\`\`
-          `
-      }
+          `,
+      },
     }
   ).add(
     'Products from Sayt events',

@@ -1,4 +1,5 @@
 import { TemplateResult, html } from 'lit-element';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@sfx/base';
 
 import { expect, stub } from '../utils';
@@ -48,7 +49,7 @@ describe('Product Component', () => {
       component.product = {
         title: '',
         salePrice: 0,
-        promo: '30% off'
+        promo: '30% off',
       };
 
       const result = component.additionalInfo();
@@ -160,7 +161,7 @@ describe('Variant Component', () => {
           image: 'src.png',
           color,
           text,
-          product: {}
+          product: {},
         };
       });
 

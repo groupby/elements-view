@@ -22,33 +22,30 @@ const autocompleteNotesIntro = `
 <sfx-autocomplete></sfx-autocomplete>
 \`\`\`
 
-## Demonstrated in this story`
+## Demonstrated in this story`;
 
 function getAutocompleteComponent(results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = []): string {
   const optionalTitle = text('Optional Title', 'Autocomplete Results');
 
   if (results.length > 0) {
-    const autocompleteResults = text('Autocomplete Results', JSON.stringify(results))
+    const autocompleteResultsKnob = text('Autocomplete Results', JSON.stringify(results));
     return '<sfx-autocomplete\n'
-      + ` results="${autocompleteResults}"\n`
-      + ` caption="${optionalTitle}"\n`
-      + '></sfx-autocomplete>';
-  } else {
-    return '<sfx-autocomplete\n'
+      + ` results="${autocompleteResultsKnob}"\n`
       + ` caption="${optionalTitle}"\n`
       + '></sfx-autocomplete>';
   }
+  return '<sfx-autocomplete\n'
+      + ` caption="${optionalTitle}"\n`
+      + '></sfx-autocomplete>';
 }
 
 storiesOf('Components|Autocomplete', module)
   .addDecorator(withKnobs)
   .add(
     'Default',
-    () => {
-      return `
+    () => `
      ${getAutocompleteComponent(autocompleteResults)}
-     ${getDisplayCode(getAutocompleteComponent())}`
-    },
+     ${getDisplayCode(getAutocompleteComponent())}`,
     {
       notes: {
         markdown: `
@@ -77,8 +74,8 @@ storiesOf('Components|Autocomplete', module)
           ]"
         ></sfx-autocomplete>
         \`\`\`
-      `
-      }
+      `,
+      },
     }
   )
   .add(
@@ -96,7 +93,8 @@ storiesOf('Components|Autocomplete', module)
     {
       customEvents: [generateAutocompleteResultsEvent()],
       notes: {
-        markdown: `
+        markdown:
+        `
           ${autocompleteNotesIntro}
 
             ### The SF-X Autocomplete component updates with autocomplete data in response to the \`${AUTOCOMPLETE_RESPONSE}\` event.**

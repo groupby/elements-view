@@ -16,7 +16,16 @@
     "docs": "typedoc --options ./typedoc.js packages",
     "test": "yarn workspaces run test",
     "coverage": "cat coverage/lcov.info | codecov",
-    "dev:themes": "nodemon -e scss -x webpack"
+    "dev:themes": "nodemon -e scss -x webpack",
+    "lint:scripts": "eslint ./packages/web-components/@sfx/**/src/ --ext .ts --plugin only-warn",
+    "lint:scripts:fix": "eslint ./packages/web-components/@sfx/**/src/ --fix --ext .ts --plugin only-warn",
+    "lint:scripts:ci": "eslint ./packages/web-components/@sfx/**/src/ --ext .ts --max-warnings 0",
+    "lint:stories": "eslint ./packages/web-components/@sfx/**/stories/ --no-eslintrc -c ./.storybook/.eslintrc.js --ext .ts --plugin only-warn",
+    "lint:stories:fix": "eslint ./packages/web-components/@sfx/**/stories/ --no-eslintrc -c ./.storybook/.eslintrc.js --ext .ts --plugin only-warn",
+    "lint:stories:ci": "eslint ./packages/web-components/@sfx/**/stories/ --no-eslintrc -c ./.storybook/.eslintrc.js --ext .ts --plugin only-warn",
+    "lint:tests": "eslint ./packages/web-components/@sfx/**/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:fix": "eslint ./packages/web-components/@sfx/**/test/ --fix --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:ci": "eslint ./packages/web-components/@sfx/**/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --max-warnings 0"
   },
   "repository": {
     "type": "git",
@@ -53,6 +62,10 @@
     "chai": "^4.2.0",
     "codecov": "^3.5.0",
     "css-loader": "^3.1.0",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-only-warn": "^1.0.1",
     "event-emitter": "^0.3.5",
     "extract-loader": "^3.1.0",
     "file-loader": "^4.1.0",

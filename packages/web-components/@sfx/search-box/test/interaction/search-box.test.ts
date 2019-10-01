@@ -1,5 +1,5 @@
-import { expect, waitForUpdateComplete } from '../utils';
 import { SEARCH_REQUEST } from '@sfx/events';
+import { expect, waitForUpdateComplete } from '../utils';
 import SearchBox from '../../src/search-box';
 
 describe('SearchBox Component Interaction Tests', () => {
@@ -44,7 +44,7 @@ describe('SearchBox Component Interaction Tests', () => {
 
     return waitForUpdateComplete(searchbox).then(() => {
       const searchboxInput = searchbox.querySelector('input');
-      const inputEvent = new Event('input', { 'bubbles': true });
+      const inputEvent = new Event('input', { bubbles: true });
       searchboxInput.value = searchTerm;
 
       searchboxInput.dispatchEvent(inputEvent);
@@ -84,7 +84,7 @@ describe('SearchBox Component Interaction Tests', () => {
 
   it('should dispatch a search event when the search button is clicked', () => {
     let eventListenerResolve;
-    const eventListenerPromise: Promise<any> = new Promise((resolve) => eventListenerResolve = resolve);
+    const eventListenerPromise: Promise<any> = new Promise((resolve) => { eventListenerResolve = resolve; });
     const searchTerm = 'Search Term';
     searchbox.clearButton = true;
     searchbox.searchButton = true;
@@ -108,10 +108,9 @@ describe('SearchBox Component Interaction Tests', () => {
       searchboxSearchButton.click();
 
       return waitForUpdateComplete(searchbox);
-    }).then(() => {
-      return eventListenerPromise;
-    }).then((e) => {
-      expect(e.detail.query).to.equal(searchTerm);
-    });
+    }).then(() => eventListenerPromise)
+      .then((e) => {
+        expect(e.detail.query).to.equal(searchTerm);
+      });
   });
 });

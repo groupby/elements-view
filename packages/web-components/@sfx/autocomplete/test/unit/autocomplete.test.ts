@@ -156,7 +156,7 @@ describe('Autcomplete Component', () => {
         target: {
           tagName: 'H4',
           innerText: 'some-term',
-        }
+        },
       };
 
       autocomplete.handleHoverTerm(mouseEvent);
@@ -171,7 +171,7 @@ describe('Autcomplete Component', () => {
         target: {
           tagName: 'LI',
           innerText: 'some-term',
-        }
+        },
       };
 
       autocomplete.handleHoverTerm(mouseEvent);
