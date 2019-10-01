@@ -404,10 +404,3 @@ export default class Sayt extends LitElement {
 export interface RequestSaytType {
   (query: string, searchbox? : string) : void;
 };
-
-/**
- * The type of the debounce returned by getDebounce.
- */
-// export interface debounce {
-//   (...args: any) : any;
-// };
