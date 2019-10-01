@@ -298,13 +298,13 @@ describe('Sayt Component', () => {
     });
 
     it('should request sayt autocomplete terms and products', () => {
-      const requestSaytAutocompleteTerms = stub(sayt, 'debouncedRequestSaytAutocompleteTerms');
-      const requestSaytProducts = stub(sayt, 'debouncedRequestSaytProducts');
+      const debouncedRequestSaytAutocompleteTerms = stub(sayt, 'debouncedRequestSaytAutocompleteTerms');
+      const debouncedRequestSaytProducts = stub(sayt, 'debouncedRequestSaytProducts');
 
       sayt.requestSayt(query);
 
-      expect(requestSaytAutocompleteTerms).to.be.calledWith(query);
-      expect(requestSaytProducts).to.be.calledWith(query);
+      expect(debouncedRequestSaytAutocompleteTerms).to.be.calledWith(query);
+      expect(debouncedRequestSaytProducts).to.be.calledWith(query);
     });
   });
 
