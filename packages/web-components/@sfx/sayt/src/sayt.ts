@@ -87,7 +87,6 @@ export default class Sayt extends LitElement {
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
-    // this.getDebounce = this.getDebounce.bind(this);
     this.setDebouncedMethods = this.setDebouncedMethods.bind(this);
 
     this.setDebouncedMethods();
@@ -222,21 +221,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Debounces the function that is passed in the callback paramater.
-   * Customizable delay based on debounceTime attribute on Sayt element.
-   *
-   * @param callback The function to debounce.
-   */
-  // getDebounce<RequestSaytType extends Function>(callback: RequestSaytType): RequestSaytType & ReturnType<typeof debounce> {
-  //   return debounce(
-  //     callback,
-  //     this.debounce,
-  //     false
-  //   );
-  // }
-
-  /**
-   * Dispatches getDebounce for each of the methods to be debounced.
+   * Debounces the function that is passed in the first paramater.
    * Is triggered once in constructor and when the debounce attribute is changed.
    */
   setDebouncedMethods() {
@@ -285,7 +270,7 @@ export default class Sayt extends LitElement {
    */
   handleAutocompleteTermHover(event: CustomEvent<AutocompleteActiveTermPayload>) {
     if (this.isCorrectSayt(event)) {
-      this.requestSaytProducts(event.detail.query);
+      this.debouncedRequestSaytProducts(event.detail.query);
     }
   }
 
