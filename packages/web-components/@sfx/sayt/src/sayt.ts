@@ -68,7 +68,7 @@ export default class Sayt extends LitElement {
    * A debounced version of [[requestSaytAutocompleteTerms]].
    * The delay is configured through the [[debounce]] property.
    */
-  debouncedRequestSaytAutocompleteTerms: SaytRequester & ReturnType< typeof debounce>;
+  debouncedRequestSaytAutocompleteTerms: SaytRequester & ReturnType<typeof debounce>;
 
   /**
    * Calls superclass constructor and bind methods.
