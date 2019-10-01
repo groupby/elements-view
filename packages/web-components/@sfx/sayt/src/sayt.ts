@@ -1,4 +1,6 @@
-import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
+import {
+  LitElement, customElement, html, property, PropertyValues,
+} from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { debounce } from 'debounce';
 import {
@@ -47,6 +49,7 @@ export default class Sayt extends LitElement {
    * payloads and will only react to events that contain this group.
    */
   @property({ type: String, reflect: true }) group = '';
+
   /**
    * Customizes the text in the close button.
    */
@@ -252,7 +255,7 @@ export default class Sayt extends LitElement {
   dispatchRequestEvent(eventType: string, query: string): void {
     const requestEvent = new CustomEvent(eventType, {
       detail: { query, group: this.group },
-      bubbles: true
+      bubbles: true,
     });
     this.dispatchEvent(requestEvent);
   }
@@ -319,7 +322,7 @@ export default class Sayt extends LitElement {
    * @param event An event that contains a group name for comparison.
    */
   isCorrectSayt(event: CustomEvent<WithGroup>): boolean {
-    const group = event.detail && event.detail.group || '';
+    const group = (event.detail && event.detail.group) || '';
     return group === this.group;
   }
 
@@ -395,17 +398,17 @@ export default class Sayt extends LitElement {
     : ''}
       <div class="sfx-sayt-container">
         ${this.hideAutocomplete
-          ? ''
-          : html`
+    ? ''
+    : html`
             <sfx-autocomplete group="${ifDefined(this.group)}">
             </sfx-autocomplete>`
-        }
+}
         ${this.hideProducts
-          ? ''
-          : html`
+    ? ''
+    : html`
             <sfx-products-sayt group="${ifDefined(this.group)}">
             </sfx-products-sayt>`
-        }
+}
       </div>
     `;
   }

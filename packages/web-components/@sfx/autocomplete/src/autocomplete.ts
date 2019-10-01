@@ -27,6 +27,7 @@ export default class Autocomplete extends LitElement {
    * The text to use in the header.
    */
   @property({ type: String, reflect: true }) caption: string = '';
+
   /**
    * The name of the event group that this component belongs to.
    * This component will dispatch events with this group in their

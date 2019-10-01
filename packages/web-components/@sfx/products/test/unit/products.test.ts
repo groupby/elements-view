@@ -1,5 +1,5 @@
-import { expect, sinon, stub } from '../utils';
 import { SAYT_PRODUCTS_RESPONSE, SEARCH_RESPONSE } from '@sfx/events';
+import { expect, sinon, stub } from '../utils';
 import ProductsBase from '../../src/products-base';
 import ProductsSayt from '../../src/products-sayt';
 import ProductsSearch from '../../src/products-search';

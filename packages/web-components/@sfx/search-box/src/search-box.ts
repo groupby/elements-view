@@ -52,6 +52,7 @@ export default class SearchBox extends Base {
    * Determines the collection used for search.
    */
   @property({ type: String, reflect: true }) collection: string = '';
+
   /**
    * The name of the event group that this component belongs to.
    * This component will dispatch events with this group in their

@@ -26,7 +26,7 @@ export default class ProductsSearch extends ProductsBase {
   /**
    * Registers event listeners.
    */
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
 
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
@@ -35,7 +35,7 @@ export default class ProductsSearch extends ProductsBase {
   /**
    * Removes event listeners.
    */
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     super.disconnectedCallback();
 
     window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
@@ -46,7 +46,7 @@ export default class ProductsSearch extends ProductsBase {
    *
    * @param event An event containing a search result with product data.
    */
-  setProductsFromEvent(event: CustomEvent<SearchResponsePayload>) {
+  setProductsFromEvent(event: CustomEvent<SearchResponsePayload>): void {
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {

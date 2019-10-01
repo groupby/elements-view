@@ -426,7 +426,7 @@ describe('Sayt Component', () => {
     let requestSayt;
 
     beforeEach(() => {
-      term = 'some-term'
+      term = 'some-term';
       event = { detail: { term } };
       isCorrectSayt = stub(sayt, 'isCorrectSayt');
       requestSayt = stub(sayt, 'requestSayt');

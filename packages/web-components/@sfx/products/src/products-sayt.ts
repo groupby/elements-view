@@ -3,7 +3,7 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SaytProductsResponsePayload,
 } from '@sfx/events';
-import { ProductsBase } from './';
+import { ProductsBase } from '.';
 
 /**
  * The `sfx-products-sayt` web component wraps and renders a number of
@@ -26,7 +26,7 @@ export default class ProductsSayt extends ProductsBase {
   /**
    * Registers event listeners.
    */
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
 
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
@@ -35,7 +35,7 @@ export default class ProductsSayt extends ProductsBase {
   /**
    * Removes event listeners.
    */
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     super.disconnectedCallback();
 
     window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
@@ -46,7 +46,7 @@ export default class ProductsSayt extends ProductsBase {
    *
    * @param event An event containing a search result with product data.
    */
-  setProductsFromEvent(event: CustomEvent<SaytProductsResponsePayload>) {
+  setProductsFromEvent(event: CustomEvent<SaytProductsResponsePayload>): void {
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
