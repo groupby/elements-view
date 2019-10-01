@@ -311,14 +311,16 @@ describe('Sayt Component', () => {
   describe('setDebouncedMethods()', () => {
     it('should set debounced methods for requestSaytAutocompleteTerms and requestSaytProducts', () => {
        const debounce = stub(Debounce, 'debounce');
-       const expectedDebouncedFunction = () => 123;
-       debounce.returns(expectedDebouncedFunction);
+       const delay = sayt.debounce = 200;
+       const debouncedRequestSaytAutocompleteTerms = () => 123;
+       const debouncedRequestSaytProducts = () => 456;
+       debounce.withArgs(sayt.requestSaytAutocompleteTerms, delay, false).returns(debouncedRequestSaytAutocompleteTerms);
+       debounce.withArgs(sayt.requestSaytProducts, delay, false).returns(debouncedRequestSaytProducts);
 
        sayt.setDebouncedMethods();
 
-       expect(debounce).to.be.calledTwice;
-       expect(sayt.debouncedRequestSaytAutocompleteTerms).to.equal(expectedDebouncedFunction);
-       expect(sayt.debouncedRequestSaytProducts).to.equal(expectedDebouncedFunction);
+       expect(sayt.debouncedRequestSaytAutocompleteTerms).to.equal(debouncedRequestSaytAutocompleteTerms);
+       expect(sayt.debouncedRequestSaytProducts).to.equal(debouncedRequestSaytProducts);
      });
   });
 
