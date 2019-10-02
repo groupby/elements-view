@@ -309,7 +309,7 @@ describe('Sayt Component', () => {
   });
 
   describe('setDebouncedMethods()', () => {
-    it('should set debounced methods for requestSaytAutocompleteTerms and requestSaytProducts', () => {
+    it('should set debounced methods for requestSaytAutocompleteTerms() and requestSaytProducts()', () => {
        const debounce = stub(Debounce, 'debounce');
        const delay = sayt.debounce = 200;
        const debouncedRequestSaytAutocompleteTerms = () => 123;

@@ -223,8 +223,10 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Debounces the function that is passed in the first paramater.
-   * Is triggered once in constructor and when the debounce attribute is changed.
+   * Regenerates specific debounced methods. 
+   *
+   * @see [[debouncedRequestSaytAutocompleteTerms]]
+   * @see [[debouncedRequestSaytProducts]] 
    */
   setDebouncedMethods() {
     this.debouncedRequestSaytAutocompleteTerms = debounce(this.requestSaytAutocompleteTerms, this.debounce, false);
