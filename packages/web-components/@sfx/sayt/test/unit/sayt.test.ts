@@ -1,4 +1,5 @@
 import { TemplateResult, LitElement } from 'lit-element';
+import * as Debounce from 'debounce';
 import {
   AUTOCOMPLETE_ACTIVE_TERM,
   AUTOCOMPLETE_REQUEST,
@@ -22,6 +23,14 @@ describe('Sayt Component', () => {
   describe('Constructor', () => {
     it('should extend the LitElement class', () => {
       expect(sayt).to.be.an.instanceof(LitElement);
+    });
+
+    it('should call setDebouncedMethods()', () => {
+      const setDebounce = stub(Sayt.prototype, 'setDebouncedMethods');
+
+      sayt = new Sayt();
+
+      expect(setDebounce).to.be.called;
     });
 
     describe('hideAutocomplete property', () => {
@@ -117,6 +126,17 @@ describe('Sayt Component', () => {
 
         expect(setSearchboxListener).to.be.calledWith(oldSearchbox, 'remove');
         expect(setSearchboxListener).to.be.calledWith(newSearchbox, 'add');
+      });
+    });
+
+    describe('debounce', () => {
+      it('should update debounce property', () => {
+        const setDebounce = stub(sayt, 'setDebouncedMethods');
+        const oldDebounceTime = 0;
+
+        sayt.updated(new Map([['debounce', oldDebounceTime]]));
+
+        expect(setDebounce).to.be.called;
       });
     });
   });
@@ -278,14 +298,30 @@ describe('Sayt Component', () => {
     });
 
     it('should request sayt autocomplete terms and products', () => {
-      const requestSaytAutocompleteTerms = stub(sayt, 'requestSaytAutocompleteTerms');
-      const requestSaytProducts = stub(sayt, 'requestSaytProducts');
+      const debouncedRequestSaytAutocompleteTerms = stub(sayt, 'debouncedRequestSaytAutocompleteTerms');
+      const debouncedRequestSaytProducts = stub(sayt, 'debouncedRequestSaytProducts');
 
       sayt.requestSayt(query);
 
-      expect(requestSaytAutocompleteTerms).to.be.calledWith(query);
-      expect(requestSaytProducts).to.be.calledWith(query);
+      expect(debouncedRequestSaytAutocompleteTerms).to.be.calledWith(query);
+      expect(debouncedRequestSaytProducts).to.be.calledWith(query);
     });
+  });
+
+  describe('setDebouncedMethods()', () => {
+    it('should set debounced methods for requestSaytAutocompleteTerms() and requestSaytProducts()', () => {
+       const debounce = stub(Debounce, 'debounce');
+       const delay = sayt.debounce = 200;
+       const debouncedRequestSaytAutocompleteTerms = () => 123;
+       const debouncedRequestSaytProducts = () => 456;
+       debounce.withArgs(sayt.requestSaytAutocompleteTerms, delay, false).returns(debouncedRequestSaytAutocompleteTerms);
+       debounce.withArgs(sayt.requestSaytProducts, delay, false).returns(debouncedRequestSaytProducts);
+
+       sayt.setDebouncedMethods();
+
+       expect(sayt.debouncedRequestSaytAutocompleteTerms).to.equal(debouncedRequestSaytAutocompleteTerms);
+       expect(sayt.debouncedRequestSaytProducts).to.equal(debouncedRequestSaytProducts);
+     });
   });
 
   describe('handleAutocompleteTermHover()', () => {
@@ -295,28 +331,30 @@ describe('Sayt Component', () => {
       isCorrectSayt = stub(sayt, 'isCorrectSayt');
     });
 
-    it('should call requestSaytProducts() with the event query if the event and component groups match', () => {
+    it('should call debouncedRequestSaytProducts() with the event query if the event and component groups match', () => {
       const group = sayt.group = 'group';
-      const requestSaytProducts = stub(sayt, 'requestSaytProducts');
+      const debouncedRequestSaytProducts = stub(sayt, 'debouncedRequestSaytProducts');
       const query = 'some-query';
       const event = { detail: { query, group } };
       isCorrectSayt.returns(true);
 
       sayt.handleAutocompleteTermHover(event);
+      sayt.debouncedRequestSaytProducts.flush();
 
-      expect(requestSaytProducts).to.be.calledWith(query);
+      expect(debouncedRequestSaytProducts).to.be.calledWith(query);
     });
 
-    it('should not call requestSaytProducts() with the event query if the event and component groups do not match', () => {
-      const requestSaytProducts = stub(sayt, 'requestSaytProducts');
+    it('should not call debouncedRequestSaytProducts() with the event query if the event and component groups do not match', () => {
+      const debouncedRequestSaytProducts = stub(sayt, 'debouncedRequestSaytProducts');
       const query = 'some-query';
       const event = { detail: { query, group: 'other-group' } };
       sayt.group = 'group';
       isCorrectSayt.returns(false);
 
       sayt.handleAutocompleteTermHover(event);
+      sayt.debouncedRequestSaytProducts.flush();
 
-      expect(requestSaytProducts).to.not.be.called;
+      expect(debouncedRequestSaytProducts).to.not.be.called;
     });
   });
 
@@ -345,6 +383,8 @@ describe('Sayt Component', () => {
       const query = 'some-query';
 
       sayt.requestSaytAutocompleteTerms(query);
+      // invoke debounced function immediately
+      sayt.debouncedRequestSaytAutocompleteTerms.flush();
 
       expect(dispatchRequestEvent).to.be.calledWith(AUTOCOMPLETE_REQUEST, query);
     });
@@ -356,6 +396,8 @@ describe('Sayt Component', () => {
       const dispatchRequestEvent = stub(sayt, 'dispatchRequestEvent');
 
       sayt.requestSaytProducts(query);
+      // invoke debounced function immediately
+      sayt.debouncedRequestSaytProducts.flush();
 
       expect(dispatchRequestEvent).to.be.calledWith(SAYT_PRODUCTS_REQUEST, query);
     });

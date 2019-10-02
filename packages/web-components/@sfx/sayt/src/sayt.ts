@@ -1,5 +1,6 @@
 import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined';
+import { debounce } from 'debounce';
 import {
   AUTOCOMPLETE_ACTIVE_TERM,
   AUTOCOMPLETE_REQUEST,
@@ -55,6 +56,21 @@ export default class Sayt extends LitElement {
    */
   @property({ type: Number, reflect: true }) minSearchLength = 3;
   /**
+   * The debounce delay in millilseconds.
+   */
+  @property({ type: Number, reflect: true }) debounce = 300;
+  /**
+   * A debounced version of [[requestSaytProducts]].
+   * The delay is configured through the [[debounce]] property.
+   */
+  debouncedRequestSaytProducts: SaytRequester & ReturnType<typeof debounce>;
+  /**
+   * A debounced version of [[requestSaytAutocompleteTerms]].
+   * The delay is configured through the [[debounce]] property.
+   */
+  debouncedRequestSaytAutocompleteTerms: SaytRequester & ReturnType<typeof debounce>;
+
+  /**
    * Calls superclass constructor and bind methods.
    */
   constructor() {
@@ -73,6 +89,9 @@ export default class Sayt extends LitElement {
     this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
+    this.setDebouncedMethods = this.setDebouncedMethods.bind(this);
+
+    this.setDebouncedMethods();
   }
 
   /**
@@ -127,6 +146,9 @@ export default class Sayt extends LitElement {
 
       this.setSearchboxListener(oldSearchbox, 'remove');
       this.setSearchboxListener(this.searchbox, 'add');
+    }
+    if (changedProps.has('debounce')) {
+      this.setDebouncedMethods();
     }
   }
 
@@ -196,8 +218,19 @@ export default class Sayt extends LitElement {
       return;
     }
 
-    this.requestSaytAutocompleteTerms(query);
-    this.requestSaytProducts(query);
+    this.debouncedRequestSaytAutocompleteTerms(query);
+    this.debouncedRequestSaytProducts(query);
+  }
+
+  /**
+   * Regenerates specific debounced methods. 
+   *
+   * @see [[debouncedRequestSaytAutocompleteTerms]]
+   * @see [[debouncedRequestSaytProducts]] 
+   */
+  setDebouncedMethods() {
+    this.debouncedRequestSaytAutocompleteTerms = debounce(this.requestSaytAutocompleteTerms, this.debounce, false);
+    this.debouncedRequestSaytProducts = debounce(this.requestSaytProducts, this.debounce, false);
   }
 
   /**
@@ -241,7 +274,7 @@ export default class Sayt extends LitElement {
    */
   handleAutocompleteTermHover(event: CustomEvent<AutocompleteActiveTermPayload>) {
     if (this.isCorrectSayt(event)) {
-      this.requestSaytProducts(event.detail.query);
+      this.debouncedRequestSaytProducts(event.detail.query);
     }
   }
 
@@ -368,3 +401,10 @@ export default class Sayt extends LitElement {
     `;
   }
 }
+
+/**
+ * The type of the callback expected to be passed to getDebounce.
+ */
+export interface SaytRequester {
+  (query: string, searchbox?: string): void;
+};

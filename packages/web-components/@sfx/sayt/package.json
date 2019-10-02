@@ -22,6 +22,8 @@
     "html-entities": "^1.2.1"
   },
   "dependencies": {
-    "@sfx/events": "groupby/sfx-events#9602f9429f7a198bec0336e629043a91f89d762c"
+    "@sfx/events": "groupby/sfx-events#9602f9429f7a198bec0336e629043a91f89d762c",
+    "@types/debounce": "^1.2.0",
+    "debounce": "^1.2.0"
   }
 }
