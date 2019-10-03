@@ -6,8 +6,10 @@ import {
   TemplateResult,
 } from 'lit-element';
 import {
-  AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM,
+  AUTOCOMPLETE_RESPONSE,
+  AUTOCOMPLETE_ACTIVE_TERM,
   AutocompleteResponsePayload,
+  AutocompleteResultGroup,
   AutocompleteActiveTermPayload,
 } from '@sfx/events';
 
@@ -21,8 +23,7 @@ export default class Autocomplete extends LitElement {
   /**
    * Autocomplete request results.
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  @property({ type: Array }) results: any[] = [];
+  @property({ type: Array }) results: AutocompleteResultGroup[] = [];
 
   /**
    * The text to use in the header.

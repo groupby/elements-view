@@ -17,13 +17,12 @@ storiesOf('Components|Product', module)
   .add(
     'Default',
     () => `
-    ${getProductComponent(getProducts(1)[0])}
-    ${getDisplayCode(getProductComponent(null, true))}
-    `,
+      ${getProductComponent(getProducts(1)[0])}
+      ${getDisplayCode(getProductComponent(null, true))}
+      `,
     {
       notes: {
         markdown: `
-
         # SF-X Product Component
 
         [Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/product "SF-X Product README").

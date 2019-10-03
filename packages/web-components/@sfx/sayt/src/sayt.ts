@@ -1,5 +1,9 @@
 import {
-  LitElement, customElement, html, property, PropertyValues, TemplateResult,
+  LitElement,
+  customElement,
+  html, property,
+  PropertyValues,
+  TemplateResult,
 } from 'lit-element';
 // eslint-disable-next-line import/no-unresolved
 import { ifDefined } from 'lit-html/directives/if-defined';

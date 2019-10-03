@@ -94,7 +94,7 @@ yarn dev:themes
 These will run Storybook and watch the `./themes` directory for all changes to `.scss` files. Themes can be toggled in the `CSS Resources` addon tab.
 
 ## Linting
-This project ships with [ESLint](https://eslint.org/) configuration to enforce a consistent code style across `*.ts` files.
+This project ships with an [ESLint](https://eslint.org/) configuration to enforce a consistent code style across `*.ts` files.
 
 ### Package-specific linting
 
