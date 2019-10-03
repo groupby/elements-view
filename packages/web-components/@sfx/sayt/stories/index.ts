@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import {
+  AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_RESPONSE,
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,

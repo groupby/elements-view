@@ -1,13 +1,15 @@
 import {
-  customElement, html, property, LitElement, TemplateResult,
+  customElement,
+  html,
+  property,
+  LitElement,
+  TemplateResult,
 } from 'lit-element';
 import {
   AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM,
   AutocompleteResponsePayload,
   AutocompleteActiveTermPayload,
 } from '@sfx/events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import '@sfx/ui';
 
 /**
  * The `sfx-autocomplete` component is responsible for displaying a list
