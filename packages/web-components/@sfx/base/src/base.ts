@@ -1,5 +1,8 @@
 import {
-  LitElement, customElement, html, TemplateResult,
+  LitElement,
+  customElement,
+  html,
+  TemplateResult,
 } from 'lit-element';
 import { makeSlot, createChildrenObserver } from './utils';
 

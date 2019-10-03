@@ -1,5 +1,8 @@
 import {
-  customElement, property, html, TemplateResult,
+  customElement,
+  property,
+  html,
+  TemplateResult,
 } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@sfx/base';
