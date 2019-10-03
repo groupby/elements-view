@@ -2,8 +2,7 @@ import {
   customElement, html, property, LitElement, TemplateResult,
 } from 'lit-element';
 import {
-  AUTOCOMPLETE_RESPONSE,
-  AUTOCOMPLETE_ACTIVE_TERM,
+  AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM,
   AutocompleteResponsePayload,
   AutocompleteActiveTermPayload,
 } from '@sfx/events';
