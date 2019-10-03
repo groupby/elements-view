@@ -57,23 +57,23 @@ function getSayt(searchbox: string = '', group?: string): string {
   );
 }
 
-function generateSaytHideEvent(group = ''): StorybookCustomEvent {
+const generateSaytHideEvent = function getSaytHide(group = ''): StorybookCustomEvent {
   return {
     name: SAYT_HIDE,
     payload: {
       group,
     },
   };
-}
+};
 
-function generateSaytShowEvent(group = ''): StorybookCustomEvent {
+const generateSaytShowEvent = function getSaytShow(group = ''): StorybookCustomEvent {
   return {
     name: SAYT_SHOW,
     payload: {
       group,
     },
   };
-}
+};
 
 const autocompleteDataReceivedEvent = new CustomEvent<AutocompleteResponsePayload>(AUTOCOMPLETE_RESPONSE, {
   detail: {
