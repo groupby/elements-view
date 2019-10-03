@@ -151,3 +151,8 @@ export function hidePrompt(event) {
     prompt.style.display = 'none';
   });
 }
+
+export interface StorybookCustomEvent {
+  name: string;
+  payload: any;
+}

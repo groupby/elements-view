@@ -120,7 +120,7 @@ storiesOf('Components|Autocomplete', module)
             <sfx-autocomplete group="group1"></sfx-autocomplete>
             <sfx-autocomplete group="group2"></sfx-autocomplete>
             \`\`\`
-            `
-      }
+            `,
+      },
     }
   );

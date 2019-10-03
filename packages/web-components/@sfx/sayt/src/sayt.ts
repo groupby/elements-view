@@ -1,4 +1,6 @@
-import { LitElement, customElement, html, property, PropertyValues, TemplateResult } from 'lit-element';
+import {
+  LitElement, customElement, html, property, PropertyValues, TemplateResult,
+} from 'lit-element';
 // eslint-disable-next-line import/no-unresolved
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { debounce } from 'debounce';
@@ -68,11 +70,13 @@ export default class Sayt extends LitElement {
    * The debounce delay in millilseconds.
    */
   @property({ type: Number, reflect: true }) debounce = 300;
+
   /**
    * A debounced version of [[requestSaytProducts]].
    * The delay is configured through the [[debounce]] property.
    */
   debouncedRequestSaytProducts: SaytRequester & ReturnType<typeof debounce>;
+
   /**
    * A debounced version of [[requestSaytAutocompleteTerms]].
    * The delay is configured through the [[debounce]] property.
@@ -234,12 +238,12 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Regenerates specific debounced methods. 
+   * Regenerates specific debounced methods.
    *
    * @see [[debouncedRequestSaytAutocompleteTerms]]
-   * @see [[debouncedRequestSaytProducts]] 
+   * @see [[debouncedRequestSaytProducts]]
    */
-  setDebouncedMethods() {
+  setDebouncedMethods(): void {
     this.debouncedRequestSaytAutocompleteTerms = debounce(this.requestSaytAutocompleteTerms, this.debounce, false);
     this.debouncedRequestSaytProducts = debounce(this.requestSaytProducts, this.debounce, false);
   }
@@ -418,4 +422,4 @@ export default class Sayt extends LitElement {
  */
 export interface SaytRequester {
   (query: string, searchbox?: string): void;
-};
+}

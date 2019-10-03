@@ -1,5 +1,7 @@
 import { storiesOf } from '@storybook/html';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import {
+  withKnobs, text, boolean, number,
+} from '@storybook/addon-knobs';
 import {
   AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_RESPONSE,
@@ -17,6 +19,8 @@ import {
   getDisplayCode,
   autocompleteResults,
   hidePrompt,
+  StorybookCustomEvent,
+
 } from '../../../../../.storybook/common';
 
 const saytNotesMarkdownIntro = ` # SF-X SAYT Component
@@ -41,35 +45,35 @@ function getSayt(searchbox: string = '', group?: string): string {
   const minSearchLength = number('Min search length', 5);
 
   return (
-    '<sfx-sayt\n' +
-    (searchbox ? `  searchbox="${searchbox}"\n` : '') +
-    (group ? `  group="${group}"\n` : '') +
-    `  closetext="${closeText}"\n` +
-    (showCloseButton ? `  ${showCloseButton}\n` : '') +
-    (hideAutocomplete ? `  ${hideAutocomplete}\n` : '') +
-    (hideProducts ? `  ${hideProducts}\n` : '') +
-    `  minsearchlength="${minSearchLength}"\n` +
-    '></sfx-sayt>'
+    `<sfx-sayt\n${
+      searchbox ? `  searchbox="${searchbox}"\n` : ''
+    }${group ? `  group="${group}"\n` : ''
+    }  closetext="${closeText}"\n${
+      showCloseButton ? `  ${showCloseButton}\n` : ''
+    }${hideAutocomplete ? `  ${hideAutocomplete}\n` : ''
+    }${hideProducts ? `  ${hideProducts}\n` : ''
+    }  minsearchlength="${minSearchLength}"\n`
+    + '></sfx-sayt>'
   );
 }
 
-const generateSaytHideEvent = function(group = '') {
+function generateSaytHideEvent(group = ''): StorybookCustomEvent {
   return {
     name: SAYT_HIDE,
     payload: {
-      group
+      group,
     },
   };
-};
+}
 
-const generateSaytShowEvent = function(group = '') {
+function generateSaytShowEvent(group = ''): StorybookCustomEvent {
   return {
     name: SAYT_SHOW,
     payload: {
-      group
+      group,
     },
   };
-};
+}
 
 const autocompleteDataReceivedEvent = new CustomEvent<AutocompleteResponsePayload>(AUTOCOMPLETE_RESPONSE, {
   detail: {
@@ -253,7 +257,7 @@ storiesOf('Components|SAYT', module)
         generateSaytHideEvent(),
         generateSaytShowEvent(),
       ],
-        notes: {
+      notes: {
         markdown: `
         ${saytNotesMarkdownIntro}
 
@@ -284,8 +288,8 @@ storiesOf('Components|SAYT', module)
     'SAYT with multiple search inputs',
     () => {
       hidePrompt(SAYT_HIDE);
-      const input1 = `<input type="text" id="search-box1" placeholder="Search here" />`;
-      const input2 = `<input type="text" id="search-box2" placeholder="Or search here" />`;
+      const input1 = '<input type="text" id="search-box1" placeholder="Search here" />';
+      const input2 = '<input type="text" id="search-box2" placeholder="Or search here" />';
       const sayt1 = getSayt('search-box1', 'group1');
       const sayt2 = getSayt('search-box2', 'group2');
 
@@ -335,7 +339,7 @@ storiesOf('Components|SAYT', module)
         generateSaytHideEvent('group2'),
         generateSaytShowEvent('group2'),
       ],
-        notes: {
+      notes: {
         markdown: `
           ${saytNotesMarkdownIntro}
 

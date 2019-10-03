@@ -89,7 +89,7 @@ storiesOf('Components|Searchbox', module)
                   clearbutton
                 ></sfx-search-box>
                 \`\`\`
-              `
-      }
+              `,
+      },
     }
   );
