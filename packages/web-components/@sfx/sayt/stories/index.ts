@@ -1,6 +1,9 @@
 import { storiesOf } from '@storybook/html';
 import {
-  withKnobs, text, boolean, number,
+  withKnobs,
+  text,
+  boolean,
+  number,
 } from '@storybook/addon-knobs';
 import {
   AUTOCOMPLETE_REQUEST,
@@ -20,7 +23,6 @@ import {
   autocompleteResults,
   hidePrompt,
   StorybookCustomEvent,
-
 } from '../../../../../.storybook/common';
 
 const saytNotesMarkdownIntro = ` # SF-X SAYT Component

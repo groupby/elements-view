@@ -1,5 +1,9 @@
 import {
-  customElement, html, property, LitElement, TemplateResult,
+  customElement,
+  html,
+  property,
+  LitElement,
+  TemplateResult,
 } from 'lit-element';
 import * as shortid from 'shortid';
 

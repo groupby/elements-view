@@ -11,7 +11,10 @@ import {
   SEARCHBOX_INPUT,
 } from '@sfx/events';
 import {
-  expect, sinon, spy, stub,
+  expect,
+  sinon,
+  spy,
+  stub,
 } from '../utils';
 import Sayt from '../../src/sayt';
 
