@@ -75,7 +75,12 @@ export default class Product extends Base {
 
   render(): TemplateResult {
     const {
-      title, price, variants, productUrl, imageSrc, imageAlt,
+      title,
+      price,
+      variants,
+      productUrl,
+      imageSrc,
+      imageAlt,
     } = this.product;
 
     return html`
