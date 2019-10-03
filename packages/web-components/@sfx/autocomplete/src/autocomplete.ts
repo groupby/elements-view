@@ -11,6 +11,7 @@ import {
   AutocompleteResponsePayload,
   AutocompleteResultGroup,
   AutocompleteActiveTermPayload,
+  AutocompleteSearchTermItem,
 } from '@sfx/events';
 
 /**
@@ -23,7 +24,7 @@ export default class Autocomplete extends LitElement {
   /**
    * Autocomplete request results.
    */
-  @property({ type: Array }) results: AutocompleteResultGroup[] = [];
+  @property({ type: Array }) results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = [];
 
   /**
    * The text to use in the header.
