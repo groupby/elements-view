@@ -226,7 +226,7 @@ describe('Autcomplete Component', () => {
       expect(autocomplete.selected).to.equal(2);
     });
 
-    it('should incremement a negative number to 0', () => {
+    it('should increment a negative selected index to 0', () => {
       autocomplete.selected = -5;
 
       autocomplete.selectNext();
