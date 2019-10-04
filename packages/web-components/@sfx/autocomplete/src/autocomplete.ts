@@ -100,6 +100,8 @@ export default class Autocomplete extends LitElement {
    * element.
    */
   render(): TemplateResult {
+    const caption = this.caption && this.results.length > 0 ? html`<h3 class="sfx-header">${this.caption}</h3>` : '';
+
     return html`
       <style>
         sfx-autocomplete {
@@ -109,11 +111,7 @@ export default class Autocomplete extends LitElement {
           display: none;
         }
       </style>
-      ${this.caption && this.results.length > 0
-    ? html`
-            <h3 class="sfx-header">${this.caption}</h3>
-          `
-    : ''}
+      ${caption}
       ${this.results.map(
     (list) => html`
             <sfx-list caption="${list.title}" .items="${list.items}" @mouseover="${this.handleHoverTerm}"></sfx-list>
