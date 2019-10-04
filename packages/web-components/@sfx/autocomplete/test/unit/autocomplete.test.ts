@@ -90,6 +90,24 @@ describe('Autcomplete Component', () => {
     });
   });
 
+  describe('length', () => {
+    it('should equal the total number of autocomplete items', () => {
+      autocomplete.results = [
+        {
+          items: [
+            { a: 'a' },
+            { b: 'b' },
+            { c: 'c' },
+            { d: 'd' },
+            { e: 'e' },
+          ],
+        },
+      ];
+
+      expect(autocomplete.length).to.equal(5);
+    });
+  });
+
   describe('render', () => {
     it('should return an instance of TemplateResult', () => {
       const result = autocomplete.render();

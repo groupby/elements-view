@@ -72,6 +72,13 @@ export default class Autocomplete extends LitElement {
   }
 
   /**
+   * The total number of items in all `result` groups.
+   */
+  get length(): number {
+    return this.results.reduce((sum, resultGroup) => sum + resultGroup.items.length, 0);
+  }
+
+  /**
    * Saves the payload of the given event to `results`.
    *
    * @param e The event object.
