@@ -140,6 +140,36 @@ export function getSaytProductsResponseEvent(): CustomEvent<SaytProductsResponse
   return new CustomEvent(SAYT_PRODUCTS_RESPONSE, {
     detail: {
       products: getProducts(5),
+      originalResponse: {
+        area: "Production",
+        availableNavigation: [{name: "categories.3", displayName: "Sub Category", type: "Value", refinements: [{type: "Value", count: 616, value: "Women"}], metaData: []}],
+        biasingProfile: "BaseTest",
+        correctedQuery: "",
+        debugInfo: {
+          rawRequest: "",
+          rawResponse: "",
+          rawAggregationsRequest: "",
+          rawAggregationsResponse: "",
+        },
+        didYouMean: ["pan", "panty", "paint"],
+        errors: "",
+        id: "69fb538a-83e1-44ef-ad2e-edfe5e46d4e5",
+        matchStrategy: {rules: []},
+        metadata: {cached: true, recordLimitReached: false, totalTime: 3},
+        originalQuery: "pants",
+        originalRequest: {query: "pants", skip: 0, pageSize: 10, fields: [], pruneRefinements: true},
+        pageInfo: {recordStart: 1, recordEnd: 10},
+        query: "pants",
+        records: [],
+        redirect: "",
+        relatedQueries: [],
+        rewrites: [],
+        selectedNavigation: [],
+        siteParams: [],
+        template: {ruleName: "none", name: "default", zones: {}},
+        totalRecordCount: 2451,
+        warnings: "",
+      } as any,
     },
     bubbles: true
   });
