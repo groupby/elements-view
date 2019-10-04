@@ -5,6 +5,7 @@ import {
   LitElement,
   TemplateResult,
 } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import * as shortid from 'shortid';
 
 /**
@@ -26,32 +27,19 @@ export default class List extends LitElement {
   private randomStringId = shortid.generate();
 
   render(): TemplateResult {
+    const idString = `sfx-list-title-${this.randomStringId}`;
+    const header = html`<h4 id="${idString}">${this.caption}</h4>`;
+    const searchTermItems = this.items.map((item) => html`<li>${item.label}</li>`);
+    const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? idString : undefined)}">${searchTermItems}</ul>`;
+
     return html`
       <style>
         sfx-list > ul {
           list-style: none;
         }
       </style>
-      ${this.caption
-    ? html`
-            <h4 id="sfx-list-title-${this.randomStringId}">${this.caption}</h4>
-            <ul aria-labelledby="sfx-list-title-${this.randomStringId}">
-              ${this.items.map(
-    (item) => html`
-                    <li>${item.label}</li>
-                  `
-  )}
-            </ul>
-          `
-    : html`
-            <ul>
-              ${this.items.map(
-    (item) => html`
-                    <li>${item.label}</li>
-                  `
-  )}
-            </ul>
-          `}
+      ${this.caption ? header : ''}
+      ${searchTermList}
     `;
   }
 
