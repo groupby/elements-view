@@ -41,6 +41,12 @@ export default class Autocomplete extends LitElement {
   @property({ type: String, reflect: true }) group: string = '';
 
   /**
+   * The index of the currently selected item. A negative index causes
+   * selection to be cleared.
+   */
+  @property({ type: Number, reflect: true }) selected: number = -1;
+
+  /**
    * Constructs an instance of Autocomplete.
    * Binds receivedResults function to the class.
    */

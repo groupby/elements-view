@@ -32,6 +32,12 @@ describe('Autcomplete Component', () => {
         expect(autocomplete.group).to.equal('');
       });
     });
+
+    describe('selected property', () => {
+      it('should have default value of -1', () => {
+        expect(autocomplete.selected).to.equal(-1);
+      });
+    });
   });
 
   describe('connectedCallback', () => {
