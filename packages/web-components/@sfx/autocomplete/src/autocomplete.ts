@@ -5,6 +5,8 @@ import {
   LitElement,
   TemplateResult,
 } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined';
+import * as shortid from 'shortid';
 import {
   AUTOCOMPLETE_RESPONSE,
   AUTOCOMPLETE_ACTIVE_TERM,
@@ -96,11 +98,29 @@ export default class Autocomplete extends LitElement {
   }
 
   /**
+   * Renders a list of autocomplete items.
+   */
+  private listRender(list: AutocompleteResultGroup<AutocompleteSearchTermItem>): TemplateResult {
+    const idString = `sfx-list-title-${shortid.generate()}`;
+    const header = html`<h4 id="${idString}">${list.title}</h4>`;
+    const searchTermItems = list.items.map((item) => html`<li>${item.label}</li>`);
+    const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? idString : undefined)}">${searchTermItems}</ul>`;
+
+    return html`
+      ${this.caption ? header : ''}
+      ${searchTermList}
+    `;
+  }
+
+  /**
    * Renders results data in a list format using the `sfx-list` custom
    * element.
    */
   render(): TemplateResult {
-    const caption = this.caption && this.results.length > 0 ? html`<h3 class="sfx-header">${this.caption}</h3>` : '';
+    const caption = this.caption && this.results.length > 0
+      ? html`<h3 class="sfx-header">${this.caption}</h3>`
+      : '';
+    const autocompleteLists = this.results.map((list) => this.listRender(list));
 
     return html`
       <style>
@@ -110,13 +130,12 @@ export default class Autocomplete extends LitElement {
         sfx-autocomplete[hidden] {
           display: none;
         }
+        sfx-autocomplete > ul {
+          list-style: none;
+        }
       </style>
       ${caption}
-      ${this.results.map(
-    (list) => html`
-            <sfx-list caption="${list.title}" .items="${list.items}" @mouseover="${this.handleHoverTerm}"></sfx-list>
-          `
-  )}
+      ${autocompleteLists}
     `;
   }
 
