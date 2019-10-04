@@ -49,32 +49,32 @@ storiesOf('Components|Autocomplete', module)
     {
       notes: {
         markdown: `
-        ${autocompleteNotesIntro}
+          ${autocompleteNotesIntro}
 
-        ### The SF-X Autocomplete component populated with hardcoded autocomplete data.
-        * ***Disclaimer***: although possible, it is not recommended to pass arrays of data via an attribute.
-        * To see the story that demonstrates the component's functionality, visit the second story under "Autocomplete": "Rendering with event payload".
+          ### The SF-X Autocomplete component populated with hardcoded autocomplete data.
+          * ***Disclaimer***: although possible, it is not recommended to pass arrays of data via an attribute.
+          * To see the story that demonstrates the component's functionality, visit the second story under "Autocomplete": "Rendering with event payload".
 
-        \`\`\`html
-        <sfx-autocomplete
-          caption="Autocomplete Results"
-          results="[
-            {
-              title: '',
-              items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-            },
-            {
-              title: 'Brands',
-              items: [{ label: 'Kashi' }, { label: 'Excel' }]
-            },
-            {
-              title: 'Colors',
-              items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-            }
-          ]"
-        ></sfx-autocomplete>
-        \`\`\`
-      `,
+          \`\`\`html
+          <sfx-autocomplete
+            caption="Autocomplete Results"
+            results="[
+              {
+                title: '',
+                items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+              },
+              {
+                title: 'Brands',
+                items: [{ label: 'Kashi' }, { label: 'Excel' }]
+              },
+              {
+                title: 'Colors',
+                items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+              }
+            ]"
+          ></sfx-autocomplete>
+          \`\`\`
+        `,
       },
     }
   )
@@ -94,31 +94,31 @@ storiesOf('Components|Autocomplete', module)
       customEvents: [generateAutocompleteResultsEvent()],
       notes: {
         markdown: `
-        ${autocompleteNotesIntro}
+          ${autocompleteNotesIntro}
 
-          ### The SF-X Autocomplete component updates with autocomplete data in response to the \`${AUTOCOMPLETE_RESPONSE}\` event.**
-          * To emit the event in this story:
-            1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RESPONSE}\` event.
-            2. Click "emit".
-            3. Observe that the component is updated with the payload of the event.
+            ### The SF-X Autocomplete component updates with autocomplete data in response to the \`${AUTOCOMPLETE_RESPONSE}\` event.**
+            * To emit the event in this story:
+              1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RESPONSE}\` event.
+              2. Click "emit".
+              3. Observe that the component is updated with the payload of the event.
 
 
-          ### The SF-X Autocomplete component allows for an optional title which populates inside an \`<h3>\` tag, above the autocomplete terms.**
-          * The optional title is populated via the \`caption\` attribute.
-          * To update the optional title within this story:
-            1. Visit the **Knobs** tab and modify the text inside the "Optional Title" field.
-            2. Navigate to the **Custom Events** tab and emit the event.
-            3. See the component update with the payload of the event and the optional title.
+            ### The SF-X Autocomplete component allows for an optional title which populates inside an \`<h3>\` tag, above the autocomplete terms.**
+            * The optional title is populated via the \`caption\` attribute.
+            * To update the optional title within this story:
+              1. Visit the **Knobs** tab and modify the text inside the "Optional Title" field.
+              2. Navigate to the **Custom Events** tab and emit the event.
+              3. See the component update with the payload of the event and the optional title.
 
-          ### If using the SF-X Autocomplete component outside of the SF-X Sayt component, a \`group\` attribute can be used to distinguish what events it should listen to.
-          * This is only needed if multiple Autocomplete components are on the same page and the desire is for them to listen to different events.
-          * The SF-X Sayt component will take care of this.
-          * Ex.
+            ### If using the SF-X Autocomplete component outside of the SF-X Sayt component, a \`group\` attribute can be used to distinguish what events it should listen to.
+            * This is only needed if multiple Autocomplete components are on the same page and the desire is for them to listen to different events.
+            * The SF-X Sayt component will take care of this.
+            * Ex.
 
-          \`\`\`html
-          <sfx-autocomplete group="group1"></sfx-autocomplete>
-          <sfx-autocomplete group="group2"></sfx-autocomplete>
-          \`\`\`
+            \`\`\`html
+            <sfx-autocomplete group="group1"></sfx-autocomplete>
+            <sfx-autocomplete group="group2"></sfx-autocomplete>
+            \`\`\`
           `,
       },
     }

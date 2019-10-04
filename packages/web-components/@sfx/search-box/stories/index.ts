@@ -26,11 +26,13 @@ function getSearchBoxComponent(): string {
   const showSearchButton = boolean('Show search button', true) ? 'searchbutton' : '';
   const showClearButton = boolean('Show clear button', true) ? 'clearbutton' : '';
   return (
-    `<sfx-search-box\n${
-      placeholder ? ` placeholder="${placeholder}"\n` : ''
-    }${showSearchButton ? ` ${showSearchButton}\n` : ''
-    }${showClearButton ? ` ${showClearButton}\n` : ''
-    }></sfx-search-box>`
+    /* eslint-disable prefer-template */
+    '<sfx-search-box\n'
+    + (placeholder ? ` placeholder="${placeholder}"\n` : '')
+    + (showSearchButton ? ` ${showSearchButton}\n` : '')
+    + (showClearButton ? ` ${showClearButton}\n` : '')
+    + '></sfx-search-box>'
+    /* eslint-enable prefer-template */
   );
 }
 

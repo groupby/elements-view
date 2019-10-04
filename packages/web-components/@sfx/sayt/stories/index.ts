@@ -47,15 +47,17 @@ function getSayt(searchbox: string = '', group?: string): string {
   const minSearchLength = number('Min search length', 5);
 
   return (
-    `<sfx-sayt\n${
-      searchbox ? `  searchbox="${searchbox}"\n` : ''
-    }${group ? `  group="${group}"\n` : ''
-    }  closetext="${closeText}"\n${
-      showCloseButton ? `  ${showCloseButton}\n` : ''
-    }${hideAutocomplete ? `  ${hideAutocomplete}\n` : ''
-    }${hideProducts ? `  ${hideProducts}\n` : ''
-    }  minsearchlength="${minSearchLength}"\n`
+    /* eslint-disable prefer-template */
+    '<sfx-sayt\n'
+    + (searchbox ? `  searchbox="${searchbox}"\n` : '')
+    + (group ? `  group="${group}"\n` : '')
+    + `  closetext="${closeText}"\n`
+    + (showCloseButton ? `  ${showCloseButton}\n` : '')
+    + (hideAutocomplete ? `  ${hideAutocomplete}\n` : '')
+    + (hideProducts ? `  ${hideProducts}\n` : '')
+    + `  minsearchlength="${minSearchLength}"\n`
     + '></sfx-sayt>'
+    /* eslint-enable prefer-template */
   );
 }
 

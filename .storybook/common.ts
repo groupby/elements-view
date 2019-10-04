@@ -104,7 +104,7 @@ export const autocompleteResults: AutocompleteResultGroup<AutocompleteSearchTerm
   }
 ];
 
-export const generateAutocompleteResultsEvent = (group?: string) => {
+export const generateAutocompleteResultsEvent = (group?: string): StorybookCustomEvent => {
   return {
     name: AUTOCOMPLETE_RESPONSE,
     payload: {
@@ -114,7 +114,7 @@ export const generateAutocompleteResultsEvent = (group?: string) => {
   }
 }
 
-export const generateSaytProductsResponseEvent = (productCount: number, group?: string) => {
+export const generateSaytProductsResponseEvent = (productCount: number, group?: string): StorybookCustomEvent => {
   return {
     name: SAYT_PRODUCTS_RESPONSE,
     payload: {
@@ -124,7 +124,7 @@ export const generateSaytProductsResponseEvent = (productCount: number, group?: 
   }
 }
 
-export const generateSearchResponseEvent = (productCount: number, group?: string) => {
+export const generateSearchResponseEvent = (productCount: number, group?: string): StorybookCustomEvent => {
   return {
     name: SEARCH_RESPONSE,
     payload: {
