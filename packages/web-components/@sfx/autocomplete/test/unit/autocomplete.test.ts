@@ -106,6 +106,12 @@ describe('Autcomplete Component', () => {
 
       expect(autocomplete.length).to.equal(5);
     });
+
+    it('should equal 0 if there are no results', () => {
+      autocomplete.results = [];
+
+      expect(autocomplete.length).to.equal(0);
+    });
   });
 
   describe('render', () => {
