@@ -218,6 +218,10 @@ describe('Autcomplete Component', () => {
   });
 
   describe('selectNext()', () => {
+    beforeEach(() => {
+      stub(autocomplete, 'length').get(() => 10);
+    });
+
     it('should increment the selected index', () => {
       autocomplete.selected = 1;
 
@@ -228,6 +232,14 @@ describe('Autcomplete Component', () => {
 
     it('should increment a negative selected index to 0', () => {
       autocomplete.selected = -5;
+
+      autocomplete.selectNext();
+
+      expect(autocomplete.selected).to.equal(0);
+    });
+
+    it('should select the first item when the last is currently selected', () => {
+      autocomplete.selected = 9;
 
       autocomplete.selectNext();
 
