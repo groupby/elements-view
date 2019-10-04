@@ -210,4 +210,14 @@ describe('Autcomplete Component', () => {
       expect(autocomplete.selected).to.equal(0);
     });
   });
+
+  describe('selectPrevious()', () => {
+    it('should decrememnt the selected index', () => {
+      autocomplete.selected = 1;
+
+      autocomplete.selectPrevious();
+
+      expect(autocomplete.selected).to.equal(0);
+    });
+  });
 });

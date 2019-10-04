@@ -112,6 +112,13 @@ export default class Autocomplete extends LitElement {
   }
 
   /**
+   * Decrements the `selected` property by 1.
+   */
+  selectPrevious(): void {
+    this.selected--;
+  }
+
+  /**
    * Renders a list of autocomplete items.
    */
   private listRender(list: AutocompleteResultGroup<AutocompleteSearchTermItem>): TemplateResult {
