@@ -192,4 +192,22 @@ describe('Autcomplete Component', () => {
       expect(dispatchEvent).to.be.calledWith({});
     });
   });
+
+  describe('selectNext()', () => {
+    it('should increment the selected index', () => {
+      autocomplete.selected = 1;
+
+      autocomplete.selectNext();
+
+      expect(autocomplete.selected).to.equal(2);
+    });
+
+    it('should incremement a negative number to 0', () => {
+      autocomplete.selected = -5;
+
+      autocomplete.selectNext();
+
+      expect(autocomplete.selected).to.equal(0);
+    });
+  });
 });

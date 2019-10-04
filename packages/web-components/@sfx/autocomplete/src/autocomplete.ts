@@ -104,6 +104,14 @@ export default class Autocomplete extends LitElement {
   }
 
   /**
+   * Incrememnts the `selected` property by 1.
+   * If `selected` is negative, its value will be set to `0`.
+   */
+  selectNext(): void {
+    this.selected = Math.max(this.selected, -1) + 1;
+  }
+
+  /**
    * Renders a list of autocomplete items.
    */
   private listRender(list: AutocompleteResultGroup<AutocompleteSearchTermItem>): TemplateResult {
