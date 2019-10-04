@@ -22,63 +22,60 @@ const autocompleteNotesIntro = `
 <sfx-autocomplete></sfx-autocomplete>
 \`\`\`
 
-## Demonstrated in this story`
+## Demonstrated in this story`;
 
 function getAutocompleteComponent(results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = []): string {
   const optionalTitle = text('Optional Title', 'Autocomplete Results');
 
   if (results.length > 0) {
-    const autocompleteResults = text('Autocomplete Results', JSON.stringify(results))
+    const autocompleteResultsKnob = text('Autocomplete Results', JSON.stringify(results));
     return '<sfx-autocomplete\n'
-      + ` results="${autocompleteResults}"\n`
-      + ` caption="${optionalTitle}"\n`
-      + '></sfx-autocomplete>';
-  } else {
-    return '<sfx-autocomplete\n'
+      + ` results="${autocompleteResultsKnob}"\n`
       + ` caption="${optionalTitle}"\n`
       + '></sfx-autocomplete>';
   }
+  return '<sfx-autocomplete\n'
+    + ` caption="${optionalTitle}"\n`
+    + '></sfx-autocomplete>';
 }
 
 storiesOf('Components|Autocomplete', module)
   .addDecorator(withKnobs)
   .add(
     'Default',
-    () => {
-      return `
+    () => `
      ${getAutocompleteComponent(autocompleteResults)}
-     ${getDisplayCode(getAutocompleteComponent())}`
-    },
+     ${getDisplayCode(getAutocompleteComponent())}`,
     {
       notes: {
         markdown: `
-        ${autocompleteNotesIntro}
+          ${autocompleteNotesIntro}
 
-        ### The SF-X Autocomplete component populated with hardcoded autocomplete data.
-        * ***Disclaimer***: although possible, it is not recommended to pass arrays of data via an attribute.
-        * To see the story that demonstrates the component's functionality, visit the second story under "Autocomplete": "Rendering with event payload".
+          ### The SF-X Autocomplete component populated with hardcoded autocomplete data.
+          * ***Disclaimer***: although possible, it is not recommended to pass arrays of data via an attribute.
+          * To see the story that demonstrates the component's functionality, visit the second story under "Autocomplete": "Rendering with event payload".
 
-        \`\`\`html
-        <sfx-autocomplete
-          caption="Autocomplete Results"
-          results="[
-            {
-              title: '',
-              items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-            },
-            {
-              title: 'Brands',
-              items: [{ label: 'Kashi' }, { label: 'Excel' }]
-            },
-            {
-              title: 'Colors',
-              items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
-            }
-          ]"
-        ></sfx-autocomplete>
-        \`\`\`
-      `
-      }
+          \`\`\`html
+          <sfx-autocomplete
+            caption="Autocomplete Results"
+            results="[
+              {
+                title: '',
+                items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+              },
+              {
+                title: 'Brands',
+                items: [{ label: 'Kashi' }, { label: 'Excel' }]
+              },
+              {
+                title: 'Colors',
+                items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
+              }
+            ]"
+          ></sfx-autocomplete>
+          \`\`\`
+        `,
+      },
     }
   )
   .add(
@@ -122,7 +119,7 @@ storiesOf('Components|Autocomplete', module)
             <sfx-autocomplete group="group1"></sfx-autocomplete>
             <sfx-autocomplete group="group2"></sfx-autocomplete>
             \`\`\`
-            `
-      }
+          `,
+      },
     }
   );

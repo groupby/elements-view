@@ -12,15 +12,14 @@ import {
   generateSearchResponseEvent,
   hidePrompt,
 } from '../../../../../.storybook/common';
-import '..';
+import '../src';
 
-function getProductsComponent(productsArray: Product[] = [], componentSuffix: string) {
+function getProductsComponent(productsArray: Product[] = [], componentSuffix: string): string {
   if (productsArray.length > 0) {
     const products = text('Products', JSON.stringify(productsArray));
-    return `<sfx-products${componentSuffix} products="${products}"></sfx-products${componentSuffix}>`
-  } else {
-    return `<sfx-products${componentSuffix}></sfx-products${componentSuffix}>`;
+    return `<sfx-products${componentSuffix} products="${products}"></sfx-products${componentSuffix}>`;
   }
+  return `<sfx-products${componentSuffix}></sfx-products${componentSuffix}>`;
 }
 
 const productsNotesMarkdownIntro = ` # SF-X Products Component
@@ -80,8 +79,8 @@ storiesOf('Components|Products', module)
               }
           ]"></sfx-products-base>
           \`\`\`
-          `
-      }
+          `,
+      },
     }
   ).add(
     'Products from Sayt events',
@@ -124,10 +123,11 @@ storiesOf('Components|Products', module)
           <sfx-products-sayt group="group1"></sfx-products-sayt>
           <sfx-products-sayt group="group2"></sfx-products-sayt>
           \`\`\`
-        `
-      }
+        `,
+      },
     }
-  ).add(
+  )
+  .add(
     'Products from Search events',
     () => {
       hidePrompt(SEARCH_RESPONSE);
@@ -167,7 +167,7 @@ storiesOf('Components|Products', module)
             <sfx-products group="group1"></sfx-products>
             <sfx-products group="group2"></sfx-products>
             \`\`\`
-        `
-      }
+        `,
+      },
     }
   );

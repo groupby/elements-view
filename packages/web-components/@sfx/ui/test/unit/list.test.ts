@@ -1,6 +1,6 @@
+import { TemplateResult, LitElement } from 'lit-element';
 import { expect } from '../utils';
 import List from '../../src/list';
-import { TemplateResult, LitElement } from 'lit-element';
 
 describe('List component', () => {
   let list;

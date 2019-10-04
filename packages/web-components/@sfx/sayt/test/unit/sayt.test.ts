@@ -10,7 +10,12 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SEARCHBOX_INPUT,
 } from '@sfx/events';
-import { expect, sinon, spy, stub } from '../utils';
+import {
+  expect,
+  sinon,
+  spy,
+  stub,
+} from '../utils';
 import Sayt from '../../src/sayt';
 
 describe('Sayt Component', () => {
@@ -170,7 +175,7 @@ describe('Sayt Component', () => {
 
     it('should not register listeners if the searchbox does not exist', () => {
       const windowAddEventListener = stub(window, 'addEventListener');
-      const getElementById = stub(document, 'getElementById').returns(null);
+      stub(document, 'getElementById').returns(null);
       const searchboxId = sayt.searchbox = 'searchbox1';
 
       sayt.setSearchboxListener(searchboxId, 'add');
@@ -182,7 +187,7 @@ describe('Sayt Component', () => {
     it('should add event listener to window if element exists and searchbox ID is empty', () => {
       const searchboxAddEventListener = spy();
       const windowAddEventListener = stub(window, 'addEventListener');
-      const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
+      stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
 
       sayt.setSearchboxListener('', 'add');
 
@@ -193,7 +198,7 @@ describe('Sayt Component', () => {
     it('should remove event listener to window if element exists and searchbox ID is empty', () => {
       const searchboxRemoveEventListener = spy();
       const windowRemoveEventListener = stub(window, 'removeEventListener');
-      const getElementById = stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener });
+      stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener });
 
       sayt.setSearchboxListener('', 'remove');
 
@@ -310,18 +315,18 @@ describe('Sayt Component', () => {
 
   describe('setDebouncedMethods()', () => {
     it('should set debounced methods for requestSaytAutocompleteTerms() and requestSaytProducts()', () => {
-       const debounce = stub(Debounce, 'debounce');
-       const delay = sayt.debounce = 200;
-       const debouncedRequestSaytAutocompleteTerms = () => 123;
-       const debouncedRequestSaytProducts = () => 456;
-       debounce.withArgs(sayt.requestSaytAutocompleteTerms, delay, false).returns(debouncedRequestSaytAutocompleteTerms);
-       debounce.withArgs(sayt.requestSaytProducts, delay, false).returns(debouncedRequestSaytProducts);
+      const debounce = stub(Debounce, 'debounce');
+      const delay = sayt.debounce = 200;
+      const debouncedRequestSaytAutocompleteTerms = () => 123;
+      const debouncedRequestSaytProducts = () => 456;
+      debounce.withArgs(sayt.requestSaytAutocompleteTerms, delay, false).returns(debouncedRequestSaytAutocompleteTerms);
+      debounce.withArgs(sayt.requestSaytProducts, delay, false).returns(debouncedRequestSaytProducts);
 
-       sayt.setDebouncedMethods();
+      sayt.setDebouncedMethods();
 
-       expect(sayt.debouncedRequestSaytAutocompleteTerms).to.equal(debouncedRequestSaytAutocompleteTerms);
-       expect(sayt.debouncedRequestSaytProducts).to.equal(debouncedRequestSaytProducts);
-     });
+      expect(sayt.debouncedRequestSaytAutocompleteTerms).to.equal(debouncedRequestSaytAutocompleteTerms);
+      expect(sayt.debouncedRequestSaytProducts).to.equal(debouncedRequestSaytProducts);
+    });
   });
 
   describe('handleAutocompleteTermHover()', () => {
@@ -424,7 +429,7 @@ describe('Sayt Component', () => {
     let requestSayt;
 
     beforeEach(() => {
-      term = 'some-term'
+      term = 'some-term';
       event = { detail: { term } };
       isCorrectSayt = stub(sayt, 'isCorrectSayt');
       requestSayt = stub(sayt, 'requestSayt');
@@ -543,7 +548,7 @@ describe('Sayt Component', () => {
   describe('nodeInSearchbox()', () => {
     it('should return true if given node is contained in the search box', () => {
       const searchbox = {
-        contains: spy(() => true)
+        contains: spy(() => true),
       };
       const getElementById = stub(document, 'getElementById').returns(searchbox);
       sayt.searchbox = 'searchbox-id';
@@ -557,7 +562,7 @@ describe('Sayt Component', () => {
 
     it('should return false if given node is not contained in the search box', () => {
       const searchbox = {
-        contains: stub().returns(false)
+        contains: stub().returns(false),
       };
       const getElementById = stub(document, 'getElementById').returns(searchbox);
       sayt.searchbox = 'searchbox-id';

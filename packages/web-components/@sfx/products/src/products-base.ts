@@ -20,6 +20,7 @@ export default class ProductsBase extends LitElement {
    * The product data to be rendered.
    */
   @property({ type: Array }) products: Product[] = [];
+
   /**
    * The name of the event group that this component belongs to.
    * This component will dispatch events with this group in their
@@ -30,7 +31,7 @@ export default class ProductsBase extends LitElement {
   /**
    * Sets the ARIA role to `list` if one is not already specified.
    */
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
 
     if (!this.getAttribute('role')) {
@@ -70,17 +71,15 @@ export default class ProductsBase extends LitElement {
         ${this.renderStyles()}
       </style>
 
-      ${this.products.map(product => {
-        return html`
+      ${this.products.map((product) => html`
           <div class="sfx-product-tile-wrapper" role="listitem">
             <sfx-product .product="${product}"></sfx-product>
           </div>
-        `;
-      })}
+        `)}
     `;
   }
 
-  createRenderRoot() {
+  createRenderRoot(): Element|ShadowRoot {
     return this;
   }
 }

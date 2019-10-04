@@ -95,10 +95,10 @@ describe('Autcomplete Component', () => {
   describe('receivedResults', () => {
     const results = [
       { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-      { title: 'default', items: [{ label: 'Cars' }, { label: 'Bikes' }] }
+      { title: 'default', items: [{ label: 'Cars' }, { label: 'Bikes' }] },
     ];
     const group = 'group';
-    let event = {
+    const event = {
       detail: {},
     };
 
@@ -156,7 +156,7 @@ describe('Autcomplete Component', () => {
         target: {
           tagName: 'H4',
           innerText: 'some-term',
-        }
+        },
       };
 
       autocomplete.handleHoverTerm(mouseEvent);
@@ -171,7 +171,7 @@ describe('Autcomplete Component', () => {
         target: {
           tagName: 'LI',
           innerText: 'some-term',
-        }
+        },
       };
 
       autocomplete.handleHoverTerm(mouseEvent);

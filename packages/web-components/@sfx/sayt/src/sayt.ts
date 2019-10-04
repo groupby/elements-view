@@ -1,4 +1,11 @@
-import { LitElement, customElement, html, property, PropertyValues } from 'lit-element';
+import {
+  LitElement,
+  customElement,
+  html, property,
+  PropertyValues,
+  TemplateResult,
+} from 'lit-element';
+// eslint-disable-next-line import/no-unresolved
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { debounce } from 'debounce';
 import {
@@ -25,45 +32,55 @@ export default class Sayt extends LitElement {
    * Determines if the `sfx-autocomplete` component will be hidden or not.
    */
   @property({ type: Boolean, reflect: true }) hideAutocomplete = false;
+
   /**
    * Determines if the `sfx-products` component will be hidden or not.
    */
   @property({ type: Boolean, reflect: true }) hideProducts = false;
+
   /**
    * Determines the visibility of the `sayt` component.
    */
   @property({ type: Boolean, reflect: true }) visible = false;
+
   /**
    * Stores the ID of the relevant search element.
    */
   @property({ type: String, reflect: true }) searchbox = '';
+
   /**
    * The name of the event group that this component belongs to.
    * This component will dispatch events with this group in their
    * payloads and will only react to events that contain this group.
    */
   @property({ type: String, reflect: true }) group = '';
+
   /**
    * Customizes the text in the close button.
    */
   @property({ type: String, reflect: true }) closeText = 'Close';
+
   /**
    * Shows a button to allow for closing SAYT manually.
    */
   @property({ type: Boolean, reflect: true }) showCloseButton = false;
+
   /**
    * The minimum length of the search term required before a SAYT request will be made with it.
    */
   @property({ type: Number, reflect: true }) minSearchLength = 3;
+
   /**
    * The debounce delay in millilseconds.
    */
   @property({ type: Number, reflect: true }) debounce = 300;
+
   /**
    * A debounced version of [[requestSaytProducts]].
    * The delay is configured through the [[debounce]] property.
    */
   debouncedRequestSaytProducts: SaytRequester & ReturnType<typeof debounce>;
+
   /**
    * A debounced version of [[requestSaytAutocompleteTerms]].
    * The delay is configured through the [[debounce]] property.
@@ -97,7 +114,7 @@ export default class Sayt extends LitElement {
   /**
    * Registers event listeners.
    */
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
 
     window.addEventListener(SAYT_SHOW, this.showCorrectSayt);
@@ -114,7 +131,7 @@ export default class Sayt extends LitElement {
   /**
    * Removes event listeners.
    */
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     super.disconnectedCallback();
 
     window.removeEventListener(SAYT_SHOW, this.showCorrectSayt);
@@ -128,7 +145,7 @@ export default class Sayt extends LitElement {
     this.setSearchboxListener(this.searchbox, 'remove');
   }
 
-  createRenderRoot() {
+  createRenderRoot(): Element|ShadowRoot {
     return this;
   }
 
@@ -137,7 +154,7 @@ export default class Sayt extends LitElement {
    *
    * @param changedProps A map of the all the changed properties.
    */
-  updated(changedProps: PropertyValues) {
+  updated(changedProps: PropertyValues): void {
     if (changedProps.has('visible')) {
       this.hidden = !this.visible;
     }
@@ -158,11 +175,13 @@ export default class Sayt extends LitElement {
    * @param searchboxId A searchbox ID given to the searchbox.
    * @param action A string to indicate the type of eventListener(add or remove).
    */
-  setSearchboxListener(searchboxId: string, action: 'add' | 'remove') {
+  setSearchboxListener(searchboxId: string, action: 'add' | 'remove'): void {
     const setEventListener = `${action}EventListener` as 'addEventListener' | 'removeEventListener';
     if (searchboxId) {
-      const searchbox = document.getElementById(searchboxId) as HTMLElement;
-      if (searchbox) searchbox[setEventListener]('input', this.processSearchboxInput);
+      const searchbox = document.getElementById(searchboxId);
+      if (searchbox) {
+        searchbox[setEventListener]('input', this.processSearchboxInput);
+      }
     } else {
       window[setEventListener](SEARCHBOX_INPUT, this.processSfxSearchboxChange);
     }
@@ -171,7 +190,7 @@ export default class Sayt extends LitElement {
   /**
    * Changes the `visible` property to `true`.
    */
-  showSayt() {
+  showSayt(): void {
     this.visible = true;
   }
 
@@ -181,7 +200,7 @@ export default class Sayt extends LitElement {
    *
    * @param event An event that can contain a searchbox ID.
    */
-  showCorrectSayt(event: CustomEvent<WithGroup>) {
+  showCorrectSayt(event: CustomEvent<WithGroup>): void {
     if (this.isCorrectSayt(event)) {
       this.showSayt();
     }
@@ -190,7 +209,7 @@ export default class Sayt extends LitElement {
   /**
    * Changes the `visible` property to `false`.
    */
-  hideSayt() {
+  hideSayt(): void {
     this.visible = false;
   }
 
@@ -199,7 +218,7 @@ export default class Sayt extends LitElement {
    *
    * @param event An event that can contain a searchbox ID.
    */
-  hideCorrectSayt(event: CustomEvent<WithGroup>) {
+  hideCorrectSayt(event: CustomEvent<WithGroup>): void {
     if (this.isCorrectSayt(event)) {
       this.hideSayt();
     }
@@ -212,7 +231,7 @@ export default class Sayt extends LitElement {
    *
    * @param query The search term to use.
    */
-  requestSayt(query: string) {
+  requestSayt(query: string): void {
     if (query.length < this.minSearchLength) {
       this.hideSayt();
       return;
@@ -223,12 +242,12 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Regenerates specific debounced methods. 
+   * Regenerates specific debounced methods.
    *
    * @see [[debouncedRequestSaytAutocompleteTerms]]
-   * @see [[debouncedRequestSaytProducts]] 
+   * @see [[debouncedRequestSaytProducts]]
    */
-  setDebouncedMethods() {
+  setDebouncedMethods(): void {
     this.debouncedRequestSaytAutocompleteTerms = debounce(this.requestSaytAutocompleteTerms, this.debounce, false);
     this.debouncedRequestSaytProducts = debounce(this.requestSaytProducts, this.debounce, false);
   }
@@ -240,10 +259,10 @@ export default class Sayt extends LitElement {
    * @param eventType The type of the event to be dispatched.
    * @param query The query term.
    */
-  dispatchRequestEvent(eventType: string, query: string) {
+  dispatchRequestEvent(eventType: string, query: string): void {
     const requestEvent = new CustomEvent(eventType, {
       detail: { query, group: this.group },
-      bubbles: true
+      bubbles: true,
     });
     this.dispatchEvent(requestEvent);
   }
@@ -253,7 +272,7 @@ export default class Sayt extends LitElement {
    *
    * @param query The search term to use.
    */
-  requestSaytAutocompleteTerms(query: string) {
+  requestSaytAutocompleteTerms(query: string): void {
     this.dispatchRequestEvent(AUTOCOMPLETE_REQUEST, query);
   }
 
@@ -262,7 +281,7 @@ export default class Sayt extends LitElement {
    *
    * @param query The search term to use.
    */
-  requestSaytProducts(query: string) {
+  requestSaytProducts(query: string): void {
     this.dispatchRequestEvent(SAYT_PRODUCTS_REQUEST, query);
   }
 
@@ -272,7 +291,7 @@ export default class Sayt extends LitElement {
    *
    * @param event The hover event dispatched from autocomplete.
    */
-  handleAutocompleteTermHover(event: CustomEvent<AutocompleteActiveTermPayload>) {
+  handleAutocompleteTermHover(event: CustomEvent<AutocompleteActiveTermPayload>): void {
     if (this.isCorrectSayt(event)) {
       this.debouncedRequestSaytProducts(event.detail.query);
     }
@@ -285,7 +304,7 @@ export default class Sayt extends LitElement {
    *
    * @param event The searchbox input event dispatched from the searchbox.
    */
-  processSearchboxInput(event: Event) {
+  processSearchboxInput(event: Event): void {
     this.requestSayt((event.target as HTMLInputElement).value);
   }
 
@@ -296,7 +315,7 @@ export default class Sayt extends LitElement {
    *
    * @param event The [[SEARCHBOX_INPUT]] event dispatched from the searchbox.
    */
-  processSfxSearchboxChange(event: CustomEvent<SearchboxInputPayload>) {
+  processSfxSearchboxChange(event: CustomEvent<SearchboxInputPayload>): void {
     if (this.isCorrectSayt(event)) {
       this.requestSayt(event.detail.term);
     }
@@ -310,7 +329,7 @@ export default class Sayt extends LitElement {
    * @param event An event that contains a group name for comparison.
    */
   isCorrectSayt(event: CustomEvent<WithGroup>): boolean {
-    const group = event.detail && event.detail.group || '';
+    const group = (event.detail && event.detail.group) || '';
     return group === this.group;
   }
 
@@ -319,7 +338,7 @@ export default class Sayt extends LitElement {
    *
    * @param event The click event.
    */
-  processClick(event: MouseEvent) {
+  processClick(event: MouseEvent): void {
     const target = event.target as Node;
     if (this.contains(target) || this.nodeInSearchbox(target)) return;
     this.hideSayt();
@@ -330,7 +349,7 @@ export default class Sayt extends LitElement {
    *
    * @param event An event with a default action to be prevented.
    */
-  clickCloseSayt(event: Event) {
+  clickCloseSayt(event: Event): void {
     event.preventDefault();
     this.hideSayt();
   }
@@ -353,7 +372,7 @@ export default class Sayt extends LitElement {
    *
    * @param event A keyboard event used for checking which key has been pressed.
    */
-  processKeyEvent(event: KeyboardEvent) {
+  processKeyEvent(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
       this.hideSayt();
     }
@@ -362,7 +381,7 @@ export default class Sayt extends LitElement {
   /**
    * Returns a TemplateResult object for rendering in LitElement.
    */
-  render() {
+  render(): TemplateResult {
     return html`
       <style>
         sfx-sayt {
@@ -378,25 +397,25 @@ export default class Sayt extends LitElement {
         }
       </style>
       ${this.showCloseButton
-        ? html`
+    ? html`
             <button class="sfx-close" aria-label="Close" @click=${this.clickCloseSayt}>
               ${this.closeText}
             </button>
           `
-        : ''}
+    : ''}
       <div class="sfx-sayt-container">
         ${this.hideAutocomplete
-          ? ''
-          : html`
+    ? ''
+    : html`
             <sfx-autocomplete group="${ifDefined(this.group)}">
             </sfx-autocomplete>`
-        }
+}
         ${this.hideProducts
-          ? ''
-          : html`
+    ? ''
+    : html`
             <sfx-products-sayt group="${ifDefined(this.group)}">
             </sfx-products-sayt>`
-        }
+}
       </div>
     `;
   }
@@ -407,4 +426,4 @@ export default class Sayt extends LitElement {
  */
 export interface SaytRequester {
   (query: string, searchbox?: string): void;
-};
+}

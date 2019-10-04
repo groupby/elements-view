@@ -1,4 +1,9 @@
-import { LitElement, customElement, html } from 'lit-element';
+import {
+  LitElement,
+  customElement,
+  html,
+  TemplateResult,
+} from 'lit-element';
 import { makeSlot, createChildrenObserver } from './utils';
 
 /**
@@ -29,7 +34,7 @@ export default class Base extends LitElement {
    * directly from
    * https://github.com/Polymer/lit-element/issues/42#issuecomment-442894676
    */
-  addSlots() {
+  addSlots(): void {
     this.shadowRoot.appendChild(makeSlot('before'));
     this.shadowRoot.appendChild(makeSlot());
     this.shadowRoot.appendChild(makeSlot('after'));
@@ -38,7 +43,7 @@ export default class Base extends LitElement {
   /**
    * Sets up a MutationObserver to listen on changes to this element's child list.
    */
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
     this.observer = createChildrenObserver(this);
 
@@ -48,7 +53,7 @@ export default class Base extends LitElement {
   /**
    * Disconnects the MutationObserver.
    */
-  firstUpdate() {
+  firstUpdate(): void {
     this.observer.disconnect();
   }
 
@@ -57,12 +62,12 @@ export default class Base extends LitElement {
    * attached to this element and the render root is set to the element
    * itself.
    */
-  createRenderRoot() {
+  createRenderRoot(): Element|ShadowRoot {
     this.attachShadow({ mode: 'open' });
     return this;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
       <div slot="before"></div>
       <div></div>

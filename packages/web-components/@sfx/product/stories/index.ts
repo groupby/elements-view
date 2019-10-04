@@ -16,12 +16,10 @@ storiesOf('Components|Product', module)
   .addDecorator(withKnobs)
   .add(
     'Default',
-    () => {
-      return `
-    ${getProductComponent(getProducts(1)[0])}
-    ${getDisplayCode(getProductComponent(null, true))}
-    `;
-    },
+    () => `
+      ${getProductComponent(getProducts(1)[0])}
+      ${getDisplayCode(getProductComponent(null, true))}
+      `,
     {
       notes: {
         markdown: `
@@ -90,7 +88,7 @@ storiesOf('Components|Product', module)
               * If the product tile has multiple colored squares below the product image, click on the various squares.
               * If the product tile does not have multiple colored squares below the product image, refresh the page until a product with variants appears, then click on the various squares.
             2. Observe that the component is updated with different product images.
-        `
-      }
+        `,
+      },
     }
   );

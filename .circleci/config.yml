@@ -1,10 +1,10 @@
 defaults:
   image_default: &image_default
     docker:
-      - image: circleci/node:11.6.0
+      - image: circleci/node:12.4.0
   image_browsers: &image_browsers
     docker:
-      - image: circleci/node:11.6.0-browsers
+      - image: circleci/node:12.4.0-browsers
   image_minimal: &image_minimal
     docker:
       - image: alpine
@@ -190,6 +190,24 @@ jobs:
     steps:
       - run: exit 0
 
+  ## Linting jobs
+
+  ### lint
+  ### Runs the lint check across the entire project.
+  lint:
+    <<: *image_default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache: *yarn_cache
+      - run: *extract_build_archive
+      - run: *git_submodule_install
+      - run: *yarn_install
+      - run: yarn run lint:scripts:ci
+      - run: yarn run lint:tests:ci
+      - run: yarn run lint:stories:ci
+
   ## Docs job
 
   ### docs
@@ -307,6 +325,10 @@ workflows:
             - unit_test_sayt
             - unit_test_search_box
             - interaction_test_search_box
+
+      - lint:
+          requires:
+            - build_final
 
       - docs:
           requires:

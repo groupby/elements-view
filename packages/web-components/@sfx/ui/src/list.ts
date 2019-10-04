@@ -1,4 +1,10 @@
-import { customElement, html, property, LitElement } from 'lit-element';
+import {
+  customElement,
+  html,
+  property,
+  LitElement,
+  TemplateResult,
+} from 'lit-element';
 import * as shortid from 'shortid';
 
 /**
@@ -10,14 +16,16 @@ export default class List extends LitElement {
    * The text used in the header.
    */
   @property({ type: String, reflect: true }) caption: string = '';
+
   /**
    * List data used to generate list.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @property({ type: Array }) items: any[] = [];
 
   private randomStringId = shortid.generate();
 
-  render() {
+  render(): TemplateResult {
     return html`
       <style>
         sfx-list > ul {
@@ -25,31 +33,29 @@ export default class List extends LitElement {
         }
       </style>
       ${this.caption
-        ? html`
+    ? html`
             <h4 id="sfx-list-title-${this.randomStringId}">${this.caption}</h4>
             <ul aria-labelledby="sfx-list-title-${this.randomStringId}">
               ${this.items.map(
-                item =>
-                  html`
+    (item) => html`
                     <li>${item.label}</li>
                   `
-              )}
+  )}
             </ul>
           `
-        : html`
+    : html`
             <ul>
               ${this.items.map(
-                item =>
-                  html`
+    (item) => html`
                     <li>${item.label}</li>
                   `
-              )}
+  )}
             </ul>
           `}
     `;
   }
 
-  createRenderRoot() {
+  createRenderRoot(): Element|ShadowRoot {
     return this;
   }
 }

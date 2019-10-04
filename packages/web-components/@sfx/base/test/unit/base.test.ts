@@ -1,7 +1,6 @@
+import { LitElement, TemplateResult } from 'lit-element';
 import { expect, spy, stub } from '../utils';
 import Base from '../../src/base';
-import { LitElement } from 'lit-element';
-import { TemplateResult } from 'lit-element';
 import * as BaseUtils from '../../src/utils';
 
 describe('Base Class', () => {
@@ -36,7 +35,7 @@ describe('Base Class', () => {
 
     it('should call createChildrenObserver on the observer property', () => {
       const observer = {
-        observe: () => {}
+        observe: () => {},
       };
       stub(BaseUtils, 'createChildrenObserver').returns(observer);
 

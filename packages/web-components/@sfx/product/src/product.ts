@@ -1,10 +1,16 @@
-import { customElement, property, html, TemplateResult } from 'lit-element';
-
+import {
+  customElement,
+  property,
+  html,
+  TemplateResult,
+} from 'lit-element';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@sfx/base';
 import {
   Product as ProductModel,
   ProductVariant,
 } from '@sfx/events';
+import { toLowerCaseKebab } from './utils';
 
 /**
  * A product component that consumes product data to display.
@@ -42,7 +48,7 @@ export default class Product extends Base {
    * @returns The wrapped template, or the original template if no url was provided.
    */
   urlWrap(url: string, children: TemplateResult): TemplateResult {
-    return url ? html`<a href="${ url }">${children}</a>` : children;
+    return url ? html`<a href="${url}">${children}</a>` : children;
   }
 
   /**
@@ -62,13 +68,20 @@ export default class Product extends Base {
       'imageSrc',
     ]);
 
-    return Object.keys(product).filter(p => !properties.has(p)).map(p => html`
-      <span class="sfx-${ toLowerCaseKebab(p) }">${ product[p] }</span>
+    return Object.keys(product).filter((p) => !properties.has(p)).map((p) => html`
+      <span class="sfx-${toLowerCaseKebab(p)}">${product[p]}</span>
     `);
   }
 
-  render() {
-    const { title, price, variants, productUrl, imageSrc, imageAlt } = this.product;
+  render(): TemplateResult {
+    const {
+      title,
+      price,
+      variants,
+      productUrl,
+      imageSrc,
+      imageAlt,
+    } = this.product;
 
     return html`
       <style>
@@ -77,46 +90,32 @@ export default class Product extends Base {
         }
       </style>
       <slot name="image">
-        ${ imageSrc ?
-          html`<img
+        ${imageSrc
+    ? html`<img
             class="sfx-image"
-            src="${ imageSrc }"
-            alt="${ imageAlt }" />`
-          : '' }
+            src="${imageSrc}"
+            alt="${imageAlt}" />`
+    : ''}
       </slot>
       <slot name="variants">
         <ul class="sfx-product-variants">
-          ${variants ?
-            variants.items.map(v =>
-              html`<sfx-product-variant
+          ${variants
+    ? variants.items.map((v) => html`<sfx-product-variant
                 @click="${this.updateVariant(v)}"
                 type="${variants.type}"
                 .variant="${v}"
               ></sfx-product-variant>`)
-            : ''
-          }
+    : ''
+}
         </ul>
       </slot>
       <slot name="title">
-        ${ this.urlWrap(productUrl, html`<h3 class="sfx-title">${ title }</h3>`) }
+        ${this.urlWrap(productUrl, html`<h3 class="sfx-title">${title}</h3>`)}
       </slot>
       <slot name="price">
-        <p class="sfx-price">${ price }</p>
+        <p class="sfx-price">${price}</p>
       </slot>
-      ${ this.additionalInfo() }
+      ${this.additionalInfo()}
     `;
   }
-}
-
-/**
- *  Converts object properties to valid css classes. Makes
- *  a string lowercase and replaces spaces with hyphens.
- *
- *  @param str The string to process.
- *  @returns The lower case kebab string.
- *
- *  @internal
- */
-function toLowerCaseKebab(str: string): string {
-  return str.toLowerCase().replace(/\s/g, '-');
 }
