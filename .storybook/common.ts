@@ -136,7 +136,7 @@ export const generateSearchResponseEvent = (productCount: number, group?: string
   }
 }
 
-export function getSaytProductsResponseEvent(): CustomEvent<SaytProductsResponsePayload> {
+export function getSaytProductsResponseEvent(): CustomEvent<SaytProductsResponsePayload<any>> {
   return new CustomEvent(SAYT_PRODUCTS_RESPONSE, {
     detail: {
       products: getProducts(5),

@@ -46,7 +46,7 @@ export default class ProductsSayt extends ProductsBase {
    *
    * @param event An event containing a search result with product data.
    */
-  setProductsFromEvent(event: CustomEvent<SaytProductsResponsePayload>): void {
+  setProductsFromEvent(event: CustomEvent<SaytProductsResponsePayload<any>>): void {
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
