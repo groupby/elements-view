@@ -670,7 +670,23 @@ describe('Sayt Component', () => {
           expect(hideSayt).to.be.called;
         });
       });
-    })
+    });
+
+    ['ArrowUp', 'Up'].forEach((key) => {
+      describe(key, () => {
+        it('should select the next autocomplete item', () => {
+          const event: any = { key };
+          const selectNext = spy();
+          stub(sayt, 'querySelector')
+            .withArgs('[data-sfx-ref="autocomplete"]')
+            .returns({ selectNext });
+
+          sayt.processKeyEvent(event);
+
+          expect(selectNext).to.be.called;
+        });
+      });
+    });
 
     it('should not do anything when any other key is pressed', () => {
       const event: any = { key: 'j' };

@@ -392,10 +392,16 @@ export default class Sayt extends LitElement {
    * @param event A keyboard event used for checking which key has been pressed.
    */
   processKeyEvent(event: KeyboardEvent): void {
+    let autocomplete;
     switch (event.key) {
       case 'Escape':
       case 'Esc': // IE/Edge
         this.hideSayt();
+        break;
+      case 'ArrowUp':
+      case 'Up': // IE/Edge
+        autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
+        if (autocomplete) autocomplete.selectNext();
         break;
       default: // Do nothing
     }
