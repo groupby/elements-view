@@ -41,10 +41,10 @@ export default class Autocomplete extends LitElement {
   @property({ type: String, reflect: true }) group: string = '';
 
   /**
-   * The index of the currently selected item. A negative index causes
+   * The index of the currently selected index. A negative index causes
    * selection to be cleared.
    */
-  @property({ type: Number, reflect: true }) selected: number = -1;
+  @property({ type: Number, reflect: true }) selectedIndex: number = -1;
 
   /**
    * Constructs an instance of Autocomplete.
@@ -111,23 +111,23 @@ export default class Autocomplete extends LitElement {
   }
 
   /**
-   * Incrememnts the `selected` property by 1.
-   * If `selected` is out of bounds, its value will be set to `0`.
-   * `selected` will be set to `0` if the last item is currently selected.
+   * Incrememnts the `selectedIndex` property by 1.
+   * If `selectedIndex` is out of bounds, its value will be set to `0`.
+   * `selectedIndex` will be set to `0` if the last index is currently selected.
    */
   selectNext(): void {
-    const normalizedSelectedIndex = Math.min(Math.max(-1, this.selected), this.length - 1);
-    this.selected = (normalizedSelectedIndex + 1) % this.length;
+    const normalizedSelectedIndex = Math.min(Math.max(-1, this.selectedIndex), this.length - 1);
+    this.selectedIndex = (normalizedSelectedIndex + 1) % this.length;
   }
 
   /**
-   * Decrements the `selected` property by 1.
-   * If `selected` is out of bounds, its value will be set to the index of the last item.
-   * `selected` will be set to the index of the last item if the first is currently selected.
+   * Decrements the `selectedIndex` property by 1.
+   * If `selectedIndex` is out of bounds, its value will be set to the index of the last item.
+   * `selectedIndex` will be set to the index of the last item if the first is currently selected.
    */
   selectPrevious(): void {
-    const normalizedSelectedIndex = Math.min(Math.max(0, this.selected), this.length);
-    this.selected = (normalizedSelectedIndex - 1 + this.length) % this.length;
+    const normalizedSelectedIndex = Math.min(Math.max(0, this.selectedIndex), this.length);
+    this.selectedIndex = (normalizedSelectedIndex - 1 + this.length) % this.length;
   }
 
   /**

@@ -33,9 +33,9 @@ describe('Autcomplete Component', () => {
       });
     });
 
-    describe('selected property', () => {
+    describe('selectedIndex property', () => {
       it('should have default value of -1', () => {
-        expect(autocomplete.selected).to.equal(-1);
+        expect(autocomplete.selectedIndex).to.equal(-1);
       });
     });
   });
@@ -223,35 +223,35 @@ describe('Autcomplete Component', () => {
     });
 
     it('should increment the selected index', () => {
-      autocomplete.selected = 1;
+      autocomplete.selectedIndex = 1;
 
       autocomplete.selectNext();
 
-      expect(autocomplete.selected).to.equal(2);
+      expect(autocomplete.selectedIndex).to.equal(2);
     });
 
     it('should increment a negative selected index to 0', () => {
-      autocomplete.selected = -5;
+      autocomplete.selectedIndex = -5;
 
       autocomplete.selectNext();
 
-      expect(autocomplete.selected).to.equal(0);
+      expect(autocomplete.selectedIndex).to.equal(0);
     });
 
-    it('should select the first item when the last is currently selected', () => {
-      autocomplete.selected = 9;
+    it('should select the first index when the last is currently selected', () => {
+      autocomplete.selectedIndex = 9;
 
       autocomplete.selectNext();
 
-      expect(autocomplete.selected).to.equal(0);
+      expect(autocomplete.selectedIndex).to.equal(0);
     });
 
-    it('should select the first item when the currently selected is outside of bounds', () => {
-      autocomplete.selected = 12;
+    it('should select the first index when the currently selected index is outside of bounds', () => {
+      autocomplete.selectedIndex = 12;
 
       autocomplete.selectNext();
 
-      expect(autocomplete.selected).to.equal(0);
+      expect(autocomplete.selectedIndex).to.equal(0);
     });
   });
 
@@ -263,27 +263,27 @@ describe('Autcomplete Component', () => {
     });
 
     it('should decrememnt the selected index', () => {
-      autocomplete.selected = 1;
+      autocomplete.selectedIndex = 1;
 
       autocomplete.selectPrevious();
 
-      expect(autocomplete.selected).to.equal(0);
+      expect(autocomplete.selectedIndex).to.equal(0);
     });
 
-    it('should select the last item when the first is currently selected', () => {
-      autocomplete.selected = 0;
+    it('should select the last index when the first is currently selected', () => {
+      autocomplete.selectedIndex = 0;
 
       autocomplete.selectPrevious();
 
-      expect(autocomplete.selected).to.equal(length - 1);
+      expect(autocomplete.selectedIndex).to.equal(length - 1);
     });
 
-    it('should select the last item when the currently selected is outside of bounds', () => {
-      autocomplete.selected = 12;
+    it('should select the last index when the currently selected index is outside of bounds', () => {
+      autocomplete.selectedIndex = 12;
 
       autocomplete.selectPrevious();
 
-      expect(autocomplete.selected).to.equal(length - 1);
+      expect(autocomplete.selectedIndex).to.equal(length - 1);
     });
   });
 });
