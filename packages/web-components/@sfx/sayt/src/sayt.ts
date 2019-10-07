@@ -410,6 +410,7 @@ export default class Sayt extends LitElement {
   }
 
   selectPreviousAutocompleteTerm(): void {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
     if (!autocomplete) return;
 
@@ -422,6 +423,7 @@ export default class Sayt extends LitElement {
   }
 
   selectNextAutocompleteTerm(): void {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
     if (!autocomplete) return;
 
