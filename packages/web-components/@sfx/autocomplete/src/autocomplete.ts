@@ -78,6 +78,12 @@ export default class Autocomplete extends LitElement {
     return this.results.reduce((sum, resultGroup) => sum + resultGroup.items.length, 0);
   }
 
+  /**
+   * Returns the ID of the selected item. If no item is selected, the
+   * empty string is returned.
+   *
+   * @return The ID of the selected item.
+   */
   get selectedId(): string {
     const selectedElement = this.querySelector('[aria-selected="true"]');
 
