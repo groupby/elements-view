@@ -78,6 +78,10 @@ export default class Autocomplete extends LitElement {
     return this.results.reduce((sum, resultGroup) => sum + resultGroup.items.length, 0);
   }
 
+  get selectedId(): string {
+    return this.querySelector('[aria-selected="true"]').id;
+  }
+
   /**
    * Saves the payload of the given event to `results`.
    *

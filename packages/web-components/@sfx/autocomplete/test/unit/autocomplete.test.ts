@@ -114,6 +114,15 @@ describe('Autcomplete Component', () => {
     });
   });
 
+  describe('selectedId', () => {
+    it('should return the ID of the selected item', () => {
+      const id = 'optionid';
+      stub(autocomplete, 'querySelector').withArgs('[aria-selected="true"]').returns({ id });
+
+      expect(autocomplete.selectedId).to.equal(id);
+    });
+  });
+
   describe('render', () => {
     it('should return an instance of TemplateResult', () => {
       const result = autocomplete.render();
