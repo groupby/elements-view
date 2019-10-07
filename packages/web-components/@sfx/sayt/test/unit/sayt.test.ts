@@ -688,6 +688,22 @@ describe('Sayt Component', () => {
       });
     });
 
+    ['ArrowDown', 'Down'].forEach((key) => {
+      describe(key, () => {
+        it('should select the previous autocomplete item', () => {
+          const event: any = { key };
+          const selectPrevious = spy();
+          stub(sayt, 'querySelector')
+            .withArgs('[data-sfx-ref="autocomplete"]')
+            .returns({ selectPrevious });
+
+          sayt.processKeyEvent(event);
+
+          expect(selectPrevious).to.be.called;
+        });
+      });
+    });
+
     it('should not do anything when any other key is pressed', () => {
       const event: any = { key: 'j' };
       const event2: any = { key: 'Enter' };

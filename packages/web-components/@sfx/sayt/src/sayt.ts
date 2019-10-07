@@ -403,6 +403,11 @@ export default class Sayt extends LitElement {
         autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
         if (autocomplete) autocomplete.selectNext();
         break;
+      case 'ArrowDown':
+      case 'Down': // IE/Edge
+        autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
+        if (autocomplete) autocomplete.selectPrevious();
+        break;
       default: // Do nothing
     }
   }
