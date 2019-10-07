@@ -658,17 +658,21 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('processKeyEvent()', () => {
-    it('should hide SAYT when pressing escape', () => {
-      const event: any = { key: 'Escape' };
-      const hideSayt = stub(sayt, 'hideSayt');
+  describe.only('processKeyEvent()', () => {
+    ['Escape', 'Esc'].forEach((key) => {
+      describe(key, () => {
+        it('should hide SAYT', () => {
+          const event: any = { key };
+          const hideSayt = stub(sayt, 'hideSayt');
 
-      sayt.processKeyEvent(event);
+          sayt.processKeyEvent(event);
 
-      expect(hideSayt).to.be.called;
-    });
+          expect(hideSayt).to.be.called;
+        });
+      });
+    })
 
-    it('should not hide SAYT when pressing any character other than escape', () => {
+    it('should not do anything when any other key is pressed', () => {
       const event: any = { key: 'j' };
       const event2: any = { key: 'Enter' };
       const event3: any = { key: 'Space' };

@@ -392,8 +392,12 @@ export default class Sayt extends LitElement {
    * @param event A keyboard event used for checking which key has been pressed.
    */
   processKeyEvent(event: KeyboardEvent): void {
-    if (event.key === 'Escape') {
-      this.hideSayt();
+    switch (event.key) {
+      case 'Escape':
+      case 'Esc': // IE/Edge
+        this.hideSayt();
+        break;
+      default: // Do nothing
     }
   }
 
