@@ -122,6 +122,8 @@ export default class Autocomplete extends LitElement {
 
   /**
    * Decrements the `selected` property by 1.
+   * If `selected` is out of bounds, its value will be set to the index of the last item.
+   * `selected` will be set to the index of the last item if the first is currently selected.
    */
   selectPrevious(): void {
     const normalizedSelectedIndex = Math.min(Math.max(0, this.selected), this.length);
