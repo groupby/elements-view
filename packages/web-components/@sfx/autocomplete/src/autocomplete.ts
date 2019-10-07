@@ -79,7 +79,9 @@ export default class Autocomplete extends LitElement {
   }
 
   get selectedId(): string {
-    return this.querySelector('[aria-selected="true"]').id;
+    const selectedElement = this.querySelector('[aria-selected="true"]');
+
+    return selectedElement ? selectedElement.id : '';
   }
 
   /**

@@ -121,6 +121,12 @@ describe('Autcomplete Component', () => {
 
       expect(autocomplete.selectedId).to.equal(id);
     });
+
+    it('should return an empty string if no items are selected', () => {
+      stub(autocomplete, 'querySelector').withArgs('[aria-selected="true"]').returns(null);
+
+      expect(autocomplete.selectedId).to.equal('');
+    });
   });
 
   describe('render', () => {
