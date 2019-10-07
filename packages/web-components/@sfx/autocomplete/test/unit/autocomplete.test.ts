@@ -245,6 +245,14 @@ describe('Autcomplete Component', () => {
 
       expect(autocomplete.selected).to.equal(0);
     });
+
+    it('should select the first item when the currently selected is outside of bounds', () => {
+      autocomplete.selected = 12;
+
+      autocomplete.selectNext();
+
+      expect(autocomplete.selected).to.equal(0);
+    });
   });
 
   describe('selectPrevious()', () => {
