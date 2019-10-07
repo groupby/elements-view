@@ -6,10 +6,15 @@
     <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script>
     <!-- <script src="./temp/sfx-all-plugins-bundle.js"></script> -->
   </head>
+
   <body>
     <sfx-search-box id="main-search" placeholder="search" clearbutton searchbutton></sfx-search-box>
     <sfx-sayt searchbox="main-search" visible></sfx-sayt>
-    <sfx-list class="product-grid"></sfx-list>
+
+    <sfx-search-box id="secondary-search" group="secondary" placeholder="search" clearbutton searchbutton></sfx-search-box>
+    <sfx-sayt searchbox="secondary-search" group="secondary" visible></sfx-sayt>
+
+    <sfx-products></sfx-products>
 
     <script>
       function parseRecord(record) {
@@ -58,14 +63,6 @@
       const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin({ productTransformer: searchProductTransformer });
       // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
-
-      // search integration/functionality test
-      window.addEventListener('sfx::search_response', (e) => {
-        const productsGrid = document.querySelector('sfx-products');
-        if (productsGrid) {
-          productsGrid.items = e.detail.products;
-        }
-      });
 
       window.addEventListener('sfx::sayt_products_response', (event) => {
         console.log(event.type, event.detail);
