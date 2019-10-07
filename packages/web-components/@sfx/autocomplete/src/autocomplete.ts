@@ -124,7 +124,8 @@ export default class Autocomplete extends LitElement {
    * Decrements the `selected` property by 1.
    */
   selectPrevious(): void {
-    this.selected--;
+    const normalizedSelectedIndex = Math.min(Math.max(0, this.selected), this.length);
+    this.selected = (normalizedSelectedIndex - 1 + this.length) % this.length;
   }
 
   /**

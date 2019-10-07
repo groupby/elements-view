@@ -256,12 +256,34 @@ describe('Autcomplete Component', () => {
   });
 
   describe('selectPrevious()', () => {
+    const length = 10;
+
+    beforeEach(() => {
+      stub(autocomplete, 'length').get(() => length);
+    });
+
     it('should decrememnt the selected index', () => {
       autocomplete.selected = 1;
 
       autocomplete.selectPrevious();
 
       expect(autocomplete.selected).to.equal(0);
+    });
+
+    it('should select the last item when the first is currently selected', () => {
+      autocomplete.selected = 0;
+
+      autocomplete.selectPrevious();
+
+      expect(autocomplete.selected).to.equal(length - 1);
+    });
+
+    it('should select the last item when the currently selected is outside of bounds', () => {
+      autocomplete.selected = 12;
+
+      autocomplete.selectPrevious();
+
+      expect(autocomplete.selected).to.equal(length - 1);
     });
   });
 });
