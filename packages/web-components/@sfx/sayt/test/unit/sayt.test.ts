@@ -771,6 +771,65 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe('selectNextAutocompleteTerm()', () => {
+    const searchbox = 'a-selected';
+    const selectedId = 'selected';
+    let selectNext;
+    let setAttribute;
+
+    beforeEach(() => {
+      selectNext = spy();
+      setAttribute = spy();
+      sayt.searchbox = searchbox;
+      stub(sayt, 'querySelector')
+        .withArgs('[data-sfx-ref="autocomplete"]')
+        .returns({ selectedId, selectNext });
+      stub(document, 'getElementById').withArgs(searchbox).returns({ setAttribute });
+    });
+
+    it('should select the previous autocomplete item', () => {
+      sayt.selectNextAutocompleteTerm();
+
+      expect(selectNext).to.be.called;
+    });
+
+    it('should set the aria-activedescendant attribute on the searchbox', () => {
+      sayt.selectNextAutocompleteTerm();
+
+      expect(setAttribute).to.be.calledWith('aria-activedescendant', selectedId);
+    });
+
+    it('should not throw when there is no autocomplete', () => {
+      sayt.querySelector.restore();
+      stub(sayt, 'querySelector')
+        .withArgs('[data-sfx-ref="autocomplete"]')
+        .returns(null);
+
+      const callback = () => sayt.selectNextAutocompleteTerm();
+
+      expect(callback).to.not.throw();
+    });
+
+    it('should not throw when the searchbox property is not set', () => {
+      sayt.searchbox = '';
+
+      const callback = () => sayt.selectNextAutocompleteTerm();
+
+      expect(callback).to.not.throw();
+    });
+
+    it('should not throw when there is no searchbox', () => {
+      (document.getElementById as any).restore();
+      stub(document, 'getElementById')
+        .withArgs(searchbox)
+        .returns(null);
+
+      const callback = () => sayt.selectNextAutocompleteTerm();
+
+      expect(callback).to.not.throw();
+    });
+  });
+
   describe('render()', () => {
     it('should return an instance of TemplateResult', () => {
       const result = sayt.render();
