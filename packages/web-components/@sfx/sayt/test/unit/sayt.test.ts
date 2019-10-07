@@ -658,7 +658,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe.only('processKeyEvent()', () => {
+  describe('processKeyEvent()', () => {
     ['Escape', 'Esc'].forEach((key) => {
       describe(key, () => {
         it('should hide SAYT', () => {
@@ -674,16 +674,13 @@ describe('Sayt Component', () => {
 
     ['ArrowUp', 'Up'].forEach((key) => {
       describe(key, () => {
-        it('should select the next autocomplete item', () => {
+        it('should select the previous autocomplete item', () => {
+          const selectPreviousAutocompleteTerm = stub(sayt, 'selectPreviousAutocompleteTerm');
           const event: any = { key };
-          const selectNext = spy();
-          stub(sayt, 'querySelector')
-            .withArgs('[data-sfx-ref="autocomplete"]')
-            .returns({ selectNext });
 
           sayt.processKeyEvent(event);
 
-          expect(selectNext).to.be.called;
+          expect(selectPreviousAutocompleteTerm).to.be.called;
         });
       });
     });
@@ -691,15 +688,12 @@ describe('Sayt Component', () => {
     ['ArrowDown', 'Down'].forEach((key) => {
       describe(key, () => {
         it('should select the previous autocomplete item', () => {
+          const selectNextAutocompleteTerm = stub(sayt, 'selectNextAutocompleteTerm');
           const event: any = { key };
-          const selectPrevious = spy();
-          stub(sayt, 'querySelector')
-            .withArgs('[data-sfx-ref="autocomplete"]')
-            .returns({ selectPrevious });
 
           sayt.processKeyEvent(event);
 
-          expect(selectPrevious).to.be.called;
+          expect(selectNextAutocompleteTerm).to.be.called;
         });
       });
     });
@@ -715,6 +709,65 @@ describe('Sayt Component', () => {
       sayt.processKeyEvent(event3);
 
       expect(hideSayt).to.not.be.called;
+    });
+  });
+
+  describe('selectPreviousAutocompleteTerm()', () => {
+    const searchbox = 'a-selected';
+    const selectedId = 'selected';
+    let selectPrevious;
+    let setAttribute;
+
+    beforeEach(() => {
+      selectPrevious = spy();
+      setAttribute = spy();
+      sayt.searchbox = searchbox;
+      stub(sayt, 'querySelector')
+        .withArgs('[data-sfx-ref="autocomplete"]')
+        .returns({ selectedId, selectPrevious });
+      stub(document, 'getElementById').withArgs(searchbox).returns({ setAttribute });
+    });
+
+    it('should select the previous autocomplete item', () => {
+      sayt.selectPreviousAutocompleteTerm();
+
+      expect(selectPrevious).to.be.called;
+    });
+
+    it('should set the aria-activedescendant attribute on the searchbox', () => {
+      sayt.selectPreviousAutocompleteTerm();
+
+      expect(setAttribute).to.be.calledWith('aria-activedescendant', selectedId);
+    });
+
+    it('should not throw when there is no autocomplete', () => {
+      sayt.querySelector.restore();
+      stub(sayt, 'querySelector')
+        .withArgs('[data-sfx-ref="autocomplete"]')
+        .returns(null);
+
+      const callback = () => sayt.selectPreviousAutocompleteTerm();
+
+      expect(callback).to.not.throw();
+    });
+
+    it('should not throw when the searchbox property is not set', () => {
+      sayt.searchbox = '';
+
+      const callback = () => sayt.selectPreviousAutocompleteTerm();
+
+      expect(callback).to.not.throw();
+    });
+
+    it('should not throw when there is no searchbox', () => {
+      (document.getElementById as any).restore();
+      stub(document, 'getElementById')
+        .withArgs(searchbox)
+        .returns(null);
+
+      const callback = () => sayt.selectPreviousAutocompleteTerm();
+
+      expect(callback).to.not.throw();
     });
   });
 

@@ -392,7 +392,6 @@ export default class Sayt extends LitElement {
    * @param event A keyboard event used for checking which key has been pressed.
    */
   processKeyEvent(event: KeyboardEvent): void {
-    let autocomplete;
     switch (event.key) {
       case 'Escape':
       case 'Esc': // IE/Edge
@@ -400,16 +399,38 @@ export default class Sayt extends LitElement {
         break;
       case 'ArrowUp':
       case 'Up': // IE/Edge
-        autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
-        if (autocomplete) autocomplete.selectNext();
+        this.selectPreviousAutocompleteTerm();
         break;
       case 'ArrowDown':
       case 'Down': // IE/Edge
-        autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
-        if (autocomplete) autocomplete.selectPrevious();
+        this.selectNextAutocompleteTerm();
         break;
       default: // Do nothing
     }
+  }
+
+  selectPreviousAutocompleteTerm(): void {
+    const autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
+    if (!autocomplete) return;
+
+    autocomplete.selectPrevious();
+    if (!this.searchbox) return;
+
+    const searchbox = document.getElementById(this.searchbox);
+    if (!searchbox) return;
+    searchbox.setAttribute('aria-activedescendant', autocomplete.selectedId);
+  }
+
+  selectNextAutocompleteTerm(): void {
+    const autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
+    if (!autocomplete) return;
+
+    autocomplete.selectNext();
+    if (!this.searchbox) return;
+
+    const searchbox = document.getElementById(this.searchbox);
+    if (!searchbox) return;
+    searchbox.setAttribute('aria-activedescendant', autocomplete.selectedId);
   }
 
   /**
