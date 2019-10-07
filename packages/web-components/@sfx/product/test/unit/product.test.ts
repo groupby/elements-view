@@ -14,10 +14,6 @@ describe('Product Component', () => {
   });
 
   describe('constructor', () => {
-    it('should extend the Base class', () => {
-      expect(component).to.be.an.instanceof(Base);
-    });
-
     describe('product property', () => {
       it('should have a default empty product object', () => {
         expect(component.product).to.deep.equal({});
