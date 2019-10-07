@@ -1,6 +1,7 @@
 import { css, CSSResult, customElement } from 'lit-element';
 import {
   SEARCH_RESPONSE,
+  Product,
   SearchResponsePayload,
 } from '@sfx/events';
 import { ProductsBase } from '.';
@@ -45,7 +46,7 @@ export default class ProductsSearch extends ProductsBase {
    *
    * @param event An event containing a search result with product data.
    */
-  setProductsFromEvent(event: CustomEvent<SearchResponsePayload<any>>): void {
+  setProductsFromEvent(event: CustomEvent<SearchResponsePayload<Product>>): void {
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {

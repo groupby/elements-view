@@ -1,6 +1,7 @@
 import { css, CSSResult, customElement } from 'lit-element';
 import {
   SAYT_PRODUCTS_RESPONSE,
+  Product,
   SaytProductsResponsePayload,
 } from '@sfx/events';
 import { ProductsBase } from '.';
@@ -46,7 +47,7 @@ export default class ProductsSayt extends ProductsBase {
    *
    * @param event An event containing a search result with product data.
    */
-  setProductsFromEvent(event: CustomEvent<SaytProductsResponsePayload<any>>): void {
+  setProductsFromEvent(event: CustomEvent<SaytProductsResponsePayload<Product>>): void {
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
