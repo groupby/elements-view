@@ -2,10 +2,10 @@ import {
   customElement,
   property,
   html,
+  LitElement,
   TemplateResult,
 } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
 import {
   Product as ProductModel,
   ProductVariant,
