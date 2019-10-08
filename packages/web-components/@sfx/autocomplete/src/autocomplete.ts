@@ -65,8 +65,10 @@ export default class Autocomplete extends LitElement {
 
     const role = this.getAttribute('role');
     const roles = role ? role.split(' ') : [];
-    if (!roles.includes('listbox')) roles.push('listbox');
-    this.setAttribute('role', roles.join(' '));
+    if (!roles.includes('listbox')) {
+      roles.push('listbox');
+      this.setAttribute('role', roles.join(' '));
+    }
   }
 
   /**
