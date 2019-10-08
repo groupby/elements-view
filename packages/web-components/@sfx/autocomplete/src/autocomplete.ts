@@ -47,6 +47,12 @@ export default class Autocomplete extends LitElement {
   @property({ type: Number, reflect: true }) selectedIndex: number = -1;
 
   /**
+   * A random string suitable for use in stable IDs related to this
+   * component.
+   */
+  protected componentId = shortid.generate();
+
+  /**
    * Constructs an instance of Autocomplete.
    * Binds receivedResults function to the class.
    */
@@ -153,14 +159,20 @@ export default class Autocomplete extends LitElement {
   /**
    * Renders a list of autocomplete items.
    */
-  private listRender(list: AutocompleteResultGroup<AutocompleteSearchTermItem>, startingIndex: number): TemplateResult {
-    const idString = `sfx-list-title-${shortid.generate()}`;
-    const header = html`<h4 id="${idString}">${list.title}</h4>`;
+  private listRender(
+    list: AutocompleteResultGroup<AutocompleteSearchTermItem>,
+    listIndex: number,
+    itemStartingIndex: number
+  ): TemplateResult {
+    const idPrefix = `sfx-autocomplete-${this.componentId}`;
+    const titleId = `${idPrefix}-title-${listIndex}`;
+    const header = html`<h4 id="${titleId}">${list.title}</h4>`;
     const searchTermItems = list.items.map((item, index) => {
-      const ariaSelected = this.selectedIndex === startingIndex + index ? 'true' : undefined;
-      return html`<li role="option" aria-selected="${ifDefined(ariaSelected)}">${item.label}</li>`;
+      const autocompleteIndex = itemStartingIndex + index;
+      const ariaSelected = this.selectedIndex === autocompleteIndex ? 'true' : undefined;
+      return html`<li id="${idPrefix}-item-${autocompleteIndex}" role="option" aria-selected="${ifDefined(ariaSelected)}">${item.label}</li>`;
     });
-    const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? idString : undefined)}">${searchTermItems}</ul>`;
+    const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? titleId : undefined)}">${searchTermItems}</ul>`;
 
     return html`
       ${this.caption ? header : ''}
@@ -179,7 +191,7 @@ export default class Autocomplete extends LitElement {
     const startingIndices = this.results
       .map((list) => list.items.length)
       .map((length, index, lengths) => (lengths[index - 2] || 0) + (lengths[index - 1] || 0));
-    const autocompleteLists = this.results.map((list, index) => this.listRender(list, startingIndices[index]));
+    const autocompleteLists = this.results.map((list, index) => this.listRender(list, index, startingIndices[index]));
 
     return html`
       <style>
