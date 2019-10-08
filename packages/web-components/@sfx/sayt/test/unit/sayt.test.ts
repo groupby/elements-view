@@ -255,6 +255,18 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe('setInitialSearchboxAriaAttributes()', () => {
+    describe('ARIA attributes', () => {
+      it('should add the ID of the autocomplete component to aria-controls');
+      it('should set aria-expanded to the value of visible');
+      it('should set aria-haspopup to listbox');
+      it('should not remove existing values');
+    });
+
+    it('should not throw when no searchbox ID is given');
+    it('should not throw when no searchbox exists');
+  });
+
   describe('showSayt()', () => {
     it('should set the visible prop to true', () => {
       sayt.visible = false;
