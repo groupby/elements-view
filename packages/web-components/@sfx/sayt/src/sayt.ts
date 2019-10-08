@@ -468,7 +468,7 @@ export default class Sayt extends LitElement {
         ${this.hideAutocomplete
     ? ''
     : html`
-            <sfx-autocomplete group="${ifDefined(this.group)}">
+            <sfx-autocomplete data-sfx-ref="autocomplete" group="${ifDefined(this.group)}">
             </sfx-autocomplete>`
 }
         ${this.hideProducts
