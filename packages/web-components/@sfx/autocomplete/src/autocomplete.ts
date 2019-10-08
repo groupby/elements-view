@@ -158,7 +158,7 @@ export default class Autocomplete extends LitElement {
     const header = html`<h4 id="${idString}">${list.title}</h4>`;
     const searchTermItems = list.items.map((item, index) => {
       const ariaSelected = this.selectedIndex === startingIndex + index ? 'true' : undefined;
-      return html`<li aria-selected="${ifDefined(ariaSelected)}">${item.label}</li>`;
+      return html`<li role="option" aria-selected="${ifDefined(ariaSelected)}">${item.label}</li>`;
     });
     const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? idString : undefined)}">${searchTermItems}</ul>`;
 
