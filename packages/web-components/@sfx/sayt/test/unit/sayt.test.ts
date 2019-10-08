@@ -722,10 +722,20 @@ describe('Sayt Component', () => {
       selectPrevious = spy();
       setAttribute = spy();
       sayt.searchbox = searchbox;
+      sayt.visible = true;
       stub(sayt, 'querySelector')
         .withArgs('[data-sfx-ref="autocomplete"]')
         .returns({ selectedId, selectPrevious });
       stub(document, 'getElementById').withArgs(searchbox).returns({ setAttribute });
+    });
+
+    it('should make the component visible', () => {
+      const showSayt = stub(sayt, 'showSayt');
+      sayt.visible = false;
+
+      sayt.selectPreviousAutocompleteTerm();
+
+      expect(showSayt).to.be.called;
     });
 
     it('should select the previous autocomplete item', () => {
@@ -781,13 +791,23 @@ describe('Sayt Component', () => {
       selectNext = spy();
       setAttribute = spy();
       sayt.searchbox = searchbox;
+      sayt.visible = true;
       stub(sayt, 'querySelector')
         .withArgs('[data-sfx-ref="autocomplete"]')
         .returns({ selectedId, selectNext });
       stub(document, 'getElementById').withArgs(searchbox).returns({ setAttribute });
     });
 
-    it('should select the previous autocomplete item', () => {
+    it('should make the component visible', () => {
+      const showSayt = stub(sayt, 'showSayt');
+      sayt.visible = false;
+
+      sayt.selectNextAutocompleteTerm();
+
+      expect(showSayt).to.be.called;
+    });
+
+    it('should select the next autocomplete item', () => {
       sayt.selectNextAutocompleteTerm();
 
       expect(selectNext).to.be.called;
