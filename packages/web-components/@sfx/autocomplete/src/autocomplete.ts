@@ -145,10 +145,13 @@ export default class Autocomplete extends LitElement {
   /**
    * Renders a list of autocomplete items.
    */
-  private listRender(list: AutocompleteResultGroup<AutocompleteSearchTermItem>): TemplateResult {
+  private listRender(list: AutocompleteResultGroup<AutocompleteSearchTermItem>, startingIndex: number): TemplateResult {
     const idString = `sfx-list-title-${shortid.generate()}`;
     const header = html`<h4 id="${idString}">${list.title}</h4>`;
-    const searchTermItems = list.items.map((item) => html`<li>${item.label}</li>`);
+    const searchTermItems = list.items.map((item, index) => {
+      const ariaSelected = this.selectedIndex === startingIndex + index ? 'true' : undefined;
+      return html`<li aria-selected="${ifDefined(ariaSelected)}">${item.label}</li>`;
+    });
     const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? idString : undefined)}">${searchTermItems}</ul>`;
 
     return html`
@@ -165,7 +168,10 @@ export default class Autocomplete extends LitElement {
     const caption = this.caption && this.results.length > 0
       ? html`<h3 class="sfx-header">${this.caption}</h3>`
       : '';
-    const autocompleteLists = this.results.map((list) => this.listRender(list));
+    const startingIndices = this.results
+      .map((list) => list.items.length)
+      .map((length, index, lengths) => (lengths[index - 2] || 0) + (lengths[index - 1] || 0));
+    const autocompleteLists = this.results.map((list, index) => this.listRender(list, startingIndices[index]));
 
     return html`
       <style>
