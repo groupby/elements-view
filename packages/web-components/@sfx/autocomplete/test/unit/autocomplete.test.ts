@@ -133,7 +133,9 @@ describe('Autcomplete Component', () => {
   describe('selectedId', () => {
     it('should return the ID of the selected item', () => {
       const id = 'optionid';
-      stub(autocomplete, 'querySelector').withArgs('[aria-selected="true"]').returns({ id });
+      const selectedIndex = autocomplete.selectedIndex = 1;
+      stub(autocomplete, 'generateItemId').withArgs(selectedIndex).returns(id);
+      stub(autocomplete, 'length').get(() => 3);
 
       expect(autocomplete.selectedId).to.equal(id);
     });

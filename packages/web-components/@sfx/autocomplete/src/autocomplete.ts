@@ -93,15 +93,25 @@ export default class Autocomplete extends LitElement {
   }
 
   /**
+   * Generates an ID for the item at the given index.
+   *
+   * @param index The index for which to generate the ID.
+   * @returns A generated ID.
+   */
+  private generateItemId(index: number): string {
+    return `sfx-autocomplete-${this.componentId}-item-${index}`;
+  }
+
+  /**
    * Returns the ID of the selected item. If no item is selected, the
    * empty string is returned.
    *
    * @return The ID of the selected item.
    */
   get selectedId(): string {
-    const selectedElement = this.querySelector('[aria-selected="true"]');
-
-    return selectedElement ? selectedElement.id : '';
+    return this.selectedIndex >= 0 && this.selectedIndex < this.length
+      ? this.generateItemId(this.selectedIndex)
+      : '';
   }
 
   /**
@@ -164,13 +174,12 @@ export default class Autocomplete extends LitElement {
     listIndex: number,
     itemStartingIndex: number
   ): TemplateResult {
-    const idPrefix = `sfx-autocomplete-${this.componentId}`;
-    const titleId = `${idPrefix}-title-${listIndex}`;
+    const titleId = `sfx-autocomplete-${this.componentId}-title-${listIndex}`;
     const header = html`<h4 id="${titleId}">${list.title}</h4>`;
     const searchTermItems = list.items.map((item, index) => {
-      const autocompleteIndex = itemStartingIndex + index;
-      const ariaSelected = this.selectedIndex === autocompleteIndex ? 'true' : undefined;
-      return html`<li id="${idPrefix}-item-${autocompleteIndex}" role="option" aria-selected="${ifDefined(ariaSelected)}">${item.label}</li>`;
+      const itemIndex = itemStartingIndex + index;
+      const ariaSelected = this.selectedIndex === itemIndex ? 'true' : undefined;
+      return html`<li id="${this.generateItemId(itemIndex)}" role="option" aria-selected="${ifDefined(ariaSelected)}">${item.label}</li>`;
     });
     const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? titleId : undefined)}">${searchTermItems}</ul>`;
 
