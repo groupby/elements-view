@@ -8,6 +8,7 @@ import {
 // eslint-disable-next-line import/no-unresolved
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { debounce } from 'debounce';
+import * as shortid from 'shortid';
 import {
   AUTOCOMPLETE_ACTIVE_TERM,
   AUTOCOMPLETE_REQUEST,
@@ -96,6 +97,12 @@ export default class Sayt extends LitElement {
    * The delay is configured through the [[debounce]] property.
    */
   debouncedRequestSaytAutocompleteTerms: SaytRequester & ReturnType<typeof debounce>;
+
+  /**
+   * A random string suitable for use in stable IDs related to this
+   * component.
+   */
+  protected componentId = shortid.generate();
 
   /**
    * Calls superclass constructor and bind methods.
@@ -468,7 +475,7 @@ export default class Sayt extends LitElement {
         ${this.hideAutocomplete
     ? ''
     : html`
-            <sfx-autocomplete data-sfx-ref="autocomplete" group="${ifDefined(this.group)}">
+            <sfx-autocomplete id="sfx-sayt-${this.componentId}-autocomplete" data-sfx-ref="autocomplete" group="${ifDefined(this.group)}">
             </sfx-autocomplete>`
 }
         ${this.hideProducts
