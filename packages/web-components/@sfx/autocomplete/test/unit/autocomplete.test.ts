@@ -63,6 +63,22 @@ describe('Autcomplete Component', () => {
         autocomplete.receivedResults
       );
     });
+
+    describe('role attribute', () => {
+      it('should add the listbox role', () => {
+        autocomplete.connectedCallback();
+
+        expect(autocomplete.getAttribute('role')).to.equal('listbox');
+      });
+
+      it('should not remove existing roles', () => {
+        autocomplete.setAttribute('role', 'widget');
+
+        autocomplete.connectedCallback();
+
+        expect(autocomplete.getAttribute('role')).to.equal('widget listbox');
+      });
+    });
   });
 
   describe('disconnectedCallback', () => {
