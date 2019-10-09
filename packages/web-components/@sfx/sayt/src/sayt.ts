@@ -239,8 +239,8 @@ export default class Sayt extends LitElement {
     const roles = role ? role.split(' ') : [];
     if (!roles.includes('combobox')) {
       roles.push('combobox');
-      searchbox.setAttribute('role', roles.join(' '));
     }
+    searchbox.setAttribute('role', roles.join(' '));
   }
 
   /**
