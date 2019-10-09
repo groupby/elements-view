@@ -143,6 +143,7 @@ export default class Sayt extends LitElement {
     window.addEventListener('keydown', this.processKeyEvent);
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.setSearchboxListener(this.searchbox, 'add');
+    this.setInitialSearchboxAriaAttributes();
   }
 
   /**

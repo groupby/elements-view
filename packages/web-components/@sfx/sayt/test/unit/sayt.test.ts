@@ -129,6 +129,14 @@ describe('Sayt Component', () => {
 
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
     });
+
+    it('should set the ARIA attributes for a paired searchbox', () => {
+      const setInitialSearchboxAriaAttributes = stub(sayt, 'setInitialSearchboxAriaAttributes');
+
+      sayt.connectedCallback();
+
+      expect(setInitialSearchboxAriaAttributes).to.be.called;
+    });
   });
 
   describe('disconnectedCallback()', () => {
