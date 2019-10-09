@@ -216,7 +216,13 @@ export default class Sayt extends LitElement {
 
     searchbox.setAttribute('aria-haspopup', 'listbox');
     searchbox.setAttribute('aria-expanded', String(this.visible));
-    if (!this.hideAutocomplete) searchbox.setAttribute('aria-controls', this.autocompleteId);
+
+    const controls = searchbox.getAttribute('aria-controls');
+    const controlsIds = controls ? controls.split(' ') : [];
+    if (!this.hideAutocomplete && !controlsIds.includes(this.autocompleteId)) {
+      controlsIds.push(this.autocompleteId);
+    }
+    searchbox.setAttribute('aria-controls', controlsIds.join(' '));
   }
 
   /**

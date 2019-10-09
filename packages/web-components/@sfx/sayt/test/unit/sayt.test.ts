@@ -258,12 +258,15 @@ describe('Sayt Component', () => {
   describe('setInitialSearchboxAriaAttributes()', () => {
     describe('ARIA attributes', () => {
       let searchbox;
+      let getAttribute;
       let setAttribute;
 
       beforeEach(() => {
         searchbox = sayt.searchbox = 'some-searchbox';
+        getAttribute = stub();
+        getAttribute.withArgs('aria-controls').returns('');
         setAttribute = spy();
-        stub(document, 'getElementById').withArgs(searchbox).returns({ setAttribute });
+        stub(document, 'getElementById').withArgs(searchbox).returns({ getAttribute, setAttribute });
       });
 
       it('should add the ID of the autocomplete component to aria-controls', () => {
@@ -280,7 +283,21 @@ describe('Sayt Component', () => {
         expect(setAttribute).to.not.be.calledWith('aria-controls', sayt.autocompleteId);
       });
 
-      it('should not remove existing aria-controls values');
+      it('should not remove existing aria-controls values', () => {
+        getAttribute.withArgs('aria-controls').returns('otherid otherotherid');
+
+        sayt.setInitialSearchboxAriaAttributes();
+
+        expect(setAttribute).to.be.calledWith('aria-controls', `otherid otherotherid ${sayt.autocompleteId}`);
+      });
+
+      it('should not duplicate aria-controls values', () => {
+        getAttribute.withArgs('aria-controls').returns(`${sayt.autocompleteId} otherid`);
+
+        sayt.setInitialSearchboxAriaAttributes();
+
+        expect(setAttribute).to.not.be.calledWith('aria-controls', sinon.match(new RegExp(`${sayt.autocompleteId}.*${sayt.autocompleteId}`)));
+      });
 
       it('should set aria-expanded to the value of visible', () => {
         sayt.visible = true;
