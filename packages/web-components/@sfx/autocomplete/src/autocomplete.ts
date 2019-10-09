@@ -5,6 +5,7 @@ import {
   LitElement,
   TemplateResult,
 } from 'lit-element';
+// eslint-disable-next-line import/no-unresolved
 import { ifDefined } from 'lit-html/directives/if-defined';
 import * as shortid from 'shortid';
 import {
