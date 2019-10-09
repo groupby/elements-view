@@ -185,6 +185,19 @@ describe('Sayt Component', () => {
       });
     });
 
+    describe('hideAutocomplete', () => {
+      it('should remove and then add ARIA attributes to the paired searchbox', () => {
+        const removeSearchboxAriaAttributes = stub(sayt, 'removeSearchboxAriaAttributes');
+        const setInitialSearchboxAriaAttributes = stub(sayt, 'setInitialSearchboxAriaAttributes');
+
+        sayt.updated(new Map([['hideAutocomplete', true]]));
+
+        sinon.assert.callOrder(removeSearchboxAriaAttributes, setInitialSearchboxAriaAttributes);
+        expect(removeSearchboxAriaAttributes).to.be.calledWith(sayt.searchbox);
+        expect(setInitialSearchboxAriaAttributes).to.be.calledWith(sayt.searchbox);
+      });
+    });
+
     describe('searchbox', () => {
       const newSearchbox = 'searchbox1';
       const oldSearchbox = 'searchbox0';
