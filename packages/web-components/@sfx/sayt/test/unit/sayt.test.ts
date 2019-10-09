@@ -258,7 +258,18 @@ describe('Sayt Component', () => {
   describe('setInitialSearchboxAriaAttributes()', () => {
     describe('ARIA attributes', () => {
       it('should add the ID of the autocomplete component to aria-controls');
-      it('should set aria-expanded to the value of visible');
+      it('should not remove existing aria-controls values');
+
+      it('should set aria-expanded to the value of visible', () => {
+        const searchbox = sayt.searchbox = 'some-searchbox';
+        const setAttribute = spy();
+        sayt.visible = true;
+        stub(document, 'getElementById').withArgs(searchbox).returns({ setAttribute });
+
+        sayt.setInitialSearchboxAriaAttributes();
+
+        expect(setAttribute).to.be.calledWith('aria-expanded', 'true');
+      });
 
       it('should set aria-haspopup to listbox', () => {
         const searchbox = sayt.searchbox = 'some-searchbox';
@@ -269,12 +280,24 @@ describe('Sayt Component', () => {
 
         expect(setAttribute).to.be.calledWith('aria-haspopup', 'listbox');
       });
-
-      it('should not remove existing aria-controls values');
     });
 
-    it('should not throw when no searchbox ID is given');
-    it('should not throw when no searchbox exists');
+    it('should not throw when no searchbox ID is given', () => {
+      sayt.searchbox = '';
+
+      const callback = () => sayt.setInitialSearchboxAriaAttributes();
+
+      expect(callback).to.not.throw();
+    });
+
+    it('should not throw when no searchbox exists', () => {
+      const searchbox = sayt.searchbox = 'searchbox';
+      stub(document, 'getElementById').withArgs(searchbox).returns(null);
+
+      const callback = () => sayt.setInitialSearchboxAriaAttributes();
+
+      expect(callback).to.not.throw();
+    });
   });
 
   describe('showSayt()', () => {

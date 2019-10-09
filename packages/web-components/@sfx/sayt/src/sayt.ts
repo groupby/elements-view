@@ -205,8 +205,13 @@ export default class Sayt extends LitElement {
   }
 
   protected setInitialSearchboxAriaAttributes(): void {
+    if (!this.searchbox) return;
+
     const searchbox = document.getElementById(this.searchbox);
+    if (!searchbox) return;
+
     searchbox.setAttribute('aria-haspopup', 'listbox');
+    searchbox.setAttribute('aria-expanded', String(this.visible));
   }
 
   /**
