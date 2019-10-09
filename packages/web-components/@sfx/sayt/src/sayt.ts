@@ -186,6 +186,10 @@ export default class Sayt extends LitElement {
     }
   }
 
+  private get autocompleteId(): string {
+    return `sfx-sayt-${this.componentId}-autocomplete`;
+  }
+
   /**
    * Toggle the events being registered and unregisterd when the `searchbox` property changes.
    *
@@ -212,6 +216,7 @@ export default class Sayt extends LitElement {
 
     searchbox.setAttribute('aria-haspopup', 'listbox');
     searchbox.setAttribute('aria-expanded', String(this.visible));
+    searchbox.setAttribute('aria-controls', this.autocompleteId);
   }
 
   /**
@@ -485,7 +490,7 @@ export default class Sayt extends LitElement {
         ${this.hideAutocomplete
     ? ''
     : html`
-            <sfx-autocomplete id="sfx-sayt-${this.componentId}-autocomplete" data-sfx-ref="autocomplete" group="${ifDefined(this.group)}">
+            <sfx-autocomplete id="${this.autocompleteId}" data-sfx-ref="autocomplete" group="${ifDefined(this.group)}">
             </sfx-autocomplete>`
 }
         ${this.hideProducts
