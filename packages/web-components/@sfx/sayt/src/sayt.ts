@@ -256,6 +256,12 @@ export default class Sayt extends LitElement {
       .filter((id) => id !== this.autocompleteId)
       .join(' ');
     searchbox.setAttribute('aria-controls', filteredControlsIds);
+
+    const role = searchbox.getAttribute('role');
+    const filteredRole = (role ? role.split(' ') : [])
+      .filter((r) => r !== 'combobox')
+      .join(' ');
+    searchbox.setAttribute('role', filteredRole);
   }
 
   /**

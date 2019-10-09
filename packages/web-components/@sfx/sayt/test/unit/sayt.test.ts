@@ -391,6 +391,12 @@ describe('Sayt Component', () => {
 
       expect(setAttribute).to.be.calledWith('aria-controls', 'otherid');
     });
+
+    it('should only remove the combobox role', () => {
+      sayt.removeSearchboxAriaAttributes(searchbox);
+
+      expect(setAttribute).to.be.calledWith('role', 'widget');
+    });
   });
 
   describe('showSayt()', () => {
