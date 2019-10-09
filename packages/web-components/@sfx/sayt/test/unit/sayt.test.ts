@@ -342,18 +342,18 @@ describe('Sayt Component', () => {
       expect(setAttribute).to.not.be.calledWith('role', sinon.match(new RegExp(`combobox.*combobox`)));
     });
 
+    it('should set aria-haspopup to listbox', () => {
+      sayt.setInitialSearchboxAriaAttributes(searchbox);
+
+      expect(setAttribute).to.be.calledWith('aria-haspopup', 'listbox');
+    });
+
     it('should set aria-expanded to the value of visible', () => {
       sayt.visible = true;
 
       sayt.setInitialSearchboxAriaAttributes(searchbox);
 
       expect(setAttribute).to.be.calledWith('aria-expanded', 'true');
-    });
-
-    it('should set aria-haspopup to listbox', () => {
-      sayt.setInitialSearchboxAriaAttributes(searchbox);
-
-      expect(setAttribute).to.be.calledWith('aria-haspopup', 'listbox');
     });
 
     it('should not throw when no searchbox ID is given', () => {
