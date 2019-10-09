@@ -130,7 +130,7 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
     });
 
-    it('should set the ARIA attributes for a paired searchbox', () => {
+    it('should set the ARIA attributes for the paired searchbox', () => {
       const setInitialSearchboxAriaAttributes = stub(sayt, 'setInitialSearchboxAriaAttributes');
 
       sayt.connectedCallback();
@@ -162,6 +162,14 @@ describe('Sayt Component', () => {
       sayt.disconnectedCallback();
 
       expect(removeEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
+    });
+
+    it('should remove the ARIA attributes for the paired searchbox', () => {
+      const removeSearchboxAriaAttributes = stub(sayt, 'removeSearchboxAriaAttributes');
+
+      sayt.disconnectedCallback();
+
+      expect(removeSearchboxAriaAttributes).to.be.called;
     });
   });
 

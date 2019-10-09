@@ -161,6 +161,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener('keydown', this.processKeyEvent);
     this.removeEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.setSearchboxListener(this.searchbox, 'remove');
+    this.removeSearchboxAriaAttributes(this.searchbox);
   }
 
   createRenderRoot(): Element|ShadowRoot {
