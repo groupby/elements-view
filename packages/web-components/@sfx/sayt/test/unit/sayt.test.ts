@@ -280,13 +280,14 @@ describe('Sayt Component', () => {
     const searchbox = 'searchbox';
     let getAttribute;
     let setAttribute;
+    let getElementById;
 
     beforeEach(() => {
       getAttribute = stub();
       getAttribute.withArgs('aria-controls').returns('');
       getAttribute.withArgs('role').returns('');
       setAttribute = spy();
-      stub(document, 'getElementById').withArgs(searchbox).returns({ getAttribute, setAttribute });
+      getElementById = stub(document, 'getElementById').withArgs(searchbox).returns({ getAttribute, setAttribute });
     });
 
     it('should add the ID of the autocomplete component to aria-controls', () => {
@@ -364,8 +365,7 @@ describe('Sayt Component', () => {
     });
 
     it('should not throw when no searchbox exists', () => {
-      const searchbox = sayt.searchbox = 'searchbox';
-      stub(document, 'getElementById').withArgs(searchbox).returns(null);
+      getElementById.withArgs(searchbox).returns(null);
 
       const callback = () => sayt.setInitialSearchboxAriaAttributes(searchbox);
 
