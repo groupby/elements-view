@@ -278,83 +278,81 @@ describe('Sayt Component', () => {
 
   describe('setInitialSearchboxAriaAttributes()', () => {
     const searchbox = 'searchbox';
-    describe('ARIA attributes', () => {
-      let getAttribute;
-      let setAttribute;
+    let getAttribute;
+    let setAttribute;
 
-      beforeEach(() => {
-        getAttribute = stub();
-        getAttribute.withArgs('aria-controls').returns('');
-        getAttribute.withArgs('role').returns('');
-        setAttribute = spy();
-        stub(document, 'getElementById').withArgs(searchbox).returns({ getAttribute, setAttribute });
-      });
+    beforeEach(() => {
+      getAttribute = stub();
+      getAttribute.withArgs('aria-controls').returns('');
+      getAttribute.withArgs('role').returns('');
+      setAttribute = spy();
+      stub(document, 'getElementById').withArgs(searchbox).returns({ getAttribute, setAttribute });
+    });
 
-      it('should add the ID of the autocomplete component to aria-controls', () => {
-        sayt.setInitialSearchboxAriaAttributes(searchbox);
+    it('should add the ID of the autocomplete component to aria-controls', () => {
+      sayt.setInitialSearchboxAriaAttributes(searchbox);
 
-        expect(setAttribute).to.be.calledWith('aria-controls', sayt.autocompleteId);
-      });
+      expect(setAttribute).to.be.calledWith('aria-controls', sayt.autocompleteId);
+    });
 
-      it('should not add the ID of the autocomplete component to aria-controls if autocomplete is hidden', () => {
-        sayt.hideAutocomplete = true;
+    it('should not add the ID of the autocomplete component to aria-controls if autocomplete is hidden', () => {
+      sayt.hideAutocomplete = true;
 
-        sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAriaAttributes(searchbox);
 
-        expect(setAttribute).to.not.be.calledWith('aria-controls', sayt.autocompleteId);
-      });
+      expect(setAttribute).to.not.be.calledWith('aria-controls', sayt.autocompleteId);
+    });
 
-      it('should not remove existing aria-controls values', () => {
-        getAttribute.withArgs('aria-controls').returns('otherid otherotherid');
+    it('should not remove existing aria-controls values', () => {
+      getAttribute.withArgs('aria-controls').returns('otherid otherotherid');
 
-        sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAriaAttributes(searchbox);
 
-        expect(setAttribute).to.be.calledWith('aria-controls', `otherid otherotherid ${sayt.autocompleteId}`);
-      });
+      expect(setAttribute).to.be.calledWith('aria-controls', `otherid otherotherid ${sayt.autocompleteId}`);
+    });
 
-      it('should not duplicate aria-controls values', () => {
-        getAttribute.withArgs('aria-controls').returns(`${sayt.autocompleteId} otherid`);
+    it('should not duplicate aria-controls values', () => {
+      getAttribute.withArgs('aria-controls').returns(`${sayt.autocompleteId} otherid`);
 
-        sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAriaAttributes(searchbox);
 
-        expect(setAttribute).to.not.be.calledWith('aria-controls', sinon.match(new RegExp(`${sayt.autocompleteId}.*${sayt.autocompleteId}`)));
-      });
+      expect(setAttribute).to.not.be.calledWith('aria-controls', sinon.match(new RegExp(`${sayt.autocompleteId}.*${sayt.autocompleteId}`)));
+    });
 
-      it('should add combobox role', () => {
-        sayt.setInitialSearchboxAriaAttributes(searchbox);
+    it('should add combobox role', () => {
+      sayt.setInitialSearchboxAriaAttributes(searchbox);
 
-        expect(setAttribute).to.be.calledWith('role', 'combobox');
-      });
+      expect(setAttribute).to.be.calledWith('role', 'combobox');
+    });
 
-      it('should not remove existing roles', () => {
-        getAttribute.withArgs('role').returns('widget');
+    it('should not remove existing roles', () => {
+      getAttribute.withArgs('role').returns('widget');
 
-        sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAriaAttributes(searchbox);
 
-        expect(setAttribute).to.be.calledWith('role', 'widget combobox');
-      });
+      expect(setAttribute).to.be.calledWith('role', 'widget combobox');
+    });
 
-      it('should not duplicate roles', () => {
-        getAttribute.withArgs('role').returns('combobox widget');
+    it('should not duplicate roles', () => {
+      getAttribute.withArgs('role').returns('combobox widget');
 
-        sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAriaAttributes(searchbox);
 
-        expect(setAttribute).to.not.be.calledWith('role', sinon.match(new RegExp(`combobox.*combobox`)));
-      });
+      expect(setAttribute).to.not.be.calledWith('role', sinon.match(new RegExp(`combobox.*combobox`)));
+    });
 
-      it('should set aria-expanded to the value of visible', () => {
-        sayt.visible = true;
+    it('should set aria-expanded to the value of visible', () => {
+      sayt.visible = true;
 
-        sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAriaAttributes(searchbox);
 
-        expect(setAttribute).to.be.calledWith('aria-expanded', 'true');
-      });
+      expect(setAttribute).to.be.calledWith('aria-expanded', 'true');
+    });
 
-      it('should set aria-haspopup to listbox', () => {
-        sayt.setInitialSearchboxAriaAttributes(searchbox);
+    it('should set aria-haspopup to listbox', () => {
+      sayt.setInitialSearchboxAriaAttributes(searchbox);
 
-        expect(setAttribute).to.be.calledWith('aria-haspopup', 'listbox');
-      });
+      expect(setAttribute).to.be.calledWith('aria-haspopup', 'listbox');
     });
 
     it('should not throw when no searchbox ID is given', () => {
