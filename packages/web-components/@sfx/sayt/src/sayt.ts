@@ -248,6 +248,18 @@ export default class Sayt extends LitElement {
     searchbox.setAttribute('role', roles.join(' '));
   }
 
+  /**
+   * Modifies various ARIA attributes to remove values set by this component
+   * on the searchbox with the given ID.
+   * These attributes are:
+   *
+   * - `aria-controls`
+   * - `aria-expanded`
+   * - `aria-haspopup`
+   * - `role`
+   *
+   * @param searchboxId The ID of the paired searchbox.
+   */
   protected removeSearchboxAriaAttributes(searchboxId: string): void {
     if (!searchboxId) return;
 
