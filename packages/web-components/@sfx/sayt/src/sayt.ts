@@ -251,6 +251,8 @@ export default class Sayt extends LitElement {
   protected removeSearchboxAriaAttributes(searchboxId: string): void {
     const searchbox = document.getElementById(searchboxId);
 
+    searchbox.removeAttribute('aria-haspopup');
+
     const controls = searchbox.getAttribute('aria-controls');
     const filteredControlsIds = (controls ? controls.split(' ') : [])
       .filter((id) => id !== this.autocompleteId)

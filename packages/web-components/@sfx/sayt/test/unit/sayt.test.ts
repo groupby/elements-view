@@ -376,14 +376,18 @@ describe('Sayt Component', () => {
   describe('removeSearchboxAriaAttributes()', () => {
     const searchbox = 'searchbox';
     let getAttribute;
+    let removeAttribute;
     let setAttribute;
 
     beforeEach(() => {
       getAttribute = stub();
       getAttribute.withArgs('aria-controls').returns(`${sayt.autocompleteId} otherid`);
       getAttribute.withArgs('role').returns('combobox widget');
+      removeAttribute = stub();
       setAttribute = spy();
-      stub(document, 'getElementById').withArgs(searchbox).returns({ getAttribute, setAttribute });
+      stub(document, 'getElementById')
+        .withArgs(searchbox)
+        .returns({ getAttribute, setAttribute, removeAttribute });
     });
 
     it('should only remove the ID of the autocomplete component from aria-controls', () => {
@@ -396,6 +400,12 @@ describe('Sayt Component', () => {
       sayt.removeSearchboxAriaAttributes(searchbox);
 
       expect(setAttribute).to.be.calledWith('role', 'widget');
+    });
+
+    it('should remove the aria-haspopup attribute', () => {
+      sayt.removeSearchboxAriaAttributes(searchbox);
+
+      expect(removeAttribute).to.be.calledWith('aria-haspopup');
     });
   });
 
