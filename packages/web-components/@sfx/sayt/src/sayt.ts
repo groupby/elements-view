@@ -223,6 +223,13 @@ export default class Sayt extends LitElement {
       controlsIds.push(this.autocompleteId);
     }
     searchbox.setAttribute('aria-controls', controlsIds.join(' '));
+
+    const role = searchbox.getAttribute('role');
+    const roles = role ? role.split(' ') : [];
+    if (!roles.includes('combobox')) {
+      roles.push('combobox');
+      searchbox.setAttribute('role', roles.join(' '));
+    }
   }
 
   /**

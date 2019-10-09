@@ -265,6 +265,7 @@ describe('Sayt Component', () => {
         searchbox = sayt.searchbox = 'some-searchbox';
         getAttribute = stub();
         getAttribute.withArgs('aria-controls').returns('');
+        getAttribute.withArgs('role').returns('');
         setAttribute = spy();
         stub(document, 'getElementById').withArgs(searchbox).returns({ getAttribute, setAttribute });
       });
@@ -297,6 +298,28 @@ describe('Sayt Component', () => {
         sayt.setInitialSearchboxAriaAttributes();
 
         expect(setAttribute).to.not.be.calledWith('aria-controls', sinon.match(new RegExp(`${sayt.autocompleteId}.*${sayt.autocompleteId}`)));
+      });
+
+      it('should add combobox role', () => {
+        sayt.setInitialSearchboxAriaAttributes();
+
+        expect(setAttribute).to.be.calledWith('role', 'combobox');
+      });
+
+      it('should not remove existing roles', () => {
+        getAttribute.withArgs('role').returns('widget');
+
+        sayt.setInitialSearchboxAriaAttributes();
+
+        expect(setAttribute).to.be.calledWith('role', 'widget combobox');
+      });
+
+      it('should not duplicate roles', () => {
+        getAttribute.withArgs('role').returns('combobox widget');
+
+        sayt.setInitialSearchboxAriaAttributes();
+
+        expect(setAttribute).to.not.be.calledWith('role', sinon.match(new RegExp(`combobox.*combobox`)));
       });
 
       it('should set aria-expanded to the value of visible', () => {
