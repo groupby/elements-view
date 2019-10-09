@@ -143,7 +143,7 @@ export default class Sayt extends LitElement {
     window.addEventListener('keydown', this.processKeyEvent);
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.setSearchboxListener(this.searchbox, 'add');
-    this.setInitialSearchboxAriaAttributes();
+    this.setInitialSearchboxAriaAttributes(this.searchbox);
   }
 
   /**
@@ -182,7 +182,7 @@ export default class Sayt extends LitElement {
       this.setSearchboxListener(oldSearchbox, 'remove');
 
       this.setSearchboxListener(this.searchbox, 'add');
-      this.setInitialSearchboxAriaAttributes();
+      this.setInitialSearchboxAriaAttributes(this.searchbox);
     }
     if (changedProps.has('debounce')) {
       this.setDebouncedMethods();
@@ -218,14 +218,16 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Sets various ARIA attributes on the search box whose ID is given by
-   * [[searchbox]]. Only the attributes that are relevant the first time
-   * that the search box is decorated are added.
+   * Sets various ARIA attributes on the searchbox with the given ID.
+   * Only the attributes that are relevant the first time
+   * that the searchbox is decorated are added.
+   *
+   * @param searchboxId The ID of the paired searchbox.
    */
-  protected setInitialSearchboxAriaAttributes(): void {
-    if (!this.searchbox) return;
+  protected setInitialSearchboxAriaAttributes(searchboxId: string): void {
+    if (!searchboxId) return;
 
-    const searchbox = document.getElementById(this.searchbox);
+    const searchbox = document.getElementById(searchboxId);
     if (!searchbox) return;
 
     searchbox.setAttribute('aria-haspopup', 'listbox');

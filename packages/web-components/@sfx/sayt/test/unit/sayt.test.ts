@@ -277,13 +277,12 @@ describe('Sayt Component', () => {
   });
 
   describe('setInitialSearchboxAriaAttributes()', () => {
+    const searchbox = 'searchbox';
     describe('ARIA attributes', () => {
-      let searchbox;
       let getAttribute;
       let setAttribute;
 
       beforeEach(() => {
-        searchbox = sayt.searchbox = 'some-searchbox';
         getAttribute = stub();
         getAttribute.withArgs('aria-controls').returns('');
         getAttribute.withArgs('role').returns('');
@@ -292,7 +291,7 @@ describe('Sayt Component', () => {
       });
 
       it('should add the ID of the autocomplete component to aria-controls', () => {
-        sayt.setInitialSearchboxAriaAttributes();
+        sayt.setInitialSearchboxAriaAttributes(searchbox);
 
         expect(setAttribute).to.be.calledWith('aria-controls', sayt.autocompleteId);
       });
@@ -300,7 +299,7 @@ describe('Sayt Component', () => {
       it('should not add the ID of the autocomplete component to aria-controls if autocomplete is hidden', () => {
         sayt.hideAutocomplete = true;
 
-        sayt.setInitialSearchboxAriaAttributes();
+        sayt.setInitialSearchboxAriaAttributes(searchbox);
 
         expect(setAttribute).to.not.be.calledWith('aria-controls', sayt.autocompleteId);
       });
@@ -308,7 +307,7 @@ describe('Sayt Component', () => {
       it('should not remove existing aria-controls values', () => {
         getAttribute.withArgs('aria-controls').returns('otherid otherotherid');
 
-        sayt.setInitialSearchboxAriaAttributes();
+        sayt.setInitialSearchboxAriaAttributes(searchbox);
 
         expect(setAttribute).to.be.calledWith('aria-controls', `otherid otherotherid ${sayt.autocompleteId}`);
       });
@@ -316,13 +315,13 @@ describe('Sayt Component', () => {
       it('should not duplicate aria-controls values', () => {
         getAttribute.withArgs('aria-controls').returns(`${sayt.autocompleteId} otherid`);
 
-        sayt.setInitialSearchboxAriaAttributes();
+        sayt.setInitialSearchboxAriaAttributes(searchbox);
 
         expect(setAttribute).to.not.be.calledWith('aria-controls', sinon.match(new RegExp(`${sayt.autocompleteId}.*${sayt.autocompleteId}`)));
       });
 
       it('should add combobox role', () => {
-        sayt.setInitialSearchboxAriaAttributes();
+        sayt.setInitialSearchboxAriaAttributes(searchbox);
 
         expect(setAttribute).to.be.calledWith('role', 'combobox');
       });
@@ -330,7 +329,7 @@ describe('Sayt Component', () => {
       it('should not remove existing roles', () => {
         getAttribute.withArgs('role').returns('widget');
 
-        sayt.setInitialSearchboxAriaAttributes();
+        sayt.setInitialSearchboxAriaAttributes(searchbox);
 
         expect(setAttribute).to.be.calledWith('role', 'widget combobox');
       });
@@ -338,7 +337,7 @@ describe('Sayt Component', () => {
       it('should not duplicate roles', () => {
         getAttribute.withArgs('role').returns('combobox widget');
 
-        sayt.setInitialSearchboxAriaAttributes();
+        sayt.setInitialSearchboxAriaAttributes(searchbox);
 
         expect(setAttribute).to.not.be.calledWith('role', sinon.match(new RegExp(`combobox.*combobox`)));
       });
@@ -346,13 +345,13 @@ describe('Sayt Component', () => {
       it('should set aria-expanded to the value of visible', () => {
         sayt.visible = true;
 
-        sayt.setInitialSearchboxAriaAttributes();
+        sayt.setInitialSearchboxAriaAttributes(searchbox);
 
         expect(setAttribute).to.be.calledWith('aria-expanded', 'true');
       });
 
       it('should set aria-haspopup to listbox', () => {
-        sayt.setInitialSearchboxAriaAttributes();
+        sayt.setInitialSearchboxAriaAttributes(searchbox);
 
         expect(setAttribute).to.be.calledWith('aria-haspopup', 'listbox');
       });
@@ -370,7 +369,7 @@ describe('Sayt Component', () => {
       const searchbox = sayt.searchbox = 'searchbox';
       stub(document, 'getElementById').withArgs(searchbox).returns(null);
 
-      const callback = () => sayt.setInitialSearchboxAriaAttributes();
+      const callback = () => sayt.setInitialSearchboxAriaAttributes(searchbox);
 
       expect(callback).to.not.throw();
     });
