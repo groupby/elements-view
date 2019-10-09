@@ -181,6 +181,7 @@ export default class Sayt extends LitElement {
       const oldSearchbox = changedProps.get('searchbox') as string;
 
       this.setSearchboxListener(oldSearchbox, 'remove');
+      this.removeSearchboxAriaAttributes(oldSearchbox);
 
       this.setSearchboxListener(this.searchbox, 'add');
       this.setInitialSearchboxAriaAttributes(this.searchbox);

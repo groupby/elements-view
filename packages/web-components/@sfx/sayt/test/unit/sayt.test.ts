@@ -202,6 +202,14 @@ describe('Sayt Component', () => {
         expect(setSearchboxListener).to.be.calledWith(newSearchbox, 'add');
       });
 
+      it('should remove ARIA attributes from the old searchbox', () => {
+        const removeSearchboxAriaAttributes = stub(sayt, 'removeSearchboxAriaAttributes');
+
+        sayt.updated(new Map([['searchbox', oldSearchbox]]));
+
+        expect(removeSearchboxAriaAttributes).to.be.calledWith(oldSearchbox);
+      });
+
       it('should add ARIA attributes to a new searchbox', () => {
         const setInitialSearchboxAriaAttributes = stub(sayt, 'setInitialSearchboxAriaAttributes');
 
