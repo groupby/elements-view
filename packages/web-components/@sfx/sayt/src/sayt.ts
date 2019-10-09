@@ -249,6 +249,7 @@ export default class Sayt extends LitElement {
   }
 
   protected removeSearchboxAriaAttributes(searchboxId: string): void {
+    if (!searchboxId) return;
     const searchbox = document.getElementById(searchboxId);
 
     searchbox.removeAttribute('aria-haspopup');

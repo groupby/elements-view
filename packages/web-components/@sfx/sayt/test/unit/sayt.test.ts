@@ -357,9 +357,7 @@ describe('Sayt Component', () => {
     });
 
     it('should not throw when no searchbox ID is given', () => {
-      sayt.searchbox = '';
-
-      const callback = () => sayt.setInitialSearchboxAriaAttributes();
+      const callback = () => sayt.setInitialSearchboxAriaAttributes('');
 
       expect(callback).to.not.throw();
     });
@@ -412,6 +410,12 @@ describe('Sayt Component', () => {
       sayt.removeSearchboxAriaAttributes(searchbox);
 
       expect(removeAttribute).to.be.calledWith('aria-expanded');
+    });
+
+    it('should not throw when no searchbox ID is given', () => {
+      const callback = () => sayt.removeSearchboxAriaAttributes('');
+
+      expect(callback).to.not.throw();
     });
   });
 
