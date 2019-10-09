@@ -407,6 +407,12 @@ describe('Sayt Component', () => {
 
       expect(removeAttribute).to.be.calledWith('aria-haspopup');
     });
+
+    it('should remove the aria-expanded attribute', () => {
+      sayt.removeSearchboxAriaAttributes(searchbox);
+
+      expect(removeAttribute).to.be.calledWith('aria-expanded');
+    });
   });
 
   describe('showSayt()', () => {

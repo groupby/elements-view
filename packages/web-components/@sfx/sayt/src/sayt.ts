@@ -252,6 +252,7 @@ export default class Sayt extends LitElement {
     const searchbox = document.getElementById(searchboxId);
 
     searchbox.removeAttribute('aria-haspopup');
+    searchbox.removeAttribute('aria-expanded');
 
     const controls = searchbox.getAttribute('aria-controls');
     const filteredControlsIds = (controls ? controls.split(' ') : [])
