@@ -204,6 +204,11 @@ export default class Sayt extends LitElement {
     }
   }
 
+  protected setInitialSearchboxAriaAttributes(): void {
+    const searchbox = document.getElementById(this.searchbox);
+    searchbox.setAttribute('aria-haspopup', 'listbox');
+  }
+
   /**
    * Changes the [[visible]] property to `true`.
    */

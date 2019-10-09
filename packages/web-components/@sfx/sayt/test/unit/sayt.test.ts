@@ -259,8 +259,18 @@ describe('Sayt Component', () => {
     describe('ARIA attributes', () => {
       it('should add the ID of the autocomplete component to aria-controls');
       it('should set aria-expanded to the value of visible');
-      it('should set aria-haspopup to listbox');
-      it('should not remove existing values');
+
+      it('should set aria-haspopup to listbox', () => {
+        const searchbox = sayt.searchbox = 'some-searchbox';
+        const setAttribute = spy();
+        stub(document, 'getElementById').withArgs(searchbox).returns({ setAttribute });
+
+        sayt.setInitialSearchboxAriaAttributes();
+
+        expect(setAttribute).to.be.calledWith('aria-haspopup', 'listbox');
+      });
+
+      it('should not remove existing aria-controls values');
     });
 
     it('should not throw when no searchbox ID is given');
