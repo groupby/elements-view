@@ -186,6 +186,12 @@ export default class Sayt extends LitElement {
     }
   }
 
+  /**
+   * Generates the ID for this component's autocomplete component. This
+   * ID does not change as long as [[componentId]] does not change.
+   *
+   * @returns An ID suitable for use on the autocomplete component.
+   */
   private get autocompleteId(): string {
     return `sfx-sayt-${this.componentId}-autocomplete`;
   }
@@ -208,6 +214,11 @@ export default class Sayt extends LitElement {
     }
   }
 
+  /**
+   * Sets various ARIA attributes on the search box whose ID is given by
+   * [[searchbox]]. Only the attributes that are relevant the first time
+   * that the search box is decorated are added.
+   */
   protected setInitialSearchboxAriaAttributes(): void {
     if (!this.searchbox) return;
 
