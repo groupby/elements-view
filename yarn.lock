@@ -781,9 +781,9 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
-"@sfx/events@groupby/sfx-events#6cc0210443a350182313f97e5d6862e551a4c26d":
+"@sfx/events@groupby/sfx-events#c4a4853a424992db9c170fea6990dc2a52c3061e":
   version "0.0.0"
-  resolved "https://codeload.github.com/groupby/sfx-events/tar.gz/6cc0210443a350182313f97e5d6862e551a4c26d"
+  resolved "https://codeload.github.com/groupby/sfx-events/tar.gz/c4a4853a424992db9c170fea6990dc2a52c3061e"
   dependencies:
     groupby-api "^2.6.2"
     sayt "^0.1.9"
