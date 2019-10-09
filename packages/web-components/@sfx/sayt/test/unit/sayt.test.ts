@@ -376,6 +376,7 @@ describe('Sayt Component', () => {
     let getAttribute;
     let removeAttribute;
     let setAttribute;
+    let getElementById;
 
     beforeEach(() => {
       getAttribute = stub();
@@ -383,7 +384,7 @@ describe('Sayt Component', () => {
       getAttribute.withArgs('role').returns('combobox widget');
       removeAttribute = stub();
       setAttribute = spy();
-      stub(document, 'getElementById')
+      getElementById = stub(document, 'getElementById')
         .withArgs(searchbox)
         .returns({ getAttribute, setAttribute, removeAttribute });
     });
@@ -414,6 +415,14 @@ describe('Sayt Component', () => {
 
     it('should not throw when no searchbox ID is given', () => {
       const callback = () => sayt.removeSearchboxAriaAttributes('');
+
+      expect(callback).to.not.throw();
+    });
+
+    it('should not throw when no searchbox exists', () => {
+      getElementById.withArgs(searchbox).returns(null);
+
+      const callback = () => sayt.removeSearchboxAriaAttributes(searchbox);
 
       expect(callback).to.not.throw();
     });
