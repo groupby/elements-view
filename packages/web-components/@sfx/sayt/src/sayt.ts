@@ -221,6 +221,12 @@ export default class Sayt extends LitElement {
    * Sets various ARIA attributes on the searchbox with the given ID.
    * Only the attributes that are relevant the first time
    * that the searchbox is decorated are added.
+   * These attributes are:
+   *
+   * - `aria-controls`
+   * - `aria-expanded`
+   * - `aria-haspopup`
+   * - `role`
    *
    * @param searchboxId The ID of the paired searchbox.
    */
