@@ -178,15 +178,28 @@ describe('Sayt Component', () => {
     });
 
     describe('searchbox', () => {
+      const newSearchbox = 'searchbox1';
+      const oldSearchbox = 'searchbox0';
+
+      beforeEach(() => {
+        sayt.searchbox = newSearchbox;
+      })
+
       it('should replace event listener', () => {
         const setSearchboxListener = stub(sayt, 'setSearchboxListener');
-        const newSearchbox = sayt.searchbox = 'searchbox1';
-        const oldSearchbox = '';
 
         sayt.updated(new Map([['searchbox', oldSearchbox]]));
 
         expect(setSearchboxListener).to.be.calledWith(oldSearchbox, 'remove');
         expect(setSearchboxListener).to.be.calledWith(newSearchbox, 'add');
+      });
+
+      it('should add ARIA attributes to a new searchbox', () => {
+        const setInitialSearchboxAriaAttributes = stub(sayt, 'setInitialSearchboxAriaAttributes');
+
+        sayt.updated(new Map([['searchbox', oldSearchbox]]));
+
+        expect(setInitialSearchboxAriaAttributes).to.be.called;
       });
     });
 
