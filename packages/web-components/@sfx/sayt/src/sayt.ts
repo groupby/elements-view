@@ -216,7 +216,7 @@ export default class Sayt extends LitElement {
 
     searchbox.setAttribute('aria-haspopup', 'listbox');
     searchbox.setAttribute('aria-expanded', String(this.visible));
-    searchbox.setAttribute('aria-controls', this.autocompleteId);
+    if (!this.hideAutocomplete) searchbox.setAttribute('aria-controls', this.autocompleteId);
   }
 
   /**

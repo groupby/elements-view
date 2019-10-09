@@ -272,6 +272,14 @@ describe('Sayt Component', () => {
         expect(setAttribute).to.be.calledWith('aria-controls', sayt.autocompleteId);
       });
 
+      it('should not add the ID of the autocomplete component to aria-controls if autocomplete is hidden', () => {
+        sayt.hideAutocomplete = true;
+
+        sayt.setInitialSearchboxAriaAttributes();
+
+        expect(setAttribute).to.not.be.calledWith('aria-controls', sayt.autocompleteId);
+      });
+
       it('should not remove existing aria-controls values');
 
       it('should set aria-expanded to the value of visible', () => {
