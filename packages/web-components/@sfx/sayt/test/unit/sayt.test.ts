@@ -373,6 +373,26 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe('removeSearchboxAriaAttributes()', () => {
+    const searchbox = 'searchbox';
+    let getAttribute;
+    let setAttribute;
+
+    beforeEach(() => {
+      getAttribute = stub();
+      getAttribute.withArgs('aria-controls').returns(`${sayt.autocompleteId} otherid`);
+      getAttribute.withArgs('role').returns('combobox widget');
+      setAttribute = spy();
+      stub(document, 'getElementById').withArgs(searchbox).returns({ getAttribute, setAttribute });
+    });
+
+    it('should only remove the ID of the autocomplete component from aria-controls', () => {
+      sayt.removeSearchboxAriaAttributes(searchbox);
+
+      expect(setAttribute).to.be.calledWith('aria-controls', 'otherid');
+    });
+  });
+
   describe('showSayt()', () => {
     it('should set the visible prop to true', () => {
       sayt.visible = false;

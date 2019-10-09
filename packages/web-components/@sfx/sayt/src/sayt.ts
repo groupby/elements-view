@@ -248,6 +248,16 @@ export default class Sayt extends LitElement {
     searchbox.setAttribute('role', roles.join(' '));
   }
 
+  protected removeSearchboxAriaAttributes(searchboxId: string): void {
+    const searchbox = document.getElementById(searchboxId);
+
+    const controls = searchbox.getAttribute('aria-controls');
+    const filteredControlsIds = (controls ? controls.split(' ') : [])
+      .filter((id) => id !== this.autocompleteId)
+      .join(' ');
+    searchbox.setAttribute('aria-controls', filteredControlsIds);
+  }
+
   /**
    * Changes the [[visible]] property to `true`.
    */
