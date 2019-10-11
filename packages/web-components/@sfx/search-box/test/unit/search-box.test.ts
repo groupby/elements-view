@@ -1,6 +1,5 @@
 import { TemplateResult } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
 import {
   SEARCHBOX_CLEAR,
   SEARCHBOX_CLICK,
