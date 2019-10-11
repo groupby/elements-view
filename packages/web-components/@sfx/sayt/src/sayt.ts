@@ -491,15 +491,15 @@ export default class Sayt extends LitElement {
   processKeyEvent(event: KeyboardEvent): void {
     switch (event.key) {
       case 'Escape':
-      case 'Esc': // IE/Edge
+      case 'Esc': // IE
         this.hideSayt();
         break;
       case 'ArrowUp':
-      case 'Up': // IE/Edge
+      case 'Up': // IE
         this.selectPreviousAutocompleteTerm();
         break;
       case 'ArrowDown':
-      case 'Down': // IE/Edge
+      case 'Down': // IE
         this.selectNextAutocompleteTerm();
         break;
       default: // Do nothing
