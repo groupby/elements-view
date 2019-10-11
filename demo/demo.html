@@ -36,9 +36,10 @@
 
       function parseVariants(variants) {
         let items = variants.map((v) => {
+          console.log('v', v)
           let varObj = {};
           // varObj.color = '#28e';
-          varObj.color = v.swatchImage;
+          varObj.color = v.swatchImage || v.productImage;
           varObj.text = v.standardColor;
           varObj.product = { 
             imageSrc: v.productImage,
@@ -58,9 +59,6 @@
           return;
         }
         const { data, firstVariant, nonvisualVariants, visualVariants } = filter;
-        // console.log('filter in product transformer', filter)
-        // console.log('parseVariants', parseVariants(visualVariants))
-        // add handle variant function
         return {
           title: data.title,
           price: nonvisualVariants[0].retailPrice,
@@ -68,32 +66,9 @@
           imageAlt: data.title,
           productUrl: firstVariant.productImage,
           variants: {
-            type: 'image',
+            type: 'text',
             items: parseVariants(visualVariants),
           }
-        //   variants: {
-        //     type: 'color',
-        //     items: [
-        //       {
-        //         color: '#c00',
-        //         text: 'Red',
-        //         product: {
-        //           imageSrc:
-        //             'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-        //           imageAlt: 'A spicy red shoe'
-        //         }
-        //       },
-        //       {
-        //         color: '#28e',
-        //         text: 'Blue',
-        //         product: {
-        //           imageSrc:
-        //             'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
-        //           imageAlt: 'Sonic blue, gotta go fast'
-        //         }
-        //       }
-        //     ]
-        //   }
         }
       }
 

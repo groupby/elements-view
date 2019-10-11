@@ -112,40 +112,6 @@ export default class Product extends LitElement {
         <p class="sfx-price">${price}</p>
       ${this.additionalInfo()}
     `;
-//     return html`
-//       <style>
-//         .product-variants {
-//           padding: 0;
-//         }
-//       </style>
-//       <slot name="image">
-//         ${imageSrc
-//     ? html`<img
-//             class="sfx-image"
-//             src="${imageSrc}"
-//             alt="${imageAlt}" />`
-//     : ''}
-//       </slot>
-//       <slot name="variants">
-//         <ul class="sfx-product-variants">
-//           ${variants
-//     ? variants.items.map((v) => html`<sfx-product-variant
-//                 @click="${this.updateVariant(v)}"
-//                 type="${variants.type}"
-//                 .variant="${v}"
-//               ></sfx-product-variant>`)
-//     : ''
-// }
-//         </ul>
-//       </slot>
-//       <slot name="title">
-//         ${this.urlWrap(productUrl, html`<h3 class="sfx-title">${title}</h3>`)}
-//       </slot>
-//       <slot name="price">
-//         <p class="sfx-price">${price}</p>
-//       </slot>
-//       ${this.additionalInfo()}
-//     `;
   }
 
   createRenderRoot(): Element|ShadowRoot {
