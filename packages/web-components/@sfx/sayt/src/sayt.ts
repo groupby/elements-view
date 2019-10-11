@@ -542,6 +542,9 @@ export default class Sayt extends LitElement {
     searchbox.setAttribute('aria-activedescendant', autocomplete.selectedId);
   }
 
+  /**
+   * Selects the next autocomplete term. SAYT is shown if it is hidden.
+   */
   selectNextAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
 
