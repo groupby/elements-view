@@ -15350,10 +15350,11 @@ var events_1 = __webpack_require__(/*! @sfx/events */ "../sfx-events/dist/index.
  */
 var SaytDriverPlugin = /** @class */ (function () {
     /**
-     * Binds relevant functions. Sets transformProduct property if a
+     * Binds relevant functions. Sets [[transformProduct]] property if a
      * product transformer function is passed.
      */
     function SaytDriverPlugin(options) {
+        if (options === void 0) { options = {}; }
         /**
          * Name of the events plugin.
          */
@@ -15364,21 +15365,16 @@ var SaytDriverPlugin = /** @class */ (function () {
         this.defaultSearchConfig = {
             fields: ['*'],
         };
-        /**
-         * Default product transformer identity function.
-         * Intended to be overwritten by passing a custom product transformer.
-         *
-         * @param product The product to be returned as-is.
-         * @returns The received product object.
-         */
-        this.transformProduct = (function (product) { return product; });
         this.fetchAutocompleteTerms = this.fetchAutocompleteTerms.bind(this);
         this.fetchProductData = this.fetchProductData.bind(this);
         this.autocompleteCallback = this.autocompleteCallback.bind(this);
         this.searchCallback = this.searchCallback.bind(this);
-        if (options && options.productTransformer) {
-            this.transformProduct = options.productTransformer;
-        }
+        var 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        _a = options.productTransformer, 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        productTransformer = _a === void 0 ? (function (product) { return product; }) : _a;
+        this.transformProduct = productTransformer;
     }
     Object.defineProperty(SaytDriverPlugin.prototype, "metadata", {
         get: function () {
@@ -15427,10 +15423,8 @@ var SaytDriverPlugin = /** @class */ (function () {
     SaytDriverPlugin.prototype.fetchAutocompleteTerms = function (event) {
         var _this = this;
         var _a = event.detail, query = _a.query, group = _a.group, config = _a.config;
-        console.log("in fetchAutocompleteTerms:", query, group, config);
         this.sendAutocompleteApiRequest(query, config)
             .then(function (results) {
-            console.log('Received autocomplete terms:', results);
             var payload = { results: results, group: group };
             _this.core[_this.eventsPluginName].dispatchEvent(events_1.AUTOCOMPLETE_RESPONSE, payload);
         })
@@ -15498,17 +15492,15 @@ var SaytDriverPlugin = /** @class */ (function () {
     };
     /**
      * Extracts query and products from the given response.
-     * Calls `this.transformProduct` on each product found in the response.
-     * Filters out any products that map to a falsy value.
+     * It calls [[transformProduct]] on each product found in the response
+     * and filters out any that map to a falsy value.
      *
      * @param response An object containing the original search response.
      * @returns An object containing an array of valid simplified products and the original response.
      */
     SaytDriverPlugin.prototype.searchCallback = function (searchResponse) {
         var records = searchResponse.records;
-        var mappedRecords = records
-            .map(this.transformProduct)
-            .filter(Boolean);
+        var mappedRecords = records.map(this.transformProduct).filter(Boolean);
         return {
             products: mappedRecords,
             originalResponse: searchResponse,
@@ -15648,6 +15640,7 @@ var SearchDriverPlugin = /** @class */ (function () {
      * callbacks.
      */
     function SearchDriverPlugin(options) {
+        if (options === void 0) { options = {}; }
         /**
          * Name of the events plugin.
          */
@@ -15658,19 +15651,14 @@ var SearchDriverPlugin = /** @class */ (function () {
         this.defaultSearchConfig = {
             fields: ['*'],
         };
-        /**
-         * Default product transformer identity function.
-         * Intended to be overwritten by passing a custom product transformer.
-         *
-         * @param product The product to be returned as-is.
-         * @returns The received product object.
-         */
-        this.transformProduct = (function (product) { return product; });
         this.fetchSearchData = this.fetchSearchData.bind(this);
         this.searchCallback = this.searchCallback.bind(this);
-        if (options && options.productTransformer) {
-            this.transformProduct = options.productTransformer;
-        }
+        var 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        _a = options.productTransformer, 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        productTransformer = _a === void 0 ? (function (product) { return product; }) : _a;
+        this.transformProduct = productTransformer;
     }
     Object.defineProperty(SearchDriverPlugin.prototype, "metadata", {
         get: function () {
@@ -15738,7 +15726,7 @@ var SearchDriverPlugin = /** @class */ (function () {
     };
     /**
      * Extracts query and products from the given response.
-     * Calls `this.transformProduct` on each product found in the response.
+     * Calls [[transformProduct]] on each product found in the response.
      * Filters out any products that map to a falsy value.
      *
      * @param response An object containing the original query and product records.
@@ -15746,9 +15734,7 @@ var SearchDriverPlugin = /** @class */ (function () {
      */
     SearchDriverPlugin.prototype.searchCallback = function (response) {
         var records = response.records;
-        var mappedRecords = records
-            .map(this.transformProduct)
-            .filter(Boolean);
+        var mappedRecords = records.map(this.transformProduct).filter(Boolean);
         return {
             originalResponse: response,
             products: mappedRecords,
