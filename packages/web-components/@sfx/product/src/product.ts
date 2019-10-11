@@ -58,6 +58,7 @@ export default class Product extends LitElement {
    */
   additionalInfo(): TemplateResult[] {
     const { product } = this;
+    console.log('product in additionalInfo - product tile', product)
 
     const properties: Set<keyof ProductModel> = new Set([
       'title',
@@ -67,7 +68,7 @@ export default class Product extends LitElement {
       'imageAlt',
       'imageSrc',
     ]);
-
+    console.log('properties', properties)
     return Object.keys(product).filter((p) => !properties.has(p)).map((p) => html`
       <span class="sfx-${toLowerCaseKebab(p)}">${product[p]}</span>
     `);
