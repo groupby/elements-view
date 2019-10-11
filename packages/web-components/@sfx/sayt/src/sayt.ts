@@ -502,6 +502,13 @@ export default class Sayt extends LitElement {
     }
   }
 
+  /**
+   * Changes the autocomplete selection based on the given event.
+   * When `ArrowUp` is received, the previous term is selected.
+   * When `ArrowDown` is received, the next term is selected.
+   *
+   * @param event The keyboard event to act on.
+   */
   changeSelection(event: KeyboardEvent): void {
     switch (event.key) {
       case 'ArrowUp':
