@@ -129,14 +129,16 @@ export default class Autocomplete extends LitElement {
   }
 
   /**
-   * Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the Sayt autocomplete term.
-   *
-   * @param event An event that contains a Sayt autocomplete term.
+   * Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the selected term.
    */
-  handleHoverTerm(event: MouseEvent): void {
-    const target = event.target as HTMLElement;
-    if (target.tagName.toLowerCase() !== 'li') return;
-    const term = target.innerText;
+  handleHoverTerm(): void {
+    if (this.selectedIndex < 0 || this.selectedIndex >= this.length) return;
+
+    const allItems = this.results
+      .map((group) => group.items)
+      .reduce((accItems, items) => [...accItems, ...items], []);
+    const term = allItems[this.selectedIndex].label;
+
     const sentEvent = new CustomEvent<AutocompleteActiveTermPayload>(AUTOCOMPLETE_ACTIVE_TERM, {
       detail: {
         query: term,

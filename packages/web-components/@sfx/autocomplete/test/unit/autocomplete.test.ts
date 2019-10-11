@@ -207,46 +207,65 @@ describe('Autcomplete Component', () => {
     });
   });
 
-  describe('handleHoverTerm', () => {
+  describe('handleHoverTerm()', () => {
     let dispatchEvent;
 
     beforeEach(() => {
       dispatchEvent = stub(autocomplete, 'dispatchEvent');
     });
 
-    it('should not emit an event if not hovering an autocomplete term', () => {
-      const mouseEvent = {
-        target: {
-          tagName: 'H4',
-          innerText: 'some-term',
-        },
-      };
-
-      autocomplete.handleHoverTerm(mouseEvent);
-
-      expect(dispatchEvent).to.not.be.called;
-    });
-
-    it('should emit an event when hovering an autocomplete term', () => {
+    it('should emit an AUTOCOMPLETE_ACTIVE_TERM event with the label of the selected item', () => {
+      const event = { a: 'a' };
       const group = autocomplete.group = 'some-group';
-      const CustomEvent = stub(window, 'CustomEvent').returns({});
-      const mouseEvent = {
-        target: {
-          tagName: 'LI',
-          innerText: 'some-term',
+      const CustomEvent = stub(window, 'CustomEvent').returns(event);
+      autocomplete.selectedIndex = 3;
+      autocomplete.results = [
+        {
+          title: 'a',
+          items: [
+            { label: 'a1' },
+            { label: 'a2' },
+            { label: 'a3' },
+          ],
         },
-      };
+        {
+          title: 'b',
+          items: [
+            { label: 'b1' },
+            { label: 'b2' },
+            { label: 'b3' },
+          ],
+        },
+      ];
 
-      autocomplete.handleHoverTerm(mouseEvent);
+      autocomplete.handleHoverTerm();
 
       expect(CustomEvent).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, {
         detail: {
           group,
-          query: mouseEvent.target.innerText,
+          query: 'b1',
         },
         bubbles: true,
       });
-      expect(dispatchEvent).to.be.calledWith({});
+      expect(dispatchEvent).to.be.calledWith(event);
+    });
+
+    it('should not emit an event if no item is selected', () => {
+      autocomplete.selectedIndex = -1;
+      stub(autocomplete, 'length').get(() => 5);
+
+      autocomplete.handleHoverTerm();
+
+      expect(dispatchEvent).to.not.be.called;
+    });
+
+    it('should not emit an event if selectedIndex is out of bounds', () => {
+      autocomplete.selectedIndex = 10;
+      stub(autocomplete, 'length').get(() => 5);
+
+      autocomplete.handleHoverTerm();
+
+      expect(dispatchEvent).to.not.be.called;
     });
   });
 
