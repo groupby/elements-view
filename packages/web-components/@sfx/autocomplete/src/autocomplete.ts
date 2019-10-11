@@ -131,7 +131,7 @@ export default class Autocomplete extends LitElement {
   /**
    * Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the selected term.
    */
-  handleHoverTerm(): void {
+  dispatchSelectedTerm(): void {
     if (this.selectedIndex < 0 || this.selectedIndex >= this.length) return;
 
     const allItems = this.results

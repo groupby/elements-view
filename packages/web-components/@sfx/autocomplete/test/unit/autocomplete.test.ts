@@ -207,7 +207,7 @@ describe('Autcomplete Component', () => {
     });
   });
 
-  describe('handleHoverTerm()', () => {
+  describe('dispatchSelectedTerm()', () => {
     let dispatchEvent;
 
     beforeEach(() => {
@@ -238,7 +238,7 @@ describe('Autcomplete Component', () => {
         },
       ];
 
-      autocomplete.handleHoverTerm();
+      autocomplete.dispatchSelectedTerm();
 
       expect(CustomEvent).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, {
         detail: {
@@ -254,7 +254,7 @@ describe('Autcomplete Component', () => {
       autocomplete.selectedIndex = -1;
       stub(autocomplete, 'length').get(() => 5);
 
-      autocomplete.handleHoverTerm();
+      autocomplete.dispatchSelectedTerm();
 
       expect(dispatchEvent).to.not.be.called;
     });
@@ -263,7 +263,7 @@ describe('Autcomplete Component', () => {
       autocomplete.selectedIndex = 10;
       stub(autocomplete, 'length').get(() => 5);
 
-      autocomplete.handleHoverTerm();
+      autocomplete.dispatchSelectedTerm();
 
       expect(dispatchEvent).to.not.be.called;
     });
