@@ -68,7 +68,7 @@ export default class Product extends LitElement {
       'imageAlt',
       'imageSrc',
     ]);
-    console.log('properties', properties)
+ 
     return Object.keys(product).filter((p) => !properties.has(p)).map((p) => html`
       <span class="sfx-${toLowerCaseKebab(p)}">${product[p]}</span>
     `);
@@ -83,6 +83,7 @@ export default class Product extends LitElement {
       imageSrc,
       imageAlt,
     } = this.product;
+    console.log('variants in product tile render function', variants)
 
     return html`
       <style>
@@ -90,15 +91,13 @@ export default class Product extends LitElement {
           padding: 0;
         }
       </style>
-      <slot name="image">
+
         ${imageSrc
     ? html`<img
             class="sfx-image"
             src="${imageSrc}"
             alt="${imageAlt}" />`
     : ''}
-      </slot>
-      <slot name="variants">
         <ul class="sfx-product-variants">
           ${variants
     ? variants.items.map((v) => html`<sfx-product-variant
@@ -109,15 +108,44 @@ export default class Product extends LitElement {
     : ''
 }
         </ul>
-      </slot>
-      <slot name="title">
         ${this.urlWrap(productUrl, html`<h3 class="sfx-title">${title}</h3>`)}
-      </slot>
-      <slot name="price">
         <p class="sfx-price">${price}</p>
-      </slot>
       ${this.additionalInfo()}
     `;
+//     return html`
+//       <style>
+//         .product-variants {
+//           padding: 0;
+//         }
+//       </style>
+//       <slot name="image">
+//         ${imageSrc
+//     ? html`<img
+//             class="sfx-image"
+//             src="${imageSrc}"
+//             alt="${imageAlt}" />`
+//     : ''}
+//       </slot>
+//       <slot name="variants">
+//         <ul class="sfx-product-variants">
+//           ${variants
+//     ? variants.items.map((v) => html`<sfx-product-variant
+//                 @click="${this.updateVariant(v)}"
+//                 type="${variants.type}"
+//                 .variant="${v}"
+//               ></sfx-product-variant>`)
+//     : ''
+// }
+//         </ul>
+//       </slot>
+//       <slot name="title">
+//         ${this.urlWrap(productUrl, html`<h3 class="sfx-title">${title}</h3>`)}
+//       </slot>
+//       <slot name="price">
+//         <p class="sfx-price">${price}</p>
+//       </slot>
+//       ${this.additionalInfo()}
+//     `;
   }
 
   createRenderRoot(): Element|ShadowRoot {
