@@ -319,4 +319,15 @@ describe('Autcomplete Component', () => {
       expect(autocomplete.selectedIndex).to.equal(length - 1);
     });
   });
+
+  describe('getTermHoverHandler()', () => {
+    it('shoudld return a handler that sets the selected index', () => {
+      const newSelectedIndex = 3;
+      autocomplete.selectedIndex = -1;
+
+      autocomplete.getTermHoverHandler(newSelectedIndex)();
+
+      expect(autocomplete.selectedIndex).to.equal(newSelectedIndex);
+    });
+  });
 });

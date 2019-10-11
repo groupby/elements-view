@@ -168,6 +168,18 @@ export default class Autocomplete extends LitElement {
   }
 
   /**
+   * Returns a callback that sets [[selectedIndex]] to the given index.
+   *
+   * @param index The index to set.
+   * @returns A callback that sets [[selectedIndex]].
+   */
+  getTermHoverHandler(index: number): () => void {
+    return () => {
+      this.selectedIndex = index;
+    };
+  }
+
+  /**
    * Renders a list of autocomplete items.
    */
   private listRender(
@@ -180,7 +192,13 @@ export default class Autocomplete extends LitElement {
     const searchTermItems = list.items.map((item, index) => {
       const itemIndex = itemStartingIndex + index;
       const ariaSelected = this.selectedIndex === itemIndex ? 'true' : undefined;
-      return html`<li id="${this.generateItemId(itemIndex)}" role="option" aria-selected="${ifDefined(ariaSelected)}">${item.label}</li>`;
+      return html`
+        <li
+           id="${this.generateItemId(itemIndex)}"
+           role="option"
+           aria-selected="${ifDefined(ariaSelected)}"
+           @mouseenter="${this.getTermHoverHandler(index)}"
+        >${item.label}</li>`;
     });
     const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? titleId : undefined)}">${searchTermItems}</ul>`;
 
