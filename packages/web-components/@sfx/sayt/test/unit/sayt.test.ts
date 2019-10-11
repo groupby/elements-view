@@ -108,6 +108,7 @@ describe('Sayt Component', () => {
   describe('connectedCallback()', () => {
     it('should register event listeners to the window', () => {
       const addEventListener = stub(window, 'addEventListener');
+      const saytAddEventListener = stub(sayt, 'addEventListener');
       const setSearchboxListener = stub(sayt, 'setSearchboxListener');
       const searchbox = sayt.searchbox = '';
 
@@ -119,6 +120,8 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_RESPONSE, sayt.showCorrectSayt);
       expect(addEventListener).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, sayt.showCorrectSayt);
+      expect(saytAddEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
+      expect(saytAddEventListener).to.be.calledWith('keydown', sayt.changeSelection);
       expect(setSearchboxListener).to.be.calledWith(searchbox, 'add');
     });
 
@@ -142,6 +145,7 @@ describe('Sayt Component', () => {
   describe('disconnectedCallback()', () => {
     it('should remove event listeners on the window', () => {
       const removeEventListener = stub(window, 'removeEventListener');
+      const saytRemoveEventListener = stub(sayt, 'removeEventListener');
       const setSearchboxListener = stub(sayt, 'setSearchboxListener');
       const searchbox = sayt.searchbox = '';
 
@@ -153,6 +157,8 @@ describe('Sayt Component', () => {
       expect(removeEventListener).to.be.calledWith(SAYT_HIDE, sayt.hideCorrectSayt);
       expect(removeEventListener).to.be.calledWith('click', sayt.processClick);
       expect(removeEventListener).to.be.calledWith('keydown', sayt.processKeyEvent);
+      expect(saytRemoveEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
+      expect(saytRemoveEventListener).to.be.calledWith('keydown', sayt.changeSelection);
       expect(setSearchboxListener).to.be.calledWith(searchbox, 'remove');
     });
 
@@ -255,6 +261,7 @@ describe('Sayt Component', () => {
 
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
+      expect(searchboxAddEventListener).to.be.calledWith('keydown', sayt.changeSelection);
       expect(windowAddEventListener).to.not.be.calledWith(SEARCHBOX_INPUT);
     });
 
@@ -268,6 +275,7 @@ describe('Sayt Component', () => {
 
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxRemoveEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
+      expect(searchboxRemoveEventListener).to.be.calledWith('keydown', sayt.changeSelection);
       expect(windowRemoveEventListener).to.not.be.calledWith(SEARCHBOX_INPUT);
     });
 
@@ -874,13 +882,28 @@ describe('Sayt Component', () => {
       });
     });
 
+    it('should not do anything when any other key is pressed', () => {
+      const event: any = { key: 'j' };
+      const event2: any = { key: 'Enter' };
+      const event3: any = { key: 'Space' };
+      const hideSayt = stub(sayt, 'hideSayt');
+
+      sayt.processKeyEvent(event);
+      sayt.processKeyEvent(event2);
+      sayt.processKeyEvent(event3);
+
+      expect(hideSayt).to.not.be.called;
+    });
+  });
+
+  describe('changeSelection()', () => {
     ['ArrowUp', 'Up'].forEach((key) => {
       describe(key, () => {
         it('should select the previous autocomplete item', () => {
           const selectPreviousAutocompleteTerm = stub(sayt, 'selectPreviousAutocompleteTerm');
           const event: any = { key };
 
-          sayt.processKeyEvent(event);
+          sayt.changeSelection(event);
 
           expect(selectPreviousAutocompleteTerm).to.be.called;
         });
@@ -893,24 +916,11 @@ describe('Sayt Component', () => {
           const selectNextAutocompleteTerm = stub(sayt, 'selectNextAutocompleteTerm');
           const event: any = { key };
 
-          sayt.processKeyEvent(event);
+          sayt.changeSelection(event);
 
           expect(selectNextAutocompleteTerm).to.be.called;
         });
       });
-    });
-
-    it('should not do anything when any other key is pressed', () => {
-      const event: any = { key: 'j' };
-      const event2: any = { key: 'Enter' };
-      const event3: any = { key: 'Space' };
-      const hideSayt = stub(sayt, 'hideSayt');
-
-      sayt.processKeyEvent(event);
-      sayt.processKeyEvent(event2);
-      sayt.processKeyEvent(event3);
-
-      expect(hideSayt).to.not.be.called;
     });
   });
 

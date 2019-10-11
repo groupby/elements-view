@@ -114,6 +114,7 @@ export default class Sayt extends LitElement {
     this.hideSayt = this.hideSayt.bind(this);
     this.processClick = this.processClick.bind(this);
     this.processKeyEvent = this.processKeyEvent.bind(this);
+    this.changeSelection = this.changeSelection.bind(this);
     this.nodeInSearchbox = this.nodeInSearchbox.bind(this);
     this.hideCorrectSayt = this.hideCorrectSayt.bind(this);
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
@@ -142,6 +143,7 @@ export default class Sayt extends LitElement {
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
+    this.addEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'add');
     this.setInitialSearchboxAriaAttributes(this.searchbox);
   }
@@ -160,6 +162,7 @@ export default class Sayt extends LitElement {
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
     this.removeEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
+    this.removeEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'remove');
     this.removeSearchboxAriaAttributes(this.searchbox);
   }
@@ -217,6 +220,7 @@ export default class Sayt extends LitElement {
       const searchbox = document.getElementById(searchboxId);
       if (searchbox) {
         searchbox[setEventListener]('input', this.processSearchboxInput);
+        searchbox[setEventListener]('keydown', this.changeSelection);
       }
     } else {
       window[setEventListener](SEARCHBOX_INPUT, this.processSfxSearchboxChange);
@@ -494,6 +498,12 @@ export default class Sayt extends LitElement {
       case 'Esc': // IE
         this.hideSayt();
         break;
+      default: // Do nothing
+    }
+  }
+
+  changeSelection(event: KeyboardEvent): void {
+    switch (event.key) {
       case 'ArrowUp':
       case 'Up': // IE
         this.selectPreviousAutocompleteTerm();
