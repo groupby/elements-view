@@ -106,6 +106,19 @@ describe('Autcomplete Component', () => {
     });
   });
 
+  describe('updated()', () => {
+    describe('selectedIndex', () => {
+      it('should dispatch an AUTOCOMPLETE_ACTIVE_TERM event', () => {
+        const dispatchSelectedTerm = stub(autocomplete, 'dispatchSelectedTerm');
+        autocomplete.selectedIndex = 3;
+
+        autocomplete.updated(new Map([['selectedIndex', 0]]));
+
+        expect(dispatchSelectedTerm).to.be.called;
+      });
+    });
+  });
+
   describe('length', () => {
     it('should equal the total number of autocomplete items', () => {
       autocomplete.results = [

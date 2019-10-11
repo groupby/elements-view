@@ -3,6 +3,7 @@ import {
   html,
   property,
   LitElement,
+  PropertyValues,
   TemplateResult,
 } from 'lit-element';
 // eslint-disable-next-line import/no-unresolved
@@ -84,6 +85,12 @@ export default class Autocomplete extends LitElement {
   disconnectedCallback(): void {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
+  }
+
+  updated(changedProps: PropertyValues): void {
+    if (changedProps.has('selectedIndex')) {
+      this.dispatchSelectedTerm();
+    }
   }
 
   /**
