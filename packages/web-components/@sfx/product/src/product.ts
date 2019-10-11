@@ -119,7 +119,7 @@ export default class Product extends LitElement {
     `;
   }
 
-  createRenderRoot() {
+  createRenderRoot(): Element|ShadowRoot {
     return this;
   }
 }

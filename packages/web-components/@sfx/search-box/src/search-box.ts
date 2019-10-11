@@ -233,7 +233,7 @@ export default class SearchBox extends LitElement {
     `;
   }
 
-  createRenderRoot() {
+  createRenderRoot(): Element|ShadowRoot {
     return this;
   }
 }
