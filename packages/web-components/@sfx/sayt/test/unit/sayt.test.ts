@@ -50,9 +50,45 @@ describe('Sayt Component', () => {
       });
     });
 
+    describe('visible property', () => {
+      it('should have default value of false', () => {
+        expect(sayt.visible).to.be.false;
+      });
+    });
+
+    describe('searchbox property', () => {
+      it('should have default value of an empty string', () => {
+        expect(sayt.searchbox).to.equal('');
+      });
+    });
+
     describe('group property', () => {
       it('should have default value of an empty string', () => {
         expect(sayt.group).to.equal('');
+      });
+    });
+
+    describe('closeText property', () => {
+      it('should have default value of Close', () => {
+        expect(sayt.closeText).to.equal('Close');
+      });
+    });
+
+    describe('showCloseButton property', () => {
+      it('should have default value of false', () => {
+        expect(sayt.showCloseButton).to.be.false;
+      });
+    });
+
+    describe('minSearchLength property', () => {
+      it('should have default value of 3', () => {
+        expect(sayt.minSearchLength).to.equal(3);
+      });
+    });
+
+    describe('debounce property', () => {
+      it('should have default value of 300', () => {
+        expect(sayt.debounce).to.equal(300);
       });
     });
 
