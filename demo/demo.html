@@ -4,29 +4,72 @@
     <title>Demo of Logic and View Integration</title>
     <script src="../dist/components.js"></script>
     <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script>
+    <!-- <script src="./temp/sfx-all-plugins-bundle.js"></script> -->
   </head>
+
   <body>
-    <sfx-search-box placeholder="search" clearbutton searchbutton></sfx-search-box>
-    <sfx-sayt visible></sfx-sayt>
-    <sfx-list class="product-grid"></sfx-list>
+    <sfx-search-box id="main-search" placeholder="search" clearbutton searchbutton></sfx-search-box>
+    <sfx-sayt searchbox="main-search"></sfx-sayt>
+
+    <sfx-search-box id="secondary-search" group="secondary" placeholder="search" clearbutton searchbutton></sfx-search-box>
+    <sfx-sayt searchbox="secondary-search" group="secondary"></sfx-sayt>
+
+    <sfx-products></sfx-products>
 
     <script>
+      function parseRecord(record) {
+        const data = record.allMeta;
+        const firstVariant = data.visualVariants[0];
+        const nonvisualVariants = firstVariant.nonvisualVariants;
+        if (!nonvisualVariants[0]) throw new Error('No nonvisual variants');
+
+        return {
+          data,
+          firstVariant,
+          nonvisualVariants,
+        };
+      }
+
+      function productTransformer(record) {
+        let filter;
+        try {
+          filter = parseRecord(record);
+        } catch(error) {
+          console.error(error);
+          return;
+        }
+        const { data, firstVariant, nonvisualVariants } = filter;
+
+        return {
+          title: data.title,
+          price: nonvisualVariants[0].originalPrice,
+          imageSrc: firstVariant.productImage,
+          imageAlt: data.title,
+          productUrl: firstVariant.productImage,
+          // @TODO Handle variants
+        }
+      }
+
+      function searchProductTransformer(record) {
+        return { label: record.title };
+      }
+
       // init core and plugins
       const core = new sfxCore.Core();
       const domEventsPlugin = new sfxPlugins.DomEventsPlugin()
-      const saytPlugin = new sfxPlugins.SaytPlugin({subdomain: 'apparel', collection: 'products'});
-      const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin();
-      const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel', collection: 'products', area: 'Storefront'});
-      const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin();
+      const saytPlugin = new sfxPlugins.SaytPlugin({ subdomain: 'apparel' });
+      const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin({ productTransformer });
+      const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel' });
+      const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin({ productTransformer: searchProductTransformer });
       // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
-      // search integration/functionality test
-      window.addEventListener('sfx::search_response', (e) => {
-        const testListResults = e.detail.results.records.map(item => {
-          return { label : item.title };
-        });
-        document.getElementsByClassName('product-grid')[0]
-        .setAttribute('items', JSON.stringify(testListResults));
+
+      window.addEventListener('sfx::sayt_products_response', (event) => {
+        console.log(event.type, event.detail);
+      });
+
+      window.addEventListener('sfx::sayt_products_error', (event) => {
+        console.log(event.type, event.detail);
       });
     </script>
   </body>

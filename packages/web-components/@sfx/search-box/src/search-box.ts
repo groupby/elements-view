@@ -1,11 +1,11 @@
 import {
   customElement,
   html,
+  LitElement,
   property,
   TemplateResult,
 } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
 import {
   SEARCHBOX_CLEAR,
   SEARCHBOX_CLICK,
@@ -25,7 +25,7 @@ import {
  * The entity also listens for events, and updates data accordingly.
  */
 @customElement('sfx-search-box')
-export default class SearchBox extends Base {
+export default class SearchBox extends LitElement {
   /**
    * Text used as placeholder in search box.
    */
@@ -231,5 +231,9 @@ export default class SearchBox extends Base {
           `
     : ''}
     `;
+  }
+
+  createRenderRoot(): Element|ShadowRoot {
+    return this;
   }
 }

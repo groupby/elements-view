@@ -193,11 +193,11 @@ describe('Products Search Component', () => {
   });
 
   describe('setProductsFromEvent', () => {
-    let records;
+    let products;
     let group;
 
     beforeEach(() => {
-      records = [1, 2, 3];
+      products = [1, 2, 3];
       group = 'group';
     });
 
@@ -209,16 +209,16 @@ describe('Products Search Component', () => {
     });
 
     it('should set products when the event matches the group in the component', () => {
-      const event = { detail: { results: { records }, group } };
+      const event = { detail: { results: { products }, group } };
       component.group = group;
 
       component.setProductsFromEvent(event);
 
-      expect(component.products).to.equal(records);
+      expect(component.products).to.equal(products);
     });
 
     it('should not set products when the group in the component and event do not match', () => {
-      const event = { detail: { results: { records }, group } };
+      const event = { detail: { results: { products }, group } };
 
       component.setProductsFromEvent(event);
 
@@ -226,20 +226,20 @@ describe('Products Search Component', () => {
     });
 
     it('should default the group in the event to an empty string if it is falsey', () => {
-      const event = { detail: { results: { records } } };
+      const event = { detail: { results: { products } } };
 
       component.setProductsFromEvent(event);
 
-      expect(component.products).to.equal(records);
+      expect(component.products).to.equal(products);
     });
 
     it('should default the group in the component to an empty string if it is falsey', () => {
       component.group = undefined;
-      const event = { detail: { results: { records } } };
+      const event = { detail: { results: { products } } };
 
       component.setProductsFromEvent(event);
 
-      expect(component.products).to.equal(records);
+      expect(component.products).to.equal(products);
     });
   });
 });

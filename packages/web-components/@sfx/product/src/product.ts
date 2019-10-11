@@ -2,10 +2,10 @@ import {
   customElement,
   property,
   html,
+  LitElement,
   TemplateResult,
 } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
 import {
   Product as ProductModel,
   ProductVariant,
@@ -16,7 +16,7 @@ import { toLowerCaseKebab } from './utils';
  * A product component that consumes product data to display.
  */
 @customElement('sfx-product')
-export default class Product extends Base {
+export default class Product extends LitElement {
   /** The product data. */
   @property({ type: Object }) product: ProductModel = {};
 
@@ -117,5 +117,9 @@ export default class Product extends Base {
       </slot>
       ${this.additionalInfo()}
     `;
+  }
+
+  createRenderRoot(): Element|ShadowRoot {
+    return this;
   }
 }

@@ -1,6 +1,5 @@
 import { TemplateResult } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
 import {
   SEARCHBOX_CLEAR,
   SEARCHBOX_CLICK,
@@ -25,10 +24,6 @@ describe('SearchBox Component', () => {
   });
 
   describe('Constructor', () => {
-    it('should extend Base', () => {
-      expect(searchbox).to.be.an.instanceof(Base);
-    });
-
     describe('placeholder property', () => {
       it('should have default value `Type your search`', () => {
         expect(searchbox.placeholder).to.equal('Type your search');
