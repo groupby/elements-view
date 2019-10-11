@@ -61,6 +61,8 @@ export default class Autocomplete extends LitElement {
   constructor() {
     super();
     this.receivedResults = this.receivedResults.bind(this);
+    this.dispatchSelectedTerm = this.dispatchSelectedTerm.bind(this);
+    this.getSetSelectedIndexCallback = this.getSetSelectedIndexCallback.bind(this);
   }
 
   /**
