@@ -3,13 +3,13 @@
   <head>
     <title>Demo of Logic and View Integration</title>
     <script src="../dist/components.js"></script>
-    <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script>
-    <!-- <script src="./temp/sfx-all-plugins-bundle.js"></script> -->
+    <!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script> -->
+    <script src="./temp/sfx-all-plugins-bundle.js"></script>
   </head>
 
   <body>
     <sfx-search-box id="main-search" placeholder="search" clearbutton searchbutton></sfx-search-box>
-    <sfx-sayt searchbox="main-search"></sfx-sayt>
+    <sfx-sayt searchbox="main-search" area="DemoMaster" collection="products"></sfx-sayt>
 
     <sfx-search-box id="secondary-search" group="secondary" placeholder="search" clearbutton searchbutton></sfx-search-box>
     <sfx-sayt searchbox="secondary-search" group="secondary"></sfx-sayt>
