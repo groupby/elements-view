@@ -523,6 +523,10 @@ export default class Sayt extends LitElement {
     }
   }
 
+  /**
+   * Selects the previous autocomplete term. SAYT is shown if it is
+   * hidden.
+   */
   selectPreviousAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
 
