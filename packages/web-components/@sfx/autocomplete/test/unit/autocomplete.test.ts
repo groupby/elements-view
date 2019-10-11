@@ -352,12 +352,12 @@ describe('Autcomplete Component', () => {
     });
   });
 
-  describe('getTermHoverHandler()', () => {
+  describe('getSetSelectedIndexCallback()', () => {
     it('shoudld return a handler that sets the selected index', () => {
       const newSelectedIndex = 3;
       autocomplete.selectedIndex = -1;
 
-      autocomplete.getTermHoverHandler(newSelectedIndex)();
+      autocomplete.getSetSelectedIndexCallback(newSelectedIndex)();
 
       expect(autocomplete.selectedIndex).to.equal(newSelectedIndex);
     });

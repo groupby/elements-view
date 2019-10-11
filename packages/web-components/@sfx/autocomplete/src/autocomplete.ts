@@ -182,7 +182,7 @@ export default class Autocomplete extends LitElement {
    * @param index The index to set.
    * @returns A callback that sets [[selectedIndex]].
    */
-  getTermHoverHandler(index: number): () => void {
+  getSetSelectedIndexCallback(index: number): () => void {
     return () => {
       this.selectedIndex = index;
     };
@@ -206,7 +206,7 @@ export default class Autocomplete extends LitElement {
            id="${this.generateItemId(itemIndex)}"
            role="option"
            aria-selected="${ifDefined(ariaSelected)}"
-           @mouseenter="${this.getTermHoverHandler(index)}"
+           @mouseenter="${this.getSetSelectedIndexCallback(index)}"
         >${item.label}</li>`;
     });
     const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? titleId : undefined)}">${searchTermItems}</ul>`;
