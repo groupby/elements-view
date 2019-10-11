@@ -48,6 +48,18 @@ describe('SearchBox Component', () => {
       });
     });
 
+    describe('area property', () => {
+      it('should have default value of an empty string', () => {
+        expect(searchbox.area).to.equal('');
+      });
+    });
+
+    describe('collection property', () => {
+      it('should have default value of an empty string', () => {
+        expect(searchbox.collection).to.equal('');
+      });
+    });
+
     describe('group property', () => {
       it('should have default value of an empty string', () => {
         expect(searchbox.group).to.equal('');
