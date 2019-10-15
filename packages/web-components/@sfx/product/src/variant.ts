@@ -33,6 +33,7 @@ export default class Variant extends LitElement {
     }
 
     if (type === 'color' || this.type === 'image') {
+      console.log('variant.color', variant.color)
       this.style.backgroundColor = variant.color;
       this.title = variant.text;
     }
@@ -40,18 +41,24 @@ export default class Variant extends LitElement {
     if (type === 'color' && !this.getAttribute('aria-label')) {
       this.setAttribute('aria-label', variant.text);
     }
+    console.log('this in connectedcallback', this)
   }
 
   render(): TemplateResult {
     const { variant } = this;
     console.log('variant in render function', variant)
 
-    return html`
+    return html`<style>
+        .sfx-variant-image {
+          height: 50px;
+          width: 50px;
+        }
+      </style>
       ${this.type === 'image'
     ? html`<img
           class="sfx-variant-image"
-          src="${variant.image}"
-          alt="${variant.text}"
+          src="${variant.product.imageSrc}"
+          alt="${variant.product.text}"
         />`
     : ''
 }
