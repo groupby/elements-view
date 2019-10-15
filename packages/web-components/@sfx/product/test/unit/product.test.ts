@@ -1,4 +1,4 @@
-import { TemplateResult, html } from 'lit-element';
+import { TemplateResult, html, LitElement } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@sfx/base';
 
@@ -105,8 +105,8 @@ describe('Variant Component', () => {
   });
 
   describe('constructor', () => {
-    it('should extend the Base class', () => {
-      expect(component).to.be.an.instanceOf(Base);
+    it('should extend the LitElement class', () => {
+      expect(component).to.be.an.instanceOf(LitElement);
     });
 
     describe('type property', () => {
@@ -124,7 +124,7 @@ describe('Variant Component', () => {
 
   describe('connectedCallback', () => {
     it('should call its super connectedCallback', () => {
-      const connectedCallback = stub(Base.prototype, 'connectedCallback');
+      const connectedCallback = stub(LitElement.prototype, 'connectedCallback');
 
       component.connectedCallback();
 

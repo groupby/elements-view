@@ -24,7 +24,7 @@
 
     <script>
       function parseRecord(record) {
-        console.log("record", record);
+        console.log('record', record)
         const data = record.allMeta;
         const firstVariant = data.visualVariants[0];
         const nonvisualVariants = firstVariant.nonvisualVariants;
@@ -38,10 +38,12 @@
           visualVariants
         };
       }
-
+      // questions - should we be using swatch colors? just checked the events repo and it says color should be a valid CSS color...
+      // image? that's different than product image? no thumbnail image in the records?
+      // they would be determining whether or not they want to use text, color or image as the type?
       function parseVariants(variants) {
         return variants.map(v => ({
-          color: v.swatchImage || v.productImage,
+          color: v.swatchImage || v.standardColor,
           text: v.standardColor,
           product: {
             imageSrc: v.productImage,
@@ -67,7 +69,7 @@
           productUrl: firstVariant.productImage,
           ...(visualVariants.length > 1 && {
             variants: {
-              type: "color",
+              type: "text",
               items: parseVariants(visualVariants)
             }
           })

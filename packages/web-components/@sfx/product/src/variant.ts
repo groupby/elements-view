@@ -30,8 +30,8 @@ export default class Variant extends LitElement {
       this.setAttribute('role', 'listitem');
     }
 
-    if (type === 'color' || this.type === 'image') {
-      if (this.isColor(variant.color)) {
+    if (type === 'color') {
+      if (this.isColorSwatch(variant.color)) {
         this.style.backgroundColor = variant.color;
       } else {
         this.type = 'swatchColor';
@@ -44,7 +44,7 @@ export default class Variant extends LitElement {
     }
   }
 
-  isColor(color: string): boolean {
+  isColorSwatch(color: string): boolean {
     return !color.includes('https');
   }
 
@@ -57,21 +57,14 @@ export default class Variant extends LitElement {
           width: 50px;
         }
       </style>
-      ${this.type === 'image'
+      ${this.type === 'image' || this.type === 'swatchColor'
     ? html`<img
           class="sfx-variant-image"
-          src="${variant.product.imageSrc}"
-          alt="${variant.product.text}"
+          src="${this.type === 'image' ? variant.product.imageSrc : variant.color}"
+          alt="${variant.product.imageAlt}"
         />`
     : ''
 }
-${this.type === 'swatchColor'
-    ? html`<img
-class="sfx-variant-image"
-src="${variant.color}"
-alt="${variant.product.text}"
-/>`
-    : ''}
       ${this.type === 'text' ? variant.text : ''}
     `;
   }
