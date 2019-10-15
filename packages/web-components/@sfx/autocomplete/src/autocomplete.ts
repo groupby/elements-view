@@ -208,7 +208,7 @@ export default class Autocomplete extends LitElement {
            id="${this.generateItemId(itemIndex)}"
            role="option"
            aria-selected="${ifDefined(ariaSelected)}"
-           @mouseenter="${this.getSetSelectedIndexCallback(index)}"
+           @mouseenter="${this.getSetSelectedIndexCallback(itemIndex)}"
         >${item.label}</li>`;
     });
     const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? titleId : undefined)}">${searchTermItems}</ul>`;
