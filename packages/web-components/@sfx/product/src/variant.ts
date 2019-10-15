@@ -33,20 +33,28 @@ export default class Variant extends LitElement {
     }
 
     if (type === 'color' || this.type === 'image') {
-      console.log('variant.color', variant.color)
-      this.style.backgroundColor = variant.color;
+      if (this.isColor(variant.color)) {
+        this.style.backgroundColor = variant.color;
+      } else {
+        this.type = 'swatchColor';
+      }
       this.title = variant.text;
     }
 
     if (type === 'color' && !this.getAttribute('aria-label')) {
       this.setAttribute('aria-label', variant.text);
     }
-    console.log('this in connectedcallback', this)
+    console.log('this in connectedcallback', this);
+  }
+
+  isColor(color: string): boolean {
+    return !color.includes('https');
   }
 
   render(): TemplateResult {
     const { variant } = this;
-    console.log('variant in render function', variant)
+    console.log('variant in render function', variant);
+    console.log('this.type in render', this.type);
 
     return html`<style>
         .sfx-variant-image {
@@ -62,6 +70,13 @@ export default class Variant extends LitElement {
         />`
     : ''
 }
+${this.type === 'swatchColor'
+    ? html`<img
+class="sfx-variant-image"
+src="${variant.color}"
+alt="${variant.product.text}"
+/>`
+    : ''}
       ${this.type === 'text' ? variant.text : ''}
     `;
   }
