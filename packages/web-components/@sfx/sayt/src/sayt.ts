@@ -179,6 +179,13 @@ export default class Sayt extends LitElement {
   updated(changedProps: PropertyValues): void {
     if (changedProps.has('visible')) {
       this.hidden = !this.visible;
+
+      if (this.searchbox) {
+        const searchbox = document.getElementById(this.searchbox);
+        if (searchbox) {
+          searchbox.setAttribute('aria-expanded', String(this.visible));
+        }
+      }
     }
     if (changedProps.has('hideAutocomplete')) {
       this.removeSearchboxAriaAttributes(this.searchbox);

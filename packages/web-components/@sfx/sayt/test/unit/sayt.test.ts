@@ -181,13 +181,26 @@ describe('Sayt Component', () => {
 
   describe('updated()', () => {
     describe('visible', () => {
-      it('should change the hidden property if the visible property has changed', () => {
+      beforeEach(() => {
         sayt.hidden = true;
         sayt.visible = true;
+      });
+
+      it('should change the hidden property if the visible property has changed', () => {
 
         sayt.updated(new Map([['visible', true]]));
 
         expect(sayt.hidden).to.be.false;
+      });
+
+      it('should update the aria-expanded attribute on the paired searchbox if it exists', () => {
+        const setAttribute = spy();
+        sayt.searchbox = 'searchbox';
+        stub(document, 'getElementById').withArgs(sayt.searchbox).returns({ setAttribute });
+
+        sayt.updated(new Map([['visible', true]]));
+
+        expect(setAttribute).to.be.calledWith('aria-expanded', String(sayt.visible));
       });
     });
 
