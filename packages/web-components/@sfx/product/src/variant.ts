@@ -58,4 +58,8 @@ export default class Variant extends LitElement {
       ${this.type === 'text' ? variant.text : ''}
     `;
   }
+
+  createRenderRoot(): Element|ShadowRoot {
+    return this;
+  }
 }
