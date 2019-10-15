@@ -5,8 +5,6 @@ import {
   TemplateResult,
   LitElement,
 } from 'lit-element';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-// import { Base } from '@sfx/base';
 import { ProductVariant } from '@sfx/events';
 
 /**
@@ -44,7 +42,6 @@ export default class Variant extends LitElement {
     if (type === 'color' && !this.getAttribute('aria-label')) {
       this.setAttribute('aria-label', variant.text);
     }
-    console.log('this in connectedcallback', this);
   }
 
   isColor(color: string): boolean {
@@ -53,8 +50,6 @@ export default class Variant extends LitElement {
 
   render(): TemplateResult {
     const { variant } = this;
-    console.log('variant in render function', variant);
-    console.log('this.type in render', this.type);
 
     return html`<style>
         .sfx-variant-image {

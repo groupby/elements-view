@@ -58,7 +58,6 @@ export default class Product extends LitElement {
    */
   additionalInfo(): TemplateResult[] {
     const { product } = this;
-    console.log('product in additionalInfo - product tile', product);
 
     const properties: Set<keyof ProductModel> = new Set([
       'title',
@@ -83,7 +82,6 @@ export default class Product extends LitElement {
       imageSrc,
       imageAlt,
     } = this.product;
-    console.log('variants in product tile render function', variants);
 
     return html`
       <style>

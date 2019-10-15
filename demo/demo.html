@@ -24,9 +24,8 @@
 
     <script>
       function parseRecord(record) {
+        console.log("record", record);
         const data = record.allMeta;
-        // console.log('data in parseRecord', data)
-        // make sure all variant data is here
         const firstVariant = data.visualVariants[0];
         const nonvisualVariants = firstVariant.nonvisualVariants;
         const visualVariants = data.visualVariants;
@@ -66,10 +65,12 @@
           imageSrc: firstVariant.productImage,
           imageAlt: data.title,
           productUrl: firstVariant.productImage,
-          variants: {
-            type: "color",
-            items: parseVariants(visualVariants)
-          }
+          ...(visualVariants.length > 1 && {
+            variants: {
+              type: "color",
+              items: parseVariants(visualVariants)
+            }
+          })
         };
       }
 
