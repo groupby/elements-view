@@ -89,7 +89,6 @@ export default class Product extends LitElement {
           padding: 0;
         }
       </style>
-
         ${imageSrc
     ? html`<img
             class="sfx-image"
