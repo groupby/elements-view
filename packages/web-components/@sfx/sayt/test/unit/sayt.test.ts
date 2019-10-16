@@ -340,6 +340,12 @@ describe('Sayt Component', () => {
       getElementById = stub(document, 'getElementById').withArgs(searchbox).returns({ getAttribute, setAttribute });
     });
 
+    it('should set autocomplete to off', () => {
+      sayt.setInitialSearchboxAttributes(searchbox);
+
+      expect(setAttribute).to.be.calledWith('autocomplete', 'off');
+    });
+
     it('should set aria-haspopup to listbox', () => {
       sayt.setInitialSearchboxAttributes(searchbox);
 
@@ -437,6 +443,12 @@ describe('Sayt Component', () => {
       getElementById = stub(document, 'getElementById')
         .withArgs(searchbox)
         .returns({ getAttribute, setAttribute, removeAttribute });
+    });
+
+    it('should remove the autocomplete attribute', () => {
+      sayt.removeSearchboxAttributes(searchbox);
+
+      expect(removeAttribute).to.be.calledWith('autocomplete');
     });
 
     it('should remove the aria-haspopup attribute', () => {
