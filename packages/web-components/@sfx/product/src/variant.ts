@@ -30,10 +30,10 @@ export default class Variant extends LitElement {
       this.setAttribute('role', 'listitem');
     }
 
-    this.style.backgroundColor = variant.color;
-
-    this.title = variant.text;
-
+    if (type === 'color' || this.type === 'image') {
+      this.style.backgroundColor = variant.color;
+      this.title = variant.text;
+    }
 
     if (type === 'color' && !this.getAttribute('aria-label')) {
       this.setAttribute('aria-label', variant.text);
@@ -45,7 +45,6 @@ export default class Variant extends LitElement {
 
     return html`${this.type === 'image'
       ? html`<img
-          class="sfx-variant-image"
           src="${variant.image}"
           alt="${variant.text}"
         />`

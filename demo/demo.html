@@ -5,11 +5,10 @@
     <script src="../dist/components.js"></script>
     <!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script> -->
     <script src="./temp/sfx-all-plugins-bundle.js"></script>
-    <!-- <link href="../themes/sfx-elegant-them/components/_product-variant.scss" rel="stylesheet" /> -->
     <style>
       sfx-product-variant {
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         display: inline-block;
         background-size: cover;
         margin: 2px;
@@ -20,8 +19,8 @@
       sfx-product-variant img {
         width: auto;
         height: auto;
-        min-width: 30px;
-        min-height: 30px;
+        min-width: 40px;
+        min-height: 40px;
         max-width: 100%;
         max-height: 100%;
       }
@@ -45,7 +44,6 @@
 
     <script>
       function parseRecord(record) {
-        console.log("record", record);
         const data = record.allMeta;
         const firstVariant = data.visualVariants[0];
         const nonvisualVariants = firstVariant.nonvisualVariants;
@@ -89,7 +87,7 @@
           productUrl: firstVariant.productImage,
           ...(visualVariants.length > 1 && {
             variants: {
-              type: "text",
+              type: "image",
               items: parseVariants(visualVariants)
             }
           })
@@ -111,11 +109,11 @@
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 
       window.addEventListener("sfx::sayt_products_response", event => {
-        console.log("xx-event", event.type, event.detail);
+        console.log(event.type, event.detail);
       });
 
       window.addEventListener("sfx::sayt_products_error", event => {
-        console.log("xx-event", event.type, event.detail);
+        console.log(event.type, event.detail);
       });
     </script>
   </body>

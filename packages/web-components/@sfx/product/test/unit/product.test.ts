@@ -1,7 +1,4 @@
 import { TemplateResult, html, LitElement } from 'lit-element';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
-
 import { expect, stub } from '../utils';
 import Product from '../../src/product';
 import Variant from '../../src/variant';
