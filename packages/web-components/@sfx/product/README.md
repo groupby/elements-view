@@ -40,7 +40,6 @@ Optionally the product can use `variants` to display different information based
 }
 ```
 
-
 ## Testing
 
 The test suite for this component is contained in `test` directory.
