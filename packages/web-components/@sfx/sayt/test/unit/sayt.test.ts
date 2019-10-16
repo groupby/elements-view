@@ -340,6 +340,20 @@ describe('Sayt Component', () => {
       getElementById = stub(document, 'getElementById').withArgs(searchbox).returns({ getAttribute, setAttribute });
     });
 
+    it('should set aria-haspopup to listbox', () => {
+      sayt.setInitialSearchboxAttributes(searchbox);
+
+      expect(setAttribute).to.be.calledWith('aria-haspopup', 'listbox');
+    });
+
+    it('should set aria-expanded to the value of visible', () => {
+      sayt.visible = true;
+
+      sayt.setInitialSearchboxAttributes(searchbox);
+
+      expect(setAttribute).to.be.calledWith('aria-expanded', 'true');
+    });
+
     it('should add the ID of the autocomplete component to aria-controls', () => {
       sayt.setInitialSearchboxAttributes(searchbox);
 
@@ -392,20 +406,6 @@ describe('Sayt Component', () => {
       expect(setAttribute).to.not.be.calledWith('role', sinon.match(new RegExp(`combobox.*combobox`)));
     });
 
-    it('should set aria-haspopup to listbox', () => {
-      sayt.setInitialSearchboxAttributes(searchbox);
-
-      expect(setAttribute).to.be.calledWith('aria-haspopup', 'listbox');
-    });
-
-    it('should set aria-expanded to the value of visible', () => {
-      sayt.visible = true;
-
-      sayt.setInitialSearchboxAttributes(searchbox);
-
-      expect(setAttribute).to.be.calledWith('aria-expanded', 'true');
-    });
-
     it('should not throw when no searchbox ID is given', () => {
       const callback = () => sayt.setInitialSearchboxAttributes('');
 
@@ -439,18 +439,6 @@ describe('Sayt Component', () => {
         .returns({ getAttribute, setAttribute, removeAttribute });
     });
 
-    it('should only remove the ID of the autocomplete component from aria-controls', () => {
-      sayt.removeSearchboxAttributes(searchbox);
-
-      expect(setAttribute).to.be.calledWith('aria-controls', 'otherid');
-    });
-
-    it('should only remove the combobox role', () => {
-      sayt.removeSearchboxAttributes(searchbox);
-
-      expect(setAttribute).to.be.calledWith('role', 'widget');
-    });
-
     it('should remove the aria-haspopup attribute', () => {
       sayt.removeSearchboxAttributes(searchbox);
 
@@ -461,6 +449,18 @@ describe('Sayt Component', () => {
       sayt.removeSearchboxAttributes(searchbox);
 
       expect(removeAttribute).to.be.calledWith('aria-expanded');
+    });
+
+    it('should only remove the ID of the autocomplete component from aria-controls', () => {
+      sayt.removeSearchboxAttributes(searchbox);
+
+      expect(setAttribute).to.be.calledWith('aria-controls', 'otherid');
+    });
+
+    it('should only remove the combobox role', () => {
+      sayt.removeSearchboxAttributes(searchbox);
+
+      expect(setAttribute).to.be.calledWith('role', 'widget');
     });
 
     it('should not throw when no searchbox ID is given', () => {
