@@ -5,6 +5,27 @@
     <script src="../dist/components.js"></script>
     <!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script> -->
     <script src="./temp/sfx-all-plugins-bundle.js"></script>
+    <!-- <link href="../themes/sfx-elegant-them/components/_product-variant.scss" rel="stylesheet" /> -->
+    <style>
+      sfx-product-variant {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        background-size: cover;
+        margin: 2px;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      sfx-product-variant img {
+        width: auto;
+        height: auto;
+        min-width: 30px;
+        min-height: 30px;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    </style>
   </head>
 
   <body>
@@ -24,7 +45,7 @@
 
     <script>
       function parseRecord(record) {
-        console.log('record', record)
+        console.log("record", record);
         const data = record.allMeta;
         const firstVariant = data.visualVariants[0];
         const nonvisualVariants = firstVariant.nonvisualVariants;
@@ -38,13 +59,12 @@
           visualVariants
         };
       }
-      // questions - should we be using swatch colors? just checked the events repo and it says color should be a valid CSS color...
-      // image? that's different than product image? no thumbnail image in the records?
-      // they would be determining whether or not they want to use text, color or image as the type?
+
       function parseVariants(variants) {
         return variants.map(v => ({
-          color: v.swatchImage || v.standardColor,
+          color: v.standardColor,
           text: v.standardColor,
+          image: v.swatchImage,
           product: {
             imageSrc: v.productImage,
             imageAlt: v.description

@@ -30,41 +30,27 @@ export default class Variant extends LitElement {
       this.setAttribute('role', 'listitem');
     }
 
-    if (type === 'color') {
-      if (this.isColorSwatch(variant.color)) {
-        this.style.backgroundColor = variant.color;
-      } else {
-        this.type = 'swatchColor';
-      }
-      this.title = variant.text;
-    }
+    this.style.backgroundColor = variant.color;
+
+    this.title = variant.text;
+
 
     if (type === 'color' && !this.getAttribute('aria-label')) {
       this.setAttribute('aria-label', variant.text);
     }
   }
 
-  isColorSwatch(color: string): boolean {
-    return !color.includes('https');
-  }
-
   render(): TemplateResult {
     const { variant } = this;
 
-    return html`<style>
-        .sfx-variant-image {
-          height: 50px;
-          width: 50px;
-        }
-      </style>
-      ${this.type === 'image' || this.type === 'swatchColor'
-    ? html`<img
+    return html`${this.type === 'image'
+      ? html`<img
           class="sfx-variant-image"
-          src="${this.type === 'image' ? variant.product.imageSrc : variant.color}"
-          alt="${variant.product.imageAlt}"
+          src="${variant.image}"
+          alt="${variant.text}"
         />`
-    : ''
-}
+      : ''
+    }
       ${this.type === 'text' ? variant.text : ''}
     `;
   }
