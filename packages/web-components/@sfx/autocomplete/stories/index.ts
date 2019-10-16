@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/html';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, number, text } from '@storybook/addon-knobs';
 import {
   AUTOCOMPLETE_RESPONSE,
   AutocompleteResultGroup,
@@ -29,9 +29,11 @@ function getAutocompleteComponent(results: AutocompleteResultGroup<AutocompleteS
 
   if (results.length > 0) {
     const autocompleteResultsKnob = text('Autocomplete Results', JSON.stringify(results));
+    const selectedIndex = number('Selected Index', -1);
     return '<sfx-autocomplete\n'
       + ` results="${autocompleteResultsKnob}"\n`
       + ` caption="${optionalTitle}"\n`
+      + ` selectedindex="${selectedIndex}"\n`
       + '></sfx-autocomplete>';
   }
   return '<sfx-autocomplete\n'
@@ -74,6 +76,12 @@ storiesOf('Components|Autocomplete', module)
             ]"
           ></sfx-autocomplete>
           \`\`\`
+
+          ### The SF-X Autocomplete component will select the item at the index specified by \`selectedIndex\`.
+          *
+
+          ### The SF-X Autocomplete component selects terms that are hovered over.
+          * Hovering over an SF-X Autocomplete term will select the term by setting the \`selectedIndex\` property.
         `,
       },
     }
