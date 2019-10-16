@@ -2,26 +2,24 @@ sfx-autocomplete {
   color: var(--sfx-color-font);
   font-family: var(--sfx-font-default);
 
-  sfx-list {
-    h4 {
-      background-color: var(--sfx-color-background);
-      border-bottom: 1px solid var(--sfx-color-border);
-      border-top: 1px solid var(--sfx-color-border);
-      margin: 0;
-      padding: 0.5em 0.25em 0.25em;
-    }
+  h4 {
+    background-color: var(--sfx-color-background);
+    border-bottom: 1px solid var(--sfx-color-border);
+    border-top: 1px solid var(--sfx-color-border);
+    margin: 0;
+    padding: 0.5em 0.25em 0.25em;
+  }
 
-    ul {
-      margin: 0;
-      padding: 0;
-    }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
 
-    li {
-      padding: 0.25em 0.5em;
+  li {
+    padding: 0.25em 0.5em;
 
-      &:hover {
-        background-color: var(--sfx-color-primary);
-      }
+    &[aria-selected="true"] {
+      background-color: var(--sfx-color-primary);
     }
   }
 }
