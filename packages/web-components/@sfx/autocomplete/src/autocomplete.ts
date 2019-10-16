@@ -211,10 +211,10 @@ export default class Autocomplete extends LitElement {
            @mouseenter="${this.getSetSelectedIndexCallback(itemIndex)}"
         >${item.label}</li>`;
     });
-    const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? titleId : undefined)}">${searchTermItems}</ul>`;
+    const searchTermList = html`<ul aria-labelledby="${ifDefined(list.title ? titleId : undefined)}">${searchTermItems}</ul>`;
 
     return html`
-      ${this.caption ? header : ''}
+      ${list.title ? header : ''}
       ${searchTermList}
     `;
   }
