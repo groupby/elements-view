@@ -134,11 +134,11 @@ describe('Sayt Component', () => {
     });
 
     it('should set the ARIA attributes for the paired searchbox', () => {
-      const setInitialSearchboxAriaAttributes = stub(sayt, 'setInitialSearchboxAriaAttributes');
+      const setInitialSearchboxAttributes = stub(sayt, 'setInitialSearchboxAttributes');
 
       sayt.connectedCallback();
 
-      expect(setInitialSearchboxAriaAttributes).to.be.called;
+      expect(setInitialSearchboxAttributes).to.be.called;
     });
   });
 
@@ -171,11 +171,11 @@ describe('Sayt Component', () => {
     });
 
     it('should remove the ARIA attributes for the paired searchbox', () => {
-      const removeSearchboxAriaAttributes = stub(sayt, 'removeSearchboxAriaAttributes');
+      const removeSearchboxAttributes = stub(sayt, 'removeSearchboxAttributes');
 
       sayt.disconnectedCallback();
 
-      expect(removeSearchboxAriaAttributes).to.be.called;
+      expect(removeSearchboxAttributes).to.be.called;
     });
   });
 
@@ -206,14 +206,14 @@ describe('Sayt Component', () => {
 
     describe('hideAutocomplete', () => {
       it('should remove and then add ARIA attributes to the paired searchbox', () => {
-        const removeSearchboxAriaAttributes = stub(sayt, 'removeSearchboxAriaAttributes');
-        const setInitialSearchboxAriaAttributes = stub(sayt, 'setInitialSearchboxAriaAttributes');
+        const removeSearchboxAttributes = stub(sayt, 'removeSearchboxAttributes');
+        const setInitialSearchboxAttributes = stub(sayt, 'setInitialSearchboxAttributes');
 
         sayt.updated(new Map([['hideAutocomplete', true]]));
 
-        sinon.assert.callOrder(removeSearchboxAriaAttributes, setInitialSearchboxAriaAttributes);
-        expect(removeSearchboxAriaAttributes).to.be.calledWith(sayt.searchbox);
-        expect(setInitialSearchboxAriaAttributes).to.be.calledWith(sayt.searchbox);
+        sinon.assert.callOrder(removeSearchboxAttributes, setInitialSearchboxAttributes);
+        expect(removeSearchboxAttributes).to.be.calledWith(sayt.searchbox);
+        expect(setInitialSearchboxAttributes).to.be.calledWith(sayt.searchbox);
       });
     });
 
@@ -235,19 +235,19 @@ describe('Sayt Component', () => {
       });
 
       it('should remove ARIA attributes from the old searchbox', () => {
-        const removeSearchboxAriaAttributes = stub(sayt, 'removeSearchboxAriaAttributes');
+        const removeSearchboxAttributes = stub(sayt, 'removeSearchboxAttributes');
 
         sayt.updated(new Map([['searchbox', oldSearchbox]]));
 
-        expect(removeSearchboxAriaAttributes).to.be.calledWith(oldSearchbox);
+        expect(removeSearchboxAttributes).to.be.calledWith(oldSearchbox);
       });
 
       it('should add ARIA attributes to a new searchbox', () => {
-        const setInitialSearchboxAriaAttributes = stub(sayt, 'setInitialSearchboxAriaAttributes');
+        const setInitialSearchboxAttributes = stub(sayt, 'setInitialSearchboxAttributes');
 
         sayt.updated(new Map([['searchbox', oldSearchbox]]));
 
-        expect(setInitialSearchboxAriaAttributes).to.be.called;
+        expect(setInitialSearchboxAttributes).to.be.called;
       });
     });
 
@@ -326,7 +326,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('setInitialSearchboxAriaAttributes()', () => {
+  describe('setInitialSearchboxAttributes()', () => {
     const searchbox = 'searchbox';
     let getAttribute;
     let setAttribute;
@@ -341,7 +341,7 @@ describe('Sayt Component', () => {
     });
 
     it('should add the ID of the autocomplete component to aria-controls', () => {
-      sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAttributes(searchbox);
 
       expect(setAttribute).to.be.calledWith('aria-controls', sayt.autocompleteId);
     });
@@ -349,7 +349,7 @@ describe('Sayt Component', () => {
     it('should not add the ID of the autocomplete component to aria-controls if autocomplete is hidden', () => {
       sayt.hideAutocomplete = true;
 
-      sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAttributes(searchbox);
 
       expect(setAttribute).to.not.be.calledWith('aria-controls', sayt.autocompleteId);
     });
@@ -357,7 +357,7 @@ describe('Sayt Component', () => {
     it('should not remove existing aria-controls values', () => {
       getAttribute.withArgs('aria-controls').returns('otherid otherotherid');
 
-      sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAttributes(searchbox);
 
       expect(setAttribute).to.be.calledWith('aria-controls', `otherid otherotherid ${sayt.autocompleteId}`);
     });
@@ -365,13 +365,13 @@ describe('Sayt Component', () => {
     it('should not duplicate aria-controls values', () => {
       getAttribute.withArgs('aria-controls').returns(`${sayt.autocompleteId} otherid`);
 
-      sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAttributes(searchbox);
 
       expect(setAttribute).to.not.be.calledWith('aria-controls', sinon.match(new RegExp(`${sayt.autocompleteId}.*${sayt.autocompleteId}`)));
     });
 
     it('should add combobox role', () => {
-      sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAttributes(searchbox);
 
       expect(setAttribute).to.be.calledWith('role', 'combobox');
     });
@@ -379,7 +379,7 @@ describe('Sayt Component', () => {
     it('should not remove existing roles', () => {
       getAttribute.withArgs('role').returns('widget');
 
-      sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAttributes(searchbox);
 
       expect(setAttribute).to.be.calledWith('role', 'widget combobox');
     });
@@ -387,13 +387,13 @@ describe('Sayt Component', () => {
     it('should not duplicate roles', () => {
       getAttribute.withArgs('role').returns('combobox widget');
 
-      sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAttributes(searchbox);
 
       expect(setAttribute).to.not.be.calledWith('role', sinon.match(new RegExp(`combobox.*combobox`)));
     });
 
     it('should set aria-haspopup to listbox', () => {
-      sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAttributes(searchbox);
 
       expect(setAttribute).to.be.calledWith('aria-haspopup', 'listbox');
     });
@@ -401,13 +401,13 @@ describe('Sayt Component', () => {
     it('should set aria-expanded to the value of visible', () => {
       sayt.visible = true;
 
-      sayt.setInitialSearchboxAriaAttributes(searchbox);
+      sayt.setInitialSearchboxAttributes(searchbox);
 
       expect(setAttribute).to.be.calledWith('aria-expanded', 'true');
     });
 
     it('should not throw when no searchbox ID is given', () => {
-      const callback = () => sayt.setInitialSearchboxAriaAttributes('');
+      const callback = () => sayt.setInitialSearchboxAttributes('');
 
       expect(callback).to.not.throw();
     });
@@ -415,13 +415,13 @@ describe('Sayt Component', () => {
     it('should not throw when no searchbox exists', () => {
       getElementById.withArgs(searchbox).returns(null);
 
-      const callback = () => sayt.setInitialSearchboxAriaAttributes(searchbox);
+      const callback = () => sayt.setInitialSearchboxAttributes(searchbox);
 
       expect(callback).to.not.throw();
     });
   });
 
-  describe('removeSearchboxAriaAttributes()', () => {
+  describe('removeSearchboxAttributes()', () => {
     const searchbox = 'searchbox';
     let getAttribute;
     let removeAttribute;
@@ -440,31 +440,31 @@ describe('Sayt Component', () => {
     });
 
     it('should only remove the ID of the autocomplete component from aria-controls', () => {
-      sayt.removeSearchboxAriaAttributes(searchbox);
+      sayt.removeSearchboxAttributes(searchbox);
 
       expect(setAttribute).to.be.calledWith('aria-controls', 'otherid');
     });
 
     it('should only remove the combobox role', () => {
-      sayt.removeSearchboxAriaAttributes(searchbox);
+      sayt.removeSearchboxAttributes(searchbox);
 
       expect(setAttribute).to.be.calledWith('role', 'widget');
     });
 
     it('should remove the aria-haspopup attribute', () => {
-      sayt.removeSearchboxAriaAttributes(searchbox);
+      sayt.removeSearchboxAttributes(searchbox);
 
       expect(removeAttribute).to.be.calledWith('aria-haspopup');
     });
 
     it('should remove the aria-expanded attribute', () => {
-      sayt.removeSearchboxAriaAttributes(searchbox);
+      sayt.removeSearchboxAttributes(searchbox);
 
       expect(removeAttribute).to.be.calledWith('aria-expanded');
     });
 
     it('should not throw when no searchbox ID is given', () => {
-      const callback = () => sayt.removeSearchboxAriaAttributes('');
+      const callback = () => sayt.removeSearchboxAttributes('');
 
       expect(callback).to.not.throw();
     });
@@ -472,7 +472,7 @@ describe('Sayt Component', () => {
     it('should not throw when no searchbox exists', () => {
       getElementById.withArgs(searchbox).returns(null);
 
-      const callback = () => sayt.removeSearchboxAriaAttributes(searchbox);
+      const callback = () => sayt.removeSearchboxAttributes(searchbox);
 
       expect(callback).to.not.throw();
     });

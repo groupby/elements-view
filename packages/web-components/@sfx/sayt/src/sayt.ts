@@ -145,7 +145,7 @@ export default class Sayt extends LitElement {
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.addEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'add');
-    this.setInitialSearchboxAriaAttributes(this.searchbox);
+    this.setInitialSearchboxAttributes(this.searchbox);
   }
 
   /**
@@ -164,7 +164,7 @@ export default class Sayt extends LitElement {
     this.removeEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.removeEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'remove');
-    this.removeSearchboxAriaAttributes(this.searchbox);
+    this.removeSearchboxAttributes(this.searchbox);
   }
 
   createRenderRoot(): Element|ShadowRoot {
@@ -188,17 +188,17 @@ export default class Sayt extends LitElement {
       }
     }
     if (changedProps.has('hideAutocomplete')) {
-      this.removeSearchboxAriaAttributes(this.searchbox);
-      this.setInitialSearchboxAriaAttributes(this.searchbox);
+      this.removeSearchboxAttributes(this.searchbox);
+      this.setInitialSearchboxAttributes(this.searchbox);
     }
     if (changedProps.has('searchbox')) {
       const oldSearchbox = changedProps.get('searchbox') as string;
 
       this.setSearchboxListener(oldSearchbox, 'remove');
-      this.removeSearchboxAriaAttributes(oldSearchbox);
+      this.removeSearchboxAttributes(oldSearchbox);
 
       this.setSearchboxListener(this.searchbox, 'add');
-      this.setInitialSearchboxAriaAttributes(this.searchbox);
+      this.setInitialSearchboxAttributes(this.searchbox);
     }
     if (changedProps.has('debounce')) {
       this.setDebouncedMethods();
@@ -235,7 +235,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Sets various ARIA attributes on the searchbox with the given ID.
+   * Sets various attributes on the searchbox with the given ID.
    * Only the attributes that are relevant the first time
    * that the searchbox is decorated are added.
    * These attributes are:
@@ -247,7 +247,7 @@ export default class Sayt extends LitElement {
    *
    * @param searchboxId The ID of the paired searchbox.
    */
-  protected setInitialSearchboxAriaAttributes(searchboxId: string): void {
+  protected setInitialSearchboxAttributes(searchboxId: string): void {
     if (!searchboxId) return;
 
     const searchbox = document.getElementById(searchboxId);
@@ -272,7 +272,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Modifies various ARIA attributes to remove values set by this component
+   * Modifies various attributes to remove values set by this component
    * on the searchbox with the given ID.
    * These attributes are:
    *
@@ -283,7 +283,7 @@ export default class Sayt extends LitElement {
    *
    * @param searchboxId The ID of the paired searchbox.
    */
-  protected removeSearchboxAriaAttributes(searchboxId: string): void {
+  protected removeSearchboxAttributes(searchboxId: string): void {
     if (!searchboxId) return;
 
     const searchbox = document.getElementById(searchboxId);
