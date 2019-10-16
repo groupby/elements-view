@@ -284,6 +284,45 @@ storiesOf('Components|SAYT', module)
         visible
       ></sfx-sayt>
       \`\`\`
+
+          ### The SF-X SAYT component paired with a searchbox component will be accessible.
+            * Setting the \`searchbox\` attribute with the \`id\` of a valid text input will create a link between the elements.
+            * The SAYT component will set aria attributes for \`aria-expanded\`, \`aria-haspopup\`, and \`role\` on the searchbox.
+            * Additionally, if the SAYT component is using the SF-X Autocomplete component (default), it will also set \`aria-activedescendant\` and \`aria-controls\` on the searchbox.
+              * The component will also be able to set \`aria-selected\` on the active Autocomplete item by using the exposed key navigation methods from the SF-X Autocomplete component.
+            * The example html snippet from above will be rendered as such when the SAYT component is open:
+
+              \`\`\`html
+              <input
+                type="text
+                id="search-box"
+                aria-controls="sfx-sayt-nGuekzlz-autocomplete"
+                role="combobox"
+                aria-haspopup="listbox"
+                aria-expanded="true"
+                aria-activedescendant="sfx-autocomplete-IiDNFBKrd-item-1"
+              />
+              <sfx-sayt
+                searchbox="search-box"
+                closetext="×"
+                showclosebutton
+                visible
+              >
+                ...
+                <sfx-autocomplete
+                  data-sfx-ref="autocomplete"
+                  id="sfx-sayt-nGuekzlz-autocomplete"
+                  role="listbox"
+                  selectedindex="1"
+                >
+                  <ul>
+                    <li role="option" id="sfx-autocomplete-IiDNFBKrd-item-0">...</li>
+                    <li role="option" id="sfx-autocomplete-IiDNFBKrd-item-1" aria-selected="true">...</li>
+                  ...
+                </sfx-autocomplete>
+                ...
+              </sfx-sayt>
+              \`\`\`
       `,
       },
     }
