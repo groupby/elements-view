@@ -202,16 +202,16 @@ export default class Autocomplete extends LitElement {
     const header = html`<h4 id="${titleId}">${list.title}</h4>`;
     const searchTermItems = list.items.map((item, index) => {
       const itemIndex = itemStartingIndex + index;
-      const ariaSelected = this.selectedIndex === itemIndex ? 'true' : undefined;
+      const ariaSelected = this.selectedIndex === itemIndex;
       return html`
         <li
            id="${this.generateItemId(itemIndex)}"
            role="option"
-           aria-selected="${ifDefined(ariaSelected)}"
+           aria-selected="${ariaSelected}"
            @mouseenter="${this.getSetSelectedIndexCallback(itemIndex)}"
         >${item.label}</li>`;
     });
-    const searchTermList = html`<ul aria-labelledby="${ifDefined(list.title ? titleId : undefined)}">${searchTermItems}</ul>`;
+    const searchTermList = html`<ul role="group" aria-labelledby="${ifDefined(list.title ? titleId : undefined)}">${searchTermItems}</ul>`;
 
     return html`
       ${list.title ? header : ''}
