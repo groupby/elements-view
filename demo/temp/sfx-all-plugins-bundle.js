@@ -15499,10 +15499,8 @@ var SaytDriverPlugin = /** @class */ (function () {
      * @returns An object containing an array of valid simplified products and the original response.
      */
     SaytDriverPlugin.prototype.searchCallback = function (searchResponse) {
-        console.log('original response', searchResponse);
         var records = searchResponse.records;
         var mappedRecords = records.map(this.transformProduct).filter(Boolean);
-        console.log('mappedRecords', mappedRecords);
         return {
             products: mappedRecords,
             originalResponse: searchResponse,
