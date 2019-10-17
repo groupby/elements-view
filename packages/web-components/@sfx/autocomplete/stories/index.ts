@@ -78,7 +78,9 @@ storiesOf('Components|Autocomplete', module)
           \`\`\`
 
           ### The SF-X Autocomplete component will select the item at the index specified by \`selectedIndex\`.
-          *
+          * The selected item will have the \`aria-selected\` attribute set to \`true\`. On all other items, this attribute will be set to \`false\`.
+          * The \`selectedId\` property reflects the ID of the currently selected item.
+          * If the value of the \`selectedIndex\` property does not correspond to an item, no items are selected.
 
           ### The SF-X Autocomplete component selects terms that are hovered over.
           * Hovering over an SF-X Autocomplete term will select the term by setting the \`selectedIndex\` property.
