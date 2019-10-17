@@ -81,6 +81,9 @@ storiesOf('Components|Autocomplete', module)
           * The selected item will have the \`aria-selected\` attribute set to \`true\`. On all other items, this attribute will be set to \`false\`.
           * The \`selectedId\` property reflects the ID of the currently selected item.
           * If the value of the \`selectedIndex\` property does not correspond to an item, no items are selected.
+          * To demonstrate in this story:
+            1. Visit the **Knobs** tab and modify the number inside the "Selected Index" field.
+            2. Observe that the selection changes.
 
           ### The SF-X Autocomplete component selects terms that are hovered over.
           * Hovering over an SF-X Autocomplete term will select the term by setting the \`selectedIndex\` property.
