@@ -84,6 +84,9 @@ storiesOf('Components|Autocomplete', module)
 
           ### The SF-X Autocomplete component selects terms that are hovered over.
           * Hovering over an SF-X Autocomplete term will select the term by setting the \`selectedIndex\` property.
+          * To demonstrate in this story:
+            1. Hover over a term.
+            2. Observe that the selection changes.
         `,
       },
     }
