@@ -288,10 +288,11 @@ storiesOf('Components|SAYT', module)
           ### The SF-X SAYT component paired with a searchbox is navigable using the arrow keys.
             * The autocomplete selection can be changed by pressing the Up and Down arrow keys in the paired searchbox.
             * To demonstrate in this story:
-              1. Dispatch an \`${AUTOCOMPLETE_RESPONSE}\` event.
-              2. Click in the searchbox.
-              3. Press the Up and Down arrow keys.
-              4. Observe that the autocomplete selection changes.
+              1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RESPONSE}\` event.
+              2. Click "emit".
+              3. Click in the searchbox.
+              4. Press the Up and Down arrow keys.
+              5. Observe that the autocomplete selection changes.
 
           ### The SF-X SAYT component paired with a searchbox component will be accessible.
             * Setting the \`searchbox\` attribute with the \`id\` of a valid text input will create a link between the elements.
