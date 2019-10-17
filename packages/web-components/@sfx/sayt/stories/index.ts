@@ -285,11 +285,18 @@ storiesOf('Components|SAYT', module)
       ></sfx-sayt>
       \`\`\`
 
+          ### The SF-X SAYT component paired with a searchbox is navigable using the arrow keys.
+            * The autocomplete selection can be changed by pressing the Up and Down arrow keys in the paired searchbox.
+            * To demonstrate in this story:
+              1. Dispatch an \`${AUTOCOMPLETE_RESPONSE}\` event.
+              2. Click in the searchbox.
+              3. Press the Up and Down arrow keys.
+              4. Observe that the autocomplete selection changes.
+
           ### The SF-X SAYT component paired with a searchbox component will be accessible.
             * Setting the \`searchbox\` attribute with the \`id\` of a valid text input will create a link between the elements.
             * The SAYT component will set aria attributes for \`aria-expanded\`, \`aria-haspopup\`, and \`role\` on the searchbox.
             * Additionally, if the SAYT component is using the SF-X Autocomplete component (default), it will also set \`aria-activedescendant\` and \`aria-controls\` on the searchbox.
-              * The component will also be able to set \`aria-selected\` on the active Autocomplete item by using the exposed key navigation methods from the SF-X Autocomplete component.
             * The example html snippet from above will be rendered as such when the SAYT component is open:
 
               \`\`\`html
