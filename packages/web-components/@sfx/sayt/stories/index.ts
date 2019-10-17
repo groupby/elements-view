@@ -323,7 +323,7 @@ storiesOf('Components|SAYT', module)
                   selectedindex="1"
                 >
                   <ul>
-                    <li role="option" id="sfx-autocomplete-IiDNFBKrd-item-0">...</li>
+                    <li role="option" id="sfx-autocomplete-IiDNFBKrd-item-0" aria-selected="false">...</li>
                     <li role="option" id="sfx-autocomplete-IiDNFBKrd-item-1" aria-selected="true">...</li>
                   ...
                 </sfx-autocomplete>
