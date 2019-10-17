@@ -87,6 +87,7 @@ storiesOf('Components|Autocomplete', module)
           * To demonstrate in this story:
             1. Hover over a term.
             2. Observe that the selection changes.
+               * Note that the value of the knob will not change in response to this action. This is due to technical limitations with knobs and does not reflect the actual behavior of the component.
         `,
       },
     }
