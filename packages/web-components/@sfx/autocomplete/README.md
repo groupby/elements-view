@@ -6,14 +6,26 @@ The Autocomplete component displays search terms related to a query term. It als
 
 ### Term Selection
 
-At most one term is selected at any given time. When a term is selected,
-the `aria-selected` property for the item is set to
+At most one term is selected at any given time.
+When a term is selected, the `aria-selected` property for the item is set to `true`.
+
+The `selectedIndex` property determines which item is selected;
+this value is the 0-based index of the selected item relative to the first item of the entire results.
+This property can be set to change the selection.
+If the value is outside the range of the results, no item will be selected.
+
+The read-only `selectedId` property contains the DOM ID of the currently selected item.
 
 The selection can be changed in one of three ways:
 
-* Hovering over a term
-* Using `selectNext()` and `selectPrevious()`
-* Setting the `selectedIndex` property
+* Hovering over a term.
+  Hovering over a term will change the selection immediately.
+* Using `selectNext()` and `selectPrevious()`.
+  These methods will select the next and previous items in the list respectively.
+  If the selection falls off one end, it will wrap around to the other end.
+* Setting the `selectedIndex` property.
+  The item at the index given by `selectedIndex` will be selected.
+  If there is no item at that index, no items will be selected.
 
 ### Recieved Events
 
