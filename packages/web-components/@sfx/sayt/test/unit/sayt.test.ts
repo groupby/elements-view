@@ -187,7 +187,6 @@ describe('Sayt Component', () => {
       });
 
       it('should change the hidden property if the visible property has changed', () => {
-
         sayt.updated(new Map([['visible', true]]));
 
         expect(sayt.hidden).to.be.false;
@@ -223,7 +222,7 @@ describe('Sayt Component', () => {
 
       beforeEach(() => {
         sayt.searchbox = newSearchbox;
-      })
+      });
 
       it('should replace event listener', () => {
         const setSearchboxListener = stub(sayt, 'setSearchboxListener');
@@ -409,7 +408,7 @@ describe('Sayt Component', () => {
 
       sayt.setInitialSearchboxAttributes(searchbox);
 
-      expect(setAttribute).to.not.be.calledWith('role', sinon.match(new RegExp(`combobox.*combobox`)));
+      expect(setAttribute).to.not.be.calledWith('role', sinon.match(new RegExp('combobox.*combobox')));
     });
 
     it('should not throw when no searchbox ID is given', () => {
