@@ -154,7 +154,7 @@ describe('Autcomplete Component', () => {
     });
 
     it('should return an empty string if no items are selected', () => {
-      stub(autocomplete, 'querySelector').withArgs('[aria-selected="true"]').returns(null);
+      autocomplete.selectedIndex = -1;
 
       expect(autocomplete.selectedId).to.equal('');
     });
