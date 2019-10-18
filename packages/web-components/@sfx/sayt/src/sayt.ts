@@ -76,12 +76,12 @@ export default class Sayt extends LitElement {
   @property({ type: Number, reflect: true }) debounce = 300;
 
   /**
-   * Determines the area used for products searches.
+   * The area to use in product searches.
    */
   @property({ type: String, reflect: true }) area: string = '';
 
   /**
-   * Determines the collection used for products and autocomplete searches.
+   * The collection to use for autocomplete and product searches.
    */
   @property({ type: String, reflect: true }) collection: string = '';
 
