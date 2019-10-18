@@ -44,7 +44,7 @@ export default class Autocomplete extends LitElement {
 
   /**
    * The index of the currently selected index. A negative index causes
-   * selection to be cleared.
+   * the selection to be cleared.
    */
   @property({ type: Number, reflect: true }) selectedIndex: number = -1;
 
