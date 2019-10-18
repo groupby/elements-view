@@ -1,4 +1,6 @@
-import { TemplateResult, LitElement } from 'lit-element';
+import { TemplateResult } from 'lit-element';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Base } from '@sfx/base';
 import { expect } from '../utils';
 import List from '../../src/list';
 
@@ -10,7 +12,7 @@ describe('List component', () => {
   });
 
   it('should extend Base', () => {
-    expect(list).to.be.an.instanceof(LitElement);
+    expect(list).to.be.an.instanceof(Base);
   });
 
   describe('caption property', () => {

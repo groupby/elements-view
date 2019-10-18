@@ -3,11 +3,12 @@ import {
   CSSResult,
   customElement,
   html,
-  LitElement,
   property,
   TemplateResult,
 } from 'lit-element';
 import { Product } from '@sfx/events';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Base } from '@sfx/base';
 
 /**
  * The `sfx-products-base` web component wraps and renders a number of
@@ -15,7 +16,7 @@ import { Product } from '@sfx/events';
  * additional wrapper for flexibility.
  */
 @customElement('sfx-products-base')
-export default class ProductsBase extends LitElement {
+export default class ProductsBase extends Base {
   /**
    * The product data to be rendered.
    */
@@ -77,9 +78,5 @@ export default class ProductsBase extends LitElement {
           </div>
         `)}
     `;
-  }
-
-  createRenderRoot(): Element|ShadowRoot {
-    return this;
   }
 }

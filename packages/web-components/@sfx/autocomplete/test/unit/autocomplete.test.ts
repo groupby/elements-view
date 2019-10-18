@@ -1,4 +1,6 @@
-import { TemplateResult, LitElement } from 'lit-element';
+import { TemplateResult } from 'lit-element';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Base } from '@sfx/base';
 import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM } from '@sfx/events';
 import { expect, stub } from '../utils';
 import Autocomplete from '../../src/autocomplete';
@@ -11,8 +13,8 @@ describe('Autcomplete Component', () => {
   });
 
   describe('Constructor', () => {
-    it('should extend the LitElement class', () => {
-      expect(autocomplete).to.be.an.instanceof(LitElement);
+    it('should extend the Base class', () => {
+      expect(autocomplete).to.be.an.instanceof(Base);
     });
 
     describe('Results property', () => {
@@ -48,7 +50,7 @@ describe('Autcomplete Component', () => {
     });
 
     it('should call its super connectedCallback', () => {
-      const superConnectedCallbackStub = stub(LitElement.prototype, 'connectedCallback');
+      const superConnectedCallbackStub = stub(Base.prototype, 'connectedCallback');
 
       autocomplete.connectedCallback();
 
@@ -89,7 +91,7 @@ describe('Autcomplete Component', () => {
     });
 
     it('should call its super disconnectedCallback', () => {
-      const superDisconnectedCallbackStub = stub(LitElement.prototype, 'disconnectedCallback');
+      const superDisconnectedCallbackStub = stub(Base.prototype, 'disconnectedCallback');
 
       autocomplete.disconnectedCallback();
 

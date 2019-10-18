@@ -1,5 +1,4 @@
 import {
-  LitElement,
   customElement,
   html, property,
   PropertyValues,
@@ -22,13 +21,15 @@ import {
   SearchboxInputPayload,
   WithGroup,
 } from '@sfx/events';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Base } from '@sfx/base';
 
 /**
  * The `sfx-sayt` component is responsible for displaying and hiding the
  * `sfx-autocomplete` and `sfx-products` components.
  */
 @customElement('sfx-sayt')
-export default class Sayt extends LitElement {
+export default class Sayt extends Base {
   /**
    * Determines if the `sfx-autocomplete` component will be hidden or not.
    */
@@ -165,10 +166,6 @@ export default class Sayt extends LitElement {
     this.removeEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'remove');
     this.removeSearchboxAttributes(this.searchbox);
-  }
-
-  createRenderRoot(): Element|ShadowRoot {
-    return this;
   }
 
   /**
