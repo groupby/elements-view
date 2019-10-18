@@ -38,7 +38,10 @@ Optionally the product can use `variants` to display different information based
     ]
   }
 }
+
 ```
+
+**Any properties that are not identified in the ProductModel, will be rendered as additional `<span>` tags in the component.**
 
 ## Testing
 

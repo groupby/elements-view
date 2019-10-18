@@ -3,8 +3,8 @@
   <head>
     <title>Demo of Logic and View Integration</title>
     <script src="../dist/components.js"></script>
-    <!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script> -->
-    <script src="./temp/sfx-all-plugins-bundle.js"></script>
+    <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script>
+    <!-- <script src="./temp/sfx-all-plugins-bundle.js"></script> -->
     <style>
       sfx-product-variant {
         width: 40px;
@@ -45,28 +45,28 @@
     <script>
       function parseRecord(record) {
         const data = record.allMeta;
-        const firstVariant = data.visualVariants[0];
-        const nonvisualVariants = firstVariant.nonvisualVariants;
         const visualVariants = data.visualVariants;
+        const firstVariant = visualVariants[0];
+        const nonvisualVariants = firstVariant.nonvisualVariants;
         if (!nonvisualVariants[0]) throw new Error("No nonvisual variants");
 
         return {
           data,
           firstVariant,
           nonvisualVariants,
-          visualVariants
+          visualVariants,
         };
       }
 
       function parseVariants(variants) {
-        return variants.map(v => ({
+        return variants.map((v) => ({
           color: v.standardColor,
           text: v.standardColor,
           image: v.swatchImage,
           product: {
             imageSrc: v.productImage,
             imageAlt: v.description
-          }
+          },
         }));
       }
 
@@ -108,11 +108,11 @@
       // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 
-      window.addEventListener("sfx::sayt_products_response", event => {
+      window.addEventListener('sfx::sayt_products_response', event => {
         console.log(event.type, event.detail);
       });
 
-      window.addEventListener("sfx::sayt_products_error", event => {
+      window.addEventListener('sfx::sayt_products_error', event => {
         console.log(event.type, event.detail);
       });
     </script>
