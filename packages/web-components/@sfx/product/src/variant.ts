@@ -47,7 +47,8 @@ export default class Variant extends LitElement {
           class="sfx-variant-image"
           src="${variant.image}"
           alt="${variant.text}"
-        />` : '';
+        />`
+      : '';
 
     return html`${img}
       ${this.type === 'text' ? variant.text : ''}
