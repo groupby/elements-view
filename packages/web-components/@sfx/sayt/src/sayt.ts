@@ -267,7 +267,7 @@ export default class Sayt extends LitElement {
     const role = searchbox.getAttribute('role');
     const roles = role ? role.split(' ') : [];
     if (!roles.includes('combobox')) {
-      roles.push('combobox');
+      roles.unshift('combobox');
     }
     searchbox.setAttribute('role', roles.join(' '));
   }

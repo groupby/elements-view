@@ -400,7 +400,7 @@ describe('Sayt Component', () => {
 
       sayt.setInitialSearchboxAttributes(searchbox);
 
-      expect(setAttribute).to.be.calledWith('role', 'widget combobox');
+      expect(setAttribute).to.be.calledWith('role', 'combobox widget');
     });
 
     it('should not duplicate roles', () => {

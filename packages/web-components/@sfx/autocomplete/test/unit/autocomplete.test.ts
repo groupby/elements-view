@@ -76,7 +76,7 @@ describe('Autcomplete Component', () => {
 
         autocomplete.connectedCallback();
 
-        expect(autocomplete.getAttribute('role')).to.equal('widget listbox');
+        expect(autocomplete.getAttribute('role')).to.equal('listbox widget');
       });
     });
   });
