@@ -208,11 +208,11 @@ export default class Sayt extends LitElement {
 
   /**
    * Changes the `visible` property to `false`.
+   * This will clear debounced calls for SAYT products. 
    */
   hideSayt(): void {
     this.visible = false;
     this.debouncedRequestSaytProducts.clear();
-    this.visible = false;
   }
 
   /**
