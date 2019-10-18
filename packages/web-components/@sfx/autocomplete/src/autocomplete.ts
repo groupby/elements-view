@@ -159,9 +159,9 @@ export default class Autocomplete extends LitElement {
   }
 
   /**
-   * Incrememnts the `selectedIndex` property by 1.
-   * If `selectedIndex` is out of bounds, its value will be set to `0`.
-   * `selectedIndex` will be set to `0` if the last index is currently selected.
+   * Increments the `selectedIndex` property by 1.
+   * If incrementing `selectedIndex` will cause it to be out of bounds,
+   * its value will be set to `0` instead.
    */
   selectNext(): void {
     const normalizedSelectedIndex = Math.min(Math.max(-1, this.selectedIndex), this.length - 1);
@@ -170,8 +170,8 @@ export default class Autocomplete extends LitElement {
 
   /**
    * Decrements the `selectedIndex` property by 1.
-   * If `selectedIndex` is out of bounds, its value will be set to the index of the last item.
-   * `selectedIndex` will be set to the index of the last item if the first is currently selected.
+   * If decrementing `selectedIndex` will cause it to be out of bounds,
+   * its value will be set to the index of the last item instead.
    */
   selectPrevious(): void {
     const normalizedSelectedIndex = Math.min(Math.max(0, this.selectedIndex), this.length);
