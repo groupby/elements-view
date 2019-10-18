@@ -42,15 +42,13 @@ export default class Variant extends LitElement {
 
   render(): TemplateResult {
     const { variant } = this;
+    const img = this.type === 'image' ? html`<img
+    class="sfx-variant-image"
+    src="${variant.image}"
+    alt="${variant.text}"
+  />` : '';
 
-    return html`${this.type === 'image'
-      ? html`<img
-          class="sfx-variant-image"
-          src="${variant.image}"
-          alt="${variant.text}"
-        />`
-      : ''
-    }
+    return html`${img}
       ${this.type === 'text' ? variant.text : ''}
     `;
   }
