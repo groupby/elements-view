@@ -188,7 +188,7 @@ export default class Sayt extends LitElement {
   }
 
   /**
-   * Changes the `visible` property to `true`.
+   * Changes the [[visible]] property to `true`.
    */
   showSayt(): void {
     this.visible = true;
