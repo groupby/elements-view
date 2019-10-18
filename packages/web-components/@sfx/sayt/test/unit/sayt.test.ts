@@ -254,6 +254,14 @@ describe('Sayt Component', () => {
 
       expect(sayt.visible).to.be.false;
     });
+
+    it('should clear all requests for SAYT products', () => {
+      const debouncedRequestSaytProductsClear = stub(sayt.debouncedRequestSaytProducts, 'clear');
+
+      sayt.hideSayt();
+
+      expect(debouncedRequestSaytProductsClear).to.be.called;
+    });
   });
 
   describe('hideCorrectSayt()', () => {
