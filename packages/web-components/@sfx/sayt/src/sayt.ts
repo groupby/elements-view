@@ -81,7 +81,7 @@ export default class Sayt extends LitElement {
   @property({ type: String, reflect: true }) area: string = '';
 
   /**
-   * The collection to use for autocomplete and product searches.
+   * The collection to use in autocomplete and product searches.
    */
   @property({ type: String, reflect: true }) collection: string = '';
 
