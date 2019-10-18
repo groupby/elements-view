@@ -211,6 +211,8 @@ export default class Sayt extends LitElement {
    */
   hideSayt(): void {
     this.visible = false;
+    this.debouncedRequestSaytProducts.clear();
+    this.visible = false;
   }
 
   /**
