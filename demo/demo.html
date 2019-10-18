@@ -65,7 +65,7 @@
           image: v.swatchImage,
           product: {
             imageSrc: v.productImage,
-            imageAlt: v.description
+            imageAlt: v.description,
           },
         }));
       }
@@ -78,7 +78,12 @@
           console.error(error);
           return;
         }
-        const { data, firstVariant, nonvisualVariants, visualVariants } = filter;
+        const {
+          data,
+          firstVariant,
+          nonvisualVariants,
+          visualVariants,
+        } = filter;
         return {
           title: data.title,
           price: nonvisualVariants[0].retailPrice,
@@ -87,10 +92,10 @@
           productUrl: firstVariant.productImage,
           ...(visualVariants.length > 1 && {
             variants: {
-              type: "image",
-              items: parseVariants(visualVariants)
-            }
-          })
+              type: 'image',
+              items: parseVariants(visualVariants),
+            },
+          }),
         };
       }
 
@@ -108,11 +113,11 @@
       // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 
-      window.addEventListener('sfx::sayt_products_response', event => {
+      window.addEventListener('sfx::sayt_products_response', (event) => {
         console.log(event.type, event.detail);
       });
 
-      window.addEventListener('sfx::sayt_products_error', event => {
+      window.addEventListener('sfx::sayt_products_error', (event) => {
         console.log(event.type, event.detail);
       });
     </script>
