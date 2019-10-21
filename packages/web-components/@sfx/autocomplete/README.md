@@ -25,7 +25,8 @@ The selection can be changed in one of three ways:
   If the selection falls off one end, it will wrap around to the other end.
 * Setting the `selectedIndex` property.
   The item at the index given by `selectedIndex` will be selected.
-  If there is no item at that index, no items will be selected.
+  If there is no item at that index (i.e. if `selectedIndex` is negative or if
+  it is past the end of the list), no items will be selected.
 
 ### Recieved Events
 
