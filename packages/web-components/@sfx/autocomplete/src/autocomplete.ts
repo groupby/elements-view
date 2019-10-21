@@ -106,7 +106,7 @@ export default class Autocomplete extends LitElement {
   /**
    * The total number of items in all `result` groups.
    */
-  get length(): number {
+  get itemCount(): number {
     return this.results.reduce((sum, resultGroup) => sum + resultGroup.items.length, 0);
   }
 
@@ -127,7 +127,7 @@ export default class Autocomplete extends LitElement {
    * @return The ID of the selected item.
    */
   get selectedId(): string {
-    return this.selectedIndex >= 0 && this.selectedIndex < this.length
+    return this.selectedIndex >= 0 && this.selectedIndex < this.itemCount
       ? this.generateItemId(this.selectedIndex)
       : '';
   }
@@ -149,7 +149,7 @@ export default class Autocomplete extends LitElement {
    * Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the selected term.
    */
   dispatchSelectedTerm(): void {
-    if (this.selectedIndex < 0 || this.selectedIndex >= this.length) return;
+    if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
 
     const allItems = this.results
       .map((group) => group.items)
@@ -172,8 +172,8 @@ export default class Autocomplete extends LitElement {
    * its value will be set to `0` instead.
    */
   selectNext(): void {
-    const normalizedSelectedIndex = Math.min(Math.max(-1, this.selectedIndex), this.length - 1);
-    this.selectedIndex = (normalizedSelectedIndex + 1) % this.length;
+    const normalizedSelectedIndex = Math.min(Math.max(-1, this.selectedIndex), this.itemCount - 1);
+    this.selectedIndex = (normalizedSelectedIndex + 1) % this.itemCount;
   }
 
   /**
@@ -182,8 +182,8 @@ export default class Autocomplete extends LitElement {
    * its value will be set to the index of the last item instead.
    */
   selectPrevious(): void {
-    const normalizedSelectedIndex = Math.min(Math.max(0, this.selectedIndex), this.length);
-    this.selectedIndex = (normalizedSelectedIndex - 1 + this.length) % this.length;
+    const normalizedSelectedIndex = Math.min(Math.max(0, this.selectedIndex), this.itemCount);
+    this.selectedIndex = (normalizedSelectedIndex - 1 + this.itemCount) % this.itemCount;
   }
 
   /**

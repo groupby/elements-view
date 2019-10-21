@@ -119,7 +119,7 @@ describe('Autcomplete Component', () => {
     });
   });
 
-  describe('length', () => {
+  describe('itemCount', () => {
     it('should equal the total number of autocomplete items', () => {
       autocomplete.results = [
         {
@@ -133,13 +133,13 @@ describe('Autcomplete Component', () => {
         },
       ];
 
-      expect(autocomplete.length).to.equal(5);
+      expect(autocomplete.itemCount).to.equal(5);
     });
 
     it('should equal 0 if there are no results', () => {
       autocomplete.results = [];
 
-      expect(autocomplete.length).to.equal(0);
+      expect(autocomplete.itemCount).to.equal(0);
     });
   });
 
@@ -148,7 +148,7 @@ describe('Autcomplete Component', () => {
       const id = 'optionid';
       const selectedIndex = autocomplete.selectedIndex = 1;
       stub(autocomplete, 'generateItemId').withArgs(selectedIndex).returns(id);
-      stub(autocomplete, 'length').get(() => 3);
+      stub(autocomplete, 'itemCount').get(() => 3);
 
       expect(autocomplete.selectedId).to.equal(id);
     });
@@ -265,7 +265,7 @@ describe('Autcomplete Component', () => {
 
     it('should not emit an event if no item is selected', () => {
       autocomplete.selectedIndex = -1;
-      stub(autocomplete, 'length').get(() => 5);
+      stub(autocomplete, 'itemCount').get(() => 5);
 
       autocomplete.dispatchSelectedTerm();
 
@@ -274,7 +274,7 @@ describe('Autcomplete Component', () => {
 
     it('should not emit an event if selectedIndex is out of bounds', () => {
       autocomplete.selectedIndex = 10;
-      stub(autocomplete, 'length').get(() => 5);
+      stub(autocomplete, 'itemCount').get(() => 5);
 
       autocomplete.dispatchSelectedTerm();
 
@@ -284,7 +284,7 @@ describe('Autcomplete Component', () => {
 
   describe('selectNext()', () => {
     beforeEach(() => {
-      stub(autocomplete, 'length').get(() => 10);
+      stub(autocomplete, 'itemCount').get(() => 10);
     });
 
     it('should increment the selected index', () => {
@@ -321,10 +321,10 @@ describe('Autcomplete Component', () => {
   });
 
   describe('selectPrevious()', () => {
-    const length = 10;
+    const itemCount = 10;
 
     beforeEach(() => {
-      stub(autocomplete, 'length').get(() => length);
+      stub(autocomplete, 'itemCount').get(() => itemCount);
     });
 
     it('should decrememnt the selected index', () => {
@@ -340,7 +340,7 @@ describe('Autcomplete Component', () => {
 
       autocomplete.selectPrevious();
 
-      expect(autocomplete.selectedIndex).to.equal(length - 1);
+      expect(autocomplete.selectedIndex).to.equal(itemCount - 1);
     });
 
     it('should select the last index when the currently selected index is outside of bounds', () => {
@@ -348,7 +348,7 @@ describe('Autcomplete Component', () => {
 
       autocomplete.selectPrevious();
 
-      expect(autocomplete.selectedIndex).to.equal(length - 1);
+      expect(autocomplete.selectedIndex).to.equal(itemCount - 1);
     });
   });
 
