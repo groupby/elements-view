@@ -1,23 +1,24 @@
 import { LitElement } from 'lit-element';
 import { expect, stub } from '../utils';
+import { DummyComponent } from './dummy-component';
 import { Base } from '@sfx/base';
 
 describe('Base Class', () => {
-  let base;
+  let dummyComponent;
 
   beforeEach(() => {
-    base = new Base();
+    dummyComponent = new DummyComponent();
   });
 
-  it('should extend from LitElement', () => {
-    expect(base).to.be.an.instanceof(LitElement);
+  it('should be extendable', () => {
+    expect(dummyComponent).to.be.an.instanceof(Base);
   });
 
   describe('createRenderRoot', () => {
     it('should return the element itself', () => {
-      const renderRoot = base.createRenderRoot();
+      const renderRoot = dummyComponent.createRenderRoot();
 
-      expect(renderRoot).to.equal(base);
+      expect(renderRoot).to.equal(dummyComponent);
     });
   });
 });
