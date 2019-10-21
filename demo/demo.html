@@ -5,13 +5,39 @@
     <script src="../dist/components.js"></script>
     <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script>
     <!-- <script src="./temp/sfx-all-plugins-bundle.js"></script> -->
+    <style>
+      sfx-product-variant {
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        background-size: cover;
+        margin: 2px;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      sfx-product-variant img {
+        width: auto;
+        height: auto;
+        min-width: 40px;
+        min-height: 40px;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    </style>
   </head>
 
   <body>
     <sfx-search-box id="main-search" placeholder="search" clearbutton searchbutton></sfx-search-box>
     <sfx-sayt searchbox="main-search" area="DemoMaster" collection="products"></sfx-sayt>
 
-    <sfx-search-box id="secondary-search" group="secondary" placeholder="search" clearbutton searchbutton></sfx-search-box>
+    <sfx-search-box
+      id="secondary-search"
+      group="secondary"
+      placeholder="search"
+      clearbutton
+      searchbutton
+    ></sfx-search-box>
     <sfx-sayt searchbox="secondary-search" group="secondary"></sfx-sayt>
 
     <sfx-products></sfx-products>
@@ -19,7 +45,8 @@
     <script>
       function parseRecord(record) {
         const data = record.allMeta;
-        const firstVariant = data.visualVariants[0];
+        const visualVariants = data.visualVariants;
+        const firstVariant = visualVariants[0];
         const nonvisualVariants = firstVariant.nonvisualVariants;
         if (!nonvisualVariants[0]) throw new Error('No nonvisual variants');
 
@@ -27,7 +54,20 @@
           data,
           firstVariant,
           nonvisualVariants,
+          visualVariants,
         };
+      }
+
+      function parseVariants(variants) {
+        return variants.map((v) => ({
+          color: v.standardColor,
+          text: v.standardColor,
+          image: v.swatchImage,
+          product: {
+            imageSrc: v.productImage,
+            imageAlt: v.description,
+          },
+        }));
       }
 
       function productTransformer(record) {
@@ -38,7 +78,12 @@
           console.error(error);
           return;
         }
-        const { data, firstVariant, nonvisualVariants } = filter;
+        const {
+          data,
+          firstVariant,
+          nonvisualVariants,
+          visualVariants,
+        } = filter;
 
         return {
           title: data.title,
@@ -46,8 +91,13 @@
           imageSrc: firstVariant.productImage,
           imageAlt: data.title,
           productUrl: firstVariant.productImage,
-          // @TODO Handle variants
-        }
+          ...(visualVariants.length > 1 && {
+            variants: {
+              type: 'image',
+              items: parseVariants(visualVariants),
+            },
+          }),
+        };
       }
 
       function searchProductTransformer(record) {
@@ -56,7 +106,7 @@
 
       // init core and plugins
       const core = new sfxCore.Core();
-      const domEventsPlugin = new sfxPlugins.DomEventsPlugin()
+      const domEventsPlugin = new sfxPlugins.DomEventsPlugin();
       const saytPlugin = new sfxPlugins.SaytPlugin({ subdomain: 'apparel' });
       const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin({ productTransformer });
       const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel' });

@@ -3,16 +3,15 @@ import {
   property,
   html,
   TemplateResult,
+  LitElement,
 } from 'lit-element';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
 import { ProductVariant } from '@sfx/events';
 
 /**
  * A product variant component that displays a thumbnail of a product variant.
  */
 @customElement('sfx-product-variant')
-export default class Variant extends Base {
+export default class Variant extends LitElement {
   /** The type of variant to render. One of `text`, `color` or `image`. Default is `text`. */
   @property({ type: String, reflect: true }) type: string = 'text';
 
@@ -43,17 +42,20 @@ export default class Variant extends Base {
 
   render(): TemplateResult {
     const { variant } = this;
-
-    return html`
-      ${this.type === 'image'
-    ? html`<img
+    const img = this.type === 'image'
+      ? html`<img
           class="sfx-variant-image"
           src="${variant.image}"
           alt="${variant.text}"
         />`
-    : ''
-}
+      : '';
+
+    return html`${img}
       ${this.type === 'text' ? variant.text : ''}
     `;
+  }
+
+  createRenderRoot(): Element|ShadowRoot {
+    return this;
   }
 }

@@ -38,14 +38,7 @@ Optionally the product can use `variants` to display different information based
     ]
   }
 }
-```
 
-The `image`, `variants`, `title` and `price` can be changed using slots.
-
-```html
-<sfx-product product="{}">
-  <h1 slot="title">Slotted Title</h1>
-</sfx-product>
 ```
 
 **Any properties that are not identified in the ProductModel, will be rendered as additional `<span>` tags in the component.**

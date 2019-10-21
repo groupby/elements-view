@@ -89,15 +89,12 @@ export default class Product extends LitElement {
           padding: 0;
         }
       </style>
-      <slot name="image">
         ${imageSrc
     ? html`<img
             class="sfx-image"
             src="${imageSrc}"
             alt="${imageAlt}" />`
     : ''}
-      </slot>
-      <slot name="variants">
         <ul class="sfx-product-variants">
           ${variants
     ? variants.items.map((v) => html`<sfx-product-variant
@@ -108,13 +105,8 @@ export default class Product extends LitElement {
     : ''
 }
         </ul>
-      </slot>
-      <slot name="title">
         ${this.urlWrap(productUrl, html`<h3 class="sfx-title">${title}</h3>`)}
-      </slot>
-      <slot name="price">
         <p class="sfx-price">${price}</p>
-      </slot>
       ${this.additionalInfo()}
     `;
   }

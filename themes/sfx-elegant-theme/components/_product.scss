@@ -39,7 +39,7 @@ sfx-product {
     text-decoration: none;
   }
 
-  slot[name="price"] p {
+  p.sfx-price {
     margin: 0;
     &::before {
       content: "$";
