@@ -62,6 +62,8 @@ particular customizations:
 - `minSearchLength`: The minimum length of the search term required before a SAYT request will be made with it.
 - `searchbox`: Optional ID of the searchbox paired with this component.
 - `group`: Optional attribute to add the `sayt` component to a grouping of related search components. The component will only act on events if they contain the same group name as the component.
+- `area`: The area to use in product searches.
+- `collection`: The collection to use in autocomplete and product searches.
 
 ## Testing
 

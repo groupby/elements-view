@@ -9,7 +9,7 @@
 
   <body>
     <sfx-search-box id="main-search" placeholder="search" clearbutton searchbutton></sfx-search-box>
-    <sfx-sayt searchbox="main-search"></sfx-sayt>
+    <sfx-sayt searchbox="main-search" area="DemoMaster" collection="products"></sfx-sayt>
 
     <sfx-search-box id="secondary-search" group="secondary" placeholder="search" clearbutton searchbutton></sfx-search-box>
     <sfx-sayt searchbox="secondary-search" group="secondary"></sfx-sayt>
@@ -42,7 +42,7 @@
 
         return {
           title: data.title,
-          price: nonvisualVariants[0].originalPrice,
+          price: nonvisualVariants[0].retailPrice,
           imageSrc: firstVariant.productImage,
           imageAlt: data.title,
           productUrl: firstVariant.productImage,

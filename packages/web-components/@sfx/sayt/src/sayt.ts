@@ -76,6 +76,16 @@ export default class Sayt extends LitElement {
   @property({ type: Number, reflect: true }) debounce = 300;
 
   /**
+   * The area to use in product searches.
+   */
+  @property({ type: String, reflect: true }) area: string = '';
+
+  /**
+   * The collection to use in autocomplete and product searches.
+   */
+  @property({ type: String, reflect: true }) collection: string = '';
+
+  /**
    * A debounced version of [[requestSaytProducts]].
    * The delay is configured through the [[debounce]] property.
    */
@@ -263,7 +273,14 @@ export default class Sayt extends LitElement {
    */
   dispatchRequestEvent(eventType: string, query: string): void {
     const requestEvent = new CustomEvent(eventType, {
-      detail: { query, group: this.group },
+      detail: {
+        query,
+        group: this.group,
+        config: {
+          area: this.area,
+          collection: this.collection,
+        },
+      },
       bubbles: true,
     });
     this.dispatchEvent(requestEvent);

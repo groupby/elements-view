@@ -50,9 +50,57 @@ describe('Sayt Component', () => {
       });
     });
 
+    describe('visible property', () => {
+      it('should have default value of false', () => {
+        expect(sayt.visible).to.be.false;
+      });
+    });
+
+    describe('searchbox property', () => {
+      it('should have default value of an empty string', () => {
+        expect(sayt.searchbox).to.equal('');
+      });
+    });
+
     describe('group property', () => {
       it('should have default value of an empty string', () => {
         expect(sayt.group).to.equal('');
+      });
+    });
+
+    describe('closeText property', () => {
+      it('should have default value of Close', () => {
+        expect(sayt.closeText).to.equal('Close');
+      });
+    });
+
+    describe('showCloseButton property', () => {
+      it('should have default value of false', () => {
+        expect(sayt.showCloseButton).to.be.false;
+      });
+    });
+
+    describe('minSearchLength property', () => {
+      it('should have default value of 3', () => {
+        expect(sayt.minSearchLength).to.equal(3);
+      });
+    });
+
+    describe('debounce property', () => {
+      it('should have default value of 300', () => {
+        expect(sayt.debounce).to.equal(300);
+      });
+    });
+
+    describe('area property', () => {
+      it('should have default value of an empty string', () => {
+        expect(sayt.area).to.equal('');
+      });
+    });
+
+    describe('collection property', () => {
+      it('should have default value of an empty string', () => {
+        expect(sayt.collection).to.equal('');
       });
     });
   });
@@ -372,9 +420,11 @@ describe('Sayt Component', () => {
   });
 
   describe('dispatchRequestEvent()', () => {
-    it('should dispatch an event with a payload that includes the query and the group property', () => {
+    it('should dispatch an event with a payload that includes the query, the group property, and config', () => {
       const eventName = 'some-event-name';
       const group = sayt.group = 'some-group-name';
+      const area = sayt.area = 'some-area';
+      const collection = sayt.collection = 'some-collection';
       const query = 'some-query';
       const eventObj = { a: 'a' };
       const customEvent = stub(window, 'CustomEvent').returns(eventObj);
@@ -383,7 +433,14 @@ describe('Sayt Component', () => {
       sayt.dispatchRequestEvent(eventName, query);
 
       expect(customEvent).to.be.calledWith(eventName, {
-        detail: { query, group },
+        detail: {
+          query,
+          group,
+          config: {
+            area,
+            collection,
+          },
+        },
         bubbles: true,
       });
       expect(dispatchEvent).to.be.calledWith(eventObj);
