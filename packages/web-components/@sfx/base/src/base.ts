@@ -12,10 +12,12 @@ export default class Base extends LitElement {
   }
 
   createRenderRoot(): Element {
+    console.log('in create renderRoot')
     return this;
   }
 
   dispatchSfxEvent<T>(eventName: string, payload?: T): void {
+    console.log('this in dispatchSfxEvent', this);
     const eventToDispatch = new CustomEvent<T>(eventName, { detail: payload, bubbles: true });
     this.dispatchEvent(eventToDispatch);
   }
