@@ -89,6 +89,14 @@ export default class Autocomplete extends LitElement {
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
   }
 
+  /**
+   * Reacts to changes to various properties.
+   * The changes to the following properties are listened for:
+   *
+   * - `selectedIndex`
+   *
+   * @param changedProps A map of the all the changed properties.
+   */
   updated(changedProps: PropertyValues): void {
     if (changedProps.has('selectedIndex')) {
       this.dispatchSelectedTerm();
