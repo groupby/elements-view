@@ -8,15 +8,15 @@ import {
 export default class Base extends LitElement {
   constructor() {
     super();
-    this.dispatchEvent = this.dispatchEvent.bind(this);
+    this.dispatchSfxEvent = this.dispatchEvent.bind(this);
   }
 
   createRenderRoot(): Element {
     return this;
   }
 
-  dispatchSfxEvent(eventName: string, payload?: any): void {
-    const eventToDispatch = new CustomEvent(eventName, { detail: payload, bubbles: true });
+  dispatchSfxEvent<T>(eventName: string, payload?: T): void {
+    const eventToDispatch = new CustomEvent<T>(eventName, { detail: payload, bubbles: true });
     this.dispatchEvent(eventToDispatch);
   }
 }

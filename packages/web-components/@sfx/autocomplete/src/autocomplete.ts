@@ -157,14 +157,11 @@ export default class Autocomplete extends Base {
       .reduce((accItems, items) => [...accItems, ...items], []);
     const term = allItems[this.selectedIndex].label;
 
-    const sentEvent = new CustomEvent<AutocompleteActiveTermPayload>(AUTOCOMPLETE_ACTIVE_TERM, {
-      detail: {
-        query: term,
-        group: this.group,
-      },
-      bubbles: true,
-    });
-    this.dispatchEvent(sentEvent);
+    const payload: AutocompleteActiveTermPayload = {
+      query: term,
+      group: this.group,
+    };
+    super.dispatchSfxEvent(AUTOCOMPLETE_ACTIVE_TERM, payload);
   }
 
   /**
