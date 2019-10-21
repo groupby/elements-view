@@ -353,7 +353,7 @@ describe('Autcomplete Component', () => {
   });
 
   describe('getSetSelectedIndexCallback()', () => {
-    it('shoudld return a handler that sets the selected index', () => {
+    it('should return a handler that sets the selected index', () => {
       const newSelectedIndex = 3;
       autocomplete.selectedIndex = -1;
 
