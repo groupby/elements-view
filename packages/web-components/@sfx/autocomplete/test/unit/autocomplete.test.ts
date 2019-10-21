@@ -283,8 +283,10 @@ describe('Autcomplete Component', () => {
   });
 
   describe('selectNext()', () => {
+    let itemCountStub;
+
     beforeEach(() => {
-      stub(autocomplete, 'itemCount').get(() => 10);
+      itemCountStub = stub(autocomplete, 'itemCount').get(() => 10);
     });
 
     it('should increment the selected index', () => {
@@ -318,13 +320,23 @@ describe('Autcomplete Component', () => {
 
       expect(autocomplete.selectedIndex).to.equal(0);
     });
+
+    it('should select index -1 when there are no items', () => {
+      autocomplete.selectedIndex = 2;
+      itemCountStub.get(() => 0);
+
+      autocomplete.selectNext();
+
+      expect(autocomplete.selectedIndex).to.equal(-1);
+    });
   });
 
   describe('selectPrevious()', () => {
     const itemCount = 10;
+    let itemCountStub;
 
     beforeEach(() => {
-      stub(autocomplete, 'itemCount').get(() => itemCount);
+      itemCountStub = stub(autocomplete, 'itemCount').get(() => itemCount);
     });
 
     it('should decrememnt the selected index', () => {
@@ -349,6 +361,15 @@ describe('Autcomplete Component', () => {
       autocomplete.selectPrevious();
 
       expect(autocomplete.selectedIndex).to.equal(itemCount - 1);
+    });
+
+    it('should select index -1 when there are no items', () => {
+      autocomplete.selectedIndex = 2;
+      itemCountStub.get(() => 0);
+
+      autocomplete.selectPrevious();
+
+      expect(autocomplete.selectedIndex).to.equal(-1);
     });
   });
 

@@ -170,20 +170,24 @@ export default class Autocomplete extends LitElement {
    * Increments the `selectedIndex` property by 1.
    * If incrementing `selectedIndex` will cause it to be out of bounds,
    * its value will be set to `0` instead.
+   * If there are no items, `selectedIndex` will be set to `-1`.
    */
   selectNext(): void {
     const normalizedSelectedIndex = Math.min(Math.max(-1, this.selectedIndex), this.itemCount - 1);
-    this.selectedIndex = (normalizedSelectedIndex + 1) % this.itemCount;
+    const newIndex = (normalizedSelectedIndex + 1) % this.itemCount;
+    this.selectedIndex = Number.isNaN(newIndex) ? -1 : newIndex;
   }
 
   /**
    * Decrements the `selectedIndex` property by 1.
    * If decrementing `selectedIndex` will cause it to be out of bounds,
    * its value will be set to the index of the last item instead.
+   * If there are no items, `selectedIndex` will be set to `-1`.
    */
   selectPrevious(): void {
     const normalizedSelectedIndex = Math.min(Math.max(0, this.selectedIndex), this.itemCount);
-    this.selectedIndex = (normalizedSelectedIndex - 1 + this.itemCount) % this.itemCount;
+    const newIndex = (normalizedSelectedIndex - 1 + this.itemCount) % this.itemCount;
+    this.selectedIndex = Number.isNaN(newIndex) ? -1 : newIndex;
   }
 
   /**
