@@ -345,12 +345,6 @@ describe('Sayt Component', () => {
       expect(setAttribute).to.be.calledWith('autocomplete', 'off');
     });
 
-    it('should set aria-haspopup to listbox', () => {
-      sayt.setInitialSearchboxAttributes(searchbox);
-
-      expect(setAttribute).to.be.calledWith('aria-haspopup', 'listbox');
-    });
-
     it('should set aria-expanded to the value of visible', () => {
       sayt.visible = true;
 
@@ -448,12 +442,6 @@ describe('Sayt Component', () => {
       sayt.removeSearchboxAttributes(searchbox);
 
       expect(removeAttribute).to.be.calledWith('autocomplete');
-    });
-
-    it('should remove the aria-haspopup attribute', () => {
-      sayt.removeSearchboxAttributes(searchbox);
-
-      expect(removeAttribute).to.be.calledWith('aria-haspopup');
     });
 
     it('should remove the aria-expanded attribute', () => {

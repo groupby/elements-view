@@ -254,7 +254,6 @@ export default class Sayt extends LitElement {
     if (!searchbox) return;
 
     searchbox.setAttribute('autocomplete', 'off');
-    searchbox.setAttribute('aria-haspopup', 'listbox');
     searchbox.setAttribute('aria-expanded', String(this.visible));
 
     const controls = searchbox.getAttribute('aria-controls');
@@ -291,7 +290,6 @@ export default class Sayt extends LitElement {
     if (!searchbox) return;
 
     searchbox.removeAttribute('autocomplete');
-    searchbox.removeAttribute('aria-haspopup');
     searchbox.removeAttribute('aria-expanded');
 
     const controls = searchbox.getAttribute('aria-controls');
