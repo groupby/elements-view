@@ -12,7 +12,7 @@ When a term is selected, the `aria-selected` property for the item is set to `tr
 The `selectedIndex` property determines which item is selected;
 this value is the 0-based index of the selected item relative to the first item of the entire results.
 This property can be set to change the selection.
-If the value is outside the range of the results, no item will be selected.
+If the value is outside the range of results (including negative values), no item will be selected.
 
 The read-only `selectedId` property contains the DOM ID of the currently selected item.
 
