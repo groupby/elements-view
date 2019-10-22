@@ -6,9 +6,16 @@ The `sayt` component acts as a wrapper around the `sfx-autocomplete` and
 `sfx-products-sayt` components and acts to show and hide all of these components
 in response to interactions with the `sfx-search-box` component.
 
-This component listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
+### Keyboard Navigation
+
+When paired with a searchbox (see [Customization](#customization) below),
+this component is navigable using the arrow keys.
+Pressing the Up and Down arrow keys in the paired searchbox
+will change the autocomplete selection if `hideAutocomplete` is not enabled.
 
 ### Received Events
+
+This component listens for a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
 
 #### `SAYT_HIDE`
 
@@ -39,6 +46,8 @@ Upon receiving this event, the `sayt` component will dispatch a request for SAYT
 Upon receiving this event, the `sayt` component will dispatch requests for SAYT autocomplete terms and Products based on the included query term.
 
 ### DISPATCHED EVENTS
+
+This component dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
 
 #### `AUTOCOMPLETE_REQUEST`
 

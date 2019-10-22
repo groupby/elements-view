@@ -4,15 +4,41 @@
 
 The Autocomplete component displays search terms related to a query term. It also dispatches events whenever these search terms are interacted with.
 
-This component listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
+### Term Selection
+
+At most one term is selected at any given time.
+When a term is selected, the `aria-selected` property for the item is set to `true`.
+
+The `selectedIndex` property determines which item is selected;
+this value is the 0-based index of the selected item relative to the first item of the entire results.
+This property can be set to change the selection.
+If the value is outside the range of results (including negative values), no item will be selected.
+
+The read-only `selectedId` property contains the DOM ID of the currently selected item.
+
+The selection can be changed in one of three ways:
+
+* Hovering over a term.
+  Hovering over a term will change the selection immediately.
+* Using `selectNext()` and `selectPrevious()`.
+  These methods will select the next and previous items in the list respectively.
+  If the selection falls off one end, it will wrap around to the other end.
+* Setting the `selectedIndex` property.
+  The item at the index given by `selectedIndex` will be selected.
+  If there is no item at that index (i.e. if `selectedIndex` is negative or if
+  it is past the end of the list), no items will be selected.
 
 ### Recieved Events
+
+This component listens for a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
 
 #### `AUTOCOMPLETE_RESPONSE`
 
 Upon receiving this event, the `sfx-autocomplete` component will populate its `results` property with search terms.
 
 ### Dispatched Events
+
+This component dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
 
 #### `AUTOCOMPLETE_ACTIVE_TERM`
 

@@ -284,6 +284,54 @@ storiesOf('Components|SAYT', module)
         visible
       ></sfx-sayt>
       \`\`\`
+
+          ### The SF-X SAYT component paired with a searchbox is navigable using the arrow keys.
+            * The autocomplete selection can be changed by pressing the Up and Down arrow keys in the paired searchbox.
+            * To demonstrate in this story:
+              1. Visit the **Custom Events** tab and locate the \`${AUTOCOMPLETE_RESPONSE}\` event.
+              2. Click "emit".
+              3. Click in the searchbox.
+              4. Press the Up and Down arrow keys.
+              5. Observe that the autocomplete selection changes.
+
+          ### The SF-X SAYT component paired with a searchbox component will be accessible.
+            * Setting the \`searchbox\` attribute with the \`id\` of a valid text input will create a link between the elements.
+            * The SAYT component will set aria attributes for \`aria-expanded\`, \`aria-haspopup\`, and \`role\` on the searchbox.
+            * Additionally, if the SAYT component is using the SF-X Autocomplete component (default), it will also set \`aria-activedescendant\` and \`aria-controls\` on the searchbox.
+            * The example html snippet from above will be rendered as such when the SAYT component is open:
+
+              \`\`\`html
+              <input
+                type="text
+                id="search-box"
+                aria-controls="sfx-sayt-nGuekzlz-autocomplete"
+                role="combobox"
+                aria-haspopup="listbox"
+                aria-expanded="true"
+                aria-activedescendant="sfx-autocomplete-IiDNFBKrd-item-1"
+              />
+              <sfx-sayt
+                searchbox="search-box"
+                closetext="×"
+                showclosebutton
+                visible
+              >
+                ...
+                <sfx-autocomplete
+                  data-sfx-ref="autocomplete"
+                  id="sfx-sayt-nGuekzlz-autocomplete"
+                  role="listbox"
+                  selectedindex="1"
+                >
+                  <ul>
+                    <li role="option" id="sfx-autocomplete-IiDNFBKrd-item-0" aria-selected="false">...</li>
+                    <li role="option" id="sfx-autocomplete-IiDNFBKrd-item-1" aria-selected="true">...</li>
+                    ...
+                  </ul>
+                </sfx-autocomplete>
+                ...
+              </sfx-sayt>
+              \`\`\`
       `,
       },
     }

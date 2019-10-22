@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/html';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, number, text } from '@storybook/addon-knobs';
 import {
   AUTOCOMPLETE_RESPONSE,
   AutocompleteResultGroup,
@@ -29,9 +29,11 @@ function getAutocompleteComponent(results: AutocompleteResultGroup<AutocompleteS
 
   if (results.length > 0) {
     const autocompleteResultsKnob = text('Autocomplete Results', JSON.stringify(results));
+    const selectedIndex = number('Selected Index', -1);
     return '<sfx-autocomplete\n'
       + ` results="${autocompleteResultsKnob}"\n`
       + ` caption="${optionalTitle}"\n`
+      + ` selectedindex="${selectedIndex}"\n`
       + '></sfx-autocomplete>';
   }
   return '<sfx-autocomplete\n'
@@ -74,6 +76,21 @@ storiesOf('Components|Autocomplete', module)
             ]"
           ></sfx-autocomplete>
           \`\`\`
+
+          ### The SF-X Autocomplete component will select the item at the index specified by \`selectedIndex\`.
+          * The selected item will have the \`aria-selected\` attribute set to \`true\`. On all other items, this attribute will be set to \`false\`.
+          * The \`selectedId\` property reflects the ID of the currently selected item.
+          * If the value of the \`selectedIndex\` property does not correspond to an item, no items are selected.
+          * To demonstrate in this story:
+            1. Visit the **Knobs** tab and modify the number inside the "Selected Index" field.
+            2. Observe that the selection changes.
+
+          ### The SF-X Autocomplete component selects terms that are hovered over.
+          * Hovering over an SF-X Autocomplete term will select the term by setting the \`selectedIndex\` property.
+          * To demonstrate in this story:
+            1. Hover over a term.
+            2. Observe that the selection changes.
+               * Note that the value of the knob will not change in response to this action. This is due to technical limitations with knobs and does not reflect the actual behavior of the component.
         `,
       },
     }

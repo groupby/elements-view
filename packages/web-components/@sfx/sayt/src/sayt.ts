@@ -8,6 +8,7 @@ import {
 // eslint-disable-next-line import/no-unresolved
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { debounce } from 'debounce';
+import * as shortid from 'shortid';
 import {
   AUTOCOMPLETE_ACTIVE_TERM,
   AUTOCOMPLETE_REQUEST,
@@ -98,6 +99,12 @@ export default class Sayt extends LitElement {
   debouncedRequestSaytAutocompleteTerms: SaytRequester & ReturnType<typeof debounce>;
 
   /**
+   * A random string suitable for use in stable IDs related to this
+   * component.
+   */
+  protected componentId = shortid.generate();
+
+  /**
    * Calls superclass constructor and bind methods.
    */
   constructor() {
@@ -107,6 +114,7 @@ export default class Sayt extends LitElement {
     this.hideSayt = this.hideSayt.bind(this);
     this.processClick = this.processClick.bind(this);
     this.processKeyEvent = this.processKeyEvent.bind(this);
+    this.changeSelection = this.changeSelection.bind(this);
     this.nodeInSearchbox = this.nodeInSearchbox.bind(this);
     this.hideCorrectSayt = this.hideCorrectSayt.bind(this);
     this.showCorrectSayt = this.showCorrectSayt.bind(this);
@@ -135,7 +143,9 @@ export default class Sayt extends LitElement {
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
+    this.addEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'add');
+    this.setInitialSearchboxAttributes(this.searchbox);
   }
 
   /**
@@ -152,7 +162,9 @@ export default class Sayt extends LitElement {
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
     this.removeEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
+    this.removeEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'remove');
+    this.removeSearchboxAttributes(this.searchbox);
   }
 
   createRenderRoot(): Element|ShadowRoot {
@@ -167,16 +179,40 @@ export default class Sayt extends LitElement {
   updated(changedProps: PropertyValues): void {
     if (changedProps.has('visible')) {
       this.hidden = !this.visible;
+
+      if (this.searchbox) {
+        const searchbox = document.getElementById(this.searchbox);
+        if (searchbox) {
+          searchbox.setAttribute('aria-expanded', String(this.visible));
+        }
+      }
+    }
+    if (changedProps.has('hideAutocomplete')) {
+      this.removeSearchboxAttributes(this.searchbox);
+      this.setInitialSearchboxAttributes(this.searchbox);
     }
     if (changedProps.has('searchbox')) {
       const oldSearchbox = changedProps.get('searchbox') as string;
 
       this.setSearchboxListener(oldSearchbox, 'remove');
+      this.removeSearchboxAttributes(oldSearchbox);
+
       this.setSearchboxListener(this.searchbox, 'add');
+      this.setInitialSearchboxAttributes(this.searchbox);
     }
     if (changedProps.has('debounce')) {
       this.setDebouncedMethods();
     }
+  }
+
+  /**
+   * Generates the ID for this component's autocomplete component. This
+   * ID does not change as long as [[componentId]] does not change.
+   *
+   * @returns An ID suitable for use on the autocomplete component.
+   */
+  private get autocompleteId(): string {
+    return `sfx-sayt-${this.componentId}-autocomplete`;
   }
 
   /**
@@ -191,10 +227,82 @@ export default class Sayt extends LitElement {
       const searchbox = document.getElementById(searchboxId);
       if (searchbox) {
         searchbox[setEventListener]('input', this.processSearchboxInput);
+        searchbox[setEventListener]('keydown', this.changeSelection);
       }
     } else {
       window[setEventListener](SEARCHBOX_INPUT, this.processSfxSearchboxChange);
     }
+  }
+
+  /**
+   * Sets various attributes on the searchbox with the given ID.
+   * Only the attributes that are relevant the first time
+   * that the searchbox is decorated are added.
+   * These attributes are:
+   *
+   * - `aria-controls`
+   * - `aria-expanded`
+   * - `aria-haspopup`
+   * - `role`
+   *
+   * @param searchboxId The ID of the paired searchbox.
+   */
+  protected setInitialSearchboxAttributes(searchboxId: string): void {
+    if (!searchboxId) return;
+
+    const searchbox = document.getElementById(searchboxId);
+    if (!searchbox) return;
+
+    searchbox.setAttribute('autocomplete', 'off');
+    searchbox.setAttribute('aria-expanded', String(this.visible));
+
+    const controls = searchbox.getAttribute('aria-controls');
+    const controlsIds = controls ? controls.split(' ') : [];
+    if (!this.hideAutocomplete && !controlsIds.includes(this.autocompleteId)) {
+      controlsIds.push(this.autocompleteId);
+    }
+    searchbox.setAttribute('aria-controls', controlsIds.join(' '));
+
+    const role = searchbox.getAttribute('role');
+    const roles = role ? role.split(' ') : [];
+    if (!roles.includes('combobox')) {
+      roles.unshift('combobox');
+    }
+    searchbox.setAttribute('role', roles.join(' '));
+  }
+
+  /**
+   * Modifies various attributes to remove values set by this component
+   * on the searchbox with the given ID.
+   * These attributes are:
+   *
+   * - `aria-controls`
+   * - `aria-expanded`
+   * - `aria-haspopup`
+   * - `role`
+   *
+   * @param searchboxId The ID of the paired searchbox.
+   */
+  protected removeSearchboxAttributes(searchboxId: string): void {
+    if (!searchboxId) return;
+
+    const searchbox = document.getElementById(searchboxId);
+    if (!searchbox) return;
+
+    searchbox.removeAttribute('autocomplete');
+    searchbox.removeAttribute('aria-expanded');
+
+    const controls = searchbox.getAttribute('aria-controls');
+    const filteredControlsIds = (controls ? controls.split(' ') : [])
+      .filter((id) => id !== this.autocompleteId)
+      .join(' ');
+    searchbox.setAttribute('aria-controls', filteredControlsIds);
+
+    const role = searchbox.getAttribute('role');
+    const filteredRole = (role ? role.split(' ') : [])
+      .filter((r) => r !== 'combobox')
+      .join(' ');
+    searchbox.setAttribute('role', filteredRole);
   }
 
   /**
@@ -392,9 +500,71 @@ export default class Sayt extends LitElement {
    * @param event A keyboard event used for checking which key has been pressed.
    */
   processKeyEvent(event: KeyboardEvent): void {
-    if (event.key === 'Escape') {
-      this.hideSayt();
+    switch (event.key) {
+      case 'Escape':
+      case 'Esc': // IE
+        this.hideSayt();
+        break;
+      default: // Do nothing
     }
+  }
+
+  /**
+   * Changes the autocomplete selection based on the given event.
+   * When `ArrowUp` is received, the previous term is selected.
+   * When `ArrowDown` is received, the next term is selected.
+   *
+   * @param event The keyboard event to act on.
+   */
+  changeSelection(event: KeyboardEvent): void {
+    switch (event.key) {
+      case 'ArrowUp':
+      case 'Up': // IE
+        this.selectPreviousAutocompleteTerm();
+        break;
+      case 'ArrowDown':
+      case 'Down': // IE
+        this.selectNextAutocompleteTerm();
+        break;
+      default: // Do nothing
+    }
+  }
+
+  /**
+   * Selects the previous autocomplete term. SAYT is shown if it is
+   * hidden.
+   */
+  selectPreviousAutocompleteTerm(): void {
+    if (!this.visible) this.showSayt();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
+    if (!autocomplete) return;
+
+    autocomplete.selectPrevious();
+    if (!this.searchbox) return;
+
+    const searchbox = document.getElementById(this.searchbox);
+    if (!searchbox) return;
+    searchbox.setAttribute('aria-activedescendant', autocomplete.selectedId);
+  }
+
+  /**
+   * Selects the next autocomplete term. SAYT is shown if it is hidden.
+   */
+  selectNextAutocompleteTerm(): void {
+    if (!this.visible) this.showSayt();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
+    if (!autocomplete) return;
+
+    autocomplete.selectNext();
+    if (!this.searchbox) return;
+
+    const searchbox = document.getElementById(this.searchbox);
+    if (!searchbox) return;
+    searchbox.setAttribute('aria-activedescendant', autocomplete.selectedId);
   }
 
   /**
@@ -426,7 +596,7 @@ export default class Sayt extends LitElement {
         ${this.hideAutocomplete
     ? ''
     : html`
-            <sfx-autocomplete group="${ifDefined(this.group)}">
+            <sfx-autocomplete id="${this.autocompleteId}" data-sfx-ref="autocomplete" group="${ifDefined(this.group)}">
             </sfx-autocomplete>`
 }
         ${this.hideProducts
