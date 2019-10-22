@@ -55,8 +55,4 @@ export default class Variant extends Base {
       ${this.type === 'text' ? variant.text : ''}
     `;
   }
-
-  createRenderRoot(): Element|ShadowRoot {
-    return this;
-  }
 }
