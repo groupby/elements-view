@@ -7,6 +7,7 @@ import {
   SEARCH_REQUEST,
   UPDATE_SEARCH_TERM,
 } from '@sfx/events';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@sfx/base';
 import { expect, stub } from '../utils';
 import SearchBox from '../../src/search-box';
@@ -73,6 +74,14 @@ describe('SearchBox Component', () => {
   });
 
   describe('connectCallback', () => {
+    it('should call super', () => {
+      const superConnected = stub(Object.getPrototypeOf(searchbox), 'connectedCallback');
+
+      searchbox.connectedCallback();
+
+      expect(superConnected).to.be.calledOnce;
+    });
+
     it('should add an autocomplete_hover eventListener to the window', () => {
       const windowAddEventListener = stub(window, 'addEventListener');
 
@@ -83,6 +92,14 @@ describe('SearchBox Component', () => {
   });
 
   describe('disconnectCallback', () => {
+    it('should call super', () => {
+      const superDisconnected = stub(Object.getPrototypeOf(searchbox), 'disconnectedCallback');
+
+      searchbox.disconnectedCallback();
+
+      expect(superDisconnected).to.be.calledOnce;
+    });
+
     it('should remove the autocomplete_hover eventListener from the window', () => {
       const windowRemoveEventListener = stub(window, 'removeEventListener');
 

@@ -1,6 +1,7 @@
 import * as sinonImport from 'sinon';
 import * as chaiImport from 'chai';
 import { LitElement } from 'lit-element';
+import { Base } from '@sfx/base';
 
 declare var global: any;
 

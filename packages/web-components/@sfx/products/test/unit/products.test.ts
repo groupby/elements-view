@@ -17,7 +17,6 @@ describe('Products Base Component', () => {
     expect(component).to.be.an.instanceOf(Base);
   });
 
-
   describe('constructor', () => {
     describe('products property', () => {
       it('should default to be an empty array of products', () => {

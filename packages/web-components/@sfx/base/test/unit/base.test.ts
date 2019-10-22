@@ -19,16 +19,16 @@ describe('Base Class', () => {
   describe('dispatchSfxEvent', () => {
     it('should dispatch a custom event with the provided event name and payload', () => {
       const eventName = 'eventName';
-      const payload = { query: 'joffre' }
-      const customEventObject = {a: 'b'};
-      const dispatchEventStub = stub(dummyComponent, 'dispatchEvent')
-      const customEventStub = stub(window, 'CustomEvent').returns(customEventObject)
+      const payload = { query: 'joffre' };
+      const customEventObject = { a: 'b' };
+      const dispatchEventStub = stub(dummyComponent, 'dispatchEvent');
+      const customEventStub = stub(window, 'CustomEvent').returns(customEventObject);
+
       dummyComponent.dispatchSfxEvent(eventName, payload);
+
       expect(dispatchEventStub).to.have.been.calledWith(customEventObject);
-      expect(customEventStub).to.have.been.calledWith(eventName, { detail: payload, bubbles: true});
+      expect(customEventStub).to.have.been.calledWith(eventName, { detail: payload, bubbles: true });
       expect(customEventStub.calledWithNew()).to.be.true;
-    })
-  })
+    });
+  });
 });
-
-

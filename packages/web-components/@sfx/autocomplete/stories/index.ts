@@ -13,11 +13,6 @@ import {
 } from '../../../../../.storybook/common';
 import '../src/index';
 
-
-window.addEventListener('sfx::autocomplete_active_term', (e) => {
-  console.log('autocomplete active term', e);
-});
-
 const autocompleteNotesIntro = `
 # SF-X Autocomplete Component
 
