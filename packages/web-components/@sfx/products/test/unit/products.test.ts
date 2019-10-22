@@ -1,7 +1,5 @@
 import { SAYT_PRODUCTS_RESPONSE, SEARCH_RESPONSE } from '@sfx/events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
-import { expect, sinon, stub } from '../utils';
+import { expect, sinon, stub, shouldExtendBase, shouldCallSuperConnectedCallback, shouldCallSuperDisconnectedCallback} from '../utils';
 import ProductsBase from '../../src/products-base';
 import ProductsSayt from '../../src/products-sayt';
 import ProductsSearch from '../../src/products-search';
@@ -13,9 +11,7 @@ describe('Products Base Component', () => {
     component = new ProductsBase();
   });
 
-  it('should extend the Base class', () => {
-    expect(component).to.be.an.instanceOf(Base);
-  });
+  shouldExtendBase(ProductsBase);
 
   describe('constructor', () => {
     describe('products property', () => {
@@ -32,13 +28,7 @@ describe('Products Base Component', () => {
   });
 
   describe('connectedCallback', () => {
-    it('should call super', () => {
-      const superConnected = stub(Object.getPrototypeOf(component), 'connectedCallback');
-
-      component.connectedCallback();
-
-      expect(superConnected).to.be.calledOnce;
-    });
+    shouldCallSuperConnectedCallback(ProductsBase);
 
     it('should set role attribute if not set', () => {
       const setAttribute = stub(component, 'setAttribute');
@@ -86,13 +76,7 @@ describe('Products Sayt Component', () => {
   });
 
   describe('disconnectedCallback', () => {
-    it('should call super', () => {
-      const superDisconnected = stub(Object.getPrototypeOf(component), 'disconnectedCallback');
-
-      component.disconnectedCallback();
-
-      expect(superDisconnected).to.be.calledOnce;
-    });
+    shouldCallSuperDisconnectedCallback(ProductsBase);
 
     it('should remove an event listener for sayt products', () => {
       const removeEventListener = sinon.stub(window, 'removeEventListener');

@@ -1,7 +1,5 @@
 import { TemplateResult } from 'lit-element';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
-import { expect } from '../utils';
+import { expect, shouldExtendBase } from '../utils';
 import List from '../../src/list';
 
 describe('List component', () => {
@@ -11,9 +9,7 @@ describe('List component', () => {
     list = new List();
   });
 
-  it('should extend Base', () => {
-    expect(list).to.be.an.instanceof(Base);
-  });
+  shouldExtendBase(List);
 
   describe('caption property', () => {
     it('should default to an empty string', () => {

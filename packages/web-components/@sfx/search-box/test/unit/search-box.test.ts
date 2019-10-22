@@ -7,9 +7,7 @@ import {
   SEARCH_REQUEST,
   UPDATE_SEARCH_TERM,
 } from '@sfx/events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
-import { expect, stub } from '../utils';
+import { expect, stub, shouldExtendBase, shouldCallSuperConnectedCallback, shouldCallSuperDisconnectedCallback } from '../utils';
 import SearchBox from '../../src/search-box';
 
 describe('SearchBox Component', () => {
@@ -25,9 +23,7 @@ describe('SearchBox Component', () => {
     createCustomEvent = stub(searchbox, 'createCustomEvent').returns(eventObject);
   });
 
-  it('should extend the Base class', () => {
-    expect(searchbox).to.be.an.instanceof(Base);
-  });
+  shouldExtendBase(SearchBox);
 
   describe('Constructor', () => {
     describe('placeholder property', () => {
@@ -74,13 +70,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('connectCallback', () => {
-    it('should call super', () => {
-      const superConnected = stub(Object.getPrototypeOf(searchbox), 'connectedCallback');
-
-      searchbox.connectedCallback();
-
-      expect(superConnected).to.be.calledOnce;
-    });
+    shouldCallSuperConnectedCallback(SearchBox);
 
     it('should add an autocomplete_hover eventListener to the window', () => {
       const windowAddEventListener = stub(window, 'addEventListener');
@@ -92,13 +82,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('disconnectCallback', () => {
-    it('should call super', () => {
-      const superDisconnected = stub(Object.getPrototypeOf(searchbox), 'disconnectedCallback');
-
-      searchbox.disconnectedCallback();
-
-      expect(superDisconnected).to.be.calledOnce;
-    });
+    shouldCallSuperDisconnectedCallback(SearchBox);
 
     it('should remove the autocomplete_hover eventListener from the window', () => {
       const windowRemoveEventListener = stub(window, 'removeEventListener');

@@ -10,13 +10,14 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SEARCHBOX_INPUT,
 } from '@sfx/events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
 import {
   expect,
   sinon,
   spy,
   stub,
+  shouldExtendBase,
+  shouldCallSuperConnectedCallback,
+  shouldCallSuperDisconnectedCallback,
 } from '../utils';
 import Sayt from '../../src/sayt';
 
@@ -27,9 +28,7 @@ describe('Sayt Component', () => {
     sayt = new Sayt();
   });
 
-  it('should extend the Base class', () => {
-    expect(sayt).to.be.an.instanceof(Base);
-  });
+  shouldExtendBase(Sayt);
 
   describe('Constructor', () => {
     it('should call setDebouncedMethods()', () => {
@@ -108,6 +107,8 @@ describe('Sayt Component', () => {
   });
 
   describe('connectedCallback()', () => {
+    shouldCallSuperConnectedCallback(Sayt);
+
     it('should register event listeners to the window', () => {
       const addEventListener = stub(window, 'addEventListener');
       const saytAddEventListener = stub(sayt, 'addEventListener');
@@ -145,6 +146,8 @@ describe('Sayt Component', () => {
   });
 
   describe('disconnectedCallback()', () => {
+    shouldCallSuperDisconnectedCallback(Sayt);
+
     it('should remove event listeners on the window', () => {
       const removeEventListener = stub(window, 'removeEventListener');
       const saytRemoveEventListener = stub(sayt, 'removeEventListener');

@@ -1,7 +1,5 @@
 import { TemplateResult, html } from 'lit-element';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
-import { expect, stub } from '../utils';
+import { expect, stub, shouldExtendBase, shouldCallSuperConnectedCallback, } from '../utils';
 import Product from '../../src/product';
 import Variant from '../../src/variant';
 
@@ -12,9 +10,7 @@ describe('Product Component', () => {
     component = new Product();
   });
 
-  it('should extend the Base class', () => {
-    expect(component).to.be.an.instanceof(Base);
-  });
+  shouldExtendBase(Product);
 
   describe('constructor', () => {
     describe('product property', () => {
@@ -107,9 +103,7 @@ describe('Variant Component', () => {
     component = new Variant();
   });
 
-  it('should extend the Base class', () => {
-    expect(component).to.be.an.instanceOf(Base);
-  });
+  shouldExtendBase(Variant);
 
   describe('constructor', () => {
     describe('type property', () => {
@@ -126,13 +120,7 @@ describe('Variant Component', () => {
   });
 
   describe('connectedCallback', () => {
-    it('should call its super connectedCallback', () => {
-      const connectedCallback = stub(Object.getPrototypeOf(component), 'connectedCallback');
-
-      component.connectedCallback();
-
-      expect(connectedCallback).to.have.been.called;
-    });
+    shouldCallSuperConnectedCallback(Variant);
 
     it('should not set role if role attribute is set', () => {
       component.setAttribute('role', 'button');
