@@ -1,4 +1,4 @@
-import { TemplateResult, LitElement } from 'lit-element';
+import { TemplateResult } from 'lit-element';
 import * as Debounce from 'debounce';
 import {
   AUTOCOMPLETE_ACTIVE_TERM,
@@ -10,6 +10,8 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SEARCHBOX_INPUT,
 } from '@sfx/events';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Base } from '@sfx/base';
 import {
   expect,
   sinon,
@@ -25,11 +27,11 @@ describe('Sayt Component', () => {
     sayt = new Sayt();
   });
 
-  describe('Constructor', () => {
-    it('should extend the LitElement class', () => {
-      expect(sayt).to.be.an.instanceof(LitElement);
-    });
+  it('should extend the Base class', () => {
+    expect(sayt).to.be.an.instanceof(Base);
+  });
 
+  describe('Constructor', () => {
     it('should call setDebouncedMethods()', () => {
       const setDebounce = stub(Sayt.prototype, 'setDebouncedMethods');
 

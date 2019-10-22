@@ -1,5 +1,7 @@
 import { TemplateResult, html, LitElement } from 'lit-element';
+import { Base } from '@sfx/base';
 import { expect, stub } from '../utils';
+
 import Product from '../../src/product';
 import Variant from '../../src/variant';
 
@@ -8,6 +10,10 @@ describe('Product Component', () => {
 
   beforeEach(() => {
     component = new Product();
+  });
+
+  it('should extend the Base class', () => {
+    expect(component).to.be.an.instanceof(Base);
   });
 
   describe('constructor', () => {
@@ -101,11 +107,11 @@ describe('Variant Component', () => {
     component = new Variant();
   });
 
-  describe('constructor', () => {
-    it('should extend the LitElement class', () => {
-      expect(component).to.be.an.instanceOf(LitElement);
-    });
+  it('should extend the Base class', () => {
+    expect(component).to.be.an.instanceOf(Base);
+  });
 
+  describe('constructor', () => {
     describe('type property', () => {
       it('should have a default value of "text"', () => {
         expect(component.type).to.equal('text');
@@ -121,7 +127,7 @@ describe('Variant Component', () => {
 
   describe('connectedCallback', () => {
     it('should call its super connectedCallback', () => {
-      const connectedCallback = stub(LitElement.prototype, 'connectedCallback');
+      const connectedCallback = stub(Object.getPrototypeOf(component), 'connectedCallback');
 
       component.connectedCallback();
 

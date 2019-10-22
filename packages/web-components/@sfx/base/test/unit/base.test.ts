@@ -1,7 +1,5 @@
-import { LitElement } from 'lit-element';
 import { expect, stub } from '../utils';
 import { DummyComponent } from './dummy-component';
-import { Base } from '@sfx/base';
 
 describe('Base Class', () => {
   let dummyComponent;

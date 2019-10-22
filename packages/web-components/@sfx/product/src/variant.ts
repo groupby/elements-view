@@ -3,15 +3,16 @@ import {
   property,
   html,
   TemplateResult,
-  LitElement,
 } from 'lit-element';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Base } from '@sfx/base';
 import { ProductVariant } from '@sfx/events';
 
 /**
  * A product variant component that displays a thumbnail of a product variant.
  */
 @customElement('sfx-product-variant')
-export default class Variant extends LitElement {
+export default class Variant extends Base {
   /** The type of variant to render. One of `text`, `color` or `image`. Default is `text`. */
   @property({ type: String, reflect: true }) type: string = 'text';
 

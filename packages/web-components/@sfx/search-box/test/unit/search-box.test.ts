@@ -7,6 +7,7 @@ import {
   SEARCH_REQUEST,
   UPDATE_SEARCH_TERM,
 } from '@sfx/events';
+import { Base } from '@sfx/base';
 import { expect, stub } from '../utils';
 import SearchBox from '../../src/search-box';
 
@@ -21,6 +22,10 @@ describe('SearchBox Component', () => {
     searchboxDispatchEvent = stub(searchbox, 'dispatchEvent');
     eventObject = { some: 'event' };
     createCustomEvent = stub(searchbox, 'createCustomEvent').returns(eventObject);
+  });
+
+  it('should extend the Base class', () => {
+    expect(searchbox).to.be.an.instanceof(Base);
   });
 
   describe('Constructor', () => {

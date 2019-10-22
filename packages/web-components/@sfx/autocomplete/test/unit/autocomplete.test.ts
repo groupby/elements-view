@@ -12,11 +12,11 @@ describe('Autcomplete Component', () => {
     autocomplete = new Autocomplete();
   });
 
-  describe('Constructor', () => {
-    it('should extend the Base class', () => {
-      expect(autocomplete).to.be.an.instanceof(Base);
-    });
+  it('should extend the Base class', () => {
+    expect(autocomplete).to.be.an.instanceof(Base);
+  });
 
+  describe('Constructor', () => {
     describe('Results property', () => {
       it('should have default value of empty array', () => {
         expect(autocomplete.results).to.deep.equal([]);
@@ -50,7 +50,7 @@ describe('Autcomplete Component', () => {
     });
 
     it('should call its super connectedCallback', () => {
-      const superConnectedCallbackStub = stub(Base.prototype, 'connectedCallback');
+      const superConnectedCallbackStub = stub(Object.getPrototypeOf(autocomplete), 'connectedCallback');
 
       autocomplete.connectedCallback();
 
@@ -91,7 +91,7 @@ describe('Autcomplete Component', () => {
     });
 
     it('should call its super disconnectedCallback', () => {
-      const superDisconnectedCallbackStub = stub(Base.prototype, 'disconnectedCallback');
+      const superDisconnectedCallbackStub = stub(Object.getPrototypeOf(autocomplete), 'disconnectedCallback');
 
       autocomplete.disconnectedCallback();
 

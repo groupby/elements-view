@@ -1,4 +1,6 @@
 import { SAYT_PRODUCTS_RESPONSE, SEARCH_RESPONSE } from '@sfx/events';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Base } from '@sfx/base';
 import { expect, sinon, stub } from '../utils';
 import ProductsBase from '../../src/products-base';
 import ProductsSayt from '../../src/products-sayt';
@@ -10,6 +12,11 @@ describe('Products Base Component', () => {
   beforeEach(() => {
     component = new ProductsBase();
   });
+
+  it('should extend the Base class', () => {
+    expect(component).to.be.an.instanceOf(Base);
+  });
+
 
   describe('constructor', () => {
     describe('products property', () => {
