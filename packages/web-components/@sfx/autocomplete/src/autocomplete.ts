@@ -62,7 +62,7 @@ export default class Autocomplete extends LitElement {
     super();
     this.receivedResults = this.receivedResults.bind(this);
     this.dispatchSelectedTerm = this.dispatchSelectedTerm.bind(this);
-    this.createSelectedIndexSetter = this.createSelectedIndexSetter.bind(this);
+    this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
   }
 
   /**
@@ -196,7 +196,7 @@ export default class Autocomplete extends LitElement {
    * @param index The index to set.
    * @returns A callback that sets [[selectedIndex]].
    */
-  createSelectedIndexSetter(index: number): () => void {
+  getSelectedIndexSetter(index: number): () => void {
     return () => {
       this.selectedIndex = index;
     };
@@ -220,7 +220,7 @@ export default class Autocomplete extends LitElement {
            id="${this.generateItemId(itemIndex)}"
            role="option"
            aria-selected="${ariaSelected}"
-           @mouseenter="${this.createSelectedIndexSetter(itemIndex)}"
+           @mouseenter="${this.getSelectedIndexSetter(itemIndex)}"
         >${item.label}</li>`;
     });
     const searchTermList = html`<ul role="group" aria-labelledby="${ifDefined(list.title ? titleId : undefined)}">${searchTermItems}</ul>`;
