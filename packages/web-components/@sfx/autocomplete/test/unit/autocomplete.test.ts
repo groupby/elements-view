@@ -1,8 +1,6 @@
 import { TemplateResult } from 'lit-element';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
 import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM } from '@sfx/events';
-import { expect, stub, baseExtendTest, superConnectedCallbackTest, superDisconnectedCallbackTest } from '../utils';
+import { expect, stub, shouldExtendBase, shouldCallSuperConnectedCallback, shouldCallSuperDisconnectedCallback } from '../utils';
 import Autocomplete from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
@@ -12,11 +10,7 @@ describe('Autcomplete Component', () => {
     autocomplete = new Autocomplete();
   });
 
-  // it('should extend the Base class', () => {
-  //   expect(autocomplete).to.be.an.instanceof(Base);
-  // });
-  console.log('autocomplete after before each', autocomplete)
-  baseExtendTest(Autocomplete);
+  shouldExtendBase(Autocomplete);
 
   describe('Constructor', () => {
     describe('Results property', () => {
@@ -51,14 +45,7 @@ describe('Autcomplete Component', () => {
       windowAddEventListener = stub(window, 'addEventListener');
     });
 
-    superConnectedCallbackTest(Autocomplete);
-    // it('should call its super connectedCallback', () => {
-    //   const superConnectedCallbackStub = stub(Object.getPrototypeOf(autocomplete), 'connectedCallback');
-
-    //   autocomplete.connectedCallback();
-
-    //   expect(superConnectedCallbackStub).to.have.been.called;
-    // });
+    shouldCallSuperConnectedCallback(Autocomplete);
 
     it('should add event listeners to the component and window', () => {
       autocomplete.connectedCallback();
@@ -93,14 +80,7 @@ describe('Autcomplete Component', () => {
       windowRemoveEventListener = stub(window, 'removeEventListener');
     });
 
-    superDisconnectedCallbackTest(Autocomplete);
-    // it('should call its super disconnectedCallback', () => {
-    //   const superDisconnectedCallbackStub = stub(Object.getPrototypeOf(autocomplete), 'disconnectedCallback');
-
-    //   autocomplete.disconnectedCallback();
-
-    //   expect(superDisconnectedCallbackStub).to.have.been.called;
-    // });
+    shouldCallSuperDisconnectedCallback(Autocomplete);
 
     it('should remove event listeners from the component and window', () => {
       autocomplete.disconnectedCallback();

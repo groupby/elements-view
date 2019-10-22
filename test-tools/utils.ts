@@ -16,18 +16,17 @@ export function waitForUpdateComplete(node: LitElement): Promise<boolean> {
   return node.updateComplete.then((hasUpdateCompleted: boolean) => hasUpdateCompleted || waitForUpdateComplete(node));
 }
 
-export function baseExtendTest(component): void {
+export function shouldExtendBase(component): void {
   let componentInstance;
   before(() => {
     componentInstance = new component();
   });
   it('should extend the Base class', () => {
-    console.log('component in test', componentInstance)
     expect(componentInstance).to.be.an.instanceof(Base);
   });
 }
 
-export function superConnectedCallbackTest(component): void {
+export function shouldCallSuperConnectedCallback(component): void {
   let componentInstance;
   before(() => {
     componentInstance = new component();
@@ -41,7 +40,7 @@ export function superConnectedCallbackTest(component): void {
   });
 }
 
-export function superDisconnectedCallbackTest(component): void {
+export function shouldCallSuperDisconnectedCallback(component): void {
   let componentInstance;
   before(() => {
     componentInstance = new component();
