@@ -373,12 +373,12 @@ describe('Autcomplete Component', () => {
     });
   });
 
-  describe('getSetSelectedIndexCallback()', () => {
+  describe('createSelectedIndexSetter()', () => {
     it('should return a handler that sets the selected index', () => {
       const newSelectedIndex = 3;
       autocomplete.selectedIndex = -1;
 
-      autocomplete.getSetSelectedIndexCallback(newSelectedIndex)();
+      autocomplete.createSelectedIndexSetter(newSelectedIndex)();
 
       expect(autocomplete.selectedIndex).to.equal(newSelectedIndex);
     });
