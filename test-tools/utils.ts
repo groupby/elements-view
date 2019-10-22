@@ -17,16 +17,18 @@ export function waitForUpdateComplete(node: LitElement): Promise<boolean> {
 }
 
 export function shouldExtendBase(component): void {
-  let componentInstance;
-  before(() => {
-    componentInstance = new component();
-  });
+  // let componentInstance;
+  // before(() => {
+  //   componentInstance = new component();
+  // });
   it('should extend the Base class', () => {
-    expect(componentInstance).to.be.an.instanceof(Base);
+    expect(component).to.be.an.instanceof(Base);
+    // expect(component).to.be.an.instanceof(Base);
+    // expect(componentInstance).to.be.an.instanceof(Base);
   });
 }
 
-export function shouldCallSuperConnectedCallback(component): void {
+export function shouldCallSuperConnectedCallback(component: { new(): any}): void {
   let componentInstance;
   before(() => {
     componentInstance = new component();
