@@ -71,11 +71,32 @@
 					<h1 id="sf-x-autocomplete-component">SF-X Autocomplete Component</h1>
 					<h2 id="functionality">Functionality</h2>
 					<p>The Autocomplete component displays search terms related to a query term. It also dispatches events whenever these search terms are interacted with.</p>
-					<p>This component listens for and dispatches a number of events. These events are defined in the <a href="https://github.com/groupby/sfx-events"><code>@sfx/events</code></a> package.</p>
+					<h3 id="term-selection">Term Selection</h3>
+					<p>At most one term is selected at any given time.
+					When a term is selected, the <code>aria-selected</code> property for the item is set to <code>true</code>.</p>
+					<p>The <code>selectedIndex</code> property determines which item is selected;
+						this value is the 0-based index of the selected item relative to the first item of the entire results.
+						This property can be set to change the selection.
+					If the value is outside the range of results (including negative values), no item will be selected.</p>
+					<p>The read-only <code>selectedId</code> property contains the DOM ID of the currently selected item.</p>
+					<p>The selection can be changed in one of three ways:</p>
+					<ul>
+						<li>Hovering over a term.
+						Hovering over a term will change the selection immediately.</li>
+						<li>Using <code>selectNext()</code> and <code>selectPrevious()</code>.
+							These methods will select the next and previous items in the list respectively.
+						If the selection falls off one end, it will wrap around to the other end.</li>
+						<li>Setting the <code>selectedIndex</code> property.
+							The item at the index given by <code>selectedIndex</code> will be selected.
+							If there is no item at that index (i.e. if <code>selectedIndex</code> is negative or if
+						it is past the end of the list), no items will be selected.</li>
+					</ul>
 					<h3 id="recieved-events">Recieved Events</h3>
+					<p>This component listens for a number of events. These events are defined in the <a href="https://github.com/groupby/sfx-events"><code>@sfx/events</code></a> package.</p>
 					<h4 id="autocomplete_response"><code>AUTOCOMPLETE_RESPONSE</code></h4>
 					<p>Upon receiving this event, the <code>sfx-autocomplete</code> component will populate its <code>results</code> property with search terms.</p>
 					<h3 id="dispatched-events">Dispatched Events</h3>
+					<p>This component dispatches a number of events. These events are defined in the <a href="https://github.com/groupby/sfx-events"><code>@sfx/events</code></a> package.</p>
 					<h4 id="autocomplete_active_term"><code>AUTOCOMPLETE_ACTIVE_TERM</code></h4>
 					<p>This event is dispatched when one of the search terms inside of the <code>sfx-autocomplete</code> component is put in the active state or hovered on.</p>
 					<h2 id="customizations">Customizations</h2>
@@ -129,7 +150,7 @@
 					<div class="tsd-signature tsd-kind-icon">autocomplete<wbr>Notes<wbr>Intro<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"# SF-X Autocomplete Component[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/autocomplete &quot;SF-X Autocomplete README&quot;).&#x60;&#x60;&#x60;html&lt;sfx-autocomplete&gt;&lt;/sfx-autocomplete&gt;&#x60;&#x60;&#x60;## Demonstrated in this story"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;# SF-X Autocomplete Component[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/autocomplete &quot;SF-X Autocomplete README&quot;).\&#x60;\&#x60;\&#x60;html&lt;sfx-autocomplete&gt;&lt;/sfx-autocomplete&gt;\&#x60;\&#x60;\&#x60;## Demonstrated in this story&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/1c200fa/packages/web-components/@sfx/autocomplete/stories/index.ts#L16">packages/web-components/@sfx/autocomplete/stories/index.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/f80369e/packages/web-components/@sfx/autocomplete/stories/index.ts#L16">packages/web-components/@sfx/autocomplete/stories/index.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -146,7 +167,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/1c200fa/packages/web-components/@sfx/autocomplete/stories/index.ts#L27">packages/web-components/@sfx/autocomplete/stories/index.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/f80369e/packages/web-components/@sfx/autocomplete/stories/index.ts#L27">packages/web-components/@sfx/autocomplete/stories/index.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
