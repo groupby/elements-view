@@ -10,10 +10,6 @@ describe('Base Class', () => {
     dummyComponent = new DummyComponent();
   });
 
-  it('should be extendable', () => {
-    expect(dummyComponent).to.be.an.instanceof(Base);
-  });
-
   describe('createRenderRoot', () => {
     it('should return the element itself', () => {
       const renderRoot = dummyComponent.createRenderRoot();
@@ -23,36 +19,18 @@ describe('Base Class', () => {
   });
 
   describe('dispatchSfxEvent', () => {
-    xit('should dispatch the provided event from the component', () => {
-      // let dispatchSfxEventStub;
+    it('should dispatch a custom event with the provided event name and payload', () => {
       const eventName = 'eventName';
       const payload = { query: 'joffre' }
-      // const dispatchEventStub = stub(window, 'dispatchEvent')
+      const customEventObject = {a: 'b'};
       const dispatchEventStub = stub(dummyComponent, 'dispatchEvent')
-      const eventToDispatch = new CustomEvent(eventName, { detail: payload, bubbles: true});
-      console.log('typeof eventToDispatch', typeof eventToDispatch)
-      console.log('eventToDispatch', eventToDispatch)
-      // const dispatchSfxEventStub = stub(dummyComponent, 'dispatchSfxEvent');
+      const customEventStub = stub(window, 'CustomEvent').returns(customEventObject)
       dummyComponent.dispatchSfxEvent(eventName, payload);
-
-      expect(dispatchEventStub).to.have.been.called;
-      // expect(dispatchEventStub).to.have.been.calledWith(eventToDispatch);
-    })
-    it('attempt two should dispatch the provided event from the component', () => {
-      // let dispatchSfxEventStub;
-      stub(window, 'CustomEvent').returns({});
-      const eventName = 'eventName';
-      const payload = { query: 'joffre' }
-      // const dispatchEventStub = stub(window, 'dispatchEvent')
-      const dispatchEventStub = stub(dummyComponent, 'dispatchEvent')
-      // const eventToDispatch = new CustomEvent(eventName, { detail: payload, bubbles: true});
-      // console.log('typeof eventToDispatch', typeof eventToDispatch)
-      // console.log('eventToDispatch', eventToDispatch)
-      // const dispatchSfxEventStub = stub(dummyComponent, 'dispatchSfxEvent');
-      dummyComponent.dispatchSfxEvent(eventName, payload);
-
-      expect(dispatchEventStub).to.have.been.called;
-      // expect(dispatchEventStub).to.have.been.calledWith(eventToDispatch);
+      expect(dispatchEventStub).to.have.been.calledWith(customEventObject);
+      expect(customEventStub).to.have.been.calledWith(eventName, { detail: payload, bubbles: true});
+      expect(customEventStub.calledWithNew()).to.be.true;
     })
   })
 });
+
+
