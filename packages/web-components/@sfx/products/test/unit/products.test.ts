@@ -1,6 +1,11 @@
 import { SAYT_PRODUCTS_RESPONSE, SEARCH_RESPONSE } from '@sfx/events';
 import {
-  expect, sinon, stub, itShouldExtendBase, itShouldCallParentMethod, itShouldExtendClass,
+  expect,
+  sinon,
+  stub,
+  itShouldExtendBase,
+  itShouldCallParentMethod,
+  itShouldExtendClass,
 } from '../utils';
 import ProductsBase from '../../src/products-base';
 import ProductsSayt from '../../src/products-sayt';

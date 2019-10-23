@@ -1,7 +1,10 @@
 import { TemplateResult } from 'lit-element';
 import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM } from '@sfx/events';
 import {
-  expect, stub, itShouldExtendBase, itShouldCallParentMethod,
+  expect,
+  stub,
+  itShouldExtendBase,
+  itShouldCallParentMethod,
 } from '../utils';
 import Autocomplete from '../../src/autocomplete';
 

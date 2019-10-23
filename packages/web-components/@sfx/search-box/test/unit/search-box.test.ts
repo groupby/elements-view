@@ -8,7 +8,10 @@ import {
   UPDATE_SEARCH_TERM,
 } from '@sfx/events';
 import {
-  expect, stub, itShouldExtendBase, itShouldCallParentMethod,
+  expect,
+  stub,
+  itShouldExtendBase,
+  itShouldCallParentMethod,
 } from '../utils';
 import SearchBox from '../../src/search-box';
 

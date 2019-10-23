@@ -1,6 +1,9 @@
 import { TemplateResult, html } from 'lit-element';
 import {
-  expect, stub, itShouldExtendBase, itShouldCallParentMethod,
+  expect,
+  stub,
+  itShouldExtendBase,
+  itShouldCallParentMethod,
 } from '../utils';
 import Product from '../../src/product';
 import Variant from '../../src/variant';
