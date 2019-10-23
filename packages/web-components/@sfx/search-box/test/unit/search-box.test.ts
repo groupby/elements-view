@@ -23,8 +23,8 @@ describe('SearchBox Component', () => {
     createCustomEvent = stub(searchbox, 'createCustomEvent').returns(eventObject);
   });
 
-  // shouldExtendBase(SearchBox);
-  shouldExtendBase(new SearchBox());
+  shouldExtendBase(SearchBox);
+  // shouldExtendBase(new SearchBox());
 
   describe('Constructor', () => {
     describe('placeholder property', () => {
