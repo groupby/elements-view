@@ -1,5 +1,7 @@
 import { TemplateResult, html } from 'lit-element';
-import { expect, stub, shouldExtendBase, shouldCallSuperConnectedCallback, } from '../utils';
+import {
+  expect, stub, itShouldExtendBase, itShouldCallParentMethod,
+} from '../utils';
 import Product from '../../src/product';
 import Variant from '../../src/variant';
 
@@ -10,7 +12,7 @@ describe('Product Component', () => {
     component = new Product();
   });
 
-  shouldExtendBase(Product);
+  itShouldExtendBase(() => component);
 
   describe('constructor', () => {
     describe('product property', () => {
@@ -103,7 +105,7 @@ describe('Variant Component', () => {
     component = new Variant();
   });
 
-  shouldExtendBase(Variant);
+  itShouldExtendBase(() => component);
 
   describe('constructor', () => {
     describe('type property', () => {
@@ -120,7 +122,7 @@ describe('Variant Component', () => {
   });
 
   describe('connectedCallback', () => {
-    shouldCallSuperConnectedCallback(Variant);
+    itShouldCallParentMethod(() => component, 'connectedCallback');
 
     it('should not set role if role attribute is set', () => {
       component.setAttribute('role', 'button');

@@ -1,6 +1,8 @@
 import { TemplateResult } from 'lit-element';
 import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM } from '@sfx/events';
-import { expect, stub, shouldExtendBase, shouldCallSuperConnectedCallback, shouldCallSuperDisconnectedCallback } from '../utils';
+import {
+  expect, stub, itShouldExtendBase, itShouldCallParentMethod,
+} from '../utils';
 import Autocomplete from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
@@ -10,7 +12,7 @@ describe('Autcomplete Component', () => {
     autocomplete = new Autocomplete();
   });
 
-  shouldExtendBase(Autocomplete);
+  itShouldExtendBase(() => autocomplete);
 
   describe('Constructor', () => {
     describe('Results property', () => {
@@ -45,7 +47,7 @@ describe('Autcomplete Component', () => {
       windowAddEventListener = stub(window, 'addEventListener');
     });
 
-    shouldCallSuperConnectedCallback(Autocomplete);
+    itShouldCallParentMethod(() => autocomplete, 'connectedCallback');
 
     it('should add event listeners to the component and window', () => {
       autocomplete.connectedCallback();
@@ -80,7 +82,7 @@ describe('Autcomplete Component', () => {
       windowRemoveEventListener = stub(window, 'removeEventListener');
     });
 
-    shouldCallSuperDisconnectedCallback(Autocomplete);
+    itShouldCallParentMethod(() => autocomplete, 'disconnectedCallback');
 
     it('should remove event listeners from the component and window', () => {
       autocomplete.disconnectedCallback();

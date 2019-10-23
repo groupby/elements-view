@@ -15,9 +15,8 @@ import {
   sinon,
   spy,
   stub,
-  shouldExtendBase,
-  shouldCallSuperConnectedCallback,
-  shouldCallSuperDisconnectedCallback,
+  itShouldExtendBase,
+  itShouldCallParentMethod,
 } from '../utils';
 import Sayt from '../../src/sayt';
 
@@ -28,7 +27,7 @@ describe('Sayt Component', () => {
     sayt = new Sayt();
   });
 
-  shouldExtendBase(Sayt);
+  itShouldExtendBase(() => sayt);
 
   describe('Constructor', () => {
     it('should call setDebouncedMethods()', () => {
@@ -107,7 +106,7 @@ describe('Sayt Component', () => {
   });
 
   describe('connectedCallback()', () => {
-    shouldCallSuperConnectedCallback(Sayt);
+    itShouldCallParentMethod(() => sayt, 'connectedCallback');
 
     it('should register event listeners to the window', () => {
       const addEventListener = stub(window, 'addEventListener');
@@ -146,7 +145,7 @@ describe('Sayt Component', () => {
   });
 
   describe('disconnectedCallback()', () => {
-    shouldCallSuperDisconnectedCallback(Sayt);
+    itShouldCallParentMethod(() => sayt, 'disconnectedCallback');
 
     it('should remove event listeners on the window', () => {
       const removeEventListener = stub(window, 'removeEventListener');

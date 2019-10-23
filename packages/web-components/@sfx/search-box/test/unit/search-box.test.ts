@@ -7,7 +7,9 @@ import {
   SEARCH_REQUEST,
   UPDATE_SEARCH_TERM,
 } from '@sfx/events';
-import { expect, stub, shouldExtendBase, shouldCallSuperConnectedCallback, shouldCallSuperDisconnectedCallback } from '../utils';
+import {
+  expect, stub, itShouldExtendBase, itShouldCallParentMethod,
+} from '../utils';
 import SearchBox from '../../src/search-box';
 
 describe('SearchBox Component', () => {
@@ -23,8 +25,7 @@ describe('SearchBox Component', () => {
     createCustomEvent = stub(searchbox, 'createCustomEvent').returns(eventObject);
   });
 
-  shouldExtendBase(SearchBox);
-  // shouldExtendBase(new SearchBox());
+  itShouldExtendBase(() => searchbox);
 
   describe('Constructor', () => {
     describe('placeholder property', () => {
@@ -71,7 +72,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('connectCallback', () => {
-    shouldCallSuperConnectedCallback(SearchBox);
+    itShouldCallParentMethod(() => searchbox, 'connectedCallback');
 
     it('should add an autocomplete_hover eventListener to the window', () => {
       const windowAddEventListener = stub(window, 'addEventListener');
@@ -83,7 +84,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('disconnectCallback', () => {
-    shouldCallSuperDisconnectedCallback(SearchBox);
+    itShouldCallParentMethod(() => searchbox, 'disconnectedCallback');
 
     it('should remove the autocomplete_hover eventListener from the window', () => {
       const windowRemoveEventListener = stub(window, 'removeEventListener');

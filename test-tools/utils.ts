@@ -16,43 +16,25 @@ export function waitForUpdateComplete(node: LitElement): Promise<boolean> {
   return node.updateComplete.then((hasUpdateCompleted: boolean) => hasUpdateCompleted || waitForUpdateComplete(node));
 }
 
-export function shouldExtendBase(component): void {
-  let componentInstance;
-  before(() => {
-    componentInstance = new component();
-  });
-  it('should extend the Base class', () => {
-    // expect(component).to.be.an.instanceof(Base);
-    // expect(component).to.be.an.instanceof(Base);
-    expect(componentInstance).to.be.an.instanceof(Base);
+export function itShouldExtendBase(componentThunk: () => any): void {
+  itShouldExtendClass(componentThunk, Base as any);
+}
+
+export function itShouldExtendClass(componentThunk: () => any, constructor: { new(): any }): void {
+  it(`should extend the ${constructor.name} class`, () => {
+    expect(componentThunk()).to.be.an.instanceof(constructor);
   });
 }
 
-export function shouldCallSuperConnectedCallback(component: { new(): any}): void {
-  let componentInstance;
-  before(() => {
-    componentInstance = new component();
-  });
-  it('should call its super connectedCallback', () => {
-    const superConnectedCallbackStub = stub(Object.getPrototypeOf(componentInstance), 'connectedCallback');
+export function itShouldCallParentMethod(componentThunk: () => any, methodName: string, ...args: any[]): void {
+  it(`should call its parent method, ${methodName}`, () => {
+    const componentInstance = componentThunk();
+    const parentMethod = stub(Object.getPrototypeOf(componentInstance), methodName);
 
-    componentInstance.connectedCallback();
+    componentInstance[methodName](...args);
 
-    expect(superConnectedCallbackStub).to.have.been.called;
+    expect(parentMethod).to.have.been.called;
   });
 }
 
-export function shouldCallSuperDisconnectedCallback(component): void {
-  let componentInstance;
-  before(() => {
-    componentInstance = new component();
-  });
-  it('should call its super disconnectedCallback', () => {
-    const superDisconnectedCallbackStub = stub(Object.getPrototypeOf(componentInstance), 'disconnectedCallback');
-
-    componentInstance.disconnectedCallback();
-
-    expect(superDisconnectedCallbackStub).to.have.been.called;
-  });
-}
 

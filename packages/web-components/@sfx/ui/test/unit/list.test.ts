@@ -1,5 +1,5 @@
 import { TemplateResult } from 'lit-element';
-import { expect, shouldExtendBase } from '../utils';
+import { expect, itShouldExtendBase } from '../utils';
 import List from '../../src/list';
 
 describe('List component', () => {
@@ -9,7 +9,7 @@ describe('List component', () => {
     list = new List();
   });
 
-  shouldExtendBase(List);
+  itShouldExtendBase(() => list);
 
   describe('caption property', () => {
     it('should default to an empty string', () => {
