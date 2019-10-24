@@ -30,5 +30,15 @@ describe('Base Class', () => {
       expect(customEvent).to.be.calledWith(eventName, { detail: payload, bubbles: true });
       expect(customEvent.calledWithNew()).to.be.true;
     });
+
+    it('should return true', () => {
+      const eventName = 'event';
+      const payload = { query: 'apple' };
+      stub(dummyComponent, 'dispatchEvent').returns(true);
+
+      const result = dummyComponent.dispatchSfxEvent(eventName, payload);
+
+      expect(result).to.equal(true);
+    });
   });
 });
