@@ -17,11 +17,20 @@ describe('Base Class', () => {
   });
 
   describe('dispatchSfxEvent', () => {
+    let eventName;
+    let payload;
+    let dispatchEventReturnValue;
+    let dispatchEvent;
+
+    beforeEach(() => {
+      dispatchEventReturnValue = true
+      eventName = 'event';
+      payload = { query: 'apple' };
+      dispatchEvent = stub(dummyComponent, 'dispatchEvent').returns(dispatchEventReturnValue);
+    });
+
     it('should dispatch a custom event with the provided event name and payload', () => {
-      const eventName = 'event';
-      const payload = { query: 'apple' };
       const eventObject = { a: 'b' };
-      const dispatchEvent = stub(dummyComponent, 'dispatchEvent');
       const customEvent = stub(window, 'CustomEvent').returns(eventObject);
 
       dummyComponent.dispatchSfxEvent(eventName, payload);
@@ -31,13 +40,10 @@ describe('Base Class', () => {
       expect(customEvent.calledWithNew()).to.be.true;
     });
 
-    it('should return true', () => {
-      const eventName = 'event';
-      const payload = { query: 'apple' };
-
+    it('should forward the return value of dispatchEvent', () => {
       const result = dummyComponent.dispatchSfxEvent(eventName, payload);
 
-      expect(result).to.equal(true);
+      expect(result).to.equal(dispatchEventReturnValue);
     });
   });
 });
