@@ -6,7 +6,7 @@ import {
  * A base component for all SF-X components to extend. It is based on LitElement.
  */
 export default abstract class Base extends LitElement {
-  createRenderRoot(): Element {
+  createRenderRoot(): Element | ShadowRoot {
     return this;
   }
 

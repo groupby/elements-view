@@ -5,7 +5,6 @@ import {
 import Base from '../../src/base';
 
 @customElement('dummy-component')
-export default class DummyComponent extends Base {
-}
+export default class DummyComponent extends Base {}
 
 export { DummyComponent };

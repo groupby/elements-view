@@ -17,7 +17,7 @@ describe('Autcomplete Component', () => {
 
   itShouldExtendBase(() => autocomplete);
 
-  describe('Constructor', () => {
+  describe('constructor', () => {
     describe('Results property', () => {
       it('should have default value of empty array', () => {
         expect(autocomplete.results).to.deep.equal([]);
