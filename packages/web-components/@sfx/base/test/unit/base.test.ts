@@ -17,14 +17,12 @@ describe('Base Class', () => {
   });
 
   describe('dispatchSfxEvent', () => {
-    let eventName;
+    const eventName = 'event';
+    const dispatchEventReturnValue = true;
     let payload;
-    let dispatchEventReturnValue;
     let dispatchEvent;
 
     beforeEach(() => {
-      dispatchEventReturnValue = true
-      eventName = 'event';
       payload = { query: 'apple' };
       dispatchEvent = stub(dummyComponent, 'dispatchEvent').returns(dispatchEventReturnValue);
     });
