@@ -34,7 +34,6 @@ describe('Base Class', () => {
     it('should return true', () => {
       const eventName = 'event';
       const payload = { query: 'apple' };
-      stub(dummyComponent, 'dispatchEvent').returns(true);
 
       const result = dummyComponent.dispatchSfxEvent(eventName, payload);
 
