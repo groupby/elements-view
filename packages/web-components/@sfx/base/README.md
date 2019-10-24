@@ -11,7 +11,7 @@ This class contains a generic event dispatch function, `dispatchSfxEvent`. The `
 
 ### Rendering the light DOM
 
-All components that extend `Base`, will render in the Light DOM.
+All components that extend `Base` will render in the Light DOM.
 
 ## Testing
 
