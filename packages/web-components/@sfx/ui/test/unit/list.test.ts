@@ -1,5 +1,5 @@
-import { TemplateResult, LitElement } from 'lit-element';
-import { expect } from '../utils';
+import { TemplateResult } from 'lit-element';
+import { expect, itShouldExtendBase } from '../utils';
 import List from '../../src/list';
 
 describe('List component', () => {
@@ -9,9 +9,7 @@ describe('List component', () => {
     list = new List();
   });
 
-  it('should extend Base', () => {
-    expect(list).to.be.an.instanceof(LitElement);
-  });
+  itShouldExtendBase(() => list);
 
   describe('caption property', () => {
     it('should default to an empty string', () => {

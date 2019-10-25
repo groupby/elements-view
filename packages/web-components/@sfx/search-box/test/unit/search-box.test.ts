@@ -7,7 +7,12 @@ import {
   SEARCH_REQUEST,
   UPDATE_SEARCH_TERM,
 } from '@sfx/events';
-import { expect, stub } from '../utils';
+import {
+  expect,
+  stub,
+  itShouldExtendBase,
+  itShouldCallParentMethod,
+} from '../utils';
 import SearchBox from '../../src/search-box';
 
 describe('SearchBox Component', () => {
@@ -22,6 +27,8 @@ describe('SearchBox Component', () => {
     eventObject = { some: 'event' };
     createCustomEvent = stub(searchbox, 'createCustomEvent').returns(eventObject);
   });
+
+  itShouldExtendBase(() => searchbox);
 
   describe('Constructor', () => {
     describe('placeholder property', () => {
@@ -68,6 +75,8 @@ describe('SearchBox Component', () => {
   });
 
   describe('connectCallback', () => {
+    itShouldCallParentMethod(() => searchbox, 'connectedCallback');
+
     it('should add an autocomplete_hover eventListener to the window', () => {
       const windowAddEventListener = stub(window, 'addEventListener');
 
@@ -78,6 +87,8 @@ describe('SearchBox Component', () => {
   });
 
   describe('disconnectCallback', () => {
+    itShouldCallParentMethod(() => searchbox, 'disconnectedCallback');
+
     it('should remove the autocomplete_hover eventListener from the window', () => {
       const windowRemoveEventListener = stub(window, 'removeEventListener');
 

@@ -2,7 +2,6 @@ import {
   customElement,
   html,
   property,
-  LitElement,
   PropertyValues,
   TemplateResult,
 } from 'lit-element';
@@ -17,6 +16,8 @@ import {
   AutocompleteActiveTermPayload,
   AutocompleteSearchTermItem,
 } from '@sfx/events';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Base } from '@sfx/base';
 
 /**
  * The `sfx-autocomplete` component is responsible for displaying a list
@@ -24,7 +25,7 @@ import {
  * The component is also responsible for emitting events based on user input.
  */
 @customElement('sfx-autocomplete')
-export default class Autocomplete extends LitElement {
+export default class Autocomplete extends Base {
   /**
    * Autocomplete request results.
    */
@@ -156,14 +157,11 @@ export default class Autocomplete extends LitElement {
       .reduce((accItems, items) => [...accItems, ...items], []);
     const term = allItems[this.selectedIndex].label;
 
-    const sentEvent = new CustomEvent<AutocompleteActiveTermPayload>(AUTOCOMPLETE_ACTIVE_TERM, {
-      detail: {
-        query: term,
-        group: this.group,
-      },
-      bubbles: true,
-    });
-    this.dispatchEvent(sentEvent);
+    const payload: AutocompleteActiveTermPayload = {
+      query: term,
+      group: this.group,
+    };
+    this.dispatchSfxEvent(AUTOCOMPLETE_ACTIVE_TERM, payload);
   }
 
   /**
@@ -259,9 +257,5 @@ export default class Autocomplete extends LitElement {
       ${caption}
       ${autocompleteLists}
     `;
-  }
-
-  createRenderRoot(): Element|ShadowRoot {
-    return this;
   }
 }

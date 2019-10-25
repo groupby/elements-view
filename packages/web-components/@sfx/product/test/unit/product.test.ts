@@ -1,5 +1,10 @@
-import { TemplateResult, html, LitElement } from 'lit-element';
-import { expect, stub } from '../utils';
+import { TemplateResult, html } from 'lit-element';
+import {
+  expect,
+  stub,
+  itShouldExtendBase,
+  itShouldCallParentMethod,
+} from '../utils';
 import Product from '../../src/product';
 import Variant from '../../src/variant';
 
@@ -9,6 +14,8 @@ describe('Product Component', () => {
   beforeEach(() => {
     component = new Product();
   });
+
+  itShouldExtendBase(() => component);
 
   describe('constructor', () => {
     describe('product property', () => {
@@ -101,11 +108,9 @@ describe('Variant Component', () => {
     component = new Variant();
   });
 
-  describe('constructor', () => {
-    it('should extend the LitElement class', () => {
-      expect(component).to.be.an.instanceOf(LitElement);
-    });
+  itShouldExtendBase(() => component);
 
+  describe('constructor', () => {
     describe('type property', () => {
       it('should have a default value of "text"', () => {
         expect(component.type).to.equal('text');
@@ -120,13 +125,7 @@ describe('Variant Component', () => {
   });
 
   describe('connectedCallback', () => {
-    it('should call its super connectedCallback', () => {
-      const connectedCallback = stub(LitElement.prototype, 'connectedCallback');
-
-      component.connectedCallback();
-
-      expect(connectedCallback).to.have.been.called;
-    });
+    itShouldCallParentMethod(() => component, 'connectedCallback');
 
     it('should not set role if role attribute is set', () => {
       component.setAttribute('role', 'button');

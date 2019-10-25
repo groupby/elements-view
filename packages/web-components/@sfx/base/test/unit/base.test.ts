@@ -1,93 +1,47 @@
-import { LitElement, TemplateResult } from 'lit-element';
-import { expect, spy, stub } from '../utils';
-import Base from '../../src/base';
-import * as BaseUtils from '../../src/utils';
+import { expect, stub } from '../utils';
+import { DummyComponent } from './dummy-component';
 
 describe('Base Class', () => {
-  let base;
+  let dummyComponent;
 
   beforeEach(() => {
-    base = new Base();
-  });
-
-  it('should extend from LitElement', () => {
-    expect(base).to.be.an.instanceof(LitElement);
-  });
-
-  describe('constructor', () => {
-    it('should add slots', () => {
-      const addSlotsStub = stub(Base.prototype, 'addSlots');
-
-      base = new Base();
-
-      expect(addSlotsStub).to.have.been.called;
-    });
-  });
-
-  describe('connectedCallback', () => {
-    it('should call its super connectedCallback', () => {
-      const litElementConnectedCallbackStub = stub(LitElement.prototype, 'connectedCallback');
-
-      base.connectedCallback();
-
-      expect(litElementConnectedCallbackStub).to.have.been.called;
-    });
-
-    it('should call createChildrenObserver on the observer property', () => {
-      const observer = {
-        observe: () => {},
-      };
-      stub(BaseUtils, 'createChildrenObserver').returns(observer);
-
-      base.connectedCallback();
-
-      expect(base.observer).to.equal(observer);
-    });
-
-    it('should observe changes to the child list', () => {
-      const observe = spy();
-      stub(BaseUtils, 'createChildrenObserver').returns({ observe });
-
-      base.connectedCallback();
-
-      expect(observe).to.have.been.calledWith(base, { childList: true });
-    });
-  });
-
-  describe('firstUpdate', () => {
-    it('should disconnect the observer', () => {
-      const disconnect = spy();
-      base.observer = { disconnect };
-
-      base.firstUpdate();
-
-      expect(disconnect).to.have.been.called;
-    });
-  });
-
-  describe('render', () => {
-    it('should return an instance of TemplateResult', () => {
-      const result = base.render();
-
-      expect(result).to.be.an.instanceof(TemplateResult);
-    });
+    dummyComponent = new DummyComponent();
   });
 
   describe('createRenderRoot', () => {
     it('should return the element itself', () => {
-      base.attachShadow = () => {};
+      const renderRoot = dummyComponent.createRenderRoot();
 
-      const renderRoot = base.createRenderRoot();
+      expect(renderRoot).to.equal(dummyComponent);
+    });
+  });
 
-      expect(renderRoot).to.equal(base);
+  describe('dispatchSfxEvent', () => {
+    const eventName = 'event';
+    const dispatchEventReturnValue = true;
+    let payload;
+    let dispatchEvent;
+
+    beforeEach(() => {
+      payload = { query: 'apple' };
+      dispatchEvent = stub(dummyComponent, 'dispatchEvent').returns(dispatchEventReturnValue);
     });
 
-    it('should attach shadow root', () => {
-      const attachShadow = (base.attachShadow = spy());
+    it('should dispatch a custom event with the provided event name and payload', () => {
+      const eventObject = { a: 'b' };
+      const customEvent = stub(window, 'CustomEvent').returns(eventObject);
 
-      base.createRenderRoot();
+      dummyComponent.dispatchSfxEvent(eventName, payload);
 
-      expect(attachShadow).to.have.been.called;
+      expect(dispatchEvent).to.be.calledWith(eventObject);
+      expect(customEvent).to.be.calledWith(eventName, { detail: payload, bubbles: true });
+      expect(customEvent.calledWithNew()).to.be.true;
+    });
+
+    it('should forward the return value of dispatchEvent', () => {
+      const result = dummyComponent.dispatchSfxEvent(eventName, payload);
+
+      expect(result).to.equal(dispatchEventReturnValue);
     });
   });
 });

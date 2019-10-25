@@ -5,12 +5,13 @@
 This class extends [LitElement](https://lit-element.polymer-project.org/) and is the class that all components will extend.
 Any shared functionality should be contained within this class.
 
-### Slots
+### Dispatching events
 
-A POC of slot functionality is contained within this class.
-This functionality allows for components to insert slots into the light dom.
-The method utilized does make use of the shadow-dom, however, the slots are rendered in the context of the custom element.
-The current default adds slotted content after the content contained within the custom element, but within the custom element itself.
+This class contains a generic event dispatch function, `dispatchSfxEvent`. The `dispatchSfxEvent` function constructs a CustomEvent with payload properties that are common across the SF-X components. This function can be used across all components that extend Base to dispatch events.
+
+### Rendering the light DOM
+
+All components that extend `Base` will render in the Light DOM.
 
 ## Testing
 

@@ -1,4 +1,4 @@
-import { TemplateResult, LitElement } from 'lit-element';
+import { TemplateResult } from 'lit-element';
 import * as Debounce from 'debounce';
 import {
   AUTOCOMPLETE_ACTIVE_TERM,
@@ -15,6 +15,8 @@ import {
   sinon,
   spy,
   stub,
+  itShouldExtendBase,
+  itShouldCallParentMethod,
 } from '../utils';
 import Sayt from '../../src/sayt';
 
@@ -25,11 +27,9 @@ describe('Sayt Component', () => {
     sayt = new Sayt();
   });
 
-  describe('Constructor', () => {
-    it('should extend the LitElement class', () => {
-      expect(sayt).to.be.an.instanceof(LitElement);
-    });
+  itShouldExtendBase(() => sayt);
 
+  describe('Constructor', () => {
     it('should call setDebouncedMethods()', () => {
       const setDebounce = stub(Sayt.prototype, 'setDebouncedMethods');
 
@@ -106,6 +106,8 @@ describe('Sayt Component', () => {
   });
 
   describe('connectedCallback()', () => {
+    itShouldCallParentMethod(() => sayt, 'connectedCallback');
+
     it('should register event listeners to the window', () => {
       const addEventListener = stub(window, 'addEventListener');
       const saytAddEventListener = stub(sayt, 'addEventListener');
@@ -143,6 +145,8 @@ describe('Sayt Component', () => {
   });
 
   describe('disconnectedCallback()', () => {
+    itShouldCallParentMethod(() => sayt, 'disconnectedCallback');
+
     it('should remove event listeners on the window', () => {
       const removeEventListener = stub(window, 'removeEventListener');
       const saytRemoveEventListener = stub(sayt, 'removeEventListener');

@@ -1,5 +1,12 @@
 import { SAYT_PRODUCTS_RESPONSE, SEARCH_RESPONSE } from '@sfx/events';
-import { expect, sinon, stub } from '../utils';
+import {
+  expect,
+  sinon,
+  stub,
+  itShouldExtendBase,
+  itShouldCallParentMethod,
+  itShouldExtendClass,
+} from '../utils';
 import ProductsBase from '../../src/products-base';
 import ProductsSayt from '../../src/products-sayt';
 import ProductsSearch from '../../src/products-search';
@@ -10,6 +17,8 @@ describe('Products Base Component', () => {
   beforeEach(() => {
     component = new ProductsBase();
   });
+
+  itShouldExtendBase(() => component);
 
   describe('constructor', () => {
     describe('products property', () => {
@@ -26,13 +35,7 @@ describe('Products Base Component', () => {
   });
 
   describe('connectedCallback', () => {
-    it('should call super', () => {
-      const superConnected = stub(Object.getPrototypeOf(component), 'connectedCallback');
-
-      component.connectedCallback();
-
-      expect(superConnected).to.be.calledOnce;
-    });
+    itShouldCallParentMethod(() => component, 'connectedCallback');
 
     it('should set role attribute if not set', () => {
       const setAttribute = stub(component, 'setAttribute');
@@ -61,14 +64,10 @@ describe('Products Sayt Component', () => {
     component = new ProductsSayt();
   });
 
+  itShouldExtendClass(() => component, ProductsBase);
+
   describe('connectedCallback', () => {
-    it('should call super', () => {
-      const superConnected = stub(Object.getPrototypeOf(component), 'connectedCallback');
-
-      component.connectedCallback();
-
-      expect(superConnected).to.be.calledOnce;
-    });
+    itShouldCallParentMethod(() => component, 'connectedCallback');
 
     it('should set up an event listener for a sayt products event to set products', () => {
       const addEventListener = sinon.stub(window, 'addEventListener');
@@ -80,13 +79,7 @@ describe('Products Sayt Component', () => {
   });
 
   describe('disconnectedCallback', () => {
-    it('should call super', () => {
-      const superDisconnected = stub(Object.getPrototypeOf(component), 'disconnectedCallback');
-
-      component.disconnectedCallback();
-
-      expect(superDisconnected).to.be.calledOnce;
-    });
+    itShouldCallParentMethod(() => component, 'disconnectedCallback');
 
     it('should remove an event listener for sayt products', () => {
       const removeEventListener = sinon.stub(window, 'removeEventListener');
@@ -156,14 +149,10 @@ describe('Products Search Component', () => {
     component = new ProductsSearch();
   });
 
+  itShouldExtendClass(() => component, ProductsBase);
+
   describe('connectedCallback', () => {
-    it('should call super', () => {
-      const superConnected = stub(Object.getPrototypeOf(component), 'connectedCallback');
-
-      component.connectedCallback();
-
-      expect(superConnected).to.be.calledOnce;
-    });
+    itShouldCallParentMethod(() => component, 'connectedCallback');
 
     it('should set up an event listener for a search response to set products', () => {
       const addEventListener = sinon.stub(window, 'addEventListener');
@@ -175,13 +164,7 @@ describe('Products Search Component', () => {
   });
 
   describe('disconnectedCallback', () => {
-    it('should call super', () => {
-      const superDisconnected = stub(Object.getPrototypeOf(component), 'disconnectedCallback');
-
-      component.disconnectedCallback();
-
-      expect(superDisconnected).to.be.calledOnce;
-    });
+    itShouldCallParentMethod(() => component, 'disconnectedCallback');
 
     it('should remove an event listener for search responses', () => {
       const removeEventListener = sinon.stub(window, 'removeEventListener');

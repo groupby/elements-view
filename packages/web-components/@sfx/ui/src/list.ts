@@ -2,18 +2,19 @@ import {
   customElement,
   html,
   property,
-  LitElement,
   TemplateResult,
 } from 'lit-element';
 // eslint-disable-next-line import/no-unresolved
 import { ifDefined } from 'lit-html/directives/if-defined';
 import * as shortid from 'shortid';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Base } from '@sfx/base';
 
 /**
  * Receives data to populate into a list.
  */
 @customElement('sfx-list')
-export default class List extends LitElement {
+export default class List extends Base {
   /**
    * The text used in the header.
    */
@@ -42,9 +43,5 @@ export default class List extends LitElement {
       ${this.caption ? header : ''}
       ${searchTermList}
     `;
-  }
-
-  createRenderRoot(): Element|ShadowRoot {
-    return this;
   }
 }

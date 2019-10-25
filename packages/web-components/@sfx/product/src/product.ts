@@ -2,7 +2,6 @@ import {
   customElement,
   property,
   html,
-  LitElement,
   TemplateResult,
 } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
@@ -10,13 +9,15 @@ import {
   Product as ProductModel,
   ProductVariant,
 } from '@sfx/events';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Base } from '@sfx/base';
 import { toLowerCaseKebab } from './utils';
 
 /**
  * A product component that consumes product data to display.
  */
 @customElement('sfx-product')
-export default class Product extends LitElement {
+export default class Product extends Base {
   /** The product data. */
   @property({ type: Object }) product: ProductModel = {};
 
@@ -109,9 +110,5 @@ export default class Product extends LitElement {
         <p class="sfx-price">${price}</p>
       ${this.additionalInfo()}
     `;
-  }
-
-  createRenderRoot(): Element|ShadowRoot {
-    return this;
   }
 }
