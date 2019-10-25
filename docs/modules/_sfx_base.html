@@ -72,11 +72,10 @@
 					<h2 id="functionality">Functionality</h2>
 					<p>This class extends <a href="https://lit-element.polymer-project.org/">LitElement</a> and is the class that all components will extend.
 					Any shared functionality should be contained within this class.</p>
-					<h3 id="slots">Slots</h3>
-					<p>A POC of slot functionality is contained within this class.
-						This functionality allows for components to insert slots into the light dom.
-						The method utilized does make use of the shadow-dom, however, the slots are rendered in the context of the custom element.
-					The current default adds slotted content after the content contained within the custom element, but within the custom element itself.</p>
+					<h3 id="dispatching-events">Dispatching events</h3>
+					<p>This class contains a generic event dispatch function, <code>dispatchSfxEvent</code>. The <code>dispatchSfxEvent</code> function constructs a CustomEvent with payload properties that are common across the SF-X components. This function can be used across all components that extend Base to dispatch events.</p>
+					<h3 id="rendering-the-light-dom">Rendering the light DOM</h3>
+					<p>All components that extend <code>Base</code> will render in the Light DOM.</p>
 					<h2 id="testing">Testing</h2>
 					<p>The test suite for this component is contained in the <code>test</code> directory.
 					To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:</p>
@@ -100,63 +99,7 @@
 								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_base.base.html" class="tsd-kind-icon">Base</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
-							<h3>Functions</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_sfx_base.html#createchildrenobserver" class="tsd-kind-icon">create<wbr>Children<wbr>Observer</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_sfx_base.html#makeslot" class="tsd-kind-icon">make<wbr>Slot</a></li>
-							</ul>
-						</section>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="createchildrenobserver" class="tsd-anchor"></a>
-					<h3>create<wbr>Children<wbr>Observer</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Children<wbr>Observer<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Node</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MutationObserver</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/f80369e/packages/web-components/@sfx/base/src/utils.ts#L16">packages/web-components/@sfx/base/src/utils.ts:16</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>root: <span class="tsd-signature-type">Node</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">MutationObserver</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="makeslot" class="tsd-anchor"></a>
-					<h3>make<wbr>Slot</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">make<wbr>Slot<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLSlotElement</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/f80369e/packages/web-components/@sfx/base/src/utils.ts#L8">packages/web-components/@sfx/base/src/utils.ts:8</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> name: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLSlotElement</span></h4>
-						</li>
-					</ul>
 				</section>
 			</section>
 		</div>
@@ -213,12 +156,6 @@
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
 								<a href="../classes/_sfx_base.base.html" class="tsd-kind-icon">Base</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="_sfx_base.html#createchildrenobserver" class="tsd-kind-icon">create<wbr>Children<wbr>Observer</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="_sfx_base.html#makeslot" class="tsd-kind-icon">make<wbr>Slot</a>
 							</li>
 						</ul>
 					</li>
