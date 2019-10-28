@@ -15,6 +15,7 @@
     "storybook": "start-storybook -s ./dist -p 9000",
     "docs": "typedoc --options ./typedoc.js packages",
     "test": "yarn workspaces run test",
+    "functional-test": "testcafe test.ts",
     "coverage": "cat coverage/lcov.info | codecov",
     "dev:themes": "nodemon -e scss -x webpack",
     "lint:scripts": "eslint ./packages/web-components/@sfx/**/src/ --ext .ts --plugin only-warn",
