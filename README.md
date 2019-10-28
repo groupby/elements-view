@@ -91,17 +91,17 @@ Functional tests are run with [Testcafe](https://devexpress.github.io/testcafe/)
 
 To run the tests for all browsers together, run the following command:
 ```sh
-yarn functional:test:all
+yarn test:functional:all
 ```
 
 - To run the tests for chrome only:
 ```sh
-yarn functional:test:chrome
+yarn test:functional:chrome
 ```
 
 - To run the tests for safari only:
 ```sh
-yarn functional:test:safari
+yarn test:functional:safari
 ```
 
 
