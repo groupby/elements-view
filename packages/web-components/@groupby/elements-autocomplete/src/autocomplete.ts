@@ -11,10 +11,12 @@ import * as shortid from 'shortid';
 import {
   AUTOCOMPLETE_RESPONSE,
   AUTOCOMPLETE_ACTIVE_TERM,
+  CACHE_REQUEST,
   AutocompleteResponsePayload,
   AutocompleteResultGroup,
   AutocompleteActiveTermPayload,
   AutocompleteSearchTermItem,
+  CacheRequestPayload,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
@@ -80,6 +82,11 @@ export default class Autocomplete extends Base {
       roles.unshift('listbox');
       this.setAttribute('role', roles.join(' '));
     }
+  }
+
+  requestInitialData() {
+    const requestEvent = new CustomEvent(CACHE_REQUEST);
+    this.dispatchEvent(requestEvent);
   }
 
   /**

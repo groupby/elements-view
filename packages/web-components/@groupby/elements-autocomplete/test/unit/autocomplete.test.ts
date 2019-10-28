@@ -1,5 +1,5 @@
 import { TemplateResult } from 'lit-element';
-import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM } from '@groupby/elements-events';
+import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM, CACHE_REQUEST } from '@groupby/elements-events';
 import {
   expect,
   stub,
@@ -75,6 +75,25 @@ describe('Autcomplete Component', () => {
 
         expect(autocomplete.getAttribute('role')).to.equal('listbox widget');
       });
+    });
+  });
+
+  describe('requestInitialData()', () => {
+    let dispatchEvent;
+    let CustomEvent;
+    let event;
+
+    beforeEach(() => {
+      dispatchEvent = stub(autocomplete, 'dispatchEvent');
+      event = { some: 'event' };
+      CustomEvent = stub(window, 'CustomEvent').returns(event);
+    });
+
+    it('should emit an event requesting initial data', () => {
+      autocomplete.requestInitialData();
+
+      expect(CustomEvent).to.be.calledWith(CACHE_REQUEST);
+      expect(dispatchEvent).to.be.calledOnceWith(event);
     });
   });
 
