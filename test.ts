@@ -5,9 +5,7 @@ fixture `SFX Web Components Functional Testing`
 
 const searchbox = Selector('sfx-search-box');
 const clearButton = Selector('.sfx-clear');
-
-const firstAutocomplete = Selector('sfx-autocomplete');
-const lastAutocomplete = Selector('sfx-autocomplete sfx-list ul:nth-child(2)');
+const autocomplete = Selector('sfx-autocomplete');
 
 test('SFX search populates sayt terms and sayt products', async t => {
   await t
@@ -23,9 +21,8 @@ await t
     .hover(searchbox)
     .click(searchbox)
     .pressKey( 'home left c h e c k space d r e s s' )
-    .setTestSpeed(0.1)
-    .hover(firstAutocomplete)
-    // .hover(lastAutocomplete)
+    .setTestSpeed(0.6)
+    .hover(autocomplete)
 });
 
 test('SFX clear button works', async t => {
