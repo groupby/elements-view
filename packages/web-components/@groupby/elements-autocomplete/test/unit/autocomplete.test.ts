@@ -80,20 +80,18 @@ describe('Autcomplete Component', () => {
 
   describe('requestInitialData()', () => {
     let dispatchEvent;
-    let CustomEvent;
     let event;
 
     beforeEach(() => {
-      dispatchEvent = stub(autocomplete, 'dispatchEvent');
-      event = { some: 'event' };
-      CustomEvent = stub(window, 'CustomEvent').returns(event);
+      dispatchEvent = stub(autocomplete, 'dispatchSfxEvent');
     });
 
     it('should emit an event requesting initial data', () => {
+      const payload = { name: 'some-name', returnEvent: 'some-return-event' };
+
       autocomplete.requestInitialData();
 
-      expect(CustomEvent).to.be.calledWith(CACHE_REQUEST);
-      expect(dispatchEvent).to.be.calledOnceWith(event);
+      expect(dispatchEvent).to.be.calledOnceWith(CACHE_REQUEST, payload);
     });
   });
 
