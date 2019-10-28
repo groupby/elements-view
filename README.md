@@ -101,7 +101,7 @@ yarn test:functional:chrome
 
 - To run the tests for safari only:
 ```sh
-yarn test:functional:safari
+yarn test:functional:firefox
 ```
 
 

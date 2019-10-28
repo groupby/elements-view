@@ -9,7 +9,7 @@ const autocomplete = Selector('sfx-autocomplete');
 
 test('SFX search populates sayt terms and sayt products', async t => {
   await t
-    .setTestSpeed(0.4)
+    // .setTestSpeed(0.4)
     .hover(searchbox)
     .click(searchbox)
     .pressKey( 'home left c h e c k space d r e s s' )
@@ -17,11 +17,11 @@ test('SFX search populates sayt terms and sayt products', async t => {
 
 test('SFX sayt items are hoverable', async t => {
 await t
-    .setTestSpeed(0.4)
+    // .setTestSpeed(0.4)
     .hover(searchbox)
     .click(searchbox)
     .pressKey( 'home left c h e c k space d r e s s' )
-    .setTestSpeed(0.6)
+    // .setTestSpeed(0.6)
     .hover(autocomplete)
 });
 

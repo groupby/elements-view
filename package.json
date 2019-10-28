@@ -17,7 +17,7 @@
     "test": "yarn workspaces run test",
     "test:functional:all": "testcafe test.ts",
     "test:functional:chrome": "testcafe chrome test.ts",
-    "test:functional:safari": "testcafe safari test.ts",
+    "test:functional:firefox": "testcafe firefox test.ts",
     "coverage": "cat coverage/lcov.info | codecov",
     "dev:themes": "nodemon -e scss -x webpack",
     "lint:scripts": "eslint ./packages/web-components/@sfx/**/src/ --ext .ts --plugin only-warn",
