@@ -87,6 +87,7 @@ export default class Autocomplete extends Base {
   requestInitialData() {
     const payload: CacheRequestPayload = {
       name: AUTOCOMPLETE_RESPONSE,
+      group: this.group,
       returnEvent: `${INITIAL_DATA_RESPONSE_EVENT}::${this.componentId}`,
     };
     this.dispatchSfxEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
