@@ -45,9 +45,11 @@ describe('Autcomplete Component', () => {
 
   describe('connectedCallback', () => {
     let windowAddEventListener;
+    let requestInitialData;
 
     beforeEach(() => {
       windowAddEventListener = stub(window, 'addEventListener');
+      requestInitialData = stub(autocomplete, 'requestInitialData');
     });
 
     itShouldCallParentMethod(() => autocomplete, 'connectedCallback');
@@ -59,6 +61,12 @@ describe('Autcomplete Component', () => {
         AUTOCOMPLETE_RESPONSE,
         autocomplete.receivedResults
       );
+    });
+
+    it('should request initial data', () => {
+      autocomplete.connectedCallback();
+
+      expect(requestInitialData).to.be.called;
     });
 
     describe('role attribute', () => {
@@ -94,6 +102,12 @@ describe('Autcomplete Component', () => {
       autocomplete.requestInitialData();
 
       expect(dispatchEvent).to.be.calledOnceWith(CACHE_REQUEST, payload);
+    });
+  });
+
+  describe.skip('receiveInitialData()', () => {
+    it('should set initial data', () => {
+      autocomplete.receiveInitialData();
     });
   });
 

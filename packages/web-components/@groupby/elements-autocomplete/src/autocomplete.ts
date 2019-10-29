@@ -82,6 +82,8 @@ export default class Autocomplete extends Base {
       roles.unshift('listbox');
       this.setAttribute('role', roles.join(' '));
     }
+
+    this.requestInitialData();
   }
 
   requestInitialData() {
