@@ -87,7 +87,7 @@ export default class Autocomplete extends Base {
   requestInitialData() {
     const payload: CacheRequestPayload = {
       name: AUTOCOMPLETE_RESPONSE,
-      returnEvent: INITIAL_DATA_RESPONSE_EVENT,
+      returnEvent: `${INITIAL_DATA_RESPONSE_EVENT}::${this.componentId}`,
     };
     this.dispatchSfxEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
@@ -270,4 +270,4 @@ export default class Autocomplete extends Base {
   }
 }
 
-export const INITIAL_DATA_RESPONSE_EVENT = 'sfx::initial_data_response::autocomplete::some-id';
+export const INITIAL_DATA_RESPONSE_EVENT = 'sfx::initial_data_response::autocomplete';

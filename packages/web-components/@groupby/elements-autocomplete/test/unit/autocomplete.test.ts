@@ -86,7 +86,9 @@ describe('Autcomplete Component', () => {
     });
 
     it('should emit an event requesting initial data', () => {
-      const payload = { name: AUTOCOMPLETE_RESPONSE, returnEvent: INITIAL_DATA_RESPONSE_EVENT };
+      autocomplete.componentId = 'some-id';
+      const returnEvent = `${INITIAL_DATA_RESPONSE_EVENT}::${autocomplete.componentId}`;
+      const payload = { name: AUTOCOMPLETE_RESPONSE, returnEvent };
 
       autocomplete.requestInitialData();
 
