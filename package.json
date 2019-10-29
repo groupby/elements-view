@@ -16,7 +16,7 @@
     "docs": "typedoc --options ./typedoc.js packages",
     "test": "yarn workspaces run test",
     "test:functional:all": "testcafe ./test-tools/coverage/testcafe/testcafe.ts",
-    "test:functional:chrome": "testcafe chrome ./test-tools/coverage/testcafe/testcafe.ts -s takeOnFails=true",
+    "test:functional:chrome": "testcafe chrome ./test-tools/coverage/testcafe/testcafe.ts",
     "test:functional:firefox": "testcafe firefox ./test-tools/coverage/testcafe/testcafe.ts",
     "coverage": "cat coverage/lcov.info | codecov",
     "dev:themes": "nodemon -e scss -x webpack",
