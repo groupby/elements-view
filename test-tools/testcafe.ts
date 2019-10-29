@@ -6,6 +6,7 @@ fixture `SFX Web Components Functional Testing`
 const searchbox = Selector('sfx-search-box#main-search');
 const input = Selector('sfx-search-box#main-search > input');
 const clearButton = Selector('.sfx-clear');
+const autocomplete = Selector('sfx-autocomplete');
 
 test('SFX typing in searchbox populates sayt terms and sayt products', async t => {
   // confirm searchbox exists
@@ -16,7 +17,7 @@ test('SFX typing in searchbox populates sayt terms and sayt products', async t =
   await t.typeText(searchbox, 'check dress')
   await t.expect(input.value).contains('check dress', 'Searchbox has successful input value')
   // confirm autocomplete terms are present
-  const autocompleteTermsList = Selector('sfx-autocomplete').child('ul');
+  const autocompleteTermsList = autocomplete.child('ul');
   await t.expect(await autocompleteTermsList.childElementCount).gte(2, 'Autocomplete terms are present')
   // confirm autocomplete products are present
   const autocompleteProductsList = Selector('sfx-products-sayt');
@@ -34,10 +35,10 @@ test('SFX autcomplete terms has hover functionality', async t => {
   await t.expect(input.value).contains('check dress', 'Searchbox has successful input value')
   // confirm user can hover over autocomplete terms
   const autocompleteTermIndex = 2;
-  const thirdAutocompleteTerm = await (Selector('sfx-autocomplete').child('ul').child('li').nth(autocompleteTermIndex))();
+  const thirdAutocompleteTerm = await autocomplete.child('ul').child('li').nth(autocompleteTermIndex)();
   await t.hover(thirdAutocompleteTerm)
   // confirm hover sets selected index property
-  const autocompleteSelectedProperty = await (Selector('sfx-autocomplete').getAttribute('selectedindex'));
+  const autocompleteSelectedProperty = await autocomplete.getAttribute('selectedindex');
   await t.expect(Number(autocompleteSelectedProperty)).eql(autocompleteTermIndex, 'Hovering on third autocomplete term sets selected index')
 });
 
