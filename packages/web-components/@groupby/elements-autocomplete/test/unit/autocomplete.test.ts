@@ -98,16 +98,17 @@ describe('Autcomplete Component', () => {
   });
 
   describe('requestInitialData()', () => {
+    const returnEvent = 'response-event-name';
     let dispatchEvent;
 
     beforeEach(() => {
       dispatchEvent = stub(autocomplete, 'dispatchSfxEvent');
+      stub(autocomplete, 'getInitialDataResponseEvent').returns(returnEvent);
     });
 
     it('should emit an event requesting initial data', () => {
       autocomplete.componentId = 'some-id';
       const group = autocomplete.group = 'some-group';
-      const returnEvent = `${INITIAL_DATA_RESPONSE_EVENT}::${autocomplete.componentId}`;
       const payload = { name: AUTOCOMPLETE_RESPONSE, group, returnEvent };
 
       autocomplete.requestInitialData();
