@@ -80,14 +80,13 @@ describe('Autcomplete Component', () => {
 
   describe('requestInitialData()', () => {
     let dispatchEvent;
-    let event;
 
     beforeEach(() => {
       dispatchEvent = stub(autocomplete, 'dispatchSfxEvent');
     });
 
     it('should emit an event requesting initial data', () => {
-      const payload = { name: 'some-name', returnEvent: 'some-return-event' };
+      const payload = { name: AUTOCOMPLETE_RESPONSE, returnEvent: 'some-return-event' };
 
       autocomplete.requestInitialData();
 
