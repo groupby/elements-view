@@ -87,7 +87,7 @@ Keywords from the testing frameworks can then be imported to your test files fro
 Functional tests are run with [Testcafe](https://devexpress.github.io/testcafe/), which runs tests for each browser environment configured. The following browsers are currently tested:
 
 - Chrome
-- Safari
+- Firefox
 
 To run the tests for all browsers together, run the following command:
 ```sh
