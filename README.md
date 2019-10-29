@@ -99,7 +99,7 @@ yarn test:functional:all
 yarn test:functional:chrome
 ```
 
-- To run the tests for safari only:
+- To run the tests for firefox only:
 ```sh
 yarn test:functional:firefox
 ```
