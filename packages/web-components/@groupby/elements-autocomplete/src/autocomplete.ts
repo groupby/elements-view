@@ -75,6 +75,7 @@ export default class Autocomplete extends Base {
     super.connectedCallback();
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
+    window.addEventListener(this.getInitialDataResponseEvent(), this.receivedInitialData);
 
     const role = this.getAttribute('role');
     const roles = role ? role.split(' ') : [];
@@ -148,6 +149,10 @@ export default class Autocomplete extends Base {
     return this.selectedIndex >= 0 && this.selectedIndex < this.itemCount
       ? this.generateItemId(this.selectedIndex)
       : '';
+  }
+
+  receivedInitialData(event) {
+    console.log(event);
   }
 
   /**
