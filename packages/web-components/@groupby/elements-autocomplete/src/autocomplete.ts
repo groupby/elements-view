@@ -17,6 +17,7 @@ import {
   AutocompleteActiveTermPayload,
   AutocompleteSearchTermItem,
   CacheRequestPayload,
+  CacheResponsePayload,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
@@ -106,6 +107,7 @@ export default class Autocomplete extends Base {
   disconnectedCallback(): void {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
+    window.removeEventListener(this.getInitialDataResponseEvent(), this.receivedInitialData);
   }
 
   /**
@@ -151,7 +153,8 @@ export default class Autocomplete extends Base {
       : '';
   }
 
-  receivedInitialData(event) {
+  receivedInitialData(event: CustomEvent<CacheResponsePayload>) {
+    console.log('In receivedInitialData');
     console.log(event);
   }
 
