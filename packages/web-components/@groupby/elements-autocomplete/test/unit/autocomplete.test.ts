@@ -6,7 +6,7 @@ import {
   itShouldExtendBase,
   itShouldCallParentMethod,
 } from '../utils';
-import Autocomplete from '../../src/autocomplete';
+import Autocomplete, { INITIAL_DATA_RESPONSE_EVENT } from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
@@ -86,7 +86,7 @@ describe('Autcomplete Component', () => {
     });
 
     it('should emit an event requesting initial data', () => {
-      const payload = { name: AUTOCOMPLETE_RESPONSE, returnEvent: 'some-return-event' };
+      const payload = { name: AUTOCOMPLETE_RESPONSE, returnEvent: INITIAL_DATA_RESPONSE_EVENT };
 
       autocomplete.requestInitialData();
 
