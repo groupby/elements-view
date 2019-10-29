@@ -95,6 +95,10 @@ export default class Autocomplete extends Base {
     this.dispatchSfxEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 
+  getInitialDataResponseEvent() {
+    return `${INITIAL_DATA_RESPONSE_EVENT}::${this.componentId}`;
+  }
+
   /**
    * Removes event listeners.
    */

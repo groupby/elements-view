@@ -43,6 +43,17 @@ describe('Autcomplete Component', () => {
     });
   });
 
+  describe('getInitialDataResponseEvent()', () => {
+    it('should return an event name for receiving initial data', () => {
+      const componentId = autocomplete.componentId = 'some-id';
+      const expectedName = `${INITIAL_DATA_RESPONSE_EVENT}::${componentId}`;
+
+      const eventName = autocomplete.getInitialDataResponseEvent();
+
+      expect(eventName).to.equal(expectedName);
+    });
+  });
+
   describe('connectedCallback', () => {
     let windowAddEventListener;
     let requestInitialData;
