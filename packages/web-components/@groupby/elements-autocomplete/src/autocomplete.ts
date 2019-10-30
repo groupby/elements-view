@@ -71,7 +71,8 @@ export default class Autocomplete extends Base {
   }
 
   /**
-   * Sets up event listeners.
+   * Sets up event listeners. Additionally requests initial data to populate
+   * this component if cached data exists.
    */
   connectedCallback(): void {
     super.connectedCallback();
@@ -89,6 +90,9 @@ export default class Autocomplete extends Base {
     this.requestInitialData();
   }
 
+  /**
+   * Requests initial data for this component.
+   */
   requestInitialData() {
     const payload: CacheRequestPayload = {
       name: AUTOCOMPLETE_RESPONSE,
@@ -154,6 +158,12 @@ export default class Autocomplete extends Base {
       : '';
   }
 
+  /**
+   * Receives an event for populating initial data. Intended to be
+   * used on instantiation of this component.
+   *
+   * @param event The event object.
+   */
   receivedInitialData(event: CustomEvent) {
     // receivedInitialData(event: CustomEvent<CacheResponsePayload>) {
     const data = event.detail.data || {};
