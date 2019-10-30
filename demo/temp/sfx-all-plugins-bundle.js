@@ -2456,9 +2456,9 @@ var Promise$1 = function () {
   /**
     `finally` will be invoked regardless of the promise's fate just as native
     try/catch/finally behaves
-  
+
     Synchronous example:
-  
+
     ```js
     findAuthor() {
       if (Math.random() > 0.5) {
@@ -2466,7 +2466,7 @@ var Promise$1 = function () {
       }
       return new Author();
     }
-  
+
     try {
       return findAuthor(); // succeed or fail
     } catch(error) {
@@ -2476,9 +2476,9 @@ var Promise$1 = function () {
       // doesn't affect the return value
     }
     ```
-  
+
     Asynchronous example:
-  
+
     ```js
     findAuthor().catch(function(reason){
       return findOtherAuther();
@@ -2486,7 +2486,7 @@ var Promise$1 = function () {
       // author was either found, or not
     });
     ```
-  
+
     @method finally
     @param {Function} callback
     @return {Promise}
@@ -14204,7 +14204,7 @@ function randomatic(pattern, length, options) {
     var exclude = typeOf(opts.exclude) === 'string' ? opts.exclude : opts.exclude.join('');
     exclude = exclude.replace(new RegExp('[\\]]+', 'g'), '');
     mask = mask.replace(new RegExp('[' + exclude + ']+', 'g'), '');
-    
+
     if(opts.exclude.indexOf(']') !== -1) mask = mask.replace(new RegExp('[\\]]+', 'g'), '');
   }
 
@@ -15369,9 +15369,9 @@ var SaytDriverPlugin = /** @class */ (function () {
         this.fetchProductData = this.fetchProductData.bind(this);
         this.autocompleteCallback = this.autocompleteCallback.bind(this);
         this.searchCallback = this.searchCallback.bind(this);
-        var 
+        var
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        _a = options.productTransformer, 
+        _a = options.productTransformer,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         productTransformer = _a === void 0 ? (function (product) { return product; }) : _a;
         this.transformProduct = productTransformer;
@@ -15653,9 +15653,9 @@ var SearchDriverPlugin = /** @class */ (function () {
         };
         this.fetchSearchData = this.fetchSearchData.bind(this);
         this.searchCallback = this.searchCallback.bind(this);
-        var 
+        var
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        _a = options.productTransformer, 
+        _a = options.productTransformer,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         productTransformer = _a === void 0 ? (function (product) { return product; }) : _a;
         this.transformProduct = productTransformer;

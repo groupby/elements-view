@@ -82,6 +82,28 @@ import '../../../../../test-tools/setup';
 
 Keywords from the testing frameworks can then be imported to your test files from `utils.ts`.
 
+### Functional end-to-end testing
+
+Functional tests are run with [Testcafe](https://devexpress.github.io/testcafe/), which run in each browser environment configured. The following browsers are currently tested:
+
+- Chrome
+- Firefox
+
+To run the tests for all browsers together, run the following command in the root directory:
+```sh
+yarn test:functional:all
+```
+
+- To run the tests for Chrome only:
+```sh
+yarn test:functional:chrome
+```
+
+- To run the tests for Firefox only:
+```sh
+yarn test:functional:firefox
+```
+
 ### Themes
 
 Styled themes are available for components in the `./themes` folder. These can be viewed and developed by using Storybook and by running two active terminal processes:
