@@ -34,8 +34,8 @@ test('SFX autcomplete terms has hover functionality', async (t) => {
   await t.expect(input.value).contains('check dress', 'Searchbox has successful input value');
   // confirm user can hover over autocomplete terms
   const autocompleteTermIndex = 2;
-  const thirdAutocompleteTerm = await autocomplete.child('ul').child('li').nth(autocompleteTermIndex)();
-  await t.hover(thirdAutocompleteTerm);
+  const autocompleteTerm = await autocomplete.child('ul').child('li').nth(autocompleteTermIndex)();
+  await t.hover(autocompleteTerm);
   // confirm hover sets selected index property
   const autocompleteSelectedProperty = await autocomplete.getAttribute('selectedindex');
   await t.expect(Number(autocompleteSelectedProperty)).eql(autocompleteTermIndex, 'Hovering on third autocomplete term sets selected index');
@@ -54,7 +54,7 @@ test('SFX clear button works', async (t) => {
   // confirm click of clear button clears searchbox input
   await t.hover(clearButton);
   await t.click(clearButton);
-  await t.expect(input.value).contains('', 'Searchbox has successfully been cleared');
+  await t.expect(input.value).eql('', 'Searchbox has successfully been cleared');
 });
 
 test('SFX enter button triggers search', async (t) => {
