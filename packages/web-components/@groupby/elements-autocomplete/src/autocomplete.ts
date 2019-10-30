@@ -67,6 +67,7 @@ export default class Autocomplete extends Base {
     this.receivedResults = this.receivedResults.bind(this);
     this.dispatchSelectedTerm = this.dispatchSelectedTerm.bind(this);
     this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
+    this.receivedInitialData = this.receivedInitialData.bind(this);
   }
 
   /**
@@ -153,9 +154,10 @@ export default class Autocomplete extends Base {
       : '';
   }
 
-  receivedInitialData(event: CustomEvent<CacheResponsePayload>) {
-    console.log('In receivedInitialData');
-    console.log(event);
+  receivedInitialData(event: CustomEvent) {
+    // receivedInitialData(event: CustomEvent<CacheResponsePayload>) {
+    const data = event.detail.data || {};
+    this.results = data.results || [];
   }
 
   /**

@@ -124,8 +124,23 @@ describe('Autcomplete Component', () => {
   });
 
   describe('receivedInitialData()', () => {
-    it('should set initial data', () => {
-      autocomplete.receivedInitialData();
+    it('should set initial data given an event', () => {
+      // const cacheResponseEvent = new CustomEvent();
+      const items = [
+        { label: 'dress' },
+        { label: 'black dress' },
+        { label: 'long dress' },
+      ];
+      const cacheResponseEvent = { detail: { data: {
+        results: [{
+          items,
+          title: "",
+        }],
+      }}};
+
+      autocomplete.receivedInitialData(cacheResponseEvent);
+
+      expect(autocomplete.results).to.deep.equal(cacheResponseEvent.detail.data.results);
     });
   });
 
