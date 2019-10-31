@@ -1,9 +1,9 @@
-# SFX Bold Theme
-This theme is used by components in the SF-X View repository.
+# Elements Bold Theme
+This theme is used by components in the Elements View repository.
 It contains a CSS Normalize.
 
 ## Usage
-This theme can be used in an SFX project by including a `link` tag in a site's `head`.
+This theme can be used in an Elements project by including a `link` tag in a site's `head`.
 
 Ex.
 ```html
