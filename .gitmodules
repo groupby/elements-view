@@ -1,3 +1,3 @@
 [submodule "scripts"]
 	path = scripts
-	url = https://github.com/groupby/sfx-devtools.git
+	url = https://github.com/groupby/elements-devtools.git
