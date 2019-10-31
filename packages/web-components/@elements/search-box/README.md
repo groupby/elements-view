@@ -1,4 +1,4 @@
-# SF-X Search Box Component
+# GB Elements Search Box Component
 
 ## Functionality
 
@@ -32,7 +32,7 @@ Dispatched when a user clicks on the search button or hits `enter` within the se
 
 ## Customizations
 
-The SF-X Search Box component allows for optional inclusion of a clear button and a search button. Placeholder text within the search box is also customizable.
+The GB Elements Search Box component allows for optional inclusion of a clear button and a search button. Placeholder text within the search box is also customizable.
 Users of the component can add the following attributes to the custom element:
 - `clearbutton`: adds clear button
 - `searchbutton`: adds search button
