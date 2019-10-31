@@ -5,7 +5,7 @@ const input = Selector('sfx-search-box#main-search > input');
 const clearButton = Selector('.sfx-clear');
 const autocomplete = Selector('sfx-autocomplete');
 
-fixture`SFX Web Components Functional Testing`
+fixture`Elements Web Components Functional Testing`
   .page`../demo/demo.html`
   .beforeEach(async (t) => {
     // confirm searchbox exists
