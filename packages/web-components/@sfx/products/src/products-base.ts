@@ -6,7 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { Product } from '@sfx/events';
+import { Product } from '@elements/events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@sfx/base';
 

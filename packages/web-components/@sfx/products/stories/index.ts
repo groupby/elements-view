@@ -4,7 +4,7 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SEARCH_RESPONSE,
   Product,
-} from '@sfx/events';
+} from '@elements/events';
 import {
   getDisplayCode,
   getProducts,

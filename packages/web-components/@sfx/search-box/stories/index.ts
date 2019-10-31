@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
-import { UPDATE_SEARCH_TERM } from '@sfx/events';
+import { UPDATE_SEARCH_TERM } from '@elements/events';
 import { getDisplayCode } from '../../../../../.storybook/common';
 import '../src';
 

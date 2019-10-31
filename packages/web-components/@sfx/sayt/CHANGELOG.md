@@ -9,5 +9,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SFX-191: Added the `sayt` component.
   - This component renders `sayt` related components such as `sfx-autocomplete` and `sfx-products-sayt`.
   - SFX-333: It emits events for requesting products and autocomplete terms.
-  - SFX-248: The `@sfx/events` package is used for event names and payload interfaces.
+  - SFX-248: The `@elements/events` package is used for event names and payload interfaces.
   - SFX-380: With a paired searchbox, the autocomplete selection can be changed using the Up and Down arrow keys.

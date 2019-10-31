@@ -15341,7 +15341,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var events_1 = __webpack_require__(/*! @sfx/events */ "../sfx-events/dist/index.js");
+var events_1 = __webpack_require__(/*! @elements/events */ "../sfx-events/dist/index.js");
 /**
  * Driver plugin that serves as the link between the Sayt data source
  * and the View layer. This plugin is responsible for listening to events,
@@ -15629,7 +15629,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var events_1 = __webpack_require__(/*! @sfx/events */ "../sfx-events/dist/index.js");
+var events_1 = __webpack_require__(/*! @elements/events */ "../sfx-events/dist/index.js");
 /**
  * This plugin is responsible for exposing events that allow
  * for interacting with GroupBy's Search API.

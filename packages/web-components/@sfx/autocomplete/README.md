@@ -30,7 +30,7 @@ The selection can be changed in one of three ways:
 
 ### Recieved Events
 
-This component listens for a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
+This component listens for a number of events. These events are defined in the [`@elements/events`][sfx-events] package.
 
 #### `AUTOCOMPLETE_RESPONSE`
 
@@ -38,7 +38,7 @@ Upon receiving this event, the `sfx-autocomplete` component will populate its `r
 
 ### Dispatched Events
 
-This component dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
+This component dispatches a number of events. These events are defined in the [`@elements/events`][sfx-events] package.
 
 #### `AUTOCOMPLETE_ACTIVE_TERM`
 

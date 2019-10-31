@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import { Product } from '@sfx/events';
+import { Product } from '@elements/events';
 import { getDisplayCode, getProducts } from '../../../../../.storybook/common';
 import '../src/index';
 

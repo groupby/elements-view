@@ -4,7 +4,7 @@ import {
   AUTOCOMPLETE_RESPONSE,
   AutocompleteResultGroup,
   AutocompleteSearchTermItem,
-} from '@sfx/events';
+} from '@elements/events';
 import {
   getDisplayCode,
   generateAutocompleteResultsEvent,

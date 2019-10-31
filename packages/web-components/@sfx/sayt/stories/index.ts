@@ -13,7 +13,7 @@ import {
   SAYT_HIDE,
   SAYT_SHOW,
   AutocompleteResponsePayload,
-} from '@sfx/events';
+} from '@elements/events';
 import '../src';
 import {
   generateAutocompleteResultsEvent,

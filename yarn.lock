@@ -774,7 +774,7 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
-"@sfx/events@groupby/sfx-events#c4a4853a424992db9c170fea6990dc2a52c3061e":
+"@elements/events@groupby/sfx-events#c4a4853a424992db9c170fea6990dc2a52c3061e":
   version "0.0.0"
   resolved "https://codeload.github.com/groupby/sfx-events/tar.gz/c4a4853a424992db9c170fea6990dc2a52c3061e"
   dependencies:

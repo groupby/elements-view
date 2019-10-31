@@ -1,5 +1,5 @@
 import { TemplateResult } from 'lit-element';
-import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM } from '@sfx/events';
+import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM } from '@elements/events';
 import {
   expect,
   stub,

@@ -6,7 +6,7 @@ import {
   SEARCHBOX_INPUT,
   SEARCH_REQUEST,
   UPDATE_SEARCH_TERM,
-} from '@sfx/events';
+} from '@elements/events';
 import {
   expect,
   stub,

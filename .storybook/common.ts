@@ -7,7 +7,7 @@ import {
   AutocompleteSearchTermItem,
   Product,
   SaytProductsResponsePayload,
-} from '@sfx/events';
+} from '@elements/events';
 
 const entities = new XmlEntities();
 

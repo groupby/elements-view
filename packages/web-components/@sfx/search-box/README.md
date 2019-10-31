@@ -4,7 +4,7 @@
 
 The component accepts text input and dispatches events based on input.
 
-This component listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
+This component listens for and dispatches a number of events. These events are defined in the [`@elements/events`][sfx-events] package.
 
 ### Received Events
 

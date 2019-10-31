@@ -28,7 +28,7 @@
     "html-entities": "^1.2.1"
   },
   "dependencies": {
-    "@sfx/events": "groupby/sfx-events#c4a4853a424992db9c170fea6990dc2a52c3061e",
+    "@elements/events": "groupby/sfx-events#c4a4853a424992db9c170fea6990dc2a52c3061e",
     "@types/debounce": "^1.2.0",
     "debounce": "^1.2.0",
     "lit-element": "^2.2.0",

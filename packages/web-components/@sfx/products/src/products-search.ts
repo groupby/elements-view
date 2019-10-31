@@ -3,7 +3,7 @@ import {
   SEARCH_RESPONSE,
   Product,
   SearchResponsePayload,
-} from '@sfx/events';
+} from '@elements/events';
 import { ProductsBase } from '.';
 
 /**

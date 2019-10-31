@@ -3,7 +3,7 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   Product,
   SaytProductsResponsePayload,
-} from '@sfx/events';
+} from '@elements/events';
 import { ProductsBase } from '.';
 
 /**

@@ -16,7 +16,7 @@ import {
   SearchboxClickPayload,
   SearchboxInputPayload,
   UpdateSearchTermPayload,
-} from '@sfx/events';
+} from '@elements/events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@sfx/base';
 
