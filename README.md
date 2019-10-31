@@ -1,10 +1,10 @@
-# SFX View
-SFX View SDK containing pre-built web components for for creating e-commerce application interfaces.
+# GroupBy Elements View
+GroupBy Elements View SDK containing pre-built web components for for creating e-commerce application interfaces.
 
 ## Installation
 To clone this repo with submodules run:
 ```
-git clone --recursive https://github.com/groupby/sfx-view
+git clone --recursive https://github.com/groupby/elements-view
 ```
 or if the repo is already cloned and you want to install submodules only, run:
 ```
@@ -12,13 +12,13 @@ git submodule update --init
 ```
 
 ## Setup
-Run the `./scripts/setup.sh` script to build all of the SFX-View packages.
+Run the `./scripts/setup.sh` script to build all of the Elements-View packages.
 ```sh
   ./scripts/setup.sh
 ```
 
 ## Commands
-The following commands are run in the context of an individual package contained within the SFX-View monorepo. The individual Web component packages can be found within the [`packages/web-components/@elements`](packages/web-components/@elements) directory.
+The following commands are run in the context of an individual package contained within the Elements-View monorepo. The individual Web component packages can be found within the [`packages/web-components/@elements`](packages/web-components/@elements) directory.
 
 ### Building packages
 To build an individual package, run the following command:
@@ -120,7 +120,7 @@ This project ships with an [ESLint](https://eslint.org/) configuration to enforc
 
 ### Package-specific linting
 
-The following commands are run in the context of an individual package contained within the SFX-View monorepo. The individual web component packages can be found within the [`packages/web-components/@elements`](packages/web-components/@elements) directory.
+The following commands are run in the context of an individual package contained within the Elements-View monorepo. The individual web component packages can be found within the [`packages/web-components/@elements`](packages/web-components/@elements) directory.
 
 To lint files for an individual package, navigate to its directory and use one of the following commands.
 
@@ -158,7 +158,7 @@ yarn lint:tests:fix
 
 ### Project-wide linting
 
-To lint all the SFX-View packages at once, run the following commands at the root of the monorepo:
+To lint all the Elements-View packages at once, run the following commands at the root of the monorepo:
 
 - To lint all files within each package's `src` and `stories` directories:
 ```sh
@@ -187,7 +187,7 @@ yarn docs
 ```
 
 ## Bundling
-To bundle the SFX-View packages, run the following command at the root of the monorepo:
+To bundle the Elements-View packages, run the following command at the root of the monorepo:
 ```sh
 yarn bundle
 ```
