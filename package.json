@@ -1,13 +1,13 @@
 {
-  "name": "sfx-view",
+  "name": "elements-view",
   "version": "0.0.0",
   "description": "SF-X View SDK containing pre-built web components for for creating e-commerce application interfaces.",
   "private": true,
   "workspaces": [
     ".storybook/*",
-    "packages/*/@sfx/base",
-    "packages/*/@sfx/ui",
-    "packages/*/@sfx/*"
+    "packages/*/@elements/base",
+    "packages/*/@elements/ui",
+    "packages/*/@elements/*"
   ],
   "scripts": {
     "bundle": "webpack",
@@ -20,26 +20,26 @@
     "test:functional:firefox": "testcafe firefox ./test-tools/testcafe.ts",
     "coverage": "cat coverage/lcov.info | codecov",
     "dev:themes": "nodemon -e scss -x webpack",
-    "lint:scripts": "eslint ./packages/web-components/@sfx/**/src/ --ext .ts --plugin only-warn",
-    "lint:scripts:fix": "eslint ./packages/web-components/@sfx/**/src/ --fix --ext .ts --plugin only-warn",
-    "lint:scripts:ci": "eslint ./packages/web-components/@sfx/**/src/ --ext .ts --max-warnings 0",
-    "lint:stories": "eslint ./packages/web-components/@sfx/**/stories/ --no-eslintrc -c ./.storybook/.eslintrc.js --ext .ts --plugin only-warn",
-    "lint:stories:fix": "eslint ./packages/web-components/@sfx/**/stories/ --no-eslintrc -c ./.storybook/.eslintrc.js --ext .ts --plugin only-warn",
-    "lint:stories:ci": "eslint ./packages/web-components/@sfx/**/stories/ --no-eslintrc -c ./.storybook/.eslintrc.js --ext .ts --plugin only-warn",
-    "lint:tests": "eslint ./packages/web-components/@sfx/**/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
-    "lint:tests:fix": "eslint ./packages/web-components/@sfx/**/test/ --fix --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
-    "lint:tests:ci": "eslint ./packages/web-components/@sfx/**/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --max-warnings 0"
+    "lint:scripts": "eslint ./packages/web-components/@elements/**/src/ --ext .ts --plugin only-warn",
+    "lint:scripts:fix": "eslint ./packages/web-components/@elements/**/src/ --fix --ext .ts --plugin only-warn",
+    "lint:scripts:ci": "eslint ./packages/web-components/@elements/**/src/ --ext .ts --max-warnings 0",
+    "lint:stories": "eslint ./packages/web-components/@elements/**/stories/ --no-eslintrc -c ./.storybook/.eslintrc.js --ext .ts --plugin only-warn",
+    "lint:stories:fix": "eslint ./packages/web-components/@elements/**/stories/ --no-eslintrc -c ./.storybook/.eslintrc.js --ext .ts --plugin only-warn",
+    "lint:stories:ci": "eslint ./packages/web-components/@elements/**/stories/ --no-eslintrc -c ./.storybook/.eslintrc.js --ext .ts --plugin only-warn",
+    "lint:tests": "eslint ./packages/web-components/@elements/**/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:fix": "eslint ./packages/web-components/@elements/**/test/ --fix --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:ci": "eslint ./packages/web-components/@elements/**/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --max-warnings 0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/groupby/sfx-view.git"
+    "url": "https://github.com/groupby/elements-view.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/groupby/sfx-view/issues"
+    "url": "https://github.com/groupby/elements-view/issues"
   },
-  "homepage": "https://github.com/groupby/sfx-view#readme",
+  "homepage": "https://github.com/groupby/elements-view#readme",
   "devDependencies": {
     "@storybook/addon-a11y": "^5.1.9",
     "@storybook/addon-actions": "^5.1.9",
