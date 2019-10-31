@@ -11,9 +11,9 @@ const updateTextEvent = [
   },
 ];
 
-const searchboxNotesMarkdownIntro = `# SF-X Search Box Component
+const searchboxNotesMarkdownIntro = `# GB Elements Search Box Component
 
-[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/search-box "SF-X Search Box README").
+[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/search-box "GB Elements Search Box README").
 
   \`\`\`html
   <sfx-search-box placeholder="Search Here" searchbutton clearbutton></sfx-search-box>
@@ -53,7 +53,7 @@ storiesOf('Components|Searchbox', module)
         markdown: `
           ${searchboxNotesMarkdownIntro}
 
-          ### The SF-X Search Box component can render "clear" and "search" buttons.
+          ### The GB Elements Search Box component can render "clear" and "search" buttons.
             * If the \`clearbutton\` attribute is present, a clear button will display.
             * If the \`searchbutton\` attribute is present, a search button will display.
             * To add and remove these attributes in this story:
@@ -66,7 +66,7 @@ storiesOf('Components|Searchbox', module)
               1. Visit the **Knobs** tab and modify the text contained within the "Placeholder Text" field.
               2. See the component update with the updated text.
 
-          ### The SF-X Search Box component populates with an updated search term in response to the \`${UPDATE_SEARCH_TERM}\` event.
+          ### The GB Elements Search Box component populates with an updated search term in response to the \`${UPDATE_SEARCH_TERM}\` event.
             * To emit the event in this story:
               1. Navigate to the **Custom Events** tab and locate the \`${UPDATE_SEARCH_TERM}\` event.
               2. Click "emit".
