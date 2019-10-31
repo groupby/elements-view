@@ -424,7 +424,7 @@ export default class Sayt extends Base {
   /**
    * Handles searchbox input events by passing the event's value to `requestSayt()`
    * in the case where a `searchbox` ID is passed to the Sayt component.
-   * Can be used to not require listening for a specific SF-X event.
+   * Can be used to not require listening for a specific GB Elements event.
    *
    * @param event The searchbox input event dispatched from the searchbox.
    */
@@ -433,7 +433,7 @@ export default class Sayt extends Base {
   }
 
   /**
-   * Handles SF-X searchbox changes by passing the event's value to `requestSayt()`
+   * Handles GB Elements searchbox changes by passing the event's value to `requestSayt()`
    * if [[isCorrectSayt]] returns `true`.
    * Used when a `searchbox` ID is not passed to the Sayt component.
    *

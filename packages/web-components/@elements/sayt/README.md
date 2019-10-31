@@ -1,4 +1,4 @@
-# SF-X SAYT (Search As You Type) Component
+# GB Elements SAYT (Search As You Type) Component
 
 ## Functionality
 
@@ -59,7 +59,7 @@ This event is dispatched to request SAYT products based on the included query te
 
 ## Customization
 
-The SF-X Sayt component allows for the option to not display its children
+The GB Elements Sayt component allows for the option to not display its children
 components. Users of the component can add the following attributes for
 particular customizations:
 
