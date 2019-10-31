@@ -1,4 +1,4 @@
-# SF-X Products Component
+# GB Elements Products Component
 
 The Products component acts as a wrapper around a series of individual
 `sfx-product` components. It uses a list of information about products
