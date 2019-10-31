@@ -1,9 +1,9 @@
-# Elements Bold Theme
-This theme is used by components in the Elements View repository.
+# GroupBy Elements Bold Theme
+This theme is used by components in the GB Elements View repository.
 It contains a CSS Normalize.
 
 ## Usage
-This theme can be used in an Elements project by including a `link` tag in a site's `head`.
+This theme can be used in a GB Elements project by including a `link` tag in a site's `head`.
 
 Ex.
 ```html
