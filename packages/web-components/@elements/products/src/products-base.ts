@@ -8,7 +8,7 @@ import {
 } from 'lit-element';
 import { Product } from '@elements/events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
+import { Base } from '@elements/base';
 
 /**
  * The `sfx-products-base` web component wraps and renders a number of

@@ -8,7 +8,7 @@ import {
 import { ifDefined } from 'lit-html/directives/if-defined';
 import * as shortid from 'shortid';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
+import { Base } from '@elements/base';
 
 /**
  * Receives data to populate into a list.

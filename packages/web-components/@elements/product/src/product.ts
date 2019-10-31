@@ -10,7 +10,7 @@ import {
   ProductVariant,
 } from '@elements/events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@sfx/base';
+import { Base } from '@elements/base';
 import { toLowerCaseKebab } from './utils';
 
 /**

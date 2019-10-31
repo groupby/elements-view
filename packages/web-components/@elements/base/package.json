@@ -1,5 +1,5 @@
 {
-  "name": "@sfx/base",
+  "name": "@elements/base",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -18,7 +18,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/groupby/sfx-view.git",
-    "directory": "packages/web-components/@sfx/base"
+    "directory": "packages/web-components/@elements/base"
   },
   "author": "",
   "license": "MIT",
