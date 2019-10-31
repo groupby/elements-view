@@ -14781,7 +14781,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(/*! @sfx/core */ "./packages/@sfx/core/dist/index.js"));
+__export(__webpack_require__(/*! @elements/core */ "./packages/@elements/core/dist/index.js"));
 
 
 /***/ }),
@@ -14799,11 +14799,11 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(/*! @sfx/dom-events-plugin */ "./packages/@sfx/dom-events-plugin/dist/index.js"));
-__export(__webpack_require__(/*! @sfx/sayt-driver-plugin */ "./packages/@sfx/sayt-driver-plugin/dist/index.js"));
-__export(__webpack_require__(/*! @sfx/sayt-plugin */ "./packages/@sfx/sayt-plugin/dist/index.js"));
-__export(__webpack_require__(/*! @sfx/search-driver-plugin */ "./packages/@sfx/search-driver-plugin/dist/index.js"));
-__export(__webpack_require__(/*! @sfx/search-plugin */ "./packages/@sfx/search-plugin/dist/index.js"));
+__export(__webpack_require__(/*! @elements/dom-events-plugin */ "./packages/@elements/dom-events-plugin/dist/index.js"));
+__export(__webpack_require__(/*! @elements/sayt-driver-plugin */ "./packages/@elements/sayt-driver-plugin/dist/index.js"));
+__export(__webpack_require__(/*! @elements/sayt-plugin */ "./packages/@elements/sayt-plugin/dist/index.js"));
+__export(__webpack_require__(/*! @elements/search-driver-plugin */ "./packages/@elements/search-driver-plugin/dist/index.js"));
+__export(__webpack_require__(/*! @elements/search-plugin */ "./packages/@elements/search-plugin/dist/index.js"));
 
 
 /***/ }),
@@ -14839,9 +14839,9 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./packages/@sfx/core/dist/core.js":
+/***/ "./packages/@elements/core/dist/core.js":
 /*!*****************************************!*\
-  !*** ./packages/@sfx/core/dist/core.js ***!
+  !*** ./packages/@elements/core/dist/core.js ***!
   \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -14849,8 +14849,8 @@ module.exports = g;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(/*! ./utils/core */ "./packages/@sfx/core/dist/utils/core.js");
-var dependencies_1 = __webpack_require__(/*! ./utils/dependencies */ "./packages/@sfx/core/dist/utils/dependencies.js");
+var core_1 = __webpack_require__(/*! ./utils/core */ "./packages/@elements/core/dist/utils/core.js");
+var dependencies_1 = __webpack_require__(/*! ./utils/dependencies */ "./packages/@elements/core/dist/utils/dependencies.js");
 /**
  * The core of the SF-X plugin system. This entity is responsible for
  * managing plugins and provides a mechanism for plugins to communicate
@@ -14947,9 +14947,9 @@ exports.default = Core;
 
 /***/ }),
 
-/***/ "./packages/@sfx/core/dist/index.js":
+/***/ "./packages/@elements/core/dist/index.js":
 /*!******************************************!*\
-  !*** ./packages/@sfx/core/dist/index.js ***!
+  !*** ./packages/@elements/core/dist/index.js ***!
   \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -14957,15 +14957,15 @@ exports.default = Core;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(/*! ./core */ "./packages/@sfx/core/dist/core.js");
+var core_1 = __webpack_require__(/*! ./core */ "./packages/@elements/core/dist/core.js");
 exports.Core = core_1.default;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./packages/@sfx/core/dist/utils/core.js":
+/***/ "./packages/@elements/core/dist/utils/core.js":
 /*!***********************************************!*\
-  !*** ./packages/@sfx/core/dist/utils/core.js ***!
+  !*** ./packages/@elements/core/dist/utils/core.js ***!
   \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15078,9 +15078,9 @@ exports.unregisterPlugins = unregisterPlugins;
 
 /***/ }),
 
-/***/ "./packages/@sfx/core/dist/utils/dependencies.js":
+/***/ "./packages/@elements/core/dist/utils/dependencies.js":
 /*!*******************************************************!*\
-  !*** ./packages/@sfx/core/dist/utils/dependencies.js ***!
+  !*** ./packages/@elements/core/dist/utils/dependencies.js ***!
   \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15174,9 +15174,9 @@ exports.removeFromDependencyGraph = removeFromDependencyGraph;
 
 /***/ }),
 
-/***/ "./packages/@sfx/dom-events-plugin/dist/dom-events-plugin.js":
+/***/ "./packages/@elements/dom-events-plugin/dist/dom-events-plugin.js":
 /*!*******************************************************************!*\
-  !*** ./packages/@sfx/dom-events-plugin/dist/dom-events-plugin.js ***!
+  !*** ./packages/@elements/dom-events-plugin/dist/dom-events-plugin.js ***!
   \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15287,9 +15287,9 @@ exports.default = DomEventsPlugin;
 
 /***/ }),
 
-/***/ "./packages/@sfx/dom-events-plugin/dist/index.js":
+/***/ "./packages/@elements/dom-events-plugin/dist/index.js":
 /*!*******************************************************!*\
-  !*** ./packages/@sfx/dom-events-plugin/dist/index.js ***!
+  !*** ./packages/@elements/dom-events-plugin/dist/index.js ***!
   \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15297,15 +15297,15 @@ exports.default = DomEventsPlugin;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var dom_events_plugin_1 = __webpack_require__(/*! ./dom-events-plugin */ "./packages/@sfx/dom-events-plugin/dist/dom-events-plugin.js");
+var dom_events_plugin_1 = __webpack_require__(/*! ./dom-events-plugin */ "./packages/@elements/dom-events-plugin/dist/dom-events-plugin.js");
 exports.DomEventsPlugin = dom_events_plugin_1.default;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./packages/@sfx/sayt-driver-plugin/dist/index.js":
+/***/ "./packages/@elements/sayt-driver-plugin/dist/index.js":
 /*!********************************************************!*\
-  !*** ./packages/@sfx/sayt-driver-plugin/dist/index.js ***!
+  !*** ./packages/@elements/sayt-driver-plugin/dist/index.js ***!
   \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15314,15 +15314,15 @@ exports.DomEventsPlugin = dom_events_plugin_1.default;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 // eslint-disable-next-line import/prefer-default-export
-var sayt_driver_plugin_1 = __webpack_require__(/*! ./sayt-driver-plugin */ "./packages/@sfx/sayt-driver-plugin/dist/sayt-driver-plugin.js");
+var sayt_driver_plugin_1 = __webpack_require__(/*! ./sayt-driver-plugin */ "./packages/@elements/sayt-driver-plugin/dist/sayt-driver-plugin.js");
 exports.SaytDriverPlugin = sayt_driver_plugin_1.default;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./packages/@sfx/sayt-driver-plugin/dist/sayt-driver-plugin.js":
+/***/ "./packages/@elements/sayt-driver-plugin/dist/sayt-driver-plugin.js":
 /*!*********************************************************************!*\
-  !*** ./packages/@sfx/sayt-driver-plugin/dist/sayt-driver-plugin.js ***!
+  !*** ./packages/@elements/sayt-driver-plugin/dist/sayt-driver-plugin.js ***!
   \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15523,9 +15523,9 @@ exports.default = SaytDriverPlugin;
 
 /***/ }),
 
-/***/ "./packages/@sfx/sayt-plugin/dist/index.js":
+/***/ "./packages/@elements/sayt-plugin/dist/index.js":
 /*!*************************************************!*\
-  !*** ./packages/@sfx/sayt-plugin/dist/index.js ***!
+  !*** ./packages/@elements/sayt-plugin/dist/index.js ***!
   \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15536,16 +15536,16 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-var sayt_plugin_1 = __webpack_require__(/*! ./sayt-plugin */ "./packages/@sfx/sayt-plugin/dist/sayt-plugin.js");
+var sayt_plugin_1 = __webpack_require__(/*! ./sayt-plugin */ "./packages/@elements/sayt-plugin/dist/sayt-plugin.js");
 exports.SaytPlugin = sayt_plugin_1.default;
 __export(__webpack_require__(/*! sayt */ "./node_modules/sayt/index.js"));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./packages/@sfx/sayt-plugin/dist/sayt-plugin.js":
+/***/ "./packages/@elements/sayt-plugin/dist/sayt-plugin.js":
 /*!*******************************************************!*\
-  !*** ./packages/@sfx/sayt-plugin/dist/sayt-plugin.js ***!
+  !*** ./packages/@elements/sayt-plugin/dist/sayt-plugin.js ***!
   \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15591,9 +15591,9 @@ exports.default = SaytPlugin;
 
 /***/ }),
 
-/***/ "./packages/@sfx/search-driver-plugin/dist/index.js":
+/***/ "./packages/@elements/search-driver-plugin/dist/index.js":
 /*!**********************************************************!*\
-  !*** ./packages/@sfx/search-driver-plugin/dist/index.js ***!
+  !*** ./packages/@elements/search-driver-plugin/dist/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15602,15 +15602,15 @@ exports.default = SaytPlugin;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 // eslint-disable-next-line import/prefer-default-export
-var search_driver_plugin_1 = __webpack_require__(/*! ./search-driver-plugin */ "./packages/@sfx/search-driver-plugin/dist/search-driver-plugin.js");
+var search_driver_plugin_1 = __webpack_require__(/*! ./search-driver-plugin */ "./packages/@elements/search-driver-plugin/dist/search-driver-plugin.js");
 exports.SearchDriverPlugin = search_driver_plugin_1.default;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./packages/@sfx/search-driver-plugin/dist/search-driver-plugin.js":
+/***/ "./packages/@elements/search-driver-plugin/dist/search-driver-plugin.js":
 /*!*************************************************************************!*\
-  !*** ./packages/@sfx/search-driver-plugin/dist/search-driver-plugin.js ***!
+  !*** ./packages/@elements/search-driver-plugin/dist/search-driver-plugin.js ***!
   \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15747,9 +15747,9 @@ exports.default = SearchDriverPlugin;
 
 /***/ }),
 
-/***/ "./packages/@sfx/search-plugin/dist/index.js":
+/***/ "./packages/@elements/search-plugin/dist/index.js":
 /*!***************************************************!*\
-  !*** ./packages/@sfx/search-plugin/dist/index.js ***!
+  !*** ./packages/@elements/search-plugin/dist/index.js ***!
   \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15760,16 +15760,16 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-var search_plugin_1 = __webpack_require__(/*! ./search-plugin */ "./packages/@sfx/search-plugin/dist/search-plugin.js");
+var search_plugin_1 = __webpack_require__(/*! ./search-plugin */ "./packages/@elements/search-plugin/dist/search-plugin.js");
 exports.SearchPlugin = search_plugin_1.default;
 __export(__webpack_require__(/*! groupby-api */ "./node_modules/groupby-api/dist/index.js"));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./packages/@sfx/search-plugin/dist/search-plugin.js":
+/***/ "./packages/@elements/search-plugin/dist/search-plugin.js":
 /*!***********************************************************!*\
-  !*** ./packages/@sfx/search-plugin/dist/search-plugin.js ***!
+  !*** ./packages/@elements/search-plugin/dist/search-plugin.js ***!
   \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {

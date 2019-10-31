@@ -76,7 +76,7 @@ particular customizations:
 
 ## Testing
 
-The test suite for this component is contained in `/packages/web-components/@sfx/sayt/test`.
+The test suite for this component is contained in `/packages/web-components/@elements/sayt/test`.
 To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:
 
 - To run the tests once:

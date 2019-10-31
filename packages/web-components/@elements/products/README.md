@@ -60,7 +60,7 @@ Upon receiving this event, the `sfx-products` component will populate the `produ
 
 ## Testing
 
-The test suite for this package is contained in `/packages/web-components/@sfx/products/test`.
+The test suite for this package is contained in `/packages/web-components/@elements/products/test`.
 To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:
 
 - To run the tests once:

@@ -18,7 +18,7 @@ Run the `./scripts/setup.sh` script to build all of the SFX-View packages.
 ```
 
 ## Commands
-The following commands are run in the context of an individual package contained within the SFX-View monorepo. The individual Web component packages can be found within the [`packages/web-components/@sfx`](packages/web-components/@sfx) directory.
+The following commands are run in the context of an individual package contained within the SFX-View monorepo. The individual Web component packages can be found within the [`packages/web-components/@elements`](packages/web-components/@elements) directory.
 
 ### Building packages
 To build an individual package, run the following command:
@@ -120,7 +120,7 @@ This project ships with an [ESLint](https://eslint.org/) configuration to enforc
 
 ### Package-specific linting
 
-The following commands are run in the context of an individual package contained within the SFX-View monorepo. The individual web component packages can be found within the [`packages/web-components/@sfx`](packages/web-components/@sfx) directory.
+The following commands are run in the context of an individual package contained within the SFX-View monorepo. The individual web component packages can be found within the [`packages/web-components/@elements`](packages/web-components/@elements) directory.
 
 To lint files for an individual package, navigate to its directory and use one of the following commands.
 
@@ -204,7 +204,7 @@ yarn storybook
 To create a new story, in the component directory create a new directory called `stories/` and in that directory write the stories in `index.ts`.
 
 ```
-/packages/web-components/@sfx/
+/packages/web-components/@elements/
 |-- component
 |   |-- src
 |   |   |-- index.ts

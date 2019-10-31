@@ -17,7 +17,7 @@ defaults:
     key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-all-
   archive_build: &archive_build
     name: Archive build
-    command: tar cvf ../build.tar packages/*/@sfx/*/dist packages/*/@sfx/*/esnext
+    command: tar cvf ../build.tar packages/*/@elements/*/dist packages/*/@elements/*/esnext
   extract_build_archive: &extract_build_archive
     name: Extract archive
     command: |
@@ -94,7 +94,7 @@ jobs:
             package="${CIRCLE_JOB#build_}"
             package="${package//_/-}"
 
-            cd packages/*/"@sfx/${package}"
+            cd packages/*/"@elements/${package}"
             yarn build
       - run: *archive_build
       - save_cache:
@@ -159,7 +159,7 @@ jobs:
             package="${CIRCLE_JOB#unit_test_}"
             package="${package//_/-}"
 
-            cd packages/*/"@sfx/${package}"
+            cd packages/*/"@elements/${package}"
             yarn test
 
   ### interaction_test: interaction_test_{package}
@@ -180,7 +180,7 @@ jobs:
             package="${CIRCLE_JOB#interaction_test_}"
             package="${package//_/-}"
 
-            cd packages/*/"@sfx/${package}"
+            cd packages/*/"@elements/${package}"
             yarn test:interaction
 
   ### test_final
