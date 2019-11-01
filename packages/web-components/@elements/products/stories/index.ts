@@ -22,9 +22,9 @@ function getProductsComponent(productsArray: Product[] = [], componentSuffix: st
   return `<gbe-products${componentSuffix}></gbe-products${componentSuffix}>`;
 }
 
-const productsNotesMarkdownIntro = ` # SF-X Products Component
+const productsNotesMarkdownIntro = ` # GroupBy Elements Products Component
 
-[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
+[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "GroupBy Elements Products README").
 
 \`\`\`html
 <gbe-products-base></gbe-products-base>
@@ -47,9 +47,9 @@ storiesOf('Components|Products', module)
         markdown: `
         ${productsNotesMarkdownIntro}
 
-          ### The SF-X Products Base component populated with hardcoded products data.
+          ### The GB Elements Products Base component populated with hardcoded products data.
 
-          * The SF-X Products Base component renders a collection of products, with the data passed directly via the  \`products\` attribute.
+          * The Products Base component renders a collection of products, with the data passed directly via the  \`products\` attribute.
           * ***Disclaimer***: although possible, it is not recommended to pass arrays of data via an attribute.
           * To modify the data within the \`products\` attribute in this story:
             1. Visit the **Knobs** tab and update the data inside the "Products" field.
@@ -97,9 +97,9 @@ storiesOf('Components|Products', module)
       customEvents: [generateSaytProductsResponseEvent(3)],
       notes: {
         markdown: `
-          # SF-X Products Sayt Component
+          # GroupBy Elements Products Sayt Component
 
-          [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
+          [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "GroupBy Elements Products README").
 
           \`\`\`html
           <gbe-products-sayt></gbe-products-sayt>
@@ -107,16 +107,16 @@ storiesOf('Components|Products', module)
 
           ## Demonstrated in this story
 
-          ### The SF-X Products Sayt component is used inside of a Sayt component. It renders a product grid in response to the \`${SAYT_PRODUCTS_RESPONSE}\` event.
+          ### The GB Elements Products Sayt component is used inside of a Sayt component. It renders a product grid in response to the \`${SAYT_PRODUCTS_RESPONSE}\` event.
             * The payload of the event contains an array of products.
             * To emit the event in this story:
               1. Visit the **Custom Events** tab and locate the \`${SAYT_PRODUCTS_RESPONSE}\` event.
               2. Click "emit".
               3. See the component update with the product data contained in the array.
 
-          ### If using the SF-X Products Sayt component outside of the SF-X Sayt component, a \`group\` attribute can be used to distinguish what events it should listen to.
+          ### If using the Products Sayt component outside of the GB Elements Sayt component, a \`group\` attribute can be used to distinguish what events it should listen to.
           * This is only needed if multiple Products Sayt components are on the same page and the desire is for them to listen to different events.
-          * The SF-X Sayt component will take care of this.
+          * The Sayt component will take care of this.
           * Ex.
 
           \`\`\`html
@@ -142,9 +142,9 @@ storiesOf('Components|Products', module)
       customEvents: [generateSearchResponseEvent(15)],
       notes: {
         markdown: `
-          # SF-X Products Sayt Component
+          # GroupBy Elements Products Sayt Component
 
-          [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
+          [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "GroupBy Elements Products README").
 
           \`\`\`html
           <gbe-products></gbe-products>
@@ -152,12 +152,13 @@ storiesOf('Components|Products', module)
 
           ## Demonstrated in this story
 
-          ### The SF-X Products component can be used as a product listing grid. It renders a grid in response to the \`${SEARCH_RESPONSE}\` event.
+          ### The GB Elements Products component can be used as a product listing grid. It renders a grid in response to the \`${SEARCH_RESPONSE}\` event.
             * The payload of the event contains an array of products.
             * To emit the event in this story:
               1. Visit the **Custom Events** tab and locate the \`${SEARCH_RESPONSE}\` event.
               2. Click "emit".
               3. See the component update with the product data contained in the array.
+
 
           ### The Products component can take a \`group\` attribute to determine what group of events it will listen to.
             * Can be useful if mulitple product grids that render products from different collections or a specific subset of a collection are on the page.
