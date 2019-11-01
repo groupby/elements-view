@@ -7,4 +7,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - SFX-152: Added the Base class.
-  - Base class is intended to be used as a parent class for all SF-X components. It includes features such as allowing for slot functionality, and rendering the light dom.
+  - Base class is intended to be used as a parent class for all GB Elements components. It includes features such as allowing for slot functionality, and rendering the light dom.

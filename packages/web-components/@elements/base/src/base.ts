@@ -3,7 +3,7 @@ import {
 } from 'lit-element';
 
 /**
- * A base component for all SF-X components to extend. It is based on LitElement.
+ * A base component for all GB Elements components to extend. It is based on LitElement.
  */
 export default abstract class Base extends LitElement {
   createRenderRoot(): Element | ShadowRoot {
