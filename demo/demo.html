@@ -113,12 +113,12 @@
       }
 
       // init core and plugins
-      const core = new sfxCore.Core();
-      const domEventsPlugin = new sfxPlugins.DomEventsPlugin();
-      const saytPlugin = new sfxPlugins.SaytPlugin({ subdomain: 'apparel' });
-      const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin({ productTransformer });
-      const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel' });
-      const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin({ productTransformer: searchProductTransformer });
+      const core = new GbElementsCore.Core();
+      const domEventsPlugin = new GbElementsPlugins.DomEventsPlugin();
+      const saytPlugin = new GbElementsPlugins.SaytPlugin({ subdomain: 'apparel' });
+      const saytDriverPlugin = new GbElementsPlugins.SaytDriverPlugin({ productTransformer });
+      const searchPlugin = new GbElementsPlugins.SearchPlugin({ customerId: 'apparel' });
+      const searchDriverPlugin = new GbElementsPlugins.SearchDriverPlugin({ productTransformer: searchProductTransformer });
       // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 

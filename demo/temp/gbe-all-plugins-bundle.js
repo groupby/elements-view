@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../sfx-events/dist/index.js":
-/*!***********************************!*\
-  !*** ../sfx-events/dist/index.js ***!
-  \***********************************/
+/***/ "../elements-events/dist/index.js":
+/*!****************************************!*\
+  !*** ../elements-events/dist/index.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -99,16 +99,16 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(/*! ./sayt */ "../sfx-events/dist/sayt/index.js"));
-__export(__webpack_require__(/*! ./search */ "../sfx-events/dist/search/index.js"));
+__export(__webpack_require__(/*! ./sayt */ "../elements-events/dist/sayt/index.js"));
+__export(__webpack_require__(/*! ./search */ "../elements-events/dist/search/index.js"));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "../sfx-events/dist/sayt/autocomplete-list.js":
-/*!****************************************************!*\
-  !*** ../sfx-events/dist/sayt/autocomplete-list.js ***!
-  \****************************************************/
+/***/ "../elements-events/dist/sayt/autocomplete-list.js":
+/*!*********************************************************!*\
+  !*** ../elements-events/dist/sayt/autocomplete-list.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -121,10 +121,10 @@ exports.AUTOCOMPLETE_ACTIVE_TERM = 'sfx::autocomplete_active_term';
 
 /***/ }),
 
-/***/ "../sfx-events/dist/sayt/autocomplete.js":
-/*!***********************************************!*\
-  !*** ../sfx-events/dist/sayt/autocomplete.js ***!
-  \***********************************************/
+/***/ "../elements-events/dist/sayt/autocomplete.js":
+/*!****************************************************!*\
+  !*** ../elements-events/dist/sayt/autocomplete.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -141,10 +141,10 @@ exports.AUTOCOMPLETE_ERROR = 'sfx::autocomplete_error';
 
 /***/ }),
 
-/***/ "../sfx-events/dist/sayt/index.js":
-/*!****************************************!*\
-  !*** ../sfx-events/dist/sayt/index.js ***!
-  \****************************************/
+/***/ "../elements-events/dist/sayt/index.js":
+/*!*********************************************!*\
+  !*** ../elements-events/dist/sayt/index.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -154,18 +154,18 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(/*! ./autocomplete */ "../sfx-events/dist/sayt/autocomplete.js"));
-__export(__webpack_require__(/*! ./autocomplete-list */ "../sfx-events/dist/sayt/autocomplete-list.js"));
-__export(__webpack_require__(/*! ./products */ "../sfx-events/dist/sayt/products.js"));
-__export(__webpack_require__(/*! ./sayt */ "../sfx-events/dist/sayt/sayt.js"));
+__export(__webpack_require__(/*! ./autocomplete */ "../elements-events/dist/sayt/autocomplete.js"));
+__export(__webpack_require__(/*! ./autocomplete-list */ "../elements-events/dist/sayt/autocomplete-list.js"));
+__export(__webpack_require__(/*! ./products */ "../elements-events/dist/sayt/products.js"));
+__export(__webpack_require__(/*! ./sayt */ "../elements-events/dist/sayt/sayt.js"));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "../sfx-events/dist/sayt/products.js":
-/*!*******************************************!*\
-  !*** ../sfx-events/dist/sayt/products.js ***!
-  \*******************************************/
+/***/ "../elements-events/dist/sayt/products.js":
+/*!************************************************!*\
+  !*** ../elements-events/dist/sayt/products.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -182,10 +182,10 @@ exports.SAYT_PRODUCTS_ERROR = 'sfx::sayt_products_error';
 
 /***/ }),
 
-/***/ "../sfx-events/dist/sayt/sayt.js":
-/*!***************************************!*\
-  !*** ../sfx-events/dist/sayt/sayt.js ***!
-  \***************************************/
+/***/ "../elements-events/dist/sayt/sayt.js":
+/*!********************************************!*\
+  !*** ../elements-events/dist/sayt/sayt.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -200,10 +200,10 @@ exports.SAYT_SHOW = 'sfx::sayt_show';
 
 /***/ }),
 
-/***/ "../sfx-events/dist/search/index.js":
-/*!******************************************!*\
-  !*** ../sfx-events/dist/search/index.js ***!
-  \******************************************/
+/***/ "../elements-events/dist/search/index.js":
+/*!***********************************************!*\
+  !*** ../elements-events/dist/search/index.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -213,16 +213,16 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(/*! ./search */ "../sfx-events/dist/search/search.js"));
-__export(__webpack_require__(/*! ./searchbox */ "../sfx-events/dist/search/searchbox.js"));
+__export(__webpack_require__(/*! ./search */ "../elements-events/dist/search/search.js"));
+__export(__webpack_require__(/*! ./searchbox */ "../elements-events/dist/search/searchbox.js"));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "../sfx-events/dist/search/search.js":
-/*!*******************************************!*\
-  !*** ../sfx-events/dist/search/search.js ***!
-  \*******************************************/
+/***/ "../elements-events/dist/search/search.js":
+/*!************************************************!*\
+  !*** ../elements-events/dist/search/search.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -239,10 +239,10 @@ exports.SEARCH_ERROR = 'sfx::search_error';
 
 /***/ }),
 
-/***/ "../sfx-events/dist/search/searchbox.js":
-/*!**********************************************!*\
-  !*** ../sfx-events/dist/search/searchbox.js ***!
-  \**********************************************/
+/***/ "../elements-events/dist/search/searchbox.js":
+/*!***************************************************!*\
+  !*** ../elements-events/dist/search/searchbox.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2456,9 +2456,9 @@ var Promise$1 = function () {
   /**
     `finally` will be invoked regardless of the promise's fate just as native
     try/catch/finally behaves
-
+  
     Synchronous example:
-
+  
     ```js
     findAuthor() {
       if (Math.random() > 0.5) {
@@ -2466,7 +2466,7 @@ var Promise$1 = function () {
       }
       return new Author();
     }
-
+  
     try {
       return findAuthor(); // succeed or fail
     } catch(error) {
@@ -2476,9 +2476,9 @@ var Promise$1 = function () {
       // doesn't affect the return value
     }
     ```
-
+  
     Asynchronous example:
-
+  
     ```js
     findAuthor().catch(function(reason){
       return findOtherAuther();
@@ -2486,7 +2486,7 @@ var Promise$1 = function () {
       // author was either found, or not
     });
     ```
-
+  
     @method finally
     @param {Function} callback
     @return {Promise}
@@ -14204,7 +14204,7 @@ function randomatic(pattern, length, options) {
     var exclude = typeOf(opts.exclude) === 'string' ? opts.exclude : opts.exclude.join('');
     exclude = exclude.replace(new RegExp('[\\]]+', 'g'), '');
     mask = mask.replace(new RegExp('[' + exclude + ']+', 'g'), '');
-
+    
     if(opts.exclude.indexOf(']') !== -1) mask = mask.replace(new RegExp('[\\]]+', 'g'), '');
   }
 
@@ -14840,9 +14840,9 @@ module.exports = g;
 /***/ }),
 
 /***/ "./packages/@elements/core/dist/core.js":
-/*!*****************************************!*\
+/*!**********************************************!*\
   !*** ./packages/@elements/core/dist/core.js ***!
-  \*****************************************/
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14852,7 +14852,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(/*! ./utils/core */ "./packages/@elements/core/dist/utils/core.js");
 var dependencies_1 = __webpack_require__(/*! ./utils/dependencies */ "./packages/@elements/core/dist/utils/dependencies.js");
 /**
- * The core of the SF-X plugin system. This entity is responsible for
+ * The core of the GroupBy Elements plugin system. This entity is responsible for
  * managing plugins and provides a mechanism for plugins to communicate
  * with each other.
  */
@@ -14948,9 +14948,9 @@ exports.default = Core;
 /***/ }),
 
 /***/ "./packages/@elements/core/dist/index.js":
-/*!******************************************!*\
+/*!***********************************************!*\
   !*** ./packages/@elements/core/dist/index.js ***!
-  \******************************************/
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14964,9 +14964,9 @@ exports.Core = core_1.default;
 /***/ }),
 
 /***/ "./packages/@elements/core/dist/utils/core.js":
-/*!***********************************************!*\
+/*!****************************************************!*\
   !*** ./packages/@elements/core/dist/utils/core.js ***!
-  \***********************************************/
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15079,9 +15079,9 @@ exports.unregisterPlugins = unregisterPlugins;
 /***/ }),
 
 /***/ "./packages/@elements/core/dist/utils/dependencies.js":
-/*!*******************************************************!*\
+/*!************************************************************!*\
   !*** ./packages/@elements/core/dist/utils/dependencies.js ***!
-  \*******************************************************/
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15175,9 +15175,9 @@ exports.removeFromDependencyGraph = removeFromDependencyGraph;
 /***/ }),
 
 /***/ "./packages/@elements/dom-events-plugin/dist/dom-events-plugin.js":
-/*!*******************************************************************!*\
+/*!************************************************************************!*\
   !*** ./packages/@elements/dom-events-plugin/dist/dom-events-plugin.js ***!
-  \*******************************************************************/
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15196,7 +15196,7 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * The browser version of the events plugin designed for the SF-X product.
+ * The browser version of the events plugin designed for the GroupBy Elements product.
  * This plugin is responsible for exposing methods that will allow other
  * plugins to register, unregister, and dispatch events.
  */
@@ -15288,9 +15288,9 @@ exports.default = DomEventsPlugin;
 /***/ }),
 
 /***/ "./packages/@elements/dom-events-plugin/dist/index.js":
-/*!*******************************************************!*\
+/*!************************************************************!*\
   !*** ./packages/@elements/dom-events-plugin/dist/index.js ***!
-  \*******************************************************/
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15304,9 +15304,9 @@ exports.DomEventsPlugin = dom_events_plugin_1.default;
 /***/ }),
 
 /***/ "./packages/@elements/sayt-driver-plugin/dist/index.js":
-/*!********************************************************!*\
+/*!*************************************************************!*\
   !*** ./packages/@elements/sayt-driver-plugin/dist/index.js ***!
-  \********************************************************/
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15321,9 +15321,9 @@ exports.SaytDriverPlugin = sayt_driver_plugin_1.default;
 /***/ }),
 
 /***/ "./packages/@elements/sayt-driver-plugin/dist/sayt-driver-plugin.js":
-/*!*********************************************************************!*\
+/*!**************************************************************************!*\
   !*** ./packages/@elements/sayt-driver-plugin/dist/sayt-driver-plugin.js ***!
-  \*********************************************************************/
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15341,7 +15341,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var events_1 = __webpack_require__(/*! @elements/events */ "../sfx-events/dist/index.js");
+var events_1 = __webpack_require__(/*! @elements/events */ "../elements-events/dist/index.js");
 /**
  * Driver plugin that serves as the link between the Sayt data source
  * and the View layer. This plugin is responsible for listening to events,
@@ -15369,9 +15369,9 @@ var SaytDriverPlugin = /** @class */ (function () {
         this.fetchProductData = this.fetchProductData.bind(this);
         this.autocompleteCallback = this.autocompleteCallback.bind(this);
         this.searchCallback = this.searchCallback.bind(this);
-        var
+        var 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        _a = options.productTransformer,
+        _a = options.productTransformer, 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         productTransformer = _a === void 0 ? (function (product) { return product; }) : _a;
         this.transformProduct = productTransformer;
@@ -15524,9 +15524,9 @@ exports.default = SaytDriverPlugin;
 /***/ }),
 
 /***/ "./packages/@elements/sayt-plugin/dist/index.js":
-/*!*************************************************!*\
+/*!******************************************************!*\
   !*** ./packages/@elements/sayt-plugin/dist/index.js ***!
-  \*************************************************/
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15544,9 +15544,9 @@ __export(__webpack_require__(/*! sayt */ "./node_modules/sayt/index.js"));
 /***/ }),
 
 /***/ "./packages/@elements/sayt-plugin/dist/sayt-plugin.js":
-/*!*******************************************************!*\
+/*!************************************************************!*\
   !*** ./packages/@elements/sayt-plugin/dist/sayt-plugin.js ***!
-  \*******************************************************/
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15592,9 +15592,9 @@ exports.default = SaytPlugin;
 /***/ }),
 
 /***/ "./packages/@elements/search-driver-plugin/dist/index.js":
-/*!**********************************************************!*\
+/*!***************************************************************!*\
   !*** ./packages/@elements/search-driver-plugin/dist/index.js ***!
-  \**********************************************************/
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15609,9 +15609,9 @@ exports.SearchDriverPlugin = search_driver_plugin_1.default;
 /***/ }),
 
 /***/ "./packages/@elements/search-driver-plugin/dist/search-driver-plugin.js":
-/*!*************************************************************************!*\
+/*!******************************************************************************!*\
   !*** ./packages/@elements/search-driver-plugin/dist/search-driver-plugin.js ***!
-  \*************************************************************************/
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15629,7 +15629,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var events_1 = __webpack_require__(/*! @elements/events */ "../sfx-events/dist/index.js");
+var events_1 = __webpack_require__(/*! @elements/events */ "../elements-events/dist/index.js");
 /**
  * This plugin is responsible for exposing events that allow
  * for interacting with GroupBy's Search API.
@@ -15653,9 +15653,9 @@ var SearchDriverPlugin = /** @class */ (function () {
         };
         this.fetchSearchData = this.fetchSearchData.bind(this);
         this.searchCallback = this.searchCallback.bind(this);
-        var
+        var 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        _a = options.productTransformer,
+        _a = options.productTransformer, 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         productTransformer = _a === void 0 ? (function (product) { return product; }) : _a;
         this.transformProduct = productTransformer;
@@ -15748,9 +15748,9 @@ exports.default = SearchDriverPlugin;
 /***/ }),
 
 /***/ "./packages/@elements/search-plugin/dist/index.js":
-/*!***************************************************!*\
+/*!********************************************************!*\
   !*** ./packages/@elements/search-plugin/dist/index.js ***!
-  \***************************************************/
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15768,9 +15768,9 @@ __export(__webpack_require__(/*! groupby-api */ "./node_modules/groupby-api/dist
 /***/ }),
 
 /***/ "./packages/@elements/search-plugin/dist/search-plugin.js":
-/*!***********************************************************!*\
+/*!****************************************************************!*\
   !*** ./packages/@elements/search-plugin/dist/search-plugin.js ***!
-  \***********************************************************/
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15856,7 +15856,7 @@ __export(__webpack_require__(/*! ./plugins */ "./presets/plugins.ts-exposed"));
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["sfxCore"] = __webpack_require__(/*! -!./node_modules/ts-loader!./core.ts */ "./node_modules/ts-loader/index.js!./presets/core.ts");
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["GbElementsCore"] = __webpack_require__(/*! -!./node_modules/ts-loader!./core.ts */ "./node_modules/ts-loader/index.js!./presets/core.ts");
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
@@ -15868,10 +15868,10 @@ __export(__webpack_require__(/*! ./plugins */ "./presets/plugins.ts-exposed"));
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["sfxPlugins"] = __webpack_require__(/*! -!./node_modules/ts-loader!./plugins.ts */ "./node_modules/ts-loader/index.js!./presets/plugins.ts");
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["GbElementsPlugins"] = __webpack_require__(/*! -!./node_modules/ts-loader!./plugins.ts */ "./node_modules/ts-loader/index.js!./presets/plugins.ts");
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=sfx-all-plugins-bundle.js.map
+//# sourceMappingURL=gbe-all-plugins-bundle.js.map
