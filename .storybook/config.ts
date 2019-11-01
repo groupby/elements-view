@@ -22,7 +22,7 @@ function loadStories() {
       },
       {
         id: `Bold Theme`,
-        code: `<link rel="stylesheet" type="text/css" href="/sfx-bold-theme.css"></link>`,
+        code: `<link rel="stylesheet" type="text/css" href="/gbe-bold-theme.css"></link>`,
         picked: false
       }
     ]
