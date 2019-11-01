@@ -7,13 +7,13 @@ import {
 import { ProductsBase } from '.';
 
 /**
- * The `sfx-products-sayt` web component wraps and renders a number of
- * `sfx-product` components. It wraps each `sfx-product` component in an
+ * The `gbe-products-sayt` web component wraps and renders a number of
+ * `gbe-product` components. It wraps each `gbe-product` component in an
  * additional wrapper for flexibility.
  *
  * This component updates upon receiving a [[SAYT_PRODUCTS_RESPONSE]] event.
  */
-@customElement('sfx-products-sayt')
+@customElement('gbe-products-sayt')
 export default class ProductsSayt extends ProductsBase {
   /**
    * Binds relevant methods.
@@ -57,12 +57,12 @@ export default class ProductsSayt extends ProductsBase {
 
   protected renderStyles(): CSSResult {
     return css`
-      sfx-products-sayt {
+      gbe-products-sayt {
         display: flex;
         flex-wrap: wrap;
       }
 
-      sfx-products-sayt[hidden] {
+      gbe-products-sayt[hidden] {
         display: none;
       }
     `;

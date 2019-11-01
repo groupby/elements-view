@@ -1,4 +1,4 @@
-# SF-X Autocomplete Component
+# Elements Autocomplete Component
 
 ## Functionality
 
@@ -30,19 +30,19 @@ The selection can be changed in one of three ways:
 
 ### Recieved Events
 
-This component listens for a number of events. These events are defined in the [`@elements/events`][sfx-events] package.
+This component listens for a number of events. These events are defined in the [`@elements/events`][gbe-events] package.
 
 #### `AUTOCOMPLETE_RESPONSE`
 
-Upon receiving this event, the `sfx-autocomplete` component will populate its `results` property with search terms.
+Upon receiving this event, the `gbe-autocomplete` component will populate its `results` property with search terms.
 
 ### Dispatched Events
 
-This component dispatches a number of events. These events are defined in the [`@elements/events`][sfx-events] package.
+This component dispatches a number of events. These events are defined in the [`@elements/events`][gbe-events] package.
 
 #### `AUTOCOMPLETE_ACTIVE_TERM`
 
-This event is dispatched when one of the search terms inside of the `sfx-autocomplete` component is put in the active state or hovered on.
+This event is dispatched when one of the search terms inside of the `gbe-autocomplete` component is put in the active state or hovered on.
 
 ## Customizations
 
@@ -66,4 +66,4 @@ yarn test
 yarn tdd
 ```
 
-[sfx-events]: https://github.com/groupby/sfx-events
+[gbe-events]: https://github.com/groupby/gbe-events

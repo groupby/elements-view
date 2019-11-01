@@ -1,10 +1,10 @@
-sfx-products-base,
-sfx-products-sayt,
-sfx-products {
-  padding: var(--sfx-spacing-product);
+gbe-products-base,
+gbe-products-sayt,
+gbe-products {
+  padding: var(--gbe-spacing-product);
 
-  div.sfx-product-tile-wrapper {
-    padding: var(--sfx-spacing-product);
+  div.gbe-product-tile-wrapper {
+    padding: var(--gbe-spacing-product);
     width: 33%;
   }
 }

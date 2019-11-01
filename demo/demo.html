@@ -3,18 +3,18 @@
   <head>
     <title>Demo of Logic and View Integration</title>
     <script src="../dist/components.js"></script>
-    <!-- <script src="https://cdn.groupbycloud.com/sfx-all-plugins-bundle.js"></script> -->
+    <!-- <script src="https://cdn.groupbycloud.com/gbe-all-plugins-bundle.js"></script> -->
     <script src="./temp/gbe-all-plugins-bundle.js"></script>
     <style>
       [aria-selected="true"] {
         background-color: #CCCCFF;
       }
 
-      sfx-autocomplete li {
+      gbe-autocomplete li {
         border: 1px solid #CCCCCC;
       }
 
-      sfx-product-variant {
+      gbe-product-variant {
         width: 40px;
         height: 40px;
         display: inline-block;
@@ -24,7 +24,7 @@
         cursor: pointer;
       }
 
-      sfx-product-variant img {
+      gbe-product-variant img {
         width: auto;
         height: auto;
         min-width: 40px;
@@ -36,19 +36,19 @@
   </head>
 
   <body>
-    <sfx-search-box id="main-search" placeholder="search" clearbutton searchbutton></sfx-search-box>
-    <sfx-sayt searchbox="main-search" area="DemoMaster" collection="products"></sfx-sayt>
+    <gbe-search-box id="main-search" placeholder="search" clearbutton searchbutton></gbe-search-box>
+    <gbe-sayt searchbox="main-search" area="DemoMaster" collection="products"></gbe-sayt>
 
-    <sfx-search-box
+    <gbe-search-box
       id="secondary-search"
       group="secondary"
       placeholder="search"
       clearbutton
       searchbutton
-    ></sfx-search-box>
-    <sfx-sayt searchbox="secondary-search" group="secondary"></sfx-sayt>
+    ></gbe-search-box>
+    <gbe-sayt searchbox="secondary-search" group="secondary"></gbe-sayt>
 
-    <sfx-products></sfx-products>
+    <gbe-products></gbe-products>
 
     <script>
       function parseRecord(record) {

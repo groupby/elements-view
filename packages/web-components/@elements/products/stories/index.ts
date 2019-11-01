@@ -17,17 +17,17 @@ import '../src';
 function getProductsComponent(productsArray: Product[] = [], componentSuffix: string): string {
   if (productsArray.length > 0) {
     const products = text('Products', JSON.stringify(productsArray));
-    return `<sfx-products${componentSuffix} products="${products}"></sfx-products${componentSuffix}>`;
+    return `<gbe-products${componentSuffix} products="${products}"></gbe-products${componentSuffix}>`;
   }
-  return `<sfx-products${componentSuffix}></sfx-products${componentSuffix}>`;
+  return `<gbe-products${componentSuffix}></gbe-products${componentSuffix}>`;
 }
 
 const productsNotesMarkdownIntro = ` # SF-X Products Component
 
-[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
+[Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
 
 \`\`\`html
-<sfx-products-base></sfx-products-base>
+<gbe-products-base></gbe-products-base>
 \`\`\`
 
 ## Demonstrated in this story`;
@@ -57,7 +57,7 @@ storiesOf('Components|Products', module)
 
 
           \`\`\`html
-          <sfx-products-base
+          <gbe-products-base
             products="[
               {
                 title: 'Best Shoe',
@@ -77,7 +77,7 @@ storiesOf('Components|Products', module)
                   'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&h=350&amp;q=80',
                 imageAlt: 'A classic blue shoe',
               }
-          ]"></sfx-products-base>
+          ]"></gbe-products-base>
           \`\`\`
           `,
       },
@@ -99,10 +99,10 @@ storiesOf('Components|Products', module)
         markdown: `
           # SF-X Products Sayt Component
 
-          [Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
+          [Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
 
           \`\`\`html
-          <sfx-products-sayt></sfx-products-sayt>
+          <gbe-products-sayt></gbe-products-sayt>
           \`\`\`
 
           ## Demonstrated in this story
@@ -120,8 +120,8 @@ storiesOf('Components|Products', module)
           * Ex.
 
           \`\`\`html
-          <sfx-products-sayt group="group1"></sfx-products-sayt>
-          <sfx-products-sayt group="group2"></sfx-products-sayt>
+          <gbe-products-sayt group="group1"></gbe-products-sayt>
+          <gbe-products-sayt group="group2"></gbe-products-sayt>
           \`\`\`
         `,
       },
@@ -144,10 +144,10 @@ storiesOf('Components|Products', module)
         markdown: `
           # SF-X Products Sayt Component
 
-          [Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
+          [Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
 
           \`\`\`html
-          <sfx-products></sfx-products>
+          <gbe-products></gbe-products>
           \`\`\`
 
           ## Demonstrated in this story
@@ -164,8 +164,8 @@ storiesOf('Components|Products', module)
               * Ex.
 
             \`\`\`html
-            <sfx-products group="group1"></sfx-products>
-            <sfx-products group="group2"></sfx-products>
+            <gbe-products group="group1"></gbe-products>
+            <gbe-products group="group2"></gbe-products>
             \`\`\`
         `,
       },

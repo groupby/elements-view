@@ -1,7 +1,7 @@
  # GroubyBy Elements Product Component
 
 ```html
-<sfx-product product="{}"></sfx-product>
+<gbe-product product="{}"></gbe-product>
 ```
 
 The product component will display information about a given product.

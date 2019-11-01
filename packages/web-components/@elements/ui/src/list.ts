@@ -13,7 +13,7 @@ import { Base } from '@elements/base';
 /**
  * Receives data to populate into a list.
  */
-@customElement('sfx-list')
+@customElement('gbe-list')
 export default class List extends Base {
   /**
    * The text used in the header.
@@ -29,14 +29,14 @@ export default class List extends Base {
   private randomStringId = shortid.generate();
 
   render(): TemplateResult {
-    const idString = `sfx-list-title-${this.randomStringId}`;
+    const idString = `gbe-list-title-${this.randomStringId}`;
     const header = html`<h4 id="${idString}">${this.caption}</h4>`;
     const searchTermItems = this.items.map((item) => html`<li>${item.label}</li>`);
     const searchTermList = html`<ul aria-labelledby="${ifDefined(this.caption ? idString : undefined)}">${searchTermItems}</ul>`;
 
     return html`
       <style>
-        sfx-list > ul {
+        gbe-list > ul {
           list-style: none;
         }
       </style>

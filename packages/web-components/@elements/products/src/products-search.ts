@@ -7,13 +7,13 @@ import {
 import { ProductsBase } from '.';
 
 /**
- * The `sfx-products` web component wraps and renders a number of
- * `sfx-product` components. It wraps each `sfx-product` component in an
+ * The `gbe-products` web component wraps and renders a number of
+ * `gbe-product` components. It wraps each `gbe-product` component in an
  * additional wrapper for flexibility.
  *
  * This component updates upon receiving a [[SEARCH_RESPONSE]] event.
  */
-@customElement('sfx-products')
+@customElement('gbe-products')
 export default class ProductsSearch extends ProductsBase {
   /**
    * Binds relevant methods.
@@ -56,12 +56,12 @@ export default class ProductsSearch extends ProductsBase {
 
   protected renderStyles(): CSSResult {
     return css`
-      sfx-products {
+      gbe-products {
         display: flex;
         flex-wrap: wrap;
       }
 
-      sfx-products[hidden] {
+      gbe-products[hidden] {
         display: none;
       }
     `;

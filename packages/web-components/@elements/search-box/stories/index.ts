@@ -13,10 +13,10 @@ const updateTextEvent = [
 
 const searchboxNotesMarkdownIntro = `# GB Elements Search Box Component
 
-[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/search-box "GB Elements Search Box README").
+[Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/search-box "GB Elements Search Box README").
 
   \`\`\`html
-  <sfx-search-box placeholder="Search Here" searchbutton clearbutton></sfx-search-box>
+  <gbe-search-box placeholder="Search Here" searchbutton clearbutton></gbe-search-box>
   \`\`\`
 
 ## Demonstrated in this story`;
@@ -27,11 +27,11 @@ function getSearchBoxComponent(): string {
   const showClearButton = boolean('Show clear button', true) ? 'clearbutton' : '';
   return (
     /* eslint-disable prefer-template */
-    '<sfx-search-box\n'
+    '<gbe-search-box\n'
     + (placeholder ? ` placeholder="${placeholder}"\n` : '')
     + (showSearchButton ? ` ${showSearchButton}\n` : '')
     + (showClearButton ? ` ${showClearButton}\n` : '')
-    + '></sfx-search-box>'
+    + '></gbe-search-box>'
     /* eslint-enable prefer-template */
   );
 }
@@ -78,18 +78,18 @@ storiesOf('Components|Searchbox', module)
 
                 \`\`\`html
                 <!-- Two searchboxes -->
-                <sfx-search-box
+                <gbe-search-box
                   placeholder="Search Here"
                   group="group1"
                   searchbutton
                   clearbutton
-                ></sfx-search-box>
-                <sfx-search-box
+                ></gbe-search-box>
+                <gbe-search-box
                   placeholder="Search Here"
                   group="group2"
                   searchbutton
                   clearbutton
-                ></sfx-search-box>
+                ></gbe-search-box>
                 \`\`\`
               `,
       },

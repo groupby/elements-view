@@ -6,6 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- SFX-201: Created `sfx-product` and `sfx-product-variant` components.
+- SFX-201: Created `gbe-product` and `gbe-product-variant` components.
   - These components render product tiles with or without variant options.
   - SFX-248: The `@elements/events` package is used for event names and payload interfaces.

@@ -952,7 +952,7 @@ describe('Sayt Component', () => {
       sayt.searchbox = searchbox;
       sayt.visible = true;
       stub(sayt, 'querySelector')
-        .withArgs('[data-sfx-ref="autocomplete"]')
+        .withArgs('[data-gbe-ref="autocomplete"]')
         .returns({ selectedId, selectPrevious });
       stub(document, 'getElementById').withArgs(searchbox).returns({ setAttribute });
     });
@@ -981,7 +981,7 @@ describe('Sayt Component', () => {
     it('should not throw when there is no autocomplete', () => {
       sayt.querySelector.restore();
       stub(sayt, 'querySelector')
-        .withArgs('[data-sfx-ref="autocomplete"]')
+        .withArgs('[data-gbe-ref="autocomplete"]')
         .returns(null);
 
       const callback = () => sayt.selectPreviousAutocompleteTerm();
@@ -1021,7 +1021,7 @@ describe('Sayt Component', () => {
       sayt.searchbox = searchbox;
       sayt.visible = true;
       stub(sayt, 'querySelector')
-        .withArgs('[data-sfx-ref="autocomplete"]')
+        .withArgs('[data-gbe-ref="autocomplete"]')
         .returns({ selectedId, selectNext });
       stub(document, 'getElementById').withArgs(searchbox).returns({ setAttribute });
     });
@@ -1050,7 +1050,7 @@ describe('Sayt Component', () => {
     it('should not throw when there is no autocomplete', () => {
       sayt.querySelector.restore();
       stub(sayt, 'querySelector')
-        .withArgs('[data-sfx-ref="autocomplete"]')
+        .withArgs('[data-gbe-ref="autocomplete"]')
         .returns(null);
 
       const callback = () => sayt.selectNextAutocompleteTerm();

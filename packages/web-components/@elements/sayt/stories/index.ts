@@ -27,14 +27,14 @@ import {
 
 const saytNotesMarkdownIntro = ` # SF-X SAYT Component
 
-[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/sayt "SF-X SAYT README").
+[Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/sayt "SF-X SAYT README").
 
 \`\`\`html
-<sfx-sayt
+<gbe-sayt
   closetext="×"
   showclosebutton
   visible
-></sfx-sayt>
+></gbe-sayt>
 \`\`\`
 
 ## Demonstrated in this story`;
@@ -48,7 +48,7 @@ function getSayt(searchbox: string = '', group?: string): string {
 
   return (
     /* eslint-disable prefer-template */
-    '<sfx-sayt\n'
+    '<gbe-sayt\n'
     + (searchbox ? `  searchbox="${searchbox}"\n` : '')
     + (group ? `  group="${group}"\n` : '')
     + `  closetext="${closeText}"\n`
@@ -56,7 +56,7 @@ function getSayt(searchbox: string = '', group?: string): string {
     + (hideAutocomplete ? `  ${hideAutocomplete}\n` : '')
     + (hideProducts ? `  ${hideProducts}\n` : '')
     + `  minsearchlength="${minSearchLength}"\n`
-    + '></sfx-sayt>'
+    + '></gbe-sayt>'
     /* eslint-enable prefer-template */
   );
 }
@@ -136,7 +136,7 @@ storiesOf('Components|SAYT', module)
           top: 800px;
           z-index: -1;
         }
-        sfx-sayt {
+        gbe-sayt {
           background-color: white;
         }
       </style>
@@ -239,7 +239,7 @@ storiesOf('Components|SAYT', module)
           top: 800px;
           z-index: -1;
         }
-        sfx-sayt {
+        gbe-sayt {
           background-color: white;
         }
       </style>
@@ -277,12 +277,12 @@ storiesOf('Components|SAYT', module)
 
       \`\`\`html
       <input type="text" id="search-box" placeholder="Search here" />
-      <sfx-sayt
+      <gbe-sayt
         searchbox="search-box"
         closetext="×"
         showclosebutton
         visible
-      ></sfx-sayt>
+      ></gbe-sayt>
       \`\`\`
 
           ### The SF-X SAYT component paired with a searchbox is navigable using the arrow keys.
@@ -304,33 +304,33 @@ storiesOf('Components|SAYT', module)
               <input
                 type="text
                 id="search-box"
-                aria-controls="sfx-sayt-nGuekzlz-autocomplete"
+                aria-controls="gbe-sayt-nGuekzlz-autocomplete"
                 role="combobox"
                 aria-haspopup="listbox"
                 aria-expanded="true"
-                aria-activedescendant="sfx-autocomplete-IiDNFBKrd-item-1"
+                aria-activedescendant="gbe-autocomplete-IiDNFBKrd-item-1"
               />
-              <sfx-sayt
+              <gbe-sayt
                 searchbox="search-box"
                 closetext="×"
                 showclosebutton
                 visible
               >
                 ...
-                <sfx-autocomplete
-                  data-sfx-ref="autocomplete"
-                  id="sfx-sayt-nGuekzlz-autocomplete"
+                <gbe-autocomplete
+                  data-gbe-ref="autocomplete"
+                  id="gbe-sayt-nGuekzlz-autocomplete"
                   role="listbox"
                   selectedindex="1"
                 >
                   <ul>
-                    <li role="option" id="sfx-autocomplete-IiDNFBKrd-item-0" aria-selected="false">...</li>
-                    <li role="option" id="sfx-autocomplete-IiDNFBKrd-item-1" aria-selected="true">...</li>
+                    <li role="option" id="gbe-autocomplete-IiDNFBKrd-item-0" aria-selected="false">...</li>
+                    <li role="option" id="gbe-autocomplete-IiDNFBKrd-item-1" aria-selected="true">...</li>
                     ...
                   </ul>
-                </sfx-autocomplete>
+                </gbe-autocomplete>
                 ...
-              </sfx-sayt>
+              </gbe-sayt>
               \`\`\`
       `,
       },
@@ -360,7 +360,7 @@ storiesOf('Components|SAYT', module)
           top: 800px;
           z-index: -1;
         }
-        sfx-sayt {
+        gbe-sayt {
           background-color: white;
         }
       </style>
@@ -414,21 +414,21 @@ storiesOf('Components|SAYT', module)
 
       \`\`\`html
       <input type="text" id="search-box1" placeholder="Search here" />
-      <sfx-sayt
+      <gbe-sayt
         searchbox="search-box1"
         group="group1"
         closetext="×"
         showclosebutton
         visible
-      ></sfx-sayt>
+      ></gbe-sayt>
       <input type="text" id="search-box2" placeholder="Search here" />
-      <sfx-sayt
+      <gbe-sayt
         searchbox="search-box2"
         group="group2"
         closetext="×"
         showclosebutton
         visible
-      ></sfx-sayt>
+      ></gbe-sayt>
       \`\`\`
         `,
       },

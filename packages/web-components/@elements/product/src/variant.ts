@@ -11,7 +11,7 @@ import { ProductVariant } from '@elements/events';
 /**
  * A product variant component that displays a thumbnail of a product variant.
  */
-@customElement('sfx-product-variant')
+@customElement('gbe-product-variant')
 export default class Variant extends Base {
   /** The type of variant to render. One of `text`, `color` or `image`. Default is `text`. */
   @property({ type: String, reflect: true }) type: string = 'text';
@@ -45,7 +45,7 @@ export default class Variant extends Base {
     const { variant } = this;
     const img = this.type === 'image'
       ? html`<img
-          class="sfx-variant-image"
+          class="gbe-variant-image"
           src="${variant.image}"
           alt="${variant.text}"
         />`

@@ -20,11 +20,11 @@ import {
 import { Base } from '@elements/base';
 
 /**
- * The `sfx-autocomplete` component is responsible for displaying a list
+ * The `gbe-autocomplete` component is responsible for displaying a list
  * of autocomplete terms upon receipt of the [[AUTOCOMPLETE_RESPONSE]] event.
  * The component is also responsible for emitting events based on user input.
  */
-@customElement('sfx-autocomplete')
+@customElement('gbe-autocomplete')
 export default class Autocomplete extends Base {
   /**
    * Autocomplete request results.
@@ -118,7 +118,7 @@ export default class Autocomplete extends Base {
    * @returns A generated ID.
    */
   private generateItemId(index: number): string {
-    return `sfx-autocomplete-${this.componentId}-item-${index}`;
+    return `gbe-autocomplete-${this.componentId}-item-${index}`;
   }
 
   /**
@@ -208,7 +208,7 @@ export default class Autocomplete extends Base {
     listIndex: number,
     itemStartingIndex: number
   ): TemplateResult {
-    const titleId = `sfx-autocomplete-${this.componentId}-title-${listIndex}`;
+    const titleId = `gbe-autocomplete-${this.componentId}-title-${listIndex}`;
     const header = html`<h4 id="${titleId}">${list.title}</h4>`;
     const searchTermItems = list.items.map((item, index) => {
       const itemIndex = itemStartingIndex + index;
@@ -230,12 +230,12 @@ export default class Autocomplete extends Base {
   }
 
   /**
-   * Renders results data in a list format using the `sfx-list` custom
+   * Renders results data in a list format using the `gbe-list` custom
    * element.
    */
   render(): TemplateResult {
     const caption = this.caption && this.results.length > 0
-      ? html`<h3 class="sfx-header">${this.caption}</h3>`
+      ? html`<h3 class="gbe-header">${this.caption}</h3>`
       : '';
     const startingIndices = this.results
       .map((list) => list.items.length)
@@ -244,13 +244,13 @@ export default class Autocomplete extends Base {
 
     return html`
       <style>
-        sfx-autocomplete {
+        gbe-autocomplete {
           display: block;
         }
-        sfx-autocomplete[hidden] {
+        gbe-autocomplete[hidden] {
           display: none;
         }
-        sfx-autocomplete > ul {
+        gbe-autocomplete > ul {
           list-style: none;
         }
       </style>

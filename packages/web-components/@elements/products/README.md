@@ -1,15 +1,15 @@
 # GB Elements Products Component
 
 The Products component acts as a wrapper around a series of individual
-`sfx-product` components. It uses a list of information about products
+`gbe-product` components. It uses a list of information about products
 and passes each item to a single product for rendering.
 
 There are three versions of the Products component:
-- `sfx-products-base`
-- `sfx-products-sayt`
-- `sfx-products`
+- `gbe-products-base`
+- `gbe-products-sayt`
+- `gbe-products`
 
-## sfx-products-base
+## gbe-products-base
 
 ### Functionality
 
@@ -25,38 +25,38 @@ This optional attribute will add a Products component to a grouping of related c
 
 Ex.
 ```html
-<sfx-products group="search-group-1"></sfx-products>
+<gbe-products group="search-group-1"></gbe-products>
 ```
 
 **NOTE:** This attribute is unnecessary if there is only one group and sayt pairing and one product search results grid on the webpage.
 
-## sfx-products-sayt
+## gbe-products-sayt
 
 ### Functionality
 
-The Sayt version of the Products component is used inside of a Sayt component. It is extended from the `sfx-products-base` component.
+The Sayt version of the Products component is used inside of a Sayt component. It is extended from the `gbe-products-base` component.
 
-This component listens for and dispatches a number of events. These events are defined in the [`@elements/events`][sfx-events] package.
+This component listens for and dispatches a number of events. These events are defined in the [`@elements/events`][gbe-events] package.
 
 ### Received Events
 
 #### `SAYT_PRODUCTS_RESPONSE`
 
-Upon receiving this event, the `sfx-products-sayt` component will populate the `products` property and render the data.
+Upon receiving this event, the `gbe-products-sayt` component will populate the `products` property and render the data.
 
-## sfx-products
+## gbe-products
 
 ### Functionality
 
-The Search version of the Products component is used to display search results. It is extended from the `sfx-products-base` component.
+The Search version of the Products component is used to display search results. It is extended from the `gbe-products-base` component.
 
-This component listens for and dispatches a number of events. These events are defined in the [`@elements/events`][sfx-events] package.
+This component listens for and dispatches a number of events. These events are defined in the [`@elements/events`][gbe-events] package.
 
 ### Received Events
 
 #### `SEARCH_RESPONSE`
 
-Upon receiving this event, the `sfx-products` component will populate the `products` property and render the data.
+Upon receiving this event, the `gbe-products` component will populate the `products` property and render the data.
 
 ## Testing
 
@@ -75,4 +75,4 @@ yarn test
 yarn tdd
 ```
 
-[sfx-events]: https://github.com/groupby/sfx-events
+[gbe-events]: https://github.com/groupby/gbe-events

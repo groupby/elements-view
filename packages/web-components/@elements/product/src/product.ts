@@ -16,7 +16,7 @@ import { toLowerCaseKebab } from './utils';
 /**
  * A product component that consumes product data to display.
  */
-@customElement('sfx-product')
+@customElement('gbe-product')
 export default class Product extends Base {
   /** The product data. */
   @property({ type: Object }) product: ProductModel = {};
@@ -70,7 +70,7 @@ export default class Product extends Base {
     ]);
 
     return Object.keys(product).filter((p) => !properties.has(p)).map((p) => html`
-      <span class="sfx-${toLowerCaseKebab(p)}">${product[p]}</span>
+      <span class="gbe-${toLowerCaseKebab(p)}">${product[p]}</span>
     `);
   }
 
@@ -92,22 +92,22 @@ export default class Product extends Base {
       </style>
         ${imageSrc
     ? html`<img
-            class="sfx-image"
+            class="gbe-image"
             src="${imageSrc}"
             alt="${imageAlt}" />`
     : ''}
-        <ul class="sfx-product-variants">
+        <ul class="gbe-product-variants">
           ${variants
-    ? variants.items.map((v) => html`<sfx-product-variant
+    ? variants.items.map((v) => html`<gbe-product-variant
                 @click="${this.updateVariant(v)}"
                 type="${variants.type}"
                 .variant="${v}"
-              ></sfx-product-variant>`)
+              ></gbe-product-variant>`)
     : ''
 }
         </ul>
-        ${this.urlWrap(productUrl, html`<h3 class="sfx-title">${title}</h3>`)}
-        <p class="sfx-price">${price}</p>
+        ${this.urlWrap(productUrl, html`<h3 class="gbe-title">${title}</h3>`)}
+        <p class="gbe-price">${price}</p>
       ${this.additionalInfo()}
     `;
   }

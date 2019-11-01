@@ -25,18 +25,18 @@ import {
 import { Base } from '@elements/base';
 
 /**
- * The `sfx-sayt` component is responsible for displaying and hiding the
- * `sfx-autocomplete` and `sfx-products` components.
+ * The `gbe-sayt` component is responsible for displaying and hiding the
+ * `gbe-autocomplete` and `gbe-products` components.
  */
-@customElement('sfx-sayt')
+@customElement('gbe-sayt')
 export default class Sayt extends Base {
   /**
-   * Determines if the `sfx-autocomplete` component will be hidden or not.
+   * Determines if the `gbe-autocomplete` component will be hidden or not.
    */
   @property({ type: Boolean, reflect: true }) hideAutocomplete = false;
 
   /**
-   * Determines if the `sfx-products` component will be hidden or not.
+   * Determines if the `gbe-products` component will be hidden or not.
    */
   @property({ type: Boolean, reflect: true }) hideProducts = false;
 
@@ -209,7 +209,7 @@ export default class Sayt extends Base {
    * @returns An ID suitable for use on the autocomplete component.
    */
   private get autocompleteId(): string {
-    return `sfx-sayt-${this.componentId}-autocomplete`;
+    return `gbe-sayt-${this.componentId}-autocomplete`;
   }
 
   /**
@@ -535,7 +535,7 @@ export default class Sayt extends Base {
     if (!this.visible) this.showSayt();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
+    const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
     if (!autocomplete) return;
 
     autocomplete.selectPrevious();
@@ -553,7 +553,7 @@ export default class Sayt extends Base {
     if (!this.visible) this.showSayt();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const autocomplete = this.querySelector<any>('[data-sfx-ref="autocomplete"]');
+    const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
     if (!autocomplete) return;
 
     autocomplete.selectNext();
@@ -570,37 +570,37 @@ export default class Sayt extends Base {
   render(): TemplateResult {
     return html`
       <style>
-        sfx-sayt {
+        gbe-sayt {
           display: block;
         }
 
-        sfx-sayt[hidden] {
+        gbe-sayt[hidden] {
           display: none;
         }
 
-        .sfx-sayt-container {
+        .gbe-sayt-container {
           display: flex;
         }
       </style>
       ${this.showCloseButton
     ? html`
-            <button class="sfx-close" aria-label="Close" @click=${this.clickCloseSayt}>
+            <button class="gbe-close" aria-label="Close" @click=${this.clickCloseSayt}>
               ${this.closeText}
             </button>
           `
     : ''}
-      <div class="sfx-sayt-container">
+      <div class="gbe-sayt-container">
         ${this.hideAutocomplete
     ? ''
     : html`
-            <sfx-autocomplete id="${this.autocompleteId}" data-sfx-ref="autocomplete" group="${ifDefined(this.group)}">
-            </sfx-autocomplete>`
+            <gbe-autocomplete id="${this.autocompleteId}" data-gbe-ref="autocomplete" group="${ifDefined(this.group)}">
+            </gbe-autocomplete>`
 }
         ${this.hideProducts
     ? ''
     : html`
-            <sfx-products-sayt group="${ifDefined(this.group)}">
-            </sfx-products-sayt>`
+            <gbe-products-sayt group="${ifDefined(this.group)}">
+            </gbe-products-sayt>`
 }
       </div>
     `;

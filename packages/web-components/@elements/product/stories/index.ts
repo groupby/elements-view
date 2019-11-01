@@ -8,8 +8,8 @@ function getProductComponent(product: Product = {}, codeSnippet: boolean = false
   const productInfo = text('Product Info', JSON.stringify(product));
 
   return codeSnippet === false
-    ? `<sfx-product product="${productInfo}"></sfx-product>`
-    : '<sfx-product></sfx-product>';
+    ? `<gbe-product product="${productInfo}"></gbe-product>`
+    : '<gbe-product></gbe-product>';
 }
 
 storiesOf('Components|Product', module)
@@ -25,10 +25,10 @@ storiesOf('Components|Product', module)
         markdown: `
         # GroupBy Elements Product Component
 
-        [Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/product "GB Elements Product README").
+        [Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/product "GB Elements Product README").
 
         \`\`\`html
-        <sfx-product></sfx-product>
+        <gbe-product></gbe-product>
         \`\`\`
 
         ## Demonstrated in this story
@@ -36,7 +36,7 @@ storiesOf('Components|Product', module)
         ### The GB Elements Product component populated with hardcoded product data
 
         \`\`\`html
-        <sfx-product
+        <gbe-product
           product="{
           title: 'Best Shoe',
           price: 39.99,
@@ -71,7 +71,7 @@ storiesOf('Components|Product', module)
             ]
           }
         }"
-        ></sfx-product>
+        ></gbe-product>
         \`\`\`
 
         ### The GB Elements Product component renders with product data populated via the \`product\` attribute.

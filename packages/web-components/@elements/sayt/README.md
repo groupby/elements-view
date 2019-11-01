@@ -2,9 +2,9 @@
 
 ## Functionality
 
-The `sayt` component acts as a wrapper around the `sfx-autocomplete` and
-`sfx-products-sayt` components and acts to show and hide all of these components
-in response to interactions with the `sfx-search-box` component.
+The `sayt` component acts as a wrapper around the `gbe-autocomplete` and
+`gbe-products-sayt` components and acts to show and hide all of these components
+in response to interactions with the `gbe-search-box` component.
 
 ### Keyboard Navigation
 
@@ -15,7 +15,7 @@ will change the autocomplete selection if `hideAutocomplete` is not enabled.
 
 ### Received Events
 
-This component listens for a number of events. These events are defined in the [`@elements/events`][sfx-events] package.
+This component listens for a number of events. These events are defined in the [`@elements/events`][gbe-events] package.
 
 #### `SAYT_HIDE`
 
@@ -47,7 +47,7 @@ Upon receiving this event, the `sayt` component will dispatch requests for SAYT 
 
 ### DISPATCHED EVENTS
 
-This component dispatches a number of events. These events are defined in the [`@elements/events`][sfx-events] package.
+This component dispatches a number of events. These events are defined in the [`@elements/events`][gbe-events] package.
 
 #### `AUTOCOMPLETE_REQUEST`
 
@@ -63,8 +63,8 @@ The GB Elements Sayt component allows for the option to not display its children
 components. Users of the component can add the following attributes for
 particular customizations:
 
-- `hideAutocomplete`: Prevents the `sfx-autocomplete` component from rendering.
-- `hideProducts`: Prevents the `sfx-products` component from rendering.
+- `hideAutocomplete`: Prevents the `gbe-autocomplete` component from rendering.
+- `hideProducts`: Prevents the `gbe-products` component from rendering.
 - `showCloseButton`: Shows a button to allow for closing SAYT manually.
 - `closeText`: Customizes the text in the close button.
 - `visible`: Determines the visibility of the `sayt` component.
@@ -85,4 +85,4 @@ To run the tests, navigate to this folder and use one of the following commands 
 yarn test
 ```
 
-[sfx-events]: https://github.com/groupby/sfx-events
+[gbe-events]: https://github.com/groupby/gbe-events

@@ -4,7 +4,7 @@
 
 The component accepts text input and dispatches events based on input.
 
-This component listens for and dispatches a number of events. These events are defined in the [`@elements/events`][sfx-events] package.
+This component listens for and dispatches a number of events. These events are defined in the [`@elements/events`][gbe-events] package.
 
 ### Received Events
 
@@ -66,4 +66,4 @@ yarn tdd:interaction
 yarn test:all
 ```
 
-[sfx-events]: https://github.com/groupby/sfx-events
+[gbe-events]: https://github.com/groupby/gbe-events

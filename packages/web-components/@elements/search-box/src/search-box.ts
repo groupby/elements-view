@@ -25,7 +25,7 @@ import { Base } from '@elements/base';
  * based on input.
  * The entity also listens for events, and updates data accordingly.
  */
-@customElement('sfx-search-box')
+@customElement('gbe-search-box')
 export default class SearchBox extends Base {
   /**
    * Text used as placeholder in search box.
@@ -201,19 +201,19 @@ export default class SearchBox extends Base {
   render(): TemplateResult {
     return html`
       <style>
-        sfx-search-box {
+        gbe-search-box {
           display: inline-flex;
         }
-        sfx-search-box[hidden] {
+        gbe-search-box[hidden] {
           display: none;
         }
-        sfx-search-box > input {
+        gbe-search-box > input {
           flex-grow: 1;
         }
       </style>
       <input
         aria-label="Search"
-        class="sfx-input"
+        class="gbe-input"
         type="text"
         placeholder="${this.placeholder}"
         .value="${this.value}"
@@ -223,12 +223,12 @@ export default class SearchBox extends Base {
       />
       ${this.clearButton
     ? html`
-            <button class="sfx-clear" @click="${this.clearSearch}">Clear</button>
+            <button class="gbe-clear" @click="${this.clearSearch}">Clear</button>
           `
     : ''}
       ${this.searchButton
     ? html`
-            <button class="sfx-submit" @click="${this.emitSearchEvent}">Search</button>
+            <button class="gbe-submit" @click="${this.emitSearchEvent}">Search</button>
           `
     : ''}
     `;

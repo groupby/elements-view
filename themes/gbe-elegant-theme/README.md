@@ -15,12 +15,12 @@ Themes can be modified by targetting the element classes and the theme variables
 ### CSS Variables
 Variables currently being used in this theme:
 
-- `--sfx-color-background`
-- `--sfx-color-border`
-- `--sfx-color-font`
-- `--sfx-color-primary`
-- `--sfx-color-secondary`
-- `--sfx-color-tertiary`
-- `--sfx-font-default`
-- `--sfx-spacing-default`
-- `--sfx-spacing-product`
+- `--gbe-color-background`
+- `--gbe-color-border`
+- `--gbe-color-font`
+- `--gbe-color-primary`
+- `--gbe-color-secondary`
+- `--gbe-color-tertiary`
+- `--gbe-font-default`
+- `--gbe-spacing-default`
+- `--gbe-spacing-product`

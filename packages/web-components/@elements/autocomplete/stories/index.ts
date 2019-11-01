@@ -16,10 +16,10 @@ import '../src/index';
 const autocompleteNotesIntro = `
 # SF-X Autocomplete Component
 
-[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/autocomplete "SF-X Autocomplete README").
+[Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/autocomplete "SF-X Autocomplete README").
 
 \`\`\`html
-<sfx-autocomplete></sfx-autocomplete>
+<gbe-autocomplete></gbe-autocomplete>
 \`\`\`
 
 ## Demonstrated in this story`;
@@ -30,15 +30,15 @@ function getAutocompleteComponent(results: AutocompleteResultGroup<AutocompleteS
   if (results.length > 0) {
     const autocompleteResultsKnob = text('Autocomplete Results', JSON.stringify(results));
     const selectedIndex = number('Selected Index', -1);
-    return '<sfx-autocomplete\n'
+    return '<gbe-autocomplete\n'
       + ` results="${autocompleteResultsKnob}"\n`
       + ` caption="${optionalTitle}"\n`
       + ` selectedindex="${selectedIndex}"\n`
-      + '></sfx-autocomplete>';
+      + '></gbe-autocomplete>';
   }
-  return '<sfx-autocomplete\n'
+  return '<gbe-autocomplete\n'
     + ` caption="${optionalTitle}"\n`
-    + '></sfx-autocomplete>';
+    + '></gbe-autocomplete>';
 }
 
 storiesOf('Components|Autocomplete', module)
@@ -58,7 +58,7 @@ storiesOf('Components|Autocomplete', module)
           * To see the story that demonstrates the component's functionality, visit the second story under "Autocomplete": "Rendering with event payload".
 
           \`\`\`html
-          <sfx-autocomplete
+          <gbe-autocomplete
             caption="Autocomplete Results"
             results="[
               {
@@ -74,7 +74,7 @@ storiesOf('Components|Autocomplete', module)
                 items: [{ label: 'Teal' }, { label: 'Orange' }, { label: 'Fuschia' }]
               }
             ]"
-          ></sfx-autocomplete>
+          ></gbe-autocomplete>
           \`\`\`
 
           ### The SF-X Autocomplete component will select the item at the index specified by \`selectedIndex\`.
@@ -133,8 +133,8 @@ storiesOf('Components|Autocomplete', module)
             * Ex.
 
             \`\`\`html
-            <sfx-autocomplete group="group1"></sfx-autocomplete>
-            <sfx-autocomplete group="group2"></sfx-autocomplete>
+            <gbe-autocomplete group="group1"></gbe-autocomplete>
+            <gbe-autocomplete group="group2"></gbe-autocomplete>
             \`\`\`
           `,
       },

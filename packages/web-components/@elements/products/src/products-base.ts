@@ -11,11 +11,11 @@ import { Product } from '@elements/events';
 import { Base } from '@elements/base';
 
 /**
- * The `sfx-products-base` web component wraps and renders a number of
- * `sfx-product` components. It wraps each `sfx-product` component in an
+ * The `gbe-products-base` web component wraps and renders a number of
+ * `gbe-product` components. It wraps each `gbe-product` component in an
  * additional wrapper for flexibility.
  */
-@customElement('sfx-products-base')
+@customElement('gbe-products-base')
 export default class ProductsBase extends Base {
   /**
    * The product data to be rendered.
@@ -47,12 +47,12 @@ export default class ProductsBase extends Base {
    */
   protected renderStyles(): CSSResult {
     return css`
-      sfx-products-base {
+      gbe-products-base {
         display: flex;
         flex-wrap: wrap;
       }
 
-      sfx-products-base[hidden] {
+      gbe-products-base[hidden] {
         display: none;
       }
     `;
@@ -61,11 +61,11 @@ export default class ProductsBase extends Base {
   render(): TemplateResult {
     return html`
       <style>
-        sfx-product {
+        gbe-product {
           display: block;
         }
 
-        sfx-product[hidden] {
+        gbe-product[hidden] {
           display: none;
         }
 
@@ -73,8 +73,8 @@ export default class ProductsBase extends Base {
       </style>
 
       ${this.products.map((product) => html`
-          <div class="sfx-product-tile-wrapper" role="listitem">
-            <sfx-product .product="${product}"></sfx-product>
+          <div class="gbe-product-tile-wrapper" role="listitem">
+            <gbe-product .product="${product}"></gbe-product>
           </div>
         `)}
     `;

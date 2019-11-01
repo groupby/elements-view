@@ -23,8 +23,8 @@ function getListComponent(codeSnippet: boolean = false): string {
   const list = text('List Items', JSON.stringify(items));
 
   return codeSnippet === false
-    ? `<sfx-list caption="${title}" items="${list}"></sfx-list>`
-    : `<sfx-list caption="${title}"></sfx-list>`;
+    ? `<gbe-list caption="${title}" items="${list}"></gbe-list>`
+    : `<gbe-list caption="${title}"></gbe-list>`;
 }
 
 storiesOf('UI|List', module)
@@ -39,13 +39,13 @@ storiesOf('UI|List', module)
       notes: {
         markdown: `# GB Elements List Component
 
-        [Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/ui "GB Elements List README")
+        [Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/ui "GB Elements List README")
 
         \`\`\`html
-        <sfx-list
+        <gbe-list
           caption="Items"
           items="[]"
-        ></sfx-list>
+        ></gbe-list>
         \`\`\`
 
         ## Demonstrated in this story
@@ -67,7 +67,7 @@ storiesOf('UI|List', module)
             3. See the component update with the new text.
 
             \`\`\`html
-            <sfx-list
+            <gbe-list
               caption="Items"
               items="[{
                 label: 'Pen'
@@ -81,7 +81,7 @@ storiesOf('UI|List', module)
               {
                 label: 'Chocolate'
               }]"
-            ></sfx-list>
+            ></gbe-list>
             \`\`\`
         `,
       },

@@ -1,12 +1,12 @@
-sfx-product {
+gbe-product {
   align-items: center;
   box-shadow: 0 0 15px -5px rgba(0,0,0,0.5);
-  color: var(--sfx-color-font);
+  color: var(--gbe-color-font);
   display: inline-flex;
   flex-direction: column;
-  font-family: var(--sfx-font-default);
+  font-family: var(--gbe-font-default);
   height: 100%;
-  padding: var(--sfx-spacing-product);
+  padding: var(--gbe-spacing-product);
   position: relative;
 
   &[hidden] {
@@ -28,26 +28,26 @@ sfx-product {
     text-align: center;
   }
 
-  ul.sfx-product-variants {
+  ul.gbe-product-variants {
     height: 1.5em;
-    margin: var(--sfx-spacing-default) 0;
+    margin: var(--gbe-spacing-default) 0;
     padding: 0;
   }
 
   a {
-    color: var(--sfx-color-font);
+    color: var(--gbe-color-font);
     text-decoration: none;
   }
 
-  p.sfx-price {
+  p.gbe-price {
     margin: 0;
     &::before {
       content: "$";
     }
   }
 
-  .sfx-label {
-    background-color: var(--sfx-color-secondary);
+  .gbe-label {
+    background-color: var(--gbe-color-secondary);
     left: 0;
     font-size: 12px;
     font-weight: bold;
