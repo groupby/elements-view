@@ -212,13 +212,13 @@ describe('Autcomplete Component', () => {
   });
 
   describe('dispatchSelectedTerm()', () => {
-    let dispatchSfxEvent;
+    let dispatchElementsEvent;
 
     beforeEach(() => {
-      dispatchSfxEvent = stub(autocomplete, 'dispatchSfxEvent');
+      dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
     });
 
-    it('should call dispatchSfxEvent() with the AUTOCOMPLETE_ACTIVE_TERM event name and the label of the selected item', () => {
+    it('should call dispatchElementsEvent() with the AUTOCOMPLETE_ACTIVE_TERM event name and the label of the selected item', () => {
       const group = autocomplete.group = 'some-group';
       autocomplete.selectedIndex = 3;
       autocomplete.results = [
@@ -243,25 +243,25 @@ describe('Autcomplete Component', () => {
 
       autocomplete.dispatchSelectedTerm();
 
-      expect(dispatchSfxEvent).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, payload);
+      expect(dispatchElementsEvent).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, payload);
     });
 
-    it('should not call dispatchSfxEvent() if no item is selected', () => {
+    it('should not call dispatchElementsEvent() if no item is selected', () => {
       autocomplete.selectedIndex = -1;
       stub(autocomplete, 'itemCount').get(() => 5);
 
       autocomplete.dispatchSelectedTerm();
 
-      expect(dispatchSfxEvent).to.not.be.called;
+      expect(dispatchElementsEvent).to.not.be.called;
     });
 
-    it('should not call dispatchSfxEvent() if selectedIndex is out of bounds', () => {
+    it('should not call dispatchElementsEvent() if selectedIndex is out of bounds', () => {
       autocomplete.selectedIndex = 10;
       stub(autocomplete, 'itemCount').get(() => 5);
 
       autocomplete.dispatchSelectedTerm();
 
-      expect(dispatchSfxEvent).to.not.be.called;
+      expect(dispatchElementsEvent).to.not.be.called;
     });
   });
 

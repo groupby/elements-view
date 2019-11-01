@@ -161,7 +161,7 @@ export default class Autocomplete extends Base {
       query: term,
       group: this.group,
     };
-    this.dispatchSfxEvent(AUTOCOMPLETE_ACTIVE_TERM, payload);
+    this.dispatchElementsEvent(AUTOCOMPLETE_ACTIVE_TERM, payload);
   }
 
   /**

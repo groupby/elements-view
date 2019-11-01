@@ -16,7 +16,7 @@ describe('Base Class', () => {
     });
   });
 
-  describe('dispatchSfxEvent', () => {
+  describe('dispatchElementsEvent', () => {
     const eventName = 'event';
     const dispatchEventReturnValue = true;
     let payload;
@@ -31,7 +31,7 @@ describe('Base Class', () => {
       const eventObject = { a: 'b' };
       const customEvent = stub(window, 'CustomEvent').returns(eventObject);
 
-      dummyComponent.dispatchSfxEvent(eventName, payload);
+      dummyComponent.dispatchElementsEvent(eventName, payload);
 
       expect(dispatchEvent).to.be.calledWith(eventObject);
       expect(customEvent).to.be.calledWith(eventName, { detail: payload, bubbles: true });
@@ -39,7 +39,7 @@ describe('Base Class', () => {
     });
 
     it('should forward the return value of dispatchEvent', () => {
-      const result = dummyComponent.dispatchSfxEvent(eventName, payload);
+      const result = dummyComponent.dispatchElementsEvent(eventName, payload);
 
       expect(result).to.equal(dispatchEventReturnValue);
     });

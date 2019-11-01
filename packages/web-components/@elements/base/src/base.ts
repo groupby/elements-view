@@ -10,7 +10,7 @@ export default abstract class Base extends LitElement {
     return this;
   }
 
-  dispatchSfxEvent<T>(eventName: string, payload?: T): boolean {
+  dispatchElementsEvent<T>(eventName: string, payload?: T): boolean {
     const eventToDispatch = new CustomEvent<T>(eventName, { detail: payload, bubbles: true });
     return this.dispatchEvent(eventToDispatch);
   }

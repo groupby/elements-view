@@ -7,7 +7,7 @@ Any shared functionality should be contained within this class.
 
 ### Dispatching events
 
-This class contains a generic event dispatch function, `dispatchSfxEvent`. The `dispatchSfxEvent` function constructs a CustomEvent with payload properties that are common across the GB Elements components. This function can be used across all components that extend Base to dispatch events.
+This class contains a generic event dispatch function, `dispatchElementsEvent`. The `dispatchElementsEvent` function constructs a CustomEvent with payload properties that are common across the GB Elements components. This function can be used across all components that extend Base to dispatch events.
 
 ### Rendering the light DOM
 
