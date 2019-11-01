@@ -23,9 +23,9 @@ storiesOf('Components|Product', module)
     {
       notes: {
         markdown: `
-        # SF-X Product Component
+        # GroupBy Elements Product Component
 
-        [Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/product "SF-X Product README").
+        [Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/product "GB Elements Product README").
 
         \`\`\`html
         <sfx-product></sfx-product>
@@ -33,7 +33,7 @@ storiesOf('Components|Product', module)
 
         ## Demonstrated in this story
 
-        ### The SF-X Product component populated with hardcoded product data
+        ### The GB Elements Product component populated with hardcoded product data
 
         \`\`\`html
         <sfx-product
@@ -74,14 +74,14 @@ storiesOf('Components|Product', module)
         ></sfx-product>
         \`\`\`
 
-        ### The SF-X Product component renders with product data populated via the \`product\` attribute.
+        ### The GB Elements Product component renders with product data populated via the \`product\` attribute.
         * ***Disclaimer***: although possible, it is not recommended to pass data objects via an attribute.
           * Refer to the \`ProductModel\` and \`ProductVariantsModel\` interfaces for the accepted data format.
           * To modify the data within the \`product\` attribute in this story:
             1. Visit the **Knobs** tab and modify the data inside the "Product Data" field.
             2. Observe that the component is updated with the new data.
 
-        ### The SF-X Product component visually updates when clicking on variant tile icons.
+        ### The GB Elements Product component visually updates when clicking on variant tile icons.
           * The product component includes icons to toggle between product variants.
           * To toggle between product variants in this story:
             1. Navigate to the **Canvas** tab.

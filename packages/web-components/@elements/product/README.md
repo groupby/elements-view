@@ -1,4 +1,4 @@
- # SF-X Product Component
+ # GroubyBy Elements Product Component
 
 ```html
 <sfx-product product="{}"></sfx-product>
