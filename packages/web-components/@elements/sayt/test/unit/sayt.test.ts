@@ -313,7 +313,7 @@ describe('Sayt Component', () => {
 
       sayt.setSearchboxListener('', 'add');
 
-      expect(windowAddEventListener).to.be.calledWith(SEARCHBOX_INPUT, sayt.processSfxSearchboxChange);
+      expect(windowAddEventListener).to.be.calledWith(SEARCHBOX_INPUT, sayt.processElementsSearchboxChange);
       expect(searchboxAddEventListener).to.not.be.calledWith('input');
     });
 
@@ -324,7 +324,7 @@ describe('Sayt Component', () => {
 
       sayt.setSearchboxListener('', 'remove');
 
-      expect(windowRemoveEventListener).to.be.calledWith(SEARCHBOX_INPUT, sayt.processSfxSearchboxChange);
+      expect(windowRemoveEventListener).to.be.calledWith(SEARCHBOX_INPUT, sayt.processElementsSearchboxChange);
       expect(searchboxRemoveEventListener).to.not.be.calledWith('input');
     });
   });
@@ -713,7 +713,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('processSfxSearchboxChange()', () => {
+  describe('processElementsSearchboxChange()', () => {
     let term;
     let event;
     let isCorrectSayt;
@@ -729,7 +729,7 @@ describe('Sayt Component', () => {
     it('should trigger a Sayt request if the event and component groups match', () => {
       isCorrectSayt.returns(true);
 
-      sayt.processSfxSearchboxChange(event);
+      sayt.processElementsSearchboxChange(event);
 
       expect(requestSayt).to.be.calledWith(term);
     });
@@ -737,7 +737,7 @@ describe('Sayt Component', () => {
     it('should not trigger a Sayt request if the event and component groups do not match', () => {
       isCorrectSayt.returns(false);
 
-      sayt.processSfxSearchboxChange(event);
+      sayt.processElementsSearchboxChange(event);
 
       expect(requestSayt).to.not.be.called;
     });

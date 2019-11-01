@@ -122,7 +122,7 @@ export default class Sayt extends Base {
     this.isCorrectSayt = this.isCorrectSayt.bind(this);
     this.requestSayt = this.requestSayt.bind(this);
     this.processSearchboxInput = this.processSearchboxInput.bind(this);
-    this.processSfxSearchboxChange = this.processSfxSearchboxChange.bind(this);
+    this.processElementsSearchboxChange = this.processElementsSearchboxChange.bind(this);
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
     this.setDebouncedMethods = this.setDebouncedMethods.bind(this);
@@ -227,7 +227,7 @@ export default class Sayt extends Base {
         searchbox[setEventListener]('keydown', this.changeSelection);
       }
     } else {
-      window[setEventListener](SEARCHBOX_INPUT, this.processSfxSearchboxChange);
+      window[setEventListener](SEARCHBOX_INPUT, this.processElementsSearchboxChange);
     }
   }
 
@@ -439,7 +439,7 @@ export default class Sayt extends Base {
    *
    * @param event The [[SEARCHBOX_INPUT]] event dispatched from the searchbox.
    */
-  processSfxSearchboxChange(event: CustomEvent<SearchboxInputPayload>): void {
+  processElementsSearchboxChange(event: CustomEvent<SearchboxInputPayload>): void {
     if (this.isCorrectSayt(event)) {
       this.requestSayt(event.detail.term);
     }
