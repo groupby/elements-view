@@ -16,7 +16,7 @@ import '../src/index';
 const autocompleteNotesIntro = `
 # GroupBy Elements Autocomplete Component
 
-[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/autocomplete "GroupBy Elements Autocomplete README").
+[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40elements/autocomplete "GroupBy Elements Autocomplete README").
 
 \`\`\`html
 <gbe-autocomplete></gbe-autocomplete>

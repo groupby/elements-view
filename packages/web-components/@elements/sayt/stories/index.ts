@@ -27,7 +27,7 @@ import {
 
 const saytNotesMarkdownIntro = ` # GroupBy Elements SAYT Component
 
-[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/sayt "GroupBy Elements SAYT README").
+[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40elements/sayt "GroupBy Elements SAYT README").
 
 \`\`\`html
 <gbe-sayt

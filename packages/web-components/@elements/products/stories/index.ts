@@ -24,7 +24,7 @@ function getProductsComponent(productsArray: Product[] = [], componentSuffix: st
 
 const productsNotesMarkdownIntro = ` # GroupBy Elements Products Component
 
-[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "GroupBy Elements Products README").
+[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40elements/products "GroupBy Elements Products README").
 
 \`\`\`html
 <gbe-products-base></gbe-products-base>
@@ -99,7 +99,7 @@ storiesOf('Components|Products', module)
         markdown: `
           # GroupBy Elements Products Sayt Component
 
-          [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "GroupBy Elements Products README").
+          [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40elements/products "GroupBy Elements Products README").
 
           \`\`\`html
           <gbe-products-sayt></gbe-products-sayt>
@@ -144,7 +144,7 @@ storiesOf('Components|Products', module)
         markdown: `
           # GroupBy Elements Products Sayt Component
 
-          [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "GroupBy Elements Products README").
+          [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40elements/products "GroupBy Elements Products README").
 
           \`\`\`html
           <gbe-products></gbe-products>

@@ -13,7 +13,7 @@ const updateTextEvent = [
 
 const searchboxNotesMarkdownIntro = `# GB Elements Search Box Component
 
-[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/search-box "GB Elements Search Box README").
+[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40elements/search-box "GB Elements Search Box README").
 
   \`\`\`html
   <gbe-search-box placeholder="Search Here" searchbutton clearbutton></gbe-search-box>

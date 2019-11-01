@@ -25,7 +25,7 @@ storiesOf('Components|Product', module)
         markdown: `
         # GroupBy Elements Product Component
 
-        [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/product "GB Elements Product README").
+        [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40elements/product "GB Elements Product README").
 
         \`\`\`html
         <gbe-product></gbe-product>
