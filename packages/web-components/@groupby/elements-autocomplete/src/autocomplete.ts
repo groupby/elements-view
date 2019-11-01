@@ -59,8 +59,8 @@ export default class Autocomplete extends Base {
   protected componentId = shortid.generate();
 
   /**
-   * Constructs an instance of Autocomplete.
-   * Binds receivedResults function to the class.
+   * Constructs an instance of `Autocomplete`.
+   * This constructor also binds various methods to this instance.
    */
   constructor() {
     super();
