@@ -1,7 +1,7 @@
 {
   "name": "elements-view",
   "version": "0.0.0",
-  "description": "SF-X View SDK containing pre-built web components for for creating e-commerce application interfaces.",
+  "description": "GroupBy Elements View SDK containing pre-built web components for for creating e-commerce application interfaces.",
   "private": true,
   "workspaces": [
     ".storybook/*",
