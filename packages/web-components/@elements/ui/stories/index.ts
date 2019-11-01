@@ -39,7 +39,7 @@ storiesOf('UI|List', module)
       notes: {
         markdown: `# GB Elements List Component
 
-        [Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/ui "GB Elements List README")
+        [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/ui "GB Elements List README")
 
         \`\`\`html
         <gbe-list

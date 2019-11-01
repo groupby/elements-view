@@ -24,7 +24,7 @@ function getProductsComponent(productsArray: Product[] = [], componentSuffix: st
 
 const productsNotesMarkdownIntro = ` # SF-X Products Component
 
-[Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
+[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
 
 \`\`\`html
 <gbe-products-base></gbe-products-base>
@@ -99,7 +99,7 @@ storiesOf('Components|Products', module)
         markdown: `
           # SF-X Products Sayt Component
 
-          [Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
+          [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
 
           \`\`\`html
           <gbe-products-sayt></gbe-products-sayt>
@@ -144,7 +144,7 @@ storiesOf('Components|Products', module)
         markdown: `
           # SF-X Products Sayt Component
 
-          [Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
+          [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/products "SF-X Products README").
 
           \`\`\`html
           <gbe-products></gbe-products>

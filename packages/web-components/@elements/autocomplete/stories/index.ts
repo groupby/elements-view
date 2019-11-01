@@ -16,7 +16,7 @@ import '../src/index';
 const autocompleteNotesIntro = `
 # SF-X Autocomplete Component
 
-[Package README](https://github.com/groupby/gbe-view/tree/master/packages/web-components/%40sfx/autocomplete "SF-X Autocomplete README").
+[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40sfx/autocomplete "SF-X Autocomplete README").
 
 \`\`\`html
 <gbe-autocomplete></gbe-autocomplete>

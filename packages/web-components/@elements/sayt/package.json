@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/groupby/gbe-view.git",
+    "url": "https://github.com/groupby/elements-view.git",
     "directory": "packages/web-components/@elements/sayt"
   },
   "author": "",
