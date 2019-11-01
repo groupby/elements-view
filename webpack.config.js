@@ -8,7 +8,7 @@ module.exports = {
     components: [
       './presets/components.ts',
       './presets/gbe-bold-theme.scss',
-      './presets/sfx-elegant-theme.scss',
+      './presets/gbe-elegant-theme.scss',
     ],
 
   },

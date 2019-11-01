@@ -17,7 +17,7 @@ function loadStories() {
     cssresources: [
       {
         id: `Elegant Theme`,
-        code: `<link rel="stylesheet" type="text/css" href="/sfx-elegant-theme.css"></link>`,
+        code: `<link rel="stylesheet" type="text/css" href="/gbe-elegant-theme.css"></link>`,
         picked: true
       },
       {
