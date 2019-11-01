@@ -122,11 +122,11 @@
       // register all plugins with core
       core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 
-      window.addEventListener('sfx::sayt_products_response', (event) => {
+      window.addEventListener('gbe::sayt_products_response', (event) => {
         console.log(event.type, event.detail);
       });
 
-      window.addEventListener('sfx::sayt_products_error', (event) => {
+      window.addEventListener('gbe::sayt_products_error', (event) => {
         console.log(event.type, event.detail);
       });
     </script>
