@@ -8,7 +8,7 @@ import {
 import {
   Product as ProductModel,
   ProductVariant,
-} from '@elements/events';
+} from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@elements/base';
 import { toLowerCaseKebab } from './utils';

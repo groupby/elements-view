@@ -9,7 +9,7 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SEARCHBOX_INPUT,
-} from '@elements/events';
+} from '@groupby/elements-events';
 import {
   expect,
   sinon,

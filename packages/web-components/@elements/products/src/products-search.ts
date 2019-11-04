@@ -3,7 +3,7 @@ import {
   SEARCH_RESPONSE,
   Product,
   SearchResponsePayload,
-} from '@elements/events';
+} from '@groupby/elements-events';
 import { ProductsBase } from '.';
 
 /**

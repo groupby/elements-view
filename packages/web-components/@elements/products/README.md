@@ -36,7 +36,7 @@ Ex.
 
 The Sayt version of the Products component is used inside of a Sayt component. It is extended from the `gbe-products-base` component.
 
-This component listens for and dispatches a number of events. These events are defined in the [`@elements/events`][elements-events] package.
+This component listens for and dispatches a number of events. These events are defined in the [`@groupby/elements-events`][elements-events] package.
 
 ### Received Events
 
@@ -50,7 +50,7 @@ Upon receiving this event, the `gbe-products-sayt` component will populate the `
 
 The Search version of the Products component is used to display search results. It is extended from the `gbe-products-base` component.
 
-This component listens for and dispatches a number of events. These events are defined in the [`@elements/events`][elements-events] package.
+This component listens for and dispatches a number of events. These events are defined in the [`@groupby/elements-events`][elements-events] package.
 
 ### Received Events
 

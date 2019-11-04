@@ -13,7 +13,7 @@ import {
   SAYT_HIDE,
   SAYT_SHOW,
   AutocompleteResponsePayload,
-} from '@elements/events';
+} from '@groupby/elements-events';
 import '../src';
 import {
   generateAutocompleteResultsEvent,

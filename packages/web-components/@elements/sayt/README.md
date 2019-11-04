@@ -15,7 +15,7 @@ will change the autocomplete selection if `hideAutocomplete` is not enabled.
 
 ### Received Events
 
-This component listens for a number of events. These events are defined in the [`@elements/events`][elements-events] package.
+This component listens for a number of events. These events are defined in the [`@groupby/elements-events`][elements-events] package.
 
 #### `SAYT_HIDE`
 
@@ -47,7 +47,7 @@ Upon receiving this event, the `sayt` component will dispatch requests for SAYT 
 
 ### DISPATCHED EVENTS
 
-This component dispatches a number of events. These events are defined in the [`@elements/events`][elements-events] package.
+This component dispatches a number of events. These events are defined in the [`@groupby/elements-events`][elements-events] package.
 
 #### `AUTOCOMPLETE_REQUEST`
 

@@ -4,7 +4,7 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SEARCH_RESPONSE,
   Product,
-} from '@elements/events';
+} from '@groupby/elements-events';
 import {
   getDisplayCode,
   getProducts,

@@ -6,7 +6,7 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { Product } from '@elements/events';
+import { Product } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@elements/base';
 

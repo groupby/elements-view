@@ -6,7 +6,7 @@ import {
   SEARCHBOX_INPUT,
   SEARCH_REQUEST,
   UPDATE_SEARCH_TERM,
-} from '@elements/events';
+} from '@groupby/elements-events';
 import {
   expect,
   stub,

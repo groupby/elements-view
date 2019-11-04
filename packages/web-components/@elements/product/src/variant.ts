@@ -6,7 +6,7 @@ import {
 } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@elements/base';
-import { ProductVariant } from '@elements/events';
+import { ProductVariant } from '@groupby/elements-events';
 
 /**
  * A product variant component that displays a thumbnail of a product variant.

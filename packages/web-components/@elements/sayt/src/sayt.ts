@@ -20,7 +20,7 @@ import {
   AutocompleteActiveTermPayload,
   SearchboxInputPayload,
   WithGroup,
-} from '@elements/events';
+} from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@elements/base';
 

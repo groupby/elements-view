@@ -4,7 +4,7 @@ import {
   AUTOCOMPLETE_RESPONSE,
   AutocompleteResultGroup,
   AutocompleteSearchTermItem,
-} from '@elements/events';
+} from '@groupby/elements-events';
 import {
   getDisplayCode,
   generateAutocompleteResultsEvent,

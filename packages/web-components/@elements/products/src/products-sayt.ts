@@ -3,7 +3,7 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   Product,
   SaytProductsResponsePayload,
-} from '@elements/events';
+} from '@groupby/elements-events';
 import { ProductsBase } from '.';
 
 /**

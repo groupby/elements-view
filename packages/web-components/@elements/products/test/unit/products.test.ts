@@ -1,4 +1,4 @@
-import { SAYT_PRODUCTS_RESPONSE, SEARCH_RESPONSE } from '@elements/events';
+import { SAYT_PRODUCTS_RESPONSE, SEARCH_RESPONSE } from '@groupby/elements-events';
 import {
   expect,
   sinon,

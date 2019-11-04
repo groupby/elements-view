@@ -9,4 +9,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SFX-152: Added the autocomplete component.
   - This component renders a list of autocomplete terms.
   - SFX-333: The component emits an event when an autocomplete term is hovered.
-  - SFX-248: The `@elements/events` package is used for event names and payload interfaces.
+  - SFX-248: The `@groupby/elements-events` package is used for event names and payload interfaces.

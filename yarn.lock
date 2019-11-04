@@ -643,13 +643,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@elements/events@groupby/elements-events#c4a4853a424992db9c170fea6990dc2a52c3061e":
-  version "0.0.0"
-  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/c4a4853a424992db9c170fea6990dc2a52c3061e"
-  dependencies:
-    groupby-api "^2.6.2"
-    sayt "^0.1.9"
-
 "@emotion/cache@^10.0.17", "@emotion/cache@^10.0.9":
   version "10.0.19"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.19.tgz#d258d94d9c707dcadaf1558def968b86bb87ad71"
@@ -751,6 +744,13 @@
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.4.tgz#622a72bebd1e3f48d921563b4b60a762295a81fc"
   integrity sha512-6PYY5DVdAY1ifaQW6XYTnOMihmBVT27elqSjEoodchsGjzYlEsTQMcEhSud99kVawatyTZRTiVkJ/c6lwbQ7nA==
+
+"@groupby/elements-events@groupby/elements-events#c4a4853a424992db9c170fea6990dc2a52c3061e":
+  version "0.0.0"
+  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/c4a4853a424992db9c170fea6990dc2a52c3061e"
+  dependencies:
+    groupby-api "^2.6.2"
+    sayt "^0.1.9"
 
 "@icons/material@^0.2.4":
   version "0.2.4"

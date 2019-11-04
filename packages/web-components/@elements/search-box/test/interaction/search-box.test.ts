@@ -1,4 +1,4 @@
-import { SEARCH_REQUEST } from '@elements/events';
+import { SEARCH_REQUEST } from '@groupby/elements-events';
 import { expect, waitForUpdateComplete } from '../utils';
 import SearchBox from '../../src/search-box';
 
