@@ -109,7 +109,11 @@
       }
 
       function searchProductTransformer(record) {
-        return { label: record.title };
+        console.log(record);
+        return {
+          label: record.title,
+          price: record.allMeta.visualVariants[0].nonvisualVariants[0].retailPrice,
+        };
       }
 
       // init core and plugins
