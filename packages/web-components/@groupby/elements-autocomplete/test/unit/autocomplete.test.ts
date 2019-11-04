@@ -1,12 +1,17 @@
 import { TemplateResult } from 'lit-element';
-import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM, CACHE_REQUEST } from '@groupby/elements-events';
+import {
+  AUTOCOMPLETE_RESPONSE,
+  AUTOCOMPLETE_ACTIVE_TERM,
+  CACHE_REQUEST,
+  CACHE_RESPONSE_PREFIX,
+} from '@groupby/elements-events';
 import {
   expect,
   stub,
   itShouldExtendBase,
   itShouldCallParentMethod,
 } from '../utils';
-import Autocomplete, { INITIAL_DATA_RESPONSE_EVENT } from '../../src/autocomplete';
+import Autocomplete from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
@@ -43,12 +48,12 @@ describe('Autcomplete Component', () => {
     });
   });
 
-  describe('getInitialDataResponseEvent()', () => {
+  describe('initialDataResponseEventName', () => {
     it('should return an event name for receiving initial data', () => {
       const componentId = autocomplete.componentId = 'some-id';
-      const expectedName = `${INITIAL_DATA_RESPONSE_EVENT}::${componentId}`;
+      const expectedName = `${CACHE_RESPONSE_PREFIX}autocomplete-${componentId}`;
 
-      const eventName = autocomplete.getInitialDataResponseEvent();
+      const eventName = autocomplete.initialDataResponseEventName;
 
       expect(eventName).to.equal(expectedName);
     });
@@ -62,7 +67,7 @@ describe('Autcomplete Component', () => {
     beforeEach(() => {
       windowAddEventListener = stub(window, 'addEventListener');
       requestInitialData = stub(autocomplete, 'requestInitialData');
-      stub(autocomplete, 'getInitialDataResponseEvent').returns(returnEvent);
+      stub(autocomplete, 'initialDataResponseEventName').get(() => returnEvent);
     });
 
     itShouldCallParentMethod(() => autocomplete, 'connectedCallback');
@@ -105,11 +110,11 @@ describe('Autcomplete Component', () => {
 
   describe('requestInitialData()', () => {
     const returnEvent = 'response-event-name';
-    let dispatchEvent;
+    let dispatchSfxEvent;
 
     beforeEach(() => {
-      dispatchEvent = stub(autocomplete, 'dispatchSfxEvent');
-      stub(autocomplete, 'getInitialDataResponseEvent').returns(returnEvent);
+      dispatchSfxEvent = stub(autocomplete, 'dispatchSfxEvent');
+      stub(autocomplete, 'initialDataResponseEventName').get(() => returnEvent);
     });
 
     it('should emit an event requesting initial data', () => {
@@ -119,7 +124,7 @@ describe('Autcomplete Component', () => {
 
       autocomplete.requestInitialData();
 
-      expect(dispatchEvent).to.be.calledOnceWith(CACHE_REQUEST, payload);
+      expect(dispatchSfxEvent).to.be.calledOnceWith(CACHE_REQUEST, payload);
     });
   });
 

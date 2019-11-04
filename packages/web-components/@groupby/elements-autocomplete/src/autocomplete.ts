@@ -12,6 +12,7 @@ import {
   AUTOCOMPLETE_RESPONSE,
   AUTOCOMPLETE_ACTIVE_TERM,
   CACHE_REQUEST,
+  CACHE_RESPONSE_PREFIX,
   AutocompleteResponsePayload,
   AutocompleteResultGroup,
   AutocompleteActiveTermPayload,
@@ -78,7 +79,7 @@ export default class Autocomplete extends Base {
     super.connectedCallback();
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
-    window.addEventListener(this.getInitialDataResponseEvent(), this.receivedInitialData);
+    window.addEventListener(this.initialDataResponseEventName, this.receivedInitialData);
 
     const role = this.getAttribute('role');
     const roles = role ? role.split(' ') : [];
@@ -93,17 +94,17 @@ export default class Autocomplete extends Base {
   /**
    * Requests initial data for this component.
    */
-  requestInitialData() {
+  requestInitialData(): void {
     const payload: CacheRequestPayload = {
       name: AUTOCOMPLETE_RESPONSE,
       group: this.group,
-      returnEvent: this.getInitialDataResponseEvent(),
+      returnEvent: this.initialDataResponseEventName,
     };
     this.dispatchSfxEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 
-  getInitialDataResponseEvent() {
-    return `${INITIAL_DATA_RESPONSE_EVENT}::${this.componentId}`;
+  get initialDataResponseEventName(): string {
+    return `${CACHE_RESPONSE_PREFIX}autocomplete-${this.componentId}`;
   }
 
   /**
@@ -112,7 +113,7 @@ export default class Autocomplete extends Base {
   disconnectedCallback(): void {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
-    window.removeEventListener(this.getInitialDataResponseEvent(), this.receivedInitialData);
+    window.removeEventListener(this.initialDataResponseEventName, this.receivedInitialData);
   }
 
   /**
@@ -296,5 +297,3 @@ export default class Autocomplete extends Base {
     `;
   }
 }
-
-export const INITIAL_DATA_RESPONSE_EVENT = 'sfx::initial_data_response::autocomplete';
