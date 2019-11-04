@@ -39,9 +39,9 @@ defaults:
       cp .circleci/prepare-commit-msg .git/hooks/prepare-commit-msg
       chmod +x .git/hooks/prepare-commit-msg
 
-  requires_build_ui: &requires_build_ui
+  requires_build_elements_ui: &requires_build_elements_ui
     requires:
-      - build_ui
+      - build_elements_ui
   requires_build_final: &requires_build_final
     requires:
       - build_final
@@ -113,25 +113,25 @@ jobs:
       - attach_workspace:
           at: /home/circleci
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_autocomplete-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_autocomplete-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_base-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_base-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_product-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_product-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_products-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_products-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_sayt-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_box-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_search_box-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_ui-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_ui-
       - run: *extract_build_archive
       - run: *archive_build
       - save_cache:
@@ -249,45 +249,45 @@ workflows:
               ignore: /release\/.*/
 
       - build:
-          name: build_base
+          name: build_elements_base
           requires:
             - generate_cache_key_file
       - build:
-          name: build_ui
+          name: build_elements_ui
           requires:
-            - build_base
+            - build_elements_base
 
       - build:
-          name: build_autocomplete
+          name: build_elements_autocomplete
           requires:
-            - build_ui
+            - build_elements_ui
       - build:
-          name: build_product
+          name: build_elements_product
           requires:
-            - build_ui
+            - build_elements_ui
       - build:
-          name: build_search_box
+          name: build_elements_search_box
           requires:
-            - build_ui
+            - build_elements_ui
       - collect_builds:
           name: collect_independent_builds
           requires:
-            - build_autocomplete
-            - build_product
-            - build_search_box
+            - build_elements_autocomplete
+            - build_elements_product
+            - build_elements_search_box
 
       - build:
-          name: build_products
+          name: build_elements_products
           requires:
             - collect_independent_builds
       - build:
-          name: build_sayt
+          name: build_elements_sayt
           requires:
-            - build_products
+            - build_elements_products
       - collect_builds:
           name: build_final
           requires:
-            - build_sayt
+            - build_elements_sayt
 
       - unit_test:
           name: unit_test_base
