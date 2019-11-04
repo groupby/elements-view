@@ -81,7 +81,7 @@ describe('Autcomplete Component', () => {
       );
       expect(windowAddEventListener).to.have.been.calledWith(
         returnEvent,
-        autocomplete.receivedInitialData
+        autocomplete.receiveInitialData
       );
     });
 
@@ -128,7 +128,7 @@ describe('Autcomplete Component', () => {
     });
   });
 
-  describe('receivedInitialData()', () => {
+  describe('receiveInitialData()', () => {
     it('should set initial data given an event', () => {
       // const cacheResponseEvent = new CustomEvent();
       const items = [
@@ -143,7 +143,7 @@ describe('Autcomplete Component', () => {
         }],
       }}};
 
-      autocomplete.receivedInitialData(cacheResponseEvent);
+      autocomplete.receiveInitialData(cacheResponseEvent);
 
       expect(autocomplete.results).to.deep.equal(cacheResponseEvent.detail.data.results);
     });

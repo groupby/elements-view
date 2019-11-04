@@ -68,7 +68,7 @@ export default class Autocomplete extends Base {
     this.receivedResults = this.receivedResults.bind(this);
     this.dispatchSelectedTerm = this.dispatchSelectedTerm.bind(this);
     this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
-    this.receivedInitialData = this.receivedInitialData.bind(this);
+    this.receiveInitialData = this.receiveInitialData.bind(this);
   }
 
   /**
@@ -79,7 +79,7 @@ export default class Autocomplete extends Base {
     super.connectedCallback();
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
-    window.addEventListener(this.initialDataResponseEventName, this.receivedInitialData);
+    window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
 
     const role = this.getAttribute('role');
     const roles = role ? role.split(' ') : [];
@@ -113,7 +113,7 @@ export default class Autocomplete extends Base {
   disconnectedCallback(): void {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
-    window.removeEventListener(this.initialDataResponseEventName, this.receivedInitialData);
+    window.removeEventListener(this.initialDataResponseEventName, this.receiveInitialData);
   }
 
   /**
@@ -165,7 +165,7 @@ export default class Autocomplete extends Base {
    *
    * @param event The event object.
    */
-  receivedInitialData(event: CustomEvent<CacheResponsePayload>): void {
+  receiveInitialData(event: CustomEvent<CacheResponsePayload>): void {
     const data = event.detail.data || {};
     this.results = data.results || [];
   }
