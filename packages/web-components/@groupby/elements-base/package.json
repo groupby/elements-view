@@ -1,5 +1,5 @@
 {
-  "name": "@elements/search-box",
+  "name": "@groupby/elements-base",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -10,25 +10,19 @@
     "dev": "nodemon --config ../../../../nodemon.json --exec npm run build",
     "tdd": "karma start --no-single-run --auto-watch",
     "test": "karma start",
-    "tdd:interaction": "karma start interaction.karma.conf.js --no-single-run --auto-watch",
-    "test:interaction": "karma start interaction.karma.conf.js",
-    "test:all": "ec=0; npm run test || ec=1; npm run test:interaction || ec=1; exit $ec",
     "lint:scripts": "eslint ./src/ --ext .ts --plugin only-warn",
     "lint:scripts:fix": "eslint ./src/ --fix --ext .ts --plugin only-warn",
-    "lint:stories": "eslint ./stories/ --no-eslintrc -c ../../../../.storybook/.eslintrc.js --ext .ts --plugin only-warn",
-    "lint:stories:fix": "eslint --fix ./stories/ --no-eslintrc -c ../../../../.storybook/.eslintrc.js --ext .ts --plugin only-warn",
     "lint:tests": "eslint ./test/ --ext .ts --no-eslintrc -c ../../../../scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
     "lint:tests:fix": "eslint ./test/ --fix --ext .ts --no-eslintrc -c ../../../../scripts/config/eslint/test/.eslintrc.js --plugin only-warn"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/groupby/elements-view.git",
-    "directory": "packages/web-components/@elements/search-box"
+    "directory": "packages/web-components/@groupby/elements-base"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@groupby/elements-events": "groupby/elements-events#c4a4853a424992db9c170fea6990dc2a52c3061e",
     "lit-element": "^2.2.0"
   }
 }

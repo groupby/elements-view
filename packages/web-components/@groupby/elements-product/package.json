@@ -1,5 +1,5 @@
 {
-  "name": "@elements/sayt",
+  "name": "@groupby/elements-product",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -20,18 +20,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/groupby/elements-view.git",
-    "directory": "packages/web-components/@elements/sayt"
+    "directory": "packages/web-components/@groupby/elements-product"
   },
   "author": "",
   "license": "MIT",
-  "devDependencies": {
-    "html-entities": "^1.2.1"
-  },
   "dependencies": {
     "@groupby/elements-events": "groupby/elements-events#c4a4853a424992db9c170fea6990dc2a52c3061e",
-    "@types/debounce": "^1.2.0",
-    "debounce": "^1.2.0",
-    "lit-element": "^2.2.0",
-    "shortid": "^2.2.15"
+    "lit-element": "^2.2.0"
   }
 }

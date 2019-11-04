@@ -8,7 +8,7 @@ import {
 } from 'lit-element';
 import { Product } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@elements/base';
+import { Base } from '@groupby/elements-base';
 
 /**
  * The `gbe-products-base` web component wraps and renders a number of

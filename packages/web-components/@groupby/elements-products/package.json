@@ -1,5 +1,5 @@
 {
-  "name": "@elements/products",
+  "name": "@groupby/elements-products",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -20,7 +20,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/groupby/elements-view.git",
-    "directory": "packages/web-components/@elements/products"
+    "directory": "packages/web-components/@groupby/elements-products"
   },
   "author": "",
   "license": "MIT",

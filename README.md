@@ -18,7 +18,7 @@ Run the `./scripts/setup.sh` script to build all of the Elements-View packages.
 ```
 
 ## Commands
-The following commands are run in the context of an individual package contained within the Elements-View monorepo. The individual Web component packages can be found within the [`packages/web-components/@elements`](packages/web-components/@elements) directory.
+The following commands are run in the context of an individual package contained within the Elements-View monorepo. The individual Web component packages can be found within the [`packages/web-components/@groupby`](packages/web-components/@groupby) directory.
 
 ### Building packages
 To build an individual package, run the following command:
@@ -120,7 +120,7 @@ This project ships with an [ESLint](https://eslint.org/) configuration to enforc
 
 ### Package-specific linting
 
-The following commands are run in the context of an individual package contained within the Elements-View monorepo. The individual web component packages can be found within the [`packages/web-components/@elements`](packages/web-components/@elements) directory.
+The following commands are run in the context of an individual package contained within the Elements-View monorepo. The individual web component packages can be found within the [`packages/web-components/@groupby`](packages/web-components/@groupby) directory.
 
 To lint files for an individual package, navigate to its directory and use one of the following commands.
 
@@ -204,7 +204,7 @@ yarn storybook
 To create a new story, in the component directory create a new directory called `stories/` and in that directory write the stories in `index.ts`.
 
 ```
-/packages/web-components/@elements/
+/packages/web-components/@groupby/
 |-- component
 |   |-- src
 |   |   |-- index.ts

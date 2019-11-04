@@ -18,7 +18,7 @@ import {
   UpdateSearchTermPayload,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@elements/base';
+import { Base } from '@groupby/elements-base';
 
 /**
  * This entity is responsible for receiving user input and dispatching events
