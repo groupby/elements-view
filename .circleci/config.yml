@@ -312,7 +312,7 @@ workflows:
           <<: *requires_build_final
 
       - interaction_test:
-          name: interaction_test_search_box
+          name: interaction_test_elements_search_box
           <<: *requires_build_final
 
       - test_final:
@@ -324,7 +324,7 @@ workflows:
             - unit_test_elements_products
             - unit_test_elements_sayt
             - unit_test_elements_search_box
-            - interaction_test_search_box
+            - interaction_test_elements_search_box
 
       - lint:
           requires:
