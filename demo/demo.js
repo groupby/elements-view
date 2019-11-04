@@ -74,10 +74,12 @@ const searchDriverPlugin = new GbElementsPlugins.SearchDriverPlugin({ productTra
 // register all plugins with core
 core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 
-window.addEventListener('gbe::sayt_products_response', (event) => {
-  console.log(event.type, event.detail);
-});
-
-window.addEventListener('gbe::sayt_products_error', (event) => {
-  console.log(event.type, event.detail);
+[
+  'gbe::cache_request',
+  'gbe::sayt_products_response',
+  'gbe::sayt_products_error',
+].forEach((eventName) => {
+  window.addEventListener(eventName, (event) => {
+    console.log(event.type, event.detail);
+  });
 });
