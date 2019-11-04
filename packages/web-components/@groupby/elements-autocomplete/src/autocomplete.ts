@@ -268,8 +268,7 @@ export default class Autocomplete extends Base {
   }
 
   /**
-   * Renders results data in a list format using the `gbe-list` custom
-   * element.
+   * Renders results data in a list format.
    */
   render(): TemplateResult {
     const caption = this.caption && this.results.length > 0
