@@ -1,4 +1,4 @@
-# GB Elements Search Box Component
+# GroupBy Elements Search Box Component
 
 ## Functionality
 

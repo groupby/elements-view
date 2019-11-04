@@ -1,4 +1,4 @@
-# GB Elements Products Component
+# GroupBy Elements Products Component
 
 The Products component acts as a wrapper around a series of individual
 `gbe-product` components. It uses a list of information about products

@@ -1,4 +1,4 @@
-# Elements Autocomplete Component
+# GroupBy Elements Autocomplete Component
 
 ## Functionality
 

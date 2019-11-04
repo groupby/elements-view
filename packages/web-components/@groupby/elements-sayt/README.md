@@ -1,4 +1,4 @@
-# GB Elements SAYT (Search As You Type) Component
+# GroupBy Elements SAYT (Search As You Type) Component
 
 ## Functionality
 
