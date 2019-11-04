@@ -160,8 +160,8 @@ export default class Autocomplete extends Base {
   }
 
   /**
-   * Receives an event for populating initial data. Intended to be
-   * used on instantiation of this component.
+   * Receives an event for populating initial data.
+   * Intended to be used on mount of this component.
    *
    * @param event The event object.
    */
