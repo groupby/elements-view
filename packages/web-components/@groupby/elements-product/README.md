@@ -1,4 +1,4 @@
- # GroubyBy Elements Product Component
+ # GroupBy Elements Product Component
 
 ```html
 <gbe-product product="{}"></gbe-product>
