@@ -290,25 +290,25 @@ workflows:
             - build_elements_sayt
 
       - unit_test:
-          name: unit_test_base
+          name: unit_test_elements_base
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_ui
+          name: unit_test_elements_ui
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_autocomplete
+          name: unit_test_elements_autocomplete
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_product
+          name: unit_test_elements_product
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_products
+          name: unit_test_elements_products
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_sayt
+          name: unit_test_elements_sayt
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_search_box
+          name: unit_test_elements_search_box
           <<: *requires_build_final
 
       - interaction_test:
@@ -317,13 +317,13 @@ workflows:
 
       - test_final:
           requires:
-            - unit_test_base
-            - unit_test_ui
-            - unit_test_autocomplete
-            - unit_test_product
-            - unit_test_products
-            - unit_test_sayt
-            - unit_test_search_box
+            - unit_test_elements_base
+            - unit_test_elements_ui
+            - unit_test_elements_autocomplete
+            - unit_test_elements_product
+            - unit_test_elements_products
+            - unit_test_elements_sayt
+            - unit_test_elements_search_box
             - interaction_test_search_box
 
       - lint:
