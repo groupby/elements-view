@@ -39,9 +39,9 @@ defaults:
       cp .circleci/prepare-commit-msg .git/hooks/prepare-commit-msg
       chmod +x .git/hooks/prepare-commit-msg
 
-  requires_build_elements_ui: &requires_build_elements_ui
+  requires_build_ui: &requires_build_ui
     requires:
-      - build_elements_ui
+      - build_ui
   requires_build_final: &requires_build_final
     requires:
       - build_final
@@ -94,7 +94,7 @@ jobs:
             package="${CIRCLE_JOB#build_}"
             package="${package//_/-}"
 
-            cd packages/*/"@groupby/${package}"
+            cd packages/*/"@groupby/elements-${package}"
             yarn build
       - run: *archive_build
       - save_cache:
@@ -113,25 +113,25 @@ jobs:
       - attach_workspace:
           at: /home/circleci
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_autocomplete-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_autocomplete-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_base-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_base-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_product-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_product-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_products-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_products-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_sayt-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_search_box-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_box-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_ui-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_ui-
       - run: *extract_build_archive
       - run: *archive_build
       - save_cache:
@@ -159,7 +159,7 @@ jobs:
             package="${CIRCLE_JOB#unit_test_}"
             package="${package//_/-}"
 
-            cd packages/*/"@groupby/${package}"
+            cd packages/*/"@groupby/elements-${package}"
             yarn test
 
   ### interaction_test: interaction_test_{package}
@@ -180,7 +180,7 @@ jobs:
             package="${CIRCLE_JOB#interaction_test_}"
             package="${package//_/-}"
 
-            cd packages/*/"@groupby/${package}"
+            cd packages/*/"@groupby/elements-${package}"
             yarn test:interaction
 
   ### test_final
@@ -249,82 +249,82 @@ workflows:
               ignore: /release\/.*/
 
       - build:
-          name: build_elements_base
+          name: build_base
           requires:
             - generate_cache_key_file
       - build:
-          name: build_elements_ui
+          name: build_ui
           requires:
-            - build_elements_base
+            - build_base
 
       - build:
-          name: build_elements_autocomplete
+          name: build_autocomplete
           requires:
-            - build_elements_ui
+            - build_ui
       - build:
-          name: build_elements_product
+          name: build_product
           requires:
-            - build_elements_ui
+            - build_ui
       - build:
-          name: build_elements_search_box
+          name: build_search_box
           requires:
-            - build_elements_ui
+            - build_ui
       - collect_builds:
           name: collect_independent_builds
           requires:
-            - build_elements_autocomplete
-            - build_elements_product
-            - build_elements_search_box
+            - build_autocomplete
+            - build_product
+            - build_search_box
 
       - build:
-          name: build_elements_products
+          name: build_products
           requires:
             - collect_independent_builds
       - build:
-          name: build_elements_sayt
+          name: build_sayt
           requires:
-            - build_elements_products
+            - build_products
       - collect_builds:
           name: build_final
           requires:
-            - build_elements_sayt
+            - build_sayt
 
       - unit_test:
-          name: unit_test_elements_base
+          name: unit_test_base
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_elements_ui
+          name: unit_test_ui
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_elements_autocomplete
+          name: unit_test_autocomplete
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_elements_product
+          name: unit_test_product
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_elements_products
+          name: unit_test_products
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_elements_sayt
+          name: unit_test_sayt
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_elements_search_box
+          name: unit_test_search_box
           <<: *requires_build_final
 
       - interaction_test:
-          name: interaction_test_elements_search_box
+          name: interaction_test_search_box
           <<: *requires_build_final
 
       - test_final:
           requires:
-            - unit_test_elements_base
-            - unit_test_elements_ui
-            - unit_test_elements_autocomplete
-            - unit_test_elements_product
-            - unit_test_elements_products
-            - unit_test_elements_sayt
-            - unit_test_elements_search_box
-            - interaction_test_elements_search_box
+            - unit_test_base
+            - unit_test_ui
+            - unit_test_autocomplete
+            - unit_test_product
+            - unit_test_products
+            - unit_test_sayt
+            - unit_test_search_box
+            - interaction_test_search_box
 
       - lint:
           requires:
