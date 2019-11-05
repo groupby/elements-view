@@ -28,7 +28,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@groupby/elements-events": "groupby/elements-events#c4a4853a424992db9c170fea6990dc2a52c3061e",
+    "@groupby/elements-events": "groupby/elements-events#710e5545802bcc4929b253add2677bd22561a758",
     "lit-element": "^2.2.0"
   }
 }
