@@ -747,7 +747,7 @@
 
 "@groupby/elements-events@groupby/elements-events#710e5545802bcc4929b253add2677bd22561a758":
   version "0.0.0"
-  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/c4a4853a424992db9c170fea6990dc2a52c3061e"
+  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/710e5545802bcc4929b253add2677bd22561a758"
   dependencies:
     groupby-api "^2.6.2"
     sayt "^0.1.9"
