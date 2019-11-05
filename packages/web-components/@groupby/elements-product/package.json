@@ -1,0 +1,31 @@
+{
+  "name": "@groupby/elements-product",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "esnext": "esnext/index.js",
+  "scripts": {
+    "build": "../../../../scripts/build.sh",
+    "dev": "nodemon --config ../../../../nodemon.json --exec npm run build",
+    "tdd": "karma start --no-single-run --auto-watch",
+    "test": "karma start",
+    "lint:scripts": "eslint ./src/ --ext .ts --plugin only-warn",
+    "lint:scripts:fix": "eslint ./src/ --fix --ext .ts --plugin only-warn",
+    "lint:stories": "eslint ./stories/ --no-eslintrc -c ../../../../.storybook/.eslintrc.js --ext .ts --plugin only-warn",
+    "lint:stories:fix": "eslint --fix ./stories/ --no-eslintrc -c ../../../../.storybook/.eslintrc.js --ext .ts --plugin only-warn",
+    "lint:tests": "eslint ./test/ --ext .ts --no-eslintrc -c ../../../../scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:fix": "eslint ./test/ --fix --ext .ts --no-eslintrc -c ../../../../scripts/config/eslint/test/.eslintrc.js --plugin only-warn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groupby/elements-view.git",
+    "directory": "packages/web-components/@groupby/elements-product"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@groupby/elements-events": "groupby/elements-events#710e5545802bcc4929b253add2677bd22561a758",
+    "lit-element": "^2.2.0"
+  }
+}

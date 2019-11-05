@@ -1,0 +1,38 @@
+gbe-sayt {
+  position: absolute;
+
+  .gbe-sayt-container {
+    border: 1px solid var(--gbe-color-border);
+    border-radius: var(--gbe-border-radius);
+    font-family: var(--gbe-font-default);
+  }
+
+  > button {
+    background: none;
+    border: none;
+    border-radius: var(--gbe-border-radius);
+    font-size: 20px;
+    line-height: 1;
+    padding: var(--gbe-spacing-default);
+    position: absolute;
+    right: 0;
+    top: -5px;
+
+    &:focus,
+    &:hover {
+      color: var(--gbe-color-primary);
+      transition: all 0.10s ease;
+    }
+  }
+
+  gbe-autocomplete {
+    border-right: 1px solid var(--gbe-color-border);
+    flex: 33%;
+    margin-right: -1px;
+    margin-top: -1px;
+  }
+
+  gbe-products-sayt {
+    flex: 66%;
+  }
+}

@@ -7,8 +7,8 @@ module.exports = {
   entry: {
     components: [
       './presets/components.ts',
-      './presets/sfx-bold-theme.scss',
-      './presets/sfx-elegant-theme.scss',
+      './presets/gbe-bold-theme.scss',
+      './presets/gbe-elegant-theme.scss',
     ],
 
   },

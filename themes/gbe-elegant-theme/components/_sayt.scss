@@ -1,0 +1,35 @@
+gbe-sayt {
+  position: absolute;
+
+  .gbe-sayt-container {
+    border: 1px solid var(--gbe-color-border);
+    font-family: var(--gbe-font-default);
+  }
+
+  > button {
+    background: none;
+    border: none;
+    line-height: 1;
+    padding: var(--gbe-spacing-default);
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    &:focus,
+    &:hover {
+      color: var(--gbe-color-primary);
+      transition: all 0.10s ease;
+    }
+  }
+
+  gbe-autocomplete {
+    border-right: 1px solid var(--gbe-color-border);
+    flex: 33%;
+    margin-right: -1px;
+    margin-top: -1px;
+  }
+
+  gbe-products-sayt {
+    flex: 66%;
+  }
+}

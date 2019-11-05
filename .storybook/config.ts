@@ -17,12 +17,12 @@ function loadStories() {
     cssresources: [
       {
         id: `Elegant Theme`,
-        code: `<link rel="stylesheet" type="text/css" href="/sfx-elegant-theme.css"></link>`,
+        code: `<link rel="stylesheet" type="text/css" href="/gbe-elegant-theme.css"></link>`,
         picked: true
       },
       {
         id: `Bold Theme`,
-        code: `<link rel="stylesheet" type="text/css" href="/sfx-bold-theme.css"></link>`,
+        code: `<link rel="stylesheet" type="text/css" href="/gbe-bold-theme.css"></link>`,
         picked: false
       }
     ]

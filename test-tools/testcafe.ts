@@ -1,11 +1,11 @@
 import { Selector } from 'testcafe';
 
-const searchbox = Selector('sfx-search-box#main-search');
-const input = Selector('sfx-search-box#main-search > input');
-const clearButton = Selector('.sfx-clear');
-const autocomplete = Selector('sfx-autocomplete');
+const searchbox = Selector('gbe-search-box#main-search');
+const input = Selector('gbe-search-box#main-search > input');
+const clearButton = Selector('.gbe-clear');
+const autocomplete = Selector('gbe-autocomplete');
 
-fixture`SFX Web Components Functional Testing`
+fixture`Elements Web Components Functional Testing`
   .page`../demo/demo.html`
   .beforeEach(async (t) => {
     // confirm searchbox exists
@@ -22,7 +22,7 @@ test('Searchbox input populates autocomplete terms and autocomplete products', a
   const autocompleteTermsList = autocomplete.child('ul');
   await t.expect(await autocompleteTermsList.childElementCount).gte(2, 'Autocomplete terms are present');
   // confirm autocomplete products are present
-  const autocompleteProductsList = Selector('sfx-products-sayt');
+  const autocompleteProductsList = Selector('gbe-products-sayt');
   await t.expect(await autocompleteProductsList.childElementCount).gte(2, 'Autocomplete products are present');
 });
 
@@ -47,6 +47,6 @@ test('Clear button clears searchbox input', async (t) => {
 test('Enter button triggers search', async (t) => {
   // confirm pressing enter does search and populates product grid
   await t.pressKey('enter');
-  const productsGrid = Selector('sfx-products');
+  const productsGrid = Selector('gbe-products');
   await t.expect(await productsGrid.childElementCount).gte(2, 'Products are present on products grid');
 });

@@ -1,0 +1,10 @@
+gbe-products-base,
+gbe-products-sayt,
+gbe-products {
+  padding: var(--gbe-spacing-product);
+
+  div.gbe-product-tile-wrapper {
+    padding: var(--gbe-spacing-product);
+    width: 33%;
+  }
+}

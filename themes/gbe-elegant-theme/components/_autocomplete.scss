@@ -1,0 +1,25 @@
+gbe-autocomplete {
+  color: var(--gbe-color-font);
+  font-family: var(--gbe-font-default);
+
+  h4 {
+    background-color: var(--gbe-color-background);
+    border-bottom: 1px solid var(--gbe-color-border);
+    border-top: 1px solid var(--gbe-color-border);
+    margin: 0;
+    padding: 0.5em 0.25em 0.25em;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    padding: 0.25em 0.5em;
+
+    &[aria-selected="true"] {
+      background-color: var(--gbe-color-primary);
+    }
+  }
+}
