@@ -226,7 +226,9 @@ jobs:
       - run: *git_submodule_install
       - run:
           name: Docs
-          command: yarn docs
+          command: |
+            rm -rf docs
+            yarn docs
       - run:
           name: Commit and push
           command: |
