@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@sfx/products | SF-X</title>
+	<title>@groupby/elements-products | GroupBy Elements</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">SF-X</a>
+					<a href="../index.html" class="title">GroupBy Elements</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,10 +56,10 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="_sfx_products.html">@sfx/products</a>
+					<a href="_groupby_elements_products.html">@groupby/elements-products</a>
 				</li>
 			</ul>
-			<h1>Package @sfx/products</h1>
+			<h1>Package @groupby/elements-products</h1>
 		</div>
 	</div>
 </header>
@@ -68,17 +68,17 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<h1 id="sf-x-products-component">SF-X Products Component</h1>
+					<h1 id="groupby-elements-products-component">GroupBy Elements Products Component</h1>
 					<p>The Products component acts as a wrapper around a series of individual
-						<code>sfx-product</code> components. It uses a list of information about products
+						<code>gbe-product</code> components. It uses a list of information about products
 					and passes each item to a single product for rendering.</p>
 					<p>There are three versions of the Products component:</p>
 					<ul>
-						<li><code>sfx-products-base</code></li>
-						<li><code>sfx-products-sayt</code></li>
-						<li><code>sfx-products</code></li>
+						<li><code>gbe-products-base</code></li>
+						<li><code>gbe-products-sayt</code></li>
+						<li><code>gbe-products</code></li>
 					</ul>
-					<h2 id="sfx-products-base">sfx-products-base</h2>
+					<h2 id="gbe-products-base">gbe-products-base</h2>
 					<h3 id="functionality">Functionality</h3>
 					<p>The base component can be used to display product data directly through attributes; however, it does not listen to any events for product data.</p>
 					<p><strong>NOTE:</strong> This component is not meant to be used directly, but is provided as an option to extend and create a custom Products component.</p>
@@ -86,24 +86,24 @@
 					<h4 id="group">Group</h4>
 					<p>This optional attribute will add a Products component to a grouping of related components that communicate with each other. The component will only act on events if they contain the same group name as the component. It can be used in any of the Products components.</p>
 					<p>Ex.</p>
-					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">sfx-products</span> <span class="hljs-attr">group</span>=<span class="hljs-string">"search-group-1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sfx-products</span>&gt;</span></code></pre>
+					<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">gbe-products</span> <span class="hljs-attr">group</span>=<span class="hljs-string">"search-group-1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">gbe-products</span>&gt;</span></code></pre>
 					<p><strong>NOTE:</strong> This attribute is unnecessary if there is only one group and sayt pairing and one product search results grid on the webpage.</p>
-					<h2 id="sfx-products-sayt">sfx-products-sayt</h2>
+					<h2 id="gbe-products-sayt">gbe-products-sayt</h2>
 					<h3 id="functionality-1">Functionality</h3>
-					<p>The Sayt version of the Products component is used inside of a Sayt component. It is extended from the <code>sfx-products-base</code> component.</p>
-					<p>This component listens for and dispatches a number of events. These events are defined in the <a href="https://github.com/groupby/sfx-events"><code>@sfx/events</code></a> package.</p>
+					<p>The Sayt version of the Products component is used inside of a Sayt component. It is extended from the <code>gbe-products-base</code> component.</p>
+					<p>This component listens for and dispatches a number of events. These events are defined in the <a href="https://github.com/groupby/elements-events"><code>@groupby/elements-events</code></a> package.</p>
 					<h3 id="received-events">Received Events</h3>
 					<h4 id="sayt_products_response"><code>SAYT_PRODUCTS_RESPONSE</code></h4>
-					<p>Upon receiving this event, the <code>sfx-products-sayt</code> component will populate the <code>products</code> property and render the data.</p>
-					<h2 id="sfx-products">sfx-products</h2>
+					<p>Upon receiving this event, the <code>gbe-products-sayt</code> component will populate the <code>products</code> property and render the data.</p>
+					<h2 id="gbe-products">gbe-products</h2>
 					<h3 id="functionality-2">Functionality</h3>
-					<p>The Search version of the Products component is used to display search results. It is extended from the <code>sfx-products-base</code> component.</p>
-					<p>This component listens for and dispatches a number of events. These events are defined in the <a href="https://github.com/groupby/sfx-events"><code>@sfx/events</code></a> package.</p>
+					<p>The Search version of the Products component is used to display search results. It is extended from the <code>gbe-products-base</code> component.</p>
+					<p>This component listens for and dispatches a number of events. These events are defined in the <a href="https://github.com/groupby/elements-events"><code>@groupby/elements-events</code></a> package.</p>
 					<h3 id="received-events-1">Received Events</h3>
 					<h4 id="search_response"><code>SEARCH_RESPONSE</code></h4>
-					<p>Upon receiving this event, the <code>sfx-products</code> component will populate the <code>products</code> property and render the data.</p>
+					<p>Upon receiving this event, the <code>gbe-products</code> component will populate the <code>products</code> property and render the data.</p>
 					<h2 id="testing">Testing</h2>
-					<p>The test suite for this package is contained in <code>/packages/web-components/@sfx/products/test</code>.
+					<p>The test suite for this package is contained in <code>/packages/web-components/@groupby/elements-products/test</code>.
 					To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:</p>
 					<ul>
 						<li><p>To run the tests once:</p>
@@ -122,21 +122,21 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_products.productsbase.html" class="tsd-kind-icon">Products<wbr>Base</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_products.productssayt.html" class="tsd-kind-icon">Products<wbr>Sayt</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_products.productssearch.html" class="tsd-kind-icon">Products<wbr>Search</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_groupby_elements_products.productsbase.html" class="tsd-kind-icon">Products<wbr>Base</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_groupby_elements_products.productssayt.html" class="tsd-kind-icon">Products<wbr>Sayt</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_groupby_elements_products.productssearch.html" class="tsd-kind-icon">Products<wbr>Search</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_sfx_products.html#productsnotesmarkdownintro" class="tsd-kind-icon">products<wbr>Notes<wbr>Markdown<wbr>Intro</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_groupby_elements_products.html#productsnotesmarkdownintro" class="tsd-kind-icon">products<wbr>Notes<wbr>Markdown<wbr>Intro</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_sfx_products.html#getproductscomponent" class="tsd-kind-icon">get<wbr>Products<wbr>Component</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_groupby_elements_products.html#getproductscomponent" class="tsd-kind-icon">get<wbr>Products<wbr>Component</a></li>
 							</ul>
 						</section>
 					</div>
@@ -147,10 +147,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 					<a name="productsnotesmarkdownintro" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> products<wbr>Notes<wbr>Markdown<wbr>Intro</h3>
-					<div class="tsd-signature tsd-kind-icon">products<wbr>Notes<wbr>Markdown<wbr>Intro<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">" # SF-X Products Component[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/products &quot;SF-X Products README&quot;).&#x60;&#x60;&#x60;html&lt;sfx-products-base&gt;&lt;/sfx-products-base&gt;&#x60;&#x60;&#x60;## Demonstrated in this story"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60; # SF-X Products Component[Package README](https://github.com/groupby/sfx-view/tree/master/packages/web-components/%40sfx/products &quot;SF-X Products README&quot;).\&#x60;\&#x60;\&#x60;html&lt;sfx-products-base&gt;&lt;/sfx-products-base&gt;\&#x60;\&#x60;\&#x60;## Demonstrated in this story&#x60;</span></div>
+					<div class="tsd-signature tsd-kind-icon">products<wbr>Notes<wbr>Markdown<wbr>Intro<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">" # GroupBy Elements Products Component[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40elements/products &quot;GroupBy Elements Products README&quot;).&#x60;&#x60;&#x60;html&lt;gbe-products-base&gt;&lt;/gbe-products-base&gt;&#x60;&#x60;&#x60;## Demonstrated in this story"</span><span class="tsd-signature-symbol"> =&nbsp;&#x60; # GroupBy Elements Products Component[Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40elements/products &quot;GroupBy Elements Products README&quot;).\&#x60;\&#x60;\&#x60;html&lt;gbe-products-base&gt;&lt;/gbe-products-base&gt;\&#x60;\&#x60;\&#x60;## Demonstrated in this story&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/4c40c4e/packages/web-components/@sfx/products/stories/index.ts#L25">packages/web-components/@sfx/products/stories/index.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/752e0ad/packages/web-components/@groupby/elements-products/stories/index.ts#L25">packages/web-components/@groupby/elements-products/stories/index.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,7 +167,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/4c40c4e/packages/web-components/@sfx/products/stories/index.ts#L17">packages/web-components/@sfx/products/stories/index.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/752e0ad/packages/web-components/@groupby/elements-products/stories/index.ts#L17">packages/web-components/@groupby/elements-products/stories/index.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -195,25 +195,25 @@
 						<span>Internals</span>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_autocomplete.html">@sfx/autocomplete</a>
+						<a href="_groupby_elements_autocomplete.html">@groupby/elements-<wbr>autocomplete</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_base.html">@sfx/base</a>
+						<a href="_groupby_elements_base.html">@groupby/elements-<wbr>base</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_product.html">@sfx/product</a>
+						<a href="_groupby_elements_product.html">@groupby/elements-<wbr>product</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_products.html">@sfx/products</a>
+						<a href="_groupby_elements_products.html">@groupby/elements-<wbr>products</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt.html">@sfx/sayt</a>
+						<a href="_groupby_elements_sayt.html">@groupby/elements-<wbr>sayt</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_box.html">@sfx/search-<wbr>box</a>
+						<a href="_groupby_elements_search_box.html">@groupby/elements-<wbr>search-<wbr>box</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_ui.html">@sfx/ui</a>
+						<a href="_groupby_elements_ui.html">@groupby/elements-<wbr>ui</a>
 					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
@@ -229,46 +229,46 @@
 						<a href="__storybook_common_.html" class="tsd-kind-icon">".storybook/common"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_autocomplete.html" class="tsd-kind-icon">@sfx/autocomplete</a>
+						<a href="_groupby_elements_autocomplete.html" class="tsd-kind-icon">@groupby/elements-<wbr>autocomplete</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_base.html" class="tsd-kind-icon">@sfx/base</a>
+						<a href="_groupby_elements_base.html" class="tsd-kind-icon">@groupby/elements-<wbr>base</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_product.html" class="tsd-kind-icon">@sfx/product</a>
+						<a href="_groupby_elements_product.html" class="tsd-kind-icon">@groupby/elements-<wbr>product</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_products.html" class="tsd-kind-icon">@sfx/products</a>
+						<a href="_groupby_elements_products.html" class="tsd-kind-icon">@groupby/elements-<wbr>products</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_products.productsbase.html" class="tsd-kind-icon">Products<wbr>Base</a>
+								<a href="../classes/_groupby_elements_products.productsbase.html" class="tsd-kind-icon">Products<wbr>Base</a>
 							</li>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_products.productssayt.html" class="tsd-kind-icon">Products<wbr>Sayt</a>
+								<a href="../classes/_groupby_elements_products.productssayt.html" class="tsd-kind-icon">Products<wbr>Sayt</a>
 							</li>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_products.productssearch.html" class="tsd-kind-icon">Products<wbr>Search</a>
+								<a href="../classes/_groupby_elements_products.productssearch.html" class="tsd-kind-icon">Products<wbr>Search</a>
 							</li>
 							<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="_sfx_products.html#productsnotesmarkdownintro" class="tsd-kind-icon">products<wbr>Notes<wbr>Markdown<wbr>Intro</a>
+								<a href="_groupby_elements_products.html#productsnotesmarkdownintro" class="tsd-kind-icon">products<wbr>Notes<wbr>Markdown<wbr>Intro</a>
 							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="_sfx_products.html#getproductscomponent" class="tsd-kind-icon">get<wbr>Products<wbr>Component</a>
+								<a href="_groupby_elements_products.html#getproductscomponent" class="tsd-kind-icon">get<wbr>Products<wbr>Component</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt.html" class="tsd-kind-icon">@sfx/sayt</a>
+						<a href="_groupby_elements_sayt.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_box.html" class="tsd-kind-icon">@sfx/search-<wbr>box</a>
+						<a href="_groupby_elements_search_box.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>box</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_ui.html" class="tsd-kind-icon">@sfx/ui</a>
+						<a href="_groupby_elements_ui.html" class="tsd-kind-icon">@groupby/elements-<wbr>ui</a>
 					</li>
 				</ul>
 			</nav>

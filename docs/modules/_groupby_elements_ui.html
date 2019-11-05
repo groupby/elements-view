@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@sfx/product | SF-X</title>
+	<title>@groupby/elements-ui | GroupBy Elements</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">SF-X</a>
+					<a href="../index.html" class="title">GroupBy Elements</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,60 +56,16 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="_sfx_product.html">@sfx/product</a>
+					<a href="_groupby_elements_ui.html">@groupby/elements-ui</a>
 				</li>
 			</ul>
-			<h1>Package @sfx/product</h1>
+			<h1>Package @groupby/elements-ui</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<h1 id="sf-x-product-component">SF-X Product Component</h1>
-					<pre><code class="language-html"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">sfx-product</span> <span class="hljs-attr">product</span>=<span class="hljs-string">"</span></span></span><span class="hljs-template-variable">{}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">sfx-product</span>&gt;</span></span></code></pre>
-					<p>The product component will display information about a given product.</p>
-					<h2 id="functionality">Functionality</h2>
-					<p>The component takes one <code>product</code> attribute (refer to the <code>ProductModel</code> instance for the data format).</p>
-					<pre><code class="language-js">{
-  <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Product Name"</span>,
-  <span class="hljs-attr">"price"</span>: <span class="hljs-number">3.55</span>,
-  <span class="hljs-attr">"productUrl"</span>: <span class="hljs-string">"http://example.com/img.jpg"</span>,
-  <span class="hljs-attr">"imageSrc"</span>: <span class="hljs-string">"http://example.com/img.jpg"</span>,
-  <span class="hljs-attr">"imageAlt"</span>: <span class="hljs-string">"Alternative image text"</span>
-}</code></pre>
-					<h2 id="customizations">Customizations</h2>
-					<p>Optionally the product can use <code>variants</code> to display different information based on what variant is selected (refer to the <code>ProductVariantsModel</code> instance for the data format).</p>
-					<pre><code class="language-js">{
-  <span class="hljs-string">"variants"</span>: {
-    <span class="hljs-string">"type"</span>: <span class="hljs-string">"text"</span> // default, can be either <span class="hljs-string">"text"</span>, <span class="hljs-string">"image"</span>, <span class="hljs-string">"color"</span>
-    <span class="hljs-string">"items"</span>: [
-      {
-        <span class="hljs-string">"text"</span>: <span class="hljs-string">"Variant Label"</span>,
-        <span class="hljs-string">"product"</span>: {
-          // Data that will be overwritten in the product component
-        }
-      }
-    ]
-  }
-}
-</code></pre>
-					<p><strong>Any properties that are not identified in the ProductModel, will be rendered as additional <code>&lt;span&gt;</code> tags in the component.</strong></p>
-					<h2 id="testing">Testing</h2>
-					<p>The test suite for this component is contained in <code>test</code> directory.
-					To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:</p>
-					<ul>
-						<li>To run the tests once:</li>
-					</ul>
-					<pre><code class="language-sh">yarn <span class="hljs-built_in">test</span></code></pre>
-					<ul>
-						<li>To run the tests and watch the <code>src</code> and <code>test</code> directories for changes:</li>
-					</ul>
-					<pre><code class="language-sh"><span class="hljs-attribute">yarn tdd</span></code></pre>
-				</div>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -117,74 +73,56 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_product.product.html" class="tsd-kind-icon">Product</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_product.variant.html" class="tsd-kind-icon">Variant</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_groupby_elements_ui.list.html" class="tsd-kind-icon">List</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_groupby_elements_ui.html#items" class="tsd-kind-icon">items</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_sfx_product.html#getproductcomponent" class="tsd-kind-icon">get<wbr>Product<wbr>Component</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_sfx_product.html#tolowercasekebab" class="tsd-kind-icon">to<wbr>Lower<wbr>Case<wbr>Kebab</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_groupby_elements_ui.html#getlistcomponent" class="tsd-kind-icon">get<wbr>List<wbr>Component</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="items" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> items</h3>
+					<div class="tsd-signature tsd-kind-icon">items<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{label: &#x27;Pen&#x27;,},{label: &#x27;Headphones&#x27;,},{label: &#x27;Duck&#x27;,},{label: &#x27;Chocolate&#x27;,},]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/752e0ad/packages/web-components/@groupby/elements-ui/stories/index.ts#L6">packages/web-components/@groupby/elements-ui/stories/index.ts:6</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-					<a name="getproductcomponent" class="tsd-anchor"></a>
-					<h3>get<wbr>Product<wbr>Component</h3>
+					<a name="getlistcomponent" class="tsd-anchor"></a>
+					<h3>get<wbr>List<wbr>Component</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Product<wbr>Component<span class="tsd-signature-symbol">(</span>product<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Product</span>, codeSnippet<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>List<wbr>Component<span class="tsd-signature-symbol">(</span>codeSnippet<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/4c40c4e/packages/web-components/@sfx/product/stories/index.ts#L7">packages/web-components/@sfx/product/stories/index.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/752e0ad/packages/web-components/@groupby/elements-ui/stories/index.ts#L21">packages/web-components/@groupby/elements-ui/stories/index.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> product: <span class="tsd-signature-type">Product</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
-								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> codeSnippet: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="tolowercasekebab" class="tsd-anchor"></a>
-					<h3>to<wbr>Lower<wbr>Case<wbr>Kebab</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Lower<wbr>Case<wbr>Kebab<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/4c40c4e/packages/web-components/@sfx/product/src/utils.ts#L11">packages/web-components/@sfx/product/src/utils.ts:11</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p> Converts object properties to valid css classes. Makes
-									a string lowercase and replaces spaces with hyphens.</p>
-								</div>
-								<p> @param str The string to process.
-								@returns The lower case kebab string.</p>
-								<p> @internal</p>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>str: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -203,25 +141,25 @@
 						<span>Internals</span>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_autocomplete.html">@sfx/autocomplete</a>
+						<a href="_groupby_elements_autocomplete.html">@groupby/elements-<wbr>autocomplete</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_base.html">@sfx/base</a>
+						<a href="_groupby_elements_base.html">@groupby/elements-<wbr>base</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_product.html">@groupby/elements-<wbr>product</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_products.html">@groupby/elements-<wbr>products</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt.html">@groupby/elements-<wbr>sayt</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_box.html">@groupby/elements-<wbr>search-<wbr>box</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_product.html">@sfx/product</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_products.html">@sfx/products</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt.html">@sfx/sayt</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_box.html">@sfx/search-<wbr>box</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_ui.html">@sfx/ui</a>
+						<a href="_groupby_elements_ui.html">@groupby/elements-<wbr>ui</a>
 					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
@@ -237,44 +175,41 @@
 						<a href="__storybook_common_.html" class="tsd-kind-icon">".storybook/common"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_autocomplete.html" class="tsd-kind-icon">@sfx/autocomplete</a>
+						<a href="_groupby_elements_autocomplete.html" class="tsd-kind-icon">@groupby/elements-<wbr>autocomplete</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_base.html" class="tsd-kind-icon">@sfx/base</a>
+						<a href="_groupby_elements_base.html" class="tsd-kind-icon">@groupby/elements-<wbr>base</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_product.html" class="tsd-kind-icon">@groupby/elements-<wbr>product</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_products.html" class="tsd-kind-icon">@groupby/elements-<wbr>products</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_box.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>box</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_product.html" class="tsd-kind-icon">@sfx/product</a>
+						<a href="_groupby_elements_ui.html" class="tsd-kind-icon">@groupby/elements-<wbr>ui</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_product.product.html" class="tsd-kind-icon">Product</a>
+								<a href="../classes/_groupby_elements_ui.list.html" class="tsd-kind-icon">List</a>
 							</li>
-							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_product.variant.html" class="tsd-kind-icon">Variant</a>
+							<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+								<a href="_groupby_elements_ui.html#items" class="tsd-kind-icon">items</a>
 							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="_sfx_product.html#getproductcomponent" class="tsd-kind-icon">get<wbr>Product<wbr>Component</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="_sfx_product.html#tolowercasekebab" class="tsd-kind-icon">to<wbr>Lower<wbr>Case<wbr>Kebab</a>
+								<a href="_groupby_elements_ui.html#getlistcomponent" class="tsd-kind-icon">get<wbr>List<wbr>Component</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_products.html" class="tsd-kind-icon">@sfx/products</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt.html" class="tsd-kind-icon">@sfx/sayt</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_box.html" class="tsd-kind-icon">@sfx/search-<wbr>box</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_ui.html" class="tsd-kind-icon">@sfx/ui</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

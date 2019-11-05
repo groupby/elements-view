@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SaytRequester | SF-X</title>
+	<title>@groupby/elements-base | GroupBy Elements</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">SF-X</a>
+					<a href="../index.html" class="title">GroupBy Elements</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,13 +56,10 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_sfx_sayt.html">@sfx/sayt</a>
-				</li>
-				<li>
-					<a href="_sfx_sayt.saytrequester.html">SaytRequester</a>
+					<a href="_groupby_elements_base.html">@groupby/elements-base</a>
 				</li>
 			</ul>
-			<h1>Interface SaytRequester</h1>
+			<h1>Package @groupby/elements-base</h1>
 		</div>
 	</div>
 </header>
@@ -71,48 +68,39 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>The type of the callback expected to be passed to getDebounce.</p>
-					</div>
+					<h1 id="groupby-elements-base">GroupBy Elements Base</h1>
+					<h2 id="functionality">Functionality</h2>
+					<p>This class extends <a href="https://lit-element.polymer-project.org/">LitElement</a> and is the class that all components will extend.
+					Any shared functionality should be contained within this class.</p>
+					<h3 id="dispatching-events">Dispatching events</h3>
+					<p>This class contains a generic event dispatch function, <code>dispatchElementsEvent</code>. The <code>dispatchElementsEvent</code> function constructs a CustomEvent with payload properties that are common across the GB Elements components. This function can be used across all components that extend Base to dispatch events.</p>
+					<h3 id="rendering-the-light-dom">Rendering the light DOM</h3>
+					<p>All components that extend <code>Base</code> will render in the Light DOM.</p>
+					<h2 id="testing">Testing</h2>
+					<p>The test suite for this component is contained in the <code>test</code> directory.
+					To run the tests, navigate to this folder and use one of the following commands based on the desired testing flow:</p>
+					<ul>
+						<li>To run the tests once:</li>
+					</ul>
+					<pre><code class="language-sh">yarn <span class="hljs-built_in">test</span></code></pre>
+					<ul>
+						<li>To run the tests and watch the <code>src</code> and <code>test</code> directories for changes:</li>
+					</ul>
+					<pre><code class="language-sh"><span class="hljs-attribute">yarn tdd</span></code></pre>
 				</div>
 			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">SaytRequester</span>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, searchbox<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/groupby/sfx-view/blob/4c40c4e/packages/web-components/@sfx/sayt/src/sayt.ts#L613">packages/web-components/@sfx/sayt/src/sayt.ts:613</a></li>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_groupby_elements_base.base.html" class="tsd-kind-icon">Base</a></li>
 							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>The type of the callback expected to be passed to getDebounce.</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>query: <span class="tsd-signature-type">string</span></h5>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> searchbox: <span class="tsd-signature-type">string</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-					</li>
-				</ul>
+						</section>
+					</div>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -125,89 +113,68 @@
 						<span>Internals</span>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_autocomplete.html">@sfx/autocomplete</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_base.html">@sfx/base</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_product.html">@sfx/product</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_products.html">@sfx/products</a>
+						<a href="_groupby_elements_autocomplete.html">@groupby/elements-<wbr>autocomplete</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_sfx_sayt.html">@sfx/sayt</a>
+						<a href="_groupby_elements_base.html">@groupby/elements-<wbr>base</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_search_box.html">@sfx/search-<wbr>box</a>
+						<a href="_groupby_elements_product.html">@groupby/elements-<wbr>product</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_ui.html">@sfx/ui</a>
+						<a href="_groupby_elements_products.html">@groupby/elements-<wbr>products</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt.html">@groupby/elements-<wbr>sayt</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_box.html">@groupby/elements-<wbr>search-<wbr>box</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_ui.html">@groupby/elements-<wbr>ui</a>
 					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="../modules/__storybook_common_.html">".storybook/common"</a>
+						<a href="__storybook_common_.html">".storybook/common"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="../modules/__storybook_common_.html" class="tsd-kind-icon">".storybook/common"</a>
+						<a href="__storybook_common_.html" class="tsd-kind-icon">".storybook/common"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_autocomplete.html" class="tsd-kind-icon">@sfx/autocomplete</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_base.html" class="tsd-kind-icon">@sfx/base</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_product.html" class="tsd-kind-icon">@sfx/product</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_products.html" class="tsd-kind-icon">@sfx/products</a>
+						<a href="_groupby_elements_autocomplete.html" class="tsd-kind-icon">@groupby/elements-<wbr>autocomplete</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_sfx_sayt.html" class="tsd-kind-icon">@sfx/sayt</a>
+						<a href="_groupby_elements_base.html" class="tsd-kind-icon">@groupby/elements-<wbr>base</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_sayt.sayt.html" class="tsd-kind-icon">Sayt</a>
-							</li>
-							<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_sfx_sayt.saytrequester.html" class="tsd-kind-icon">Sayt<wbr>Requester</a>
-							</li>
-							<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="../modules/_sfx_sayt.html#autocompletedatareceivedevent" class="tsd-kind-icon">autocomplete<wbr>Data<wbr>Received<wbr>Event</a>
-							</li>
-							<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="../modules/_sfx_sayt.html#saytnotesmarkdownintro" class="tsd-kind-icon">sayt<wbr>Notes<wbr>Markdown<wbr>Intro</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="../modules/_sfx_sayt.html#generatebasedata" class="tsd-kind-icon">generate<wbr>Base<wbr>Data</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="../modules/_sfx_sayt.html#generatesaythideevent" class="tsd-kind-icon">generate<wbr>Sayt<wbr>Hide<wbr>Event</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="../modules/_sfx_sayt.html#generatesaytshowevent" class="tsd-kind-icon">generate<wbr>Sayt<wbr>Show<wbr>Event</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="../modules/_sfx_sayt.html#getsayt" class="tsd-kind-icon">get<wbr>Sayt</a>
+								<a href="../classes/_groupby_elements_base.base.html" class="tsd-kind-icon">Base</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_search_box.html" class="tsd-kind-icon">@sfx/search-<wbr>box</a>
+						<a href="_groupby_elements_product.html" class="tsd-kind-icon">@groupby/elements-<wbr>product</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_ui.html" class="tsd-kind-icon">@sfx/ui</a>
+						<a href="_groupby_elements_products.html" class="tsd-kind-icon">@groupby/elements-<wbr>products</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_box.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>box</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_ui.html" class="tsd-kind-icon">@groupby/elements-<wbr>ui</a>
 					</li>
 				</ul>
 			</nav>
