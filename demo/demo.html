@@ -109,7 +109,6 @@
       }
 
       function searchProductTransformer(record) {
-        console.log(record);
         return {
           label: record.title,
           price: record.allMeta.visualVariants[0].nonvisualVariants[0].retailPrice,
