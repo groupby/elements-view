@@ -136,12 +136,7 @@ describe('Autcomplete Component', () => {
         { label: 'black dress' },
         { label: 'long dress' },
       ];
-      const cacheResponseEvent = { detail: { data: {
-        results: [{
-          items,
-          title: "",
-        }],
-      }}};
+      const cacheResponseEvent = { detail: { data: { results: [{ items, title: '' }] } } };
 
       autocomplete.receiveInitialData(cacheResponseEvent);
 
