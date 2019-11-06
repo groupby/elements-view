@@ -36,7 +36,7 @@
   </head>
 
   <body>
-    <gbe-search-box id="main-search" placeholder="search" clearbutton searchbutton></gbe-search-box>
+    <gbe-search-box id="main-search" placeholder="search" clearbutton searchbutton area="DemoMaster" collection="products"></gbe-search-box>
     <gbe-sayt searchbox="main-search" area="DemoMaster" collection="products"></gbe-sayt>
 
     <gbe-search-box
@@ -109,7 +109,10 @@
       }
 
       function searchProductTransformer(record) {
-        return { label: record.title };
+        return {
+          label: record.title,
+          price: record.allMeta.visualVariants[0].nonvisualVariants[0].retailPrice,
+        };
       }
 
       // init core and plugins
