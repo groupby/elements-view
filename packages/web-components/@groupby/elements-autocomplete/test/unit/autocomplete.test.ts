@@ -110,10 +110,10 @@ describe('Autcomplete Component', () => {
 
   describe('requestInitialData()', () => {
     const returnEvent = 'response-event-name';
-    let dispatchSfxEvent;
+    let dispatchElementsEvent;
 
     beforeEach(() => {
-      dispatchSfxEvent = stub(autocomplete, 'dispatchSfxEvent');
+      dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
       stub(autocomplete, 'initialDataResponseEventName').get(() => returnEvent);
     });
 
@@ -124,7 +124,7 @@ describe('Autcomplete Component', () => {
 
       autocomplete.requestInitialData();
 
-      expect(dispatchSfxEvent).to.be.calledOnceWith(CACHE_REQUEST, payload);
+      expect(dispatchElementsEvent).to.be.calledOnceWith(CACHE_REQUEST, payload);
     });
   });
 

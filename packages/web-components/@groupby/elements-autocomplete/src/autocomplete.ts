@@ -100,7 +100,7 @@ export default class Autocomplete extends Base {
       group: this.group,
       returnEvent: this.initialDataResponseEventName,
     };
-    this.dispatchSfxEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
+    this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 
   get initialDataResponseEventName(): string {
