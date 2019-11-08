@@ -1,16 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
 
-function resolve(dir) {
-  console.log('in resolve', path.join(__dirname, '..', dir));
-  return path.join(__dirname, '..', dir);
-}
-console.log('path.resolve', path.resolve(__dirname, 'tests'));
 module.exports = {
   mode: 'development',
 
   entry: {
-    components: ['./presets/components.ts', './presets/gbe-bold-theme.scss', './presets/gbe-elegant-theme.scss']
+    components: [
+      // 'core-js',
+      './presets/components.ts',
+      './presets/gbe-bold-theme.scss',
+      './presets/gbe-elegant-theme.scss'
+    ]
   },
 
   devtool: 'source-map',
