@@ -5,12 +5,7 @@ module.exports = {
   mode: 'development',
 
   entry: {
-    components: [
-      './presets/components.ts',
-      './presets/gbe-bold-theme.scss',
-      './presets/gbe-elegant-theme.scss',
-    ],
-
+    components: ['./presets/components.ts', './presets/gbe-bold-theme.scss', './presets/gbe-elegant-theme.scss']
   },
 
   devtool: 'source-map',
@@ -25,13 +20,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.[jt]sx?$/,
         loader: 'babel-loader',
-        exclude: [/node_modules/]
+        exclude: [/node_modules\/(.*\/)?(?!(lit-html|lit-element)\/)/]
       },
       {
         test: /\.ts$/,
-        exclude: [ path.resolve(__dirname, "tests") ],
+        exclude: [path.resolve(__dirname, 'tests')],
         enforce: 'post',
         use: {
           loader: 'istanbul-instrumenter-loader',
@@ -45,8 +40,8 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].css',
-            },
+              name: '[name].css'
+            }
           },
           'extract-loader',
           'css-loader?-url',
@@ -79,4 +74,4 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
   }
-}
+};
