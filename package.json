@@ -87,6 +87,7 @@
     "sinon": "^7.3.2",
     "sinon-chai": "^3.3.0",
     "storybook-custom-events": "groupby/storybook-custom-events#2d8cba8de3ccc59f8b414a2550161088c6577921",
+    "storybook-events-logger": "2.0.0",
     "style-loader": "^0.23.1",
     "testcafe": "1.5.0",
     "ts-loader": "^6.0.3",

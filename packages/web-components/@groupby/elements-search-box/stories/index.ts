@@ -1,9 +1,15 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
-import { UPDATE_SEARCH_TERM } from '@groupby/elements-events';
+import {
+  SEARCHBOX_CLEAR,
+  SEARCHBOX_CLICK,
+  SEARCHBOX_INPUT,
+  SEARCH_REQUEST,
+  UPDATE_SEARCH_TERM
+} from '@groupby/elements-events';
 import { getDisplayCode } from '../../../../../.storybook/common';
 import '../src';
-
+import { logEvent } from 'storybook-event-logger';
 const updateTextEvent = [
   {
     name: UPDATE_SEARCH_TERM,
