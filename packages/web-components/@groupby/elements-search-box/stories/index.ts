@@ -7,9 +7,8 @@ import {
   SEARCH_REQUEST,
   UPDATE_SEARCH_TERM
 } from '@groupby/elements-events';
-import { getDisplayCode } from '../../../../../.storybook/common';
+import { getDisplayCode, addStorybookListeners } from '../../../../../.storybook/common';
 import '../src';
-import { logEvent } from 'storybook-events-logger';
 
 const updateTextEvent = [
   {
@@ -26,11 +25,8 @@ const eventsToListen = [
   UPDATE_SEARCH_TERM
 ];
 
-eventsToListen.forEach((eventName) => {
-  addEventListener(eventName, (event) => {
-    logEvent(event);
-  });
-});
+addStorybookListeners(eventsToListen)
+// eventsToListen.forEach(eventName => addEventListener(eventName, logEvent));
 
 const searchboxNotesMarkdownIntro = `# GB Elements Search Box Component
 
