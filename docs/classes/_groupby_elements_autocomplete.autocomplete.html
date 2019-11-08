@@ -294,6 +294,7 @@
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_groupby_elements_autocomplete.autocomplete.html#initialdataresponseeventname" class="tsd-kind-icon">initial<wbr>Data<wbr>Response<wbr>Event<wbr>Name</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_groupby_elements_autocomplete.autocomplete.html#itemcount" class="tsd-kind-icon">item<wbr>Count</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_groupby_elements_autocomplete.autocomplete.html#selectedid" class="tsd-kind-icon">selected<wbr>Id</a></li>
 							</ul>
@@ -362,6 +363,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_autocomplete.autocomplete.html#prepend" class="tsd-kind-icon">prepend</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="_groupby_elements_autocomplete.autocomplete.html#queryselector" class="tsd-kind-icon">query<wbr>Selector</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="_groupby_elements_autocomplete.autocomplete.html#queryselectorall" class="tsd-kind-icon">query<wbr>Selector<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_autocomplete.autocomplete.html#receiveinitialdata" class="tsd-kind-icon">receive<wbr>Initial<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_autocomplete.autocomplete.html#receivedresults" class="tsd-kind-icon">received<wbr>Results</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_autocomplete.autocomplete.html#releasepointercapture" class="tsd-kind-icon">release<wbr>Pointer<wbr>Capture</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_autocomplete.autocomplete.html#remove" class="tsd-kind-icon">remove</a></li>
@@ -374,6 +376,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="_groupby_elements_autocomplete.autocomplete.html#replacechild" class="tsd-kind-icon">replace<wbr>Child</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_autocomplete.autocomplete.html#replacewith" class="tsd-kind-icon">replace<wbr>With</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_autocomplete.autocomplete.html#requestfullscreen" class="tsd-kind-icon">request<wbr>Fullscreen</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_autocomplete.autocomplete.html#requestinitialdata" class="tsd-kind-icon">request<wbr>Initial<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_autocomplete.autocomplete.html#requestupdate" class="tsd-kind-icon">request<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_autocomplete.autocomplete.html#scroll" class="tsd-kind-icon">scroll</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_autocomplete.autocomplete.html#scrollby" class="tsd-kind-icon">scroll<wbr>By</a></li>
@@ -411,13 +414,13 @@
 							<aside class="tsd-sources">
 								<p>Overrides UpdatingElement.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L56">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L60">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:60</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Constructs an instance of Autocomplete.
-									Binds receivedResults function to the class.</p>
+									<p>Constructs an instance of <code>Autocomplete</code>.
+									This constructor also binds various methods to this instance.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_groupby_elements_autocomplete.autocomplete.html" class="tsd-signature-type">Autocomplete</a></h4>
@@ -703,7 +706,7 @@
 					<div class="tsd-signature tsd-kind-icon">caption<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L37">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L41">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -839,7 +842,7 @@
 					<div class="tsd-signature tsd-kind-icon">component<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;shortid.generate()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L56">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L60">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:60</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -931,7 +934,7 @@
 					<div class="tsd-signature tsd-kind-icon">group<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L44">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L48">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2834,7 +2837,7 @@
 					<div class="tsd-signature tsd-kind-icon">results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AutocompleteResultGroup</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AutocompleteSearchTermItem</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L32">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L36">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2893,7 +2896,7 @@
 					<div class="tsd-signature tsd-kind-icon">selected<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;-1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L50">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L54">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:54</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -3198,6 +3201,29 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="initialdataresponseeventname" class="tsd-anchor"></a>
+					<h3>initial<wbr>Data<wbr>Response<wbr>Event<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> initialDataResponseEventName<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L109">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:109</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A string intended to be used as the name of the return event in
+									cache requests for this component.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="itemcount" class="tsd-anchor"></a>
 					<h3>item<wbr>Count</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
@@ -3207,7 +3233,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L110">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L139">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:139</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3229,7 +3255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L130">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L159">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:159</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3787,12 +3813,13 @@
 							<aside class="tsd-sources">
 								<p>Overrides LitElement.connectedCallback</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L72">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L78">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:78</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets up event listeners.</p>
+									<p>Sets up event listeners. Additionally requests initial data to populate
+									this component if cached data exists.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -3861,7 +3888,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides UpdatingElement.disconnectedCallback</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L88">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L116">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3946,7 +3973,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L152">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L192">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:192</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4027,7 +4054,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L120">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:120</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L149">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4454,7 +4481,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L197">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:197</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L237">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:237</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4849,7 +4876,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L206">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:206</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L246">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:246</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -5233,6 +5260,38 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="receiveinitialdata" class="tsd-anchor"></a>
+					<h3>receive<wbr>Initial<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">receive<wbr>Initial<wbr>Data<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CacheResponsePayload</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L171">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:171</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Receives an event for populating initial data.
+									Intended to be used on mount of this component.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CacheResponsePayload</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The event object.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="receivedresults" class="tsd-anchor"></a>
 					<h3>received<wbr>Results</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -5242,7 +5301,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L141">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L181">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:181</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -5517,13 +5576,12 @@
 							<aside class="tsd-sources">
 								<p>Overrides LitElement.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L236">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:236</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L275">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:275</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Renders results data in a list format using the <code>gbe-list</code> custom
-									element.</p>
+									<p>Renders results data in a list format.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TemplateResult</span></h4>
@@ -5614,6 +5672,28 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="requestinitialdata" class="tsd-anchor"></a>
+					<h3>request<wbr>Initial<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">request<wbr>Initial<wbr>Data<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L96">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:96</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Requests initial data for this component.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -5825,7 +5905,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L173">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:173</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L213">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:213</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -5850,7 +5930,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L185">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:185</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L225">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:225</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6124,7 +6204,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides UpdatingElement.updated</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/ad03d07/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L101">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/c920747/packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts#L130">packages/web-components/@groupby/elements-autocomplete/src/autocomplete.ts:130</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6849,6 +6929,9 @@
 										<a href="_groupby_elements_autocomplete.autocomplete.html#styles" class="tsd-kind-icon">styles</a>
 									</li>
 									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+										<a href="_groupby_elements_autocomplete.autocomplete.html#initialdataresponseeventname" class="tsd-kind-icon">initial<wbr>Data<wbr>Response<wbr>Event<wbr>Name</a>
+									</li>
+									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 										<a href="_groupby_elements_autocomplete.autocomplete.html#itemcount" class="tsd-kind-icon">item<wbr>Count</a>
 									</li>
 									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
@@ -7038,6 +7121,9 @@
 										<a href="_groupby_elements_autocomplete.autocomplete.html#queryselectorall" class="tsd-kind-icon">query<wbr>Selector<wbr>All</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="_groupby_elements_autocomplete.autocomplete.html#receiveinitialdata" class="tsd-kind-icon">receive<wbr>Initial<wbr>Data</a>
+									</li>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
 										<a href="_groupby_elements_autocomplete.autocomplete.html#receivedresults" class="tsd-kind-icon">received<wbr>Results</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
@@ -7072,6 +7158,9 @@
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 										<a href="_groupby_elements_autocomplete.autocomplete.html#requestfullscreen" class="tsd-kind-icon">request<wbr>Fullscreen</a>
+									</li>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="_groupby_elements_autocomplete.autocomplete.html#requestinitialdata" class="tsd-kind-icon">request<wbr>Initial<wbr>Data</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 										<a href="_groupby_elements_autocomplete.autocomplete.html#requestupdate" class="tsd-kind-icon">request<wbr>Update</a>

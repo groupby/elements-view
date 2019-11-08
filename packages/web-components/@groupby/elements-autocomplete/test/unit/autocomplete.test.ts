@@ -1,5 +1,10 @@
 import { TemplateResult } from 'lit-element';
-import { AUTOCOMPLETE_RESPONSE, AUTOCOMPLETE_ACTIVE_TERM } from '@groupby/elements-events';
+import {
+  AUTOCOMPLETE_RESPONSE,
+  AUTOCOMPLETE_ACTIVE_TERM,
+  CACHE_REQUEST,
+  CACHE_RESPONSE_PREFIX,
+} from '@groupby/elements-events';
 import {
   expect,
   stub,
@@ -43,11 +48,26 @@ describe('Autcomplete Component', () => {
     });
   });
 
+  describe('initialDataResponseEventName', () => {
+    it('should return an event name for receiving initial data', () => {
+      const componentId = autocomplete.componentId = 'some-id';
+      const expectedName = `${CACHE_RESPONSE_PREFIX}autocomplete-${componentId}`;
+
+      const eventName = autocomplete.initialDataResponseEventName;
+
+      expect(eventName).to.equal(expectedName);
+    });
+  });
+
   describe('connectedCallback', () => {
+    const returnEvent = 'initial-data-event';
     let windowAddEventListener;
+    let requestInitialData;
 
     beforeEach(() => {
       windowAddEventListener = stub(window, 'addEventListener');
+      requestInitialData = stub(autocomplete, 'requestInitialData');
+      stub(autocomplete, 'initialDataResponseEventName').get(() => returnEvent);
     });
 
     itShouldCallParentMethod(() => autocomplete, 'connectedCallback');
@@ -59,6 +79,16 @@ describe('Autcomplete Component', () => {
         AUTOCOMPLETE_RESPONSE,
         autocomplete.receivedResults
       );
+      expect(windowAddEventListener).to.have.been.calledWith(
+        returnEvent,
+        autocomplete.receiveInitialData
+      );
+    });
+
+    it('should request initial data', () => {
+      autocomplete.connectedCallback();
+
+      expect(requestInitialData).to.be.called;
     });
 
     describe('role attribute', () => {
@@ -75,6 +105,42 @@ describe('Autcomplete Component', () => {
 
         expect(autocomplete.getAttribute('role')).to.equal('listbox widget');
       });
+    });
+  });
+
+  describe('requestInitialData()', () => {
+    const returnEvent = 'response-event-name';
+    let dispatchElementsEvent;
+
+    beforeEach(() => {
+      dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
+      stub(autocomplete, 'initialDataResponseEventName').get(() => returnEvent);
+    });
+
+    it('should emit an event requesting initial data', () => {
+      autocomplete.componentId = 'some-id';
+      const group = autocomplete.group = 'some-group';
+      const payload = { name: AUTOCOMPLETE_RESPONSE, group, returnEvent };
+
+      autocomplete.requestInitialData();
+
+      expect(dispatchElementsEvent).to.be.calledOnceWith(CACHE_REQUEST, payload);
+    });
+  });
+
+  describe('receiveInitialData()', () => {
+    it('should set initial data given an event', () => {
+      // const cacheResponseEvent = new CustomEvent();
+      const items = [
+        { label: 'dress' },
+        { label: 'black dress' },
+        { label: 'long dress' },
+      ];
+      const cacheResponseEvent = { detail: { data: { results: [{ items, title: '' }] } } };
+
+      autocomplete.receiveInitialData(cacheResponseEvent);
+
+      expect(autocomplete.results).to.deep.equal(cacheResponseEvent.detail.data.results);
     });
   });
 
