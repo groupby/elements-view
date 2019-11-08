@@ -486,8 +486,12 @@ export default class Sayt extends Base {
    *
    * @param event An event containing the new search term.
    */
-  updateSearchTerm(event: CustomEvent) {
+  updateSearchTerm(event: CustomEvent<UpdateSaytSearchTermPayload>) {
     const newSearchTerm = event.detail.newSearchTerm;
+    if (typeof newSearchTerm !== 'string') {
+      throw(new Error('updateSearchTerm() only accepts strings for newSearchTerm.'));
+    }
+
     if (this.searchbox) {
       const searchbox = document.getElementById(this.searchbox) as HTMLInputElement;
       searchbox.value = newSearchTerm;
@@ -634,4 +638,8 @@ export default class Sayt extends Base {
  */
 export interface SaytRequester {
   (query: string, searchbox?: string): void;
+}
+
+export interface UpdateSaytSearchTermPayload {
+  newSearchTerm: string;
 }

@@ -869,7 +869,13 @@ describe('Sayt Component', () => {
       expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload);
     });
 
-    it('should reject non-string values for the new search term');
+    it('should reject non-string values for the new search term', () => {
+      receivedEvent.detail.newSearchTerm = 3;
+
+      const callback = () => sayt.updateSearchTerm(receivedEvent);
+
+      expect(callback).to.throw();
+    });
   });
 
   describe('nodeInSearchbox()', () => {
