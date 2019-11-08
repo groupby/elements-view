@@ -9,13 +9,28 @@ import {
 } from '@groupby/elements-events';
 import { getDisplayCode } from '../../../../../.storybook/common';
 import '../src';
-import { logEvent } from 'storybook-event-logger';
+import { logEvent } from 'storybook-events-logger';
+
 const updateTextEvent = [
   {
     name: UPDATE_SEARCH_TERM,
     payload: { term: 'hot chocolate' },
   },
 ];
+
+const eventsToListen = [
+  SEARCHBOX_CLEAR,
+  SEARCHBOX_CLICK,
+  SEARCHBOX_INPUT,
+  SEARCH_REQUEST,
+  UPDATE_SEARCH_TERM
+];
+
+eventsToListen.forEach((eventName) => {
+  addEventListener(eventName, (event) => {
+    logEvent(event);
+  });
+});
 
 const searchboxNotesMarkdownIntro = `# GB Elements Search Box Component
 
