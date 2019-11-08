@@ -12,7 +12,7 @@ import {
   itShouldExtendBase,
   itShouldCallParentMethod,
 } from '../utils';
-import Autocomplete, { AUTOCOMPLETE_CLICK } from '../../src/autocomplete';
+import Autocomplete from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
