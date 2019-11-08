@@ -102,6 +102,10 @@ export default class Autocomplete extends Base {
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 
+  /**
+   * A string intended to be used as the name of the return event in
+   * cache requests for this component.
+   */
   get initialDataResponseEventName(): string {
     return `${CACHE_RESPONSE_PREFIX}autocomplete-${this.componentId}`;
   }
