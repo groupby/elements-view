@@ -23,6 +23,8 @@ import {
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
 
+export const AUTOCOMPLETE_CLICK = 'gbe::autocomplete_click';
+
 /**
  * The `gbe-autocomplete` component is responsible for displaying a list
  * of autocomplete terms upon receipt of the [[AUTOCOMPLETE_RESPONSE]] event.
@@ -69,6 +71,7 @@ export default class Autocomplete extends Base {
     this.dispatchSelectedTerm = this.dispatchSelectedTerm.bind(this);
     this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
     this.receiveInitialData = this.receiveInitialData.bind(this);
+    this.sendAutocompleteClickEvent = this.sendAutocompleteClickEvent.bind(this);
   }
 
   /**
@@ -241,6 +244,20 @@ export default class Autocomplete extends Base {
   }
 
   /**
+   *
+   */
+  sendAutocompleteClickEvent(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    const searchTerm = target.innerText;
+    const payload: AutocompleteClickPayload = {
+      group: this.group,
+      searchTerm,
+    };
+
+    this.dispatchElementsEvent(AUTOCOMPLETE_CLICK, payload);
+  }
+
+  /**
    * Renders a list of autocomplete items.
    */
   private listRender(
@@ -258,6 +275,7 @@ export default class Autocomplete extends Base {
            id="${this.generateItemId(itemIndex)}"
            role="option"
            aria-selected="${ariaSelected}"
+           @click="${this.sendAutocompleteClickEvent}"
            @mouseenter="${this.getSelectedIndexSetter(itemIndex)}"
         >${item.label}</li>`;
     });
@@ -297,4 +315,9 @@ export default class Autocomplete extends Base {
       ${autocompleteLists}
     `;
   }
+}
+
+export interface AutocompleteClickPayload {
+  group: string;
+  searchTerm: string;
 }

@@ -11,7 +11,7 @@ import {
   itShouldExtendBase,
   itShouldCallParentMethod,
 } from '../utils';
-import Autocomplete from '../../src/autocomplete';
+import Autocomplete, { AUTOCOMPLETE_CLICK } from '../../src/autocomplete';
 
 describe('Autcomplete Component', () => {
   let autocomplete;
@@ -430,6 +430,26 @@ describe('Autcomplete Component', () => {
       autocomplete.getSelectedIndexSetter(newSelectedIndex)();
 
       expect(autocomplete.selectedIndex).to.equal(newSelectedIndex);
+    });
+  });
+
+  describe('sendAutocompleteClickEvent()', () => {
+    it('should send a search request with a search term', () => {
+      const clickEvent = {
+        target: {
+          innerText: 'query',
+        },
+      };
+      const group = autocomplete.group = 'group1';
+      const payload = {
+        searchTerm: 'query',
+        group,
+      };
+      const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
+
+      autocomplete.sendAutocompleteClickEvent(clickEvent);
+
+      expect(dispatchElementsEvent).to.be.calledWith(AUTOCOMPLETE_CLICK, payload);
     });
   });
 });
