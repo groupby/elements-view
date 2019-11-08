@@ -838,26 +838,24 @@ describe('Sayt Component', () => {
   });
 
   describe('updateSearchTerm()', () => {
-    const searchboxId = 'searchbox-id';
     const newSearchTerm = 'new value';
-    let searchbox;
+    let receivedEvent;
 
     beforeEach(() => {
-      searchbox = { value: 'old value' };
-      stub(document, 'getElementById').withArgs(searchboxId).returns(searchbox);
+      receivedEvent = { detail: { newSearchTerm }};
     });
 
     it('should update its searchbox directly', () => {
-      const event = { detail: { newSearchTerm }};
-      sayt.searchbox = searchboxId;
+      const searchbox = { value: 'old value' };
+      const searchboxId = sayt.searchbox = 'searchbox-id';
+      stub(document, 'getElementById').withArgs(searchboxId).returns(searchbox);
 
-      sayt.updateSearchTerm(event);
+      sayt.updateSearchTerm(receivedEvent);
 
       expect(searchbox.value).to.equal(newSearchTerm);
     });
 
     it('should emit a searchbox update event if it has no searchbox', () => {
-      const receivedEvent = { detail: { newSearchTerm }};
       const group = sayt.group = 'sayt-group';
       const payload = {
         group,
