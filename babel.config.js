@@ -11,6 +11,7 @@ module.exports = function(api) {
         }
       ],
       '@babel/preset-typescript'
-    ]
+    ],
+    sourceType: 'unambiguous'
   };
 };
