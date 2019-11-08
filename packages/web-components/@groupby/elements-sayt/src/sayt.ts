@@ -17,8 +17,10 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SEARCHBOX_INPUT,
+  UPDATE_SEARCH_TERM,
   AutocompleteActiveTermPayload,
   SearchboxInputPayload,
+  UpdateSearchTermPayload,
   WithGroup,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
@@ -489,12 +491,17 @@ export default class Sayt extends Base {
     const newSearchTerm = event.detail.newSearchTerm;
     // if sayt has a searchbox:
     if (this.searchbox) {
+      // update searchbox value directly to new search term
       const searchbox = document.getElementById(this.searchbox) as HTMLInputElement;
       searchbox.value = newSearchTerm;
-    }
-      // update searchbox value directly to new search term
-    // else
+    } else {
       // emit event to interact with a searchbox
+      const payload: UpdateSearchTermPayload = {
+        group: this.group,
+        term: newSearchTerm,
+      };
+      this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
+    }
   }
 
   /**

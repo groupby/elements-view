@@ -9,6 +9,7 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SEARCHBOX_INPUT,
+  UPDATE_SEARCH_TERM,
 } from '@groupby/elements-events';
 import {
   expect,
@@ -838,6 +839,7 @@ describe('Sayt Component', () => {
 
   describe('updateSearchTerm()', () => {
     const searchboxId = 'searchbox-id';
+    const newSearchTerm = 'new value';
     let searchbox;
 
     beforeEach(() => {
@@ -846,14 +848,29 @@ describe('Sayt Component', () => {
     });
 
     it('should update its searchbox directly', () => {
-      const event = { detail: { newSearchTerm: 'new value' }};
+      const event = { detail: { newSearchTerm }};
       sayt.searchbox = searchboxId;
 
       sayt.updateSearchTerm(event);
 
-      expect(searchbox.value).to.equal('new value');
+      expect(searchbox.value).to.equal(newSearchTerm);
     });
-    it('should emit a searchbox update event if it has no searchbox');
+
+    it('should emit a searchbox update event if it has no searchbox', () => {
+      const receivedEvent = { detail: { newSearchTerm }};
+      const group = sayt.group = 'sayt-group';
+      const payload = {
+        group,
+        term: newSearchTerm,
+      }
+      const dispatchElementsEvent = stub(sayt, 'dispatchElementsEvent');
+      sayt.searchbox = undefined;
+
+      sayt.updateSearchTerm(receivedEvent);
+
+      expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload);
+    });
+
     it('should reject non-string values for the new search term');
   });
 
