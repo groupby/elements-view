@@ -836,6 +836,15 @@ describe('Sayt Component', () => {
     });
   });
 
+  describe('updateSearchTerm()', () => {
+    it('should exist', () => {
+      sayt.updateSearchTerm();
+    });
+    it('should update its searchbox directly');
+    it('should emit a searchbox update event if it has no searchbox');
+    it('should reject non-string values for the new search term');
+  });
+
   describe('nodeInSearchbox()', () => {
     it('should return true if given node is contained in the search box', () => {
       const searchbox = {

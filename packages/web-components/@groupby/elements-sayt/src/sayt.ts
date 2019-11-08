@@ -478,6 +478,20 @@ export default class Sayt extends Base {
     this.hideSayt();
   }
 
+  // @TODO Fill in CustomEvent type
+  /**
+   * 
+   *
+   * @param event An event containing the new search term.
+   */
+  updateSearchTerm(event: CustomEvent) {
+    // get new search term term from event
+    // if sayt has a searchbox:
+      // update searchbox value directly to new search term
+    // else
+      // emit event to interact with a searchbox
+  }
+
   /**
    * Checks whether a given node is inside of SAYT's identified search box.
    *
