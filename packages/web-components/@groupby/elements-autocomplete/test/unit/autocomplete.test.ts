@@ -4,6 +4,7 @@ import {
   AUTOCOMPLETE_ACTIVE_TERM,
   CACHE_REQUEST,
   CACHE_RESPONSE_PREFIX,
+  UPDATE_SEARCH_TERM
 } from '@groupby/elements-events';
 import {
   expect,
@@ -433,7 +434,7 @@ describe('Autcomplete Component', () => {
     });
   });
 
-  describe('sendAutocompleteClickEvent()', () => {
+  describe('sendUpdateSearchEvent()', () => {
     it('should send a search request with a search term', () => {
       const term = 'autocomplete-term';
       const clickEvent = {
@@ -443,14 +444,15 @@ describe('Autcomplete Component', () => {
       };
       const group = autocomplete.group = 'group1';
       const payload = {
-        searchTerm: term,
+        term,
         group,
+        search: true,
       };
       const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
 
-      autocomplete.sendAutocompleteClickEvent(clickEvent);
+      autocomplete.sendUpdateSearchEvent(clickEvent);
 
-      expect(dispatchElementsEvent).to.be.calledWith(AUTOCOMPLETE_CLICK, payload);
+      expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload);
     });
   });
 });

@@ -13,17 +13,17 @@ import {
   AUTOCOMPLETE_ACTIVE_TERM,
   CACHE_REQUEST,
   CACHE_RESPONSE_PREFIX,
+  UPDATE_SEARCH_TERM,
   AutocompleteResponsePayload,
   AutocompleteResultGroup,
   AutocompleteActiveTermPayload,
   AutocompleteSearchTermItem,
   CacheRequestPayload,
   CacheResponsePayload,
+  UpdateSearchTermPayload,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
-
-export const AUTOCOMPLETE_CLICK = 'gbe::autocomplete_click';
 
 /**
  * The `gbe-autocomplete` component is responsible for displaying a list
@@ -71,7 +71,7 @@ export default class Autocomplete extends Base {
     this.dispatchSelectedTerm = this.dispatchSelectedTerm.bind(this);
     this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
     this.receiveInitialData = this.receiveInitialData.bind(this);
-    this.sendAutocompleteClickEvent = this.sendAutocompleteClickEvent.bind(this);
+    this.sendUpdateSearchEvent = this.sendUpdateSearchEvent.bind(this);
   }
 
   /**
@@ -246,15 +246,16 @@ export default class Autocomplete extends Base {
   /**
    *
    */
-  sendAutocompleteClickEvent(event: MouseEvent): void {
+  sendUpdateSearchEvent(event: MouseEvent): void {
     const target = event.target as HTMLElement;
-    const searchTerm = target.innerText;
-    const payload: AutocompleteClickPayload = {
+    const term = target.innerText;
+    const payload: UpdateSearchTermPayload = {
       group: this.group,
-      searchTerm,
+      term,
+      search: true,
     };
 
-    this.dispatchElementsEvent(AUTOCOMPLETE_CLICK, payload);
+    this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
   }
 
   /**
@@ -275,7 +276,7 @@ export default class Autocomplete extends Base {
            id="${this.generateItemId(itemIndex)}"
            role="option"
            aria-selected="${ariaSelected}"
-           @click="${this.sendAutocompleteClickEvent}"
+           @click="${this.sendUpdateSearchEvent}"
            @mouseenter="${this.getSelectedIndexSetter(itemIndex)}"
         >${item.label}</li>`;
     });
