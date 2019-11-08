@@ -1,6 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 
+function resolve(dir) {
+  console.log('in resolve', path.join(__dirname, '..', dir));
+  return path.join(__dirname, '..', dir);
+}
+console.log('path.resolve', path.resolve(__dirname, 'tests'));
 module.exports = {
   mode: 'development',
 
@@ -20,9 +25,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.[jt]sx?$/,
+        // test: /\.js?$/,
+        test: /.*\.[jt]sx?$/,
         loader: 'babel-loader',
-        exclude: [/node_modules\/(.*\/)?(?!(lit-html|lit-element)\/)/]
+        exclude: /node_modules\/(?!(lit-html|lit-element)\/).*/
+        // include: [
+        //   /node_modules\/(lit-html|lit-element)\/.*/,
+
+        // ]
       },
       {
         test: /\.ts$/,
@@ -73,5 +83,6 @@ module.exports = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
+    // symlinks: true
   }
 };
