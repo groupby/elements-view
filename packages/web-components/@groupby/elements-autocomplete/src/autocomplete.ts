@@ -80,6 +80,7 @@ export default class Autocomplete extends Base {
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
+    this.requestInitialData();
 
     const role = this.getAttribute('role');
     const roles = role ? role.split(' ') : [];
@@ -87,8 +88,6 @@ export default class Autocomplete extends Base {
       roles.unshift('listbox');
       this.setAttribute('role', roles.join(' '));
     }
-
-    this.requestInitialData();
   }
 
   /**
