@@ -25,14 +25,9 @@ module.exports = {
   module: {
     rules: [
       {
-        // test: /\.js?$/,
         test: /.*\.[jt]sx?$/,
         loader: 'babel-loader',
         exclude: /node_modules\/(?!(lit-html|lit-element)\/).*/
-        // include: [
-        //   /node_modules\/(lit-html|lit-element)\/.*/,
-
-        // ]
       },
       {
         test: /\.ts$/,
