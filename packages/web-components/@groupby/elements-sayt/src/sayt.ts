@@ -486,7 +486,12 @@ export default class Sayt extends Base {
    */
   updateSearchTerm(event: CustomEvent) {
     // get new search term term from event
+    const newSearchTerm = event.detail.newSearchTerm;
     // if sayt has a searchbox:
+    if (this.searchbox) {
+      const searchbox = document.getElementById(this.searchbox) as HTMLInputElement;
+      searchbox.value = newSearchTerm;
+    }
       // update searchbox value directly to new search term
     // else
       // emit event to interact with a searchbox

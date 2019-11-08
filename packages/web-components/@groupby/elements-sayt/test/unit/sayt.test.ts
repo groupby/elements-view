@@ -837,10 +837,22 @@ describe('Sayt Component', () => {
   });
 
   describe('updateSearchTerm()', () => {
-    it('should exist', () => {
-      sayt.updateSearchTerm();
+    const searchboxId = 'searchbox-id';
+    let searchbox;
+
+    beforeEach(() => {
+      searchbox = { value: 'old value' };
+      stub(document, 'getElementById').withArgs(searchboxId).returns(searchbox);
     });
-    it('should update its searchbox directly');
+
+    it('should update its searchbox directly', () => {
+      const event = { detail: { newSearchTerm: 'new value' }};
+      sayt.searchbox = searchboxId;
+
+      sayt.updateSearchTerm(event);
+
+      expect(searchbox.value).to.equal('new value');
+    });
     it('should emit a searchbox update event if it has no searchbox');
     it('should reject non-string values for the new search term');
   });
