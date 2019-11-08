@@ -11,10 +11,14 @@ import * as shortid from 'shortid';
 import {
   AUTOCOMPLETE_RESPONSE,
   AUTOCOMPLETE_ACTIVE_TERM,
+  CACHE_REQUEST,
+  CACHE_RESPONSE_PREFIX,
   AutocompleteResponsePayload,
   AutocompleteResultGroup,
   AutocompleteActiveTermPayload,
   AutocompleteSearchTermItem,
+  CacheRequestPayload,
+  CacheResponsePayload,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
@@ -56,23 +60,27 @@ export default class Autocomplete extends Base {
   protected componentId = shortid.generate();
 
   /**
-   * Constructs an instance of Autocomplete.
-   * Binds receivedResults function to the class.
+   * Constructs an instance of `Autocomplete`.
+   * This constructor also binds various methods to this instance.
    */
   constructor() {
     super();
     this.receivedResults = this.receivedResults.bind(this);
     this.dispatchSelectedTerm = this.dispatchSelectedTerm.bind(this);
     this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
+    this.receiveInitialData = this.receiveInitialData.bind(this);
   }
 
   /**
-   * Sets up event listeners.
+   * Sets up event listeners. Additionally requests initial data to populate
+   * this component if cached data exists.
    */
   connectedCallback(): void {
     super.connectedCallback();
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
+    window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
+    this.requestInitialData();
 
     const role = this.getAttribute('role');
     const roles = role ? role.split(' ') : [];
@@ -83,11 +91,32 @@ export default class Autocomplete extends Base {
   }
 
   /**
+   * Requests initial data for this component.
+   */
+  requestInitialData(): void {
+    const payload: CacheRequestPayload = {
+      name: AUTOCOMPLETE_RESPONSE,
+      group: this.group,
+      returnEvent: this.initialDataResponseEventName,
+    };
+    this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
+  }
+
+  /**
+   * A string intended to be used as the name of the return event in
+   * cache requests for this component.
+   */
+  get initialDataResponseEventName(): string {
+    return `${CACHE_RESPONSE_PREFIX}autocomplete-${this.componentId}`;
+  }
+
+  /**
    * Removes event listeners.
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
+    window.removeEventListener(this.initialDataResponseEventName, this.receiveInitialData);
   }
 
   /**
@@ -131,6 +160,17 @@ export default class Autocomplete extends Base {
     return this.selectedIndex >= 0 && this.selectedIndex < this.itemCount
       ? this.generateItemId(this.selectedIndex)
       : '';
+  }
+
+  /**
+   * Receives an event for populating initial data.
+   * Intended to be used on mount of this component.
+   *
+   * @param event The event object.
+   */
+  receiveInitialData(event: CustomEvent<CacheResponsePayload>): void {
+    const data = event.detail.data || {};
+    this.results = data.results || [];
   }
 
   /**
@@ -230,8 +270,7 @@ export default class Autocomplete extends Base {
   }
 
   /**
-   * Renders results data in a list format using the `gbe-list` custom
-   * element.
+   * Renders results data in a list format.
    */
   render(): TemplateResult {
     const caption = this.caption && this.results.length > 0
