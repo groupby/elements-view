@@ -25,8 +25,7 @@ const eventsToListen = [
   UPDATE_SEARCH_TERM
 ];
 
-addStorybookListeners(eventsToListen)
-// eventsToListen.forEach(eventName => addEventListener(eventName, logEvent));
+addStorybookListeners(eventsToListen);
 
 const searchboxNotesMarkdownIntro = `# GB Elements Search Box Component
 
