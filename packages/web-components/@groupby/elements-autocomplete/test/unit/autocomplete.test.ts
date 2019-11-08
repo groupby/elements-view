@@ -435,14 +435,15 @@ describe('Autcomplete Component', () => {
 
   describe('sendAutocompleteClickEvent()', () => {
     it('should send a search request with a search term', () => {
+      const term = 'autocomplete-term';
       const clickEvent = {
         target: {
-          innerText: 'query',
+          innerText: term,
         },
       };
       const group = autocomplete.group = 'group1';
       const payload = {
-        searchTerm: 'query',
+        searchTerm: term,
         group,
       };
       const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
