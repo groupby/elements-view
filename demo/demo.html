@@ -2,19 +2,17 @@
 <html>
   <head>
     <title>Demo of Logic and View Integration</title>
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-    <script src="../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
     <script src="../dist/components.js"></script>
     <!-- <script src="https://cdn.groupbycloud.com/gbe-all-plugins-bundle.js"></script> -->
     <script src="./temp/gbe-all-plugins-bundle.js"></script>
     <script src="./demo.js"></script>
     <style>
-      [aria-selected='true'] {
-        background-color: #ccccff;
+      [aria-selected="true"] {
+        background-color: #CCCCFF;
       }
 
       gbe-autocomplete li {
-        border: 1px solid #cccccc;
+        border: 1px solid #CCCCCC;
       }
 
       gbe-product-variant {
@@ -39,14 +37,7 @@
   </head>
 
   <body>
-    <gbe-search-box
-      id="main-search"
-      placeholder="search"
-      clearbutton
-      searchbutton
-      area="DemoMaster"
-      collection="products"
-    ></gbe-search-box>
+    <gbe-search-box id="main-search" placeholder="search" clearbutton searchbutton area="DemoMaster" collection="products"></gbe-search-box>
     <gbe-sayt searchbox="main-search" area="DemoMaster" collection="products"></gbe-sayt>
 
     <gbe-search-box
