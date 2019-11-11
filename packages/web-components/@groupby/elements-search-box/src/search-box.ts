@@ -119,11 +119,11 @@ export default class SearchBox extends Base {
   updateText(e: CustomEvent<UpdateSearchTermPayload>): void {
     const eventGroup = e.detail.group || '';
     const componentGroup = this.group || '';
-    if (eventGroup === componentGroup) {
-      this.updateSearchTermValue(e.detail.term);
-      if (e.detail.search) {
-        this.emitSearchEvent();
-      }
+    if (eventGroup !== componentGroup) return;
+
+    this.updateSearchTermValue(e.detail.term);
+    if (e.detail.search) {
+      this.emitSearchEvent();
     }
   }
 
