@@ -17,10 +17,8 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SEARCHBOX_INPUT,
-  UPDATE_SEARCH_TERM,
   AutocompleteActiveTermPayload,
   SearchboxInputPayload,
-  UpdateSearchTermPayload,
   WithGroup,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
@@ -478,30 +476,6 @@ export default class Sayt extends Base {
   clickCloseSayt(event: Event): void {
     event.preventDefault();
     this.hideSayt();
-  }
-
-  // @TODO Fill in CustomEvent type
-  /**
-   * 
-   *
-   * @param event An event containing the new search term.
-   */
-  updateSearchTerm(event: CustomEvent<UpdateSaytSearchTermPayload>) {
-    const newSearchTerm = event.detail.newSearchTerm;
-    if (typeof newSearchTerm !== 'string') {
-      throw(new Error('updateSearchTerm() only accepts strings for newSearchTerm.'));
-    }
-
-    if (this.searchbox) {
-      const searchbox = document.getElementById(this.searchbox) as HTMLInputElement;
-      searchbox.value = newSearchTerm;
-    } else {
-      const payload: UpdateSearchTermPayload = {
-        group: this.group,
-        term: newSearchTerm,
-      };
-      this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
-    }
   }
 
   /**
