@@ -44,6 +44,10 @@ This component dispatches a number of events. These events are defined in the [`
 
 This event is dispatched when one of the search terms inside of the `gbe-autocomplete` component is put in the active state or hovered on.
 
+#### `UPDATE_SEARCH_TERM`
+
+This event is dispatched when one of the search terms inside of the `gbe-autocomplete` component is clicked. It will contain a flag for emitting a new search.
+
 ## Customizations
 
 - `caption`: Optional attribute to create and populate an `<h3>` tag at the top of the Autocomplete component.
