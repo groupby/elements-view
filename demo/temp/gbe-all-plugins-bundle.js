@@ -10401,7 +10401,7 @@ function plural(ms, n, name) {
 /* WEBPACK VAR INJECTION */(function(global) {/*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <http://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -14844,6 +14844,8 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(/*! @groupby/elements-cache-plugin */ "./packages/@groupby/elements-cache-plugin/dist/index.js"));
+__export(__webpack_require__(/*! @groupby/elements-cache-driver-plugin */ "./packages/@groupby/elements-cache-driver-plugin/dist/index.js"));
 __export(__webpack_require__(/*! @groupby/elements-dom-events-plugin */ "./packages/@groupby/elements-dom-events-plugin/dist/index.js"));
 __export(__webpack_require__(/*! @groupby/elements-sayt-driver-plugin */ "./packages/@groupby/elements-sayt-driver-plugin/dist/index.js"));
 __export(__webpack_require__(/*! @groupby/elements-sayt-plugin */ "./packages/@groupby/elements-sayt-plugin/dist/index.js"));
@@ -14881,6 +14883,171 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+
+/***/ "./packages/@groupby/elements-cache-driver-plugin/dist/cache-driver-plugin.js":
+/*!************************************************************************************!*\
+  !*** ./packages/@groupby/elements-cache-driver-plugin/dist/cache-driver-plugin.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var elements_events_1 = __webpack_require__(/*! @groupby/elements-events */ "./node_modules/@groupby/elements-events/dist/index.js");
+/**
+ * The GroupBy Elements cache driver plugin.
+ * This plugin exposes an event-based interface to the GB Elements cache.
+ */
+var CacheDriverPlugin = /** @class */ (function () {
+    /**
+     * Constructs a new instance of this plugin and binds the necessary
+     * callbacks.
+     */
+    function CacheDriverPlugin() {
+        this.handleRequest = this.handleRequest.bind(this);
+    }
+    Object.defineProperty(CacheDriverPlugin.prototype, "metadata", {
+        get: function () {
+            return {
+                name: 'cache_driver',
+                depends: ['cache', 'dom_events'],
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Saves the plugin registry for later use. This plugin does not
+     * expose a value.
+     *
+     * @param plugins the plugin registry to use.
+     */
+    CacheDriverPlugin.prototype.register = function (plugins) {
+        this.core = plugins;
+    };
+    /**
+     * Registers a number of event listeners.
+     * The following events are listened for:
+     *
+     * - [[CACHE_REQUEST]]
+     */
+    CacheDriverPlugin.prototype.ready = function () {
+        this.core.dom_events.registerListener(elements_events_1.CACHE_REQUEST, this.handleRequest);
+    };
+    /**
+     * Dispatches the requested data from the cache.
+     * The event name provided by the request is used as the name of the
+     * return event.
+     *
+     * @param request The cache request details.
+     */
+    CacheDriverPlugin.prototype.handleRequest = function (request) {
+        var _a = request.detail, name = _a.name, group = _a.group, returnEvent = _a.returnEvent;
+        var data = this.core.cache.get(name + "::" + (group || ''));
+        var payload = { name: name, data: data, group: group };
+        this.core.dom_events.dispatchEvent(returnEvent, payload);
+    };
+    return CacheDriverPlugin;
+}());
+exports.default = CacheDriverPlugin;
+//# sourceMappingURL=cache-driver-plugin.js.map
+
+/***/ }),
+
+/***/ "./packages/@groupby/elements-cache-driver-plugin/dist/index.js":
+/*!**********************************************************************!*\
+  !*** ./packages/@groupby/elements-cache-driver-plugin/dist/index.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+// eslint-disable-next-line import/prefer-default-export
+var cache_driver_plugin_1 = __webpack_require__(/*! ./cache-driver-plugin */ "./packages/@groupby/elements-cache-driver-plugin/dist/cache-driver-plugin.js");
+exports.CacheDriverPlugin = cache_driver_plugin_1.default;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./packages/@groupby/elements-cache-plugin/dist/cache-plugin.js":
+/*!**********************************************************************!*\
+  !*** ./packages/@groupby/elements-cache-plugin/dist/cache-plugin.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * The GroupBy Elements cache plugin. This plugin registers an instance of
+ * `Map` that is intended to be used by other plugins as a cache or other data
+ * store. No automatic cache clearing or expiring is performed.
+ */
+var CachePlugin = /** @class */ (function () {
+    /**
+     * Instantiates this plugin. By default, an empty `Map` is created as
+     * the data store.
+     *
+     * @param __namedParameters Options for plugin configuration.
+     */
+    function CachePlugin(_a) {
+        var 
+        /**
+         * The store to initialize the plugin with.
+         * Defaults to an empty `Map`.
+         */
+        _b = (_a === void 0 ? {} : _a).store, 
+        /**
+         * The store to initialize the plugin with.
+         * Defaults to an empty `Map`.
+         */
+        store = _b === void 0 ? new Map() : _b;
+        this.store = store;
+    }
+    Object.defineProperty(CachePlugin.prototype, "metadata", {
+        get: function () {
+            return {
+                name: 'cache',
+                depends: [],
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Returns this plugin's store for registration.
+     *
+     * @returns [[store]]
+     */
+    CachePlugin.prototype.register = function () {
+        return this.store;
+    };
+    return CachePlugin;
+}());
+exports.default = CachePlugin;
+//# sourceMappingURL=cache-plugin.js.map
+
+/***/ }),
+
+/***/ "./packages/@groupby/elements-cache-plugin/dist/index.js":
+/*!***************************************************************!*\
+  !*** ./packages/@groupby/elements-cache-plugin/dist/index.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var cache_plugin_1 = __webpack_require__(/*! ./cache-plugin */ "./packages/@groupby/elements-cache-plugin/dist/cache-plugin.js");
+exports.CachePlugin = cache_plugin_1.default;
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -15461,7 +15628,8 @@ var SaytDriverPlugin = /** @class */ (function () {
     };
     /**
      * Sends a request to the Sayt API for autocomplete terms and dispatches
-     * events on success and failure.
+     * events on success and failure. If the fetch is successful and a
+     * cache is present, the payload dispatched is also cached.
      *
      * @param event Event that contains the Sayt API request payload.
      */
@@ -15472,6 +15640,8 @@ var SaytDriverPlugin = /** @class */ (function () {
             .then(function (results) {
             var payload = { results: results, group: group };
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.AUTOCOMPLETE_RESPONSE, payload);
+            if (_this.core.cache)
+                _this.core.cache.set(elements_events_1.AUTOCOMPLETE_RESPONSE + "::" + group, payload);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };

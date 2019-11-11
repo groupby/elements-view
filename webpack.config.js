@@ -6,10 +6,10 @@ module.exports = {
 
   entry: {
     components: [
-      // 'core-js',
       './presets/components.ts',
       './presets/gbe-bold-theme.scss',
-      './presets/gbe-elegant-theme.scss'
+      './presets/gbe-elegant-theme.scss',
+
     ]
   },
 
@@ -25,9 +25,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.*\.[jt]sx?$/,
+        test: /\.[jt]sx?$/,
         loader: 'babel-loader',
-        exclude: /node_modules\/(?!(lit-html|lit-element)\/).*/
+        exclude: /node_modules\/(?!(lit-html|lit-element)\/).*/,
       },
       {
         test: /\.ts$/,
@@ -78,6 +78,5 @@ module.exports = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
-    // symlinks: true
   }
 };
