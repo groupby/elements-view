@@ -82,7 +82,7 @@ describe('SearchBox Component', () => {
 
       searchbox.connectedCallback();
 
-      expect(windowAddEventListener).to.have.been.calledWith(UPDATE_SEARCH_TERM, searchbox.updateText);
+      expect(windowAddEventListener).to.have.been.calledWith(UPDATE_SEARCH_TERM, searchbox.updateSearch);
     });
   });
 
@@ -96,7 +96,7 @@ describe('SearchBox Component', () => {
 
       expect(windowRemoveEventListener).to.have.been.calledWith(
         UPDATE_SEARCH_TERM,
-        searchbox.updateText
+        searchbox.updateSearch
       );
     });
   });
@@ -146,7 +146,7 @@ describe('SearchBox Component', () => {
     });
   });
 
-  describe('updateText', () => {
+  describe('updateSearch', () => {
     const term = 'inputText';
     const group = 'some-group';
     let updateSearchTermValue;
@@ -161,7 +161,7 @@ describe('SearchBox Component', () => {
       const inputEvent = new CustomEvent('some-test-type', { detail: { term, group } });
       searchbox.group = group;
 
-      searchbox.updateText(inputEvent);
+      searchbox.updateSearch(inputEvent);
 
       expect(updateSearchTermValue).to.be.calledWith(term);
     });
@@ -171,7 +171,7 @@ describe('SearchBox Component', () => {
       const inputEvent = new CustomEvent('some-test-type', { detail: { term, group, search } });
       searchbox.group = group;
 
-      searchbox.updateText(inputEvent);
+      searchbox.updateSearch(inputEvent);
 
       expect(emitSearchEvent).to.be.calledOnce;
     });
@@ -181,7 +181,7 @@ describe('SearchBox Component', () => {
       const inputEvent = new CustomEvent('some-test-type', { detail: { term, group, search } });
       searchbox.group = group;
 
-      searchbox.updateText(inputEvent);
+      searchbox.updateSearch(inputEvent);
 
       expect(emitSearchEvent).to.not.be.called;
     });
@@ -190,7 +190,7 @@ describe('SearchBox Component', () => {
       const inputEvent = new CustomEvent('some-test-type', { detail: { term, group } });
       searchbox.group = 'different group';
 
-      searchbox.updateText(inputEvent);
+      searchbox.updateSearch(inputEvent);
 
       expect(updateSearchTermValue).to.not.be.called;
       expect(emitSearchEvent).to.not.be.called;
@@ -199,7 +199,7 @@ describe('SearchBox Component', () => {
     it('should default the group in the event to an empty string if it is falsey', () => {
       const inputEvent = new CustomEvent('some-test-type', { detail: { term } });
 
-      searchbox.updateText(inputEvent);
+      searchbox.updateSearch(inputEvent);
 
       expect(updateSearchTermValue).to.be.calledWith(term);
     });
@@ -208,7 +208,7 @@ describe('SearchBox Component', () => {
       const inputEvent = new CustomEvent('some-test-type', { detail: { term, group: '' } });
       searchbox.group = undefined;
 
-      searchbox.updateText(inputEvent);
+      searchbox.updateSearch(inputEvent);
 
       expect(updateSearchTermValue).to.be.calledWith(term);
     });

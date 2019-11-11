@@ -66,7 +66,7 @@ export default class SearchBox extends Base {
 
   constructor() {
     super();
-    this.updateText = this.updateText.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   /**
@@ -74,7 +74,7 @@ export default class SearchBox extends Base {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    window.addEventListener(UPDATE_SEARCH_TERM, this.updateText);
+    window.addEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
   }
 
   /**
@@ -82,7 +82,7 @@ export default class SearchBox extends Base {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    window.removeEventListener(UPDATE_SEARCH_TERM, this.updateText);
+    window.removeEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
   }
 
   /**
@@ -116,7 +116,7 @@ export default class SearchBox extends Base {
    *
    * @param e The event object.
    */
-  updateText(e: CustomEvent<UpdateSearchTermPayload>): void {
+  updateSearch(e: CustomEvent<UpdateSearchTermPayload>): void {
     const eventGroup = e.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup !== componentGroup) return;
