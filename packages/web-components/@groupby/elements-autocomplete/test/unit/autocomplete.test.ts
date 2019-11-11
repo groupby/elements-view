@@ -4,7 +4,7 @@ import {
   AUTOCOMPLETE_ACTIVE_TERM,
   CACHE_REQUEST,
   CACHE_RESPONSE_PREFIX,
-  UPDATE_SEARCH_TERM
+  UPDATE_SEARCH_TERM,
 } from '@groupby/elements-events';
 import {
   expect,
