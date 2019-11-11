@@ -9,7 +9,6 @@ module.exports = {
       './presets/components.ts',
       './presets/gbe-bold-theme.scss',
       './presets/gbe-elegant-theme.scss',
-
     ]
   },
 
@@ -31,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        exclude: [path.resolve(__dirname, 'tests')],
+        exclude: [ path.resolve(__dirname, "tests") ],
         enforce: 'post',
         use: {
           loader: 'istanbul-instrumenter-loader',
@@ -45,8 +44,8 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].css'
-            }
+              name: '[name].css',
+            },
           },
           'extract-loader',
           'css-loader?-url',
