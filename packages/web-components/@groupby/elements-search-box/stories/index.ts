@@ -17,15 +17,13 @@ const updateTextEvent = [
   },
 ];
 
-const eventsToListen = [
+addStorybookListeners([
   SEARCHBOX_CLEAR,
   SEARCHBOX_CLICK,
   SEARCHBOX_INPUT,
   SEARCH_REQUEST,
   UPDATE_SEARCH_TERM
-];
-
-addStorybookListeners(eventsToListen);
+]);
 
 const searchboxNotesMarkdownIntro = `# GB Elements Search Box Component
 
