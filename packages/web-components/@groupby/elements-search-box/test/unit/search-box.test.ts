@@ -176,16 +176,6 @@ describe('SearchBox Component', () => {
       expect(emitSearchEvent).to.be.calledOnce;
     });
 
-    it('should not emit a search request if group matches but event does not request it', () => {
-      const search = false;
-      const inputEvent = new CustomEvent('some-test-type', { detail: { term, group, search } });
-      searchbox.group = group;
-
-      searchbox.updateSearch(inputEvent);
-
-      expect(emitSearchEvent).to.not.be.called;
-    });
-
     it('should not update the value or emit a search when the group in the component and the event do not match', () => {
       const inputEvent = new CustomEvent('some-test-type', { detail: { term, group } });
       searchbox.group = 'different group';
@@ -193,6 +183,15 @@ describe('SearchBox Component', () => {
       searchbox.updateSearch(inputEvent);
 
       expect(updateSearchTermValue).to.not.be.called;
+      expect(emitSearchEvent).to.not.be.called;
+    });
+
+    it('should not emit a search request if group matches but event does not request it', () => {
+      const inputEvent = new CustomEvent('some-test-type', { detail: { term, group } });
+      searchbox.group = group;
+
+      searchbox.updateSearch(inputEvent);
+
       expect(emitSearchEvent).to.not.be.called;
     });
 
