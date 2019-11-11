@@ -320,8 +320,3 @@ export default class Autocomplete extends Base {
     `;
   }
 }
-
-export interface AutocompleteClickPayload {
-  group: string;
-  searchTerm: string;
-}
