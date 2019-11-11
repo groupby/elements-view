@@ -9,7 +9,6 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SEARCHBOX_INPUT,
-  UPDATE_SEARCH_TERM,
 } from '@groupby/elements-events';
 import {
   expect,
