@@ -113,7 +113,7 @@ export default class SearchBox extends Base {
    * Updates the contents of the search input box and the value property
    * with the payload of the given event.
    * Submits a search request if directed by the event.
-   * Acts only if group in the event matches group in this component.
+   * Acts only if group matches in the event and the component.
    * Invoked in response to an update search term event.
    *
    * @param e The event object.
