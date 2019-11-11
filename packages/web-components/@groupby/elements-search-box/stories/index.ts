@@ -13,7 +13,7 @@ import '../src';
 const updateTextEvent = [
   {
     name: UPDATE_SEARCH_TERM,
-    payload: { term: 'hot chocolate' },
+    payload: { term: 'hot chocolate', search: true },
   },
 ];
 
