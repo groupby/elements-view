@@ -613,7 +613,3 @@ export default class Sayt extends Base {
 export interface SaytRequester {
   (query: string, searchbox?: string): void;
 }
-
-export interface UpdateSaytSearchTermPayload {
-  newSearchTerm: string;
-}
