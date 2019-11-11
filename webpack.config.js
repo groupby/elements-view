@@ -9,7 +9,8 @@ module.exports = {
       './presets/components.ts',
       './presets/gbe-bold-theme.scss',
       './presets/gbe-elegant-theme.scss',
-    ]
+    ],
+
   },
 
   devtool: 'source-map',
