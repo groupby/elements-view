@@ -19,7 +19,7 @@ function parseVariants(variants) {
       color: v.standardColor,
       text: v.standardColor,
       image: v.swatchImage,
-      product: {imageSrc: v.productImage, imageAlt: v.description, },
+      product: { imageSrc: v.productImage, imageAlt: v.description, },
     };
   });
 }
