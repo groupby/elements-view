@@ -837,47 +837,6 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('updateSearchTerm()', () => {
-    const newSearchTerm = 'new value';
-    let receivedEvent;
-
-    beforeEach(() => {
-      receivedEvent = { detail: { newSearchTerm }};
-    });
-
-    it('should update its searchbox directly', () => {
-      const searchbox = { value: 'old value' };
-      const searchboxId = sayt.searchbox = 'searchbox-id';
-      stub(document, 'getElementById').withArgs(searchboxId).returns(searchbox);
-
-      sayt.updateSearchTerm(receivedEvent);
-
-      expect(searchbox.value).to.equal(newSearchTerm);
-    });
-
-    it('should emit a searchbox update event if it has no searchbox', () => {
-      const group = sayt.group = 'sayt-group';
-      const payload = {
-        group,
-        term: newSearchTerm,
-      }
-      const dispatchElementsEvent = stub(sayt, 'dispatchElementsEvent');
-      sayt.searchbox = undefined;
-
-      sayt.updateSearchTerm(receivedEvent);
-
-      expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload);
-    });
-
-    it('should reject non-string values for the new search term', () => {
-      receivedEvent.detail.newSearchTerm = 3;
-
-      const callback = () => sayt.updateSearchTerm(receivedEvent);
-
-      expect(callback).to.throw();
-    });
-  });
-
   describe('nodeInSearchbox()', () => {
     it('should return true if given node is contained in the search box', () => {
       const searchbox = {
