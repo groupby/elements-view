@@ -121,6 +121,9 @@ export default class SearchBox extends Base {
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
       this.updateSearchTermValue(e.detail.term);
+      if (e.detail.search) {
+        this.emitSearchEvent();
+      }
     }
   }
 
