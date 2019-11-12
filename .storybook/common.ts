@@ -189,5 +189,5 @@ export interface StorybookCustomEvent {
 }
 
 export function addStorybookListeners(events) {
-  events.forEach(e => addEventListener(e, logEvent));
+  events.forEach(e => window.addEventListener(e, logEvent));
 }
