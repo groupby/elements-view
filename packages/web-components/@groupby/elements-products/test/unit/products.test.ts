@@ -124,19 +124,19 @@ describe('Products Sayt Component', () => {
     //   expect(requestCacheData).to.be.called();
     // });
 
-  //   it('should dispatch elements event with Cache request and request payload', () => {
-  //     const componentId = component.componentId = 'some-id';
-  //     const componentName = component.componentName = 'products-sayt';
-  //     const group = component.group = 'some-group';
-  //     const cacheResponseEventName = Utils.getResponseEventName(componentName, componentId);
-  //     const requestPayload = Utils.requestCacheData(cacheResponseEventName, group, componentId, componentName);
-  //     const dispatchElementsEvent = stub(component, 'dispatchElementsEvent');
+    it('should dispatch elements event with Cache request and request payload', () => {
+      const componentId = component.componentId = 'some-id';
+      const componentName = component.componentName = 'products-sayt';
+      const group = component.group = 'some-group';
+      const cacheResponseEventName = Utils.getResponseEventName(componentName, componentId);
+      const requestPayload = Utils.requestCacheData(cacheResponseEventName, group, componentId, componentName);
+      const dispatchElementsEvent = stub(component, 'dispatchElementsEvent');
 
-  //     component.connectedCallback();
+      component.connectedCallback();
 
-  //     expect(dispatchElementsEvent).to.be.calledOnceWith(CACHE_REQUEST, requestPayload)
-  //   });
-  // });
+      expect(dispatchElementsEvent).to.be.calledOnceWith(CACHE_REQUEST, requestPayload)
+    });
+  });
 
   describe('disconnectedCallback', () => {
     itShouldCallParentMethod(() => component, 'disconnectedCallback');
