@@ -7,6 +7,6 @@ module.exports = function(api) {
       '@babel/preset-typescript',
     ],
     sourceType: 'unambiguous',
-    plugins: ["@babel/plugin-transform-runtime", ],
+    plugins: ['@babel/plugin-transform-runtime', ],
   };
 };
