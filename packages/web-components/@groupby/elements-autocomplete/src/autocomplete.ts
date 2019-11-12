@@ -99,6 +99,7 @@ export default class Autocomplete extends Base {
       group: this.group,
       returnEvent: this.initialDataResponseEventName,
     };
+    console.log('>>> VIEW AUTOCOMPLETE request payload', payload)
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 

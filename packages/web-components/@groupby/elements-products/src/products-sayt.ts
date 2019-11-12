@@ -40,10 +40,10 @@ export default class ProductsSayt extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
+    const cacheResponseEventName = getResponseEventName(SAYT_PRODUCTS_RESPONSE, this.componentId);
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    const requestPayload = requestCacheData(cacheResponseEventName, this.group, this.componentId, 'products-sayt');
+    const requestPayload = requestCacheData(SAYT_PRODUCTS_RESPONSE, this.group, this.componentId, 'sayt-products');
     console.log('>>>VIEW sayt requestPayload', requestPayload)
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, requestPayload);
   }
@@ -53,7 +53,7 @@ export default class ProductsSayt extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
+    const cacheResponseEventName = getResponseEventName('sayt-products', this.componentId);
     window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.removeEventListener(cacheResponseEventName, this.setProductsFromCacheData);
   }
@@ -65,7 +65,7 @@ export default class ProductsSayt extends ProductsBase {
    * @param event The event object.
    */
   setProductsFromCacheData(event: CustomEvent<CacheResponsePayload & Product>): void {
-    console.log('>>> VIEW sayt got cache event', event.detail);
+    console.log('>>> VIEW sayt got cache event >>>>>>', event.detail);
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {

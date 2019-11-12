@@ -40,11 +40,11 @@ export default class ProductsSearch extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    const cacheResponseEventName = getResponseEventName('products-search', this.componentId);
+    const cacheResponseEventName = getResponseEventName(SEARCH_RESPONSE, this.componentId);
 
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    const requestPayload = requestCacheData(cacheResponseEventName, this.group, this.componentId, 'products-search');
+    const requestPayload = requestCacheData(SEARCH_RESPONSE, this.group, this.componentId, 'search-products');
     console.log('>>>VIEW search requestPayload', requestPayload)
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, requestPayload);
   }
@@ -54,7 +54,7 @@ export default class ProductsSearch extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    const cacheResponseEventName = getResponseEventName('products-search', this.componentId);
+    const cacheResponseEventName = getResponseEventName('search-products', this.componentId);
     window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.removeEventListener(cacheResponseEventName, this.setProductsFromCacheData);
   }
