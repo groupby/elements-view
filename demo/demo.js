@@ -78,6 +78,7 @@ core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, dom
   'gbe::cache_request',
   'gbe::sayt_products_response',
   'gbe::sayt_products_error',
+  'gbe::autocomplete_response',
   // cacheResponse,
 
 ].forEach((eventName) => {

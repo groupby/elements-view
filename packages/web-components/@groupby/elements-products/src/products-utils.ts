@@ -19,4 +19,4 @@ export const requestCacheData = (responseName: string, group: string, componentI
     returnEvent: cacheResponseEventName,
   };
   return payload;
-}
+};

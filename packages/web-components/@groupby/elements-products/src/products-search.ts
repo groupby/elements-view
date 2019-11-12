@@ -7,8 +7,8 @@ import {
   CacheRequestPayload,
   CacheResponsePayload,
 } from '@groupby/elements-events';
-import { ProductsBase, getResponseEventName, requestCacheData } from '.';
 import * as shortid from 'shortid';
+import { ProductsBase, getResponseEventName, requestCacheData } from '.';
 
 /**
  * The `gbe-products` web component wraps and renders a number of
@@ -19,7 +19,6 @@ import * as shortid from 'shortid';
  */
 @customElement('gbe-products')
 export default class ProductsSearch extends ProductsBase {
-
   /**
    * A random string suitable for use in stable IDs related to this
    * component.
@@ -31,6 +30,7 @@ export default class ProductsSearch extends ProductsBase {
    */
   constructor() {
     super();
+    console.log('>> VIEW products search')
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
     this.setProductsFromCacheData = this.setProductsFromCacheData.bind(this);
   }
@@ -45,6 +45,7 @@ export default class ProductsSearch extends ProductsBase {
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
     const requestPayload = requestCacheData(cacheResponseEventName, this.group, this.componentId, 'products-search');
+    console.log('>>>VIEW search requestPayload', requestPayload)
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, requestPayload);
   }
 
@@ -65,6 +66,7 @@ export default class ProductsSearch extends ProductsBase {
    * @param event The event object.
    */
   setProductsFromCacheData(event: CustomEvent<CacheResponsePayload & Product>): void {
+    console.log('>>> VIEW search got cache event', event.detail);
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
