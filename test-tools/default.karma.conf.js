@@ -5,7 +5,7 @@ delete webpackConfig.entry;
 webpackConfig.module.rules.splice(0, 1, {
   test: /\.tsx?$/,
   loader: 'ts-loader',
-  exclude: [/node_modules/]
+  exclude: [/node_modules/, ],
 });
 
 module.exports = function createDefaultConf() {

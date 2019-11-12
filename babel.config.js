@@ -3,15 +3,10 @@ module.exports = function(api) {
 
   return {
     presets: [
-      [
-        '@babel/preset-env',
-        {
-          useBuiltIns: 'usage',
-          corejs: '3.4.0'
-        }
-      ],
-      '@babel/preset-typescript'
+      '@babel/preset-env',
+      '@babel/preset-typescript',
     ],
-    sourceType: 'unambiguous'
+    sourceType: 'unambiguous',
+    plugins: ["@babel/plugin-transform-runtime", ],
   };
 };
