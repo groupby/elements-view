@@ -4,7 +4,6 @@ import {
   Product,
   SaytProductsResponsePayload,
   CACHE_REQUEST,
-  CACHE_RESPONSE_PREFIX,
   CacheRequestPayload,
   CacheResponsePayload,
 } from '@groupby/elements-events';
@@ -46,7 +45,6 @@ export default class ProductsSayt extends ProductsBase {
 
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    console.log('>>> this.group sayt', this.group)
     const requestPayload = requestCacheData(cacheResponseEventName, this.group, this.componentId);
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, requestPayload);
   }
@@ -71,7 +69,6 @@ export default class ProductsSayt extends ProductsBase {
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
-      console.log('>>> yo products response sayt', event.detail.results.products || 'yo nada')
       this.products = event.detail.results.products || [];
     }
   }
