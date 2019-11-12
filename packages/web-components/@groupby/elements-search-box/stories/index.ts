@@ -5,7 +5,7 @@ import {
   SEARCHBOX_CLICK,
   SEARCHBOX_INPUT,
   SEARCH_REQUEST,
-  UPDATE_SEARCH_TERM
+  UPDATE_SEARCH_TERM,
 } from '@groupby/elements-events';
 import { getDisplayCode, addStorybookListeners } from '../../../../../.storybook/common';
 import '../src';
