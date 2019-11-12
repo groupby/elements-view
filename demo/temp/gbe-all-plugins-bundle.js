@@ -14948,7 +14948,10 @@ var CacheDriverPlugin = /** @class */ (function () {
         console.log('in handleRequest in cache driver');
         var _a = request.detail, name = _a.name, group = _a.group, returnEvent = _a.returnEvent;
         console.log('in handleRequest in cache driver', name, group, returnEvent);
-        var data = this.core.cache.get(name + "::" + (group || ''));
+        console.log('in handleRequest in cache driver - return event', returnEvent);
+        console.log('this.caore.cache', this.core.cache);
+        // const data = this.core.cache.get(`${name}::${group || ''}`);
+        var data = { products: 'hello' };
         var payload = { name: name, data: data, group: group };
         this.core.dom_events.dispatchEvent(returnEvent, payload);
     };
@@ -15665,6 +15668,7 @@ var SaytDriverPlugin = /** @class */ (function () {
             .then(function (results) {
             var payload = __assign(__assign({}, results), { group: group });
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SAYT_PRODUCTS_RESPONSE, payload);
+            console.log('this.core.cache before set', _this.core.cache);
             if (_this.core.cache)
                 _this.core.cache.set(elements_events_1.SAYT_PRODUCTS_RESPONSE + "::" + group, { data: { products: 'lala' } });
             console.log('this.core.cache', _this.core.cache);
