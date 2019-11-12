@@ -40,11 +40,13 @@ export default class ProductsSayt extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
+    console.log('in connected callback - products-sayt')
     const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
     console.log(cacheResponseEventName, 'cacheResponseEventName');
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
     this.requestInitialData();
+    // this.superRequestInitialData(SAYT_PRODUCTS_RESPONSE, this.group, cacheResponseEventName)
   }
 
   /**

@@ -9,6 +9,10 @@ import {
 import { Product } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
+import {
+  CACHE_REQUEST,
+  CacheRequestPayload,
+} from '@groupby/elements-events';
 
 /**
  * The `gbe-products-base` web component wraps and renders a number of
@@ -38,6 +42,15 @@ export default class ProductsBase extends Base {
     if (!this.getAttribute('role')) {
       this.setAttribute('role', 'list');
     }
+  }
+
+  superRequestInitialData(name: string, group: string, returnEvent: string): void {
+    const payload: CacheRequestPayload = {
+      name,
+      group,
+      returnEvent,
+    };
+    this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 
   /**
