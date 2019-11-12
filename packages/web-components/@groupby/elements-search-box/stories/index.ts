@@ -22,7 +22,7 @@ addStorybookListeners([
   SEARCHBOX_CLICK,
   SEARCHBOX_INPUT,
   SEARCH_REQUEST,
-  UPDATE_SEARCH_TERM
+  UPDATE_SEARCH_TERM,
 ]);
 
 const searchboxNotesMarkdownIntro = `# GB Elements Search Box Component
