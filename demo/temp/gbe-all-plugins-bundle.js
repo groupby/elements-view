@@ -15656,16 +15656,17 @@ var SaytDriverPlugin = /** @class */ (function () {
      */
     SaytDriverPlugin.prototype.fetchProductData = function (event) {
         var _this = this;
-        console.log('>> LOGIC sayt driver');
+        // console.log('>> LOGIC sayt driver');
         var _a = event.detail, query = _a.query, group = _a.group, config = _a.config;
+        console.log('>> LOGIC sayt driver', event.detail, this.eventsPluginName);
         this.sendSearchApiRequest(query, config)
             .then(function (results) {
             var payload = __assign(__assign({}, results), { group: group });
-            _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SAYT_PRODUCTS_RESPONSE, payload);
-            // const test = {results: {products: ['payload1', 'payl2', 'pay3']}}
-            console.log('>>> LOGIC sayt core cache', payload, _this.core.cache);
+            console.log('>>> LOGIC sayt core cache', payload, _this.core.cache, elements_events_1.SAYT_PRODUCTS_RESPONSE + "::" + group);
             if (_this.core.cache)
                 _this.core.cache.set(elements_events_1.SAYT_PRODUCTS_RESPONSE + "::" + group, payload);
+            _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SAYT_PRODUCTS_RESPONSE, payload);
+            // const test = {results: {products: ['payload1', 'payl2', 'pay3']}}
         })
             .catch(function (error) {
             var payload = { error: error, group: group };
@@ -15928,11 +15929,13 @@ var SearchDriverPlugin = /** @class */ (function () {
         this.sendSearchApiRequest(__assign({ query: query }, config))
             .then(function (results) {
             var payload = { results: results, group: group };
-            _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SEARCH_RESPONSE, payload);
-            // const test = {results: {products: ['payload1', 'payl2', 'pay3']}}
-            console.log('>>> LOGIC search core cache', payload, _this.core.cache);
+            console.log('>>> LOGIC searchhhh core cache', payload, _this.core.cache, elements_events_1.SEARCH_RESPONSE + "::" + group);
             if (_this.core.cache)
                 _this.core.cache.set(elements_events_1.SEARCH_RESPONSE + "::" + group, payload);
+            _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SEARCH_RESPONSE, payload);
+            // const test = {results: {products: ['payload1', 'payl2', 'pay3']}}
+            // console.log('>>> LOGIC search core cache', payload, this.core.cache);
+            // if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };

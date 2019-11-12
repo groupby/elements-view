@@ -30,7 +30,7 @@ export default class ProductsSearch extends ProductsBase {
    */
   constructor() {
     super();
-    console.log('>> VIEW products search')
+    // console.log('>> VIEW products search')
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
     this.setProductsFromCacheData = this.setProductsFromCacheData.bind(this);
   }
@@ -41,7 +41,7 @@ export default class ProductsSearch extends ProductsBase {
   connectedCallback(): void {
     super.connectedCallback();
     const cacheResponseEventName = getResponseEventName(SEARCH_RESPONSE, this.componentId);
-
+    console.log('>>> VIEW search cacheResponseEventName', cacheResponseEventName)
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
     const requestPayload = requestCacheData(SEARCH_RESPONSE, this.group, this.componentId, 'search-products');

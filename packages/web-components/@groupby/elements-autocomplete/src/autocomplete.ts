@@ -108,6 +108,7 @@ export default class Autocomplete extends Base {
    * cache requests for this component.
    */
   get initialDataResponseEventName(): string {
+    console.log('>>> VIEW ???? autocomplete cacheResponseEventName', `${CACHE_RESPONSE_PREFIX}autocomplete-${this.componentId}`)
     return `${CACHE_RESPONSE_PREFIX}autocomplete-${this.componentId}`;
   }
 
