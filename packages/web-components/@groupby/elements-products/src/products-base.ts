@@ -6,16 +6,9 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import {
-  CACHE_REQUEST,
-  CACHE_RESPONSE_PREFIX,
-  CacheRequestPayload,
-  CacheResponsePayload,
-  Product,
-} from '@groupby/elements-events';
+import { Product } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
-import * as shortid from 'shortid';
 
 /**
  * The `gbe-products-base` web component wraps and renders a number of
@@ -36,17 +29,12 @@ export default class ProductsBase extends Base {
    */
   @property({ type: String, reflect: true }) group: string = '';
 
-  constructor() {
-    super();
-    // this.receiveCacheData = this.receiveCacheData.bind(this);
-  }
   /**
    * Sets the ARIA role to `list` if one is not already specified.
    */
   connectedCallback(): void {
     super.connectedCallback();
 
-    // window.addEventListener(this.receiveCacheData)
     if (!this.getAttribute('role')) {
       this.setAttribute('role', 'list');
     }
