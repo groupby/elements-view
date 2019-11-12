@@ -31,7 +31,7 @@ export default class ProductsSayt extends ProductsBase {
    */
   constructor() {
     super();
-
+    console.log('>>> yo products sayt')
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
     this.setProductsFromCacheData = this.setProductsFromCacheData.bind(this);
   }
@@ -42,10 +42,9 @@ export default class ProductsSayt extends ProductsBase {
   connectedCallback(): void {
     super.connectedCallback();
     const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
-
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    const requestPayload = requestCacheData(cacheResponseEventName, this.group, this.componentId);
+    const requestPayload = requestCacheData(cacheResponseEventName, this.group, this.componentId, 'products-sayt');
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, requestPayload);
   }
 
@@ -66,10 +65,11 @@ export default class ProductsSayt extends ProductsBase {
    * @param event The event object.
    */
   setProductsFromCacheData(event: CustomEvent<CacheResponsePayload & Product>): void {
+    console.log('>>> yo cache recieved adding to products')
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
-      this.products = event.detail.results.products || [];
+      this.products = event.detail.products || [];
     }
   }
 

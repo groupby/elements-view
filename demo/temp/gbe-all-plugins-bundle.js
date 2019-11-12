@@ -15656,11 +15656,14 @@ var SaytDriverPlugin = /** @class */ (function () {
      */
     SaytDriverPlugin.prototype.fetchProductData = function (event) {
         var _this = this;
+        console.log('>> YO LOGIC');
         var _a = event.detail, query = _a.query, group = _a.group, config = _a.config;
         this.sendSearchApiRequest(query, config)
             .then(function (results) {
             var payload = __assign(__assign({}, results), { group: group });
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SAYT_PRODUCTS_RESPONSE, payload);
+            if (_this.core.cache)
+                _this.core.cache.set(elements_events_1.SAYT_PRODUCTS_RESPONSE + "::" + group, ['payload1', 'nm2', 'etcetc']);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };
@@ -15923,6 +15926,9 @@ var SearchDriverPlugin = /** @class */ (function () {
             .then(function (results) {
             var payload = { results: results, group: group };
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SEARCH_RESPONSE, payload);
+            console.log('>>> core cache', payload);
+            if (_this.core.cache)
+                _this.core.cache.set(elements_events_1.SEARCH_RESPONSE + "::" + group, ['payload1', 'payl2', 'pay3']);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };

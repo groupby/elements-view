@@ -31,7 +31,6 @@ export default class ProductsSearch extends ProductsBase {
    */
   constructor() {
     super();
-
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
     this.setProductsFromCacheData = this.setProductsFromCacheData.bind(this);
   }
@@ -45,7 +44,7 @@ export default class ProductsSearch extends ProductsBase {
 
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    const requestPayload = requestCacheData(cacheResponseEventName, this.group, this.componentId);
+    const requestPayload = requestCacheData(cacheResponseEventName, this.group, this.componentId, 'products-search');
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, requestPayload);
   }
 
@@ -69,7 +68,7 @@ export default class ProductsSearch extends ProductsBase {
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
-      this.products = event.detail.results.products || [];
+      this.products = event.detail.products || [];
     }
   }
 
