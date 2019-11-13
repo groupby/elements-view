@@ -8,6 +8,7 @@ import {
 } from 'lit-element';
 import {
   Product,
+  CACHE_RESPONSE_PREFIX,
   CACHE_REQUEST,
   CacheRequestPayload,
 } from '@groupby/elements-events';
@@ -46,13 +47,16 @@ export default class ProductsBase extends Base {
   }
 
   requestInitialData(name: string, group: string, returnEvent: string): void {
-    console.log('in base superRequestInitialData... - sayt product response test');
     const payload: CacheRequestPayload = {
       name,
       group,
       returnEvent,
     };
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
+  }
+
+  getResponseEventName(componentName: string, componentId: string): string {
+    return `${CACHE_RESPONSE_PREFIX}${componentName}-${componentId}`;
   }
 
   /**
