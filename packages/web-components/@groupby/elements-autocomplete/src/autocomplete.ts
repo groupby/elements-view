@@ -99,7 +99,7 @@ export default class Autocomplete extends Base {
       group: this.group,
       returnEvent: this.initialDataResponseEventName,
     };
-    console.log('>>> VIEW AUTOCOMPLETE request payload', payload)
+    console.log('>>> shawna VIEW AUTOCOMPLETE request payload', payload)
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 
@@ -171,6 +171,7 @@ export default class Autocomplete extends Base {
    * @param event The event object.
    */
   receiveInitialData(event: CustomEvent<CacheResponsePayload>): void {
+    console.log('>>> shawna VIEW autocomplete got cache event', event.detail)
     const data = event.detail.data || {};
     this.results = data.results || [];
   }

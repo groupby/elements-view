@@ -15663,9 +15663,10 @@ var SaytDriverPlugin = /** @class */ (function () {
             .then(function (results) {
             var payload = __assign(__assign({}, results), { group: group });
             console.log('>>> LOGIC sayt core cache', payload, _this.core.cache, elements_events_1.SAYT_PRODUCTS_RESPONSE + "::" + group);
+            // if (this.core.cache) this.core.cache.set(`${SAYT_PRODUCTS_RESPONSE}::${group}`, payload);
+            _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SAYT_PRODUCTS_RESPONSE, payload);
             if (_this.core.cache)
                 _this.core.cache.set(elements_events_1.SAYT_PRODUCTS_RESPONSE + "::" + group, payload);
-            _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SAYT_PRODUCTS_RESPONSE, payload);
             // const test = {results: {products: ['payload1', 'payl2', 'pay3']}}
         })
             .catch(function (error) {
@@ -15930,12 +15931,12 @@ var SearchDriverPlugin = /** @class */ (function () {
             .then(function (results) {
             var payload = { results: results, group: group };
             console.log('>>> LOGIC searchhhh core cache', payload, _this.core.cache, elements_events_1.SEARCH_RESPONSE + "::" + group);
-            if (_this.core.cache)
-                _this.core.cache.set(elements_events_1.SEARCH_RESPONSE + "::" + group, payload);
+            // if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SEARCH_RESPONSE, payload);
             // const test = {results: {products: ['payload1', 'payl2', 'pay3']}}
             // console.log('>>> LOGIC search core cache', payload, this.core.cache);
-            // if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
+            if (_this.core.cache)
+                _this.core.cache.set(elements_events_1.SEARCH_RESPONSE + "::" + group, payload);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };

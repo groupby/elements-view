@@ -8,7 +8,8 @@ import {
   CacheResponsePayload,
 } from '@groupby/elements-events';
 import * as shortid from 'shortid';
-import { ProductsBase, getResponseEventName, requestCacheData } from '.';
+// import { ProductsBase, getResponseEventName, requestCacheData } from '.';
+import { ProductsBase, getResponseEventName } from '.';
 
 /**
  * The `gbe-products-sayt` web component wraps and renders a number of
@@ -40,13 +41,14 @@ export default class ProductsSayt extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    const cacheResponseEventName = getResponseEventName(SAYT_PRODUCTS_RESPONSE, this.componentId);
-    console.log('>>> VIEW sayt cacheResponseEventName', cacheResponseEventName)
+    const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
+    console.log('>>> shawna new VIEW sayt cacheResponseEventName', cacheResponseEventName)
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    const requestPayload = requestCacheData(SAYT_PRODUCTS_RESPONSE, this.group, this.componentId, 'sayt-products');
-    console.log('>>>VIEW sayt requestPayload  compared tp ^^^ cacheResponseEventName', requestPayload)
-    this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, requestPayload);
+    // const requestPayload = requestCacheData(SAYT_PRODUCTS_RESPONSE, this.group, this.componentId, 'products-sayt');
+    // console.log('>>>VIEW sayt requestPayload  compared tp ^^^ cacheResponseEventName', requestPayload)
+    // this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, requestPayload);
+    this.requestCacheData(this.group, this.componentId, 'products-sayt')
   }
 
   /**
@@ -54,7 +56,7 @@ export default class ProductsSayt extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    const cacheResponseEventName = getResponseEventName('sayt-products', this.componentId);
+    const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
     window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.removeEventListener(cacheResponseEventName, this.setProductsFromCacheData);
   }
@@ -66,12 +68,23 @@ export default class ProductsSayt extends ProductsBase {
    * @param event The event object.
    */
   setProductsFromCacheData(event: CustomEvent<CacheResponsePayload & Product>): void {
-    console.log('>>> VIEW EVENT sayt got cache event >>>>>>', event.detail);
-    const eventGroup = event.detail.group || '';
-    const componentGroup = this.group || '';
-    if (eventGroup === componentGroup) {
-      this.products = event.detail.products || [];
-    }
+    console.log('>>> shawna VIEW sayt got cache event >>>>>>', event.detail);
+    // const eventGroup = event.detail.group || '';
+    // const componentGroup = this.group || '';
+    // if (eventGroup === componentGroup) {
+    //   this.products = event.detail.products || [];
+    // }
+  }
+
+  requestCacheData(group: string, componentId: any, componentName: string): void {
+    const cacheResponseEventName = getResponseEventName(componentName, componentId);
+    const payload: CacheRequestPayload = {
+      name: SAYT_PRODUCTS_RESPONSE,
+      group,
+      returnEvent: cacheResponseEventName,
+    };
+    console.log('>>> shawna sayt request payload', payload)
+      this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 
   /**

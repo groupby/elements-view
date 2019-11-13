@@ -8,7 +8,8 @@ import {
   CacheResponsePayload,
 } from '@groupby/elements-events';
 import * as shortid from 'shortid';
-import { ProductsBase, getResponseEventName, requestCacheData } from '.';
+// import { ProductsBase, getResponseEventName, requestCacheData } from '.';
+import { ProductsBase, getResponseEventName } from '.';
 
 /**
  * The `gbe-products` web component wraps and renders a number of
@@ -40,13 +41,14 @@ export default class ProductsSearch extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    const cacheResponseEventName = getResponseEventName(SEARCH_RESPONSE, this.componentId);
+    const cacheResponseEventName = getResponseEventName('products-search', this.componentId);
     console.log('>>> VIEW search cacheResponseEventName', cacheResponseEventName)
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    const requestPayload = requestCacheData(SEARCH_RESPONSE, this.group, this.componentId, 'search-products');
-    console.log('>>>VIEW search requestPayload', requestPayload)
-    this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, requestPayload);
+    // const requestPayload = requestCacheData(SEARCH_RESPONSE, this.group, this.componentId, 'search-products');
+    // console.log('>>>VIEW search requestPayload', requestPayload)
+    // this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, requestPayload);
+    this.requestCacheData(this.group, this.componentId, 'products-search')
   }
 
   /**
@@ -54,7 +56,7 @@ export default class ProductsSearch extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    const cacheResponseEventName = getResponseEventName('search-products', this.componentId);
+    const cacheResponseEventName = getResponseEventName('products-search', this.componentId);
     window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.removeEventListener(cacheResponseEventName, this.setProductsFromCacheData);
   }
@@ -66,14 +68,24 @@ export default class ProductsSearch extends ProductsBase {
    * @param event The event object.
    */
   setProductsFromCacheData(event: CustomEvent<CacheResponsePayload & Product>): void {
-    console.log('>>> VIEW search got cache event', event.detail);
-    const eventGroup = event.detail.group || '';
-    const componentGroup = this.group || '';
-    if (eventGroup === componentGroup) {
-      this.products = event.detail.products || [];
-    }
+    console.log('>>> shawna VIEW search got cache event', event.detail);
+    // const eventGroup = event.detail.group || '';
+    // const componentGroup = this.group || '';
+    // if (eventGroup === componentGroup) {
+    //   this.products = event.detail.products || [];
+    // }
   }
 
+  requestCacheData(group: string, componentId: any, componentName: string): void {
+    const cacheResponseEventName = getResponseEventName(componentName, componentId);
+    const payload: CacheRequestPayload = {
+      name: SEARCH_RESPONSE,
+      group,
+      returnEvent: cacheResponseEventName,
+    };
+    console.log('>>> shawna search request payload', payload)
+      this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
+  }
   /**
    * Sets the `products` property from the products in an event.
    *

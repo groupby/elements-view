@@ -11,12 +11,12 @@ export function getResponseEventName(componentName: string, componentId: any): s
 /**
  * Requests initial data for the product components.
  */
-export const requestCacheData = (responseName: string, group: string, componentId: any, componentName: string): CacheRequestPayload => {
-  const cacheResponseEventName = getResponseEventName(componentName, componentId);
-  const payload: CacheRequestPayload = {
-    name: responseName,
-    group,
-    returnEvent: cacheResponseEventName,
-  };
-  return payload;
-};
+// export function requestCacheData(responseName: string, group: string, componentId: any, componentName: string): CacheRequestPayload {
+//   const cacheResponseEventName = getResponseEventName(componentName, componentId);
+//   const payload: CacheRequestPayload = {
+//     name: responseName,
+//     group,
+//     returnEvent: cacheResponseEventName,
+//   };
+//   return payload;
+// }
