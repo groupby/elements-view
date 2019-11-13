@@ -81,10 +81,14 @@ storiesOf('Components|Searchbox', module)
               2. See the component update with the updated text.
 
           ### The GB Elements Search Box component populates with an updated search term in response to the \`${UPDATE_SEARCH_TERM}\` event.
-            * To emit the event in this story:
-              1. Navigate to the **Custom Events** tab and locate the \`${UPDATE_SEARCH_TERM}\` event.
-              2. Click "emit".
-              3. See the component update with the new search term.
+          * The Search Box component listens for \`${UPDATE_SEARCH_TERM}\` events and updates the search box with the provided search term.
+          * A follow up \`${SEARCH_REQUEST}\` event may also be emitted if the \`${UPDATE_SEARCH_TERM}\` event also contains the search property.
+          * To emit the event in this story:
+            1. Navigate to the **Custom Events** tab and locate the \`${UPDATE_SEARCH_TERM}\` event.
+              * **NOTE**: The event can be edited to set the search property to true or false.
+            2. Click "emit".
+            3. See the component update with the new search term.
+            4. Navigate to the **Events Logger** tab see the events in the log.
 
           ### Multiple Search Box components can behave independently
             * If multiple Search Box, Sayt, and Products components are on the page, the \`group\` attribute can be used to send events to specific groups.
