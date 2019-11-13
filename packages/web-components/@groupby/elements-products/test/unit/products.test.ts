@@ -1,13 +1,7 @@
 import {
   CACHE_RESPONSE_PREFIX,
-  CACHE_REQUEST,
-  CacheRequestPayload,
-  CacheResponsePayload,
   SAYT_PRODUCTS_RESPONSE,
   SEARCH_RESPONSE,
-  SaytProductsResponsePayload,
-  SearchResponsePayload,
-  Product,
 } from '@groupby/elements-events';
 import {
   expect,
@@ -72,7 +66,7 @@ describe('Products Sayt Component', () => {
 
   beforeEach(() => {
     component = new ProductsSayt();
-    stub()
+    stub();
   });
 
   itShouldExtendClass(() => component, ProductsBase);
@@ -160,14 +154,8 @@ describe('Products Sayt Component', () => {
   });
 
   describe('setProductsFromCacheData', () => {
-    let products;
-
-    beforeEach(() => {
-      products = [1, 2, 3];
-    });
-
     it('should set products to an empty array if the event payload does not contain products', () => {
-      const event = { detail: {results: {}} };
+      const event = { detail: { results: {} } };
 
       component.setProductsFromCacheData(event);
 
