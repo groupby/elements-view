@@ -25,9 +25,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
-        exclude: [/node_modules/]
+        test: /\.[jt]sx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules\/(?!(lit-html|lit-element)\/).*/,
       },
       {
         test: /\.ts$/,
@@ -79,4 +79,4 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
   }
-}
+};

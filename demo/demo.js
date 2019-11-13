@@ -6,23 +6,22 @@ function parseRecord(record) {
   if (!nonvisualVariants[0]) throw new Error('No nonvisual variants');
 
   return {
-    data,
-    firstVariant,
-    nonvisualVariants,
-    visualVariants,
+    data: data,
+    firstVariant: firstVariant,
+    nonvisualVariants: nonvisualVariants,
+    visualVariants: visualVariants,
   };
 }
 
 function parseVariants(variants) {
-  return variants.map((v) => ({
-    color: v.standardColor,
-    text: v.standardColor,
-    image: v.swatchImage,
-    product: {
-      imageSrc: v.productImage,
-      imageAlt: v.description,
-    },
-  }));
+  return variants.map(function(v) {
+    return {
+      color: v.standardColor,
+      text: v.standardColor,
+      image: v.swatchImage,
+      product: { imageSrc: v.productImage, imageAlt: v.description, },
+    };
+  });
 }
 
 function productTransformer(record) {
@@ -33,26 +32,27 @@ function productTransformer(record) {
     console.error(error);
     return;
   }
-  const {
-    data,
-    firstVariant,
-    nonvisualVariants,
-    visualVariants,
-  } = filter;
+  const data = filter.data;
+  const firstVariant = filter.firstVariant;
+  const nonvisualVariants = filter.nonvisualVariants;
+  const visualVariants = filter.visualVariants;
 
-  return {
+  const transfomedProduct = {
     title: data.title,
     price: nonvisualVariants[0].retailPrice,
     imageSrc: firstVariant.productImage,
     imageAlt: data.title,
     productUrl: firstVariant.productImage,
-    ...(visualVariants.length > 1 && {
-      variants: {
-        type: 'image',
-        items: parseVariants(visualVariants),
-      },
-    }),
   };
+
+  if (visualVariants.length > 1) {
+    transfomedProduct.variants = {
+      type: 'image',
+      items: parseVariants(visualVariants),
+    };
+  }
+
+  return transfomedProduct;
 }
 
 function searchProductTransformer(record) {
@@ -68,7 +68,7 @@ const cachePlugin = new GbElementsPlugins.CachePlugin();
 const cacheDriverPlugin = new GbElementsPlugins.CacheDriverPlugin();
 const domEventsPlugin = new GbElementsPlugins.DomEventsPlugin();
 const saytPlugin = new GbElementsPlugins.SaytPlugin({ subdomain: 'apparel' });
-const saytDriverPlugin = new GbElementsPlugins.SaytDriverPlugin({ productTransformer });
+const saytDriverPlugin = new GbElementsPlugins.SaytDriverPlugin({ productTransformer: productTransformer });
 const searchPlugin = new GbElementsPlugins.SearchPlugin({ customerId: 'apparel' });
 const searchDriverPlugin = new GbElementsPlugins.SearchDriverPlugin({ productTransformer: searchProductTransformer });
 // register all plugins with core
@@ -78,8 +78,8 @@ core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, dom
   'gbe::cache_request',
   'gbe::sayt_products_response',
   'gbe::sayt_products_error',
-].forEach((eventName) => {
-  window.addEventListener(eventName, (event) => {
+].forEach(function(eventName) {
+  window.addEventListener(eventName, function(event) {
     console.log(event.type, event.detail);
   });
 });

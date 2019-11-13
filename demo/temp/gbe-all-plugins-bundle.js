@@ -15641,8 +15641,7 @@ var SaytDriverPlugin = /** @class */ (function () {
             var payload = { results: results, group: group };
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.AUTOCOMPLETE_RESPONSE, payload);
             if (_this.core.cache)
-                _this.core.cache.set(elements_events_1.AUTOCOMPLETE_RESPONSE + "::" + group, { data: { results: 'hello' } });
-            // if (this.core.cache) this.core.cache.set(`${AUTOCOMPLETE_RESPONSE}::${group}`, payload);
+                _this.core.cache.set(elements_events_1.AUTOCOMPLETE_RESPONSE + "::" + group, payload);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };
@@ -15663,10 +15662,6 @@ var SaytDriverPlugin = /** @class */ (function () {
             .then(function (results) {
             var payload = __assign(__assign({}, results), { group: group });
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SAYT_PRODUCTS_RESPONSE, payload);
-            console.log('this.core.cache before set', _this.core.cache);
-            // if (this.core.cache) this.core.cache.set(`${SAYT_PRODUCTS_RESPONSE}::${group}`, { data: { products: 'lala' } });
-            console.log('this.core.cache', _this.core.cache);
-            console.log('payload in fetch product data', payload);
             if (_this.core.cache)
                 _this.core.cache.set(elements_events_1.SAYT_PRODUCTS_RESPONSE + "::" + group, payload);
         })
@@ -15931,7 +15926,6 @@ var SearchDriverPlugin = /** @class */ (function () {
             .then(function (results) {
             var payload = { results: results, group: group };
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SEARCH_RESPONSE, payload);
-            // console.log('>>> core cache', payload, this.core.cache)
             if (_this.core.cache)
                 _this.core.cache.set(elements_events_1.SEARCH_RESPONSE + "::" + group, payload);
         })
