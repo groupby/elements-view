@@ -8,6 +8,7 @@ import {
   Product,
   SaytProductsResponsePayload,
 } from '@groupby/elements-events';
+import { logEvent } from 'storybook-events-logger';
 
 const entities = new XmlEntities();
 
@@ -185,4 +186,8 @@ export function hidePrompt(event) {
 export interface StorybookCustomEvent {
   name: string;
   payload: any;
+}
+
+export function addStorybookListeners(events) {
+  events.forEach(e => window.addEventListener(e, logEvent));
 }
