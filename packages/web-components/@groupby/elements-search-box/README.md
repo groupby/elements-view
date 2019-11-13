@@ -10,8 +10,8 @@ This component listens for and dispatches a number of events. These events are d
 
 #### `UPDATE_SEARCH_TERM`
 
-This component listens for this event
-and updates the value property and input box value with the search term from the event's payload.
+This component listens for this event and updates the value property and input box value
+with the search term from the event's payload.
 Additionally, this event may trigger a search request if the payload contains a trigger.
 
 ### Dispatched Events
@@ -30,7 +30,8 @@ Dispatched when the value changes inside the search box input.
 
 #### `SEARCH_REQUEST`
 
-Dispatched when a user clicks on the search button or hits `enter` within the search box. May also be dispatched when receiving an `UPDATE_SEARCH_TERM` event.
+Dispatched when a user clicks on the search button or hits `enter` within the search box.
+May also be dispatched when receiving an `UPDATE_SEARCH_TERM` event.
 
 ## Customizations
 
