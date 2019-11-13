@@ -15657,7 +15657,6 @@ var SaytDriverPlugin = /** @class */ (function () {
      */
     SaytDriverPlugin.prototype.fetchProductData = function (event) {
         var _this = this;
-        console.log('>> YO LOGIC');
         var _a = event.detail, query = _a.query, group = _a.group, config = _a.config;
         this.sendSearchApiRequest(query, config)
             .then(function (results) {
