@@ -23,6 +23,8 @@ export default class ProductsSayt extends ProductsBase {
    */
   protected componentId = shortid.generate();
 
+  protected cacheResponseEventName = this.getResponseEventName('products-sayt', this.componentId);
+
   /**
    * Binds relevant methods.
    */
@@ -37,10 +39,10 @@ export default class ProductsSayt extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    const cacheResponseEventName = this.getResponseEventName('products-sayt', this.componentId);
+    // const cacheResponseEventName = this.getResponseEventName('products-sayt', this.componentId);
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
-    window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    this.requestInitialData(SAYT_PRODUCTS_RESPONSE, this.group, cacheResponseEventName);
+    window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheData);
+    this.requestInitialData(SAYT_PRODUCTS_RESPONSE, this.group, this.cacheResponseEventName);
   }
 
   /**
@@ -48,9 +50,8 @@ export default class ProductsSayt extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    const cacheResponseEventName = this.getResponseEventName('products-sayt', this.componentId);
     window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
-    window.removeEventListener(cacheResponseEventName, this.setProductsFromCacheData);
+    window.removeEventListener(this.cacheResponseEventName, this.setProductsFromCacheData);
   }
 
   /**

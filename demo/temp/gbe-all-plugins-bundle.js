@@ -14907,6 +14907,7 @@ var CacheDriverPlugin = /** @class */ (function () {
      * callbacks.
      */
     function CacheDriverPlugin() {
+        console.log('in cache constructor');
         this.handleRequest = this.handleRequest.bind(this);
     }
     Object.defineProperty(CacheDriverPlugin.prototype, "metadata", {
@@ -14946,7 +14947,19 @@ var CacheDriverPlugin = /** @class */ (function () {
      */
     CacheDriverPlugin.prototype.handleRequest = function (request) {
         var _a = request.detail, name = _a.name, group = _a.group, returnEvent = _a.returnEvent;
-        var data = this.core.cache.get(name + "::" + (group || ''));
+        console.log('in handleRequest in cache driver', name, group, returnEvent);
+        console.log('in handleRequest in cache driver - return event', returnEvent);
+        console.log('this.caore.cache', this.core.cache);
+        // const data = this.core.cache.get(`${name}::${group || ''}`);
+        var data = { products: [{
+                    title: 'Greatest Shoe',
+                    price: 49.99,
+                    label: 'Classic Product',
+                    promo: '25% off',
+                    imageSrc: 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-1.2.1&auto=format&fit=crop&h=350&q=80',
+                    imageAlt: 'A classic blue shoe',
+                    productUrl: "https://storage.googleapis.com/poc_apparel/images/0/optimized/2860570_fpx.tif",
+                }] };
         var payload = { name: name, data: data, group: group };
         this.core.dom_events.dispatchEvent(returnEvent, payload);
     };
@@ -15657,6 +15670,7 @@ var SaytDriverPlugin = /** @class */ (function () {
      */
     SaytDriverPlugin.prototype.fetchProductData = function (event) {
         var _this = this;
+        console.log('>> YO LOGIC');
         var _a = event.detail, query = _a.query, group = _a.group, config = _a.config;
         this.sendSearchApiRequest(query, config)
             .then(function (results) {

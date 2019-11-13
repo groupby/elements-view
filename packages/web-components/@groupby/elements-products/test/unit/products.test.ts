@@ -64,16 +64,27 @@ describe('Products Base Component', () => {
   describe('requestInitialData', () => {
     it('should dispatch a cache request event', () => {
       const dispatchElementsEvent = stub(component, 'dispatchElementsEvent');
-      const name = 'event'
-      const group = 'group'
-      const returnEvent = 'event-return'
+      const name = 'event';
+      const group = 'group';
+      const returnEvent = 'event-return';
 
       component.requestInitialData(name, group, returnEvent);
 
       expect(dispatchElementsEvent).to.have.been.calledWith(CACHE_REQUEST, { name, group, returnEvent });
+    });
+  });
 
-    })
-  })
+  describe('getResponseEventName', () => {
+    it('should return an event name for receiving cached data', () => {
+      const componentId = component.componentId = 'some-id';
+      const componentName = component.componentName = 'products-sayt';
+      const expectedCacheResponseEventName = `${CACHE_RESPONSE_PREFIX}${componentName}-${componentId}`;
+
+      const eventName = component.getResponseEventName(componentName, componentId);
+
+      expect(eventName).to.equal(expectedCacheResponseEventName);
+    });
+  });
 });
 
 describe('Products Sayt Component', () => {
@@ -81,7 +92,6 @@ describe('Products Sayt Component', () => {
 
   beforeEach(() => {
     component = new ProductsSayt();
-    stub();
   });
 
   itShouldExtendClass(() => component, ProductsBase);
@@ -95,9 +105,7 @@ describe('Products Sayt Component', () => {
 
     it('should add event listeners for sayt products events', () => {
       const addEventListener = sinon.stub(window, 'addEventListener');
-      const componentId = component.componentId = 'some-id';
-      const componentName = component.componentName = 'products-sayt';
-      const cacheResponseEventName = component.getResponseEventName(componentName, componentId);
+      const cacheResponseEventName = component.cacheResponseEventName = 'cache:response'
 
       component.connectedCallback();
 
@@ -113,12 +121,12 @@ describe('Products Sayt Component', () => {
 
     it('should call requestInitialData', () => {
       const requestInitialData = stub(component, 'requestInitialData');
-      const cacheResponseEventName = 'dog'
+      const cacheResponseEventName = 'dog';
       stub(component, 'getResponseEventName').returns(cacheResponseEventName);
 
       component.connectedCallback();
 
-      expect(requestInitialData).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, component.group, cacheResponseEventName);
+      expect(requestInitialData).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, component.group, component.cacheResponseEventName);
     });
   });
 
@@ -127,9 +135,7 @@ describe('Products Sayt Component', () => {
 
     it('should remove event listeners for sayt products', () => {
       const removeEventListener = sinon.stub(window, 'removeEventListener');
-      const componentId = component.componentId = 'some-id';
-      const componentName = component.componentName = 'products-sayt';
-      const cacheResponseEventName = component.getResponseEventName(componentName, componentId);
+      const cacheResponseEventName = component.cacheResponseEventName = 'cache:response';
 
       component.disconnectedCallback();
 
@@ -145,17 +151,6 @@ describe('Products Sayt Component', () => {
     });
   });
 
-  describe('getResponseEventName', () => {
-    it('should return an event name for receiving cached data', () => {
-     const componentId = component.componentId = 'some-id';
-     const componentName = component.componentName = 'products-sayt';
-     const expectedCacheResponseEventName = `${CACHE_RESPONSE_PREFIX}${componentName}-${componentId}`;
-
-     const eventName = component.getResponseEventName(componentName, componentId);
-
-     expect(eventName).to.equal(expectedCacheResponseEventName);
-  });
-});
 
   describe('setProductsFromCacheData', () => {
     it('should set products to an empty array if the event payload does not contain products', () => {
