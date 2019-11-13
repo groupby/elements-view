@@ -73,7 +73,7 @@ const searchPlugin = new GbElementsPlugins.SearchPlugin({ customerId: 'apparel' 
 const searchDriverPlugin = new GbElementsPlugins.SearchDriverPlugin({ productTransformer: searchProductTransformer });
 // register all plugins with core
 core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
-// let cacheResponse = /(gbe::cache_response)/gim;
+
 [
   'gbe::cache_request',
   'gbe::sayt_products_response',
