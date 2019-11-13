@@ -14907,7 +14907,6 @@ var CacheDriverPlugin = /** @class */ (function () {
      * callbacks.
      */
     function CacheDriverPlugin() {
-        console.log('in cache constructor');
         this.handleRequest = this.handleRequest.bind(this);
     }
     Object.defineProperty(CacheDriverPlugin.prototype, "metadata", {
@@ -14946,13 +14945,8 @@ var CacheDriverPlugin = /** @class */ (function () {
      * @param request The cache request details.
      */
     CacheDriverPlugin.prototype.handleRequest = function (request) {
-        console.log('in handleRequest in cache driver');
         var _a = request.detail, name = _a.name, group = _a.group, returnEvent = _a.returnEvent;
-        console.log('in handleRequest in cache driver', name, group, returnEvent);
-        console.log('in handleRequest in cache driver - return event', returnEvent);
-        console.log('this.caore.cache', this.core.cache);
-        // const data = this.core.cache.get(`${name}::${group || ''}`);
-        var data = { products: 'hello' };
+        var data = this.core.cache.get(name + "::" + (group || ''));
         var payload = { name: name, data: data, group: group };
         this.core.dom_events.dispatchEvent(returnEvent, payload);
     };

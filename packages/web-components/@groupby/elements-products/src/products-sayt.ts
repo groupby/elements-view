@@ -3,12 +3,10 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   Product,
   SaytProductsResponsePayload,
-  CACHE_REQUEST,
-  CacheRequestPayload,
   CacheResponsePayload,
 } from '@groupby/elements-events';
 import * as shortid from 'shortid';
-import { ProductsBase, getResponseEventName } from '.';
+import { ProductsBase } from '.';
 
 /**
  * The `gbe-products-sayt` web component wraps and renders a number of
@@ -30,7 +28,6 @@ export default class ProductsSayt extends ProductsBase {
    */
   constructor() {
     super();
-    console.log('>>> yo products sayt');
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
     this.setProductsFromCacheData = this.setProductsFromCacheData.bind(this);
   }
@@ -40,12 +37,9 @@ export default class ProductsSayt extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    console.log('in connected callback - products-sayt');
-    const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
-    console.log(cacheResponseEventName, 'cacheResponseEventName');
+    const cacheResponseEventName = this.getResponseEventName('products-sayt', this.componentId);
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    // this.requestInitialData();
     this.requestInitialData(SAYT_PRODUCTS_RESPONSE, this.group, cacheResponseEventName);
   }
 
@@ -54,21 +48,10 @@ export default class ProductsSayt extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
+    const cacheResponseEventName = this.getResponseEventName('products-sayt', this.componentId);
     window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.removeEventListener(cacheResponseEventName, this.setProductsFromCacheData);
   }
-
-  // requestInitialData(): void {
-  //   const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
-  //   const payload: CacheRequestPayload = {
-  //     name: SAYT_PRODUCTS_RESPONSE,
-  //     group: this.group,
-  //     returnEvent: cacheResponseEventName,
-  //   };
-  //   this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
-  // }
-
 
   /**
    * Receives an event for populating initial data.
@@ -77,14 +60,8 @@ export default class ProductsSayt extends ProductsBase {
    * @param event The event object.
    */
   setProductsFromCacheData(event: CustomEvent<CacheResponsePayload>): void {
-    console.log('in set productsFromCache products-sayt - event', event);
-    // would this only have a data property on detail? vs. group, results etc. yes
-    const eventGroup = event.detail.data.group || '';
-    const componentGroup = this.group || '';
-    if (eventGroup === componentGroup) {
-      const data = event.detail.data || {};
-      this.products = data.products || [];
-    }
+    const data = event.detail.data || {};
+    this.products = data.products || [];
   }
 
   /**

@@ -3,12 +3,10 @@ import {
   SEARCH_RESPONSE,
   Product,
   SearchResponsePayload,
-  CACHE_REQUEST,
-  CacheRequestPayload,
   CacheResponsePayload,
 } from '@groupby/elements-events';
 import * as shortid from 'shortid';
-import { ProductsBase, getResponseEventName } from '.';
+import { ProductsBase } from '.';
 
 /**
  * The `gbe-products` web component wraps and renders a number of
@@ -39,7 +37,7 @@ export default class ProductsSearch extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    const cacheResponseEventName = getResponseEventName('products-search', this.componentId);
+    const cacheResponseEventName = this.getResponseEventName('products-search', this.componentId);
 
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
@@ -51,7 +49,7 @@ export default class ProductsSearch extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    const cacheResponseEventName = getResponseEventName('products-search', this.componentId);
+    const cacheResponseEventName = this.getResponseEventName('products-search', this.componentId);
     window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.removeEventListener(cacheResponseEventName, this.setProductsFromCacheData);
   }
@@ -63,20 +61,9 @@ export default class ProductsSearch extends ProductsBase {
    * @param event The event object.
    */
   setProductsFromCacheData(event: CustomEvent<CacheResponsePayload>): void {
-    console.log('in set productsFromCache products-search - event', event);
     const data = event.detail.data || {};
     this.products = data.products || [];
   }
-
-  // requestInitialData(): void {
-  //   const cacheResponseEventName = getResponseEventName('products-search', this.componentId);
-  //   const payload: CacheRequestPayload = {
-  //     name: SEARCH_RESPONSE,
-  //     group: this.group,
-  //     returnEvent: cacheResponseEventName,
-  //   };
-  //   this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
-  // }
 
   /**
    * Sets the `products` property from the products in an event.
