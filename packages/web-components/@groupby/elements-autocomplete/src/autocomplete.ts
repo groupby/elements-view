@@ -253,8 +253,8 @@ export default class Autocomplete extends Base {
     const target = event.target as HTMLElement;
     const term = target.innerText;
     const payload: UpdateSearchTermPayload = {
-      group: this.group,
       term,
+      group: this.group,
       search: true,
     };
 
