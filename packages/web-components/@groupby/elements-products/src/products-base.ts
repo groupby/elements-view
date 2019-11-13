@@ -6,13 +6,14 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { Product } from '@groupby/elements-events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@groupby/elements-base';
 import {
+  Product,
   CACHE_REQUEST,
   CacheRequestPayload,
 } from '@groupby/elements-events';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Base } from '@groupby/elements-base';
+
 
 /**
  * The `gbe-products-base` web component wraps and renders a number of

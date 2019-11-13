@@ -40,7 +40,7 @@ export default class ProductsSayt extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    console.log('in connected callback - products-sayt')
+    console.log('in connected callback - products-sayt');
     const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
     console.log(cacheResponseEventName, 'cacheResponseEventName');
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
@@ -79,8 +79,12 @@ export default class ProductsSayt extends ProductsBase {
   setProductsFromCacheData(event: CustomEvent<CacheResponsePayload>): void {
     console.log('in set productsFromCache products-sayt - event', event);
     // would this only have a data property on detail? vs. group, results etc. yes
-    const data = event.detail.data || {};
-    this.products = data.products || [];
+    const eventGroup = event.detail.data.group || '';
+    const componentGroup = this.group || '';
+    if (eventGroup === componentGroup) {
+      const data = event.detail.data || {};
+      this.products = data.products || [];
+    }
   }
 
   /**
