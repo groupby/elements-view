@@ -71,24 +71,24 @@ storiesOf('Components|Searchbox', module)
             * If the \`clearbutton\` attribute is present, a clear button will display.
             * If the \`searchbutton\` attribute is present, a search button will display.
             * To add and remove these attributes in this story:
-              1. Visit the **Knobs** tab and toggle the "Show search button" and "Show clear button".
+              1. Visit the **Knobs** panel and toggle the "Show search button" and "Show clear button".
               2. See the component update with the buttons added or removed.
 
           ### The placeholder text can be customized.
           * The \`placeholder\` attribute defines the placeholder text of the search box. It defaults to "Type your search" if not present.
             * To modify the \`placeholder\` attribute in this story:
-              1. Visit the **Knobs** tab and modify the text contained within the "Placeholder Text" field.
+              1. Visit the **Knobs** panel and modify the text contained within the "Placeholder Text" field.
               2. See the component update with the updated text.
 
           ### The GB Elements Search Box component populates with an updated search term in response to the \`${UPDATE_SEARCH_TERM}\` event.
           * The Search Box component listens for \`${UPDATE_SEARCH_TERM}\` events and updates the search box with the provided search term.
           * A follow up \`${SEARCH_REQUEST}\` event may also be emitted if the \`${UPDATE_SEARCH_TERM}\` event also contains the search property.
           * To emit the event in this story:
-            1. Navigate to the **Custom Events** tab and locate the \`${UPDATE_SEARCH_TERM}\` event.
+            1. Navigate to the **Custom Events** panel and locate the \`${UPDATE_SEARCH_TERM}\` event.
               * **NOTE**: The event can be edited to set the search property to true or false.
             2. Click "emit".
             3. See the component update with the new search term.
-            4. Navigate to the **Events Logger** tab see the events in the log.
+            4. Navigate to the **Events Logger** panel see the events in the log.
 
           ### Multiple Search Box components can behave independently
             * If multiple Search Box, Sayt, and Products components are on the page, the \`group\` attribute can be used to send events to specific groups.
