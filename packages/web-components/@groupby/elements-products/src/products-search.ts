@@ -43,7 +43,7 @@ export default class ProductsSearch extends ProductsBase {
 
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    this.requestInitialData();
+    this.requestInitialData(SEARCH_RESPONSE, this.group, cacheResponseEventName);
   }
 
   /**
@@ -68,15 +68,15 @@ export default class ProductsSearch extends ProductsBase {
     this.products = data.products || [];
   }
 
-  requestInitialData(): void {
-    const cacheResponseEventName = getResponseEventName('products-search', this.componentId);
-    const payload: CacheRequestPayload = {
-      name: SEARCH_RESPONSE,
-      group: this.group,
-      returnEvent: cacheResponseEventName,
-    };
-    this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
-  }
+  // requestInitialData(): void {
+  //   const cacheResponseEventName = getResponseEventName('products-search', this.componentId);
+  //   const payload: CacheRequestPayload = {
+  //     name: SEARCH_RESPONSE,
+  //     group: this.group,
+  //     returnEvent: cacheResponseEventName,
+  //   };
+  //   this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
+  // }
 
   /**
    * Sets the `products` property from the products in an event.

@@ -45,8 +45,8 @@ export default class ProductsSayt extends ProductsBase {
     console.log(cacheResponseEventName, 'cacheResponseEventName');
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    this.requestInitialData();
-    // this.superRequestInitialData(SAYT_PRODUCTS_RESPONSE, this.group, cacheResponseEventName)
+    // this.requestInitialData();
+    this.requestInitialData(SAYT_PRODUCTS_RESPONSE, this.group, cacheResponseEventName);
   }
 
   /**
@@ -59,15 +59,15 @@ export default class ProductsSayt extends ProductsBase {
     window.removeEventListener(cacheResponseEventName, this.setProductsFromCacheData);
   }
 
-  requestInitialData(): void {
-    const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
-    const payload: CacheRequestPayload = {
-      name: SAYT_PRODUCTS_RESPONSE,
-      group: this.group,
-      returnEvent: cacheResponseEventName,
-    };
-    this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
-  }
+  // requestInitialData(): void {
+  //   const cacheResponseEventName = getResponseEventName('products-sayt', this.componentId);
+  //   const payload: CacheRequestPayload = {
+  //     name: SAYT_PRODUCTS_RESPONSE,
+  //     group: this.group,
+  //     returnEvent: cacheResponseEventName,
+  //   };
+  //   this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
+  // }
 
 
   /**

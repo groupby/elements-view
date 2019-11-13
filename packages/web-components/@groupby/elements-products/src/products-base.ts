@@ -45,7 +45,8 @@ export default class ProductsBase extends Base {
     }
   }
 
-  superRequestInitialData(name: string, group: string, returnEvent: string): void {
+  requestInitialData(name: string, group: string, returnEvent: string): void {
+    console.log('in base superRequestInitialData... - sayt product response test');
     const payload: CacheRequestPayload = {
       name,
       group,
