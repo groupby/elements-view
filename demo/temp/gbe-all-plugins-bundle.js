@@ -2495,9 +2495,9 @@ var Promise$1 = function () {
   /**
     `finally` will be invoked regardless of the promise's fate just as native
     try/catch/finally behaves
-
+  
     Synchronous example:
-
+  
     ```js
     findAuthor() {
       if (Math.random() > 0.5) {
@@ -2505,7 +2505,7 @@ var Promise$1 = function () {
       }
       return new Author();
     }
-
+  
     try {
       return findAuthor(); // succeed or fail
     } catch(error) {
@@ -2515,9 +2515,9 @@ var Promise$1 = function () {
       // doesn't affect the return value
     }
     ```
-
+  
     Asynchronous example:
-
+  
     ```js
     findAuthor().catch(function(reason){
       return findOtherAuther();
@@ -2525,7 +2525,7 @@ var Promise$1 = function () {
       // author was either found, or not
     });
     ```
-
+  
     @method finally
     @param {Function} callback
     @return {Promise}
@@ -14249,7 +14249,7 @@ function randomatic(pattern, length, options) {
     var exclude = typeOf(opts.exclude) === 'string' ? opts.exclude : opts.exclude.join('');
     exclude = exclude.replace(new RegExp('[\\]]+', 'g'), '');
     mask = mask.replace(new RegExp('[' + exclude + ']+', 'g'), '');
-
+    
     if(opts.exclude.indexOf(']') !== -1) mask = mask.replace(new RegExp('[\\]]+', 'g'), '');
   }
 
@@ -14997,12 +14997,12 @@ var CachePlugin = /** @class */ (function () {
      * @param __namedParameters Options for plugin configuration.
      */
     function CachePlugin(_a) {
-        var
+        var 
         /**
          * The store to initialize the plugin with.
          * Defaults to an empty `Map`.
          */
-        _b = (_a === void 0 ? {} : _a).store,
+        _b = (_a === void 0 ? {} : _a).store, 
         /**
          * The store to initialize the plugin with.
          * Defaults to an empty `Map`.
@@ -15581,9 +15581,9 @@ var SaytDriverPlugin = /** @class */ (function () {
         this.fetchProductData = this.fetchProductData.bind(this);
         this.autocompleteCallback = this.autocompleteCallback.bind(this);
         this.searchCallback = this.searchCallback.bind(this);
-        var
+        var 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        _a = options.productTransformer,
+        _a = options.productTransformer, 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         productTransformer = _a === void 0 ? (function (product) { return product; }) : _a;
         this.transformProduct = productTransformer;
@@ -15641,7 +15641,8 @@ var SaytDriverPlugin = /** @class */ (function () {
             var payload = { results: results, group: group };
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.AUTOCOMPLETE_RESPONSE, payload);
             if (_this.core.cache)
-                _this.core.cache.set(elements_events_1.AUTOCOMPLETE_RESPONSE + "::" + group, payload);
+                _this.core.cache.set(elements_events_1.AUTOCOMPLETE_RESPONSE + "::" + group, { data: { results: 'hello' } });
+            // if (this.core.cache) this.core.cache.set(`${AUTOCOMPLETE_RESPONSE}::${group}`, payload);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };
@@ -15656,11 +15657,18 @@ var SaytDriverPlugin = /** @class */ (function () {
      */
     SaytDriverPlugin.prototype.fetchProductData = function (event) {
         var _this = this;
+        console.log('>> YO LOGIC');
         var _a = event.detail, query = _a.query, group = _a.group, config = _a.config;
         this.sendSearchApiRequest(query, config)
             .then(function (results) {
             var payload = __assign(__assign({}, results), { group: group });
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SAYT_PRODUCTS_RESPONSE, payload);
+            console.log('this.core.cache before set', _this.core.cache);
+            // if (this.core.cache) this.core.cache.set(`${SAYT_PRODUCTS_RESPONSE}::${group}`, { data: { products: 'lala' } });
+            console.log('this.core.cache', _this.core.cache);
+            console.log('payload in fetch product data', payload);
+            if (_this.core.cache)
+                _this.core.cache.set(elements_events_1.SAYT_PRODUCTS_RESPONSE + "::" + group, payload);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };
@@ -15868,9 +15876,9 @@ var SearchDriverPlugin = /** @class */ (function () {
         };
         this.fetchSearchData = this.fetchSearchData.bind(this);
         this.searchCallback = this.searchCallback.bind(this);
-        var
+        var 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        _a = options.productTransformer,
+        _a = options.productTransformer, 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         productTransformer = _a === void 0 ? (function (product) { return product; }) : _a;
         this.transformProduct = productTransformer;
@@ -15923,6 +15931,9 @@ var SearchDriverPlugin = /** @class */ (function () {
             .then(function (results) {
             var payload = { results: results, group: group };
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SEARCH_RESPONSE, payload);
+            // console.log('>>> core cache', payload, this.core.cache)
+            if (_this.core.cache)
+                _this.core.cache.set(elements_events_1.SEARCH_RESPONSE + "::" + group, payload);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };
