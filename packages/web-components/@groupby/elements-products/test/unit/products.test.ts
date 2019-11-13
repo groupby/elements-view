@@ -2,6 +2,7 @@ import {
   CACHE_RESPONSE_PREFIX,
   SAYT_PRODUCTS_RESPONSE,
   SEARCH_RESPONSE,
+  CACHE_REQUEST,
 } from '@groupby/elements-events';
 import {
   expect,
@@ -59,6 +60,20 @@ describe('Products Base Component', () => {
       expect(setAttribute).to.not.be.called;
     });
   });
+
+  describe('requestInitialData', () => {
+    it('should dispatch a cache request event', () => {
+      const dispatchElementsEvent = stub(component, 'dispatchElementsEvent');
+      const name = 'event'
+      const group = 'group'
+      const returnEvent = 'event-return'
+
+      component.requestInitialData(name, group, returnEvent);
+
+      expect(dispatchElementsEvent).to.have.been.calledWith(CACHE_REQUEST, { name, group, returnEvent });
+
+    })
+  })
 });
 
 describe('Products Sayt Component', () => {
