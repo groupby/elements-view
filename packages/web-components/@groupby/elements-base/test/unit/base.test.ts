@@ -8,6 +8,14 @@ describe('Base Class', () => {
     dummyComponent = new DummyComponent();
   });
 
+  describe('constructor()', () => {
+    describe('_initialized property', () => {
+      it('should have a default value of false', () => {
+        expect(dummyComponent._initialized).to.be.false;
+      });
+    });
+  });
+
   describe('createRenderRoot', () => {
     it('should return the element itself', () => {
       const renderRoot = dummyComponent.createRenderRoot();
