@@ -244,10 +244,10 @@ export default class Autocomplete extends Base {
   }
 
   /**
-   * Emits an [[UPDATE_SEARCH_TERM]] event with a new search term
+   * Emits an [[UPDATE_SEARCH_TERM]] event with an autocomplete term
    * and the trigger for submitting a search request.
    *
-   * @param event A mouse click event on an Autocomplete search term.
+   * @param event A mouse click event on an autocomplete term.
    */
   sendUpdateSearchEvent(event: MouseEvent): void {
     const target = event.target as HTMLElement;

@@ -108,12 +108,12 @@ storiesOf('Components|Autocomplete', module)
             2. Hover over an Autocomplete term.
             3. Observe the \`${AUTOCOMPLETE_ACTIVE_TERM}\` event that has been emitted.
 
-          ### The Autocomplete component will trigger a search when a search term is clicked.
-          * Clicking on an Autocomplete search term will emit an \`${UPDATE_SEARCH_TERM}\` event.
-            * This event will contain the search term and a flag to trigger a new search as the payload.
+          ### The Autocomplete component will trigger a search when an autocomplete term is clicked.
+          * Clicking on an autocomplete term will emit an \`${UPDATE_SEARCH_TERM}\` event.
+            * This event will contain the autocomplete term and a flag to trigger a new search as the payload.
           * To demonstrate in this story:
             1. Visit the **Events Logger** panel.
-            2. Click on an Autocomplete search term and observe the \`${UPDATE_SEARCH_TERM}\` event that has been emitted.
+            2. Click on an autocomplete term and observe the \`${UPDATE_SEARCH_TERM}\` event that has been emitted.
         `,
       },
     }
