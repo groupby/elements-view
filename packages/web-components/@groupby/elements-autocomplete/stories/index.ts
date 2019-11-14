@@ -1,17 +1,26 @@
 import { storiesOf } from '@storybook/html';
 import { withKnobs, number, text } from '@storybook/addon-knobs';
 import {
+  AUTOCOMPLETE_ACTIVE_TERM,
   AUTOCOMPLETE_RESPONSE,
+  UPDATE_SEARCH_TERM,
   AutocompleteResultGroup,
   AutocompleteSearchTermItem,
 } from '@groupby/elements-events';
 import {
+  addStorybookListeners,
   getDisplayCode,
   generateAutocompleteResultsEvent,
   autocompleteResults,
   hidePrompt,
 } from '../../../../../.storybook/common';
 import '../src/index';
+
+addStorybookListeners([
+  AUTOCOMPLETE_ACTIVE_TERM,
+  AUTOCOMPLETE_RESPONSE,
+  UPDATE_SEARCH_TERM,
+]);
 
 const autocompleteNotesIntro = `
 # GroupBy Elements Autocomplete Component
@@ -91,6 +100,20 @@ storiesOf('Components|Autocomplete', module)
             1. Hover over a term.
             2. Observe that the selection changes.
                * Note that the value of the knob will not change in response to this action. This is due to technical limitations with knobs and does not reflect the actual behavior of the component.
+
+          ### The Autocomplete component will emit an event with the newly selected term.
+          * Changes in the \`selectedIndex\` property will emit an \`${AUTOCOMPLETE_ACTIVE_TERM}\` event.
+          * To demonstrate in this story:
+            1. Visit the **Events Logger** panel.
+            2. Hover over an Autocomplete term.
+            3. Observe the \`${AUTOCOMPLETE_ACTIVE_TERM}\` event that has been emitted.
+
+          ### The Autocomplete component will trigger a search when an autocomplete term is clicked.
+          * Clicking on an autocomplete term will emit an \`${UPDATE_SEARCH_TERM}\` event.
+            * This event will contain the autocomplete term and a flag to trigger a new search as the payload.
+          * To demonstrate in this story:
+            1. Visit the **Events Logger** panel.
+            2. Click on an autocomplete term and observe the \`${UPDATE_SEARCH_TERM}\` event that has been emitted.
         `,
       },
     }
