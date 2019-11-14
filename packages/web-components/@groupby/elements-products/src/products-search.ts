@@ -24,12 +24,18 @@ export default class ProductsSearch extends ProductsBase {
   protected componentId = shortid.generate();
 
   /**
+  A string intended to be used as the name of the return event in
+  * cache requests for this component.
+  */
+  protected cacheResponseEventName = this.getResponseEventName('products-search', this.componentId);
+
+  /**
    * Binds relevant methods.
    */
   constructor() {
     super();
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
-    this.setProductsFromCacheData = this.setProductsFromCacheData.bind(this);
+    this.setProductsFromCacheEvent = this.setProductsFromCacheEvent.bind(this);
   }
 
   /**
@@ -37,11 +43,9 @@ export default class ProductsSearch extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    const cacheResponseEventName = this.getResponseEventName('products-search', this.componentId);
-
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
-    window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    this.requestInitialData(SEARCH_RESPONSE, this.group, cacheResponseEventName);
+    window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
+    this.requestInitialData(SEARCH_RESPONSE, this.group, this.cacheResponseEventName);
   }
 
   /**
@@ -49,9 +53,8 @@ export default class ProductsSearch extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    const cacheResponseEventName = this.getResponseEventName('products-search', this.componentId);
     window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
-    window.removeEventListener(cacheResponseEventName, this.setProductsFromCacheData);
+    window.removeEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
   }
 
   /**
@@ -60,7 +63,7 @@ export default class ProductsSearch extends ProductsBase {
    *
    * @param event The event object.
    */
-  setProductsFromCacheData(event: CustomEvent<CacheResponsePayload>): void {
+  setProductsFromCacheEvent(event: CustomEvent<CacheResponsePayload>): void {
     const data = event.detail.data || {};
     this.products = data.products || [];
   }

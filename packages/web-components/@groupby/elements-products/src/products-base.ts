@@ -46,6 +46,13 @@ export default class ProductsBase extends Base {
     }
   }
 
+  /**
+  * Requests initial data for a product component.
+  *
+  * @param name The component event response name.
+  * @param group The group that the requesting component belongs to.
+  * @param returnEvent The cache event response name.
+  */
   requestInitialData(name: string, group: string, returnEvent: string): void {
     const payload: CacheRequestPayload = {
       name,
@@ -55,6 +62,10 @@ export default class ProductsBase extends Base {
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 
+  /**
+  * A string intended to be used as the name of the return event in
+  * cache requests for a product component.
+  */
   getResponseEventName(componentName: string, componentId: string): string {
     return `${CACHE_RESPONSE_PREFIX}${componentName}-${componentId}`;
   }
