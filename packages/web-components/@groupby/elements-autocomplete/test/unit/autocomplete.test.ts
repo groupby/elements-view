@@ -435,7 +435,7 @@ describe('Autcomplete Component', () => {
   });
 
   describe('sendUpdateSearchEvent()', () => {
-    it('should send a search request with a search term', () => {
+    it('should send an updated search term event', () => {
       const term = 'autocomplete-term';
       const clickEvent = {
         target: {
