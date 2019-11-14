@@ -1,8 +1,8 @@
 import {
-  CACHE_RESPONSE_PREFIX,
-  CACHE_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SEARCH_RESPONSE,
+  CACHE_RESPONSE_PREFIX,
+  CACHE_REQUEST,
 } from '@groupby/elements-events';
 import {
   expect,
@@ -38,6 +38,7 @@ describe('Products Base Component', () => {
       });
     });
   });
+
   describe('connectedCallback', () => {
     itShouldCallParentMethod(() => component, 'connectedCallback');
 
@@ -73,227 +74,255 @@ describe('Products Base Component', () => {
     });
   });
 
-  describe('getResponseEventName', () => {
+  describe('getCacheResponseEventName', () => {
     it('should return an event name for receiving cached data', () => {
       const componentId = component.componentId = 'some-id';
-      const componentName = component.componentName = 'products-sayt';
+      const componentName = 'products-sayt';
       const expectedCacheResponseEventName = `${CACHE_RESPONSE_PREFIX}${componentName}-${componentId}`;
 
-      const eventName = component.getResponseEventName(componentName, componentId);
+      const eventName = component.getCacheResponseEventName(componentName, componentId);
 
       expect(eventName).to.equal(expectedCacheResponseEventName);
     });
   });
+});
 
-  describe('Products Sayt Component', () => {
-    let component;
+describe('Products Sayt Component', () => {
+  let component;
+
+  beforeEach(() => {
+    component = new ProductsSayt();
+  });
+
+  itShouldExtendClass(() => component, ProductsBase);
+
+  describe('connectedCallback', () => {
+    let cacheResponseEventName;
 
     beforeEach(() => {
-      component = new ProductsSayt();
-      stub();
+      cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
     });
 
-    itShouldExtendClass(() => component, ProductsBase);
+    itShouldCallParentMethod(() => component, 'connectedCallback');
 
-    describe('connectedCallback', () => {
-      let cacheResponseEventName;
+    it('should add event listeners for sayt products events', () => {
+      const addEventListener = stub(window, 'addEventListener');
 
-      beforeEach(() => {
-        cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
-      });
+      component.connectedCallback();
 
-      itShouldCallParentMethod(() => component, 'connectedCallback');
-
-      it('should add event listeners for sayt products events', () => {
-        const addEventListener = sinon.stub(window, 'addEventListener');
-
-        component.connectedCallback();
-
-        expect(addEventListener).to.be.calledWith(
-          SAYT_PRODUCTS_RESPONSE,
-          component.setProductsFromEvent
-        );
-        expect(addEventListener).to.be.calledWith(
-          cacheResponseEventName,
-          component.setProductsFromCacheEvent
-        );
-      });
-
-      it('should call requestInitialData', () => {
-        const requestInitialData = stub(component, 'requestInitialData');
-        stub(component, 'getResponseEventName').returns(cacheResponseEventName);
-
-        component.connectedCallback();
-
-        expect(requestInitialData).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, component.group, component.cacheResponseEventName);
-      });
+      expect(addEventListener).to.be.calledWith(
+        SAYT_PRODUCTS_RESPONSE,
+        component.setProductsFromEvent
+      );
+      expect(addEventListener).to.be.calledWith(
+        cacheResponseEventName,
+        component.setProductsFromCacheEvent
+      );
     });
 
-    describe('disconnectedCallback', () => {
-      itShouldCallParentMethod(() => component, 'disconnectedCallback');
+    it('should request initial data', () => {
+      const requestInitialData = stub(component, 'requestInitialData');
 
-      it('should remove event listeners for sayt products', () => {
-        const removeEventListener = sinon.stub(window, 'removeEventListener');
-        const cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
+      component.connectedCallback();
 
-        component.disconnectedCallback();
-
-        expect(removeEventListener).to.be.calledWith(
-          SAYT_PRODUCTS_RESPONSE,
-          component.setProductsFromEvent
-        );
-
-        expect(removeEventListener).to.be.calledWith(
-          cacheResponseEventName,
-          component.setProductsFromCacheEvent
-        );
-      });
-    });
-
-    describe('setProductsFromCacheEvent', () => {
-      it('should set products to an empty array if the event payload does not contain products', () => {
-        const event = { detail: { data: { products: [] } } };
-
-        component.setProductsFromCacheEvent(event);
-
-        expect(component.products).to.deep.equal([]);
-      });
-    });
-
-    describe('setProductsFromEvent', () => {
-      let products;
-      let group;
-
-      beforeEach(() => {
-        products = [1, 2, 3];
-        group = 'group';
-      });
-
-      it('should set products to an empty array if the event payload does not contain products', () => {
-        const event = { detail: {} };
-        component.setProductsFromEvent(event);
-
-        expect(component.products).to.deep.equal([]);
-      });
-
-      it('should set products when the event matches the group in the component', () => {
-        const event = { detail: { products, group } };
-        component.group = group;
-
-        component.setProductsFromEvent(event);
-
-        expect(component.products).to.equal(products);
-      });
-
-      it('should not set products when the group in the component and event do not match', () => {
-        const event = { detail: { products, group } };
-
-        component.setProductsFromEvent(event);
-
-        expect(component.products).to.deep.equal([]);
-      });
-
-      it('should default the group in the event to an empty string if it is falsey', () => {
-        const event = { detail: { products } };
-
-        component.setProductsFromEvent(event);
-
-        expect(component.products).to.equal(products);
-      });
-
-      it('should default the group in the component to an empty string if it is falsey', () => {
-        component.group = undefined;
-        const event = { detail: { products } };
-
-        component.setProductsFromEvent(event);
-
-        expect(component.products).to.equal(products);
-      });
+      expect(requestInitialData).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, component.group, cacheResponseEventName);
     });
   });
 
-  describe('Products Search Component', () => {
-    let component;
+  describe('disconnectedCallback', () => {
+    itShouldCallParentMethod(() => component, 'disconnectedCallback');
+
+    it('should remove event listeners for sayt products', () => {
+      const removeEventListener = sinon.stub(window, 'removeEventListener');
+      const cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
+
+      component.disconnectedCallback();
+
+      expect(removeEventListener).to.be.calledWith(
+        SAYT_PRODUCTS_RESPONSE,
+        component.setProductsFromEvent
+      );
+
+      expect(removeEventListener).to.be.calledWith(
+        cacheResponseEventName,
+        component.setProductsFromCacheEvent
+      );
+    });
+  });
+
+  describe('setProductsFromCacheEvent', () => {
+    it('should set products to an empty array if the event payload does not contain products', () => {
+      const event = { detail: { data: { products: [] } } };
+
+      component.setProductsFromCacheEvent(event);
+
+      expect(component.products).to.deep.equal([]);
+    });
+  });
+
+  describe('setProductsFromEvent', () => {
+    let products;
+    let group;
 
     beforeEach(() => {
-      component = new ProductsSearch();
+      products = [1, 2, 3];
+      group = 'group';
     });
 
-    itShouldExtendClass(() => component, ProductsBase);
+    it('should set products to an empty array if the event payload does not contain products', () => {
+      const event = { detail: {} };
+      component.setProductsFromEvent(event);
 
-    describe('connectedCallback', () => {
-      itShouldCallParentMethod(() => component, 'connectedCallback');
-
-      it('should set up an event listener for a search response to set products', () => {
-        const addEventListener = sinon.stub(window, 'addEventListener');
-
-        component.connectedCallback();
-
-        expect(addEventListener).to.be.calledWith(SEARCH_RESPONSE, component.setProductsFromEvent);
-      });
+      expect(component.products).to.deep.equal([]);
     });
 
-    describe('disconnectedCallback', () => {
-      itShouldCallParentMethod(() => component, 'disconnectedCallback');
+    it('should set products when the event matches the group in the component', () => {
+      const event = { detail: { products, group } };
+      component.group = group;
 
-      it('should remove an event listener for search responses', () => {
-        const removeEventListener = sinon.stub(window, 'removeEventListener');
+      component.setProductsFromEvent(event);
 
-        component.disconnectedCallback();
-
-        expect(removeEventListener).to.be.calledWith(SEARCH_RESPONSE, component.setProductsFromEvent);
-      });
+      expect(component.products).to.equal(products);
     });
 
-    describe('setProductsFromEvent', () => {
-      let products;
-      let group;
+    it('should not set products when the group in the component and event do not match', () => {
+      const event = { detail: { products, group } };
 
-      beforeEach(() => {
-        products = [1, 2, 3];
-        group = 'group';
-      });
+      component.setProductsFromEvent(event);
 
-      it('should set products to an empty array if the event payload does not contain records', () => {
-        const event = { detail: { results: {} } };
-        component.setProductsFromEvent(event);
+      expect(component.products).to.deep.equal([]);
+    });
 
-        expect(component.products).to.deep.equal([]);
-      });
+    it('should default the group in the event to an empty string if it is falsey', () => {
+      const event = { detail: { products } };
 
-      it('should set products when the event matches the group in the component', () => {
-        const event = { detail: { results: { products }, group } };
-        component.group = group;
+      component.setProductsFromEvent(event);
 
-        component.setProductsFromEvent(event);
+      expect(component.products).to.equal(products);
+    });
 
-        expect(component.products).to.equal(products);
-      });
+    it('should default the group in the component to an empty string if it is falsey', () => {
+      component.group = undefined;
+      const event = { detail: { products } };
 
-      it('should not set products when the group in the component and event do not match', () => {
-        const event = { detail: { results: { products }, group } };
+      component.setProductsFromEvent(event);
 
-        component.setProductsFromEvent(event);
+      expect(component.products).to.equal(products);
+    });
+  });
+});
 
-        expect(component.products).to.deep.equal([]);
-      });
+describe('Products Search Component', () => {
+  let component;
 
-      it('should default the group in the event to an empty string if it is falsey', () => {
-        const event = { detail: { results: { products } } };
+  beforeEach(() => {
+    component = new ProductsSearch();
+  });
 
-        component.setProductsFromEvent(event);
+  itShouldExtendClass(() => component, ProductsBase);
 
-        expect(component.products).to.equal(products);
-      });
+  describe('connectedCallback', () => {
+    let cacheResponseEventName;
 
-      it('should default the group in the component to an empty string if it is falsey', () => {
-        component.group = undefined;
-        const event = { detail: { results: { products } } };
+    beforeEach(() => {
+      cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
+    });
 
-        component.setProductsFromEvent(event);
+    itShouldCallParentMethod(() => component, 'connectedCallback');
 
-        expect(component.products).to.equal(products);
-      });
+    it('should add event listeners for sayt products events', () => {
+      const addEventListener = stub(window, 'addEventListener');
+
+      component.connectedCallback();
+
+      expect(addEventListener).to.be.calledWith(
+        SEARCH_RESPONSE,
+        component.setProductsFromEvent
+      );
+      expect(addEventListener).to.be.calledWith(
+        cacheResponseEventName,
+        component.setProductsFromCacheEvent
+      );
+    });
+
+    it('should request initial data', () => {
+      const requestInitialData = stub(component, 'requestInitialData');
+
+      component.connectedCallback();
+
+      expect(requestInitialData).to.be.calledWith(SEARCH_RESPONSE, component.group, cacheResponseEventName);
+    });
+  });
+
+  describe('disconnectedCallback', () => {
+    itShouldCallParentMethod(() => component, 'disconnectedCallback');
+
+    it('should remove event listeners for sayt products', () => {
+      const removeEventListener = sinon.stub(window, 'removeEventListener');
+      const cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
+
+      component.disconnectedCallback();
+
+      expect(removeEventListener).to.be.calledWith(
+        SEARCH_RESPONSE,
+        component.setProductsFromEvent
+      );
+
+      expect(removeEventListener).to.be.calledWith(
+        cacheResponseEventName,
+        component.setProductsFromCacheEvent
+      );
+    });
+  });
+
+  describe('setProductsFromEvent', () => {
+    let products;
+    let group;
+
+    beforeEach(() => {
+      products = [1, 2, 3];
+      group = 'group';
+    });
+
+    it('should set products to an empty array if the event payload does not contain records', () => {
+      const event = { detail: { results: {} } };
+      component.setProductsFromEvent(event);
+
+      expect(component.products).to.deep.equal([]);
+    });
+
+    it('should set products when the event matches the group in the component', () => {
+      const event = { detail: { results: { products }, group } };
+      component.group = group;
+
+      component.setProductsFromEvent(event);
+
+      expect(component.products).to.equal(products);
+    });
+
+    it('should not set products when the group in the component and event do not match', () => {
+      const event = { detail: { results: { products }, group } };
+
+      component.setProductsFromEvent(event);
+
+      expect(component.products).to.deep.equal([]);
+    });
+
+    it('should default the group in the event to an empty string if it is falsey', () => {
+      const event = { detail: { results: { products } } };
+
+      component.setProductsFromEvent(event);
+
+      expect(component.products).to.equal(products);
+    });
+
+    it('should default the group in the component to an empty string if it is falsey', () => {
+      component.group = undefined;
+      const event = { detail: { results: { products } } };
+
+      component.setProductsFromEvent(event);
+
+      expect(component.products).to.equal(products);
     });
   });
 });
