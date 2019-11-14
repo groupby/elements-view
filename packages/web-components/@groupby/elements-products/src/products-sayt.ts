@@ -23,6 +23,10 @@ export default class ProductsSayt extends ProductsBase {
    */
   protected componentId = shortid.generate();
 
+  /**
+   * A string intended to be used as the name of the return event in
+   * cache requests for this component.
+   */
   protected cacheResponseEventName = this.getResponseEventName('products-sayt', this.componentId);
 
   /**
@@ -30,6 +34,7 @@ export default class ProductsSayt extends ProductsBase {
    */
   constructor() {
     super();
+
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
     this.setProductsFromCacheData = this.setProductsFromCacheData.bind(this);
   }

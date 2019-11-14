@@ -23,6 +23,10 @@ export default class ProductsSearch extends ProductsBase {
    */
   protected componentId = shortid.generate();
 
+  /**
+   * A string intended to be used as the name of the return event in
+   * cache requests for this component.
+   */
   protected cacheResponseEventName = this.getResponseEventName('products-search', this.componentId);
 
   /**
