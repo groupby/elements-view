@@ -53,7 +53,7 @@ export default class ProductsBase extends Base {
    * @param returnEvent The name of the event under which to dispatch the cached data.
    *
    */
-  requestInitialData(name: string, group?: string, returnEvent: string): void {
+  requestInitialData(name: string, group: string, returnEvent: string): void {
     const payload: CacheRequestPayload = {
       name,
       group,
