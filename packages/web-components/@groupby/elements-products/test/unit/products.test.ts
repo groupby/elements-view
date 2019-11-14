@@ -154,7 +154,7 @@ describe('Products Sayt Component', () => {
 
   describe('setProductsFromCacheData', () => {
     it('should set products to an empty array if the event payload does not contain products', () => {
-      const event = { detail: { results: {} } };
+      const event = { detail: { data: { products: [], group: '' } } };
 
       component.setProductsFromCacheData(event);
 

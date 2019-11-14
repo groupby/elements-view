@@ -61,8 +61,12 @@ export default class ProductsSayt extends ProductsBase {
    * @param event The event object.
    */
   setProductsFromCacheData(event: CustomEvent<CacheResponsePayload>): void {
-    const data = event.detail.data || {};
-    this.products = data.products || [];
+    const eventGroup = event.detail.data.group || '';
+    const componentGroup = this.group || '';
+    if (eventGroup === componentGroup) {
+      const data = event.detail.data || {};
+      this.products = data.products || [];
+    }
   }
 
   /**

@@ -23,6 +23,8 @@ export default class ProductsSearch extends ProductsBase {
    */
   protected componentId = shortid.generate();
 
+  protected cacheResponseEventName = this.getResponseEventName('products-search', this.componentId);
+
   /**
    * Binds relevant methods.
    */
@@ -37,11 +39,9 @@ export default class ProductsSearch extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    const cacheResponseEventName = this.getResponseEventName('products-search', this.componentId);
-
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
-    window.addEventListener(cacheResponseEventName, this.setProductsFromCacheData);
-    this.requestInitialData(SEARCH_RESPONSE, this.group, cacheResponseEventName);
+    window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheData);
+    this.requestInitialData(SEARCH_RESPONSE, this.group, this.cacheResponseEventName);
   }
 
   /**
@@ -49,9 +49,8 @@ export default class ProductsSearch extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    const cacheResponseEventName = this.getResponseEventName('products-search', this.componentId);
     window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
-    window.removeEventListener(cacheResponseEventName, this.setProductsFromCacheData);
+    window.removeEventListener(this.cacheResponseEventName, this.setProductsFromCacheData);
   }
 
   /**
@@ -61,8 +60,12 @@ export default class ProductsSearch extends ProductsBase {
    * @param event The event object.
    */
   setProductsFromCacheData(event: CustomEvent<CacheResponsePayload>): void {
-    const data = event.detail.data || {};
-    this.products = data.products || [];
+    const eventGroup = event.detail.data.group || '';
+    const componentGroup = this.group || '';
+    if (eventGroup === componentGroup) {
+      const data = event.detail.data || {};
+      this.products = data.products || [];
+    }
   }
 
   /**
