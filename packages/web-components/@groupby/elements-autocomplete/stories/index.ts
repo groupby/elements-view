@@ -101,14 +101,14 @@ storiesOf('Components|Autocomplete', module)
             2. Observe that the selection changes.
                * Note that the value of the knob will not change in response to this action. This is due to technical limitations with knobs and does not reflect the actual behavior of the component.
 
-          ### The Autocomplete component will emit an event with newly selected term
+          ### The Autocomplete component will emit an event with the newly selected term.
           * Changes in the \`selectedIndex\` property will emit an \`${AUTOCOMPLETE_ACTIVE_TERM}\` event.
           * To demonstrate in this story:
             1. Visit the **Events Logger** panel.
             2. Hover over an Autocomplete term.
             3. Observe the \`${AUTOCOMPLETE_ACTIVE_TERM}\` event that has been emitted.
 
-          ### The Autocomplete component will trigger a search when a search term is clicked
+          ### The Autocomplete component will trigger a search when a search term is clicked.
           * Clicking on an Autocomplete search term will emit an \`${UPDATE_SEARCH_TERM}\` event.
             * This event will contain the search term and a flag to trigger a new search as the payload.
           * To demonstrate in this story:
