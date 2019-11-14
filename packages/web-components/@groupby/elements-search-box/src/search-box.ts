@@ -66,7 +66,7 @@ export default class SearchBox extends Base {
 
   constructor() {
     super();
-    this.updateText = this.updateText.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   /**
@@ -74,7 +74,7 @@ export default class SearchBox extends Base {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    window.addEventListener(UPDATE_SEARCH_TERM, this.updateText);
+    window.addEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
   }
 
   /**
@@ -82,7 +82,7 @@ export default class SearchBox extends Base {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    window.removeEventListener(UPDATE_SEARCH_TERM, this.updateText);
+    window.removeEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
   }
 
   /**
@@ -112,15 +112,20 @@ export default class SearchBox extends Base {
   /**
    * Updates the contents of the search input box and the value property
    * with the payload of the given event.
+   * Submits a search request if directed by the event.
+   * Acts only if group matches in the event and the component.
    * Invoked in response to an update search term event.
    *
    * @param e The event object.
    */
-  updateText(e: CustomEvent<UpdateSearchTermPayload>): void {
+  updateSearch(e: CustomEvent<UpdateSearchTermPayload>): void {
     const eventGroup = e.detail.group || '';
     const componentGroup = this.group || '';
-    if (eventGroup === componentGroup) {
-      this.updateSearchTermValue(e.detail.term);
+    if (eventGroup !== componentGroup) return;
+
+    this.updateSearchTermValue(e.detail.term);
+    if (e.detail.search) {
+      this.emitSearchEvent();
     }
   }
 
