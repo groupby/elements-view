@@ -15,7 +15,6 @@ import {
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
 
-
 /**
  * The `gbe-products-base` web component wraps and renders a number of
  * `gbe-product` components. It wraps each `gbe-product` component in an
