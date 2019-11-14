@@ -30,6 +30,7 @@ export default class ProductsSearch extends ProductsBase {
    */
   constructor() {
     super();
+
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
     this.setProductsFromCacheData = this.setProductsFromCacheData.bind(this);
   }
@@ -49,6 +50,7 @@ export default class ProductsSearch extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
+
     window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.removeEventListener(this.cacheResponseEventName, this.setProductsFromCacheData);
   }

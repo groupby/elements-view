@@ -1,7 +1,7 @@
 import {
-  CACHE_RESPONSE_PREFIX,
   SAYT_PRODUCTS_RESPONSE,
   SEARCH_RESPONSE,
+  CACHE_RESPONSE_PREFIX,
   CACHE_REQUEST,
 } from '@groupby/elements-events';
 import {
@@ -77,7 +77,7 @@ describe('Products Base Component', () => {
   describe('getResponseEventName', () => {
     it('should return an event name for receiving cached data', () => {
       const componentId = component.componentId = 'some-id';
-      const componentName = component.componentName = 'products-sayt';
+      const componentName = 'products-sayt';
       const expectedCacheResponseEventName = `${CACHE_RESPONSE_PREFIX}${componentName}-${componentId}`;
 
       const eventName = component.getResponseEventName(componentName, componentId);
@@ -97,15 +97,16 @@ describe('Products Sayt Component', () => {
   itShouldExtendClass(() => component, ProductsBase);
 
   describe('connectedCallback', () => {
-    itShouldCallParentMethod(() => component, 'connectedCallback');
+    let cacheResponseEventName;
 
-    it('should set cacheResponseEventName with the name for cache response event', () => {
-
+    beforeEach(() => {
+      cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
     });
 
+    itShouldCallParentMethod(() => component, 'connectedCallback');
+
     it('should add event listeners for sayt products events', () => {
-      const addEventListener = sinon.stub(window, 'addEventListener');
-      const cacheResponseEventName = component.cacheResponseEventName = 'cache:response'
+      const addEventListener = stub(window, 'addEventListener');
 
       component.connectedCallback();
 
@@ -119,14 +120,12 @@ describe('Products Sayt Component', () => {
       );
     });
 
-    it('should call requestInitialData', () => {
+    it('should request initial data', () => {
       const requestInitialData = stub(component, 'requestInitialData');
-      const cacheResponseEventName = 'dog';
-      stub(component, 'getResponseEventName').returns(cacheResponseEventName);
 
       component.connectedCallback();
 
-      expect(requestInitialData).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, component.group, component.cacheResponseEventName);
+      expect(requestInitialData).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, component.group, cacheResponseEventName);
     });
   });
 
@@ -135,7 +134,7 @@ describe('Products Sayt Component', () => {
 
     it('should remove event listeners for sayt products', () => {
       const removeEventListener = sinon.stub(window, 'removeEventListener');
-      const cacheResponseEventName = component.cacheResponseEventName = 'cache:response';
+      const cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
 
       component.disconnectedCallback();
 
@@ -150,7 +149,6 @@ describe('Products Sayt Component', () => {
       );
     });
   });
-
 
   describe('setProductsFromCacheData', () => {
     it('should set products to an empty array if the event payload does not contain products', () => {
@@ -224,26 +222,56 @@ describe('Products Search Component', () => {
   itShouldExtendClass(() => component, ProductsBase);
 
   describe('connectedCallback', () => {
+    let cacheResponseEventName;
+
+    beforeEach(() => {
+      cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
+    });
+
     itShouldCallParentMethod(() => component, 'connectedCallback');
 
-    it('should set up an event listener for a search response to set products', () => {
-      const addEventListener = sinon.stub(window, 'addEventListener');
+    it('should add event listeners for sayt products events', () => {
+      const addEventListener = stub(window, 'addEventListener');
 
       component.connectedCallback();
 
-      expect(addEventListener).to.be.calledWith(SEARCH_RESPONSE, component.setProductsFromEvent);
+      expect(addEventListener).to.be.calledWith(
+        SEARCH_RESPONSE,
+        component.setProductsFromEvent
+      );
+      expect(addEventListener).to.be.calledWith(
+        cacheResponseEventName,
+        component.setProductsFromCacheData
+      );
+    });
+
+    it('should request initial data', () => {
+      const requestInitialData = stub(component, 'requestInitialData');
+
+      component.connectedCallback();
+
+      expect(requestInitialData).to.be.calledWith(SEARCH_RESPONSE, component.group, cacheResponseEventName);
     });
   });
 
   describe('disconnectedCallback', () => {
     itShouldCallParentMethod(() => component, 'disconnectedCallback');
 
-    it('should remove an event listener for search responses', () => {
+    it('should remove event listeners for sayt products', () => {
       const removeEventListener = sinon.stub(window, 'removeEventListener');
+      const cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
 
       component.disconnectedCallback();
 
-      expect(removeEventListener).to.be.calledWith(SEARCH_RESPONSE, component.setProductsFromEvent);
+      expect(removeEventListener).to.be.calledWith(
+        SEARCH_RESPONSE,
+        component.setProductsFromEvent
+      );
+
+      expect(removeEventListener).to.be.calledWith(
+        cacheResponseEventName,
+        component.setProductsFromCacheData
+      );
     });
   });
 
