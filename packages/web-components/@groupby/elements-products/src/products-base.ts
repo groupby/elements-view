@@ -45,7 +45,15 @@ export default class ProductsBase extends Base {
     }
   }
 
-  requestInitialData(name: string, group: string, returnEvent: string): void {
+  /**
+   * Requests initial data for the component.
+   *
+   * @param name The name of the initial cached data to return.
+   * @param group The name of the event group that this component belongs to.
+   * @param returnEvent The name of the event under which to dispatch the cached data.
+   *
+   */
+  requestInitialData(name: string, group?: string, returnEvent: string): void {
     const payload: CacheRequestPayload = {
       name,
       group,
@@ -54,6 +62,13 @@ export default class ProductsBase extends Base {
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 
+  /**
+   * Generates a string intended to be used as the name of the return event in
+   * cache requests for this component.
+   *
+   * @param componentName The name of the component for which to generate the return event name.
+   * @param componentId A random string that acts as a unique identifier for the component.
+   */
   getCacheResponseEventName(componentName: string, componentId: string): string {
     return `${CACHE_RESPONSE_PREFIX}${componentName}-${componentId}`;
   }
