@@ -55,7 +55,7 @@ export default class ProductsBase extends Base {
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 
-  getResponseEventName(componentName: string, componentId: string): string {
+  getCacheResponseEventName(componentName: string, componentId: string): string {
     return `${CACHE_RESPONSE_PREFIX}${componentName}-${componentId}`;
   }
 

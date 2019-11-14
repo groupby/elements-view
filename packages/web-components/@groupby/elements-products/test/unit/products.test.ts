@@ -74,13 +74,13 @@ describe('Products Base Component', () => {
     });
   });
 
-  describe('getResponseEventName', () => {
+  describe('getCacheResponseEventName', () => {
     it('should return an event name for receiving cached data', () => {
       const componentId = component.componentId = 'some-id';
       const componentName = 'products-sayt';
       const expectedCacheResponseEventName = `${CACHE_RESPONSE_PREFIX}${componentName}-${componentId}`;
 
-      const eventName = component.getResponseEventName(componentName, componentId);
+      const eventName = component.getCacheResponseEventName(componentName, componentId);
 
       expect(eventName).to.equal(expectedCacheResponseEventName);
     });
