@@ -20,6 +20,7 @@ import {
   AutocompleteActiveTermPayload,
   SearchboxInputPayload,
   WithGroup,
+  UPDATE_SEARCH_TERM,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
@@ -143,6 +144,14 @@ export default class Sayt extends Base {
     window.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
+    // window.addEventListener(UPDATE_SEARCH_TERM, this.updateTerm, true);
+    window.addEventListener(UPDATE_SEARCH_TERM, (e) => {
+      console.log('xytyt - capture - received update search term event')
+      e.stopPropagation();
+    }, true)
+    window.addEventListener(UPDATE_SEARCH_TERM, () => {
+      console.log('xytyt - bubbles - received update search term event')
+    })
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.addEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'add');
@@ -174,6 +183,7 @@ export default class Sayt extends Base {
    * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues): void {
+    console.log('ytyt in changedProps', changedProps);
     if (changedProps.has('visible')) {
       this.hidden = !this.visible;
 
@@ -202,6 +212,14 @@ export default class Sayt extends Base {
     }
   }
 
+//   updateTerm(event: KeyboardEvent): void {
+//     console.log('ytyt - updateTerm - e', event)
+//     if (this.searchbox) {
+//       const searchbox = document.getElementById(this.searchbox);
+//       console.log('ytyt - updateTerm - searchbox', searchbox)
+//   }
+// }
+
   /**
    * Generates the ID for this component's autocomplete component. This
    * ID does not change as long as [[componentId]] does not change.
@@ -223,6 +241,7 @@ export default class Sayt extends Base {
     if (searchboxId) {
       const searchbox = document.getElementById(searchboxId);
       if (searchbox) {
+        // console.log('ytyt - in setSearchboxListener - searchbox', searchbox)
         searchbox[setEventListener]('input', this.processSearchboxInput);
         searchbox[setEventListener]('keydown', this.changeSelection);
       }
@@ -497,6 +516,8 @@ export default class Sayt extends Base {
    * @param event A keyboard event used for checking which key has been pressed.
    */
   processKeyEvent(event: KeyboardEvent): void {
+    // this is listening on the window, therefore triggered on every single keypress.
+    console.log('ytyt - in processKeyEvent in sayt - event', event);
     switch (event.key) {
       case 'Escape':
       case 'Esc': // IE
@@ -514,6 +535,8 @@ export default class Sayt extends Base {
    * @param event The keyboard event to act on.
    */
   changeSelection(event: KeyboardEvent): void {
+    // triggered on every keypress within sayt
+    console.log('ytyt - THIS - in changeSelection in sayt - event', event);
     switch (event.key) {
       case 'ArrowUp':
       case 'Up': // IE
