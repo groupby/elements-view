@@ -123,6 +123,20 @@ export default class Autocomplete extends Base {
   }
 
   /**
+   * Synchronizes property values when attributes change.
+   *
+   * @param name Name of the property.
+   * @param oldVal The old value of the property.
+   * @param newVal The new value of the property.
+   */
+  attributeChangedCallback(name: string, oldVal: any, newVal: any): void {
+    super.attributeChangedCallback(name, oldVal, newVal);
+    if (name === 'results') {
+      this._initialized = true;
+    };
+  }
+
+  /**
    * Reacts to changes to various properties.
    * The changes to the following properties are listened for:
    *
