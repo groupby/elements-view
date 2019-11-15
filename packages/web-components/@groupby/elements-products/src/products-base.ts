@@ -49,7 +49,7 @@ export default class ProductsBase extends Base {
    * Requests initial data for the component.
    *
    * @param name The name of the initial cached data to return.
-   * @param group The name of the event group that this component belongs to.
+   * @param group The name of the event group that the component belongs to.
    * @param returnEvent The name of the event under which to dispatch the cached data.
    *
    */
@@ -64,7 +64,7 @@ export default class ProductsBase extends Base {
 
   /**
    * Generates a string intended to be used as the name of the return event in
-   * cache requests for this component.
+   * cache requests for the component.
    *
    * @param componentName The name of the component for which to generate the return event name.
    * @param componentId A random string that acts as a unique identifier for the component.

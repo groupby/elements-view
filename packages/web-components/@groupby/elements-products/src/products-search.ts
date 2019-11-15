@@ -54,6 +54,7 @@ export default class ProductsSearch extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
+
     window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.removeEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
   }

@@ -44,6 +44,7 @@ export default class ProductsSayt extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
+
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
     this.requestInitialData(SAYT_PRODUCTS_RESPONSE, this.group, this.cacheResponseEventName);
@@ -54,6 +55,7 @@ export default class ProductsSayt extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
+
     window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
     window.removeEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
   }
