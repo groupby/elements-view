@@ -181,13 +181,17 @@ export default class Autocomplete extends Base {
 
   /**
    * Receives an event for populating initial data.
+   * Will not populate if the component has already received data
+   * from another source.
    * Intended to be used on mount of this component.
    *
    * @param event The event object.
    */
   receiveInitialData(event: CustomEvent<CacheResponsePayload>): void {
     const data = event.detail.data || {};
-    this.results = data.results || [];
+    if (!this._initialized) {
+      this.results = data.results || [];
+    };
   }
 
   /**

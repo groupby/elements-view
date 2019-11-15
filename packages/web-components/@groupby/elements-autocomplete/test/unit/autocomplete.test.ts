@@ -130,18 +130,34 @@ describe('Autcomplete Component', () => {
   });
 
   describe('receiveInitialData()', () => {
+    let cacheResults;
+    let cacheResponseEvent;
+
+    beforeEach(() => {
+      cacheResults = [{
+        items: [
+          { label: 'dress' },
+          { label: 'black dress' },
+          { label: 'long dress' },
+        ],
+        title: '',
+      }];
+      cacheResponseEvent = { detail: { data: { results: cacheResults } } };
+    });
+
     it('should set initial data given an event', () => {
-      // const cacheResponseEvent = new CustomEvent();
-      const items = [
-        { label: 'dress' },
-        { label: 'black dress' },
-        { label: 'long dress' },
-      ];
-      const cacheResponseEvent = { detail: { data: { results: [{ items, title: '' }] } } };
+      autocomplete.receiveInitialData(cacheResponseEvent);
+
+      expect(autocomplete.results).to.deep.equal(cacheResults);
+    });
+
+    it('should not set the initial data if Autocomplete has already been initialized', () => {
+      autocomplete._initialized = true;
+      const results = autocomplete.results = ['results'];
 
       autocomplete.receiveInitialData(cacheResponseEvent);
 
-      expect(autocomplete.results).to.deep.equal(cacheResponseEvent.detail.data.results);
+      expect(autocomplete.results).to.deep.equal(results);
     });
   });
 
