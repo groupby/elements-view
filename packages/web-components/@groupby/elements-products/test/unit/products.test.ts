@@ -116,7 +116,7 @@ describe('Products Sayt Component', () => {
       );
       expect(addEventListener).to.be.calledWith(
         cacheResponseEventName,
-        component.setProductsFromCacheData
+        component.setProductsFromCacheEvent
       );
     });
 
@@ -145,16 +145,16 @@ describe('Products Sayt Component', () => {
 
       expect(removeEventListener).to.be.calledWith(
         cacheResponseEventName,
-        component.setProductsFromCacheData
+        component.setProductsFromCacheEvent
       );
     });
   });
 
-  describe('setProductsFromCacheData', () => {
+  describe('setProductsFromCacheEvent', () => {
     it('should set products to an empty array if the event payload does not contain products', () => {
       const event = { detail: { data: { products: [] } } };
 
-      component.setProductsFromCacheData(event);
+      component.setProductsFromCacheEvent(event);
 
       expect(component.products).to.deep.equal([]);
     });
@@ -241,7 +241,7 @@ describe('Products Search Component', () => {
       );
       expect(addEventListener).to.be.calledWith(
         cacheResponseEventName,
-        component.setProductsFromCacheData
+        component.setProductsFromCacheEvent
       );
     });
 
@@ -270,7 +270,7 @@ describe('Products Search Component', () => {
 
       expect(removeEventListener).to.be.calledWith(
         cacheResponseEventName,
-        component.setProductsFromCacheData
+        component.setProductsFromCacheEvent
       );
     });
   });

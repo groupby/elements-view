@@ -36,7 +36,7 @@ export default class ProductsSearch extends ProductsBase {
     super();
 
     this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
-    this.setProductsFromCacheData = this.setProductsFromCacheData.bind(this);
+    this.setProductsFromCacheEvent = this.setProductsFromCacheEvent.bind(this);
   }
 
   /**
@@ -45,7 +45,7 @@ export default class ProductsSearch extends ProductsBase {
   connectedCallback(): void {
     super.connectedCallback();
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
-    window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheData);
+    window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
     this.requestInitialData(SEARCH_RESPONSE, this.group, this.cacheResponseEventName);
   }
 
@@ -54,9 +54,8 @@ export default class ProductsSearch extends ProductsBase {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-
     window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
-    window.removeEventListener(this.cacheResponseEventName, this.setProductsFromCacheData);
+    window.removeEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
   }
 
   /**
@@ -65,7 +64,7 @@ export default class ProductsSearch extends ProductsBase {
    *
    * @param event The event object.
    */
-  setProductsFromCacheData(event: CustomEvent<CacheResponsePayload>): void {
+  setProductsFromCacheEvent(event: CustomEvent<CacheResponsePayload>): void {
     const data = event.detail.data || {};
     this.products = data.products || [];
   }
