@@ -119,6 +119,7 @@ export default class SearchBox extends Base {
    * @param e The event object.
    */
   updateSearch(e: CustomEvent<UpdateSearchTermPayload>): void {
+    console.log('sssx - in update search in searchbox - e', e);
     const eventGroup = e.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup !== componentGroup) return;
@@ -153,6 +154,7 @@ export default class SearchBox extends Base {
    * @param e The KeyboardEvent object.
    */
   handleKeydown(e: KeyboardEvent): void {
+    console.log('sss - handleKeyDown in searchbox', e);
     if (e.key === 'Enter' && this.value.length > 0) {
       this.emitSearchEvent();
     }
@@ -203,6 +205,40 @@ export default class SearchBox extends Base {
     });
   }
 
+  // render(): TemplateResult {
+  //   return html`
+  //     <style>
+  //       gbe-search-box {
+  //         display: inline-flex;
+  //       }
+  //       gbe-search-box[hidden] {
+  //         display: none;
+  //       }
+  //       gbe-search-box > input {
+  //         flex-grow: 1;
+  //       }
+  //     </style>
+  //     <input
+  //       aria-label="Search"
+  //       class="gbe-input"
+  //       type="text"
+  //       placeholder="${this.placeholder}"
+  //       .value="${this.value}"
+  //       @input="${this.handleInput}"
+  //       @click="${this.clickExposed}"
+  //     />
+  //     ${this.clearButton
+  //   ? html`
+  //           <button class="gbe-clear" @click="${this.clearSearch}">Clear</button>
+  //         `
+  //   : ''}
+  //     ${this.searchButton
+  //   ? html`
+  //           <button class="gbe-submit" @click="${this.emitSearchEvent}">Search</button>
+  //         `
+  //   : ''}
+  //   `;
+  // }
   render(): TemplateResult {
     return html`
       <style>
