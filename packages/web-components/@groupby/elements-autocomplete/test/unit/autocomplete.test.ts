@@ -221,6 +221,14 @@ describe('Autcomplete Component', () => {
         expect(dispatchSelectedTerm).to.be.called;
       });
     });
+
+    describe('results', () => {
+      it('should set the initialized property to true', () => {
+        autocomplete.updated(new Map([['results', 'autocomplete results']]));
+
+        expect(autocomplete._initialized).to.be.true;
+      });
+    });
   });
 
   describe('itemCount', () => {

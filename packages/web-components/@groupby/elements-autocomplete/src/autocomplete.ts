@@ -144,12 +144,16 @@ export default class Autocomplete extends Base {
    * The changes to the following properties are listened for:
    *
    * - `selectedIndex`
+   * - `results`
    *
    * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues): void {
     if (changedProps.has('selectedIndex')) {
       this.dispatchSelectedTerm();
+    }
+    if (changedProps.has('results')) {
+      this._initialized = true;
     }
   }
 
