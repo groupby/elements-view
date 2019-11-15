@@ -82,8 +82,11 @@ export default class Autocomplete extends Base {
     super.connectedCallback();
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
-    window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
-    this.requestInitialData();
+
+    if (!this._initialized) {
+      window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
+      this.requestInitialData();
+    }
 
     const role = this.getAttribute('role');
     const roles = role ? role.split(' ') : [];

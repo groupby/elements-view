@@ -92,6 +92,18 @@ describe('Autcomplete Component', () => {
       expect(requestInitialData).to.be.called;
     });
 
+    it('should not request initial data if the component is already initialized', () => {
+      autocomplete._initialized = true;
+
+      autocomplete.connectedCallback();
+
+      expect(windowAddEventListener).to.not.be.calledWith(
+        returnEvent,
+        autocomplete.receiveInitialData
+      );
+      expect(requestInitialData).to.not.be.called;
+    });
+
     describe('role attribute', () => {
       it('should add the listbox role', () => {
         autocomplete.connectedCallback();
