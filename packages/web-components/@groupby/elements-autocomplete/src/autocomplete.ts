@@ -136,7 +136,7 @@ export default class Autocomplete extends Base {
     super.attributeChangedCallback(name, oldVal, newVal);
     if (name === 'results') {
       this._initialized = true;
-    };
+    }
   }
 
   /**
@@ -194,7 +194,7 @@ export default class Autocomplete extends Base {
     const data = event.detail.data || {};
     if (!this._initialized) {
       this.results = data.results || [];
-    };
+    }
   }
 
   /**
