@@ -77,6 +77,8 @@ core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, dom
 [
   'gbe::cache_request',
   'gbe::sayt_products_response',
+  'gbe::search_request',
+  'gbe::search_response',
   'gbe::sayt_products_error',
 ].forEach(function(eventName) {
   window.addEventListener(eventName, function(event) {

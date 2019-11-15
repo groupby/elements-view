@@ -72,6 +72,7 @@ export default class Autocomplete extends Base {
     this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
     this.receiveInitialData = this.receiveInitialData.bind(this);
     this.sendUpdateSearchEvent = this.sendUpdateSearchEvent.bind(this);
+    this.handleKeydown = this.handleKeydown.bind(this);
   }
 
   /**
@@ -83,6 +84,9 @@ export default class Autocomplete extends Base {
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
+    this.addEventListener('keydown', this.handleKeydownThis);
+    this.addEventListener('click', this.testClickListener);
+    window.addEventListener('keydown', this.handleKeydown);
     this.requestInitialData();
 
     const role = this.getAttribute('role');
@@ -131,9 +135,19 @@ export default class Autocomplete extends Base {
    * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues): void {
+    console.log('aaa in updated - selectedIndex props', this.selectedIndex);
     if (changedProps.has('selectedIndex')) {
       this.dispatchSelectedTerm();
     }
+  }
+
+  testClickListener(event: MouseEvent) {
+    console.log('aaa in testClickListener - event', event);
+  }
+
+  handleKeydownThis(event: KeyboardEvent) {
+    console.log('aaa in handleKeydownThis');
+    console.log('aaa in handleKeydownThis - event', event);
   }
 
   /**
@@ -193,6 +207,7 @@ export default class Autocomplete extends Base {
    * Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the selected term.
    */
   dispatchSelectedTerm(): void {
+    console.log('aaa - in dispatchSelectedTerm in autocomplete');
     if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
 
     const allItems = this.results
@@ -250,6 +265,7 @@ export default class Autocomplete extends Base {
    * @param event A mouse click event on an autocomplete term.
    */
   sendUpdateSearchEvent(event: MouseEvent): void {
+    console.log('aaa- in sendUpdateSearchEvent - e', event);
     const target = event.target as HTMLElement;
     const term = target.innerText;
     const payload: UpdateSearchTermPayload = {
@@ -259,6 +275,26 @@ export default class Autocomplete extends Base {
     };
 
     this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
+  }
+
+  handleKeydown(event: KeyboardEvent): void {
+    console.log('aaa - in handle keydown');
+    console.log('aaa - in handleKeydown - e', event);
+    if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
+    if (event.key === 'Enter') {
+      const allItems = this.results
+        .map((group) => group.items)
+        .reduce((accItems, items) => [...accItems, ...items], []);
+      const term = allItems[this.selectedIndex].label;
+      const payload: UpdateSearchTermPayload = {
+        term,
+        group: this.group,
+        search: false,
+      };
+      this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
+      console.log('aaax - in handlekeydown  - term', term);
+      console.log('aaax - in handlekeydown  - selectedIndex', this.selectedIndex);
+    }
   }
 
   /**
