@@ -132,7 +132,7 @@ export default class Autocomplete extends Base {
    * @param oldVal The old value of the property.
    * @param newVal The new value of the property.
    */
-  attributeChangedCallback(name: string, oldVal: any, newVal: any): void {
+  attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null): void {
     super.attributeChangedCallback(name, oldVal, newVal);
     if (name === 'results') {
       this._initialized = true;
