@@ -571,9 +571,9 @@ export default class Sayt extends Base {
     const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
     // autocomplete.setAttribute('tabindex', 0);
     if (document.activeElement !== autocompleteUl) {
-      autocompleteUl.focus();
+      autocompleteUl.focus({preventScroll: true});
       // autocomplete.focus();
-      autocomplete.selectPrevious({preventScroll: true});
+      autocomplete.selectPrevious();
     }
 
     if (!this.searchbox) return;
@@ -595,9 +595,9 @@ export default class Sayt extends Base {
 
     const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
     if (document.activeElement !== autocompleteUl) {
-      autocompleteUl.focus();
+      autocompleteUl.focus({preventScroll: true});
       // autocomplete.focus();
-      autocomplete.selectPrevious({preventScroll: true});
+      autocomplete.selectPrevious();
     }
 
     // // autocomplete.setAttribute('tabindex', 0);
