@@ -144,14 +144,14 @@ export default class Sayt extends Base {
     window.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
-    // window.addEventListener(UPDATE_SEARCH_TERM, this.updateTerm, true);
-    window.addEventListener(UPDATE_SEARCH_TERM, (e) => {
-      console.log('xytyt - capture - received update search term event')
-      e.stopPropagation();
-    }, true)
-    window.addEventListener(UPDATE_SEARCH_TERM, () => {
-      console.log('xytyt - bubbles - received update search term event')
-    })
+    window.addEventListener(UPDATE_SEARCH_TERM, this.updateTerm, true);
+    // window.addEventListener(UPDATE_SEARCH_TERM, (e) => {
+    //   console.log('xytyt - capture - received update search term event', e)
+    //   e.stopPropagation();
+    // }, true)
+    // window.addEventListener(UPDATE_SEARCH_TERM, () => {
+    //   console.log('xytyt - bubbles - received update search term event')
+    // })
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.addEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'add');
@@ -183,7 +183,7 @@ export default class Sayt extends Base {
    * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues): void {
-    console.log('ytyt in changedProps', changedProps);
+    // console.log('ytyt in changedProps', changedProps);
     if (changedProps.has('visible')) {
       this.hidden = !this.visible;
 
@@ -212,13 +212,16 @@ export default class Sayt extends Base {
     }
   }
 
-//   updateTerm(event: KeyboardEvent): void {
-//     console.log('ytyt - updateTerm - e', event)
-//     if (this.searchbox) {
-//       const searchbox = document.getElementById(this.searchbox);
-//       console.log('ytyt - updateTerm - searchbox', searchbox)
-//   }
-// }
+  updateTerm(event: KeyboardEvent): void {
+    console.log('xytyt - updateTerm CAPTURE - e', event);
+    console.log('xytyt - updateTerm CAPTURE this.searchbox', this.searchbox);
+    // event.stopPropagation();
+    if (this.searchbox) {
+      const searchbox = document.getElementById(this.searchbox);
+      console.log('xytyt - updateTerm CAPTURE - searchbox', searchbox);
+    }
+    // event.stopPropagation();
+  }
 
   /**
    * Generates the ID for this component's autocomplete component. This
@@ -337,6 +340,8 @@ export default class Sayt extends Base {
   showCorrectSayt(event: CustomEvent<WithGroup>): void {
     if (this.isCorrectSayt(event)) {
       this.showSayt();
+      // const sayt = document.getElementsByClassName('focus');
+      // console.log('sayt in show correct sayt', sayt)
     }
   }
 
@@ -517,7 +522,7 @@ export default class Sayt extends Base {
    */
   processKeyEvent(event: KeyboardEvent): void {
     // this is listening on the window, therefore triggered on every single keypress.
-    console.log('ytyt - in processKeyEvent in sayt - event', event);
+    // console.log('ytyt - in processKeyEvent in sayt - event', event);
     switch (event.key) {
       case 'Escape':
       case 'Esc': // IE
@@ -536,7 +541,7 @@ export default class Sayt extends Base {
    */
   changeSelection(event: KeyboardEvent): void {
     // triggered on every keypress within sayt
-    console.log('ytyt - THIS - in changeSelection in sayt - event', event);
+    // console.log('ytyt - THIS - in changeSelection in sayt - event', event);
     switch (event.key) {
       case 'ArrowUp':
       case 'Up': // IE
@@ -557,10 +562,13 @@ export default class Sayt extends Base {
   selectPreviousAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
 
+    console.log('in selectPreviousAutocompleteTerm')
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
+    autocomplete.setAttribute('onfocus', )
+    console.log('autocopmlete in selectPreviousAutocompleteTerm', autocomplete)
     if (!autocomplete) return;
-
+    autocomplete.focus();
     autocomplete.selectPrevious();
     if (!this.searchbox) return;
 
@@ -574,11 +582,12 @@ export default class Sayt extends Base {
    */
   selectNextAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
-
+    console.log('in selectNextAutocompleteTerm')
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
+    console.log('autocopmlete in selectNextAutocompleteTerm', autocomplete)
     if (!autocomplete) return;
-
+    autocomplete.focus();
     autocomplete.selectNext();
     if (!this.searchbox) return;
 

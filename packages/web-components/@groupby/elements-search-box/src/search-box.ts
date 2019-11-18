@@ -90,6 +90,7 @@ export default class SearchBox extends Base {
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
   emitSearchEvent(): void {
+    console.log('sss - in emitSearchEvent')
     const searchboxRequestEvent = this.createCustomEvent<SearchRequestPayload>(SEARCH_REQUEST, {
       query: this.value,
       config: {
@@ -154,8 +155,9 @@ export default class SearchBox extends Base {
    * @param e The KeyboardEvent object.
    */
   handleKeydown(e: KeyboardEvent): void {
-    console.log('sss - handleKeyDown in searchbox', e);
+    console.log('in handleKeydown - e', e)
     if (e.key === 'Enter' && this.value.length > 0) {
+      console.log('sss - handleKeyDown in searchbox - enter pressed', e);
       this.emitSearchEvent();
     }
   }
