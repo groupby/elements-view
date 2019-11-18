@@ -319,7 +319,7 @@ export default class Autocomplete extends Base {
            @mouseenter="${this.getSelectedIndexSetter(itemIndex)}"
         >${item.label}</li>`;
     });
-    const searchTermList = html`<ul role="group" aria-labelledby="${ifDefined(list.title ? titleId : undefined)}">${searchTermItems}</ul>`;
+    const searchTermList = html`<ul tabindex="0" role="group" aria-labelledby="${ifDefined(list.title ? titleId : undefined)}">${searchTermItems}</ul>`;
 
     return html`
       ${list.title ? header : ''}
