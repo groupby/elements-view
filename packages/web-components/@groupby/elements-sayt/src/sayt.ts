@@ -565,10 +565,13 @@ export default class Sayt extends Base {
     console.log('in selectPreviousAutocompleteTerm')
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
-    autocomplete.setAttribute('onfocus', )
+    // autocomplete.setAttribute('onfocus', )
     console.log('autocopmlete in selectPreviousAutocompleteTerm', autocomplete)
     if (!autocomplete) return;
-    autocomplete.focus();
+    const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
+    autocomplete.setAttribute('tabindex', 0);
+    autocompleteUl.focus();
+    // autocomplete.focus();
     autocomplete.selectPrevious();
     if (!this.searchbox) return;
 
@@ -587,7 +590,9 @@ export default class Sayt extends Base {
     const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
     console.log('autocopmlete in selectNextAutocompleteTerm', autocomplete)
     if (!autocomplete) return;
-    autocomplete.focus();
+    const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
+    // autocomplete.setAttribute('tabindex', 0);
+    autocompleteUl.focus();
     autocomplete.selectNext();
     if (!this.searchbox) return;
 
