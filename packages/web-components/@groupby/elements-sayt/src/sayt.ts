@@ -566,13 +566,16 @@ export default class Sayt extends Base {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
     // autocomplete.setAttribute('onfocus', )
-    console.log('autocopmlete in selectPreviousAutocompleteTerm', autocomplete)
     if (!autocomplete) return;
+
     const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
-    autocomplete.setAttribute('tabindex', 0);
-    autocompleteUl.focus();
-    // autocomplete.focus();
-    autocomplete.selectPrevious();
+    // autocomplete.setAttribute('tabindex', 0);
+    if (document.activeElement !== autocompleteUl) {
+      autocompleteUl.focus();
+      // autocomplete.focus();
+      autocomplete.selectPrevious({preventScroll: true});
+    }
+
     if (!this.searchbox) return;
 
     const searchbox = document.getElementById(this.searchbox);
@@ -588,12 +591,18 @@ export default class Sayt extends Base {
     console.log('in selectNextAutocompleteTerm')
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
-    console.log('autocopmlete in selectNextAutocompleteTerm', autocomplete)
     if (!autocomplete) return;
+
     const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
-    // autocomplete.setAttribute('tabindex', 0);
-    autocompleteUl.focus();
-    autocomplete.selectNext();
+    if (document.activeElement !== autocompleteUl) {
+      autocompleteUl.focus();
+      // autocomplete.focus();
+      autocomplete.selectPrevious({preventScroll: true});
+    }
+
+    // // autocomplete.setAttribute('tabindex', 0);
+    // autocompleteUl.focus({preventScroll: true});
+    // autocomplete.selectNext();
     if (!this.searchbox) return;
 
     const searchbox = document.getElementById(this.searchbox);
