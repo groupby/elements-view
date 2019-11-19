@@ -23,7 +23,7 @@ import {
   UpdateSearchTermPayload,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@groupby/elements-base';
+import { Base, dataInitializer } from '@groupby/elements-base';
 
 /**
  * The `gbe-autocomplete` component is responsible for displaying a list
@@ -35,7 +35,9 @@ export default class Autocomplete extends Base {
   /**
    * Autocomplete request results.
    */
-  @property({ type: Array }) results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = [];
+  @dataInitializer('_initialized')
+  @property({ type: Array })
+  results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = [];
 
   /**
    * The text to use in the header.
@@ -135,7 +137,7 @@ export default class Autocomplete extends Base {
   attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null): void {
     super.attributeChangedCallback(name, oldVal, newVal);
     if (name === 'results') {
-      this._initialized = true;
+    //   this._initialized = true;
     }
   }
 

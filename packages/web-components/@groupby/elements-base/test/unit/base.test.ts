@@ -1,5 +1,48 @@
-import { expect, stub } from '../utils';
+import { expect, stub, spy } from '../utils';
 import { DummyComponent } from './dummy-component';
+import { dataInitializer } from '../../src';
+
+describe.only('dataInitializer decorator', () => {
+  const testPropertyName = 'results';
+  let testObj;
+
+  beforeEach(() => {
+    testObj = {
+      init: false,
+      get results() {
+        return this._results;
+      },
+      set results(val) {
+        this._results = val;
+      },
+      _results: ['a', 'b'],
+    };
+  });
+
+  it('should extend a property setter', () => {
+    const originalSet = spy(testObj, 'results', ['set']);
+
+    dataInitializer('init')(testObj, testPropertyName);
+    testObj.results = ['c', 'd'];
+
+    expect(originalSet.set).to.be.called;
+    expect(testObj.init).to.be.true;
+    expect(testObj.results).to.deep.equal(['c', 'd']);
+  });
+
+  it('should only modify the set function of the property descriptor', () => {
+    const originalDescriptor = Object.getOwnPropertyDescriptor(testObj, testPropertyName);
+
+    dataInitializer('init')(testObj, testPropertyName);
+    const newDescriptor = Object.getOwnPropertyDescriptor(testObj, testPropertyName);
+    const { get, set, enumerable, configurable } = newDescriptor
+
+    expect(set).to.not.equal(originalDescriptor.set);
+    expect(get).to.equal(originalDescriptor.get);
+    expect(enumerable).to.equal(originalDescriptor.enumerable);
+    expect(configurable).to.equal(originalDescriptor.configurable);
+  });
+});
 
 describe('Base Class', () => {
   let dummyComponent;
