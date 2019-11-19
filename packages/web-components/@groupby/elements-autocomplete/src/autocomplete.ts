@@ -115,6 +115,15 @@ export default class Autocomplete extends Base {
     return `${CACHE_RESPONSE_PREFIX}autocomplete-${this.componentId}`;
   }
 
+  get selectedTerm(): string {
+    if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return null;
+
+    const allItems = this.results
+      .map((group) => group.items)
+      .reduce((accItems, items) => [...accItems, ...items], []);
+    return allItems[this.selectedIndex].label || null;
+  }
+
   /**
    * Removes event listeners.
    */
@@ -198,26 +207,13 @@ export default class Autocomplete extends Base {
   dispatchSelectedTerm(): void {
     if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
 
-    // const allItems = this.results
-    //   .map((group) => group.items)
-    //   .reduce((accItems, items) => [...accItems, ...items], []);
-    const term = this.getSelectedTerm()
-
     const payload: AutocompleteActiveTermPayload = {
-      query: term,
+      query: this.selectedTerm,
       group: this.group,
     };
     this.dispatchElementsEvent(AUTOCOMPLETE_ACTIVE_TERM, payload);
   }
 
-  getSelectedTerm(): string {
-    if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
-
-    const allItems = this.results
-      .map((group) => group.items)
-      .reduce((accItems, items) => [...accItems, ...items], []);
-    return allItems[this.selectedIndex].label;
-  }
   /**
    * Increments the `selectedIndex` property by 1.
    * If incrementing `selectedIndex` will cause it to be out of bounds,
@@ -273,17 +269,16 @@ export default class Autocomplete extends Base {
   }
 
   handleKeydown(event: KeyboardEvent): void {
-    if (event.key === 'Enter') {
-      const term = this.getSelectedTerm();
-
-      if (typeof term === 'string') {
-        const payload: UpdateSearchTermPayload = {
-          term,
-          group: this.group,
-          search: false,
-        };
-        this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
-      }
+    if (event.key === 'Enter' && typeof this.selectedTerm === 'string') {
+      console.log('componentId in handlekeydown', this.componentId)
+      console.log(this.selectedId, 'xxx - selectedId in handleKeydown')
+      console.log(this.selectedIndex, 'zzz - selectedIndex in handleKeydown')
+      const payload: UpdateSearchTermPayload = {
+        term: this.selectedTerm,
+        group: this.group,
+        search: false,
+      };
+      this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
     }
   }
 
