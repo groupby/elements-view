@@ -51,7 +51,6 @@ export default class ProductsBase extends Base {
    * @param name The name of the initial cached data to return.
    * @param group The name of the event group that the component belongs to.
    * @param returnEvent The name of the event under which to dispatch the cached data.
-   *
    */
   requestInitialData(name: string, group: string, returnEvent: string): void {
     const payload: CacheRequestPayload = { name, group, returnEvent };
