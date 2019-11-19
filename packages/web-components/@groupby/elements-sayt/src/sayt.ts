@@ -20,7 +20,6 @@ import {
   AutocompleteActiveTermPayload,
   SearchboxInputPayload,
   WithGroup,
-  UPDATE_SEARCH_TERM,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
@@ -144,7 +143,6 @@ export default class Sayt extends Base {
     window.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
-    // window.addEventListener(UPDATE_SEARCH_TERM, this.updateTerm, true);
 
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.addEventListener('keydown', this.changeSelection);
@@ -177,7 +175,6 @@ export default class Sayt extends Base {
    * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues): void {
-    // console.log('ytyt in changedProps', changedProps);
     if (changedProps.has('visible')) {
       this.hidden = !this.visible;
 
@@ -227,7 +224,6 @@ export default class Sayt extends Base {
     if (searchboxId) {
       const searchbox = document.getElementById(searchboxId);
       if (searchbox) {
-        // console.log('ytyt - in setSearchboxListener - searchbox', searchbox)
         searchbox[setEventListener]('input', this.processSearchboxInput);
         searchbox[setEventListener]('keydown', this.changeSelection);
       }
@@ -323,8 +319,6 @@ export default class Sayt extends Base {
   showCorrectSayt(event: CustomEvent<WithGroup>): void {
     if (this.isCorrectSayt(event)) {
       this.showSayt();
-      // const sayt = document.getElementsByClassName('focus');
-      // console.log('sayt in show correct sayt', sayt)
     }
   }
 
@@ -504,8 +498,6 @@ export default class Sayt extends Base {
    * @param event A keyboard event used for checking which key has been pressed.
    */
   processKeyEvent(event: KeyboardEvent): void {
-    // this is listening on the window, therefore triggered on every single keypress.
-    // console.log('ytyt - in processKeyEvent in sayt - event', event);
     switch (event.key) {
       case 'Escape':
       case 'Esc': // IE
