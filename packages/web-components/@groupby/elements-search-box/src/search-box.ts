@@ -157,7 +157,7 @@ export default class SearchBox extends Base {
   handleKeydown(e: KeyboardEvent): void {
     console.log('in handleKeydown - e', e)
     if (e.key === 'Enter' && this.value.length > 0) {
-      console.log('sss - handleKeyDown in searchbox - enter pressed', e);
+      console.log('xxxsss - handleKeyDown in searchbox - enter pressed', e);
       this.emitSearchEvent();
     }
   }
