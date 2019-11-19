@@ -597,7 +597,7 @@ export default class Sayt extends Base {
     if (document.activeElement !== autocompleteUl) {
       autocompleteUl.focus({preventScroll: true});
       // autocomplete.focus();
-      autocomplete.selectPrevious();
+      autocomplete.selectNext();
     }
 
     // // autocomplete.setAttribute('tabindex', 0);

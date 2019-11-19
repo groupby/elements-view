@@ -86,7 +86,8 @@ export default class Autocomplete extends Base {
     window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
     // this.addEventListener('keydown', this.handleKeydownThis);
     // this.addEventListener('click', this.testClickListener);
-    window.addEventListener('keydown', this.handleKeydown);
+    this.addEventListener('keydown', this.handleKeydown);
+    // window.addEventListener('keydown', this.handleKeydown);
     this.requestInitialData();
 
     const role = this.getAttribute('role');
