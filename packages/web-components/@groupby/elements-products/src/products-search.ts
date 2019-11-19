@@ -24,12 +24,6 @@ export default class ProductsSearch extends ProductsBase {
   protected componentId = shortid.generate();
 
   /**
-   * A string intended to be used as the name of the return event in
-   * cache requests for this component.
-   */
-  protected cacheResponseEventName = this.getCacheResponseEventName('products-search', this.componentId);
-
-  /**
    * Binds relevant methods.
    */
   constructor() {
@@ -57,6 +51,14 @@ export default class ProductsSearch extends ProductsBase {
 
     window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
     window.removeEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
+  }
+
+  /**
+   * A string intended to be used as the name of the return event in
+   * cache requests for this component.
+   */
+  get cacheResponseEventName() {
+    return this.getCacheResponseEventName('products-search', this.componentId);
   }
 
   /**

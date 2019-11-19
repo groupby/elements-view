@@ -62,7 +62,6 @@ export default class ProductsSayt extends ProductsBase {
     return this.getCacheResponseEventName('products-sayt', this.componentId);
   }
 
-
   /**
    * Receives an event for populating initial data.
    * Intended to be used on mount of this component.
