@@ -88,21 +88,17 @@ describe('Products Base Component', () => {
 });
 
 describe('Products Sayt Component', () => {
+  let cacheResponseEventName;
   let component;
 
   beforeEach(() => {
     component = new ProductsSayt();
+    stub(component, 'cacheResponseEventName').get(() => cacheResponseEventName);
   });
 
   itShouldExtendClass(() => component, ProductsBase);
 
   describe('connectedCallback', () => {
-    let cacheResponseEventName;
-
-    beforeEach(() => {
-      cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
-    });
-
     itShouldCallParentMethod(() => component, 'connectedCallback');
 
     it('should add event listeners for sayt products events', () => {
@@ -134,7 +130,6 @@ describe('Products Sayt Component', () => {
 
     it('should remove event listeners for sayt products', () => {
       const removeEventListener = sinon.stub(window, 'removeEventListener');
-      const cacheResponseEventName = component.cacheResponseEventName = 'sayt-cache-response';
 
       component.disconnectedCallback();
 
