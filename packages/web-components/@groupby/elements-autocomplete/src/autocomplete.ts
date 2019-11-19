@@ -198,10 +198,10 @@ export default class Autocomplete extends Base {
   dispatchSelectedTerm(): void {
     if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
 
-    const allItems = this.results
-      .map((group) => group.items)
-      .reduce((accItems, items) => [...accItems, ...items], []);
-    const term = allItems[this.selectedIndex].label;
+    // const allItems = this.results
+    //   .map((group) => group.items)
+    //   .reduce((accItems, items) => [...accItems, ...items], []);
+    const term = this.getSelectedTerm()
 
     const payload: AutocompleteActiveTermPayload = {
       query: term,
