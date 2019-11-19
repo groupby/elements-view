@@ -5,8 +5,8 @@ import {
   CacheResponsePayload,
   SearchResponsePayload,
 } from '@groupby/elements-events';
-import { ProductsBase } from '.';
 import * as shortid from 'shortid';
+import { ProductsBase } from '.';
 
 /**
  * The `gbe-products` web component wraps and renders a number of
