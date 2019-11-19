@@ -176,7 +176,10 @@ export default class Sayt extends Base {
   updated(changedProps: PropertyValues): void {
     if (changedProps.has('visible')) {
       this.hidden = !this.visible;
-
+      if (this.hidden) {
+        this.dispatchElementsEvent('sayt-hidden', { group: this.group });
+      }
+      console.log('in visible changedProps in sayt', this.hidden);
       if (this.searchbox) {
         const searchbox = document.getElementById(this.searchbox);
         if (searchbox) {
