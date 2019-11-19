@@ -57,7 +57,7 @@ export default class ProductsSearch extends ProductsBase {
    * A string intended to be used as the name of the return event in
    * cache requests for this component.
    */
-  get cacheResponseEventName() {
+  get cacheResponseEventName(): string {
     return this.getCacheResponseEventName('products-search', this.componentId);
   }
 
