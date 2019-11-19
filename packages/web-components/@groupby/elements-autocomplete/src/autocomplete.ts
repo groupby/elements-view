@@ -85,6 +85,7 @@ export default class Autocomplete extends Base {
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
     window.addEventListener('keydown', this.handleKeydown, true);
+    window.addEventListener('sayt-hidden', this.resetSelectedTerm);
     this.requestInitialData();
 
     const role = this.getAttribute('role');
@@ -132,6 +133,8 @@ export default class Autocomplete extends Base {
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.removeEventListener(this.initialDataResponseEventName, this.receiveInitialData);
     window.removeEventListener('keydown', this.handleKeydown);
+    window.addEventListener('sayt-hidden', this.resetSelectedTerm);
+    console.log('in disconnected callback - this.group', this.group);
   }
 
   /**
@@ -153,6 +156,15 @@ export default class Autocomplete extends Base {
    */
   get itemCount(): number {
     return this.results.reduce((sum, resultGroup) => sum + resultGroup.items.length, 0);
+  }
+
+  resetSelectedTerm(event: CustomEvent): void {
+    console.log('in resetSelectedTerm');
+    console.log('this.group in resetSelectedTerm', this.group)
+    console.log('this.selectedIndex in resetSelectedTerm', this.selectedIndex)
+    console.log('this.selectedTerm in resetSelectedTerm', this.selectedTerm)
+    this.selectedIndex = -1;
+    console.log('this.group, this.selectedindex, this.selectedTerm', this.group, this.selectedIndex, this.selectedTerm, event);
   }
 
   /**
@@ -270,14 +282,21 @@ export default class Autocomplete extends Base {
 
   handleKeydown(event: KeyboardEvent): void {
     if (event.key === 'Enter' && typeof this.selectedTerm === 'string') {
-      console.log('componentId in handlekeydown', this.componentId)
-      console.log(this.selectedId, 'xxx - selectedId in handleKeydown')
-      console.log(this.selectedIndex, 'zzz - selectedIndex in handleKeydown')
-      const payload: UpdateSearchTermPayload = {
+      console.log('selectedTerm', this.selectedTerm);
+      // console.log('componentId in handlekeydown', this.componentId)
+      // console.log(this.selectedId, 'xxx - selectedId in handleKeydown')
+      // console.log(this.selectedIndex, 'zzz - selectedIndex in handleKeydown')
+      const payload = {
         term: this.selectedTerm,
         group: this.group,
         search: false,
+        keyB: true
       };
+      // const payload: UpdateSearchTermPayload = {
+      //   term: this.selectedTerm,
+      //   group: this.group,
+      //   search: false,
+      // };
       this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
     }
   }
