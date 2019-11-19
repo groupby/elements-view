@@ -54,11 +54,7 @@ export default class ProductsBase extends Base {
    *
    */
   requestInitialData(name: string, group: string, returnEvent: string): void {
-    const payload: CacheRequestPayload = {
-      name,
-      group,
-      returnEvent,
-    };
+    const payload: CacheRequestPayload = { name, group, returnEvent };
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
   }
 

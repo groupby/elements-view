@@ -108,7 +108,7 @@ describe('Products Sayt Component', () => {
 
       expect(addEventListener).to.be.calledWith(
         SAYT_PRODUCTS_RESPONSE,
-        component.setProductsFromEvent
+        component.setProductsFromProductsEvent
       );
       expect(addEventListener).to.be.calledWith(
         cacheResponseEventName,
@@ -135,7 +135,7 @@ describe('Products Sayt Component', () => {
 
       expect(removeEventListener).to.be.calledWith(
         SAYT_PRODUCTS_RESPONSE,
-        component.setProductsFromEvent
+        component.setProductsFromProductsEvent
       );
 
       expect(removeEventListener).to.be.calledWith(
@@ -155,7 +155,7 @@ describe('Products Sayt Component', () => {
     });
   });
 
-  describe('setProductsFromEvent', () => {
+  describe('setProductsFromProductsEvent', () => {
     let products;
     let group;
 
@@ -166,7 +166,7 @@ describe('Products Sayt Component', () => {
 
     it('should set products to an empty array if the event payload does not contain products', () => {
       const event = { detail: {} };
-      component.setProductsFromEvent(event);
+      component.setProductsFromProductsEvent(event);
 
       expect(component.products).to.deep.equal([]);
     });
@@ -175,7 +175,7 @@ describe('Products Sayt Component', () => {
       const event = { detail: { products, group } };
       component.group = group;
 
-      component.setProductsFromEvent(event);
+      component.setProductsFromProductsEvent(event);
 
       expect(component.products).to.equal(products);
     });
@@ -183,7 +183,7 @@ describe('Products Sayt Component', () => {
     it('should not set products when the group in the component and event do not match', () => {
       const event = { detail: { products, group } };
 
-      component.setProductsFromEvent(event);
+      component.setProductsFromProductsEvent(event);
 
       expect(component.products).to.deep.equal([]);
     });
@@ -191,7 +191,7 @@ describe('Products Sayt Component', () => {
     it('should default the group in the event to an empty string if it is falsey', () => {
       const event = { detail: { products } };
 
-      component.setProductsFromEvent(event);
+      component.setProductsFromProductsEvent(event);
 
       expect(component.products).to.equal(products);
     });
@@ -200,7 +200,7 @@ describe('Products Sayt Component', () => {
       component.group = undefined;
       const event = { detail: { products } };
 
-      component.setProductsFromEvent(event);
+      component.setProductsFromProductsEvent(event);
 
       expect(component.products).to.equal(products);
     });
@@ -228,7 +228,7 @@ describe('Products Search Component', () => {
 
       expect(addEventListener).to.be.calledWith(
         SEARCH_RESPONSE,
-        component.setProductsFromEvent
+        component.setProductsFromProductsEvent
       );
       expect(addEventListener).to.be.calledWith(
         cacheResponseEventName,
@@ -255,7 +255,7 @@ describe('Products Search Component', () => {
 
       expect(removeEventListener).to.be.calledWith(
         SEARCH_RESPONSE,
-        component.setProductsFromEvent
+        component.setProductsFromProductsEvent
       );
 
       expect(removeEventListener).to.be.calledWith(
@@ -265,7 +265,7 @@ describe('Products Search Component', () => {
     });
   });
 
-  describe('setProductsFromEvent', () => {
+  describe('setProductsFromProductsEvent', () => {
     let products;
     let group;
 
@@ -276,7 +276,7 @@ describe('Products Search Component', () => {
 
     it('should set products to an empty array if the event payload does not contain records', () => {
       const event = { detail: { results: {} } };
-      component.setProductsFromEvent(event);
+      component.setProductsFromProductsEvent(event);
 
       expect(component.products).to.deep.equal([]);
     });
@@ -285,7 +285,7 @@ describe('Products Search Component', () => {
       const event = { detail: { results: { products }, group } };
       component.group = group;
 
-      component.setProductsFromEvent(event);
+      component.setProductsFromProductsEvent(event);
 
       expect(component.products).to.equal(products);
     });
@@ -293,7 +293,7 @@ describe('Products Search Component', () => {
     it('should not set products when the group in the component and event do not match', () => {
       const event = { detail: { results: { products }, group } };
 
-      component.setProductsFromEvent(event);
+      component.setProductsFromProductsEvent(event);
 
       expect(component.products).to.deep.equal([]);
     });
@@ -301,7 +301,7 @@ describe('Products Search Component', () => {
     it('should default the group in the event to an empty string if it is falsey', () => {
       const event = { detail: { results: { products } } };
 
-      component.setProductsFromEvent(event);
+      component.setProductsFromProductsEvent(event);
 
       expect(component.products).to.equal(products);
     });
@@ -310,7 +310,7 @@ describe('Products Search Component', () => {
       component.group = undefined;
       const event = { detail: { results: { products } } };
 
-      component.setProductsFromEvent(event);
+      component.setProductsFromProductsEvent(event);
 
       expect(component.products).to.equal(products);
     });
