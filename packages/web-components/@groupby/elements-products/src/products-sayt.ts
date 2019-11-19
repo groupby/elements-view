@@ -2,11 +2,11 @@ import { css, CSSResult, customElement } from 'lit-element';
 import {
   SAYT_PRODUCTS_RESPONSE,
   Product,
-  SaytProductsResponsePayload,
   CacheResponsePayload,
+  SaytProductsResponsePayload,
 } from '@groupby/elements-events';
-import * as shortid from 'shortid';
 import { ProductsBase } from '.';
+import * as shortid from 'shortid';
 
 /**
  * The `gbe-products-sayt` web component wraps and renders a number of

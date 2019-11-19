@@ -2,11 +2,11 @@ import { css, CSSResult, customElement } from 'lit-element';
 import {
   SEARCH_RESPONSE,
   Product,
-  SearchResponsePayload,
   CacheResponsePayload,
+  SearchResponsePayload,
 } from '@groupby/elements-events';
-import * as shortid from 'shortid';
 import { ProductsBase } from '.';
+import * as shortid from 'shortid';
 
 /**
  * The `gbe-products` web component wraps and renders a number of

@@ -1,8 +1,8 @@
 import {
-  SAYT_PRODUCTS_RESPONSE,
-  SEARCH_RESPONSE,
   CACHE_RESPONSE_PREFIX,
   CACHE_REQUEST,
+  SAYT_PRODUCTS_RESPONSE,
+  SEARCH_RESPONSE,
 } from '@groupby/elements-events';
 import {
   expect,
