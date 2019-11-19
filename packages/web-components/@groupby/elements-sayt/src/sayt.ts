@@ -144,14 +144,8 @@ export default class Sayt extends Base {
     window.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
-    window.addEventListener(UPDATE_SEARCH_TERM, this.updateTerm, true);
-    // window.addEventListener(UPDATE_SEARCH_TERM, (e) => {
-    //   console.log('xytyt - capture - received update search term event', e)
-    //   e.stopPropagation();
-    // }, true)
-    // window.addEventListener(UPDATE_SEARCH_TERM, () => {
-    //   console.log('xytyt - bubbles - received update search term event')
-    // })
+    // window.addEventListener(UPDATE_SEARCH_TERM, this.updateTerm, true);
+
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.addEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'add');
@@ -210,17 +204,6 @@ export default class Sayt extends Base {
     if (changedProps.has('debounce')) {
       this.setDebouncedMethods();
     }
-  }
-
-  updateTerm(event: KeyboardEvent): void {
-    console.log('xytyt - updateTerm CAPTURE - e', event);
-    console.log('xytyt - updateTerm CAPTURE this.searchbox', this.searchbox);
-    // event.stopPropagation();
-    if (this.searchbox) {
-      const searchbox = document.getElementById(this.searchbox);
-      console.log('xytyt - updateTerm CAPTURE - searchbox', searchbox);
-    }
-    // event.stopPropagation();
   }
 
   /**
@@ -568,13 +551,13 @@ export default class Sayt extends Base {
     // autocomplete.setAttribute('onfocus', )
     if (!autocomplete) return;
 
-    const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
+    // const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
     // autocomplete.setAttribute('tabindex', 0);
-    if (document.activeElement !== autocompleteUl) {
-      autocompleteUl.focus({preventScroll: true});
+    // if (document.activeElement !== autocompleteUl) {
+      // autocompleteUl.focus({preventScroll: true});
       // autocomplete.focus();
       autocomplete.selectPrevious();
-    }
+    // }
 
     if (!this.searchbox) return;
 
@@ -593,12 +576,13 @@ export default class Sayt extends Base {
     const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
     if (!autocomplete) return;
 
-    const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
-    if (document.activeElement !== autocompleteUl) {
-      autocompleteUl.focus({preventScroll: true});
+    // const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
+    // if (document.activeElement !== autocompleteUl) {
+    //   autocompleteUl.focus({preventScroll: true});
       // autocomplete.focus();
-      autocomplete.selectPrevious();
-    }
+      
+    // }
+    autocomplete.selectPrevious();
 
     // // autocomplete.setAttribute('tabindex', 0);
     // autocompleteUl.focus({preventScroll: true});

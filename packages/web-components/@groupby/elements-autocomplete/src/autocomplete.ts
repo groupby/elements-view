@@ -84,9 +84,7 @@ export default class Autocomplete extends Base {
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
-    // this.addEventListener('keydown', this.handleKeydownThis);
-    // this.addEventListener('click', this.testClickListener);
-    window.addEventListener('keydown', this.handleKeydown);
+    window.addEventListener('keydown', this.handleKeydown, true);
     this.requestInitialData();
 
     const role = this.getAttribute('role');
@@ -135,20 +133,10 @@ export default class Autocomplete extends Base {
    * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues): void {
-    // console.log('aaa in updated - selectedIndex props', this.selectedIndex);
     if (changedProps.has('selectedIndex')) {
       this.dispatchSelectedTerm();
     }
   }
-
-  // testClickListener(event: MouseEvent) {
-  //   console.log('aaa in testClickListener - event', event);
-  // }
-
-  // handleKeydownThis(event: KeyboardEvent) {
-  //   console.log('aaa in handleKeydownThis');
-  //   console.log('aaa in handleKeydownThis - event', event);
-  // }
 
   /**
    * The total number of items in all `result` groups.
@@ -280,7 +268,7 @@ export default class Autocomplete extends Base {
   handleKeydown(event: KeyboardEvent): void {
     if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
     if (event.key === 'Enter') {
-      console.log('aaa - in handle keydown - enter pressed');
+      console.log('xxxaaa - in handle keydown - enter pressed');
       console.log('aaa - in handleKeydown - enter pressed', event);
       const allItems = this.results
         .map((group) => group.items)
@@ -292,7 +280,6 @@ export default class Autocomplete extends Base {
         search: false,
       };
       console.log('aaax - in handlekeydown  - term', term);
-      // console.log('aaax - in handlekeydown  - selectedIndex', this.selectedIndex);
       this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
     }
   }
@@ -319,7 +306,7 @@ export default class Autocomplete extends Base {
            @mouseenter="${this.getSelectedIndexSetter(itemIndex)}"
         >${item.label}</li>`;
     });
-    const searchTermList = html`<ul tabindex="0" role="group" aria-labelledby="${ifDefined(list.title ? titleId : undefined)}">${searchTermItems}</ul>`;
+    const searchTermList = html`<ul role="group" aria-labelledby="${ifDefined(list.title ? titleId : undefined)}">${searchTermItems}</ul>`;
 
     return html`
       ${list.title ? header : ''}
