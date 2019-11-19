@@ -31,7 +31,6 @@
     "@groupby/elements-events": "groupby/elements-events#1696267a35450b9644d3bfa5cfc824bcb2bc8978",
     "@types/debounce": "^1.2.0",
     "debounce": "^1.2.0",
-    "lit-element": "^2.2.0",
-    "shortid": "^2.2.15"
+    "lit-element": "^2.2.0"
   }
 }

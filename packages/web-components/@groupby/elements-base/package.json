@@ -23,6 +23,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "lit-element": "^2.2.0"
+    "lit-element": "^2.2.0",
+    "shortid": "^2.2.15"
   }
 }

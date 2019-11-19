@@ -5,7 +5,6 @@ import {
   SaytProductsResponsePayload,
   CacheResponsePayload,
 } from '@groupby/elements-events';
-import * as shortid from 'shortid';
 import { ProductsBase } from '.';
 
 /**
@@ -17,12 +16,6 @@ import { ProductsBase } from '.';
  */
 @customElement('gbe-products-sayt')
 export default class ProductsSayt extends ProductsBase {
-  /**
-   * A random string suitable for use in stable IDs related to this
-   * component.
-   */
-  protected componentId = shortid.generate();
-
   /**
    * A string intended to be used as the name of the return event in
    * cache requests for this component.
