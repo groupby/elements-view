@@ -14,7 +14,6 @@ import {
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
-import * as shortid from 'shortid';
 
 /**
  * The `gbe-products-base` web component wraps and renders a number of
@@ -34,12 +33,6 @@ export default class ProductsBase extends Base {
    * payloads and will only react to events that contain this group.
    */
   @property({ type: String, reflect: true }) group: string = '';
-
-  /**
-   * A random string suitable for use in stable IDs related to this
-   * component.
-   */
-  protected componentId = shortid.generate();
 
   /**
    * Sets the ARIA role to `list` if one is not already specified.
