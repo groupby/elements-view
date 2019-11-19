@@ -12,6 +12,7 @@ import {
   CacheRequestPayload,
   Product,
 } from '@groupby/elements-events';
+import * as shortid from 'shortid';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
 
@@ -33,6 +34,12 @@ export default class ProductsBase extends Base {
    * payloads and will only react to events that contain this group.
    */
   @property({ type: String, reflect: true }) group: string = '';
+
+  /**
+   * A random string suitable for use in stable IDs related to a
+   * component.
+   */
+  protected componentId = shortid.generate();
 
   /**
    * Sets the ARIA role to `list` if one is not already specified.
@@ -60,12 +67,9 @@ export default class ProductsBase extends Base {
   /**
    * Generates a string intended to be used as the name of the return event in
    * cache requests for the component.
-   *
-   * @param componentName The name of the component for which to generate the return event name.
-   * @param componentId A random string that acts as a unique identifier for the component.
    */
-  getCacheResponseEventName(componentName: string, componentId: string): string {
-    return `${CACHE_RESPONSE_PREFIX}${componentName}-${componentId}`;
+  get cacheResponseEventName(): string {
+    return `${CACHE_RESPONSE_PREFIX}${this.tagName}-${this.componentId}`;
   }
 
   /**

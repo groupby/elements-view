@@ -6,7 +6,6 @@ import {
 } from '@groupby/elements-events';
 import {
   expect,
-  sinon,
   stub,
   itShouldExtendBase,
   itShouldCallParentMethod,
@@ -17,10 +16,13 @@ import ProductsSayt from '../../src/products-sayt';
 import ProductsSearch from '../../src/products-search';
 
 describe('Products Base Component', () => {
+  const cacheResponseEventName = 'cache-response-event-name';
+  let cacheResponseEventNameStub;
   let component;
 
   beforeEach(() => {
     component = new ProductsBase();
+    cacheResponseEventNameStub = stub(component, 'cacheResponseEventName').get(() => cacheResponseEventName);
   });
 
   itShouldExtendBase(() => component);
@@ -74,13 +76,15 @@ describe('Products Base Component', () => {
     });
   });
 
-  describe('getCacheResponseEventName', () => {
+  describe('cacheResponseEventName', () => {
     it('should return an event name for receiving cached data', () => {
       const componentId = component.componentId = 'some-id';
-      const componentName = 'products-sayt';
-      const expectedCacheResponseEventName = `${CACHE_RESPONSE_PREFIX}${componentName}-${componentId}`;
+      const tagName = 'some-products-component';
+      const expectedCacheResponseEventName = `${CACHE_RESPONSE_PREFIX}${tagName}-${componentId}`;
+      stub(component, 'tagName').get(() => tagName);
+      cacheResponseEventNameStub.restore();
 
-      const eventName = component.getCacheResponseEventName(componentName, componentId);
+      const eventName = component.cacheResponseEventName;
 
       expect(eventName).to.equal(expectedCacheResponseEventName);
     });
@@ -88,22 +92,24 @@ describe('Products Base Component', () => {
 });
 
 describe('Products Sayt Component', () => {
-  let cacheResponseEventName;
   let component;
 
   beforeEach(() => {
     component = new ProductsSayt();
-    stub(component, 'cacheResponseEventName').get(() => cacheResponseEventName);
   });
 
   itShouldExtendClass(() => component, ProductsBase);
 
   describe('connectedCallback', () => {
+    let addEventListener;
+
+    beforeEach(() => {
+      addEventListener = stub(window, 'addEventListener');
+    });
+
     itShouldCallParentMethod(() => component, 'connectedCallback');
 
     it('should add event listeners for sayt products events', () => {
-      const addEventListener = stub(window, 'addEventListener');
-
       component.connectedCallback();
 
       expect(addEventListener).to.be.calledWith(
@@ -111,7 +117,7 @@ describe('Products Sayt Component', () => {
         component.setProductsFromProductsEvent
       );
       expect(addEventListener).to.be.calledWith(
-        cacheResponseEventName,
+        component.cacheResponseEventName,
         component.setProductsFromCacheEvent
       );
     });
@@ -121,16 +127,20 @@ describe('Products Sayt Component', () => {
 
       component.connectedCallback();
 
-      expect(requestInitialData).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, component.group, cacheResponseEventName);
+      expect(requestInitialData).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, component.group, component.cacheResponseEventName);
     });
   });
 
   describe('disconnectedCallback', () => {
+    let removeEventListener;
+
+    beforeEach(() => {
+      removeEventListener = stub(window, 'removeEventListener');
+    });
+
     itShouldCallParentMethod(() => component, 'disconnectedCallback');
 
     it('should remove event listeners for sayt products', () => {
-      const removeEventListener = sinon.stub(window, 'removeEventListener');
-
       component.disconnectedCallback();
 
       expect(removeEventListener).to.be.calledWith(
@@ -139,7 +149,7 @@ describe('Products Sayt Component', () => {
       );
 
       expect(removeEventListener).to.be.calledWith(
-        cacheResponseEventName,
+        component.cacheResponseEventName,
         component.setProductsFromCacheEvent
       );
     });
@@ -208,22 +218,24 @@ describe('Products Sayt Component', () => {
 });
 
 describe('Products Search Component', () => {
-  let cacheResponseEventName;
   let component;
 
   beforeEach(() => {
     component = new ProductsSearch();
-    stub(component, 'cacheResponseEventName').get(() => cacheResponseEventName);
   });
 
   itShouldExtendClass(() => component, ProductsBase);
 
   describe('connectedCallback', () => {
+    let addEventListener;
+
+    beforeEach(() => {
+      addEventListener = stub(window, 'addEventListener');
+    });
+
     itShouldCallParentMethod(() => component, 'connectedCallback');
 
     it('should add event listeners for sayt products events', () => {
-      const addEventListener = stub(window, 'addEventListener');
-
       component.connectedCallback();
 
       expect(addEventListener).to.be.calledWith(
@@ -231,7 +243,7 @@ describe('Products Search Component', () => {
         component.setProductsFromProductsEvent
       );
       expect(addEventListener).to.be.calledWith(
-        cacheResponseEventName,
+        component.cacheResponseEventName,
         component.setProductsFromCacheEvent
       );
     });
@@ -241,16 +253,20 @@ describe('Products Search Component', () => {
 
       component.connectedCallback();
 
-      expect(requestInitialData).to.be.calledWith(SEARCH_RESPONSE, component.group, cacheResponseEventName);
+      expect(requestInitialData).to.be.calledWith(SEARCH_RESPONSE, component.group, component.cacheResponseEventName);
     });
   });
 
   describe('disconnectedCallback', () => {
+    let removeEventListener;
+
+    beforeEach(() => {
+      removeEventListener = stub(window, 'removeEventListener');
+    });
+
     itShouldCallParentMethod(() => component, 'disconnectedCallback');
 
     it('should remove event listeners for sayt products', () => {
-      const removeEventListener = sinon.stub(window, 'removeEventListener');
-
       component.disconnectedCallback();
 
       expect(removeEventListener).to.be.calledWith(
@@ -259,7 +275,7 @@ describe('Products Search Component', () => {
       );
 
       expect(removeEventListener).to.be.calledWith(
-        cacheResponseEventName,
+        component.cacheResponseEventName,
         component.setProductsFromCacheEvent
       );
     });
