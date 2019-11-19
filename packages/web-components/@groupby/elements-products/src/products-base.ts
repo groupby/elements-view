@@ -7,10 +7,10 @@ import {
   TemplateResult,
 } from 'lit-element';
 import {
-  Product,
   CACHE_RESPONSE_PREFIX,
   CACHE_REQUEST,
   CacheRequestPayload,
+  Product,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
