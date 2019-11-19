@@ -70,7 +70,7 @@ describe('Products Base Component', () => {
 
       component.requestInitialData(name, group, returnEvent);
 
-      expect(dispatchElementsEvent).to.have.been.calledWith(CACHE_REQUEST, { name, group, returnEvent });
+      expect(dispatchElementsEvent).to.be.calledWith(CACHE_REQUEST, { name, group, returnEvent });
     });
   });
 
