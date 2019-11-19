@@ -122,6 +122,7 @@ export default class Autocomplete extends Base {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.removeEventListener(this.initialDataResponseEventName, this.receiveInitialData);
+    window.removeEventListener('keydown', this.handleKeydown);
   }
 
   /**
@@ -195,7 +196,6 @@ export default class Autocomplete extends Base {
    * Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the selected term.
    */
   dispatchSelectedTerm(): void {
-    // console.log('aaa - in dispatchSelectedTerm in autocomplete');
     if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
 
     const allItems = this.results
@@ -210,6 +210,14 @@ export default class Autocomplete extends Base {
     this.dispatchElementsEvent(AUTOCOMPLETE_ACTIVE_TERM, payload);
   }
 
+  getSelectedTerm(): string {
+    if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
+
+    const allItems = this.results
+      .map((group) => group.items)
+      .reduce((accItems, items) => [...accItems, ...items], []);
+    return allItems[this.selectedIndex].label;
+  }
   /**
    * Increments the `selectedIndex` property by 1.
    * If incrementing `selectedIndex` will cause it to be out of bounds,
@@ -253,7 +261,6 @@ export default class Autocomplete extends Base {
    * @param event A mouse click event on an autocomplete term.
    */
   sendUpdateSearchEvent(event: MouseEvent): void {
-    console.log('aaa- in sendUpdateSearchEvent - e', event);
     const target = event.target as HTMLElement;
     const term = target.innerText;
     const payload: UpdateSearchTermPayload = {
@@ -266,21 +273,17 @@ export default class Autocomplete extends Base {
   }
 
   handleKeydown(event: KeyboardEvent): void {
-    if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
     if (event.key === 'Enter') {
-      console.log('xxxaaa - in handle keydown - enter pressed');
-      console.log('aaa - in handleKeydown - enter pressed', event);
-      const allItems = this.results
-        .map((group) => group.items)
-        .reduce((accItems, items) => [...accItems, ...items], []);
-      const term = allItems[this.selectedIndex].label;
-      const payload: UpdateSearchTermPayload = {
-        term,
-        group: this.group,
-        search: false,
-      };
-      console.log('aaax - in handlekeydown  - term', term);
-      this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
+      const term = this.getSelectedTerm();
+
+      if (typeof term === 'string') {
+        const payload: UpdateSearchTermPayload = {
+          term,
+          group: this.group,
+          search: false,
+        };
+        this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
+      }
     }
   }
 
