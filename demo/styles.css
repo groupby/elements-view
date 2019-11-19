@@ -1,0 +1,193 @@
+:root {
+  /* Colors */
+  --accent-color-primary: #C5C9E0;
+  --accent-color-secondary: #8cce0e;
+  --font-color-primary: #848AB8;
+  --background-color-primary: #f3f3f7;
+  --background-gradient-primary: linear-gradient(180deg,#fff,var(--background-color-primary));
+  /* Searchbox */
+
+  /* Proportions */
+  --searchbox-width: 100%;
+  --searchbox-max-width: 685px;
+  --searchbox-border: 1px solid var(--accent-color-primary, #D8D8D8);
+
+  /* Styling */
+
+  /* Position */
+}
+
+
+  gbe-search-box {
+    width: var(--searchbox-width, 200px);
+    max-width: var(--searchbox-max-width);
+    border: var(--searchbox-border);
+    /* padding-left: 10px; */
+    /* margin: 5px; */
+    height: 40px;
+    color: var(--font-color-primary);
+    border-radius: 4px;
+    background: var(--background-color-primary);
+  }
+
+  gbe-search-box button {
+    /* padding: 10px 10px; */
+    height: 42px;
+    width: 50px;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    margin-right: -1px;
+    border: var(--searchbox-border);
+    color: var(--font-color-primary);
+    background: var(--background-gradient-primary);
+  }
+
+  gbe-search-box button.gbe-clear{
+    padding: 10px;
+    /* margin-top: -1px;
+    margin-bottom: -1px; */
+  }
+  gbe-search-box button.gbe-clear:hover{
+    padding: 10px;
+    /* margin-top: -1px;
+    margin-bottom: -1px; */
+    background: var(--accent-color-secondary);
+    box-shadow: 0 5px 8px rgba(0,0,0,0.16);
+    border: var(--accent-color-secondary);
+    color: #fff;
+  }
+
+  gbe-search-box button.gbe-submit{
+    padding: 5px;
+    /* margin-top: -1px;
+    margin-bottom: -1px; */
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  gbe-search-box button.gbe-submit:hover{
+    padding: 5px;
+    /* margin-top: -1px;
+    margin-bottom: -1px; */
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background: var(--accent-color-secondary);
+    box-shadow: 0 5px 8px rgba(0,0,0,0.16);
+    border: var(--accent-color-secondary);
+    color: #fff;
+  }
+
+
+  gbe-search-box input::placeholder {
+    color: var(--font-color-primary);
+    /* padding-left: 10px; */
+  }
+
+  gbe-search-box input {
+    -webkit-appearance: none;
+    border: none;
+    text-indent: 10px;
+    color: var(--font-color-primary);
+    border-radius: 4px;
+    background: transparent;
+  }
+
+
+
+
+
+  /* SAYT */
+
+  gbe-sayt {
+    width: var(--searchbox-width, 200px);
+    max-width: var(--searchbox-max-width);
+    font-family: proxima-nova, sans-serif;
+    box-sizing: border-box;
+    color: #384D69;
+    line-height: 1.5;
+  }
+
+
+  /* autpcomplete */
+
+gbe-autocomplete {
+  flex: 0.65;
+  text-indent: 10px;
+  margin-top: -3px;
+  /* padding: .25rem 1rem;
+  white-space: nowrap; */
+  box-shadow: 0 5px 8px rgba(0,0,0,0.16);
+}
+
+gbe-autocomplete ul {
+  margin: -1px 0 0 0;
+  padding: 0;
+}
+
+gbe-autocomplete ul li {
+  border: none;
+  margin-top: .25rem;
+  padding: .5rem .5rem;
+  border-bottom: 1px solid #f7f9fb;
+  text-shadow: none;
+}
+
+  /* sayt products */
+
+  gbe-products-sayt {
+    flex: 2;
+    font-family: proxima-nova, sans-serif;
+    box-sizing: border-box;
+    color: #384D69;
+    line-height: 1.5;
+    margin-left: -3px;
+    margin-left: -3px;
+    /* height: 400px; */
+    /* overflow-x: scroll; */
+    /* flex-wrap: nowrap; */
+  }
+  gbe-sayt[searchbox="main-search"] gbe-products-sayt {
+    height: 400px;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+  }
+
+
+  gbe-products-sayt gbe-product {
+    width: 150px;
+    padding: 5px;
+    margin: 6px;
+  }
+
+  gbe-products-sayt gbe-product:hover {
+    box-shadow: 0 5px 8px rgba(0,0,0,0.16);
+  }
+
+  gbe-products-sayt gbe-product img{
+      width: 150px;
+  }
+
+  gbe-products-sayt h3 {
+    font-family: proxima-nova, sans-serif;
+    box-sizing: border-box;
+    color: #384D69;
+    line-height: 1.5;
+    font-size: 1em;
+    /* text-decoration: none; */
+  }
+
+  gbe-products-sayt a {
+      text-decoration: none;
+  }
+
+  [aria-selected="true"] {
+    background-color: #8cce0e!important;
+  }
+
+  gbe-search-box#secondary-search {
+    margin-top: 200px;
+  }
+
+  gb-products gbe-product{
+    height: 300px;
+    width: 150px;
+  }
