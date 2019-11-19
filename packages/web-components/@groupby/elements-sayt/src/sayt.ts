@@ -515,8 +515,6 @@ export default class Sayt extends Base {
    * @param event The keyboard event to act on.
    */
   changeSelection(event: KeyboardEvent): void {
-    // triggered on every keypress within sayt
-    // console.log('ytyt - THIS - in changeSelection in sayt - event', event);
     switch (event.key) {
       case 'ArrowUp':
       case 'Up': // IE
@@ -537,20 +535,11 @@ export default class Sayt extends Base {
   selectPreviousAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
 
-    console.log('in selectPreviousAutocompleteTerm')
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
-    // autocomplete.setAttribute('onfocus', )
     if (!autocomplete) return;
 
-    // const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
-    // autocomplete.setAttribute('tabindex', 0);
-    // if (document.activeElement !== autocompleteUl) {
-      // autocompleteUl.focus({preventScroll: true});
-      // autocomplete.focus();
-      autocomplete.selectPrevious();
-    // }
-
+    autocomplete.selectPrevious();
     if (!this.searchbox) return;
 
     const searchbox = document.getElementById(this.searchbox);
@@ -563,22 +552,12 @@ export default class Sayt extends Base {
    */
   selectNextAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
-    console.log('in selectNextAutocompleteTerm')
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
     if (!autocomplete) return;
 
-    // const autocompleteUl = this.querySelector<any>('[data-gbe-ref="autocomplete"] > ul')
-    // if (document.activeElement !== autocompleteUl) {
-    //   autocompleteUl.focus({preventScroll: true});
-      // autocomplete.focus();
-      
-    // }
-    autocomplete.selectPrevious();
-
-    // // autocomplete.setAttribute('tabindex', 0);
-    // autocompleteUl.focus({preventScroll: true});
-    // autocomplete.selectNext();
+    autocomplete.selectNext();
     if (!this.searchbox) return;
 
     const searchbox = document.getElementById(this.searchbox);
