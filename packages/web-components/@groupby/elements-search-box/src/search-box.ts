@@ -122,13 +122,8 @@ export default class SearchBox extends Base {
   // updateSearch(e: CustomEvent<UpdateSearchTermPayload>): void {
     const eventGroup = e.detail.group || '';
     const componentGroup = this.group || '';
-    console.log('eventGroup in updateSearch', eventGroup);
-    console.log('componentGroup in updateSearch', componentGroup);
-    if (eventGroup !== componentGroup) return;
 
-    console.log(e.detail.keyB, 'e.detail.keyB')
-
-    if (e.detail.keyB && this.value.length === 0) return;
+    if (eventGroup !== componentGroup || this.value === e.detail.term || ((e.detail.window && this.value.length === 0) && this.value.length === 0)) return;
 
     this.updateSearchTermValue(e.detail.term);
     if (e.detail.search) {
