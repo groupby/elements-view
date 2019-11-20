@@ -72,7 +72,7 @@ describe('dataInitializer decorator', () => {
       get,
       set,
       enumerable,
-      configurable
+      configurable,
     } = newDescriptor;
 
     expect(set).to.not.equal(originalDescriptor.set);
