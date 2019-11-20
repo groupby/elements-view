@@ -21,8 +21,8 @@ describe('dataInitializer decorator', () => {
 
   it('should extend a property setter', () => {
     const originalSet = spy(testObj, 'results', ['set']);
-
     dataInitializer('init')(testObj, testPropertyName);
+
     testObj.results = ['c', 'd'];
 
     expect(originalSet.set).to.be.called;
@@ -31,6 +31,7 @@ describe('dataInitializer decorator', () => {
 
   it('should not set the initialize property to true on the first set call', () => {
     dataInitializer('init')(testObj, testPropertyName);
+
     testObj.results = ['c', 'd'];
 
     expect(testObj.init).to.be.false;
@@ -38,6 +39,7 @@ describe('dataInitializer decorator', () => {
 
   it('should not set the initialize property to true on the first set call', () => {
     dataInitializer('init')(testObj, testPropertyName);
+
     testObj.results = ['c', 'd'];
     testObj.results = ['e', 'f'];
 
@@ -51,9 +53,9 @@ describe('dataInitializer decorator', () => {
       testPropertyName,
       Object.getOwnPropertyDescriptor(testObj, 'results'),
     );
-
     dataInitializer('init')(testObj, testPropertyName);
     dataInitializer('init')(testObj2, testPropertyName);
+
     testObj.results = ['c', 'd'];
     testObj.results = ['e', 'f'];
 
