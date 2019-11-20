@@ -126,7 +126,7 @@ export default class Sayt extends Base {
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
     this.setDebouncedMethods = this.setDebouncedMethods.bind(this);
-    this.handleKeyDownWindow = this.handleKeyDownWindow.bind(this);
+    this.requestUpdateSearchTerm = this.requestUpdateSearchTerm.bind(this);
 
     this.setDebouncedMethods();
   }
@@ -144,8 +144,8 @@ export default class Sayt extends Base {
     window.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
+    window.addEventListener('keydown', this.requestUpdateSearchTerm, true);
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
-    window.addEventListener('keydown', this.handleKeyDownWindow, true);
     this.addEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'add');
     this.setInitialSearchboxAttributes(this.searchbox);
@@ -165,7 +165,7 @@ export default class Sayt extends Base {
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
     this.removeEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
-    window.removeEventListener('keydown', this.handleKeyDownWindow, true);
+    window.removeEventListener('keydown', this.requestUpdateSearchTerm, true);
     this.removeEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'remove');
     this.removeSearchboxAttributes(this.searchbox);
@@ -233,13 +233,18 @@ export default class Sayt extends Base {
     }
   }
 
-  handleKeyDownWindow(event: KeyboardEvent): void {
+  /**
+   * Dispatches a [[TBD]] event when a user presses enter and the associated searchbox is
+   * active.
+   *
+   * @param event The KeyboardEvent object.
+   */
+  requestUpdateSearchTerm(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       const searchbox = document.getElementById(this.searchbox);
-      const isExpanded = searchbox.getAttribute('aria-expanded')
+      const isExpanded = searchbox.getAttribute('aria-expanded');
       if (isExpanded === 'true') {
-        const eventToDispatch = new CustomEvent('aaa-update-term', { detail: { group: this.group }, bubbles: false });
-        this.dispatchEvent(eventToDispatch);
+        this.dispatchElementsEvent('aaa-update-term', { group: this.group });
       }
     }
   }

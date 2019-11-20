@@ -74,10 +74,9 @@ export default class SearchBox extends Base {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    // window.addEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
+
     const parent = this.parentElement;
     parent.addEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
-    // console.log('parent', parent);
   }
 
   /**
@@ -86,8 +85,8 @@ export default class SearchBox extends Base {
   disconnectedCallback(): void {
     super.disconnectedCallback();
     const parent = this.parentElement;
+
     parent.removeEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
-    // window.removeEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
   }
 
   /**
@@ -126,7 +125,6 @@ export default class SearchBox extends Base {
   updateSearch(e: CustomEvent<UpdateSearchTermPayload>): void {
     const eventGroup = e.detail.group || '';
     const componentGroup = this.group || '';
-
     if (eventGroup !== componentGroup) return;
 
     this.updateSearchTermValue(e.detail.term);
@@ -170,7 +168,6 @@ export default class SearchBox extends Base {
    * @param term The value pulled directly from the input box.
    */
   updateSearchTermValue(term: string): void {
-    console.log('in update searchterm value - term', term);
     this.value = term;
   }
 
