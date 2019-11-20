@@ -73,7 +73,6 @@ export default class Autocomplete extends Base {
     this.receiveInitialData = this.receiveInitialData.bind(this);
     this.sendUpdateSearchEvent = this.sendUpdateSearchEvent.bind(this);
     this.handleUpdateSearch = this.handleUpdateSearch.bind(this);
-    // this.handleKeydown = this.handleKeydown.bind(this);
   }
 
   /**
@@ -85,8 +84,6 @@ export default class Autocomplete extends Base {
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
-    // window.addEventListener('keydown', this.handleKeydown, true);
-    // window.addEventListener('aaa-update-term', this.handleUpdateSearch);
     window.addEventListener('aaa-update-term', this.handleUpdateSearch, { capture: true });
     this.requestInitialData();
 
@@ -135,8 +132,6 @@ export default class Autocomplete extends Base {
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.removeEventListener(this.initialDataResponseEventName, this.receiveInitialData);
     window.removeEventListener('aaa-update-term', this.handleUpdateSearch, { capture: true });
-    // window.removeEventListener('keydown', this.handleKeydown);
-    // window.addEventListener('sayt-hidden', this.resetSelectedTerm);
   }
 
   /**
@@ -159,15 +154,6 @@ export default class Autocomplete extends Base {
   get itemCount(): number {
     return this.results.reduce((sum, resultGroup) => sum + resultGroup.items.length, 0);
   }
-
-  // resetSelectedTerm(event: CustomEvent): void {
-  //   console.log('in resetSelectedTerm');
-  //   console.log('this.group in resetSelectedTerm', this.group)
-  //   console.log('this.selectedIndex in resetSelectedTerm', this.selectedIndex)
-  //   console.log('this.selectedTerm in resetSelectedTerm', this.selectedTerm)
-  //   this.selectedIndex = -1;
-  //   console.log('this.group, this.selectedindex, this.selectedTerm', this.group, this.selectedIndex, this.selectedTerm, event);
-  // }
 
   /**
    * Generates an ID for the item at the given index.
@@ -283,11 +269,7 @@ export default class Autocomplete extends Base {
   }
 
   handleUpdateSearch(e: CustomEvent): void {
-    // console.log('yyy - in handleUpdateSearch - e.detail.group', e.detail.group)
-    // console.log('yyy - in handleUpdateSearch - this.group', this.group)
-    // console.log('yyy - autocomplete has received enter press from parent (sayt) - do groups equal', this.group === e.detail.group)
     if (e.detail.group === this.group) {
-      // console.log('yyy - autocomplete has received enter press from parent (sayt) - made it past IF')
       const payload = {
         term: this.selectedTerm,
         group: this.group,

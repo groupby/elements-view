@@ -20,7 +20,6 @@ import {
   AutocompleteActiveTermPayload,
   SearchboxInputPayload,
   WithGroup,
-  UPDATE_SEARCH_TERM,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
@@ -128,7 +127,6 @@ export default class Sayt extends Base {
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
     this.setDebouncedMethods = this.setDebouncedMethods.bind(this);
     this.handleKeyDownWindow = this.handleKeyDownWindow.bind(this);
-    // this.handleKeyDownThis = this.handleKeyDownThis.bind(this);
 
     this.setDebouncedMethods();
   }
@@ -151,7 +149,6 @@ export default class Sayt extends Base {
     this.addEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'add');
     this.setInitialSearchboxAttributes(this.searchbox);
-    // this.addEventListener('keydown', this.handleKeyDownThis, true);
   }
 
   /**
@@ -180,7 +177,6 @@ export default class Sayt extends Base {
    * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues): void {
-    // console.log(changedProps, 'changedProps')
     if (changedProps.has('visible')) {
       this.hidden = !this.visible;
       if (this.searchbox) {
@@ -514,7 +510,6 @@ export default class Sayt extends Base {
    * @param event A keyboard event used for checking which key has been pressed.
    */
   processKeyEvent(event: KeyboardEvent): void {
-    // console.log('keypress bubble?')
     switch (event.key) {
       case 'Escape':
       case 'Esc': // IE
@@ -532,7 +527,6 @@ export default class Sayt extends Base {
    * @param event The keyboard event to act on.
    */
   changeSelection(event: KeyboardEvent): void {
-    // console.log('in changeSelection - listening on THIS', event);
     switch (event.key) {
       case 'ArrowUp':
       case 'Up': // IE
