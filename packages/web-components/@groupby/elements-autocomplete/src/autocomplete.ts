@@ -123,22 +123,9 @@ export default class Autocomplete extends Base {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
+    console.log('in disconnectedCallback')
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.removeEventListener(this.initialDataResponseEventName, this.receiveInitialData);
-  }
-
-  /**
-   * Synchronizes property values when attributes change.
-   *
-   * @param name Name of the property.
-   * @param oldVal The old value of the property.
-   * @param newVal The new value of the property.
-   */
-  attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null): void {
-    super.attributeChangedCallback(name, oldVal, newVal);
-    if (name === 'results') {
-    //   this._initialized = true;
-    }
   }
 
   /**
@@ -146,16 +133,12 @@ export default class Autocomplete extends Base {
    * The changes to the following properties are listened for:
    *
    * - `selectedIndex`
-   * - `results`
    *
    * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues): void {
     if (changedProps.has('selectedIndex')) {
       this.dispatchSelectedTerm();
-    }
-    if (changedProps.has('results')) {
-      this._initialized = true;
     }
   }
 

@@ -192,24 +192,6 @@ describe('Autcomplete Component', () => {
     });
   });
 
-  describe('attributeChangedCallback()', () => {
-    let results;
-
-    beforeEach(() => {
-      results = JSON.stringify([
-        { title: 'Brands', items: [{ label: 'Cats' }, { label: 'Dogs' }] },
-        { title: 'default', items: [{ label: 'Cars' }, { label: 'Bikes' }] },
-      ])
-    });
-    itShouldCallParentMethod(() => autocomplete, 'attributeChangedCallback');
-
-    it('should set _initialized to true when the component receives its results', () => {
-      autocomplete.attributeChangedCallback('results', [], results)
-
-      expect(autocomplete._initialized).to.be.true;
-    });
-  });
-
   describe('updated()', () => {
     describe('selectedIndex', () => {
       it('should dispatch an AUTOCOMPLETE_ACTIVE_TERM event', () => {
@@ -219,14 +201,6 @@ describe('Autcomplete Component', () => {
         autocomplete.updated(new Map([['selectedIndex', 0]]));
 
         expect(dispatchSelectedTerm).to.be.called;
-      });
-    });
-
-    describe('results', () => {
-      it('should set the initialized property to true', () => {
-        autocomplete.updated(new Map([['results', 'autocomplete results']]));
-
-        expect(autocomplete._initialized).to.be.true;
       });
     });
   });
