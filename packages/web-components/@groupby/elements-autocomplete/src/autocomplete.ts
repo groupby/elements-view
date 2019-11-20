@@ -84,7 +84,7 @@ export default class Autocomplete extends Base {
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
-    window.addEventListener('aaa-update-term', this.handleUpdateSearch, { capture: true });
+    window.addEventListener('request-update-term', this.handleUpdateSearch, { capture: true });
     this.requestInitialData();
 
     const role = this.getAttribute('role');
