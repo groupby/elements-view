@@ -47,7 +47,7 @@ describe('dataInitializer decorator', () => {
   });
 
   it('should store the initialization states between multiple instances of the component', () => {
-    const testObj2 = Object.assign({}, testObj);
+    const testObj2 = { ...testObj };
     Object.defineProperty(
       testObj2,
       testPropertyName,

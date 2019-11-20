@@ -85,7 +85,6 @@ export default class Autocomplete extends Base {
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
 
-    // eslint-disable-next-line no-underscore-dangle
     if (!this._initialized) {
       window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
       this.requestInitialData();
@@ -181,7 +180,6 @@ export default class Autocomplete extends Base {
    */
   receiveInitialData(event: CustomEvent<CacheResponsePayload>): void {
     const data = event.detail.data || {};
-    // eslint-disable-next-line no-underscore-dangle
     if (!this._initialized) {
       this.results = data.results || [];
     }
