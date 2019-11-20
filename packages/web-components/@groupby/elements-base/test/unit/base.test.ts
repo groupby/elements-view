@@ -51,7 +51,7 @@ describe('dataInitializer decorator', () => {
     Object.defineProperty(
       testObj2,
       testPropertyName,
-      Object.getOwnPropertyDescriptor(testObj, 'results'),
+      Object.getOwnPropertyDescriptor(testObj, 'results')
     );
     dataInitializer('init')(testObj, testPropertyName);
     dataInitializer('init')(testObj2, testPropertyName);
@@ -68,7 +68,12 @@ describe('dataInitializer decorator', () => {
 
     dataInitializer('init')(testObj, testPropertyName);
     const newDescriptor = Object.getOwnPropertyDescriptor(testObj, testPropertyName);
-    const { get, set, enumerable, configurable } = newDescriptor
+    const {
+      get,
+      set,
+      enumerable,
+      configurable
+    } = newDescriptor;
 
     expect(set).to.not.equal(originalDescriptor.set);
     expect(get).to.equal(originalDescriptor.get);
