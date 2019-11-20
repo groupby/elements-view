@@ -2,7 +2,7 @@ import { expect, stub, spy } from '../utils';
 import { DummyComponent } from './dummy-component';
 import { dataInitializer } from '../../src';
 
-describe.only('dataInitializer decorator', () => {
+describe('dataInitializer decorator', () => {
   const testPropertyName = 'results';
   let testObj;
 

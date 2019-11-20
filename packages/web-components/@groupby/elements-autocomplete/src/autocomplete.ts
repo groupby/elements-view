@@ -123,7 +123,6 @@ export default class Autocomplete extends Base {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    console.log('in disconnectedCallback')
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.removeEventListener(this.initialDataResponseEventName, this.receiveInitialData);
   }
