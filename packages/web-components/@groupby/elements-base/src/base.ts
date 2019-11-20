@@ -22,16 +22,16 @@ export default abstract class Base extends LitElement {
 }
 
 export function dataInitializer(initialized: string): PropertyDecorator {
-  return function(target: Record<string, any>, propertyName: string): void {
-    console.log('initializer props', target, propertyName);
+  return function(target: object, propertyName: string): void {
     const oldDescriptor = Object.getOwnPropertyDescriptor(target, 'results');
+    const instanceMap = new WeakMap();
     function decoratedSetter(newVal: any): void {
-      console.log('decoratedSetter');
-      console.log('target results', this[propertyName]);
-      console.log(`target ${initialized} value in setter`, this[initialized]);
-      console.log('results new value in setter', newVal);
       oldDescriptor.set.call(this, newVal);
-      this[initialized] = true;
+      if (instanceMap.get(this)) {
+        this[initialized] = true;
+      } else {
+        instanceMap.set(this, true);
+      }
     }
 
     Object.defineProperty(target, propertyName, { ...oldDescriptor, set: decoratedSetter });

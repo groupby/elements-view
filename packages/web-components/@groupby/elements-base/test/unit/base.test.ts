@@ -26,8 +26,39 @@ describe.only('dataInitializer decorator', () => {
     testObj.results = ['c', 'd'];
 
     expect(originalSet.set).to.be.called;
-    expect(testObj.init).to.be.true;
     expect(testObj.results).to.deep.equal(['c', 'd']);
+  });
+
+  it('should not set the initialize property to true on the first set call', () => {
+    dataInitializer('init')(testObj, testPropertyName);
+    testObj.results = ['c', 'd'];
+
+    expect(testObj.init).to.be.false;
+  });
+
+  it('should not set the initialize property to true on the first set call', () => {
+    dataInitializer('init')(testObj, testPropertyName);
+    testObj.results = ['c', 'd'];
+    testObj.results = ['e', 'f'];
+
+    expect(testObj.init).to.be.true;
+  });
+
+  it('should store the initialization states between multiple instances of the component', () => {
+    const testObj2 = Object.assign({}, testObj);
+    Object.defineProperty(
+      testObj2,
+      testPropertyName,
+      Object.getOwnPropertyDescriptor(testObj, 'results'),
+    );
+
+    dataInitializer('init')(testObj, testPropertyName);
+    dataInitializer('init')(testObj2, testPropertyName);
+    testObj.results = ['c', 'd'];
+    testObj.results = ['e', 'f'];
+
+    expect(testObj.init).to.be.true;
+    expect(testObj2.init).to.be.false;
   });
 
   it('should only modify the set function of the property descriptor', () => {
