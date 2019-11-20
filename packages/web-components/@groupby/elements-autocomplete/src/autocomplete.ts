@@ -72,7 +72,8 @@ export default class Autocomplete extends Base {
     this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
     this.receiveInitialData = this.receiveInitialData.bind(this);
     this.sendUpdateSearchEvent = this.sendUpdateSearchEvent.bind(this);
-    this.handleKeydown = this.handleKeydown.bind(this);
+    this.handleUpdateSearch = this.handleUpdateSearch.bind(this);
+    // this.handleKeydown = this.handleKeydown.bind(this);
   }
 
   /**
@@ -84,8 +85,9 @@ export default class Autocomplete extends Base {
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
-    window.addEventListener('keydown', this.handleKeydown, true);
-    // window.addEventListener('sayt-hidden', this.resetSelectedTerm);
+    // window.addEventListener('keydown', this.handleKeydown, true);
+    // window.addEventListener('aaa-update-term', this.handleUpdateSearch);
+    window.addEventListener('aaa-update-term', this.handleUpdateSearch, { capture: true });
     this.requestInitialData();
 
     const role = this.getAttribute('role');
@@ -132,7 +134,8 @@ export default class Autocomplete extends Base {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.removeEventListener(this.initialDataResponseEventName, this.receiveInitialData);
-    window.removeEventListener('keydown', this.handleKeydown);
+    window.removeEventListener('aaa-update-term', this.handleUpdateSearch, { capture: true });
+    // window.removeEventListener('keydown', this.handleKeydown);
     // window.addEventListener('sayt-hidden', this.resetSelectedTerm);
   }
 
@@ -279,23 +282,17 @@ export default class Autocomplete extends Base {
     this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
   }
 
-  handleKeydown(event: KeyboardEvent): void {
-    if (event.key === 'Enter' && typeof this.selectedTerm === 'string') {
-      console.log('selectedTerm', this.selectedTerm);
-      // console.log('componentId in handlekeydown', this.componentId)
-      // console.log(this.selectedId, 'xxx - selectedId in handleKeydown')
-      // console.log(this.selectedIndex, 'zzz - selectedIndex in handleKeydown')
+  handleUpdateSearch(e: CustomEvent): void {
+    // console.log('yyy - in handleUpdateSearch - e.detail.group', e.detail.group)
+    // console.log('yyy - in handleUpdateSearch - this.group', this.group)
+    // console.log('yyy - autocomplete has received enter press from parent (sayt) - do groups equal', this.group === e.detail.group)
+    if (e.detail.group === this.group) {
+      // console.log('yyy - autocomplete has received enter press from parent (sayt) - made it past IF')
       const payload = {
         term: this.selectedTerm,
         group: this.group,
         search: false,
-        window: true,
       };
-      // const payload: UpdateSearchTermPayload = {
-      //   term: this.selectedTerm,
-      //   group: this.group,
-      //   search: false,
-      // };
       this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
     }
   }

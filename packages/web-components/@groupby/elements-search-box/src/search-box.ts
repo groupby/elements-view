@@ -74,7 +74,10 @@ export default class SearchBox extends Base {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    window.addEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
+    // window.addEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
+    const parent = this.parentElement;
+    parent.addEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
+    // console.log('parent', parent);
   }
 
   /**
@@ -82,7 +85,9 @@ export default class SearchBox extends Base {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    window.removeEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
+    const parent = this.parentElement;
+    parent.removeEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
+    // window.removeEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
   }
 
   /**
@@ -118,12 +123,11 @@ export default class SearchBox extends Base {
    *
    * @param e The event object.
    */
-  updateSearch(e: CustomEvent): void {
-  // updateSearch(e: CustomEvent<UpdateSearchTermPayload>): void {
+  updateSearch(e: CustomEvent<UpdateSearchTermPayload>): void {
     const eventGroup = e.detail.group || '';
     const componentGroup = this.group || '';
 
-    if (eventGroup !== componentGroup || this.value === e.detail.term || ((e.detail.window && this.value.length === 0) && this.value.length === 0)) return;
+    if (eventGroup !== componentGroup) return;
 
     this.updateSearchTermValue(e.detail.term);
     if (e.detail.search) {

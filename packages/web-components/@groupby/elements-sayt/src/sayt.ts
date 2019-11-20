@@ -20,6 +20,7 @@ import {
   AutocompleteActiveTermPayload,
   SearchboxInputPayload,
   WithGroup,
+  UPDATE_SEARCH_TERM,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
@@ -126,6 +127,8 @@ export default class Sayt extends Base {
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
     this.setDebouncedMethods = this.setDebouncedMethods.bind(this);
+    this.handleKeyDownWindow = this.handleKeyDownWindow.bind(this);
+    // this.handleKeyDownThis = this.handleKeyDownThis.bind(this);
 
     this.setDebouncedMethods();
   }
@@ -144,9 +147,11 @@ export default class Sayt extends Base {
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
+    window.addEventListener('keydown', this.handleKeyDownWindow, true);
     this.addEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'add');
     this.setInitialSearchboxAttributes(this.searchbox);
+    // this.addEventListener('keydown', this.handleKeyDownThis, true);
   }
 
   /**
@@ -163,6 +168,7 @@ export default class Sayt extends Base {
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
     this.removeEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
+    window.removeEventListener('keydown', this.handleKeyDownWindow, true);
     this.removeEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'remove');
     this.removeSearchboxAttributes(this.searchbox);
@@ -174,12 +180,9 @@ export default class Sayt extends Base {
    * @param changedProps A map of the all the changed properties.
    */
   updated(changedProps: PropertyValues): void {
+    // console.log(changedProps, 'changedProps')
     if (changedProps.has('visible')) {
       this.hidden = !this.visible;
-      // if (this.hidden) {
-      //   this.dispatchElementsEvent('sayt-hidden', { group: this.group });
-      // }
-      // console.log('in visible changedProps in sayt', this.hidden);
       if (this.searchbox) {
         const searchbox = document.getElementById(this.searchbox);
         if (searchbox) {
@@ -231,6 +234,17 @@ export default class Sayt extends Base {
       }
     } else {
       window[setEventListener](SEARCHBOX_INPUT, this.processElementsSearchboxChange);
+    }
+  }
+
+  handleKeyDownWindow(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      const searchbox = document.getElementById(this.searchbox);
+      const isExpanded = searchbox.getAttribute('aria-expanded')
+      if (isExpanded === 'true') {
+        const eventToDispatch = new CustomEvent('aaa-update-term', { detail: { group: this.group }, bubbles: false });
+        this.dispatchEvent(eventToDispatch);
+      }
     }
   }
 
@@ -500,6 +514,7 @@ export default class Sayt extends Base {
    * @param event A keyboard event used for checking which key has been pressed.
    */
   processKeyEvent(event: KeyboardEvent): void {
+    // console.log('keypress bubble?')
     switch (event.key) {
       case 'Escape':
       case 'Esc': // IE
@@ -517,6 +532,7 @@ export default class Sayt extends Base {
    * @param event The keyboard event to act on.
    */
   changeSelection(event: KeyboardEvent): void {
+    // console.log('in changeSelection - listening on THIS', event);
     switch (event.key) {
       case 'ArrowUp':
       case 'Up': // IE
