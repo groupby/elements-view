@@ -289,7 +289,7 @@ export default class Autocomplete extends Base {
         term: this.selectedTerm,
         group: this.group,
         search: false,
-        keyB: true
+        window: true,
       };
       // const payload: UpdateSearchTermPayload = {
       //   term: this.selectedTerm,
