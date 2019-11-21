@@ -162,10 +162,11 @@ export default class Sayt extends Base {
   disconnectedCallback(): void {
     super.disconnectedCallback();
 
+    if (this.searchbox) {
     const searchbox = document.getElementById(this.searchbox);
     const searchboxParent = searchbox.parentElement;
     searchboxParent.addEventListener('keydown', this.requestUpdateSearchTerm, true);
-
+    }
     window.removeEventListener(SAYT_SHOW, this.showCorrectSayt);
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.showCorrectSayt);
     window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.showCorrectSayt);
@@ -174,7 +175,6 @@ export default class Sayt extends Base {
     window.removeEventListener('click', this.processClick);
     window.removeEventListener('keydown', this.processKeyEvent);
     this.removeEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
-    window.removeEventListener('keydown', this.requestUpdateSearchTerm, true);
     this.removeEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'remove');
     this.removeSearchboxAttributes(this.searchbox);
@@ -243,8 +243,8 @@ export default class Sayt extends Base {
   }
 
   /**
-   * Dispatches a [[TBD]] event when a user presses enter and the associated searchbox is
-   * active.
+   * Calls the [[updateSearchTerm]] method on autocomplete, with the active component's event group when a user presses
+   * enter on an autocomplete term.
    *
    * @param event The KeyboardEvent object.
    */
