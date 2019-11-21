@@ -9,6 +9,7 @@ import {
 import {
   CACHE_REQUEST,
   CACHE_RESPONSE_PREFIX,
+  CacheResponsePayload,
   CacheRequestPayload,
   Product,
 } from '@groupby/elements-events';

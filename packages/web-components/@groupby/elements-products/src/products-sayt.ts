@@ -1,7 +1,6 @@
 import { css, CSSResult, customElement } from 'lit-element';
 import {
   SAYT_PRODUCTS_RESPONSE,
-  CacheResponsePayload,
   SaytProductsResponsePayload,
   Product,
 } from '@groupby/elements-events';

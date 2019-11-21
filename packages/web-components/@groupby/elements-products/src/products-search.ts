@@ -1,7 +1,6 @@
 import { css, CSSResult, customElement } from 'lit-element';
 import {
   SEARCH_RESPONSE,
-  CacheResponsePayload,
   SearchResponsePayload,
   Product,
 } from '@groupby/elements-events';
