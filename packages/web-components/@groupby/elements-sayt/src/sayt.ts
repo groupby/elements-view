@@ -137,6 +137,12 @@ export default class Sayt extends Base {
   connectedCallback(): void {
     super.connectedCallback();
 
+    if (this.searchbox) {
+      const searchbox = document.getElementById(this.searchbox);
+      const searchboxParent = searchbox.parentElement;
+      searchboxParent.addEventListener('keydown', this.requestUpdateSearchTerm, true);
+    }
+
     window.addEventListener(SAYT_SHOW, this.showCorrectSayt);
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.showCorrectSayt);
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.showCorrectSayt);
@@ -144,7 +150,6 @@ export default class Sayt extends Base {
     window.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     window.addEventListener('click', this.processClick);
     window.addEventListener('keydown', this.processKeyEvent);
-    window.addEventListener('keydown', this.requestUpdateSearchTerm, true);
     this.addEventListener(AUTOCOMPLETE_ACTIVE_TERM, this.handleAutocompleteTermHover);
     this.addEventListener('keydown', this.changeSelection);
     this.setSearchboxListener(this.searchbox, 'add');
@@ -156,6 +161,10 @@ export default class Sayt extends Base {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
+
+    const searchbox = document.getElementById(this.searchbox);
+    const searchboxParent = searchbox.parentElement;
+    searchboxParent.addEventListener('keydown', this.requestUpdateSearchTerm, true);
 
     window.removeEventListener(SAYT_SHOW, this.showCorrectSayt);
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.showCorrectSayt);
@@ -541,19 +550,6 @@ export default class Sayt extends Base {
       default: // Do nothing
     }
   }
-
-  // isDescendant(parent, child): boolean {
-  //   let node = child.parentNode;
-  //   while (node != null) {
-  //     console.log(parent,'parent')
-  //     console.log(child,'child')
-  //     if (node == parent) {
-  //       return true;
-  //     }
-  //     node = node.parentNode;
-  //   }
-  //   return false;
-  // }
 
   /**
    * Selects the previous autocomplete term. SAYT is shown if it is
