@@ -47,17 +47,6 @@ export default class ProductsSearch extends ProductsBase {
   }
 
   /**
-   * Sets the `products` property from the cache event.
-   * Intended to be used on mount of this component.
-   *
-   * @param event The event object.
-   */
-  setProductsFromCacheEvent(event: CustomEvent<CacheResponsePayload>): void {
-    const products = this.getProductsFromCacheEvent(event);
-    this.products = products;
-  }
-
-  /**
    * Sets the `products` property from the products in an event.
    *
    * @param event An event containing a search result with product data.

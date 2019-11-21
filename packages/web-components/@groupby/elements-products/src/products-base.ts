@@ -70,10 +70,9 @@ export default class ProductsBase extends Base {
    *
    * @param event The event object.
    */
-  getProductsFromCacheEvent(event: CustomEvent<CacheResponsePayload>): [] {
+  setProductsFromCacheEvent(event: CustomEvent<CacheResponsePayload>): void {
     const data = event.detail.data || {};
-    const products = data.products || [];
-    return products;
+    this.products = data.products || [];
   }
 
   /**

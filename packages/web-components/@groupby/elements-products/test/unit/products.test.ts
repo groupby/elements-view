@@ -73,22 +73,22 @@ describe('Products Base Component', () => {
     });
   });
 
-  describe('getProductsFromCacheEvent', () => {
+  describe('setProductsFromCacheEvent', () => {
     it('should set products to an empty array if the event payload does not contain products', () => {
       const event = { detail: { data: { products: [] } } };
 
-      component.getProductsFromCacheEvent(event);
+      component.setProductsFromCacheEvent(event);
 
       expect(component.products).to.deep.equal([]);
     });
 
-    it('should return products if the event payload contains products', () => {
+    it('should set products if given an event payload that contains products', () => {
       const products = [1, 2, 3];
       const event = { detail: { data: { products } } };
 
-      const expectedProducts = component.getProductsFromCacheEvent(event);
+      component.setProductsFromCacheEvent(event);
 
-      expect(products).to.equal(expectedProducts);
+      expect(component.products).to.equal(products);
     });
   });
 
@@ -167,25 +167,6 @@ describe('Products Sayt Component', () => {
         component.cacheResponseEventName,
         component.setProductsFromCacheEvent
       );
-    });
-  });
-
-  describe('setProductsFromCacheEvent', () => {
-    it('should set products to an empty array if the event payload does not contain products', () => {
-      const event = { detail: { data: { products: [] } } };
-
-      component.setProductsFromCacheEvent(event);
-
-      expect(component.products).to.deep.equal([]);
-    });
-
-    it('should set products if given an event payload that contains products', () => {
-      const products = [1, 2, 3];
-      const event = { detail: { data: { products } } };
-
-      component.setProductsFromCacheEvent(event);
-
-      expect(component.products).to.equal(products);
     });
   });
 
@@ -303,25 +284,6 @@ describe('Products Search Component', () => {
         component.cacheResponseEventName,
         component.setProductsFromCacheEvent
       );
-    });
-  });
-
-  describe('setProductsFromCacheEvent', () => {
-    it('should set products to an empty array if the event payload does not contain products', () => {
-      const event = { detail: { data: { products: [] } } };
-
-      component.setProductsFromCacheEvent(event);
-
-      expect(component.products).to.deep.equal([]);
-    });
-
-    it('should set products if given an event payload that contains products', () => {
-      const products = [1, 2, 3];
-      const event = { detail: { data: { products } } };
-
-      component.setProductsFromCacheEvent(event);
-
-      expect(component.products).to.equal(products);
     });
   });
 
