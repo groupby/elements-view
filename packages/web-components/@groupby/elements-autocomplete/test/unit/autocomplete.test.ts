@@ -218,6 +218,38 @@ describe('Autcomplete Component', () => {
     });
   });
 
+  describe('selectedTerm', () => {
+    it('should return the selected term', () => {
+      const term = 'black dress';
+      stub(autocomplete, 'itemCount').get(() => 3);
+      autocomplete.selectedIndex = 1;
+      autocomplete.results = [
+        {
+          items: [
+            { label: 'dress' },
+            { label: 'black dress' },
+            { label: 'long dress' },
+          ],
+        },
+      ];
+
+      expect(autocomplete.selectedTerm).to.equal(term);
+    });
+
+    it('should return null if no term is selected', () => {
+      autocomplete.selectedIndex = -1;
+
+      expect(autocomplete.selectedTerm).to.equal(null);
+    });
+
+    it('should return null if the selectedIndex is greater or equal to the item count', () => {
+      autocomplete.selectedIndex = 5;
+      stub(autocomplete, 'itemCount').returns(4)
+
+      expect(autocomplete.selectedTerm).to.equal(null);
+    });
+  });
+
   describe('render', () => {
     it('should return an instance of TemplateResult', () => {
       const result = autocomplete.render();
