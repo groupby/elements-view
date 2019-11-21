@@ -248,6 +248,9 @@ describe('Products Search Component', () => {
     itShouldCallParentMethod(() => component, 'connectedCallback');
 
     it('should add event listeners for sayt products events', () => {
+      const cacheResponseEventName = 'cache-response-event-name';
+      stub(component, 'cacheResponseEventName').get(() => cacheResponseEventName);
+
       component.connectedCallback();
 
       expect(addEventListener).to.be.calledWith(
@@ -255,7 +258,7 @@ describe('Products Search Component', () => {
         component.setProductsFromProductsEvent
       );
       expect(addEventListener).to.be.calledWith(
-        component.cacheResponseEventName,
+        cacheResponseEventName,
         component.setProductsFromCacheEvent
       );
     });
@@ -279,6 +282,9 @@ describe('Products Search Component', () => {
     itShouldCallParentMethod(() => component, 'disconnectedCallback');
 
     it('should remove event listeners for sayt products', () => {
+      const cacheResponseEventName = 'cache-response-event-name';
+      stub(component, 'cacheResponseEventName').get(() => cacheResponseEventName);
+
       component.disconnectedCallback();
 
       expect(removeEventListener).to.be.calledWith(
@@ -287,7 +293,7 @@ describe('Products Search Component', () => {
       );
 
       expect(removeEventListener).to.be.calledWith(
-        component.cacheResponseEventName,
+        cacheResponseEventName,
         component.setProductsFromCacheEvent
       );
     });
