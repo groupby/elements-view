@@ -114,6 +114,10 @@ export default class Autocomplete extends Base {
     return `${CACHE_RESPONSE_PREFIX}autocomplete-${this.componentId}`;
   }
 
+  /**
+   * The active autocomplete term.
+   * The term is considered active through user interactions via keyboard and mouse events.
+   */
   get selectedTerm(): string {
     if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return null;
 
@@ -266,6 +270,11 @@ export default class Autocomplete extends Base {
     this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
   }
 
+  /**
+   * Emits an [[UPDATE_SEARCH_TERM]] event with the selected autocomplete term, and the flag to not trigger a search.
+   *
+   * @param group The active component's event group.
+   */
   updateSearchTerm(group: string): void {
     if (group === this.group) {
       const payload = {
