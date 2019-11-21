@@ -9,8 +9,8 @@ import {
 import {
   CACHE_REQUEST,
   CACHE_RESPONSE_PREFIX,
-  CacheResponsePayload,
   CacheRequestPayload,
+  CacheResponsePayload,
   Product,
 } from '@groupby/elements-events';
 import * as shortid from 'shortid';
