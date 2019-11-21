@@ -1,6 +1,6 @@
 import {
-  CACHE_RESPONSE_PREFIX,
   CACHE_REQUEST,
+  CACHE_RESPONSE_PREFIX,
   SAYT_PRODUCTS_RESPONSE,
   SEARCH_RESPONSE,
 } from '@groupby/elements-events';
@@ -16,13 +16,10 @@ import ProductsSayt from '../../src/products-sayt';
 import ProductsSearch from '../../src/products-search';
 
 describe('Products Base Component', () => {
-  const cacheResponseEventName = 'cache-response-event-name';
-  let cacheResponseEventNameStub;
   let component;
 
   beforeEach(() => {
     component = new ProductsBase();
-    cacheResponseEventNameStub = stub(component, 'cacheResponseEventName').get(() => cacheResponseEventName);
   });
 
   itShouldExtendBase(() => component);
@@ -76,13 +73,31 @@ describe('Products Base Component', () => {
     });
   });
 
+  describe('getProductsFromCacheEvent', () => {
+    it('should set products to an empty array if the event payload does not contain products', () => {
+      const event = { detail: { data: { products: [] } } };
+
+      component.getProductsFromCacheEvent(event);
+
+      expect(component.products).to.deep.equal([]);
+    });
+
+    it('should return products if the event payload contains products', () => {
+      const products = [1, 2, 3];
+      const event = { detail: { data: { products } } };
+
+      const expectedProducts = component.getProductsFromCacheEvent(event);
+
+      expect(products).to.equal(expectedProducts);
+    });
+  });
+
   describe('cacheResponseEventName', () => {
     it('should return an event name for receiving cached data', () => {
       const componentId = component.componentId = 'some-id';
       const tagName = 'some-products-component';
       const expectedCacheResponseEventName = `${CACHE_RESPONSE_PREFIX}${tagName}-${componentId}`;
       stub(component, 'tagName').get(() => tagName);
-      cacheResponseEventNameStub.restore();
 
       const eventName = component.cacheResponseEventName;
 
@@ -162,6 +177,15 @@ describe('Products Sayt Component', () => {
       component.setProductsFromCacheEvent(event);
 
       expect(component.products).to.deep.equal([]);
+    });
+
+    it('should set products if given an event payload that contains products', () => {
+      const products = [1, 2, 3];
+      const event = { detail: { data: { products } } };
+
+      component.setProductsFromCacheEvent(event);
+
+      expect(component.products).to.equal(products);
     });
   });
 
@@ -279,6 +303,25 @@ describe('Products Search Component', () => {
         component.cacheResponseEventName,
         component.setProductsFromCacheEvent
       );
+    });
+  });
+
+  describe('setProductsFromCacheEvent', () => {
+    it('should set products to an empty array if the event payload does not contain products', () => {
+      const event = { detail: { data: { products: [] } } };
+
+      component.setProductsFromCacheEvent(event);
+
+      expect(component.products).to.deep.equal([]);
+    });
+
+    it('should set products if given an event payload that contains products', () => {
+      const products = [1, 2, 3];
+      const event = { detail: { data: { products } } };
+
+      component.setProductsFromCacheEvent(event);
+
+      expect(component.products).to.equal(products);
     });
   });
 

@@ -9,6 +9,7 @@ import {
 import {
   CACHE_REQUEST,
   CACHE_RESPONSE_PREFIX,
+  CacheResponsePayload,
   CacheRequestPayload,
   Product,
 } from '@groupby/elements-events';
@@ -62,6 +63,17 @@ export default class ProductsBase extends Base {
   requestInitialData(name: string, group: string, returnEvent: string): void {
     const payload: CacheRequestPayload = { name, group, returnEvent };
     this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
+  }
+
+  /**
+   * Receives an event for populating initial product data.
+   *
+   * @param event The event object.
+   */
+  getProductsFromCacheEvent(event: CustomEvent<CacheResponsePayload>): [] {
+    const data = event.detail.data || {};
+    const products = data.products || [];
+    return products;
   }
 
   /**

@@ -48,14 +48,14 @@ export default class ProductsSayt extends ProductsBase {
   }
 
   /**
-   * Receives an event for populating initial data.
+   * Sets the `products` property from the cache event.
    * Intended to be used on mount of this component.
    *
    * @param event The event object.
    */
   setProductsFromCacheEvent(event: CustomEvent<CacheResponsePayload>): void {
-    const data = event.detail.data || {};
-    this.products = data.products || [];
+    const products = this.getProductsFromCacheEvent(event);
+    this.products = products;
   }
 
   /**
