@@ -240,11 +240,9 @@ export default class Sayt extends Base {
    * @param event The KeyboardEvent object.
    */
   requestUpdateSearchTerm(event: KeyboardEvent): void {
-    if (event.key === 'Enter') {
-      if (this.visible) {
-        const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
-        autocomplete.updateSearchTerm(this.group);
-      }
+    if (event.key === 'Enter' && this.nodeInSearchbox(event.target as Node)) {
+      const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
+      autocomplete.updateSearchTerm(this.group);
     }
   }
 
@@ -543,6 +541,19 @@ export default class Sayt extends Base {
       default: // Do nothing
     }
   }
+
+  // isDescendant(parent, child): boolean {
+  //   let node = child.parentNode;
+  //   while (node != null) {
+  //     console.log(parent,'parent')
+  //     console.log(child,'child')
+  //     if (node == parent) {
+  //       return true;
+  //     }
+  //     node = node.parentNode;
+  //   }
+  //   return false;
+  // }
 
   /**
    * Selects the previous autocomplete term. SAYT is shown if it is
