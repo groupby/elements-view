@@ -176,6 +176,7 @@ describe('Products Sayt Component', () => {
 
     it('should set products to an empty array if the event payload does not contain products', () => {
       const event = { detail: {} };
+
       component.setProductsFromProductsEvent(event);
 
       expect(component.products).to.deep.equal([]);
