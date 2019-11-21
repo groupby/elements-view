@@ -72,7 +72,7 @@ export default class Autocomplete extends Base {
     this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
     this.receiveInitialData = this.receiveInitialData.bind(this);
     this.sendUpdateSearchEvent = this.sendUpdateSearchEvent.bind(this);
-    this.handleUpdateSearch = this.handleUpdateSearch.bind(this);
+    this.updateSearchTerm = this.updateSearchTerm.bind(this);
   }
 
   /**
@@ -84,7 +84,6 @@ export default class Autocomplete extends Base {
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
-    window.addEventListener('request-update-term', this.handleUpdateSearch, { capture: true });
     this.requestInitialData();
 
     const role = this.getAttribute('role');
@@ -131,7 +130,6 @@ export default class Autocomplete extends Base {
     super.disconnectedCallback();
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
     window.removeEventListener(this.initialDataResponseEventName, this.receiveInitialData);
-    window.removeEventListener('aaa-update-term', this.handleUpdateSearch, { capture: true });
   }
 
   /**
@@ -268,8 +266,8 @@ export default class Autocomplete extends Base {
     this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
   }
 
-  handleUpdateSearch(e: CustomEvent): void {
-    if (e.detail.group === this.group) {
+  updateSearchTerm(group: string): void {
+    if (group === this.group) {
       const payload = {
         term: this.selectedTerm,
         group: this.group,

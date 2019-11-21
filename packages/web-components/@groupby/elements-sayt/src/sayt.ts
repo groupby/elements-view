@@ -244,7 +244,8 @@ export default class Sayt extends Base {
       const searchbox = document.getElementById(this.searchbox);
       const isExpanded = searchbox.getAttribute('aria-expanded');
       if (isExpanded === 'true') {
-        this.dispatchElementsEvent('request-update-term', { group: this.group });
+        const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
+        autocomplete.updateSearchTerm(this.group);
       }
     }
   }
