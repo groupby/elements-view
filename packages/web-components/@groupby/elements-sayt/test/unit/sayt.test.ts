@@ -135,6 +135,10 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
     });
 
+    it('should add an event listener to the searchbox parent element', () => {
+      // not sure best approach to test this... need to access the node?
+    })
+
     it('should set the ARIA attributes for the paired searchbox', () => {
       const setInitialSearchboxAttributes = stub(sayt, 'setInitialSearchboxAttributes');
 
@@ -969,6 +973,8 @@ describe('Sayt Component', () => {
     it('should select the previous autocomplete item', () => {
       sayt.selectPreviousAutocompleteTerm();
 
+      console.log(selectPrevious, 'selectPrevious')
+
       expect(selectPrevious).to.be.called;
     });
 
@@ -1083,6 +1089,42 @@ describe('Sayt Component', () => {
       const result = sayt.render();
 
       expect(result).to.be.an.instanceof(TemplateResult);
+    });
+  });
+
+  describe('requestUpdateSearchTerm()', () => {
+    let updateSearchTerm;
+    let group;
+
+
+    beforeEach(() => {
+      updateSearchTerm = spy();
+      group = sayt.group = 'ducks';
+      stub(sayt, 'querySelector')
+      .withArgs('[data-gbe-ref="autocomplete"]')
+      .returns({ updateSearchTerm, group });
+    });
+
+    it('should call the updateSearchTerm method on autocomplete with the component group when enter is pressed and the event target is within the searchbox component', () => {
+      stub(sayt, 'nodeInSearchbox').returns(true);
+      sayt.requestUpdateSearchTerm({ key: 'Enter' });
+
+      expect(updateSearchTerm).to.be.calledWith(group);
+    });
+
+    it('should not call the updateSearchTerm method on autocomplete if a key other than enter is pressed', () => {
+      stub(sayt, 'nodeInSearchbox').returns(true);
+      sayt.requestUpdateSearchTerm({ key: 'Z' });
+
+      expect(updateSearchTerm).to.not.be.called;
+    });
+
+    it('should not call the updateSearchTerm method on autocomplete if the event node is not a child of searchbox', () => {
+      stub(sayt, 'nodeInSearchbox').returns(false);
+
+      sayt.requestUpdateSearchTerm({ key: 'Enter' });
+
+      expect(updateSearchTerm).to.not.be.called;
     });
   });
 });
