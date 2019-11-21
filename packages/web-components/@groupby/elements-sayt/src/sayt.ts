@@ -241,9 +241,7 @@ export default class Sayt extends Base {
    */
   requestUpdateSearchTerm(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
-      const searchbox = document.getElementById(this.searchbox);
-      const isExpanded = searchbox.getAttribute('aria-expanded');
-      if (isExpanded === 'true') {
+      if (this.visible) {
         const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
         autocomplete.updateSearchTerm(this.group);
       }
