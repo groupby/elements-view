@@ -7,8 +7,8 @@ import {
   TemplateResult,
 } from 'lit-element';
 import {
-  CACHE_RESPONSE_PREFIX,
   CACHE_REQUEST,
+  CACHE_RESPONSE_PREFIX,
   CacheRequestPayload,
   Product,
 } from '@groupby/elements-events';
