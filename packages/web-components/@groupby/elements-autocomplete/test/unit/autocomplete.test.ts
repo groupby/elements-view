@@ -487,9 +487,21 @@ describe('Autcomplete Component', () => {
       expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload);
     });
   });
-  // describe('handleKeydown()', () => {
-  //   it('should send an updated search term event', () => {
-  //
-  //   });
-  // });
+
+  describe('updateSearchTerm()', () => {
+    it('should dispatch an event with the selected term and group in the payload', () => {
+      const group = autocomplete.group = 'cat-club';
+      stub(autocomplete, 'selectedTerm').returns('cat toy lover');
+      const payload = {
+        term: autocomplete.selectedTerm,
+        group,
+        search: false,
+      };
+      const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
+
+      autocomplete.updateSearchTerm(group);
+
+      expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload)
+    });
+  });
 });
