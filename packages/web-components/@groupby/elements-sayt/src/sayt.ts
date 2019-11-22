@@ -241,6 +241,7 @@ export default class Sayt extends Base {
    */
   requestUpdateSearchTerm(event: KeyboardEvent): void {
     if (event.key === 'Enter' && this.nodeInSearchbox(event.target as Node)) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
       autocomplete.updateSearchTerm(this.group);
     }
