@@ -142,7 +142,7 @@ storiesOf('Components|Products', module)
       customEvents: [generateSearchResponseEvent(15)],
       notes: {
         markdown: `
-          # GroupBy Elements Products Sayt Component
+          # GroupBy Elements Products Component
 
           [Package README](https://github.com/groupby/elements-view/tree/master/packages/web-components/%40elements/products "GroupBy Elements Products README").
 
