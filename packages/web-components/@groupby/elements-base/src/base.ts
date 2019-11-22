@@ -31,7 +31,7 @@ export default abstract class Base extends LitElement {
 export function dataInitializer(initialized: string): PropertyDecorator {
   // eslint-disable-next-line func-names
   return function(target: object, propertyName: string): void {
-    const oldDescriptor = Object.getOwnPropertyDescriptor(target, 'results');
+    const oldDescriptor = Object.getOwnPropertyDescriptor(target, propertyName);
     const instanceMap = new WeakMap();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function decoratedSetter(newVal: any): void {
