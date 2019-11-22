@@ -244,7 +244,7 @@ describe('Autcomplete Component', () => {
 
     it('should return null if the selectedIndex is greater or equal to the item count', () => {
       autocomplete.selectedIndex = 5;
-      stub(autocomplete, 'itemCount').returns(4)
+      stub(autocomplete, 'itemCount').returns(4);
 
       expect(autocomplete.selectedTerm).to.equal(null);
     });
@@ -501,7 +501,7 @@ describe('Autcomplete Component', () => {
 
       autocomplete.updateSearchTerm(group);
 
-      expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload)
+      expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload);
     });
 
     it('should not dispatch an update search term event if the event group does not match the component group', () => {
