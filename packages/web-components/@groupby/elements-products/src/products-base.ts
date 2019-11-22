@@ -6,7 +6,14 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-import { Product } from '@groupby/elements-events';
+import {
+  CACHE_REQUEST,
+  CACHE_RESPONSE_PREFIX,
+  CacheRequestPayload,
+  CacheResponsePayload,
+  Product,
+} from '@groupby/elements-events';
+import * as shortid from 'shortid';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
 
@@ -30,6 +37,12 @@ export default class ProductsBase extends Base {
   @property({ type: String, reflect: true }) group: string = '';
 
   /**
+   * A random string suitable for use in stable IDs related to a
+   * component.
+   */
+  protected componentId = shortid.generate();
+
+  /**
    * Sets the ARIA role to `list` if one is not already specified.
    */
   connectedCallback(): void {
@@ -38,6 +51,36 @@ export default class ProductsBase extends Base {
     if (!this.getAttribute('role')) {
       this.setAttribute('role', 'list');
     }
+  }
+
+  /**
+   * Requests initial data for the component.
+   *
+   * @param name The name of the initial cached data to return.
+   * @param group The name of the event group that the component belongs to.
+   * @param returnEvent The name of the event under which to dispatch the cached data.
+   */
+  requestInitialData(name: string, group: string, returnEvent: string): void {
+    const payload: CacheRequestPayload = { name, group, returnEvent };
+    this.dispatchElementsEvent<CacheRequestPayload>(CACHE_REQUEST, payload);
+  }
+
+  /**
+   * Receives an event for populating initial product data.
+   *
+   * @param event The event object.
+   */
+  setProductsFromCacheEvent(event: CustomEvent<CacheResponsePayload>): void {
+    const data = event.detail.data || {};
+    this.products = data.products || [];
+  }
+
+  /**
+   * Generates a string intended to be used as the name of the return event in
+   * cache requests for the component.
+   */
+  get cacheResponseEventName(): string {
+    return `${CACHE_RESPONSE_PREFIX}${this.tagName}-${this.componentId}`;
   }
 
   /**

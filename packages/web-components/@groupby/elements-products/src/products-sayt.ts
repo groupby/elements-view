@@ -1,8 +1,8 @@
 import { css, CSSResult, customElement } from 'lit-element';
 import {
   SAYT_PRODUCTS_RESPONSE,
-  Product,
   SaytProductsResponsePayload,
+  Product,
 } from '@groupby/elements-events';
 import { ProductsBase } from '.';
 
@@ -21,7 +21,8 @@ export default class ProductsSayt extends ProductsBase {
   constructor() {
     super();
 
-    this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
+    this.setProductsFromProductsEvent = this.setProductsFromProductsEvent.bind(this);
+    this.setProductsFromCacheEvent = this.setProductsFromCacheEvent.bind(this);
   }
 
   /**
@@ -30,7 +31,9 @@ export default class ProductsSayt extends ProductsBase {
   connectedCallback(): void {
     super.connectedCallback();
 
-    window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
+    window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromProductsEvent);
+    window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
+    this.requestInitialData(SAYT_PRODUCTS_RESPONSE, this.group, this.cacheResponseEventName);
   }
 
   /**
@@ -39,7 +42,8 @@ export default class ProductsSayt extends ProductsBase {
   disconnectedCallback(): void {
     super.disconnectedCallback();
 
-    window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromEvent);
+    window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromProductsEvent);
+    window.removeEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
   }
 
   /**
@@ -47,7 +51,7 @@ export default class ProductsSayt extends ProductsBase {
    *
    * @param event An event containing a search result with product data.
    */
-  setProductsFromEvent(event: CustomEvent<SaytProductsResponsePayload<Product>>): void {
+  setProductsFromProductsEvent(event: CustomEvent<SaytProductsResponsePayload<Product>>): void {
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
