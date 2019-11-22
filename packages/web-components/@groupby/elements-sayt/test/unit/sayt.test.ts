@@ -19,7 +19,6 @@ import {
   itShouldCallParentMethod,
 } from '../utils';
 import Sayt from '../../src/sayt';
-import { pbkdf2Sync } from 'crypto';
 
 describe('Sayt Component', () => {
   let sayt;
@@ -271,7 +270,7 @@ describe('Sayt Component', () => {
     it('should add an event listener if provided an `add` paramater and an input ID and it exists on the page', () => {
       const searchboxAddEventListener = spy();
       const windowAddEventListener = stub(window, 'addEventListener');
-      const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener, parentElement: {addEventListener: searchboxAddEventListener } });
+      const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener, parentElement: { addEventListener: searchboxAddEventListener } });
       const searchboxId = sayt.searchbox = 'searchbox1';
 
       sayt.setSearchboxListener(searchboxId, 'add');
@@ -286,7 +285,7 @@ describe('Sayt Component', () => {
     it('should remove an event listener if provided a `remove` paramater and an input ID and it exists on the page', () => {
       const searchboxRemoveEventListener = spy();
       const windowRemoveEventListener = stub(window, 'removeEventListener');
-      const getElementById = stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener,  parentElement: {removeEventListener: searchboxRemoveEventListener } });
+      const getElementById = stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener, parentElement: { removeEventListener: searchboxRemoveEventListener } });
       const searchboxId = sayt.searchbox = 'searchbox1';
 
       sayt.setSearchboxListener(searchboxId, 'remove');
@@ -1097,8 +1096,8 @@ describe('Sayt Component', () => {
       updateSearchTerm = spy();
       group = sayt.group = 'group-1';
       stub(sayt, 'querySelector')
-      .withArgs('[data-gbe-ref="autocomplete"]')
-      .returns({ updateSearchTerm, group });
+        .withArgs('[data-gbe-ref="autocomplete"]')
+        .returns({ updateSearchTerm, group });
     });
 
     it('should call the updateSearchTerm method on autocomplete when enter is pressed and the event target is within the searchbox component', () => {
