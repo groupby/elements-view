@@ -490,8 +490,8 @@ describe('Autcomplete Component', () => {
 
   describe('updateSearchTerm()', () => {
     it('should dispatch an update search term event if the event group matches the component group', () => {
+      stub(autocomplete, 'selectedTerm').get(() => 'dress');
       const group = autocomplete.group = 'group-1';
-      stub(autocomplete, 'selectedTerm').get(() => 'dress')
       const payload = {
         term: autocomplete.selectedTerm,
         group,
