@@ -276,14 +276,13 @@ export default class Autocomplete extends Base {
    * @param group The active component's event group.
    */
   updateSearchTerm(group: string): void {
-    if (group === this.group) {
-      const payload = {
-        term: this.selectedTerm,
-        group: this.group,
-        search: false,
-      };
-      this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
-    }
+    if (group !== this.group) return;
+    const payload = {
+      term: this.selectedTerm,
+      group: this.group,
+      search: false,
+    };
+    this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
   }
 
   /**

@@ -227,7 +227,7 @@ describe('Autcomplete Component', () => {
         {
           items: [
             { label: 'dress' },
-            { label: 'black dress' },
+            { label: term },
             { label: 'long dress' },
           ],
         },
@@ -489,9 +489,9 @@ describe('Autcomplete Component', () => {
   });
 
   describe('updateSearchTerm()', () => {
-    it('should dispatch an event with the selected term and group in the payload', () => {
-      const group = autocomplete.group = 'cat-club';
-      stub(autocomplete, 'selectedTerm').returns('cat toy lover');
+    it('should dispatch an update search term event if the event group matches the component group', () => {
+      const group = autocomplete.group = 'group-1';
+      stub(autocomplete, 'selectedTerm').get(() => 'dress')
       const payload = {
         term: autocomplete.selectedTerm,
         group,
@@ -502,6 +502,16 @@ describe('Autcomplete Component', () => {
       autocomplete.updateSearchTerm(group);
 
       expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload)
+    });
+
+    it('should not dispatch an update search term event if the event group does not match the component group', () => {
+      autocomplete.group = 'group-1';
+
+      const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
+
+      autocomplete.updateSearchTerm('group-2');
+
+      expect(dispatchElementsEvent).to.not.be.called;
     });
   });
 });
