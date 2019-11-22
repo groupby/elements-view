@@ -19,6 +19,7 @@ import {
   itShouldCallParentMethod,
 } from '../utils';
 import Sayt from '../../src/sayt';
+import { pbkdf2Sync } from 'crypto';
 
 describe('Sayt Component', () => {
   let sayt;
@@ -136,7 +137,12 @@ describe('Sayt Component', () => {
     });
 
     it('should add an event listener to the searchbox parent element', () => {
-      // not sure best approach to test this... need to access the node?
+      const searchboxParentAddEventListener = spy();
+      const parentElement = spy();
+      const searchboxId = sayt.searchbox = 'searchbox1';
+      const getElementById = stub(document, 'getElementById').returns({ parentElement });
+
+      const addEventListener = stub(searchboxParent, 'addEventListener')
     })
 
     it('should set the ARIA attributes for the paired searchbox', () => {
@@ -973,8 +979,6 @@ describe('Sayt Component', () => {
     it('should select the previous autocomplete item', () => {
       sayt.selectPreviousAutocompleteTerm();
 
-      console.log(selectPrevious, 'selectPrevious')
-
       expect(selectPrevious).to.be.called;
     });
 
@@ -1096,17 +1100,17 @@ describe('Sayt Component', () => {
     let updateSearchTerm;
     let group;
 
-
     beforeEach(() => {
       updateSearchTerm = spy();
-      group = sayt.group = 'ducks';
+      group = sayt.group = 'group-1';
       stub(sayt, 'querySelector')
       .withArgs('[data-gbe-ref="autocomplete"]')
       .returns({ updateSearchTerm, group });
     });
 
-    it('should call the updateSearchTerm method on autocomplete with the component group when enter is pressed and the event target is within the searchbox component', () => {
+    it('should call the updateSearchTerm method on autocomplete when enter is pressed and the event target is within the searchbox component', () => {
       stub(sayt, 'nodeInSearchbox').returns(true);
+
       sayt.requestUpdateSearchTerm({ key: 'Enter' });
 
       expect(updateSearchTerm).to.be.calledWith(group);
@@ -1114,6 +1118,7 @@ describe('Sayt Component', () => {
 
     it('should not call the updateSearchTerm method on autocomplete if a key other than enter is pressed', () => {
       stub(sayt, 'nodeInSearchbox').returns(true);
+
       sayt.requestUpdateSearchTerm({ key: 'Z' });
 
       expect(updateSearchTerm).to.not.be.called;

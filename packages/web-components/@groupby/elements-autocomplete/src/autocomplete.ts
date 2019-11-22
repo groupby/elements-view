@@ -271,7 +271,7 @@ export default class Autocomplete extends Base {
   }
 
   /**
-   * Emits an [[UPDATE_SEARCH_TERM]] event with the selected autocomplete term, and the flag to not trigger a search.
+   * Emits an [[UPDATE_SEARCH_TERM]] event with the selected autocomplete term, and a flag to not trigger a search.
    *
    * @param group The active component's event group.
    */
