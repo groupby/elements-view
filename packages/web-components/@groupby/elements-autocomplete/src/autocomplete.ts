@@ -177,10 +177,9 @@ export default class Autocomplete extends Base {
    * @param event The event object.
    */
   receiveInitialData(event: CustomEvent<CacheResponsePayload>): void {
+    if (this._initialized) return;
     const data = event.detail.data || {};
-    if (!this._initialized) {
-      this.results = data.results || [];
-    }
+    this.results = data.results || [];
   }
 
   /**
