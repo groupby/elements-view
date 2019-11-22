@@ -316,7 +316,7 @@ describe('Products Search Component', () => {
     });
 
     it('should set products when the event matches the group in the component', () => {
-      const event = { detail: { results: { products }, group } };
+      const event = { detail: { products, group } };
       component.group = group;
 
       component.setProductsFromProductsEvent(event);
@@ -325,7 +325,7 @@ describe('Products Search Component', () => {
     });
 
     it('should not set products when the group in the component and event do not match', () => {
-      const event = { detail: { results: { products }, group } };
+      const event = { detail: { products, group } };
 
       component.setProductsFromProductsEvent(event);
 
@@ -333,7 +333,7 @@ describe('Products Search Component', () => {
     });
 
     it('should default the group in the event to an empty string if it is falsey', () => {
-      const event = { detail: { results: { products } } };
+      const event = { detail: { products } };
 
       component.setProductsFromProductsEvent(event);
 
@@ -342,7 +342,7 @@ describe('Products Search Component', () => {
 
     it('should default the group in the component to an empty string if it is falsey', () => {
       component.group = undefined;
-      const event = { detail: { results: { products } } };
+      const event = { detail: { products } };
 
       component.setProductsFromProductsEvent(event);
 
