@@ -402,6 +402,7 @@ export default class Sayt extends Base {
           area: this.area,
           collection: this.collection,
         },
+        // @TODO Add origin key-value here if defined
       },
       bubbles: true,
     });
@@ -423,6 +424,7 @@ export default class Sayt extends Base {
    * @param query The search term to use.
    */
   requestSaytProducts(query: string): void {
+    // @TODO Accept origin: string and pass it to dispatchRequestEvent
     this.dispatchRequestEvent(SAYT_PRODUCTS_REQUEST, query);
   }
 
@@ -434,6 +436,7 @@ export default class Sayt extends Base {
    */
   handleAutocompleteTermHover(event: CustomEvent<AutocompleteActiveTermPayload>): void {
     if (this.isCorrectSayt(event)) {
+      // @TODO Pass origin: 'sayt' into debouncedRequestSaytProducts
       this.debouncedRequestSaytProducts(event.detail.query);
     }
   }

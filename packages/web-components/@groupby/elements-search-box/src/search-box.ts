@@ -88,13 +88,15 @@ export default class SearchBox extends Base {
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
   emitSearchEvent(): void {
+    // @TODO Accept origin: string parameter that defaults to 'search'
     const searchboxRequestEvent = this.createCustomEvent<SearchRequestPayload>(SEARCH_REQUEST, {
       query: this.value,
       config: {
         area: this.area,
         collection: this.collection,
       },
-    });
+    // @TODO Pass origin property
+  });
     this.dispatchEvent(searchboxRequestEvent);
   }
 
@@ -117,12 +119,14 @@ export default class SearchBox extends Base {
    * @param e The event object.
    */
   updateSearch(e: CustomEvent<UpdateSearchTermPayload>): void {
+    // @TODO Get origin property from event.detail
     const eventGroup = e.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup !== componentGroup) return;
 
     this.updateSearchTermValue(e.detail.term);
     if (e.detail.search) {
+      // @TODO Pass origin argument
       this.emitSearchEvent();
     }
   }
@@ -152,6 +156,8 @@ export default class SearchBox extends Base {
    */
   handleKeydown(e: KeyboardEvent): void {
     if (e.key === 'Enter' && this.value.length > 0) {
+      // @TODO For now, assume origin = 'search' (no passing needed)
+      // @TODO Future: Determine if Autocomplete term was clicked by checking state
       this.emitSearchEvent();
     }
   }
