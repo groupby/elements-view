@@ -244,7 +244,7 @@ describe('Autcomplete Component', () => {
 
     it('should return null if the selectedIndex is greater or equal to the item count', () => {
       autocomplete.selectedIndex = 5;
-      stub(autocomplete, 'itemCount').returns(4);
+      stub(autocomplete, 'itemCount').get(() => 4);
 
       expect(autocomplete.selectedTerm).to.equal(null);
     });

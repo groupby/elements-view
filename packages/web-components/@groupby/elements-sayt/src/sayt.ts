@@ -126,7 +126,7 @@ export default class Sayt extends Base {
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
     this.setDebouncedMethods = this.setDebouncedMethods.bind(this);
-    this.requestUpdateSearchTerm = this.requestUpdateSearchTerm.bind(this);
+    this.updateSearchboxInputTerm = this.updateSearchboxInputTerm.bind(this);
 
     this.setDebouncedMethods();
   }
@@ -226,7 +226,7 @@ export default class Sayt extends Base {
       if (searchbox) {
         searchbox[setEventListener]('input', this.processSearchboxInput);
         searchbox[setEventListener]('keydown', this.changeSelection);
-        searchbox.parentElement[setEventListener]('keydown', this.requestUpdateSearchTerm, true);
+        searchbox.parentElement[setEventListener]('keydown', this.updateSearchboxInputTerm, true);
       }
     } else {
       window[setEventListener](SEARCHBOX_INPUT, this.processElementsSearchboxChange);
@@ -234,12 +234,12 @@ export default class Sayt extends Base {
   }
 
   /**
-   * Calls the [[updateSearchTerm]] method on autocomplete, with the active component's event group when a user presses
-   * enter on an autocomplete term.
+   * Processes a keyboard event from the searchbox component's parent element, in order to update the search term in the input box.
+   * The `updateSearchTerm` method on autocomplete is called in response to an 'Enter' keyboard event.
    *
    * @param event The KeyboardEvent object.
    */
-  requestUpdateSearchTerm(event: KeyboardEvent): void {
+  updateSearchboxInputTerm(event: KeyboardEvent): void {
     if (event.key === 'Enter' && this.nodeInSearchbox(event.target as Node)) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');

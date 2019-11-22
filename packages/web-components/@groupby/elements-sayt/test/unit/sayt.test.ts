@@ -278,7 +278,7 @@ describe('Sayt Component', () => {
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
       expect(searchboxAddEventListener).to.be.calledWith('keydown', sayt.changeSelection);
-      expect(searchboxAddEventListener).to.be.calledWith('keydown', sayt.requestUpdateSearchTerm, true);
+      expect(searchboxAddEventListener).to.be.calledWith('keydown', sayt.updateSearchboxInputTerm, true);
       expect(windowAddEventListener).to.not.be.calledWith(SEARCHBOX_INPUT);
     });
 
@@ -293,7 +293,7 @@ describe('Sayt Component', () => {
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxRemoveEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
       expect(searchboxRemoveEventListener).to.be.calledWith('keydown', sayt.changeSelection);
-      expect(searchboxRemoveEventListener).to.be.calledWith('keydown', sayt.requestUpdateSearchTerm, true);
+      expect(searchboxRemoveEventListener).to.be.calledWith('keydown', sayt.updateSearchboxInputTerm, true);
       expect(windowRemoveEventListener).to.not.be.calledWith(SEARCHBOX_INPUT);
     });
 
@@ -1088,7 +1088,7 @@ describe('Sayt Component', () => {
     });
   });
 
-  describe('requestUpdateSearchTerm()', () => {
+  describe('updateSearchboxInputTerm()', () => {
     let updateSearchTerm;
     let group;
 
@@ -1103,7 +1103,7 @@ describe('Sayt Component', () => {
     it('should call the updateSearchTerm method on autocomplete when enter is pressed and the event target is within the searchbox component', () => {
       stub(sayt, 'nodeInSearchbox').returns(true);
 
-      sayt.requestUpdateSearchTerm({ key: 'Enter' });
+      sayt.updateSearchboxInputTerm({ key: 'Enter' });
 
       expect(updateSearchTerm).to.be.calledWith(group);
     });
@@ -1111,7 +1111,7 @@ describe('Sayt Component', () => {
     it('should not call the updateSearchTerm method on autocomplete if a key other than enter is pressed', () => {
       stub(sayt, 'nodeInSearchbox').returns(true);
 
-      sayt.requestUpdateSearchTerm({ key: 'Z' });
+      sayt.updateSearchboxInputTerm({ key: 'Z' });
 
       expect(updateSearchTerm).to.not.be.called;
     });
@@ -1119,7 +1119,7 @@ describe('Sayt Component', () => {
     it('should not call the updateSearchTerm method on autocomplete if the event node is not a child of searchbox', () => {
       stub(sayt, 'nodeInSearchbox').returns(false);
 
-      sayt.requestUpdateSearchTerm({ key: 'Enter' });
+      sayt.updateSearchboxInputTerm({ key: 'Enter' });
 
       expect(updateSearchTerm).to.not.be.called;
     });

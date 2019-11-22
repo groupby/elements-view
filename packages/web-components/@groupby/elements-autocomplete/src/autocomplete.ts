@@ -115,8 +115,7 @@ export default class Autocomplete extends Base {
   }
 
   /**
-   * The active autocomplete term.
-   * The term is considered active through user interactions via keyboard and mouse events.
+   * Returns the string value of the selected autocomplete item. If no item is selected, null is returned.
    */
   get selectedTerm(): string {
     if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return null;
