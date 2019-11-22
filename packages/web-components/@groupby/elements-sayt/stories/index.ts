@@ -13,6 +13,7 @@ import {
   SAYT_HIDE,
   SAYT_SHOW,
   AutocompleteResponsePayload,
+  UPDATE_SEARCH_TERM,
 } from '@groupby/elements-events';
 import '../src';
 import {
@@ -23,7 +24,18 @@ import {
   autocompleteResults,
   hidePrompt,
   StorybookCustomEvent,
+  addStorybookListeners,
 } from '../../../../../.storybook/common';
+
+addStorybookListeners([
+  AUTOCOMPLETE_REQUEST,
+  AUTOCOMPLETE_RESPONSE,
+  SAYT_PRODUCTS_REQUEST,
+  SAYT_PRODUCTS_RESPONSE,
+  SAYT_HIDE,
+  SAYT_SHOW,
+  UPDATE_SEARCH_TERM,
+]);
 
 const saytNotesMarkdownIntro = ` # GroupBy Elements SAYT Component
 
@@ -272,7 +284,6 @@ storiesOf('Components|SAYT', module)
               1. Open SAYT, click the input element.
               2. Observe that the SAYT component remains open.
 
-
           ### Example of the SAYT component with a standard input element
 
 
@@ -294,6 +305,17 @@ storiesOf('Components|SAYT', module)
               3. Click in the searchbox.
               4. Press the Up and Down arrow keys.
               5. Observe that the autocomplete selection changes.
+
+
+          ### The SAYT component paired with a searchbox will update the search term when an autocomplete term is selected by keypress.
+            * When the SAYT autocomplete is open, pressing enter on an autocomplete term will emit an \`${UPDATE_SEARCH_TERM}\` event.
+              * This event will contain the autocomplete term with a flag to not trigger a new search as the payload.
+              * The search-box component will subsequently trigger a search.
+            * To demonstrate in this story:
+              1. Visit the **Custom Events** panel, locate the \`${AUTOCOMPLETE_RESPONSE}\` event.
+              2. Visit the **Events Logger** panel.
+              3. Click in the searchbox.
+              4. Navigate to an autocomplete term, press enter, and observe the \`${UPDATE_SEARCH_TERM}\` event that has been emitted.
 
 
           ### The SAYT component paired with a searchbox component will be accessible.

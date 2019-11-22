@@ -114,14 +114,6 @@ storiesOf('Components|Autocomplete', module)
           * To demonstrate in this story:
             1. Visit the **Events Logger** panel.
             2. Click on an autocomplete term and observe the \`${UPDATE_SEARCH_TERM}\` event that has been emitted.
-
-          ### The Autocomplete component will update the search term when an autocomplete term is selected by using the keyboard.
-          * Pressing enter on an autocomplete term will emit an \`${UPDATE_SEARCH_TERM}\` event.
-            * This event will contain the autocomplete term with a flag to not trigger a new search as the payload.
-            * The search-box component will subsequently trigger a search.
-          * To demonstrate in this story:
-            1. Visit the **Events Logger** panel.
-            2. Navigate to an autocomplete term, press enter, and observe the \`${UPDATE_SEARCH_TERM}\` event that has been emitted.
         `,
       },
     }
