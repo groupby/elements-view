@@ -284,6 +284,7 @@ storiesOf('Components|SAYT', module)
               1. Open SAYT, click the input element.
               2. Observe that the SAYT component remains open.
 
+
           ### Example of the SAYT component with a standard input element
 
 
@@ -307,8 +308,8 @@ storiesOf('Components|SAYT', module)
               5. Observe that the autocomplete selection changes.
 
 
-          ### The SAYT component paired with a searchbox will update the search term when an autocomplete term is selected by keypress.
-            * When the SAYT autocomplete is open, pressing enter on an autocomplete term will emit an \`${UPDATE_SEARCH_TERM}\` event.
+          ### The SAYT component paired with a searchbox will update the search term when an autocomplete term is selected by keydown.
+            * Pressing enter on an autocomplete term will emit an \`${UPDATE_SEARCH_TERM}\` event.
               * This event will contain the autocomplete term with a flag to not trigger a new search as the payload.
               * The search-box component will subsequently trigger a search.
             * To demonstrate in this story:
