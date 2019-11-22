@@ -136,15 +136,6 @@ describe('Sayt Component', () => {
       expect(addEventListener).to.be.calledWith(AUTOCOMPLETE_ACTIVE_TERM, sayt.handleAutocompleteTermHover);
     });
 
-    it('should add an event listener to the searchbox parent element', () => {
-      const searchboxParentAddEventListener = spy();
-      const parentElement = spy();
-      const searchboxId = sayt.searchbox = 'searchbox1';
-      const getElementById = stub(document, 'getElementById').returns({ parentElement });
-
-      const addEventListener = stub(searchboxParent, 'addEventListener')
-    })
-
     it('should set the ARIA attributes for the paired searchbox', () => {
       const setInitialSearchboxAttributes = stub(sayt, 'setInitialSearchboxAttributes');
 
@@ -280,7 +271,7 @@ describe('Sayt Component', () => {
     it('should add an event listener if provided an `add` paramater and an input ID and it exists on the page', () => {
       const searchboxAddEventListener = spy();
       const windowAddEventListener = stub(window, 'addEventListener');
-      const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
+      const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener, parentElement: {addEventListener: searchboxAddEventListener } });
       const searchboxId = sayt.searchbox = 'searchbox1';
 
       sayt.setSearchboxListener(searchboxId, 'add');
@@ -288,13 +279,14 @@ describe('Sayt Component', () => {
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
       expect(searchboxAddEventListener).to.be.calledWith('keydown', sayt.changeSelection);
+      expect(searchboxAddEventListener).to.be.calledWith('keydown', sayt.requestUpdateSearchTerm, true);
       expect(windowAddEventListener).to.not.be.calledWith(SEARCHBOX_INPUT);
     });
 
     it('should remove an event listener if provided a `remove` paramater and an input ID and it exists on the page', () => {
       const searchboxRemoveEventListener = spy();
       const windowRemoveEventListener = stub(window, 'removeEventListener');
-      const getElementById = stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener });
+      const getElementById = stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener,  parentElement: {removeEventListener: searchboxRemoveEventListener } });
       const searchboxId = sayt.searchbox = 'searchbox1';
 
       sayt.setSearchboxListener(searchboxId, 'remove');
@@ -302,6 +294,7 @@ describe('Sayt Component', () => {
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxRemoveEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
       expect(searchboxRemoveEventListener).to.be.calledWith('keydown', sayt.changeSelection);
+      expect(searchboxRemoveEventListener).to.be.calledWith('keydown', sayt.requestUpdateSearchTerm, true);
       expect(windowRemoveEventListener).to.not.be.calledWith(SEARCHBOX_INPUT);
     });
 
