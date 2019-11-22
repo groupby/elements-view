@@ -137,12 +137,6 @@ export default class Sayt extends Base {
   connectedCallback(): void {
     super.connectedCallback();
 
-    if (this.searchbox) {
-      const searchbox = document.getElementById(this.searchbox);
-      const searchboxParent = searchbox.parentElement;
-      searchboxParent.addEventListener('keydown', this.requestUpdateSearchTerm, true);
-    }
-
     window.addEventListener(SAYT_SHOW, this.showCorrectSayt);
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.showCorrectSayt);
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.showCorrectSayt);
@@ -162,11 +156,6 @@ export default class Sayt extends Base {
   disconnectedCallback(): void {
     super.disconnectedCallback();
 
-    if (this.searchbox) {
-    const searchbox = document.getElementById(this.searchbox);
-    const searchboxParent = searchbox.parentElement;
-    searchboxParent.addEventListener('keydown', this.requestUpdateSearchTerm, true);
-    }
     window.removeEventListener(SAYT_SHOW, this.showCorrectSayt);
     window.removeEventListener(AUTOCOMPLETE_RESPONSE, this.showCorrectSayt);
     window.removeEventListener(SAYT_PRODUCTS_RESPONSE, this.showCorrectSayt);
@@ -236,6 +225,7 @@ export default class Sayt extends Base {
       if (searchbox) {
         searchbox[setEventListener]('input', this.processSearchboxInput);
         searchbox[setEventListener]('keydown', this.changeSelection);
+        searchbox.parentElement[setEventListener]('keydown', this.requestUpdateSearchTerm, true);
       }
     } else {
       window[setEventListener](SEARCHBOX_INPUT, this.processElementsSearchboxChange);
