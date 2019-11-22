@@ -505,9 +505,8 @@ describe('Autcomplete Component', () => {
     });
 
     it('should not dispatch an update search term event if the event group does not match the component group', () => {
-      autocomplete.group = 'group-1';
-
       const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
+      autocomplete.group = 'group-1';
 
       autocomplete.updateSearchTerm('group-2');
 
