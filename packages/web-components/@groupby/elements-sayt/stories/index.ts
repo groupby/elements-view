@@ -12,8 +12,8 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SAYT_HIDE,
   SAYT_SHOW,
-  AutocompleteResponsePayload,
   UPDATE_SEARCH_TERM,
+  AutocompleteResponsePayload,
 } from '@groupby/elements-events';
 import '../src';
 import {
