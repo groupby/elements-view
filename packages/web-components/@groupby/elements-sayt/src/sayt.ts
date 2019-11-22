@@ -23,6 +23,7 @@ import {
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Autocomplete } from '@groupby/elements-autocomplete';
 
 /**
@@ -243,7 +244,6 @@ export default class Sayt extends Base {
    */
   updateSearchboxInputTerm(event: KeyboardEvent): void {
     if (event.key === 'Enter' && this.nodeInSearchbox(event.target as Node)) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const autocomplete = this.querySelector<Autocomplete>('[data-gbe-ref="autocomplete"]');
       autocomplete.updateSearchTerm(this.group);
     }
