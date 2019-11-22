@@ -15,7 +15,7 @@ import {
 } from '@groupby/elements-events';
 import * as shortid from 'shortid';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@groupby/elements-base';
+import { Base, dataInitializer } from '@groupby/elements-base';
 
 /**
  * The `gbe-products-base` web component wraps and renders a number of
@@ -27,7 +27,9 @@ export default class ProductsBase extends Base {
   /**
    * The product data to be rendered.
    */
-  @property({ type: Array }) products: Product[] = [];
+  @dataInitializer('_initialize')
+  @property({ type: Array })
+  products: Product[] = [];
 
   /**
    * The name of the event group that this component belongs to.
