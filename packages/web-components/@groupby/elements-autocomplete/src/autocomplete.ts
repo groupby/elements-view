@@ -276,7 +276,7 @@ export default class Autocomplete extends Base {
    */
   updateSearchTerm(group: string): void {
     if (group !== this.group) return;
-    const payload = {
+    const payload: UpdateSearchTermPayload = {
       term: this.selectedTerm,
       group: this.group,
       search: false,
