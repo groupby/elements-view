@@ -69,10 +69,12 @@ export default class ProductsBase extends Base {
 
   /**
    * Receives an event for populating initial product data.
+   * Will not populate it if the product data has already been initialized.
    *
    * @param event The event object.
    */
   setProductsFromCacheEvent(event: CustomEvent<CacheResponsePayload>): void {
+    if (this._initialized) return;
     const data = event.detail.data || {};
     this.products = data.products || [];
   }

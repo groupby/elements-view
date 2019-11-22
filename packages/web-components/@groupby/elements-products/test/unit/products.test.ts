@@ -74,8 +74,15 @@ describe('Products Base Component', () => {
   });
 
   describe('setProductsFromCacheEvent', () => {
+    let event;
+    let products;
+
+    beforeEach(() => {
+      products = [1, 2, 3];
+      event = { detail: { data: { products } } };
+    });
     it('should set products to an empty array if the event payload does not contain products', () => {
-      const event = { detail: { data: { products: [] } } };
+      event.detail.data.products = [];
 
       component.setProductsFromCacheEvent(event);
 
@@ -83,12 +90,17 @@ describe('Products Base Component', () => {
     });
 
     it('should set products if given an event payload that contains products', () => {
-      const products = [1, 2, 3];
-      const event = { detail: { data: { products } } };
-
       component.setProductsFromCacheEvent(event);
 
       expect(component.products).to.equal(products);
+    });
+
+    it('should not set products if they have already been inititalized', () => {
+      component._initialized = true;
+
+      component.setProductsFromCacheEvent(event);
+
+      expect(component.products).to.deep.equal([]);
     });
   });
 
