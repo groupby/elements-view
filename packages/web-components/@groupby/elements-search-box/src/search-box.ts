@@ -74,7 +74,6 @@ export default class SearchBox extends Base {
    */
   connectedCallback(): void {
     super.connectedCallback();
-
     window.addEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
   }
 
@@ -83,7 +82,6 @@ export default class SearchBox extends Base {
    */
   disconnectedCallback(): void {
     super.disconnectedCallback();
-
     window.removeEventListener(UPDATE_SEARCH_TERM, this.updateSearch);
   }
 
