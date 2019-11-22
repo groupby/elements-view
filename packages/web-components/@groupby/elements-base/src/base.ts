@@ -26,9 +26,10 @@ export default abstract class Base extends LitElement {
  * It will extend the property's setter to set the initialization state to true.
  * This expects that the property already has defined accessors and a default value.
  *
- * @param initialized The name of the initialization property.
+ * @param initProperty The name of the initialization property. Has a default value
+ * of "_initialized".
  */
-export function dataInitializer(initialized: string): PropertyDecorator {
+export function dataInitializer(initProperty: string = '_initialized'): PropertyDecorator {
   // eslint-disable-next-line func-names
   return function(target: object, propertyName: string): void {
     const oldDescriptor = Object.getOwnPropertyDescriptor(target, propertyName);
@@ -37,7 +38,7 @@ export function dataInitializer(initialized: string): PropertyDecorator {
     function decoratedSetter(newVal: any): void {
       oldDescriptor.set.call(this, newVal);
       if (instanceMap.get(this)) {
-        this[initialized] = true;
+        this[initProperty] = true;
       } else {
         instanceMap.set(this, true);
       }

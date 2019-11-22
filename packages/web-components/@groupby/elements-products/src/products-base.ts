@@ -27,9 +27,7 @@ export default class ProductsBase extends Base {
   /**
    * The product data to be rendered.
    */
-  @dataInitializer('_initialize')
-  @property({ type: Array })
-  products: Product[] = [];
+  @dataInitializer() @property({ type: Array })products: Product[] = [];
 
   /**
    * The name of the event group that this component belongs to.
