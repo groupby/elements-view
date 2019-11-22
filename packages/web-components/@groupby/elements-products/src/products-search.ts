@@ -31,8 +31,10 @@ export default class ProductsSearch extends ProductsBase {
   connectedCallback(): void {
     super.connectedCallback();
     window.addEventListener(SEARCH_RESPONSE, this.setProductsFromProductsEvent);
-    window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
-    this.requestInitialData(SEARCH_RESPONSE, this.group, this.cacheResponseEventName);
+    if (!this._initialized) {
+      window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
+      this.requestInitialData(SEARCH_RESPONSE, this.group, this.cacheResponseEventName);
+    }
   }
 
   /**
