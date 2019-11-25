@@ -28,7 +28,7 @@
     "html-entities": "^1.2.1"
   },
   "dependencies": {
-    "@groupby/elements-events": "groupby/elements-events#1696267a35450b9644d3bfa5cfc824bcb2bc8978",
+    "@groupby/elements-events": "groupby/elements-events#66ab6ebc4b2786f65ffc8ae64d3facbd2e628065",
     "@types/debounce": "^1.2.0",
     "debounce": "^1.2.0",
     "lit-element": "^2.2.0",

@@ -831,9 +831,9 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.4.tgz#622a72bebd1e3f48d921563b4b60a762295a81fc"
   integrity sha512-6PYY5DVdAY1ifaQW6XYTnOMihmBVT27elqSjEoodchsGjzYlEsTQMcEhSud99kVawatyTZRTiVkJ/c6lwbQ7nA==
 
-"@groupby/elements-events@groupby/elements-events#1696267a35450b9644d3bfa5cfc824bcb2bc8978":
+"@groupby/elements-events@groupby/elements-events#66ab6ebc4b2786f65ffc8ae64d3facbd2e628065":
   version "0.0.0"
-  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/1696267a35450b9644d3bfa5cfc824bcb2bc8978"
+  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/66ab6ebc4b2786f65ffc8ae64d3facbd2e628065"
   dependencies:
     groupby-api "^2.6.2"
     sayt "^0.1.9"

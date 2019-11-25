@@ -129,9 +129,7 @@ export const generateSearchResponseEvent = (productCount: number, group?: string
   return {
     name: SEARCH_RESPONSE,
     payload: {
-      results: {
-        records: getProducts(productCount)
-      },
+      products: getProducts(productCount),
       group,
     }
   }
