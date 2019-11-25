@@ -238,15 +238,16 @@ export default class Sayt extends Base {
   /**
    * Processes a keyboard event from the searchbox component's parent element, in order to update the search term
    * in the input box.
-   * The `updateSearchTerm` method on autocomplete is called in response to the keyboard event key `enter`.
+   * The `updateSearchTerm` method on autocomplete is called in response to the keyboard event key `Enter`.
    *
    * @param event The KeyboardEvent object.
    */
   updateSearchboxInputTerm(event: KeyboardEvent): void {
-    if (event.key === 'Enter' && this.nodeInSearchbox(event.target as Node)) {
+    if (event.key !== 'Enter' || !this.nodeInSearchbox(event.target as Node)) return;
+    // if (event.key === 'Enter' && this.nodeInSearchbox(event.target as Node)) {
       const autocomplete = this.querySelector<Autocomplete>('[data-gbe-ref="autocomplete"]');
-      autocomplete.updateSearchTerm(this.group);
-    }
+      autocomplete.requestUpdateSearchTerm(this.group);
+    // }
   }
 
   /**

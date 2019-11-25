@@ -1089,39 +1089,39 @@ describe('Sayt Component', () => {
   });
 
   describe('updateSearchboxInputTerm()', () => {
-    let updateSearchTerm;
+    let requestUpdateSearchTerm;
     let group;
 
     beforeEach(() => {
-      updateSearchTerm = spy();
+      requestUpdateSearchTerm = spy();
       group = sayt.group = 'group-1';
       stub(sayt, 'querySelector')
         .withArgs('[data-gbe-ref="autocomplete"]')
-        .returns({ updateSearchTerm, group });
+        .returns({ requestUpdateSearchTerm, group });
     });
 
-    it('should call the updateSearchTerm method on autocomplete when enter is pressed and the event target is within the searchbox component', () => {
+    it('should call the requestUpdateSearchTerm method on autocomplete when enter is pressed and the event target is within the searchbox component', () => {
       stub(sayt, 'nodeInSearchbox').returns(true);
 
       sayt.updateSearchboxInputTerm({ key: 'Enter' });
 
-      expect(updateSearchTerm).to.be.calledWith(group);
+      expect(requestUpdateSearchTerm).to.be.calledWith(group);
     });
 
-    it('should not call the updateSearchTerm method on autocomplete if a key other than enter is pressed', () => {
+    it('should not call the requestUpdateSearchTerm method on autocomplete if a key other than enter is pressed', () => {
       stub(sayt, 'nodeInSearchbox').returns(true);
 
       sayt.updateSearchboxInputTerm({ key: 'Z' });
 
-      expect(updateSearchTerm).to.not.be.called;
+      expect(requestUpdateSearchTerm).to.not.be.called;
     });
 
-    it('should not call the updateSearchTerm method on autocomplete if the event node is not a child of searchbox', () => {
+    it('should not call the requestUpdateSearchTerm method on autocomplete if the event node is not a child of searchbox', () => {
       stub(sayt, 'nodeInSearchbox').returns(false);
 
       sayt.updateSearchboxInputTerm({ key: 'Enter' });
 
-      expect(updateSearchTerm).to.not.be.called;
+      expect(requestUpdateSearchTerm).to.not.be.called;
     });
   });
 });

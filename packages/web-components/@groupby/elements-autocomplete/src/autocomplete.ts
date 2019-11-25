@@ -72,7 +72,7 @@ export default class Autocomplete extends Base {
     this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
     this.receiveInitialData = this.receiveInitialData.bind(this);
     this.sendUpdateSearchEvent = this.sendUpdateSearchEvent.bind(this);
-    this.updateSearchTerm = this.updateSearchTerm.bind(this);
+    this.requestUpdateSearchTerm = this.requestUpdateSearchTerm.bind(this);
   }
 
   /**
@@ -117,13 +117,13 @@ export default class Autocomplete extends Base {
   /**
    * Returns the string value of the selected autocomplete item. If no item is selected, null is returned.
    */
-  get selectedTerm(): string {
+  get selectedItem(): AutocompleteSearchTermItem | null {
     if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return null;
 
     const allItems = this.results
       .map((group) => group.items)
       .reduce((accItems, items) => [...accItems, ...items], []);
-    return allItems[this.selectedIndex].label || null;
+    return allItems[this.selectedIndex] || null;
   }
 
   /**
@@ -209,7 +209,7 @@ export default class Autocomplete extends Base {
     if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
 
     const payload: AutocompleteActiveTermPayload = {
-      query: this.selectedTerm,
+      query: this.selectedItem.label,
       group: this.group,
     };
     this.dispatchElementsEvent(AUTOCOMPLETE_ACTIVE_TERM, payload);
@@ -270,14 +270,14 @@ export default class Autocomplete extends Base {
   }
 
   /**
-   * Emits an [[UPDATE_SEARCH_TERM]] event with the selected autocomplete term, and a flag to not trigger a search.
+   * Emits an [[UPDATE_SEARCH_TERM]] event to update the current search term to the selected autocomplete term.
    *
    * @param group The active component's event group.
    */
-  updateSearchTerm(group: string): void {
+  requestUpdateSearchTerm(group: string): void {
     if (group !== this.group) return;
     const payload: UpdateSearchTermPayload = {
-      term: this.selectedTerm,
+      term: this.selectedItem.label,
       group: this.group,
       search: false,
     };
