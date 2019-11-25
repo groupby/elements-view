@@ -238,7 +238,7 @@ export default class Sayt extends Base {
   /**
    * Processes a keyboard event from the searchbox component's parent element, in order to update the search term
    * in the input box.
-   * The `updateSearchTerm` method on autocomplete is called in response to an 'Enter' keyboard event.
+   * The `updateSearchTerm` method on autocomplete is called in response to the keyboard event key `enter`.
    *
    * @param event The KeyboardEvent object.
    */
