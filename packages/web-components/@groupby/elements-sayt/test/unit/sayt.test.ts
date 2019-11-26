@@ -1098,14 +1098,12 @@ describe('Sayt Component', () => {
 
   describe('updateSearchboxInputTerm()', () => {
     let requestUpdateSearchTerm;
-    let group;
 
     beforeEach(() => {
       requestUpdateSearchTerm = spy();
-      group = sayt.group = 'group-1';
       stub(sayt, 'querySelector')
         .withArgs('[data-gbe-ref="autocomplete"]')
-        .returns({ requestUpdateSearchTerm, group });
+        .returns({ requestUpdateSearchTerm });
     });
 
     it('should call the requestUpdateSearchTerm method on autocomplete when enter is pressed and the event target is within the searchbox component', () => {
@@ -1113,7 +1111,7 @@ describe('Sayt Component', () => {
 
       sayt.updateSearchboxInputTerm({ key: 'Enter' });
 
-      expect(requestUpdateSearchTerm).to.be.calledWith(group);
+      expect(requestUpdateSearchTerm).to.be.called;
     });
 
     it('should not call the requestUpdateSearchTerm method on autocomplete if a key other than enter is pressed', () => {
