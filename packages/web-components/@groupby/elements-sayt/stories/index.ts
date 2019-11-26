@@ -308,15 +308,15 @@ storiesOf('Components|SAYT', module)
               5. Observe that the autocomplete selection changes.
 
 
-          ### The SAYT component paired with a searchbox will update the search term when an autocomplete term is selected by keydown.
+          ### The SAYT component paired with a searchbox will update the search term when an autocomplete term is selected by pressing the Enter key.
             * Pressing enter on an autocomplete term will emit an \`${UPDATE_SEARCH_TERM}\` event.
               * The payload of this event will contain the autocomplete term and a flag to not trigger a new search (the search-box manages the search request).
               * The search-box component will subsequently trigger a search as per usual.
             * To demonstrate in this story:
-              1. Visit the **Custom Events** panel and locate the \`${AUTOCOMPLETE_RESPONSE}\` event.
+              1. Visit the **Custom Events** panel and emit the \`${AUTOCOMPLETE_RESPONSE}\` event.
               2. Visit the **Events Logger** panel.
               3. Click in the searchbox.
-              4. Navigate to an autocomplete term, press enter, and observe the \`${UPDATE_SEARCH_TERM}\` event that has been emitted.
+              4. Navigate to an autocomplete term, press Enter, and observe the \`${UPDATE_SEARCH_TERM}\` event that has been emitted.
 
 
           ### The SAYT component paired with a searchbox component will be accessible.
