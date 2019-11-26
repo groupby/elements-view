@@ -1131,6 +1131,7 @@ describe('Sayt Component', () => {
     });
 
     it('should not attempt to call the requestUpdateSearch term method on autocomplete if autocomplete does not exist', () => {
+      stub(sayt, 'nodeInSearchbox').returns(true);
       sayt.querySelector.restore();
       stub(sayt, 'querySelector')
         .withArgs('[data-gbe-ref="autocomplete"]')

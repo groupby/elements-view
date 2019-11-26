@@ -499,7 +499,7 @@ describe('Autcomplete Component', () => {
       };
       const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
 
-      autocomplete.requestUpdateSearchTerm(group);
+      autocomplete.requestUpdateSearchTerm();
 
       expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload);
     });
