@@ -220,7 +220,7 @@ describe('Autcomplete Component', () => {
 
   describe('selectedItem', () => {
     it('should return the selected item', () => {
-      const item = { label: 'black dress'};
+      const item = { label: 'black dress' };
       stub(autocomplete, 'itemCount').get(() => 3);
       autocomplete.selectedIndex = 1;
       autocomplete.results = [
