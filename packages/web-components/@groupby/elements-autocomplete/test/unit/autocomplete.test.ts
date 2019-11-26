@@ -236,7 +236,7 @@ describe('Autcomplete Component', () => {
       expect(autocomplete.selectedTerm).to.equal(term);
     });
 
-    it('should return null if no term is selected', () => {
+    it('should return null if the selectedIndex is less than 0', () => {
       autocomplete.selectedIndex = -1;
 
       expect(autocomplete.selectedTerm).to.equal(null);

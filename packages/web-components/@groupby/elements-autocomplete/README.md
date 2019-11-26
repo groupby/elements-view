@@ -46,7 +46,7 @@ This event is dispatched when one of the search terms inside of the `gbe-autocom
 
 #### `UPDATE_SEARCH_TERM`
 
-This event is dispatched when one of the search terms inside of the `gbe-autocomplete` component is clicked, or selected by pressing `enter`.
+This event is dispatched when one of the search terms inside of the `gbe-autocomplete` component is clicked.
 It will contain a flag for emitting a new search.
 
 ## Customizations

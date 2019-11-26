@@ -206,7 +206,7 @@ export default class Autocomplete extends Base {
    * Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the selected term.
    */
   dispatchSelectedTerm(): void {
-    if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
+    if (!this.selectedItem) return;
 
     const payload: AutocompleteActiveTermPayload = {
       query: this.selectedItem.label,
