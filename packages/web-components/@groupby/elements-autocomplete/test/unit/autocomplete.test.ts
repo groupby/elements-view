@@ -218,35 +218,35 @@ describe('Autcomplete Component', () => {
     });
   });
 
-  describe('selectedTerm', () => {
-    it('should return the selected term', () => {
-      const term = 'black dress';
+  describe('selectedItem', () => {
+    it('should return the selected item', () => {
+      const item = { label: 'black dress'};
       stub(autocomplete, 'itemCount').get(() => 3);
       autocomplete.selectedIndex = 1;
       autocomplete.results = [
         {
           items: [
             { label: 'dress' },
-            { label: term },
+            item,
             { label: 'long dress' },
           ],
         },
       ];
 
-      expect(autocomplete.selectedTerm).to.equal(term);
+      expect(autocomplete.selectedItem).to.equal(item);
     });
 
     it('should return null if the selectedIndex is less than 0', () => {
       autocomplete.selectedIndex = -1;
 
-      expect(autocomplete.selectedTerm).to.equal(null);
+      expect(autocomplete.selectedItem).to.equal(null);
     });
 
     it('should return null if the selectedIndex is greater or equal to the item count', () => {
       autocomplete.selectedIndex = 5;
       stub(autocomplete, 'itemCount').get(() => 4);
 
-      expect(autocomplete.selectedTerm).to.equal(null);
+      expect(autocomplete.selectedItem).to.equal(null);
     });
   });
 
@@ -488,29 +488,20 @@ describe('Autcomplete Component', () => {
     });
   });
 
-  describe('updateSearchTerm()', () => {
-    it('should dispatch an update search term event if the event group matches the component group', () => {
-      stub(autocomplete, 'selectedTerm').get(() => 'dress');
+  describe('requestUpdateSearchTerm()', () => {
+    it('should dispatch an update search term event', () => {
+      stub(autocomplete, 'selectedItem').get(() => ({ label: 'dress' }));
       const group = autocomplete.group = 'group-1';
       const payload = {
-        term: autocomplete.selectedTerm,
+        term: autocomplete.selectedItem.label,
         group,
         search: false,
       };
       const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
 
-      autocomplete.updateSearchTerm(group);
+      autocomplete.requestUpdateSearchTerm(group);
 
       expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload);
-    });
-
-    it('should not dispatch an update search term event if the event group does not match the component group', () => {
-      const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
-      autocomplete.group = 'group-1';
-
-      autocomplete.updateSearchTerm('group-2');
-
-      expect(dispatchElementsEvent).to.not.be.called;
     });
   });
 });

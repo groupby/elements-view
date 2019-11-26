@@ -115,7 +115,8 @@ export default class Autocomplete extends Base {
   }
 
   /**
-   * Returns the string value of the selected autocomplete item. If no item is selected, null is returned.
+   * The selected autocomplete item.
+   * If no item is selected, `null` is returned.
    */
   get selectedItem(): AutocompleteSearchTermItem | null {
     if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return null;
@@ -206,10 +207,11 @@ export default class Autocomplete extends Base {
    * Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the selected term.
    */
   dispatchSelectedTerm(): void {
-    if (!this.selectedItem) return;
+    const item = this.selectedItem;
+    if (!item) return;
 
     const payload: AutocompleteActiveTermPayload = {
-      query: this.selectedItem.label,
+      query: item.label,
       group: this.group,
     };
     this.dispatchElementsEvent(AUTOCOMPLETE_ACTIVE_TERM, payload);
@@ -271,11 +273,8 @@ export default class Autocomplete extends Base {
 
   /**
    * Emits an [[UPDATE_SEARCH_TERM]] event to update the current search term to the selected autocomplete term.
-   *
-   * @param group The active component's event group.
    */
-  requestUpdateSearchTerm(group: string): void {
-    if (group !== this.group) return;
+  requestUpdateSearchTerm(): void {
     const payload: UpdateSearchTermPayload = {
       term: this.selectedItem.label,
       group: this.group,
