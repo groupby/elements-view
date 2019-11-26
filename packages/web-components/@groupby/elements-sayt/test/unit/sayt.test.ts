@@ -1129,5 +1129,16 @@ describe('Sayt Component', () => {
 
       expect(requestUpdateSearchTerm).to.not.be.called;
     });
+
+    it('should not attempt to call the requestUpdateSearch term method on autocomplete if autocomplete does not exist', () => {
+      sayt.querySelector.restore();
+      stub(sayt, 'querySelector')
+        .withArgs('[data-gbe-ref="autocomplete"]')
+        .returns(null);
+
+      sayt.updateSearchboxInputTerm({ key: 'Enter' });
+
+      expect(requestUpdateSearchTerm).to.not.be.called;
+    });
   });
 });
