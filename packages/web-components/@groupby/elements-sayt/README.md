@@ -6,13 +6,13 @@ The `sayt` component acts as a wrapper around the `gbe-autocomplete` and
 `gbe-products-sayt` components and acts to show and hide all of these components
 in response to interactions with the `gbe-search-box` component.
 
-### Keyboard Navigation and
+### Keyboard Navigation
 
 When paired with a searchbox (see [Customization](#customization) below),
 this component is navigable using the arrow keys.
 Pressing the Up and Down arrow keys in the paired searchbox
 will change the autocomplete selection if `hideAutocomplete` is not enabled.
-When paired with a searchbox, pressing the `Enter` key on an autocomplete term, will update the search term inside the paired searchbox.
+When paired with a searchbox, pressing the `Enter` key on an autocomplete term will update the search term inside the paired searchbox.
 
 ### Received Events
 
