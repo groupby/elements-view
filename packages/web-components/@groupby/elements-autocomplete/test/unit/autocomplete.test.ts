@@ -493,8 +493,8 @@ describe('Autcomplete Component', () => {
       stub(autocomplete, 'selectedItem').get(() => ({ label: 'dress' }));
       const group = autocomplete.group = 'group-1';
       const payload = {
-        term: autocomplete.selectedItem.label,
         group,
+        term: autocomplete.selectedItem.label,
         search: false,
       };
       const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
