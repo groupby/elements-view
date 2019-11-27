@@ -29,8 +29,7 @@ export default abstract class Base extends LitElement {
  * @param initProperty The name of the initialization property.
  */
 export function dataInitializer(initProperty: string = '_initialized'): PropertyDecorator {
-  // eslint-disable-next-line func-names
-  return function(target: object, propertyName: string): void {
+  return (target: object, propertyName: string): void => {
     const oldDescriptor = Object.getOwnPropertyDescriptor(target, propertyName);
     const instanceMap = new WeakMap();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
