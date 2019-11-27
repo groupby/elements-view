@@ -120,6 +120,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_ui.list.html#notation_node" class="tsd-kind-icon">NOTATION_<wbr>NODE</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_ui.list.html#processing_instruction_node" class="tsd-kind-icon">PROCESSING_<wbr>INSTRUCTION_<wbr>NODE</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_ui.list.html#text_node" class="tsd-kind-icon">TEXT_<wbr>NODE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_groupby_elements_ui.list.html#_initialized" class="tsd-kind-icon">_initialized</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_ui.list.html#accesskey" class="tsd-kind-icon">access<wbr>Key</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_ui.list.html#accesskeylabel" class="tsd-kind-icon">access<wbr>Key<wbr>Label</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_groupby_elements_ui.list.html#assignedslot" class="tsd-kind-icon">assigned<wbr>Slot</a></li>
@@ -601,6 +602,22 @@
 						</ul>
 					</aside>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="_initialized" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _initialized</h3>
+					<div class="tsd-signature tsd-kind-icon">_initialized<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Base._initialized</p>
+						<ul>
+							<li>Defined in node_modules/@groupby/elements-base/dist/base.d.ts:9</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Determines whether or not the component has received its initial set of data.</p>
+						</div>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="accesskey" class="tsd-anchor"></a>
 					<h3>access<wbr>Key</h3>
@@ -679,7 +696,7 @@
 					<div class="tsd-signature tsd-kind-icon">caption<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/639dd16/packages/web-components/@groupby/elements-ui/src/list.ts#L21">packages/web-components/@groupby/elements-ui/src/list.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/5b2b89e/packages/web-components/@groupby/elements-ui/src/list.ts#L21">packages/web-components/@groupby/elements-ui/src/list.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -990,7 +1007,7 @@
 					<div class="tsd-signature tsd-kind-icon">items<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/639dd16/packages/web-components/@groupby/elements-ui/src/list.ts#L27">packages/web-components/@groupby/elements-ui/src/list.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/5b2b89e/packages/web-components/@groupby/elements-ui/src/list.ts#L27">packages/web-components/@groupby/elements-ui/src/list.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -2775,7 +2792,7 @@
 					<div class="tsd-signature tsd-kind-icon">random<wbr>String<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;shortid.generate()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/639dd16/packages/web-components/@groupby/elements-ui/src/list.ts#L29">packages/web-components/@groupby/elements-ui/src/list.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/5b2b89e/packages/web-components/@groupby/elements-ui/src/list.ts#L29">packages/web-components/@groupby/elements-ui/src/list.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -3724,7 +3741,7 @@
 								<p>Inherited from Base.createRenderRoot</p>
 								<p>Overrides LitElement.createRenderRoot</p>
 								<ul>
-									<li>Defined in node_modules/@groupby/elements-base/dist/base.d.ts:6</li>
+									<li>Defined in node_modules/@groupby/elements-base/dist/base.d.ts:10</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span>
@@ -3770,7 +3787,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Base.dispatchElementsEvent</p>
 								<ul>
-									<li>Defined in node_modules/@groupby/elements-base/dist/base.d.ts:7</li>
+									<li>Defined in node_modules/@groupby/elements-base/dist/base.d.ts:11</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -5240,7 +5257,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides LitElement.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/639dd16/packages/web-components/@groupby/elements-ui/src/list.ts#L31">packages/web-components/@groupby/elements-ui/src/list.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/5b2b89e/packages/web-components/@groupby/elements-ui/src/list.ts#L31">packages/web-components/@groupby/elements-ui/src/list.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TemplateResult</span></h4>
@@ -6030,6 +6047,9 @@
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 										<a href="_groupby_elements_ui.list.html#text_node" class="tsd-kind-icon">TEXT_<wbr>NODE</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+										<a href="_groupby_elements_ui.list.html#_initialized" class="tsd-kind-icon">_initialized</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 										<a href="_groupby_elements_ui.list.html#accesskey" class="tsd-kind-icon">access<wbr>Key</a>
