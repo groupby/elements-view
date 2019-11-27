@@ -1107,8 +1107,8 @@ describe('Sayt Component', () => {
     });
 
     it('should call the requestUpdateSearchTerm method on autocomplete when enter is pressed and the event target is within the searchbox component', () => {
-      stub(sayt, 'nodeInSearchbox').returns(true);
       sayt.visible = true;
+      stub(sayt, 'nodeInSearchbox').returns(true);
 
       sayt.updateSearchboxInputTerm({ key: 'Enter' });
 
@@ -1116,35 +1116,35 @@ describe('Sayt Component', () => {
     });
 
     it('should not call the requestUpdateSearchTerm method on autocomplete if a key other than enter is pressed', () => {
-      stub(sayt, 'nodeInSearchbox').returns(true);
       sayt.visible = true;
+      stub(sayt, 'nodeInSearchbox').returns(true);
 
       sayt.updateSearchboxInputTerm({ key: 'Z' });
 
       expect(requestUpdateSearchTerm).to.not.be.called;
     });
 
-    it('should not call the requestUpdateSearchTerm method on autocomplete if the event node is not a child of searchbox', () => {
+    it('should not call the requestUpdateSearchTerm method on autocomplete if the event target is not contained in searchbox', () => {
+      sayt.visible = true;
       stub(sayt, 'nodeInSearchbox').returns(false);
-      sayt.visible = true;
 
       sayt.updateSearchboxInputTerm({ key: 'Enter' });
 
       expect(requestUpdateSearchTerm).to.not.be.called;
     });
 
-    it('should not call the requestUpdateSearch term method on autocomplete if sayt is not visible', () => {
-      stub(sayt, 'nodeInSearchbox').returns(true);
+    it('should not call the requestUpdateSearchTerm method on autocomplete if sayt is not visible', () => {
       sayt.visible = false;
+      stub(sayt, 'nodeInSearchbox').returns(true);
 
       sayt.updateSearchboxInputTerm({ key: 'Enter' });
 
       expect(requestUpdateSearchTerm).to.not.be.called;
     });
 
-    it('should not attempt to call the requestUpdateSearch term method on autocomplete if autocomplete does not exist', () => {
-      stub(sayt, 'nodeInSearchbox').returns(true);
+    it('should not call requestUpdateSearchTerm method on autocomplete if autocomplete does not exist', () => {
       sayt.visible = true;
+      stub(sayt, 'nodeInSearchbox').returns(true);
       sayt.querySelector.restore();
       stub(sayt, 'querySelector')
         .withArgs('[data-gbe-ref="autocomplete"]')
