@@ -1101,9 +1101,7 @@ describe('Sayt Component', () => {
 
     beforeEach(() => {
       requestUpdateSearchTerm = spy();
-      stub(sayt, 'querySelector')
-        .withArgs('[data-gbe-ref="autocomplete"]')
-        .returns({ requestUpdateSearchTerm });
+      stub(sayt, 'querySelector').withArgs('[data-gbe-ref="autocomplete"]').returns({ requestUpdateSearchTerm });
     });
 
     it('should call the requestUpdateSearchTerm method on autocomplete when enter is pressed and the event target is within the searchbox component', () => {
@@ -1142,7 +1140,7 @@ describe('Sayt Component', () => {
       expect(requestUpdateSearchTerm).to.not.be.called;
     });
 
-    it('should not call requestUpdateSearchTerm method on autocomplete if autocomplete does not exist', () => {
+    it('should not call the requestUpdateSearchTerm method on autocomplete if autocomplete does not exist', () => {
       sayt.visible = true;
       stub(sayt, 'nodeInSearchbox').returns(true);
       sayt.querySelector.restore();

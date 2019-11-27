@@ -518,8 +518,8 @@ describe('Autcomplete Component', () => {
 
   describe('requestUpdateSearchTerm()', () => {
     it('should dispatch an update search term event', () => {
-      stub(autocomplete, 'selectedItem').get(() => ({ label: 'dress' }));
       const group = autocomplete.group = 'group-1';
+      stub(autocomplete, 'selectedItem').get(() => ({ label: 'dress' }));
       const payload = {
         group,
         term: autocomplete.selectedItem.label,
