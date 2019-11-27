@@ -10401,7 +10401,7 @@ function plural(ms, n, name) {
 /* WEBPACK VAR INJECTION */(function(global) {/*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <http://feross.org>
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -13369,7 +13369,6 @@ module.exports = {
 var utils = __webpack_require__(/*! ./utils */ "./node_modules/qs/lib/utils.js");
 
 var has = Object.prototype.hasOwnProperty;
-var isArray = Array.isArray;
 
 var defaults = {
     allowDots: false,
@@ -13450,12 +13449,8 @@ var parseValues = function parseQueryStringValues(str, options) {
             val = interpretNumericEntities(val);
         }
 
-        if (val && typeof val === 'string' && options.comma && val.indexOf(',') > -1) {
+        if (val && options.comma && val.indexOf(',') > -1) {
             val = val.split(',');
-        }
-
-        if (part.indexOf('[]=') > -1) {
-            val = isArray(val) ? [val] : val;
         }
 
         if (has.call(obj, key)) {
@@ -13960,7 +13955,6 @@ var arrayToObject = function arrayToObject(source, options) {
 };
 
 var merge = function merge(target, source, options) {
-    /* eslint no-param-reassign: 0 */
     if (!source) {
         return target;
     }
@@ -15661,6 +15655,8 @@ var SaytDriverPlugin = /** @class */ (function () {
             .then(function (results) {
             var payload = __assign(__assign({}, results), { group: group });
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SAYT_PRODUCTS_RESPONSE, payload);
+            if (_this.core.cache)
+                _this.core.cache.set(elements_events_1.SAYT_PRODUCTS_RESPONSE + "::" + group, payload);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };
@@ -15921,8 +15917,10 @@ var SearchDriverPlugin = /** @class */ (function () {
         var _a = event.detail, query = _a.query, group = _a.group, config = _a.config;
         this.sendSearchApiRequest(__assign({ query: query }, config))
             .then(function (results) {
-            var payload = { results: results, group: group };
+            var payload = __assign(__assign({}, results), { group: group });
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SEARCH_RESPONSE, payload);
+            if (_this.core.cache)
+                _this.core.cache.set(elements_events_1.SEARCH_RESPONSE + "::" + group, payload);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };
