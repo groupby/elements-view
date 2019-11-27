@@ -1133,22 +1133,18 @@ describe('Sayt Component', () => {
       expect(requestUpdateSearchTerm).to.not.be.called;
     });
 
-    it('should not attempt to call the requestUpdateSearch term method on autocomplete if autocomplete does not exist', () => {
+    it('should not call the requestUpdateSearch term method on autocomplete if sayt is not visible', () => {
       stub(sayt, 'nodeInSearchbox').returns(true);
-      sayt.visible = true;
-      sayt.querySelector.restore();
-      stub(sayt, 'querySelector')
-        .withArgs('[data-gbe-ref="autocomplete"]')
-        .returns(null);
+      sayt.visible = false;
 
       sayt.updateSearchboxInputTerm({ key: 'Enter' });
 
       expect(requestUpdateSearchTerm).to.not.be.called;
     });
 
-    it('should not call the requestUpdateSearch term method on autocomplete if sayt is not visible', () => {
+    it('should not attempt to call the requestUpdateSearch term method on autocomplete if autocomplete does not exist', () => {
       stub(sayt, 'nodeInSearchbox').returns(true);
-      sayt.visible = false;
+      sayt.visible = true;
       sayt.querySelector.restore();
       stub(sayt, 'querySelector')
         .withArgs('[data-gbe-ref="autocomplete"]')
