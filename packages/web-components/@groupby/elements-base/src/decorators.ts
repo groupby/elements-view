@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+
 /**
  * A property decorator that will set the data initialization state in a class.
  * It will extend the property's setter to set the initialization state to true.
@@ -5,7 +7,6 @@
  *
  * @param initProperty The name of the initialization property.
  */
-// eslint-disable-next-line import/prefer-default-export
 export function dataInitializer(initProperty: string = '_initialized'): PropertyDecorator {
   return (target: object, propertyName: string): void => {
     const oldDescriptor = Object.getOwnPropertyDescriptor(target, propertyName);
