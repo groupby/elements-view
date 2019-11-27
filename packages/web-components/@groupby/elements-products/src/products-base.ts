@@ -67,7 +67,7 @@ export default class ProductsBase extends Base {
 
   /**
    * Receives an event for populating initial product data.
-   * Will not populate it if the product data has already been initialized.
+   * This function will do nothing if the component had previously received data.
    *
    * @param event The event object.
    */
