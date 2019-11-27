@@ -32,8 +32,10 @@ export default class ProductsSayt extends ProductsBase {
     super.connectedCallback();
 
     window.addEventListener(SAYT_PRODUCTS_RESPONSE, this.setProductsFromProductsEvent);
-    window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
-    this.requestInitialData(SAYT_PRODUCTS_RESPONSE, this.group, this.cacheResponseEventName);
+    if (!this._initialized) {
+      window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
+      this.requestInitialData(SAYT_PRODUCTS_RESPONSE, this.group, this.cacheResponseEventName);
+    }
   }
 
   /**

@@ -92,6 +92,18 @@ describe('Autcomplete Component', () => {
       expect(requestInitialData).to.be.called;
     });
 
+    it('should not request initial data if the component is already initialized', () => {
+      autocomplete._initialized = true;
+
+      autocomplete.connectedCallback();
+
+      expect(windowAddEventListener).to.not.be.calledWith(
+        returnEvent,
+        autocomplete.receiveInitialData
+      );
+      expect(requestInitialData).to.not.be.called;
+    });
+
     describe('role attribute', () => {
       it('should add the listbox role', () => {
         autocomplete.connectedCallback();
@@ -130,18 +142,34 @@ describe('Autcomplete Component', () => {
   });
 
   describe('receiveInitialData()', () => {
+    let cacheResults;
+    let cacheResponseEvent;
+
+    beforeEach(() => {
+      cacheResults = [{
+        items: [
+          { label: 'dress' },
+          { label: 'black dress' },
+          { label: 'long dress' },
+        ],
+        title: '',
+      }];
+      cacheResponseEvent = { detail: { data: { results: cacheResults } } };
+    });
+
     it('should set initial data given an event', () => {
-      // const cacheResponseEvent = new CustomEvent();
-      const items = [
-        { label: 'dress' },
-        { label: 'black dress' },
-        { label: 'long dress' },
-      ];
-      const cacheResponseEvent = { detail: { data: { results: [{ items, title: '' }] } } };
+      autocomplete.receiveInitialData(cacheResponseEvent);
+
+      expect(autocomplete.results).to.deep.equal(cacheResults);
+    });
+
+    it('should not set the initial data if Autocomplete has already been initialized', () => {
+      autocomplete._initialized = true;
+      const results = autocomplete.results = ['results'];
 
       autocomplete.receiveInitialData(cacheResponseEvent);
 
-      expect(autocomplete.results).to.deep.equal(cacheResponseEvent.detail.data.results);
+      expect(autocomplete.results).to.deep.equal(results);
     });
   });
 

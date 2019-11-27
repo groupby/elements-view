@@ -23,7 +23,7 @@ import {
   UpdateSearchTermPayload,
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@groupby/elements-base';
+import { Base, dataInitializer } from '@groupby/elements-base';
 
 /**
  * The `gbe-autocomplete` component is responsible for displaying a list
@@ -35,7 +35,7 @@ export default class Autocomplete extends Base {
   /**
    * Autocomplete request results.
    */
-  @property({ type: Array }) results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = [];
+  @dataInitializer() @property({ type: Array }) results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = [];
 
   /**
    * The text to use in the header.
@@ -82,8 +82,11 @@ export default class Autocomplete extends Base {
     super.connectedCallback();
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
-    window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
-    this.requestInitialData();
+
+    if (!this._initialized) {
+      window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
+      this.requestInitialData();
+    }
 
     const role = this.getAttribute('role');
     const roles = role ? role.split(' ') : [];
@@ -167,11 +170,13 @@ export default class Autocomplete extends Base {
 
   /**
    * Receives an event for populating initial data.
+   * This function will do nothing if the component had previously received data.
    * Intended to be used on mount of this component.
    *
    * @param event The event object.
    */
   receiveInitialData(event: CustomEvent<CacheResponsePayload>): void {
+    if (this._initialized) return;
     const data = event.detail.data || {};
     this.results = data.results || [];
   }

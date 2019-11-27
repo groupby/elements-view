@@ -74,8 +74,15 @@ describe('Products Base Component', () => {
   });
 
   describe('setProductsFromCacheEvent', () => {
+    let event;
+    let products;
+
+    beforeEach(() => {
+      products = [1, 2, 3];
+      event = { detail: { data: { products } } };
+    });
     it('should set products to an empty array if the event payload does not contain products', () => {
-      const event = { detail: { data: { products: [] } } };
+      event.detail.data.products = [];
 
       component.setProductsFromCacheEvent(event);
 
@@ -83,12 +90,17 @@ describe('Products Base Component', () => {
     });
 
     it('should set products if given an event payload that contains products', () => {
-      const products = [1, 2, 3];
-      const event = { detail: { data: { products } } };
-
       component.setProductsFromCacheEvent(event);
 
       expect(component.products).to.equal(products);
+    });
+
+    it('should not set products if they have already been inititalized', () => {
+      component._initialized = true;
+
+      component.setProductsFromCacheEvent(event);
+
+      expect(component.products).to.deep.equal([]);
     });
   });
 
@@ -116,18 +128,19 @@ describe('Products Sayt Component', () => {
   itShouldExtendClass(() => component, ProductsBase);
 
   describe('connectedCallback', () => {
+    const cacheResponseEventName = 'cache-response-event-name';
     let addEventListener;
+    let requestInitialData;
 
     beforeEach(() => {
       addEventListener = stub(window, 'addEventListener');
+      requestInitialData = stub(component, 'requestInitialData');
+      stub(component, 'cacheResponseEventName').get(() => cacheResponseEventName);
     });
 
     itShouldCallParentMethod(() => component, 'connectedCallback');
 
     it('should add event listeners for sayt products events', () => {
-      const cacheResponseEventName = 'cache-response-event-name';
-      stub(component, 'cacheResponseEventName').get(() => cacheResponseEventName);
-
       component.connectedCallback();
 
       expect(addEventListener).to.be.calledWith(
@@ -141,11 +154,21 @@ describe('Products Sayt Component', () => {
     });
 
     it('should request initial data', () => {
-      const requestInitialData = stub(component, 'requestInitialData');
-
       component.connectedCallback();
 
       expect(requestInitialData).to.be.calledWith(SAYT_PRODUCTS_RESPONSE, component.group, component.cacheResponseEventName);
+    });
+
+    it('should not request initial data if it has already been initialized', () => {
+      component._initialized = true;
+
+      component.connectedCallback();
+
+      expect(addEventListener).to.not.be.calledWith(
+        cacheResponseEventName,
+        component.setProductsFromCacheEvent
+      );
+      expect(requestInitialData).to.not.be.called;
     });
   });
 
@@ -239,18 +262,19 @@ describe('Products Search Component', () => {
   itShouldExtendClass(() => component, ProductsBase);
 
   describe('connectedCallback', () => {
+    const cacheResponseEventName = 'cache-response-event-name';
     let addEventListener;
+    let requestInitialData;
 
     beforeEach(() => {
       addEventListener = stub(window, 'addEventListener');
+      requestInitialData = stub(component, 'requestInitialData');
+      stub(component, 'cacheResponseEventName').get(() => cacheResponseEventName);
     });
 
     itShouldCallParentMethod(() => component, 'connectedCallback');
 
     it('should add event listeners for sayt products events', () => {
-      const cacheResponseEventName = 'cache-response-event-name';
-      stub(component, 'cacheResponseEventName').get(() => cacheResponseEventName);
-
       component.connectedCallback();
 
       expect(addEventListener).to.be.calledWith(
@@ -264,11 +288,21 @@ describe('Products Search Component', () => {
     });
 
     it('should request initial data', () => {
-      const requestInitialData = stub(component, 'requestInitialData');
-
       component.connectedCallback();
 
       expect(requestInitialData).to.be.calledWith(SEARCH_RESPONSE, component.group, component.cacheResponseEventName);
+    });
+
+    it('should not request initial data if it has already been initialized', () => {
+      component._initialized = true;
+
+      component.connectedCallback();
+
+      expect(addEventListener).to.not.be.calledWith(
+        cacheResponseEventName,
+        component.setProductsFromCacheEvent
+      );
+      expect(requestInitialData).to.not.be.called;
     });
   });
 
