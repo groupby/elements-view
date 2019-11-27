@@ -1146,9 +1146,7 @@ describe('Sayt Component', () => {
       sayt.visible = true;
       stub(sayt, 'nodeInSearchbox').returns(true);
       sayt.querySelector.restore();
-      stub(sayt, 'querySelector')
-        .withArgs('[data-gbe-ref="autocomplete"]')
-        .returns(null);
+      stub(sayt, 'querySelector').withArgs('[data-gbe-ref="autocomplete"]').returns(null);
 
       sayt.updateSearchboxInputTerm({ key: 'Enter' });
 
