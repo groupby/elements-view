@@ -26,8 +26,7 @@ export default abstract class Base extends LitElement {
  * It will extend the property's setter to set the initialization state to true.
  * This expects that the property already has defined accessors and a default value.
  *
- * @param initProperty The name of the initialization property. Has a default value
- * of "_initialized".
+ * @param initProperty The name of the initialization property.
  */
 export function dataInitializer(initProperty: string = '_initialized'): PropertyDecorator {
   // eslint-disable-next-line func-names
