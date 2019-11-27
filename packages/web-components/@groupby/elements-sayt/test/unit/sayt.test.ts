@@ -1159,4 +1159,4 @@ describe('Sayt Component', () => {
       expect(requestUpdateSearchTerm).to.not.be.called;
     });
   });
-  });
+});
