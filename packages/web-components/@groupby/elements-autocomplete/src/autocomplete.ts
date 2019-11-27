@@ -35,7 +35,7 @@ export default class Autocomplete extends Base {
   /**
    * Autocomplete request results.
    */
-  @dataInitializer() @property({ type: Array })results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = [];
+  @dataInitializer() @property({ type: Array }) results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = [];
 
   /**
    * The text to use in the header.
