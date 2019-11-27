@@ -1,4 +1,4 @@
-import { expect, stub, spy } from '../utils';
+import { expect, spy, stub } from '../utils';
 import { DummyComponent } from './dummy-component';
 import { dataInitializer } from '../../src';
 
