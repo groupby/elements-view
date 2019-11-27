@@ -61,7 +61,7 @@ describe('dataInitializer decorator', () => {
     dataInitializer(initProp)(otherTestObj, testPropertyName);
 
     testObj.results = ['c', 'd'];
-    testObj.results = ['e', 'f']; //sic
+    testObj.results = ['e', 'f']; // sic
 
     expect(testObj.init).to.be.true;
     expect(otherTestObj.init).to.be.false;
