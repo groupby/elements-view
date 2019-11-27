@@ -243,7 +243,7 @@ export default class Sayt extends Base {
    * @param event The KeyboardEvent object.
    */
   updateSearchboxInputTerm(event: KeyboardEvent): void {
-    if (event.key !== 'Enter' || !this.nodeInSearchbox(event.target as Node)) return;
+    if (event.key !== 'Enter' || !this.nodeInSearchbox(event.target as Node) || !this.visible) return;
     const autocomplete = this.querySelector<Autocomplete>('[data-gbe-ref="autocomplete"]');
     if (!autocomplete) return;
     autocomplete.requestUpdateSearchTerm();
