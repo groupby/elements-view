@@ -246,6 +246,38 @@ describe('Autcomplete Component', () => {
     });
   });
 
+  describe('selectedItem', () => {
+    it('should return the selected item', () => {
+      const item = { label: 'black dress' };
+      stub(autocomplete, 'itemCount').get(() => 3);
+      autocomplete.selectedIndex = 1;
+      autocomplete.results = [
+        {
+          items: [
+            { label: 'dress' },
+            item,
+            { label: 'long dress' },
+          ],
+        },
+      ];
+
+      expect(autocomplete.selectedItem).to.equal(item);
+    });
+
+    it('should return null if the selectedIndex is less than 0', () => {
+      autocomplete.selectedIndex = -1;
+
+      expect(autocomplete.selectedItem).to.equal(null);
+    });
+
+    it('should return null if the selectedIndex is greater or equal to the item count', () => {
+      autocomplete.selectedIndex = 5;
+      stub(autocomplete, 'itemCount').get(() => 4);
+
+      expect(autocomplete.selectedItem).to.equal(null);
+    });
+  });
+
   describe('render', () => {
     it('should return an instance of TemplateResult', () => {
       const result = autocomplete.render();
@@ -479,6 +511,23 @@ describe('Autcomplete Component', () => {
       const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
 
       autocomplete.sendUpdateSearchEvent(clickEvent);
+
+      expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload);
+    });
+  });
+
+  describe('requestUpdateSearchTerm()', () => {
+    it('should dispatch an update search term event', () => {
+      stub(autocomplete, 'selectedItem').get(() => ({ label: 'dress' }));
+      const group = autocomplete.group = 'group-1';
+      const payload = {
+        group,
+        term: autocomplete.selectedItem.label,
+        search: false,
+      };
+      const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
+
+      autocomplete.requestUpdateSearchTerm();
 
       expect(dispatchElementsEvent).to.be.calledWith(UPDATE_SEARCH_TERM, payload);
     });

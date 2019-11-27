@@ -269,8 +269,12 @@ describe('Sayt Component', () => {
   describe('setSearchboxListener()', () => {
     it('should add an event listener if provided an `add` paramater and an input ID and it exists on the page', () => {
       const searchboxAddEventListener = spy();
+      const searchboxParentAddEventListener = spy();
       const windowAddEventListener = stub(window, 'addEventListener');
-      const getElementById = stub(document, 'getElementById').returns({ addEventListener: searchboxAddEventListener });
+      const getElementById = stub(document, 'getElementById').returns({
+        addEventListener: searchboxAddEventListener,
+        parentElement: { addEventListener: searchboxParentAddEventListener },
+      });
       const searchboxId = sayt.searchbox = 'searchbox1';
 
       sayt.setSearchboxListener(searchboxId, 'add');
@@ -278,13 +282,18 @@ describe('Sayt Component', () => {
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxAddEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
       expect(searchboxAddEventListener).to.be.calledWith('keydown', sayt.changeSelection);
+      expect(searchboxParentAddEventListener).to.be.calledWith('keydown', sayt.updateSearchboxInputTerm, true);
       expect(windowAddEventListener).to.not.be.calledWith(SEARCHBOX_INPUT);
     });
 
     it('should remove an event listener if provided a `remove` paramater and an input ID and it exists on the page', () => {
       const searchboxRemoveEventListener = spy();
+      const searchboxParentRemoveEventListener = spy();
       const windowRemoveEventListener = stub(window, 'removeEventListener');
-      const getElementById = stub(document, 'getElementById').returns({ removeEventListener: searchboxRemoveEventListener });
+      const getElementById = stub(document, 'getElementById').returns({
+        removeEventListener: searchboxRemoveEventListener,
+        parentElement: { removeEventListener: searchboxParentRemoveEventListener },
+      });
       const searchboxId = sayt.searchbox = 'searchbox1';
 
       sayt.setSearchboxListener(searchboxId, 'remove');
@@ -292,6 +301,7 @@ describe('Sayt Component', () => {
       expect(getElementById).to.be.calledWith(searchboxId);
       expect(searchboxRemoveEventListener).to.be.calledWith('input', sayt.processSearchboxInput);
       expect(searchboxRemoveEventListener).to.be.calledWith('keydown', sayt.changeSelection);
+      expect(searchboxParentRemoveEventListener).to.be.calledWith('keydown', sayt.updateSearchboxInputTerm, true);
       expect(windowRemoveEventListener).to.not.be.calledWith(SEARCHBOX_INPUT);
     });
 
@@ -1083,6 +1093,64 @@ describe('Sayt Component', () => {
       const result = sayt.render();
 
       expect(result).to.be.an.instanceof(TemplateResult);
+    });
+  });
+
+  describe('updateSearchboxInputTerm()', () => {
+    let requestUpdateSearchTerm;
+
+    beforeEach(() => {
+      requestUpdateSearchTerm = spy();
+      stub(sayt, 'querySelector')
+        .withArgs('[data-gbe-ref="autocomplete"]')
+        .returns({ requestUpdateSearchTerm });
+    });
+
+    it('should call the requestUpdateSearchTerm method on autocomplete when enter is pressed and the event target is within the searchbox component', () => {
+      sayt.visible = true;
+      stub(sayt, 'nodeInSearchbox').returns(true);
+
+      sayt.updateSearchboxInputTerm({ key: 'Enter' });
+
+      expect(requestUpdateSearchTerm).to.be.called;
+    });
+
+    it('should not call the requestUpdateSearchTerm method on autocomplete if a key other than enter is pressed', () => {
+      sayt.visible = true;
+      stub(sayt, 'nodeInSearchbox').returns(true);
+
+      sayt.updateSearchboxInputTerm({ key: 'Z' });
+
+      expect(requestUpdateSearchTerm).to.not.be.called;
+    });
+
+    it('should not call the requestUpdateSearchTerm method on autocomplete if the event target is not contained in searchbox', () => {
+      sayt.visible = true;
+      stub(sayt, 'nodeInSearchbox').returns(false);
+
+      sayt.updateSearchboxInputTerm({ key: 'Enter' });
+
+      expect(requestUpdateSearchTerm).to.not.be.called;
+    });
+
+    it('should not call the requestUpdateSearchTerm method on autocomplete if sayt is not visible', () => {
+      sayt.visible = false;
+      stub(sayt, 'nodeInSearchbox').returns(true);
+
+      sayt.updateSearchboxInputTerm({ key: 'Enter' });
+
+      expect(requestUpdateSearchTerm).to.not.be.called;
+    });
+
+    it('should not call requestUpdateSearchTerm method on autocomplete if autocomplete does not exist', () => {
+      sayt.visible = true;
+      stub(sayt, 'nodeInSearchbox').returns(true);
+      sayt.querySelector.restore();
+      stub(sayt, 'querySelector').withArgs('[data-gbe-ref="autocomplete"]').returns(null);
+
+      sayt.updateSearchboxInputTerm({ key: 'Enter' });
+
+      expect(requestUpdateSearchTerm).to.not.be.called;
     });
   });
 });

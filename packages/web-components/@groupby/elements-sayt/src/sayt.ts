@@ -23,6 +23,8 @@ import {
 } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+import { Autocomplete } from '@groupby/elements-autocomplete';
 
 /**
  * The `gbe-sayt` component is responsible for displaying and hiding the
@@ -126,6 +128,7 @@ export default class Sayt extends Base {
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
     this.setDebouncedMethods = this.setDebouncedMethods.bind(this);
+    this.updateSearchboxInputTerm = this.updateSearchboxInputTerm.bind(this);
 
     this.setDebouncedMethods();
   }
@@ -225,10 +228,25 @@ export default class Sayt extends Base {
       if (searchbox) {
         searchbox[setEventListener]('input', this.processSearchboxInput);
         searchbox[setEventListener]('keydown', this.changeSelection);
+        searchbox.parentElement[setEventListener]('keydown', this.updateSearchboxInputTerm, true);
       }
     } else {
       window[setEventListener](SEARCHBOX_INPUT, this.processElementsSearchboxChange);
     }
+  }
+
+  /**
+   * Processes a keyboard event from the searchbox component's parent element, in order to update the search term
+   * in the input box.
+   * The `requestUpdateSearchTerm` method on autocomplete is called in response to the keyboard event key `Enter`.
+   *
+   * @param event The KeyboardEvent object.
+   */
+  updateSearchboxInputTerm(event: KeyboardEvent): void {
+    if (!this.visible || event.key !== 'Enter' || !this.nodeInSearchbox(event.target as Node)) return;
+    const autocomplete = this.querySelector<Autocomplete>('[data-gbe-ref="autocomplete"]');
+    if (!autocomplete) return;
+    autocomplete.requestUpdateSearchTerm();
   }
 
   /**
