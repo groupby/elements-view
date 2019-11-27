@@ -3,34 +3,37 @@ import { DummyComponent } from './dummy-component';
 import { dataInitializer } from '../../src';
 
 describe('dataInitializer decorator', () => {
+  const initProp = 'init';
   const testPropertyName = 'results';
   let testObj;
+  let originalGet;
+  let originalSet;
 
   beforeEach(() => {
     testObj = {
       init: false,
-      get results() {
-        return this._results;
-      },
-      set results(val) {
-        this._results = val;
-      },
-      _results: ['a', 'b'],
+      results: [],
     };
+    originalGet = spy();
+    originalSet = spy();
+    Object.defineProperty(testObj, 'results', {
+      get: originalGet,
+      set: originalSet,
+      enumerable: true,
+      configurable: true,
+    });
   });
 
   it('should extend a property setter', () => {
-    const originalSet = spy(testObj, 'results', ['set']);
-    dataInitializer('init')(testObj, testPropertyName);
+    dataInitializer(initProp)(testObj, testPropertyName);
 
     testObj.results = ['c', 'd'];
 
-    expect(originalSet.set).to.be.called;
-    expect(testObj.results).to.deep.equal(['c', 'd']);
+    expect(originalSet).to.be.called;
   });
 
   it('should not set the initialize property to true on the first set call', () => {
-    dataInitializer('init')(testObj, testPropertyName);
+    dataInitializer(initProp)(testObj, testPropertyName);
 
     testObj.results = ['c', 'd'];
 
@@ -38,7 +41,7 @@ describe('dataInitializer decorator', () => {
   });
 
   it('should not set the initialize property to true on the first set call', () => {
-    dataInitializer('init')(testObj, testPropertyName);
+    dataInitializer(initProp)(testObj, testPropertyName);
 
     testObj.results = ['c', 'd'];
     testObj.results = ['e', 'f'];
@@ -47,26 +50,27 @@ describe('dataInitializer decorator', () => {
   });
 
   it('should store the initialization states between multiple instances of the component', () => {
-    const testObj2 = { ...testObj };
+    // Creating a second instance of the object with the same accessors.
+    const otherTestObj = { ...testObj };
     Object.defineProperty(
-      testObj2,
+      otherTestObj,
       testPropertyName,
       Object.getOwnPropertyDescriptor(testObj, 'results')
     );
-    dataInitializer('init')(testObj, testPropertyName);
-    dataInitializer('init')(testObj2, testPropertyName);
+    dataInitializer(initProp)(testObj, testPropertyName);
+    dataInitializer(initProp)(otherTestObj, testPropertyName);
 
     testObj.results = ['c', 'd'];
-    testObj.results = ['e', 'f'];
+    testObj.results = ['e', 'f']; //sic
 
     expect(testObj.init).to.be.true;
-    expect(testObj2.init).to.be.false;
+    expect(otherTestObj.init).to.be.false;
   });
 
   it('should only modify the set function of the property descriptor', () => {
     const originalDescriptor = Object.getOwnPropertyDescriptor(testObj, testPropertyName);
 
-    dataInitializer('init')(testObj, testPropertyName);
+    dataInitializer(initProp)(testObj, testPropertyName);
     const newDescriptor = Object.getOwnPropertyDescriptor(testObj, testPropertyName);
     const {
       get,
