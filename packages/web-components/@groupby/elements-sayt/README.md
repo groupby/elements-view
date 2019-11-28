@@ -12,6 +12,7 @@ When paired with a searchbox (see [Customization](#customization) below),
 this component is navigable using the arrow keys.
 Pressing the Up and Down arrow keys in the paired searchbox
 will change the autocomplete selection if `hideAutocomplete` is not enabled.
+When paired with a searchbox, pressing the `Enter` key on an autocomplete term will update the search term inside the paired searchbox.
 
 ### Received Events
 
