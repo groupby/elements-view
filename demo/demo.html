@@ -13,18 +13,39 @@
     <script src="./demo.js"></script>
     <!-- <script src="./styles.css"></script> -->
     <link rel="stylesheet" href="styles.css">
+    <style>
+     /* [aria-selected="true"] {
+       background-color: #CCCCFF;
+     } */
+     /* gbe-autocomplete li {
+       border: 1px solid #CCCCCC;
+     } */
+     gbe-product-variant {
+       width: 40px;
+       height: 40px;
+       display: inline-block;
+       background-size: cover;
+       margin: 2px;
+       overflow: hidden;
+       cursor: pointer;
+     }
+     gbe-product-variant img {
+       width: auto;
+       height: auto;
+       min-width: 40px;
+       min-height: 40px;
+       max-width: 100%;
+       max-height: 100%;
+     }
+   </style>
   </head>
   <body>
-    <!-- <header> -->
-
-        <div class="gbe-header-search-controls">
-          <gbe-search-box id="main-search" placeholder="search" clearbutton searchbutton area="DemoMaster" collection="products"></gbe-search-box>
-          <!-- <button id="header-clear-button" class="clear"><i class="fas fa-times"></i></button>
-          <button id="header-submit-button" class="submit"><i class="fas fa-search"></i></button> -->
-          <gbe-sayt searchbox="main-search" area="DemoMaster" collection="products"></gbe-sayt>
-        </div>
-      <!-- </div> -->
-    <!-- </header> -->
-    <gbe-products></gbe-products>
+    <div class="test">
+    <div class="client-container">
+      <gbe-search-box id="main-search" placeholder="search" clearbutton searchbutton area="DemoMaster" collection="products"></gbe-search-box>
+      <gbe-sayt searchbox="main-search" area="DemoMaster" collection="products"></gbe-sayt>
+    </div>
+    </div>
+    <gbe-products class="grid"></gbe-products>
   </body>
 </html>
