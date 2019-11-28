@@ -1,5 +1,4 @@
 export * from '@groupby/elements-base';
-export * from '@groupby/elements-ui';
 export * from '@groupby/elements-autocomplete';
 export * from '@groupby/elements-sayt';
 export * from '@groupby/elements-search-box';

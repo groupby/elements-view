@@ -39,9 +39,6 @@ defaults:
       cp .circleci/prepare-commit-msg .git/hooks/prepare-commit-msg
       chmod +x .git/hooks/prepare-commit-msg
 
-  requires_build_ui: &requires_build_ui
-    requires:
-      - build_ui
   requires_build_final: &requires_build_final
     requires:
       - build_final
@@ -129,9 +126,6 @@ jobs:
       - run: *extract_build_archive
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_box-
-      - run: *extract_build_archive
-      - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_ui-
       - run: *extract_build_archive
       - run: *archive_build
       - save_cache:
@@ -254,23 +248,13 @@ workflows:
           name: build_base
           requires:
             - generate_cache_key_file
-      - build:
-          name: build_ui
-          requires:
-            - build_base
 
       - build:
           name: build_autocomplete
-          requires:
-            - build_ui
       - build:
           name: build_product
-          requires:
-            - build_ui
       - build:
           name: build_search_box
-          requires:
-            - build_ui
       - collect_builds:
           name: collect_independent_builds
           requires:
@@ -295,9 +279,6 @@ workflows:
           name: unit_test_base
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_ui
-          <<: *requires_build_final
-      - unit_test:
           name: unit_test_autocomplete
           <<: *requires_build_final
       - unit_test:
@@ -320,7 +301,6 @@ workflows:
       - test_final:
           requires:
             - unit_test_base
-            - unit_test_ui
             - unit_test_autocomplete
             - unit_test_product
             - unit_test_products
