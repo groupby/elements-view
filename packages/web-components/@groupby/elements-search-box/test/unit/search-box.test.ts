@@ -101,6 +101,8 @@ describe('SearchBox Component', () => {
   });
 
   describe('emitSearchEvent', () => {
+    const origin = 'search';
+
     it('should dispatch a search request event with empty area and collection', () => {
       const query = searchbox.value = 'a';
       searchbox.id = 'some-id';
@@ -113,6 +115,7 @@ describe('SearchBox Component', () => {
           area: '',
           collection: '',
         },
+        origin,
       });
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });
@@ -131,6 +134,7 @@ describe('SearchBox Component', () => {
           area,
           collection,
         },
+        origin,
       });
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });

@@ -95,7 +95,7 @@ export default class SearchBox extends Base {
         area: this.area,
         collection: this.collection,
       },
-      // @TODO Pass origin property
+      origin: 'search',
     });
     this.dispatchEvent(searchboxRequestEvent);
   }
