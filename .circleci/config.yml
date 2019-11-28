@@ -251,10 +251,16 @@ workflows:
 
       - build:
           name: build_autocomplete
+          requires:
+            - build_base
       - build:
           name: build_product
+          requires:
+            - build_base
       - build:
           name: build_search_box
+          requires:
+            - build_base
       - collect_builds:
           name: collect_independent_builds
           requires:
