@@ -236,11 +236,11 @@ export default class Sayt extends Base {
   }
 
   /**
-   * Processes a keyboard event from the searchbox component's parent element, in order to update the search term
-   * in the input box.
-   * The `requestUpdateSearchTerm` method on autocomplete is called in response to the keyboard event key `Enter`.
+   * Updates the search term in the searchbox with the selected autocomplete text.
+   * This function does nothing if the key pressed is not `Enter`, sayt is not visible,
+   * or the event target is not contained in the searchbox.
    *
-   * @param event The KeyboardEvent object.
+   * @param event The keyboard event to act on.
    */
   updateSearchboxInputTerm(event: KeyboardEvent): void {
     if (!this.visible || event.key !== 'Enter' || !this.nodeInSearchbox(event.target as Node)) return;
