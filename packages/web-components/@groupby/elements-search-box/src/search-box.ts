@@ -87,7 +87,7 @@ export default class SearchBox extends Base {
    * Dispatches a search request event with the `value` property.
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
-  emitSearchEvent(): void {
+  emitSearchEvent(origin: string = 'search'): void {
     // @TODO Accept origin: string parameter that defaults to 'search'
     const searchboxRequestEvent = this.createCustomEvent<SearchRequestPayload>(SEARCH_REQUEST, {
       query: this.value,
@@ -95,7 +95,7 @@ export default class SearchBox extends Base {
         area: this.area,
         collection: this.collection,
       },
-      origin: 'search',
+      origin,
     });
     this.dispatchEvent(searchboxRequestEvent);
   }

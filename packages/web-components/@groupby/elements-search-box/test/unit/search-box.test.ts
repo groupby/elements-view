@@ -101,12 +101,18 @@ describe('SearchBox Component', () => {
   });
 
   describe('emitSearchEvent', () => {
-    const origin = 'search';
+    const area = 'some-area';
+    const collection = 'some-collection';
+    let origin;
+    let query;
+
+    beforeEach(() => {
+      origin = 'search';
+      searchbox.id = 'some-id';
+      query = searchbox.value = 'a';
+    });
 
     it('should dispatch a search request event with empty area and collection', () => {
-      const query = searchbox.value = 'a';
-      searchbox.id = 'some-id';
-
       searchbox.emitSearchEvent();
 
       expect(createCustomEvent).to.be.calledWith(SEARCH_REQUEST, {
@@ -121,12 +127,28 @@ describe('SearchBox Component', () => {
     });
 
     it('should dispatch a search request event with area and collection', () => {
-      const query = searchbox.value = 'a';
-      const area = searchbox.area = 'some-area';
-      const collection = searchbox.collection = 'some-collection';
-      searchbox.id = 'some-id';
+      searchbox.area = area;
+      searchbox.collection = collection;
 
       searchbox.emitSearchEvent();
+
+      expect(createCustomEvent).to.be.calledWith(SEARCH_REQUEST, {
+        query,
+        config: {
+          area,
+          collection,
+        },
+        origin,
+      });
+      expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
+    });
+
+    it('should dispatch a search request event with the passed origin', () => {
+      searchbox.area = area;
+      searchbox.collection = collection;
+      origin = 'sayt';
+
+      searchbox.emitSearchEvent(origin);
 
       expect(createCustomEvent).to.be.calledWith(SEARCH_REQUEST, {
         query,
