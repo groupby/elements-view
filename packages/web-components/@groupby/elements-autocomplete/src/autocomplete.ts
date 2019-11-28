@@ -72,6 +72,7 @@ export default class Autocomplete extends Base {
     this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
     this.receiveInitialData = this.receiveInitialData.bind(this);
     this.sendUpdateSearchEvent = this.sendUpdateSearchEvent.bind(this);
+    this.requestUpdateSearchTerm = this.requestUpdateSearchTerm.bind(this);
   }
 
   /**
@@ -114,6 +115,19 @@ export default class Autocomplete extends Base {
    */
   get initialDataResponseEventName(): string {
     return `${CACHE_RESPONSE_PREFIX}autocomplete-${this.componentId}`;
+  }
+
+  /**
+   * The selected autocomplete item.
+   * If no item is selected, `null` is returned.
+   */
+  get selectedItem(): AutocompleteSearchTermItem | null {
+    if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return null;
+
+    const allItems = this.results
+      .map((group) => group.items)
+      .reduce((accItems, items) => [...accItems, ...items], []);
+    return allItems[this.selectedIndex] || null;
   }
 
   /**
@@ -198,15 +212,11 @@ export default class Autocomplete extends Base {
    * Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the selected term.
    */
   dispatchSelectedTerm(): void {
-    if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
-
-    const allItems = this.results
-      .map((group) => group.items)
-      .reduce((accItems, items) => [...accItems, ...items], []);
-    const term = allItems[this.selectedIndex].label;
+    const item = this.selectedItem;
+    if (!item) return;
 
     const payload: AutocompleteActiveTermPayload = {
-      query: term,
+      query: item.label,
       group: this.group,
     };
     this.dispatchElementsEvent(AUTOCOMPLETE_ACTIVE_TERM, payload);
@@ -263,6 +273,18 @@ export default class Autocomplete extends Base {
       search: true,
     };
 
+    this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
+  }
+
+  /**
+   * Emits an [[UPDATE_SEARCH_TERM]] event to update the current search term to the selected autocomplete term.
+   */
+  requestUpdateSearchTerm(): void {
+    const payload: UpdateSearchTermPayload = {
+      term: this.selectedItem.label,
+      group: this.group,
+      search: false,
+    };
     this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
   }
 
