@@ -270,7 +270,7 @@ export default class Autocomplete extends Base {
       term,
       group: this.group,
       search: true,
-      // @TODO Pass origin: 'sayt'
+      origin: 'sayt',
     };
 
     this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);

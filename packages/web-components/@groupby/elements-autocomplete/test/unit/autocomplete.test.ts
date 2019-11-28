@@ -507,6 +507,7 @@ describe('Autcomplete Component', () => {
         term,
         group,
         search: true,
+        origin: 'sayt',
       };
       const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
 
