@@ -550,7 +550,6 @@ export default class Sayt extends Base {
   selectPreviousAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const autocomplete = this.querySelector<Autocomplete>('[data-gbe-ref="autocomplete"]');
     if (!autocomplete) return;
 
@@ -568,7 +567,6 @@ export default class Sayt extends Base {
   selectNextAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const autocomplete = this.querySelector<Autocomplete>('[data-gbe-ref="autocomplete"]');
     if (!autocomplete) return;
 
