@@ -195,6 +195,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - restore_cache: *yarn_cache
+      - restore_cache: *build_final_cache_partial
       - run: *extract_build_archive
       - run: *git_submodule_install
       - run: *yarn_install
