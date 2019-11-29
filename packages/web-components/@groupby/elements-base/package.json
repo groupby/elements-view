@@ -20,7 +20,7 @@
     "url": "https://github.com/groupby/elements-view.git",
     "directory": "packages/web-components/@groupby/elements-base"
   },
-  "author": "",
+  "author": "Groupby Inc",
   "license": "MIT",
   "dependencies": {
     "lit-element": "^2.2.0"

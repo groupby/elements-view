@@ -22,7 +22,7 @@
     "url": "https://github.com/groupby/elements-view.git",
     "directory": "packages/web-components/@groupby/elements-sayt"
   },
-  "author": "",
+  "author": "Groupby Inc",
   "license": "MIT",
   "devDependencies": {
     "html-entities": "^1.2.1"
