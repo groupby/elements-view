@@ -25,7 +25,7 @@
   "author": "Groupby Inc",
   "license": "MIT",
   "dependencies": {
-    "@groupby/elements-events": "groupby/elements-events#66ab6ebc4b2786f65ffc8ae64d3facbd2e628065",
+    "@groupby/elements-events": "^0.1.0",
     "lit-element": "^2.2.0",
     "shortid": "^2.2.15"
   }
