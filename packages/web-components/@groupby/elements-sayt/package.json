@@ -25,6 +25,7 @@
   "author": "Groupby Inc",
   "license": "MIT",
   "devDependencies": {
+    "@groupby/elements-autocomplete": "^0.1.0",
     "html-entities": "^1.2.1"
   },
   "dependencies": {
