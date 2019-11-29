@@ -1,6 +1,6 @@
 {
   "name": "elements-view",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "GroupBy Elements View SDK containing pre-built web components for for creating e-commerce application interfaces.",
   "private": true,
   "workspaces": [
