@@ -6,7 +6,6 @@
   "workspaces": [
     ".storybook/*",
     "packages/*/@groupby/elements-base",
-    "packages/*/@groupby/elements-ui",
     "packages/*/@groupby/*"
   ],
   "scripts": {
