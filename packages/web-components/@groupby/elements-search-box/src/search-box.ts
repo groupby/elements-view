@@ -118,15 +118,13 @@ export default class SearchBox extends Base {
    * @param e The event object.
    */
   updateSearch(e: CustomEvent<UpdateSearchTermPayload>): void {
-    // @TODO Get origin property from event.detail
     const eventGroup = e.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup !== componentGroup) return;
 
     this.updateSearchTermValue(e.detail.term);
     if (e.detail.search) {
-      // @TODO Pass origin argument
-      this.emitSearchEvent();
+      this.emitSearchEvent(e.detail.origin);
     }
   }
 

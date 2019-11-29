@@ -191,14 +191,17 @@ describe('SearchBox Component', () => {
       expect(updateSearchTermValue).to.be.calledWith(term);
     });
 
-    it('should emit a search request if event requests it and group matches', () => {
+    it('should emit a search request with origin if event requests it and group matches', () => {
       const search = true;
-      const inputEvent = new CustomEvent('some-test-type', { detail: { term, group, search } });
+      const origin = 'navigation';
+      const inputEvent = new CustomEvent('some-test-type', {
+        detail: { term, group, search, origin },
+      });
       searchbox.group = group;
 
       searchbox.updateSearch(inputEvent);
 
-      expect(emitSearchEvent).to.be.calledOnce;
+      expect(emitSearchEvent).to.be.calledOnceWith(origin);
     });
 
     it('should not update the value or emit a search when the group in the component and the event do not match', () => {
