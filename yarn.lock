@@ -831,9 +831,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.4.tgz#622a72bebd1e3f48d921563b4b60a762295a81fc"
   integrity sha512-6PYY5DVdAY1ifaQW6XYTnOMihmBVT27elqSjEoodchsGjzYlEsTQMcEhSud99kVawatyTZRTiVkJ/c6lwbQ7nA==
 
-"@groupby/elements-events@groupby/elements-events#66ab6ebc4b2786f65ffc8ae64d3facbd2e628065":
-  version "0.0.0"
-  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/66ab6ebc4b2786f65ffc8ae64d3facbd2e628065"
+"@groupby/elements-events@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@groupby/elements-events/-/elements-events-0.1.0.tgz#dc15c8535205ee5da0f31258764329a4f502286f"
+  integrity sha512-kvYUGBMvGmhmNL1rCa6SPGbR6hS4RiKz+KNjbfvQTQDtgFDsuaDi4Yu8lHSlw4eQBZQCT9QOgpJCzN1CTa08HQ==
   dependencies:
     groupby-api "^2.6.2"
     sayt "^0.1.9"
@@ -11157,7 +11158,7 @@ shelljs@^0.8.2, shelljs@^0.8.3:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-shortid@^2.2.14, shortid@^2.2.15:
+shortid@^2.2.15:
   version "2.2.15"
   resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.15.tgz#2b902eaa93a69b11120373cd42a1f1fe4437c122"
   integrity sha512-5EaCy2mx2Jgc/Fdn9uuDuNIIfWBpzY4XIlhoqtXF6qsf+/+SGZ+FxDdX/ZsMZiWupIWNqAEmiNY4RC+LSmCeOw==
