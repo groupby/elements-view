@@ -24,6 +24,9 @@
   },
   "author": "Groupby Inc",
   "license": "MIT",
+  "peerDependencies": {
+    "lit-html": "^1.1.2"
+  },
   "dependencies": {
     "@groupby/elements-base": "^0.1.0",
     "@groupby/elements-events": "^0.1.0",

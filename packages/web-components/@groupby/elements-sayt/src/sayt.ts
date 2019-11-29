@@ -21,9 +21,7 @@ import {
   SearchboxInputPayload,
   WithGroup,
 } from '@groupby/elements-events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Autocomplete } from '@groupby/elements-autocomplete';
 
 /**

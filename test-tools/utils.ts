@@ -2,7 +2,6 @@
 import * as sinonImport from 'sinon';
 import * as chaiImport from 'chai';
 import { LitElement } from 'lit-element';
-// eslint-disable-next-line  import/no-unresolved
 import { Base } from '@groupby/elements-base';
 
 declare var global: any;

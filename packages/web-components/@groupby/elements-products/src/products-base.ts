@@ -14,7 +14,6 @@ import {
   Product,
 } from '@groupby/elements-events';
 import * as shortid from 'shortid';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base, dataInitializer } from '@groupby/elements-base';
 
 /**
