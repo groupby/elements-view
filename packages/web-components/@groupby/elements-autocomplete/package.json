@@ -24,13 +24,11 @@
   },
   "author": "Groupby Inc",
   "license": "MIT",
-  "peerDependencies": {
-    "lit-html": "^1.1.2"
-  },
   "dependencies": {
     "@groupby/elements-base": "^0.1.0",
     "@groupby/elements-events": "^0.1.0",
     "lit-element": "^2.2.0",
+    "lit-html": "^1.1.2",
     "shortid": "^2.2.15"
   }
 }
