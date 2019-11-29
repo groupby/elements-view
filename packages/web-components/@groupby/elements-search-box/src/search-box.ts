@@ -153,7 +153,6 @@ export default class SearchBox extends Base {
    */
   handleKeydown(e: KeyboardEvent): void {
     if (e.key === 'Enter' && this.value.length > 0) {
-      // @TODO For now, assume origin = 'search' (no passing needed)
       // @TODO Future: Determine if Autocomplete term was clicked by checking state
       this.emitSearchEvent();
     }
