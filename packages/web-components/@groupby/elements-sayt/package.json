@@ -24,7 +24,7 @@
   },
   "author": "Groupby Inc",
   "license": "MIT",
-  "peerDependencies": {
+  "devDependencies": {
     "@groupby/elements-autocomplete": "^0.1.0"
   },
   "dependencies": {

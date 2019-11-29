@@ -22,6 +22,7 @@ import {
   WithGroup,
 } from '@groupby/elements-events';
 import { Base } from '@groupby/elements-base';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Autocomplete } from '@groupby/elements-autocomplete';
 
 /**
