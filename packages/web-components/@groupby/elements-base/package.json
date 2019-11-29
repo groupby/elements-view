@@ -1,6 +1,6 @@
 {
   "name": "@groupby/elements-base",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,7 @@
     "url": "https://github.com/groupby/elements-view.git",
     "directory": "packages/web-components/@groupby/elements-base"
   },
-  "author": "",
+  "author": "Groupby Inc",
   "license": "MIT",
   "dependencies": {
     "lit-element": "^2.2.0"

@@ -21,9 +21,8 @@ import {
   SearchboxInputPayload,
   WithGroup,
 } from '@groupby/elements-events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Autocomplete } from '@groupby/elements-autocomplete';
 
 /**
@@ -552,8 +551,7 @@ export default class Sayt extends Base {
   selectPreviousAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
+    const autocomplete = this.querySelector<Autocomplete>('[data-gbe-ref="autocomplete"]');
     if (!autocomplete) return;
 
     autocomplete.selectPrevious();
@@ -570,8 +568,7 @@ export default class Sayt extends Base {
   selectNextAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
+    const autocomplete = this.querySelector<Autocomplete>('[data-gbe-ref="autocomplete"]');
     if (!autocomplete) return;
 
     autocomplete.selectNext();

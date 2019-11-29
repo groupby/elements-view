@@ -1,6 +1,6 @@
 {
   "name": "@groupby/elements-autocomplete",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,11 +22,13 @@
     "url": "https://github.com/groupby/elements-view.git",
     "directory": "packages/web-components/@groupby/elements-autocomplete"
   },
-  "author": "",
+  "author": "Groupby Inc",
   "license": "MIT",
   "dependencies": {
-    "@groupby/elements-events": "groupby/elements-events#66ab6ebc4b2786f65ffc8ae64d3facbd2e628065",
+    "@groupby/elements-base": "^0.1.0",
+    "@groupby/elements-events": "^0.1.0",
     "lit-element": "^2.2.0",
+    "lit-html": "^1.1.2",
     "shortid": "^2.2.15"
   }
 }

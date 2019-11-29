@@ -4,7 +4,6 @@ import {
   property,
   TemplateResult,
 } from 'lit-element';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import {
   SEARCHBOX_CLEAR,
   SEARCHBOX_CLICK,
@@ -17,7 +16,6 @@ import {
   SearchboxInputPayload,
   UpdateSearchTermPayload,
 } from '@groupby/elements-events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
 
 /**
