@@ -284,6 +284,7 @@ export default class Autocomplete extends Base {
       term: this.selectedItem.label,
       group: this.group,
       search: false,
+      origin: 'sayt',
     };
     this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
   }

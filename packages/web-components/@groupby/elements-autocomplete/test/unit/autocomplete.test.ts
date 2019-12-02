@@ -525,6 +525,7 @@ describe('Autcomplete Component', () => {
         group,
         term: autocomplete.selectedItem.label,
         search: false,
+        origin: 'sayt',
       };
       const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
 
