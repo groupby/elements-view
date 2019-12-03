@@ -280,6 +280,7 @@ export default class Autocomplete extends Base {
    * Emits an [[UPDATE_SEARCH_TERM]] event to update the current search term to the selected autocomplete term.
    */
   requestUpdateSearchTerm(): void {
+    if (!this.selectedItem) return;
     const payload: UpdateSearchTermPayload = {
       term: this.selectedItem.label,
       group: this.group,
