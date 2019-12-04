@@ -77,12 +77,13 @@ if (useQuickStart) {
   const cachePlugin = new GbElementsLogic.CachePlugin();
   const cacheDriverPlugin = new GbElementsLogic.CacheDriverPlugin();
   const domEventsPlugin = new GbElementsLogic.DomEventsPlugin();
+  const gbTrackerPlugin = new GbElementsPlugins.GbTrackerPlugin({ customerId: 'apparel', area: 'DemoMaster', collection: 'products' });
   const saytPlugin = new GbElementsLogic.SaytPlugin({ subdomain: customerId });
   const saytDriverPlugin = new GbElementsLogic.SaytDriverPlugin({ productTransformer: productTransformer });
   const searchPlugin = new GbElementsLogic.SearchPlugin({ customerId: customerId });
   const searchDriverPlugin = new GbElementsLogic.SearchDriverPlugin({ productTransformer: searchProductTransformer });
   // register all plugins with core
-  core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
+  core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin, gbTrackerPlugin]);
 }
 
 [
@@ -92,6 +93,7 @@ if (useQuickStart) {
   'gbe::search_response',
   'gbe::sayt_products_error',
   'gbe::update_search_term',
+  'gbe::tracker::search',
 ].forEach(function(eventName) {
   window.addEventListener(eventName, function(event) {
     console.log(event.type, event.detail);
