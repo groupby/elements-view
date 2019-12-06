@@ -78,6 +78,7 @@ core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, dom
   'gbe::cache_request',
   'gbe::sayt_products_response',
   'gbe::sayt_products_error',
+  // 'touchstart',
 ].forEach(function(eventName) {
   window.addEventListener(eventName, function(event) {
     console.log(event.type, event.detail);
