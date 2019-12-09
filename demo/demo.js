@@ -63,7 +63,6 @@ function searchProductTransformer(record) {
 }
 
 const useQuickStart = true;
-
 const customerId = 'apparel';
 let core;
 
