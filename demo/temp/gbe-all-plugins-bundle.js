@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./presets/all-plugins.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./presets/all-plugins.ts-exposed");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10401,7 +10401,7 @@ function plural(ms, n, name) {
 /* WEBPACK VAR INJECTION */(function(global) {/*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <http://feross.org>
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -13369,7 +13369,6 @@ module.exports = {
 var utils = __webpack_require__(/*! ./utils */ "./node_modules/qs/lib/utils.js");
 
 var has = Object.prototype.hasOwnProperty;
-var isArray = Array.isArray;
 
 var defaults = {
     allowDots: false,
@@ -13450,12 +13449,8 @@ var parseValues = function parseQueryStringValues(str, options) {
             val = interpretNumericEntities(val);
         }
 
-        if (val && typeof val === 'string' && options.comma && val.indexOf(',') > -1) {
+        if (val && options.comma && val.indexOf(',') > -1) {
             val = val.split(',');
-        }
-
-        if (part.indexOf('[]=') > -1) {
-            val = isArray(val) ? [val] : val;
         }
 
         if (has.call(obj, key)) {
@@ -13960,7 +13955,6 @@ var arrayToObject = function arrayToObject(source, options) {
 };
 
 var merge = function merge(target, source, options) {
-    /* eslint no-param-reassign: 0 */
     if (!source) {
         return target;
     }
@@ -14813,6 +14807,26 @@ module.exports = __webpack_require__(/*! ./dist/src/index */ "./node_modules/say
 
 /***/ }),
 
+/***/ "./node_modules/ts-loader/index.js!./presets/all-plugins.ts":
+/*!*********************************************************!*\
+  !*** ./node_modules/ts-loader!./presets/all-plugins.ts ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(/*! ./core */ "./presets/core.ts-exposed"));
+__export(__webpack_require__(/*! ./plugins */ "./presets/plugins.ts-exposed"));
+__export(__webpack_require__(/*! @groupby/elements-quickstart */ "./packages/@groupby/elements-quickstart/dist/index.js"));
+
+
+/***/ }),
+
 /***/ "./node_modules/ts-loader/index.js!./presets/core.ts":
 /*!**************************************************!*\
   !*** ./node_modules/ts-loader!./presets/core.ts ***!
@@ -14895,6 +14909,17 @@ module.exports = g;
 
 "use strict";
 
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var elements_events_1 = __webpack_require__(/*! @groupby/elements-events */ "./node_modules/@groupby/elements-events/dist/index.js");
 /**
@@ -14906,7 +14931,10 @@ var CacheDriverPlugin = /** @class */ (function () {
      * Constructs a new instance of this plugin and binds the necessary
      * callbacks.
      */
-    function CacheDriverPlugin() {
+    function CacheDriverPlugin(options) {
+        if (options === void 0) { options = {}; }
+        this.options = {};
+        this.options = __assign(__assign({}, this.options), options);
         this.handleRequest = this.handleRequest.bind(this);
     }
     Object.defineProperty(CacheDriverPlugin.prototype, "metadata", {
@@ -15515,6 +15543,125 @@ exports.DomEventsPlugin = dom_events_plugin_1.default;
 
 /***/ }),
 
+/***/ "./packages/@groupby/elements-quickstart/dist/index.js":
+/*!*************************************************************!*\
+  !*** ./packages/@groupby/elements-quickstart/dist/index.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var quick_start_1 = __webpack_require__(/*! ./quick-start */ "./packages/@groupby/elements-quickstart/dist/quick-start.js");
+exports.quickStart = quick_start_1.default;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./packages/@groupby/elements-quickstart/dist/quick-start.js":
+/*!*******************************************************************!*\
+  !*** ./packages/@groupby/elements-quickstart/dist/quick-start.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* eslint-disable @typescript-eslint/camelcase, camelcase */
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var elements_cache_driver_plugin_1 = __webpack_require__(/*! @groupby/elements-cache-driver-plugin */ "./packages/@groupby/elements-cache-driver-plugin/dist/index.js");
+var elements_cache_plugin_1 = __webpack_require__(/*! @groupby/elements-cache-plugin */ "./packages/@groupby/elements-cache-plugin/dist/index.js");
+var elements_core_1 = __webpack_require__(/*! @groupby/elements-core */ "./packages/@groupby/elements-core/dist/index.js");
+var elements_dom_events_plugin_1 = __webpack_require__(/*! @groupby/elements-dom-events-plugin */ "./packages/@groupby/elements-dom-events-plugin/dist/index.js");
+var elements_sayt_driver_plugin_1 = __webpack_require__(/*! @groupby/elements-sayt-driver-plugin */ "./packages/@groupby/elements-sayt-driver-plugin/dist/index.js");
+var elements_sayt_plugin_1 = __webpack_require__(/*! @groupby/elements-sayt-plugin */ "./packages/@groupby/elements-sayt-plugin/dist/index.js");
+var elements_search_driver_plugin_1 = __webpack_require__(/*! @groupby/elements-search-driver-plugin */ "./packages/@groupby/elements-search-driver-plugin/dist/index.js");
+var elements_search_plugin_1 = __webpack_require__(/*! @groupby/elements-search-plugin */ "./packages/@groupby/elements-search-plugin/dist/index.js");
+/**
+ * The GroupBy Elements quick start function.
+ * This function instantiates [[Core]] and registers a number of plugins.
+ *
+ * The plugins included are:
+ * - `cache`
+ * - `cache_driver
+ * - `dom_events`
+ * - `sayt`
+ * - `sayt_driver`
+ * - `search`
+ * - `search_driver`
+ *
+ * @param __namedParameters Options for plugin configuration.
+ * @returns An instance of Core with the above plugins configured and registered.
+ */
+function quickStart(_a) {
+    var 
+    /** The GroupBy customer ID to use. */
+    customerId = _a.customerId, 
+    /**
+     * The function to use to transform a GroupBy Search API Record
+     * into an Elements Product.
+     */
+    productTransformer = _a.productTransformer, 
+    /**
+     * Options to configure individual plugins.
+     * All keys are optional.
+     */
+    _b = _a.pluginOptions, 
+    /**
+     * Options to configure individual plugins.
+     * All keys are optional.
+     */
+    _c = _b === void 0 ? {} : _b, 
+    /** Options for the Cache plugin. */
+    cache = _c.cache, 
+    /** Options for the Cache Driver plugin. */
+    cache_driver = _c.cache_driver, 
+    /** Options for the DOM Events plugin. */
+    dom_events = _c.dom_events, 
+    /** Options for the SAYT plugin. */
+    sayt = _c.sayt, 
+    /** Options for the SAYT Driver plugin. */
+    sayt_driver = _c.sayt_driver, 
+    /** Options for the Search plugin. */
+    search = _c.search, 
+    /** Options for the Search Driver plugin. */
+    search_driver = _c.search_driver;
+    var core = new elements_core_1.Core();
+    var cacheDriverPlugin = new elements_cache_driver_plugin_1.CacheDriverPlugin(cache_driver);
+    var cachePlugin = new elements_cache_plugin_1.CachePlugin(cache);
+    var domEventsPlugin = new elements_dom_events_plugin_1.DomEventsPlugin(dom_events);
+    var saytDriverPlugin = new elements_sayt_driver_plugin_1.SaytDriverPlugin(__assign({ productTransformer: productTransformer }, sayt_driver));
+    var saytPlugin = new elements_sayt_plugin_1.SaytPlugin(__assign(__assign({}, sayt), { subdomain: customerId }));
+    var searchDriverPlugin = new elements_search_driver_plugin_1.SearchDriverPlugin(__assign({ productTransformer: productTransformer }, search_driver));
+    var searchPlugin = new elements_search_plugin_1.SearchPlugin(__assign(__assign({}, search), { customerId: customerId }));
+    core.register([
+        cacheDriverPlugin,
+        cachePlugin,
+        domEventsPlugin,
+        saytDriverPlugin,
+        saytPlugin,
+        searchDriverPlugin,
+        searchPlugin,
+    ]);
+    return core;
+}
+exports.default = quickStart;
+//# sourceMappingURL=quick-start.js.map
+
+/***/ }),
+
 /***/ "./packages/@groupby/elements-sayt-driver-plugin/dist/index.js":
 /*!*********************************************************************!*\
   !*** ./packages/@groupby/elements-sayt-driver-plugin/dist/index.js ***!
@@ -15661,6 +15808,8 @@ var SaytDriverPlugin = /** @class */ (function () {
             .then(function (results) {
             var payload = __assign(__assign({}, results), { group: group });
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SAYT_PRODUCTS_RESPONSE, payload);
+            if (_this.core.cache)
+                _this.core.cache.set(elements_events_1.SAYT_PRODUCTS_RESPONSE + "::" + group, payload);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };
@@ -15921,8 +16070,10 @@ var SearchDriverPlugin = /** @class */ (function () {
         var _a = event.detail, query = _a.query, group = _a.group, config = _a.config;
         this.sendSearchApiRequest(__assign({ query: query }, config))
             .then(function (results) {
-            var payload = { results: results, group: group };
+            var payload = __assign(__assign({}, results), { group: group });
             _this.core[_this.eventsPluginName].dispatchEvent(elements_events_1.SEARCH_RESPONSE, payload);
+            if (_this.core.cache)
+                _this.core.cache.set(elements_events_1.SEARCH_RESPONSE + "::" + group, payload);
         })
             .catch(function (error) {
             var payload = { error: error, group: group };
@@ -16045,22 +16196,15 @@ exports.default = SearchPlugin;
 
 /***/ }),
 
-/***/ "./presets/all-plugins.ts":
-/*!********************************!*\
-  !*** ./presets/all-plugins.ts ***!
-  \********************************/
+/***/ "./presets/all-plugins.ts-exposed":
+/*!****************************************!*\
+  !*** ./presets/all-plugins.ts-exposed ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(/*! ./core */ "./presets/core.ts-exposed"));
-__export(__webpack_require__(/*! ./plugins */ "./presets/plugins.ts-exposed"));
-
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["GbElementsLogic"] = __webpack_require__(/*! -!./node_modules/ts-loader!./all-plugins.ts */ "./node_modules/ts-loader/index.js!./presets/all-plugins.ts");
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
