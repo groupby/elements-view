@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { SendableOrigin } from 'gb-tracker-client/models';
 import {
   customElement,
