@@ -195,7 +195,12 @@ describe('SearchBox Component', () => {
       const search = true;
       const origin = 'navigation';
       const inputEvent = new CustomEvent('some-test-type', {
-        detail: { term, group, search, origin },
+        detail: {
+          term,
+          group,
+          search,
+          origin,
+        },
       });
       searchbox.group = group;
 
