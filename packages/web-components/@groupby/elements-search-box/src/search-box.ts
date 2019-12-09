@@ -1,3 +1,4 @@
+import { SendableOrigin } from 'gb-tracker-client/models';
 import {
   customElement,
   html,
@@ -87,7 +88,7 @@ export default class SearchBox extends Base {
    * Dispatches a search request event with the `value` property.
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
-  emitSearchEvent(origin: string = 'search'): void {
+  emitSearchEvent(origin: keyof SendableOrigin = 'search'): void {
     const searchboxRequestEvent = this.createCustomEvent<SearchRequestPayload>(SEARCH_REQUEST, {
       query: this.value,
       config: {
