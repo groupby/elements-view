@@ -424,7 +424,6 @@ export default class Sayt extends Base {
    * @param query The search term to use.
    */
   requestSaytProducts(query: string): void {
-    // @TODO Accept origin: string and pass it to dispatchRequestEvent
     this.dispatchRequestEvent(SAYT_PRODUCTS_REQUEST, query);
   }
 
@@ -436,7 +435,6 @@ export default class Sayt extends Base {
    */
   handleAutocompleteTermHover(event: CustomEvent<AutocompleteActiveTermPayload>): void {
     if (this.isCorrectSayt(event)) {
-      // @TODO Pass origin: 'sayt' into debouncedRequestSaytProducts
       this.debouncedRequestSaytProducts(event.detail.query);
     }
   }
