@@ -2,51 +2,21 @@
 <html>
   <head>
     <title>Demo of Logic and View Integration</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="../dist/components.js"></script>
+    <script src="https://kit.fontawesome.com/b47cfcd035.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js"></script>
     <script src="../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat:400,700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/b47cfcd035.js"></script>
-    <script src="../dist/components.js"></script>
     <!-- <script src="https://cdn.groupbycloud.com/gbe-all-plugins-bundle.js"></script> -->
     <script src="./temp/gbe-all-plugins-bundle.js"></script>
     <script src="./demo.js"></script>
-    <!-- <script src="./styles.css"></script> -->
-    <link rel="stylesheet" href="styles.css">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <style>
-     /* [aria-selected="true"] {
-       background-color: #CCCCFF;
-     } */
-     /* gbe-autocomplete li {
-       border: 1px solid #CCCCCC;
-     } */
-     gbe-product-variant {
-       width: 40px;
-       height: 40px;
-       display: inline-block;
-       background-size: cover;
-       margin: 2px;
-       overflow: hidden;
-       cursor: pointer;
-     }
-     gbe-product-variant img {
-       width: auto;
-       height: auto;
-       min-width: 40px;
-       min-height: 40px;
-       max-width: 100%;
-       max-height: 100%;
-     }
-   </style>
   </head>
   <body>
-    <div class="test">
-    <div class="client-container">
-      <gbe-search-box id="main-search" placeholder="search" clearbutton searchbutton area="DemoMaster" collection="products"></gbe-search-box>
-      <gbe-sayt searchbox="main-search" area="DemoMaster" collection="products"></gbe-sayt>
-    </div>
-    </div>
+    <gbe-search-box id="main-search" placeholder="search" clearbutton searchbutton area="DemoMaster" collection="products"></gbe-search-box>
+    <gbe-sayt searchbox="main-search" area="DemoMaster" collection="products"></gbe-sayt>
     <gbe-products class="grid"></gbe-products>
   </body>
 </html>

@@ -70,7 +70,7 @@ const domEventsPlugin = new GbElementsPlugins.DomEventsPlugin();
 const saytPlugin = new GbElementsPlugins.SaytPlugin({ subdomain: 'apparel' });
 const saytDriverPlugin = new GbElementsPlugins.SaytDriverPlugin({ productTransformer: productTransformer });
 const searchPlugin = new GbElementsPlugins.SearchPlugin({ customerId: 'apparel' });
-const searchDriverPlugin = new GbElementsPlugins.SearchDriverPlugin({ productTransformer: searchProductTransformer });
+const searchDriverPlugin = new GbElementsPlugins.SearchDriverPlugin({ productTransformer: productTransformer });
 // register all plugins with core
 core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 
