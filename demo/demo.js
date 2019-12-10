@@ -73,14 +73,14 @@ if (useQuickStart) {
   });
 } else {
   // init core and plugins
-  core = new GbElementsCore.Core();
-  const cachePlugin = new GbElementsPlugins.CachePlugin();
-  const cacheDriverPlugin = new GbElementsPlugins.CacheDriverPlugin();
-  const domEventsPlugin = new GbElementsPlugins.DomEventsPlugin();
-  const saytPlugin = new GbElementsPlugins.SaytPlugin({ subdomain: customerId });
-  const saytDriverPlugin = new GbElementsPlugins.SaytDriverPlugin({ productTransformer: productTransformer });
-  const searchPlugin = new GbElementsPlugins.SearchPlugin({ customerId: customerId });
-  const searchDriverPlugin = new GbElementsPlugins.SearchDriverPlugin({ productTransformer: searchProductTransformer });
+  core = new GbElementsLogic.Core();
+  const cachePlugin = new GbElementsLogic.CachePlugin();
+  const cacheDriverPlugin = new GbElementsLogic.CacheDriverPlugin();
+  const domEventsPlugin = new GbElementsLogic.DomEventsPlugin();
+  const saytPlugin = new GbElementsLogic.SaytPlugin({ subdomain: customerId });
+  const saytDriverPlugin = new GbElementsLogic.SaytDriverPlugin({ productTransformer: productTransformer });
+  const searchPlugin = new GbElementsLogic.SearchPlugin({ customerId: customerId });
+  const searchDriverPlugin = new GbElementsLogic.SearchDriverPlugin({ productTransformer: searchProductTransformer });
   // register all plugins with core
   core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 }
