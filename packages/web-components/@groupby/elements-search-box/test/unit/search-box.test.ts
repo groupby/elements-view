@@ -106,7 +106,6 @@ describe('SearchBox Component', () => {
     let query;
 
     beforeEach(() => {
-      origin = 'search';
       searchbox.id = 'some-id';
       query = searchbox.value = 'a';
     });
