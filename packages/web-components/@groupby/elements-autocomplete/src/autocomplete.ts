@@ -22,8 +22,7 @@ import {
   CacheResponsePayload,
   UpdateSearchTermPayload,
 } from '@groupby/elements-events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Base } from '@groupby/elements-base';
+import { Base, dataInitializer } from '@groupby/elements-base';
 
 /**
  * The `gbe-autocomplete` component is responsible for displaying a list
@@ -35,7 +34,7 @@ export default class Autocomplete extends Base {
   /**
    * Autocomplete request results.
    */
-  @property({ type: Array }) results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = [];
+  @dataInitializer() @property({ type: Array }) results: AutocompleteResultGroup<AutocompleteSearchTermItem>[] = [];
 
   /**
    * The text to use in the header.
@@ -72,6 +71,7 @@ export default class Autocomplete extends Base {
     this.getSelectedIndexSetter = this.getSelectedIndexSetter.bind(this);
     this.receiveInitialData = this.receiveInitialData.bind(this);
     this.sendUpdateSearchEvent = this.sendUpdateSearchEvent.bind(this);
+    this.requestUpdateSearchTerm = this.requestUpdateSearchTerm.bind(this);
   }
 
   /**
@@ -82,8 +82,11 @@ export default class Autocomplete extends Base {
     super.connectedCallback();
 
     window.addEventListener(AUTOCOMPLETE_RESPONSE, this.receivedResults);
-    window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
-    this.requestInitialData();
+
+    if (!this._initialized) {
+      window.addEventListener(this.initialDataResponseEventName, this.receiveInitialData);
+      this.requestInitialData();
+    }
 
     const role = this.getAttribute('role');
     const roles = role ? role.split(' ') : [];
@@ -111,6 +114,19 @@ export default class Autocomplete extends Base {
    */
   get initialDataResponseEventName(): string {
     return `${CACHE_RESPONSE_PREFIX}autocomplete-${this.componentId}`;
+  }
+
+  /**
+   * The selected autocomplete item.
+   * If no item is selected, `null` is returned.
+   */
+  get selectedItem(): AutocompleteSearchTermItem | null {
+    if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return null;
+
+    const allItems = this.results
+      .map((group) => group.items)
+      .reduce((accItems, items) => [...accItems, ...items], []);
+    return allItems[this.selectedIndex] || null;
   }
 
   /**
@@ -167,11 +183,13 @@ export default class Autocomplete extends Base {
 
   /**
    * Receives an event for populating initial data.
+   * This function will do nothing if the component had previously received data.
    * Intended to be used on mount of this component.
    *
    * @param event The event object.
    */
   receiveInitialData(event: CustomEvent<CacheResponsePayload>): void {
+    if (this._initialized) return;
     const data = event.detail.data || {};
     this.results = data.results || [];
   }
@@ -193,15 +211,11 @@ export default class Autocomplete extends Base {
    * Dispatches an [[AUTOCOMPLETE_ACTIVE_TERM]] event with the selected term.
    */
   dispatchSelectedTerm(): void {
-    if (this.selectedIndex < 0 || this.selectedIndex >= this.itemCount) return;
-
-    const allItems = this.results
-      .map((group) => group.items)
-      .reduce((accItems, items) => [...accItems, ...items], []);
-    const term = allItems[this.selectedIndex].label;
+    const item = this.selectedItem;
+    if (!item) return;
 
     const payload: AutocompleteActiveTermPayload = {
-      query: term,
+      query: item.label,
       group: this.group,
     };
     this.dispatchElementsEvent(AUTOCOMPLETE_ACTIVE_TERM, payload);
@@ -258,6 +272,18 @@ export default class Autocomplete extends Base {
       search: true,
     };
 
+    this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
+  }
+
+  /**
+   * Emits an [[UPDATE_SEARCH_TERM]] event to update the current search term to the selected autocomplete term.
+   */
+  requestUpdateSearchTerm(): void {
+    const payload: UpdateSearchTermPayload = {
+      term: this.selectedItem.label,
+      group: this.group,
+      search: false,
+    };
     this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
   }
 

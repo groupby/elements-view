@@ -1,8 +1,8 @@
 import { css, CSSResult, customElement } from 'lit-element';
 import {
   SEARCH_RESPONSE,
-  Product,
   SearchResponsePayload,
+  Product,
 } from '@groupby/elements-events';
 import { ProductsBase } from '.';
 
@@ -21,7 +21,8 @@ export default class ProductsSearch extends ProductsBase {
   constructor() {
     super();
 
-    this.setProductsFromEvent = this.setProductsFromEvent.bind(this);
+    this.setProductsFromProductsEvent = this.setProductsFromProductsEvent.bind(this);
+    this.setProductsFromCacheEvent = this.setProductsFromCacheEvent.bind(this);
   }
 
   /**
@@ -29,7 +30,11 @@ export default class ProductsSearch extends ProductsBase {
    */
   connectedCallback(): void {
     super.connectedCallback();
-    window.addEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
+    window.addEventListener(SEARCH_RESPONSE, this.setProductsFromProductsEvent);
+    if (!this._initialized) {
+      window.addEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
+      this.requestInitialData(SEARCH_RESPONSE, this.group, this.cacheResponseEventName);
+    }
   }
 
   /**
@@ -38,7 +43,8 @@ export default class ProductsSearch extends ProductsBase {
   disconnectedCallback(): void {
     super.disconnectedCallback();
 
-    window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromEvent);
+    window.removeEventListener(SEARCH_RESPONSE, this.setProductsFromProductsEvent);
+    window.removeEventListener(this.cacheResponseEventName, this.setProductsFromCacheEvent);
   }
 
   /**
@@ -46,11 +52,11 @@ export default class ProductsSearch extends ProductsBase {
    *
    * @param event An event containing a search result with product data.
    */
-  setProductsFromEvent(event: CustomEvent<SearchResponsePayload<Product>>): void {
+  setProductsFromProductsEvent(event: CustomEvent<SearchResponsePayload<Product>>): void {
     const eventGroup = event.detail.group || '';
     const componentGroup = this.group || '';
     if (eventGroup === componentGroup) {
-      this.products = event.detail.results.products || [];
+      this.products = event.detail.products || [];
     }
   }
 

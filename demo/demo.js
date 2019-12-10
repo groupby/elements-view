@@ -77,8 +77,10 @@ core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, dom
 [
   'gbe::cache_request',
   'gbe::sayt_products_response',
+  'gbe::search_request',
+  'gbe::search_response',
   'gbe::sayt_products_error',
-  // 'touchstart',
+  'gbe::update_search_term',
 ].forEach(function(eventName) {
   window.addEventListener(eventName, function(event) {
     console.log(event.type, event.detail);
