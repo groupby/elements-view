@@ -3,7 +3,7 @@
   <head>
     <title>Demo of Logic and View Integration</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css">
     <script src="../dist/components.js"></script>
     <script src="https://kit.fontawesome.com/b47cfcd035.js"></script>
@@ -17,6 +17,14 @@
   <body>
     <gbe-search-box id="main-search" placeholder="search" clearbutton searchbutton area="DemoMaster" collection="products"></gbe-search-box>
     <gbe-sayt searchbox="main-search" area="DemoMaster" collection="products"></gbe-sayt>
+    <!-- <gbe-search-box
+      id="secondary-search"
+      group="secondary"
+      placeholder="search"
+      clearbutton
+      searchbutton
+    ></gbe-search-box>
+    <gbe-sayt searchbox="secondary-search" group="secondary"></gbe-sayt> -->
     <gbe-products class="grid"></gbe-products>
   </body>
 </html>
