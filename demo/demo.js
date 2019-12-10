@@ -93,7 +93,7 @@ if (useQuickStart) {
   'gbe::search_response',
   'gbe::sayt_products_error',
   'gbe::update_search_term',
-  'gbe::tracker::search',
+  'gbe::beacon_search',
 ].forEach(function(eventName) {
   window.addEventListener(eventName, function(event) {
     console.log(event.type, event.detail);
