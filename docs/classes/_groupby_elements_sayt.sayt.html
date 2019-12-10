@@ -121,6 +121,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_sayt.sayt.html#notation_node" class="tsd-kind-icon">NOTATION_<wbr>NODE</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_sayt.sayt.html#processing_instruction_node" class="tsd-kind-icon">PROCESSING_<wbr>INSTRUCTION_<wbr>NODE</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_sayt.sayt.html#text_node" class="tsd-kind-icon">TEXT_<wbr>NODE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_groupby_elements_sayt.sayt.html#_initialized" class="tsd-kind-icon">_initialized</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_sayt.sayt.html#accesskey" class="tsd-kind-icon">access<wbr>Key</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_sayt.sayt.html#accesskeylabel" class="tsd-kind-icon">access<wbr>Key<wbr>Label</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_groupby_elements_sayt.sayt.html#area" class="tsd-kind-icon">area</a></li>
@@ -412,6 +413,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_sayt.sayt.html#showsayt" class="tsd-kind-icon">show<wbr>Sayt</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_sayt.sayt.html#toggleattribute" class="tsd-kind-icon">toggle<wbr>Attribute</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-protected"><a href="_groupby_elements_sayt.sayt.html#update" class="tsd-kind-icon">update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_sayt.sayt.html#updatesearchboxinputterm" class="tsd-kind-icon">update<wbr>Searchbox<wbr>Input<wbr>Term</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_groupby_elements_sayt.sayt.html#updated" class="tsd-kind-icon">updated</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_groupby_elements_sayt.sayt.html#webkitmatchesselector" class="tsd-kind-icon">webkit<wbr>Matches<wbr>Selector</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_groupby_elements_sayt.sayt.html#createproperty" class="tsd-kind-icon">create<wbr>Property</a></li>
@@ -434,7 +436,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides UpdatingElement.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L106">packages/web-components/@groupby/elements-sayt/src/sayt.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L107">packages/web-components/@groupby/elements-sayt/src/sayt.ts:107</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -647,6 +649,22 @@
 						</ul>
 					</aside>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="_initialized" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _initialized</h3>
+					<div class="tsd-signature tsd-kind-icon">_initialized<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Base._initialized</p>
+						<ul>
+							<li>Defined in node_modules/@groupby/elements-base/dist/base.d.ts:9</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Determines whether or not the component has received its initial set of data.</p>
+						</div>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="accesskey" class="tsd-anchor"></a>
 					<h3>access<wbr>Key</h3>
@@ -675,7 +693,7 @@
 					<div class="tsd-signature tsd-kind-icon">area<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L83">packages/web-components/@groupby/elements-sayt/src/sayt.ts:83</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L84">packages/web-components/@groupby/elements-sayt/src/sayt.ts:84</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -861,7 +879,7 @@
 					<div class="tsd-signature tsd-kind-icon">close<wbr>Text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Close&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L63">packages/web-components/@groupby/elements-sayt/src/sayt.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L64">packages/web-components/@groupby/elements-sayt/src/sayt.ts:64</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -876,7 +894,7 @@
 					<div class="tsd-signature tsd-kind-icon">collection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L88">packages/web-components/@groupby/elements-sayt/src/sayt.ts:88</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L89">packages/web-components/@groupby/elements-sayt/src/sayt.ts:89</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -891,7 +909,7 @@
 					<div class="tsd-signature tsd-kind-icon">component<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;shortid.generate()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L106">packages/web-components/@groupby/elements-sayt/src/sayt.ts:106</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L107">packages/web-components/@groupby/elements-sayt/src/sayt.ts:107</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -929,7 +947,7 @@
 					<div class="tsd-signature tsd-kind-icon">debounce<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;300</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L78">packages/web-components/@groupby/elements-sayt/src/sayt.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L79">packages/web-components/@groupby/elements-sayt/src/sayt.ts:79</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -944,7 +962,7 @@
 					<div class="tsd-signature tsd-kind-icon">debounced<wbr>Request<wbr>Sayt<wbr>Autocomplete<wbr>Terms<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_groupby_elements_sayt.saytrequester.html" class="tsd-signature-type">SaytRequester</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">_debounce</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L100">packages/web-components/@groupby/elements-sayt/src/sayt.ts:100</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L101">packages/web-components/@groupby/elements-sayt/src/sayt.ts:101</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -960,7 +978,7 @@
 					<div class="tsd-signature tsd-kind-icon">debounced<wbr>Request<wbr>Sayt<wbr>Products<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_groupby_elements_sayt.saytrequester.html" class="tsd-signature-type">SaytRequester</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">_debounce</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L94">packages/web-components/@groupby/elements-sayt/src/sayt.ts:94</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L95">packages/web-components/@groupby/elements-sayt/src/sayt.ts:95</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1030,7 +1048,7 @@
 					<div class="tsd-signature tsd-kind-icon">group<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L58">packages/web-components/@groupby/elements-sayt/src/sayt.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L59">packages/web-components/@groupby/elements-sayt/src/sayt.ts:59</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1069,7 +1087,7 @@
 					<div class="tsd-signature tsd-kind-icon">hide<wbr>Autocomplete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L36">packages/web-components/@groupby/elements-sayt/src/sayt.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L37">packages/web-components/@groupby/elements-sayt/src/sayt.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1084,7 +1102,7 @@
 					<div class="tsd-signature tsd-kind-icon">hide<wbr>Products<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L41">packages/web-components/@groupby/elements-sayt/src/sayt.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L42">packages/web-components/@groupby/elements-sayt/src/sayt.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1235,7 +1253,7 @@
 					<div class="tsd-signature tsd-kind-icon">min<wbr>Search<wbr>Length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;3</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L73">packages/web-components/@groupby/elements-sayt/src/sayt.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L74">packages/web-components/@groupby/elements-sayt/src/sayt.ts:74</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -3022,7 +3040,7 @@
 					<div class="tsd-signature tsd-kind-icon">searchbox<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L51">packages/web-components/@groupby/elements-sayt/src/sayt.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L52">packages/web-components/@groupby/elements-sayt/src/sayt.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -3053,7 +3071,7 @@
 					<div class="tsd-signature tsd-kind-icon">show<wbr>Close<wbr>Button<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L68">packages/web-components/@groupby/elements-sayt/src/sayt.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L69">packages/web-components/@groupby/elements-sayt/src/sayt.ts:69</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -3197,7 +3215,7 @@
 					<div class="tsd-signature tsd-kind-icon">visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L46">packages/web-components/@groupby/elements-sayt/src/sayt.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L47">packages/web-components/@groupby/elements-sayt/src/sayt.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -3365,7 +3383,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L211">packages/web-components/@groupby/elements-sayt/src/sayt.ts:211</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L213">packages/web-components/@groupby/elements-sayt/src/sayt.ts:213</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3769,7 +3787,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L516">packages/web-components/@groupby/elements-sayt/src/sayt.ts:516</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L533">packages/web-components/@groupby/elements-sayt/src/sayt.ts:533</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3820,7 +3838,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L476">packages/web-components/@groupby/elements-sayt/src/sayt.ts:476</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L493">packages/web-components/@groupby/elements-sayt/src/sayt.ts:493</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3987,7 +4005,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides LitElement.connectedCallback</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L136">packages/web-components/@groupby/elements-sayt/src/sayt.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L138">packages/web-components/@groupby/elements-sayt/src/sayt.ts:138</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4040,7 +4058,7 @@
 								<p>Inherited from Base.createRenderRoot</p>
 								<p>Overrides LitElement.createRenderRoot</p>
 								<ul>
-									<li>Defined in node_modules/@groupby/elements-base/dist/base.d.ts:6</li>
+									<li>Defined in node_modules/@groupby/elements-base/dist/base.d.ts:10</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span>
@@ -4061,7 +4079,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides UpdatingElement.disconnectedCallback</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L155">packages/web-components/@groupby/elements-sayt/src/sayt.ts:155</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L157">packages/web-components/@groupby/elements-sayt/src/sayt.ts:157</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4084,7 +4102,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Base.dispatchElementsEvent</p>
 								<ul>
-									<li>Defined in node_modules/@groupby/elements-base/dist/base.d.ts:7</li>
+									<li>Defined in node_modules/@groupby/elements-base/dist/base.d.ts:11</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4146,7 +4164,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L379">packages/web-components/@groupby/elements-sayt/src/sayt.ts:379</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L396">packages/web-components/@groupby/elements-sayt/src/sayt.ts:396</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4638,7 +4656,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L418">packages/web-components/@groupby/elements-sayt/src/sayt.ts:418</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L435">packages/web-components/@groupby/elements-sayt/src/sayt.ts:435</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4801,7 +4819,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L338">packages/web-components/@groupby/elements-sayt/src/sayt.ts:338</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L355">packages/web-components/@groupby/elements-sayt/src/sayt.ts:355</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4832,7 +4850,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L328">packages/web-components/@groupby/elements-sayt/src/sayt.ts:328</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L345">packages/web-components/@groupby/elements-sayt/src/sayt.ts:345</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4998,7 +5016,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L455">packages/web-components/@groupby/elements-sayt/src/sayt.ts:455</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L472">packages/web-components/@groupby/elements-sayt/src/sayt.ts:472</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -5209,7 +5227,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L486">packages/web-components/@groupby/elements-sayt/src/sayt.ts:486</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L503">packages/web-components/@groupby/elements-sayt/src/sayt.ts:503</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -5329,7 +5347,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L465">packages/web-components/@groupby/elements-sayt/src/sayt.ts:465</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L482">packages/web-components/@groupby/elements-sayt/src/sayt.ts:482</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -5360,7 +5378,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L442">packages/web-components/@groupby/elements-sayt/src/sayt.ts:442</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L459">packages/web-components/@groupby/elements-sayt/src/sayt.ts:459</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -5393,7 +5411,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L499">packages/web-components/@groupby/elements-sayt/src/sayt.ts:499</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L516">packages/web-components/@groupby/elements-sayt/src/sayt.ts:516</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -5428,7 +5446,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L431">packages/web-components/@groupby/elements-sayt/src/sayt.ts:431</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L448">packages/web-components/@groupby/elements-sayt/src/sayt.ts:448</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -5873,7 +5891,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L283">packages/web-components/@groupby/elements-sayt/src/sayt.ts:283</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L300">packages/web-components/@groupby/elements-sayt/src/sayt.ts:300</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -5913,7 +5931,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides LitElement.render</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L570">packages/web-components/@groupby/elements-sayt/src/sayt.ts:570</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L585">packages/web-components/@groupby/elements-sayt/src/sayt.ts:585</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6022,7 +6040,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L351">packages/web-components/@groupby/elements-sayt/src/sayt.ts:351</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L368">packages/web-components/@groupby/elements-sayt/src/sayt.ts:368</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6055,7 +6073,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L399">packages/web-components/@groupby/elements-sayt/src/sayt.ts:399</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L416">packages/web-components/@groupby/elements-sayt/src/sayt.ts:416</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6086,7 +6104,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L408">packages/web-components/@groupby/elements-sayt/src/sayt.ts:408</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L425">packages/web-components/@groupby/elements-sayt/src/sayt.ts:425</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6315,7 +6333,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L552">packages/web-components/@groupby/elements-sayt/src/sayt.ts:552</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L568">packages/web-components/@groupby/elements-sayt/src/sayt.ts:568</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6337,7 +6355,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L534">packages/web-components/@groupby/elements-sayt/src/sayt.ts:534</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L551">packages/web-components/@groupby/elements-sayt/src/sayt.ts:551</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6481,7 +6499,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L367">packages/web-components/@groupby/elements-sayt/src/sayt.ts:367</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L384">packages/web-components/@groupby/elements-sayt/src/sayt.ts:384</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6511,7 +6529,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L247">packages/web-components/@groupby/elements-sayt/src/sayt.ts:247</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L264">packages/web-components/@groupby/elements-sayt/src/sayt.ts:264</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6575,7 +6593,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L221">packages/web-components/@groupby/elements-sayt/src/sayt.ts:221</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L223">packages/web-components/@groupby/elements-sayt/src/sayt.ts:223</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6646,7 +6664,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L318">packages/web-components/@groupby/elements-sayt/src/sayt.ts:318</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L335">packages/web-components/@groupby/elements-sayt/src/sayt.ts:335</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6682,7 +6700,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L308">packages/web-components/@groupby/elements-sayt/src/sayt.ts:308</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L325">packages/web-components/@groupby/elements-sayt/src/sayt.ts:325</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6763,6 +6781,39 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="updatesearchboxinputterm" class="tsd-anchor"></a>
+					<h3>update<wbr>Searchbox<wbr>Input<wbr>Term</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Searchbox<wbr>Input<wbr>Term<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">KeyboardEvent</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L244">packages/web-components/@groupby/elements-sayt/src/sayt.ts:244</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Updates the search term in the searchbox with the selected autocomplete text.
+										This function does nothing if the key pressed is not <code>Enter</code>, sayt is not visible,
+									or the event target is not contained in the searchbox.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <span class="tsd-signature-type">KeyboardEvent</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The keyboard event to act on.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="updated" class="tsd-anchor"></a>
 					<h3>updated</h3>
@@ -6774,7 +6825,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides UpdatingElement.updated</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/0cb95e3/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L176">packages/web-components/@groupby/elements-sayt/src/sayt.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-view/blob/674af00/packages/web-components/@groupby/elements-sayt/src/sayt.ts#L178">packages/web-components/@groupby/elements-sayt/src/sayt.ts:178</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6912,9 +6963,6 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_search_box.html">@groupby/elements-<wbr>search-<wbr>box</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_ui.html">@groupby/elements-<wbr>ui</a>
-					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
 					</li>
@@ -7004,6 +7052,9 @@
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 										<a href="_groupby_elements_sayt.sayt.html#text_node" class="tsd-kind-icon">TEXT_<wbr>NODE</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+										<a href="_groupby_elements_sayt.sayt.html#_initialized" class="tsd-kind-icon">_initialized</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 										<a href="_groupby_elements_sayt.sayt.html#accesskey" class="tsd-kind-icon">access<wbr>Key</a>
@@ -7848,6 +7899,9 @@
 									<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-protected">
 										<a href="_groupby_elements_sayt.sayt.html#update" class="tsd-kind-icon">update</a>
 									</li>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="_groupby_elements_sayt.sayt.html#updatesearchboxinputterm" class="tsd-kind-icon">update<wbr>Searchbox<wbr>Input<wbr>Term</a>
+									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 										<a href="_groupby_elements_sayt.sayt.html#updated" class="tsd-kind-icon">updated</a>
 									</li>
@@ -7889,9 +7943,6 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_search_box.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>box</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_ui.html" class="tsd-kind-icon">@groupby/elements-<wbr>ui</a>
 					</li>
 				</ul>
 			</nav>

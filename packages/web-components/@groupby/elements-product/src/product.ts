@@ -4,12 +4,10 @@ import {
   html,
   TemplateResult,
 } from 'lit-element';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import {
   Product as ProductModel,
   ProductVariant,
 } from '@groupby/elements-events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
 import { toLowerCaseKebab } from './utils';
 

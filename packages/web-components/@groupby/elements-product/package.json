@@ -1,6 +1,6 @@
 {
   "name": "@groupby/elements-product",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,10 +22,11 @@
     "url": "https://github.com/groupby/elements-view.git",
     "directory": "packages/web-components/@groupby/elements-product"
   },
-  "author": "",
+  "author": "Groupby Inc",
   "license": "MIT",
   "dependencies": {
-    "@groupby/elements-events": "groupby/elements-events#1696267a35450b9644d3bfa5cfc824bcb2bc8978",
+    "@groupby/elements-base": "^0.1.0",
+    "@groupby/elements-events": "^0.1.0",
     "lit-element": "^2.2.0"
   }
 }

@@ -6,6 +6,11 @@ import {
  * A base component for all GB Elements components to extend. It is based on LitElement.
  */
 export default abstract class Base extends LitElement {
+  /**
+   * Determines whether or not the component has received its initial set of data.
+   */
+  protected _initialized: boolean = false;
+
   createRenderRoot(): Element | ShadowRoot {
     return this;
   }

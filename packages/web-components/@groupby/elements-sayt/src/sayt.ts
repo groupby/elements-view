@@ -21,8 +21,9 @@ import {
   SearchboxInputPayload,
   WithGroup,
 } from '@groupby/elements-events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Base } from '@groupby/elements-base';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Autocomplete } from '@groupby/elements-autocomplete';
 
 /**
  * The `gbe-sayt` component is responsible for displaying and hiding the
@@ -126,6 +127,7 @@ export default class Sayt extends Base {
     this.setSearchboxListener = this.setSearchboxListener.bind(this);
     this.handleAutocompleteTermHover = this.handleAutocompleteTermHover.bind(this);
     this.setDebouncedMethods = this.setDebouncedMethods.bind(this);
+    this.updateSearchboxInputTerm = this.updateSearchboxInputTerm.bind(this);
 
     this.setDebouncedMethods();
   }
@@ -225,10 +227,25 @@ export default class Sayt extends Base {
       if (searchbox) {
         searchbox[setEventListener]('input', this.processSearchboxInput);
         searchbox[setEventListener]('keydown', this.changeSelection);
+        searchbox.parentElement[setEventListener]('keydown', this.updateSearchboxInputTerm, true);
       }
     } else {
       window[setEventListener](SEARCHBOX_INPUT, this.processElementsSearchboxChange);
     }
+  }
+
+  /**
+   * Updates the search term in the searchbox with the selected autocomplete text.
+   * This function does nothing if the key pressed is not `Enter`, sayt is not visible,
+   * or the event target is not contained in the searchbox.
+   *
+   * @param event The keyboard event to act on.
+   */
+  updateSearchboxInputTerm(event: KeyboardEvent): void {
+    if (!this.visible || event.key !== 'Enter' || !this.nodeInSearchbox(event.target as Node)) return;
+    const autocomplete = this.querySelector<Autocomplete>('[data-gbe-ref="autocomplete"]');
+    if (!autocomplete) return;
+    autocomplete.requestUpdateSearchTerm();
   }
 
   /**
@@ -534,8 +551,7 @@ export default class Sayt extends Base {
   selectPreviousAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
+    const autocomplete = this.querySelector<Autocomplete>('[data-gbe-ref="autocomplete"]');
     if (!autocomplete) return;
 
     autocomplete.selectPrevious();
@@ -552,8 +568,7 @@ export default class Sayt extends Base {
   selectNextAutocompleteTerm(): void {
     if (!this.visible) this.showSayt();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const autocomplete = this.querySelector<any>('[data-gbe-ref="autocomplete"]');
+    const autocomplete = this.querySelector<Autocomplete>('[data-gbe-ref="autocomplete"]');
     if (!autocomplete) return;
 
     autocomplete.selectNext();
