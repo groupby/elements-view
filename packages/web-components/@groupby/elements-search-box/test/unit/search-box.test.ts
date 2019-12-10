@@ -103,7 +103,6 @@ describe('SearchBox Component', () => {
   describe('emitSearchEvent', () => {
     const area = 'some-area';
     const collection = 'some-collection';
-    let origin;
     let query;
 
     beforeEach(() => {
@@ -121,7 +120,7 @@ describe('SearchBox Component', () => {
           area: '',
           collection: '',
         },
-        origin,
+        origin: 'search',
       });
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });
@@ -138,7 +137,7 @@ describe('SearchBox Component', () => {
           area,
           collection,
         },
-        origin,
+        origin: 'search',
       });
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });
@@ -146,7 +145,7 @@ describe('SearchBox Component', () => {
     it('should dispatch a search request event with the passed origin', () => {
       searchbox.area = area;
       searchbox.collection = collection;
-      origin = 'sayt';
+      const origin = 'sayt';
 
       searchbox.emitSearchEvent(origin);
 
