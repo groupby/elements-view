@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] [minor]
 ### Added
-- ELE-249: Accept and pass along `origin` value in search requests from `emitSearchEvent()` and `updateSearch()`.
+- ELE-249: The methods `emitSearchEvent()` and `updateSearch()` now accept and pass along `origin` value in search requests.
 
 ## [0.1.0] - 2019-11-29
 ### Added
