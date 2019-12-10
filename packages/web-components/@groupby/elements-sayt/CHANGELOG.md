@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] [minor]
 ### Added
-- ELE-249: Passed an `origin` of 'sayt' when triggering an update of the search term.
+- ELE-249: Added an `origin` of `'sayt'` in the event payload requesting an update to the search term.
 
 ## [0.1.0] - 2019-11-29
 ### Added
