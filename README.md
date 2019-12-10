@@ -19,7 +19,7 @@ Run the `./scripts/setup.sh` script to build all of the Elements-View packages.
 
 ## Demoing
 
-To demo all components and their interaction with the Logic Layer, open `demo/demo.html` in a browser. Note that Beacons functionality will only work if the demo is served with an HTTP server such as [`http-server`](https://www.npmjs.com/package/http-server).
+To demo all components and their interaction with the Logic Layer, open [`demo/demo.html`](demo/demo.html) in a browser. Note that Beacons functionality will only work if the demo is served with an HTTP server such as [`http-server`](https://www.npmjs.com/package/http-server).
 
 ## Commands
 The following commands are run in the context of an individual package contained within the Elements-View monorepo. The individual Web component packages can be found within the [`packages/web-components/@groupby`](packages/web-components/@groupby) directory.
