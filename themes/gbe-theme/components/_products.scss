@@ -38,7 +38,7 @@ gbe-products {
       line-height: 1.5;
       margin: 15px 15px 7px 15px;
       overflow: hidden;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: var(--gbe-product-promo-line-clamp);
       -webkit-box-orient: vertical;
     }
 
