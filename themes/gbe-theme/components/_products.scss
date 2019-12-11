@@ -1,56 +1,53 @@
+gbe-products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  padding-top: 40px;
+  width: 85%;
 
+  gbe-product {
+    background: var(--background-color-white);
+    border: var(--border-secondary);
+    height: var(--products-sayt-height);
+    margin: 20px 10px;
+    padding: 20px;
+    width: 200px;
 
-/* PRODUCT GRID BASIC STYLES */
- gbe-products {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   margin: 0 auto;
-   padding-top: 40px;
-   width: 85%;
+    img {
+      border-bottom: var(--gbe-product-img-border-bottom);
+      display: block;
+      height: var(--gbe-product-image-height);
+      margin: 0 auto;
+      padding: 20px 0;
+      width: 100%;
+      max-width: var(--gbe-product-image-max-width);
+    }
 
-   gbe-product {
-     background: var(--background-color-white);
-     border: var(--border-secondary);
-     height: var(--products-sayt-height);
-     margin: 20px 10px;
-     padding: 20px;
-     width: 200px;
+    a {
+      text-decoration: none;
+    }
 
-     img {
-       border-bottom: var(--gbe-product-img-border-bottom);
-       display: block;
-       height: var(--gbe-product-image-height);
-       margin: 0 auto;
-       padding: 20px 0;
-       width: 100%;
-       max-width: var(--gbe-product-image-max-width);
-     }
+    h3 {
+      box-sizing: border-box;
+      color: var(--font-color-primary);
+      display: -webkit-box;
+      font-family: var(--font-family-text);
+      font-size: var(--font-size-primary);
+      font-weight: 600;
+      line-height: 1.5;
+      margin: 15px 15px 7px 15px;
+      overflow: hidden;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
 
-     a {
-       text-decoration: none;
-     }
-
-     h3 {
-       box-sizing: border-box;
-       color: var(--font-color-primary);
-       display: -webkit-box;
-       font-family: var(--font-family-text);
-       font-size: var(--font-size-primary);
-       font-weight: 600;
-       line-height: 1.5;
-       margin: 15px 15px 7px 15px;
-       overflow: hidden;
-       -webkit-line-clamp: 4;
-       -webkit-box-orient: vertical;
-     }
-
-     .gbe-price {
-       color: var(--font-color-tertiary);
-       font-family: var(--font-family-text);
-       font-size: var(--gbe-product-price-font-size);
-       padding: 0px 0px 10px 15px;
-       margin: 0px;
-     }
-   }
- }
+    .gbe-price {
+      color: var(--font-color-tertiary);
+      font-family: var(--font-family-text);
+      font-size: var(--gbe-product-price-font-size);
+      padding: 0px 0px 10px 15px;
+      margin: 0px;
+    }
+  }
+}

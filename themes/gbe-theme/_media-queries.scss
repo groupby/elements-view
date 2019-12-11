@@ -4,31 +4,30 @@
   }
 }
 
-
 @media (max-width: 380px) {
   :root {
   --gbe-autocomplete-terms-width: 120px;
   }
  }
 
- @media (max-width: 529px) {
-   .gbe-sayt-container gbe-products-sayt {
-     border: none;
-     box-shadow: none;
-     margin: 0;
-     overflow-y: scroll;
-   }
+@media (max-width: 529px) {
+  .gbe-sayt-container gbe-products-sayt {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    overflow-y: scroll;
+  }
 
-   .gbe-sayt-container gbe-product {
-     border-bottom: var(--border-secondary);
-     border-left: var(--border-secondary);
-     border-top: var(--border-secondary);
-   }
+  .gbe-sayt-container gbe-product {
+    border-bottom: var(--border-secondary);
+    border-left: var(--border-secondary);
+    border-top: var(--border-secondary);
+  }
 
-   .gbe-sayt-container gbe-products-sayt .gbe-product-tile-wrapper:nth-child(n) {
-     margin: 20px 20px 0px 20px;
-   }
- }
+  .gbe-sayt-container gbe-products-sayt .gbe-product-tile-wrapper:nth-child(n) {
+    margin: 20px 20px 0px 20px;
+  }
+}
 
 @media (max-width: 769px) {
   :root {

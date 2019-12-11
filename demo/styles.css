@@ -253,7 +253,6 @@ gbe-autocomplete {
 [showclosebutton=""] gbe-autocomplete {
   padding-top: 24px; }
 
-/* PRODUCT GRID BASIC STYLES */
 gbe-products {
   display: flex;
   flex-wrap: wrap;
