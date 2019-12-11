@@ -1,0 +1,84 @@
+/* Edit the variable below to adjust the number of tiles seen on larger desktop screens (range of 2-6 recommended) */
+$number-of-tiles-to-show: 3;
+
+$num-of-tiles-desktop: $number-of-tiles-to-show + 2;
+$num-of-tiles-mobile: $number-of-tiles-to-show + 1;
+
+:root {
+  /* Adjust the variables below to quickly align the gbe components with your brand styles */
+
+  /***** GBE-SEARCH-BOX *****/
+  --gbe-fill-parent-container-width: 100%;
+  --gbe-search-box-width: var(--gbe-fill-parent-container-width, 600px);
+  --gbe-search-box-max-width: 1200px;
+  --gbe-sayt-height-and-button-height: 60px;
+  --gbe-search-box-input-and-sayt-width: calc(var(--gbe-search-box-width) - calc(var(--gbe-sayt-height-and-button-height) * 2) - -1px);
+  --gbe-search-box-input-and-sayt-max-width: calc(var(--gbe-search-box-max-width) - calc(var(--gbe-sayt-height-and-button-height) * 2) - -1px);
+  --gbe-search-box-input-focus-box-shadow: 0px 0px 3px 0px var(--background-color-buttons-unhovered);
+  --gbe-search-box-clear-button-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='23px' height='30px' viewBox='0 0 60 60'><style>.a{fill:white;}</style><path class='a' d='M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88   c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242   C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879   s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z'/></svg>");
+  --gbe-search-box-submit-button-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='52px' height='52px' viewBox='0 0 60 60'><style>.a{fill:white;}</style><path class='a' d='M21.812,19.555H20.623l-.421-.406A9.8,9.8,0,1,0,19.148,20.2l.406.421v1.189l7.525,7.51,2.242-2.242Zm-9.03,0a6.772,6.772,0,1,1,6.772-6.772A6.763,6.763,0,0,1,12.782,19.555Z' transform='translate(-3 -3)'/></svg>");
+  /* Uncomment the line below to show button text ('clear' and 'search') instead of button icons */
+  // --show-button-text: 0.9rem;
+
+  /***** GBE-SAYT *****/
+  /* Sayt Autocomplete */
+  --gbe-autocomplete-terms-width: 200px;
+  --gbe-autocomplete-terms-flex-width: 1;
+  --gbe-autocomplete-terms-hover-background: #F3F3F3;
+
+  /* Sayt Products */
+  --products-sayt-flex-width: $number-of-tiles-to-show;
+  --gbe-sayt-height: 100%;
+  --gbe-products-sayt-border-radius: var(--gbe-products-sayt-border-radius);
+  --gbe-products-sayt-container-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.1);
+
+  /* Sayt Product */
+  --product-flex-width: 1;
+  --product-sayt-min-width: 150px;
+  --gbe-product-sayt-height: 400px;
+  --gbe-product-img-border-bottom: var(--border-secondary);
+  --gbe-product-description-default-link-color: var(--font-color-primary);
+  --gbe-product-description-hover-link-color: #5244EF;
+  --gbe-product-description-active-link-color: #4C76BF;
+  --gbe-product-description-focus-link-color: #659FF7;
+  --gbe-product-description-visited-link-color: #660099;
+  --gbe-product-description-active-hover-text-decoration: underline;
+  --gbe-product-description-font-size: var(--font-size-primary);
+  --gbe-product-price-font-size: var(--font-size-secondary);
+  --gbe-product-image-max-width: 110px;
+  --gbe-product-image-height: 130px;
+  --gbe-product-description-line-clamp: 4;
+
+  /***** Font Family Variables *****/
+  --font-family-text: 'Lato', sans-serif;
+
+  /***** Border Variables *****/
+  --border-primary: 1px solid var(--background-color-buttons-unhovered);
+  --border-secondary: 1px solid rgba(195,195,195,0.3);
+
+  /***** Background Color Variables *****/
+  --background-color-buttons-unhovered: #DFDEDE;
+  --background-color-buttons-hovered: #D3D3D3;
+  --background-color-white: #FFF;
+  --background-color-body: #EEE;
+
+  /***** Font Color Variables *****/
+  --font-color-primary: #7B8088;
+  --font-color-secondary: #BA3B46;
+  --font-color-tertiary: #FFF;
+
+  /***** Font Size Variables *****/
+  --font-size-primary: 0.9rem;
+  --font-size-secondary: 1.5rem;
+
+  /***** Speed Variable *****/
+  --transition-speed: 0.1s;
+
+  /***** Cursor Variable *****/
+  --cursor-type-pointer: pointer;
+}
+
+body {
+  background: var(--background-color-body);
+  padding: 30px;
+}

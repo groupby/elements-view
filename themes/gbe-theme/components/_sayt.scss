@@ -1,0 +1,31 @@
+/* SAYT STYLES */
+gbe-sayt {
+  background: var(--background-color-white);
+  border-bottom: var(--border-primary);
+  border-bottom-left-radius: var(--gbe-products-sayt-border-radius);
+  border-bottom-right-radius: var(--gbe-products-sayt-border-radius);
+  border-left: var(--border-primary);
+  border-right: var(--border-primary);
+  border-top: var(--border-primary);
+  font-family: var(--font-family-text);
+  height: var(--gbe-sayt-height);
+  margin-top: -1px;
+  max-width: var(--gbe-search-box-input-and-sayt-max-width);
+  overflow: hidden;
+  padding: 0;
+  width: var(--gbe-search-box-input-and-sayt-width, 400px);
+}
+
+.gbe-sayt-container {
+  padding: 0;
+}
+
+button.gbe-close {
+  position: absolute;
+}
+
+@media (max-width: 321px) {
+  .gbe-sayt-container gbe-products-sayt {
+    display: none;
+  }
+}
