@@ -15638,14 +15638,15 @@ function quickStart(_a) {
     search = _c.search, 
     /** Options for the Search Driver plugin. */
     search_driver = _c.search_driver;
+    var wrappedProductTransformer = productTransformer ? { productTransformer: productTransformer } : {};
     var core = new elements_core_1.Core();
     var cacheDriverPlugin = new elements_cache_driver_plugin_1.CacheDriverPlugin(cache_driver);
     var cachePlugin = new elements_cache_plugin_1.CachePlugin(cache);
     var domEventsPlugin = new elements_dom_events_plugin_1.DomEventsPlugin(dom_events);
-    var saytDriverPlugin = new elements_sayt_driver_plugin_1.SaytDriverPlugin(__assign({ productTransformer: productTransformer }, sayt_driver));
-    var saytPlugin = new elements_sayt_plugin_1.SaytPlugin(__assign(__assign({}, sayt), { subdomain: customerId }));
-    var searchDriverPlugin = new elements_search_driver_plugin_1.SearchDriverPlugin(__assign({ productTransformer: productTransformer }, search_driver));
-    var searchPlugin = new elements_search_plugin_1.SearchPlugin(__assign(__assign({}, search), { customerId: customerId }));
+    var saytDriverPlugin = new elements_sayt_driver_plugin_1.SaytDriverPlugin(__assign(__assign({}, wrappedProductTransformer), sayt_driver));
+    var saytPlugin = new elements_sayt_plugin_1.SaytPlugin(__assign({ subdomain: customerId }, sayt));
+    var searchDriverPlugin = new elements_search_driver_plugin_1.SearchDriverPlugin(__assign(__assign({}, wrappedProductTransformer), search_driver));
+    var searchPlugin = new elements_search_plugin_1.SearchPlugin(__assign({ customerId: customerId }, search));
     core.register([
         cacheDriverPlugin,
         cachePlugin,
