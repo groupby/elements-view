@@ -27,7 +27,8 @@
     "lint:stories:ci": "eslint ./packages/web-components/@groupby/**/stories/ --no-eslintrc -c ./.storybook/.eslintrc.js --ext .ts --plugin only-warn",
     "lint:tests": "eslint ./packages/web-components/@groupby/**/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
     "lint:tests:fix": "eslint ./packages/web-components/@groupby/**/test/ --fix --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
-    "lint:tests:ci": "eslint ./packages/web-components/@groupby/**/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --max-warnings 0"
+    "lint:tests:ci": "eslint ./packages/web-components/@groupby/**/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --max-warnings 0",
+    "scss": "node-sass ./presets/gbe-theme.scss ./demo/styles.css -w"
   },
   "repository": {
     "type": "git",

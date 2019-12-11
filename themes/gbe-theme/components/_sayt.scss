@@ -6,13 +6,15 @@ gbe-sayt {
   border-left: var(--border-primary);
   border-right: var(--border-primary);
   border-top: var(--border-primary);
+  box-sizing: border-box;
   font-family: var(--font-family-text);
-  height: var(--gbe-sayt-height);
+  height: auto;
   margin-top: -1px;
   max-width: var(--gbe-search-box-input-and-sayt-max-width);
   overflow: hidden;
   padding: 0;
-  width: var(--gbe-search-box-input-and-sayt-width, 400px);
+  position: absolute;
+  width: var(--gbe-search-box-input-width, 400px);
 }
 
 .gbe-sayt-container {
