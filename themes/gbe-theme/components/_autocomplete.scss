@@ -9,11 +9,6 @@ gbe-autocomplete {
   [aria-selected="true"] {
     background-color: var(--gbe-autocomplete-terms-hover-background);
   }
-  [showclosebutton=""] {
-    gbe-autocomplete {
-      padding-top: 24px;
-    }
-  }
 
   h3, h4 {
     font-size: var(--font-size-primary);
