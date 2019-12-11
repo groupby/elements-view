@@ -16,9 +16,14 @@ function loadStories() {
     },
     cssresources: [
       {
-        id: `Elegant Theme`,
+        id: `Professional Theme`,
         code: `<link rel="stylesheet" type="text/css" href="/gbe-theme.css"></link>`,
         picked: true
+      },
+      {
+        id: `Elegant Theme`,
+        code: `<link rel="stylesheet" type="text/css" href="/gbe-elegant-theme.css"></link>`,
+        picked: false
       },
       {
         id: `Bold Theme`,
