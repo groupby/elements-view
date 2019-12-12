@@ -66,7 +66,9 @@ export default class SearchBox extends Base {
 
   constructor() {
     super();
+    this.clearSearch = this.clearSearch.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
   }
 
   /**
