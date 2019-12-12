@@ -160,6 +160,14 @@ export default class SearchBox extends Base {
   }
 
   /**
+   * Triggers an event emission for a search.
+   * Intended for use as an event handler to the Search button.
+   */
+  handleSearchClick(): void {
+    this.emitSearchEvent('search');
+  }
+
+  /**
    * Updates the value property to the value passed to it.
    *
    * @param term The value pulled directly from the input box.
@@ -234,7 +242,7 @@ export default class SearchBox extends Base {
     : ''}
       ${this.searchButton
     ? html`
-            <button class="gbe-submit" @click="${this.emitSearchEvent}">Search</button>
+            <button class="gbe-submit" @click="${this.handleSearchClick}">Search</button>
           `
     : ''}
     `;

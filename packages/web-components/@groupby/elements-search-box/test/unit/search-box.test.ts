@@ -255,6 +255,16 @@ describe('SearchBox Component', () => {
     });
   });
 
+  describe('handleSearchClick', () => {
+    it('should trigger a search event to be omitted with an origin of search', () => {
+      const emitSearchEvent = stub(searchbox, 'emitSearchEvent');
+
+      searchbox.handleSearchClick();
+
+      expect(emitSearchEvent).to.be.calledOnceWith('search');
+    });
+  });
+
   describe('handleInput', () => {
     it('should invoke the updateSearchTermValue function with a value from the event', () => {
       const updateSearchTermValueStub = stub(searchbox, 'updateSearchTermValue');
