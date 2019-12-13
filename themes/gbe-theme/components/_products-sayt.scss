@@ -1,12 +1,10 @@
 gbe-products-sayt {
   box-shadow: var(--gbe-products-sayt-container-box-shadow);
-  // color: var(--font-color-primary);
   width: 100%;
   height: var(--gbe-product-sayt-height);
   line-height: 1.5;
   margin: 20px;
   overflow: hidden;
-  -ms-overflow-style: none;
 
   &::-webkit-scrollbar {
     display: none;
@@ -27,7 +25,7 @@ gbe-products-sayt {
       }
 
       a {
-       text-decoration: none;
+        text-decoration: none;
       }
 
       a:visited {
@@ -36,42 +34,6 @@ gbe-products-sayt {
         }
       }
 
-      img {
-        border-bottom: var(--gbe-product-img-border-bottom);
-        display: block;
-        height: var(--gbe-product-image-height);
-        margin: 0 auto;
-        max-width: var(--gbe-product-image-max-width);
-        padding: 20px 0;
-      }
-
-      h3, p, span {
-        padding-left: 15px;
-        font-family: var(--font-family-text);
-      }
-
-      span {
-        display: -webkit-box;
-        line-height: 1.5;
-        overflow: hidden;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        color: var(--gbe-product-description-default-link-color);
-        font-size: var(--font-size-primary);
-      }
-
-      h3 {
-        box-sizing: border-box;
-        color: var(--gbe-product-description-default-link-color);
-        display: -webkit-box;
-        // font-family: var(--font-family-text);
-        font-size: var(--font-size-primary);
-        line-height: 1.5;
-        margin: 15px 15px 7px 0px;
-        overflow: hidden;
-        -webkit-line-clamp: var(--gbe-product-description-line-clamp);
-        -webkit-box-orient: vertical;
-      }
 
       &:hover {
         cursor: var(--cursor-type-pointer);
@@ -95,7 +57,43 @@ gbe-products-sayt {
         }
       }
 
-      .gbe-price {
+      h3, p, span {
+        padding-left: 15px;
+        font-family: var(--font-family-text);
+      }
+
+      h3 {
+        box-sizing: border-box;
+        color: var(--gbe-product-description-default-link-color);
+        display: -webkit-box;
+        font-size: var(--font-size-primary);
+        line-height: 1.5;
+        margin: 15px 15px 7px 0px;
+        overflow: hidden;
+        -webkit-line-clamp: var(--gbe-product-description-line-clamp);
+        -webkit-box-orient: vertical;
+      }
+
+      span {
+        display: -webkit-box;
+        line-height: 1.5;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        color: var(--gbe-product-description-default-link-color);
+        font-size: var(--font-size-primary);
+      }
+
+      img {
+        border-bottom: var(--gbe-product-img-border-bottom);
+        display: block;
+        height: var(--gbe-product-image-height);
+        margin: 0 auto;
+        max-width: var(--gbe-product-image-max-width);
+        padding: 20px 0;
+      }
+
+      p.gbe-price {
         color: var(--font-color-secondary);
         font-size: var(--gbe-product-price-font-size);
         margin: 0;

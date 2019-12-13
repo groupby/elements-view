@@ -6,9 +6,9 @@
 
 @media (max-width: 380px) {
   :root {
-  --gbe-autocomplete-terms-width: 120px;
+    --gbe-autocomplete-terms-width: 120px;
   }
- }
+}
 
 @media (max-width: 529px) {
   .gbe-sayt-container gbe-products-sayt {
@@ -47,8 +47,10 @@
   gbe-autocomplete li {
     margin-right: 0px;
   }
+}
 
-  gbe-autocomplete li:hover {
-    margin-right: 0px;
+@media(min-width: 770px) and (max-width: 1260px) {
+  :root {
+    --gbe-search-box-input-width: calc(var(--gbe-search-box-width) - calc(var(--gbe-sayt-height-and-button-height) * 2) - 75px);
   }
 }

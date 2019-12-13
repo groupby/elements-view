@@ -30,34 +30,26 @@ button.gbe-close {
     display: none;
   }
 }
-// [closeText] {
-//   content: ''!important;
-//   color: red;
-// }
 
-[showclosebutton=""] {
+[showclosebutton] {
   .gbe-close {
-    font-size: 0;
-    right: 9px;
-    height: 40px;
-    width: 40px;
-    top: 9px;
-    padding: 0;
-    margin: 0;
-    -webkit-appearance: none;
-    border: none;
-    background-image: var(--gbe-sayt-clear-button-icon);
+    color: var(--background-color-buttons-unhovered);
+    background-image: var(--show-sayt-close-button-text, var(--gbe-sayt-clear-button-icon));
     background-repeat: no-repeat;
     background-position-x: 11px;
     background-position-y: 6px;
+    border: none;
+    font-size: var(--show-sayt-close-button-text, 0);
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    right: 9px;
+    top: 9px;
+    width: 40px;
+    -webkit-appearance: none;
   }
 
   gbe-products-sayt {
     margin-top: 51px;
   }
-
-  gbe-sayt svg.close-button-icon path {
-    fill: red!important;
-  }
-
 }
