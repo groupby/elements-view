@@ -25,7 +25,7 @@
   }
 
   .gbe-sayt-container gbe-products-sayt .gbe-product-tile-wrapper:nth-child(n) {
-    margin: 20px 20px 0px 20px;
+    margin: 20px 20px 0 20px;
   }
 }
 
@@ -36,8 +36,8 @@
   }
 
   body {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
   }
 
   .gbe-sayt-container gbe-products-sayt .gbe-product-tile-wrapper:nth-child(n + #{$num-of-tiles-mobile}) {
@@ -45,7 +45,7 @@
   }
 
   gbe-autocomplete li {
-    margin-right: 0px;
+    margin-right: 0;
   }
 }
 

@@ -68,7 +68,7 @@ gbe-products-sayt {
         display: -webkit-box;
         font-size: var(--font-size-primary);
         line-height: 1.5;
-        margin: 15px 15px 7px 0px;
+        margin: 15px 15px 7px 0;
         overflow: hidden;
         -webkit-line-clamp: var(--gbe-product-description-line-clamp);
         -webkit-box-orient: vertical;
@@ -96,8 +96,8 @@ gbe-products-sayt {
       p.gbe-price {
         color: var(--font-color-secondary);
         font-size: var(--gbe-product-price-font-size);
-        margin: 0;
-        margin: 0 0 10px 0px;
+        margin: 0px;
+        margin: 0 0 10px 0;
       }
     }
   }

@@ -48,7 +48,7 @@ gbe-search-box {
     width: var(--gbe-search-box-input-width, 400px);
 
     &:focus {
-      box-shadow: 0px 0px 3px 0px var(--background-color-buttons-unhovered);
+      box-shadow: 0 0 3px 0 var(--background-color-buttons-unhovered);
       outline: none;
       outline-color: var(--border-primary);
     }

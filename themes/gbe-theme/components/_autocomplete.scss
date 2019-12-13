@@ -12,7 +12,7 @@ gbe-autocomplete {
 
   h3, h4 {
     font-size: var(--font-size-primary);
-    padding: 17px 30px 0px 10px;
+    padding: 17px 30px 0 10px;
   }
 
   ul {
@@ -22,7 +22,7 @@ gbe-autocomplete {
 
     li {
       font-size: var(--font-size-primary);
-      margin-right: 0px;
+      margin-right: 0;
       overflow: hidden;
       padding: 17px 30px 17px 10px;
       text-overflow: ellipsis;
