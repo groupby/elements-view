@@ -70,6 +70,9 @@ if (useQuickStart) {
   core = GbElementsLogic.quickStart({
     customerId: customerId,
     productTransformer: productTransformer,
+    pluginOptions: {
+      gb_tracker: { area: 'DemoMaster' }
+    }
   });
 } else {
   // init core and plugins
@@ -77,7 +80,7 @@ if (useQuickStart) {
   const cachePlugin = new GbElementsLogic.CachePlugin();
   const cacheDriverPlugin = new GbElementsLogic.CacheDriverPlugin();
   const domEventsPlugin = new GbElementsLogic.DomEventsPlugin();
-  const gbTrackerPlugin = new GbElementsPlugins.GbTrackerPlugin({ customerId: 'apparel', area: 'DemoMaster', collection: 'products' });
+  const gbTrackerPlugin = new GbElementsPlugins.GbTrackerPlugin({ customerId: 'apparel', area: 'DemoMaster' });
   const saytPlugin = new GbElementsLogic.SaytPlugin({ subdomain: customerId });
   const saytDriverPlugin = new GbElementsLogic.SaytDriverPlugin({ productTransformer: productTransformer });
   const searchPlugin = new GbElementsLogic.SearchPlugin({ customerId: customerId });
