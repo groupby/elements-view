@@ -256,7 +256,7 @@ describe('SearchBox Component', () => {
   });
 
   describe('handleSearchClick', () => {
-    it('should trigger a search event to be omitted with an origin of search', () => {
+    it('should trigger a search event to be emitted with an origin of search', () => {
       const emitSearchEvent = stub(searchbox, 'emitSearchEvent');
 
       searchbox.handleSearchClick();
