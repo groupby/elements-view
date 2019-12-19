@@ -1,4 +1,5 @@
 coverage/
+demo/temp/
 dist/
 esnext/
 node_modules/
