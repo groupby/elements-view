@@ -507,6 +507,7 @@ describe('Autcomplete Component', () => {
         term,
         group,
         search: true,
+        origin: 'sayt',
       };
       const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
 
@@ -517,6 +518,15 @@ describe('Autcomplete Component', () => {
   });
 
   describe('requestUpdateSearchTerm()', () => {
+    it('should not dispatch an event if nothing is selected', () => {
+      const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
+      stub(autocomplete, 'selectedItem').get(() => null);
+
+      autocomplete.requestUpdateSearchTerm();
+
+      expect(dispatchElementsEvent).to.not.be.called;
+    });
+
     it('should dispatch an update search term event', () => {
       const group = autocomplete.group = 'group-1';
       stub(autocomplete, 'selectedItem').get(() => ({ label: 'dress' }));
@@ -524,6 +534,7 @@ describe('Autcomplete Component', () => {
         group,
         term: autocomplete.selectedItem.label,
         search: false,
+        origin: 'sayt',
       };
       const dispatchElementsEvent = stub(autocomplete, 'dispatchElementsEvent');
 

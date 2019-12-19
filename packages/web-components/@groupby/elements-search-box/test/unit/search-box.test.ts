@@ -101,10 +101,16 @@ describe('SearchBox Component', () => {
   });
 
   describe('emitSearchEvent', () => {
-    it('should dispatch a search request event with empty area and collection', () => {
-      const query = searchbox.value = 'a';
-      searchbox.id = 'some-id';
+    const area = 'some-area';
+    const collection = 'some-collection';
+    let query;
 
+    beforeEach(() => {
+      searchbox.id = 'some-id';
+      query = searchbox.value = 'a';
+    });
+
+    it('should dispatch a search request event with empty area and collection', () => {
       searchbox.emitSearchEvent();
 
       expect(createCustomEvent).to.be.calledWith(SEARCH_REQUEST, {
@@ -113,15 +119,14 @@ describe('SearchBox Component', () => {
           area: '',
           collection: '',
         },
+        origin: 'search',
       });
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });
 
     it('should dispatch a search request event with area and collection', () => {
-      const query = searchbox.value = 'a';
-      const area = searchbox.area = 'some-area';
-      const collection = searchbox.collection = 'some-collection';
-      searchbox.id = 'some-id';
+      searchbox.area = area;
+      searchbox.collection = collection;
 
       searchbox.emitSearchEvent();
 
@@ -131,6 +136,25 @@ describe('SearchBox Component', () => {
           area,
           collection,
         },
+        origin: 'search',
+      });
+      expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
+    });
+
+    it('should dispatch a search request event with the passed origin', () => {
+      searchbox.area = area;
+      searchbox.collection = collection;
+      const origin = 'sayt';
+
+      searchbox.emitSearchEvent(origin);
+
+      expect(createCustomEvent).to.be.calledWith(SEARCH_REQUEST, {
+        query,
+        config: {
+          area,
+          collection,
+        },
+        origin,
       });
       expect(searchboxDispatchEvent).to.be.calledWith(eventObject);
     });
@@ -165,14 +189,22 @@ describe('SearchBox Component', () => {
       expect(updateSearchTermValue).to.be.calledWith(term);
     });
 
-    it('should emit a search request if event requests it and group matches', () => {
+    it('should emit a search request with origin if event requests it and group matches', () => {
       const search = true;
-      const inputEvent = new CustomEvent('some-test-type', { detail: { term, group, search } });
+      const origin = 'navigation';
+      const inputEvent = new CustomEvent('some-test-type', {
+        detail: {
+          term,
+          group,
+          search,
+          origin,
+        },
+      });
       searchbox.group = group;
 
       searchbox.updateSearch(inputEvent);
 
-      expect(emitSearchEvent).to.be.calledOnce;
+      expect(emitSearchEvent).to.be.calledOnceWith(origin);
     });
 
     it('should not update the value or emit a search when the group in the component and the event do not match', () => {
@@ -220,6 +252,16 @@ describe('SearchBox Component', () => {
       searchbox.handleKeydown({ key: 'Enter' });
 
       expect(emitSearchStub).to.have.been.called;
+    });
+  });
+
+  describe('handleSearchClick', () => {
+    it('should trigger a search event to be emitted with an origin of search', () => {
+      const emitSearchEvent = stub(searchbox, 'emitSearchEvent');
+
+      searchbox.handleSearchClick();
+
+      expect(emitSearchEvent).to.be.calledOnceWith('search');
     });
   });
 

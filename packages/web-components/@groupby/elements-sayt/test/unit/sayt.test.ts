@@ -676,6 +676,7 @@ describe('Sayt Component', () => {
             area,
             collection,
           },
+          origin: 'sayt',
         },
         bubbles: true,
       });
