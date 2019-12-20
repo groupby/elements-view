@@ -80,8 +80,3 @@ $num-of-tiles-mobile: $number-of-tiles-to-show + 1;
   /***** Cursor Variable *****/
   --cursor-type-pointer: pointer;
 }
-
-body {
-  background: var(--background-color-body);
-  padding: 30px;
-}
