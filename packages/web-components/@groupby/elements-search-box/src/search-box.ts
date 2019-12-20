@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-unresolved
+import { SendableOrigin } from 'gb-tracker-client/models';
 import {
   customElement,
   html,
@@ -64,7 +66,9 @@ export default class SearchBox extends Base {
 
   constructor() {
     super();
+    this.clearSearch = this.clearSearch.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
   }
 
   /**
@@ -87,13 +91,14 @@ export default class SearchBox extends Base {
    * Dispatches a search request event with the `value` property.
    * Invoked in response to user interactions: `enter` key or click on search button.
    */
-  emitSearchEvent(): void {
+  emitSearchEvent(origin: keyof SendableOrigin = 'search'): void {
     const searchboxRequestEvent = this.createCustomEvent<SearchRequestPayload>(SEARCH_REQUEST, {
       query: this.value,
       config: {
         area: this.area,
         collection: this.collection,
       },
+      origin,
     });
     this.dispatchEvent(searchboxRequestEvent);
   }
@@ -123,7 +128,7 @@ export default class SearchBox extends Base {
 
     this.updateSearchTermValue(e.detail.term);
     if (e.detail.search) {
-      this.emitSearchEvent();
+      this.emitSearchEvent(e.detail.origin);
     }
   }
 
@@ -154,6 +159,14 @@ export default class SearchBox extends Base {
     if (e.key === 'Enter' && this.value.length > 0) {
       this.emitSearchEvent();
     }
+  }
+
+  /**
+   * Triggers an event emission for a search.
+   * Intended for use as an event handler to the Search button.
+   */
+  handleSearchClick(): void {
+    this.emitSearchEvent('search');
   }
 
   /**
@@ -231,7 +244,7 @@ export default class SearchBox extends Base {
     : ''}
       ${this.searchButton
     ? html`
-            <button class="gbe-submit" @click="${this.emitSearchEvent}">Search</button>
+            <button class="gbe-submit" @click="${this.handleSearchClick}">Search</button>
           `
     : ''}
     `;

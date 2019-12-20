@@ -402,6 +402,7 @@ export default class Sayt extends Base {
           area: this.area,
           collection: this.collection,
         },
+        origin: 'sayt',
       },
       bubbles: true,
     });

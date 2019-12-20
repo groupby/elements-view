@@ -270,6 +270,7 @@ export default class Autocomplete extends Base {
       term,
       group: this.group,
       search: true,
+      origin: 'sayt',
     };
 
     this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
@@ -279,10 +280,12 @@ export default class Autocomplete extends Base {
    * Emits an [[UPDATE_SEARCH_TERM]] event to update the current search term to the selected autocomplete term.
    */
   requestUpdateSearchTerm(): void {
+    if (!this.selectedItem) return;
     const payload: UpdateSearchTermPayload = {
       term: this.selectedItem.label,
       group: this.group,
       search: false,
+      origin: 'sayt',
     };
     this.dispatchElementsEvent(UPDATE_SEARCH_TERM, payload);
   }
