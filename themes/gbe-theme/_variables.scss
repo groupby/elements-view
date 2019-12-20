@@ -29,7 +29,7 @@ $num-of-tiles-mobile: $number-of-tiles-to-show + 1;
   --gbe-sayt-width: calc(var(--gbe-search-box-width) - calc(var(--gbe-sayt-height-and-button-height) * 2) - -1px);
   --gbe-sayt-max-width: calc(var(--gbe-search-box-max-width) - calc(var(--gbe-sayt-height-and-button-height) * 2) - -1px);
   --gbe-products-sayt-border-radius: var(--gbe-products-sayt-border-radius);
-  --gbe-products-sayt-container-box-shadow: 0 0 3 0 rgba(0,0,0,0.1);
+  --gbe-products-sayt-container-box-shadow: 0 0 3px 0 rgba(0,0,0,0.1);
 
   --product-flex-width: 1;
   --product-sayt-min-width: 150px;

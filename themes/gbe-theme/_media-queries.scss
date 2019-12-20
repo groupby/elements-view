@@ -24,7 +24,7 @@
     border-top: var(--border-secondary);
   }
 
-  .gbe-sayt-container gbe-products-sayt .gbe-product-tile-wrapper {
+   .gbe-sayt-container gbe-products-sayt .gbe-product-tile-wrapper:nth-child(n) {
     margin: 20px 20px 0 20px;
   }
 }
@@ -36,8 +36,8 @@
   }
 
   body {
-    padding: 0;
-    margin: 0;
+    padding: 0px!important;
+    margin: 0px;
   }
 
   .gbe-sayt-container gbe-products-sayt .gbe-product-tile-wrapper:nth-child(n + #{$num-of-tiles-mobile}) {
@@ -51,6 +51,6 @@
 
 @media(min-width: 770px) and (max-width: 1260px) {
   :root {
-    --gbe-search-box-input-width: calc(var(--gbe-search-box-width) - calc(var(--gbe-sayt-height-and-button-height) * 2) - 75px);
+    --gbe-search-box-input-width: calc(var(--gbe-search-box-width) - calc(var(--gbe-sayt-height-and-button-height) * 2) - 59px);
   }
 }
