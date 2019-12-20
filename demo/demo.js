@@ -55,13 +55,6 @@ function productTransformer(record) {
   return transfomedProduct;
 }
 
-function searchProductTransformer(record) {
-  return {
-    label: record.title,
-    price: record.allMeta.visualVariants[0].nonvisualVariants[0].retailPrice,
-  };
-}
-
 // init core and plugins
 const core = new GbElementsCore.Core();
 const cachePlugin = new GbElementsPlugins.CachePlugin();
