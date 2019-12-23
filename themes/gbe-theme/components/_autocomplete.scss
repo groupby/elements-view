@@ -1,0 +1,36 @@
+gbe-autocomplete {
+  background: var(--background-color-white);
+  border-right: var(--border-primary);
+  color: var(--font-color-primary);
+  font-family: var(--font-family-text);
+  min-width: var(--gbe-autocomplete-terms-width);
+  max-width: var(--gbe-autocomplete-terms-width);
+
+  [aria-selected="true"] {
+    background-color: var(--gbe-autocomplete-terms-hover-background);
+  }
+
+  h3, h4 {
+    font-size: var(--font-size-primary);
+    padding: 17px 30px 0 10px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      font-size: var(--font-size-primary);
+      margin-right: 0;
+      overflow: hidden;
+      padding: 17px 30px 17px 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      &:hover {
+        cursor: var(--cursor-type-pointer);
+      }
+    }
+  }
+}

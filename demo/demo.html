@@ -2,6 +2,10 @@
 <html>
   <head>
     <title>Demo of Logic and View Integration</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="../dist/gbe-theme.css">
+    <script src="https://kit.fontawesome.com/b47cfcd035.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js"></script>
     <script src="../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
@@ -10,36 +14,29 @@
     <!-- <script src="./temp/gb-elements-logic.js"></script> -->
     <script src="./demo.js"></script>
     <style>
-      [aria-selected="true"] {
-        background-color: #CCCCFF;
+      :root {
+        --gbe-presentational-parent-component-padding: 30px;
       }
 
-      gbe-autocomplete li {
-        border: 1px solid #CCCCCC;
+      .gbe-padding {
+        background: var(--background-color-body);
+        padding: var(--gbe-presentational-parent-component-padding);
       }
 
-      gbe-product-variant {
-        width: 40px;
-        height: 40px;
-        display: inline-block;
-        background-size: cover;
-        margin: 2px;
-        overflow: hidden;
-        cursor: pointer;
+      @media (max-width: 769px) {
+        :root {
+          --gbe-presentational-parent-component-padding: 0;
+        }
+
+        .gbe-padding {
+          padding: var(--gbe-presentational-parent-component-padding);
+          margin: var(--gbe-presentational-parent-component-padding);
+        }
       }
 
-      gbe-product-variant img {
-        width: auto;
-        height: auto;
-        min-width: 40px;
-        min-height: 40px;
-        max-width: 100%;
-        max-height: 100%;
-      }
     </style>
   </head>
-
-  <body>
+  <body class="gbe-padding">
     <gbe-search-box id="main-search" placeholder="search" clearbutton searchbutton area="DemoMaster" collection="products"></gbe-search-box>
     <gbe-sayt searchbox="main-search" area="DemoMaster" collection="products"></gbe-sayt>
 

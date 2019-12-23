@@ -55,13 +55,6 @@ function productTransformer(record) {
   return transfomedProduct;
 }
 
-function searchProductTransformer(record) {
-  return {
-    label: record.title,
-    price: record.allMeta.visualVariants[0].nonvisualVariants[0].retailPrice,
-  };
-}
-
 const useQuickStart = true;
 const customerId = 'apparel';
 let core;
@@ -84,7 +77,7 @@ if (useQuickStart) {
   const saytPlugin = new GbElementsLogic.SaytPlugin({ subdomain: customerId });
   const saytDriverPlugin = new GbElementsLogic.SaytDriverPlugin({ productTransformer: productTransformer });
   const searchPlugin = new GbElementsLogic.SearchPlugin({ customerId: customerId });
-  const searchDriverPlugin = new GbElementsLogic.SearchDriverPlugin({ productTransformer: searchProductTransformer });
+  const searchDriverPlugin = new GbElementsLogic.SearchDriverPlugin({ productTransformer: productTransformer });
   // register all plugins with core
   core.register([cachePlugin, cacheDriverPlugin, saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin, gbTrackerPlugin]);
 }

@@ -16,12 +16,17 @@ function loadStories() {
     },
     cssresources: [
       {
-        id: `Elegant Theme`,
-        code: `<link rel="stylesheet" type="text/css" href="/gbe-elegant-theme.css"></link>`,
+        id: 'Professional Theme',
+        code: `<link rel="stylesheet" type="text/css" href="/gbe-theme.css"></link>`,
         picked: true
       },
       {
-        id: `Bold Theme`,
+        id: 'Elegant Theme',
+        code: `<link rel="stylesheet" type="text/css" href="/gbe-elegant-theme.css"></link>`,
+        picked: false
+      },
+      {
+        id: 'Bold Theme',
         code: `<link rel="stylesheet" type="text/css" href="/gbe-bold-theme.css"></link>`,
         picked: false
       }
