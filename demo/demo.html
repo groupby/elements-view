@@ -14,13 +14,13 @@
     <!-- <script src="./temp/gb-elements-logic.js"></script> -->
     <script src="./demo.js"></script>
     <style>
-      body {
+      .gbe-padding {
         background: var(--background-color-body);
-        padding: 30px;
+        padding: var(--gbe-presentational-parent-component-padding);
       }
     </style>
   </head>
-  <body>
+  <body class="gbe-padding">
     <gbe-search-box id="main-search" placeholder="search" clearbutton searchbutton area="DemoMaster" collection="products"></gbe-search-box>
     <gbe-sayt searchbox="main-search" area="DemoMaster" collection="products"></gbe-sayt>
 

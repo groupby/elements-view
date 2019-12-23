@@ -5,6 +5,7 @@ $num-of-tiles-desktop: $number-of-tiles-to-show + 2;
 $num-of-tiles-mobile: $number-of-tiles-to-show + 1;
 
 :root {
+  --gbe-presentational-parent-component-padding: 30px;
   /***** GBE-SEARCH-BOX *****/
   --gbe-fill-parent-container-width: 100%;
   --gbe-search-box-width: var(--gbe-fill-parent-container-width, 600px);
