@@ -14,10 +14,26 @@
     <!-- <script src="./temp/gb-elements-logic.js"></script> -->
     <script src="./demo.js"></script>
     <style>
+      :root {
+        --gbe-presentational-parent-component-padding: 30px;
+      }
+
       .gbe-padding {
         background: var(--background-color-body);
         padding: var(--gbe-presentational-parent-component-padding);
       }
+
+      @media (max-width: 769px) {
+        :root {
+          --gbe-presentational-parent-component-padding: 0;
+        }
+
+        body.gbe-padding {
+          padding: var(--gbe-presentational-parent-component-padding);
+          margin: var(--gbe-presentational-parent-component-padding);
+        }
+      }
+
     </style>
   </head>
   <body class="gbe-padding">

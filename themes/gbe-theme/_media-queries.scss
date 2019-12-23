@@ -33,12 +33,6 @@
   :root {
     --gbe-search-box-input-width: none;
     --products-sayt-height: 500px;
-    --gbe-presentational-parent-component-padding: 0;
-  }
-
-  body.gbe-padding {
-    padding: var(--gbe-presentational-parent-component-padding);
-    margin: var(--gbe-presentational-parent-component-padding);
   }
 
   .gbe-sayt-container gbe-products-sayt .gbe-product-tile-wrapper:nth-child(n + #{$num-of-tiles-mobile}) {
@@ -52,6 +46,6 @@
 
 @media(min-width: 770px) and (max-width: 1260px) {
   :root {
-    --gbe-search-box-input-width: calc(var(--gbe-search-box-width) - calc(var(--gbe-sayt-height-and-button-height) * 2) - calc(var(--gbe-presentational-parent-component-padding) * 2) - -1px);
+    --gbe-search-box-input-width: calc(var(--gbe-search-box-width) - calc(var(--gbe-sayt-height-and-button-height) * 2) - calc(var(--gbe-presentational-parent-component-padding, 0px) * 2) - -1px);
   }
 }
