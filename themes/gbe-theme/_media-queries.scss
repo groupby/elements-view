@@ -46,6 +46,7 @@
 
 @media(min-width: 770px) and (max-width: 1260px) {
   :root {
-    --gbe-search-box-input-width: calc(var(--gbe-search-box-width) - calc(var(--gbe-sayt-height-and-button-height) * 2) - calc(var(--gbe-presentational-parent-component-padding, 0px) * 2) - -1px);
+    --gbe-search-box-input-responsive-desktop-width: calc(var(--gbe-search-box-width) - calc(var(--gbe-sayt-width-and-button-width) * 2) - calc(var(--gbe-presentational-parent-component-padding, 0px) * 2) + 1px);
+    --gbe-search-box-input-width: var(--gbe-search-box-input-responsive-desktop-width);
   }
 }

@@ -1,6 +1,6 @@
 gbe-search-box {
   font-family: var(--font-family-text);
-  height: var(--gbe-sayt-height-and-button-height);
+  height: var(--gbe-sayt-width-and-button-width);
   max-width: var(--gbe-search-box-max-width);
   width: var(--gbe-search-box-width);
   margin-top: 30px;
@@ -10,8 +10,8 @@ gbe-search-box {
     border: none;
     color: var(--font-color-tertiary);
     font-size: var(--show-button-text, 0);
-    min-height: var(--gbe-sayt-height-and-button-height);
-    min-width: var(--gbe-sayt-height-and-button-height);
+    min-height: var(--gbe-sayt-width-and-button-width);
+    min-width: var(--gbe-sayt-width-and-button-width);
     text-align: center;
 
     &:hover {
