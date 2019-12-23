@@ -1,6 +1,6 @@
 {
   "name": "@groupby/elements-sayt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,7 +25,7 @@
   "author": "Groupby Inc",
   "license": "MIT",
   "devDependencies": {
-    "@groupby/elements-autocomplete": "^0.1.0"
+    "@groupby/elements-autocomplete": "^0.2.0"
   },
   "dependencies": {
     "@groupby/elements-base": "^0.1.0",

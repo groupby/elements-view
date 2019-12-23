@@ -1,6 +1,6 @@
 {
   "name": "elements-view",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "GroupBy Elements View SDK containing pre-built web components for for creating e-commerce application interfaces.",
   "private": true,
   "workspaces": [
@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "bundle": "webpack",
+    "bundle:prod": "NODE_ENV=production webpack -p",
     "start": "webpack-dev-server",
     "storybook": "start-storybook -s ./dist -p 9000",
     "docs": "typedoc --options ./typedoc.js packages",

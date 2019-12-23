@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const NODE_ENV = process.env.NODE_ENV;
+
 module.exports = {
   mode: 'development',
 
@@ -17,7 +19,7 @@ module.exports = {
   devtool: 'source-map',
 
   output: {
-    filename: '[name].js',
+    filename: () => `gb-elements-[name]${NODE_ENV === 'production' ? '.min' : ''}.js`,
     path: path.resolve(__dirname, 'dist')
   },
 
